@@ -39,8 +39,8 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
-     * Optional. Cloud Storage location in which to store execution outputs. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location in which to store execution outputs. This
+     * can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *
@@ -48,9 +48,9 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      */
     private $artifact_storage = '';
     /**
-     * Optional. Execution timeout for a Cloud Build Execution. This must be between 10m and
-     * 24h in seconds format.
-     * If unspecified, a default timeout of 1h is used.
+     * Optional. Execution timeout for a Cloud Build Execution. This must be
+     * between 10m and 24h in seconds format. If unspecified, a default timeout of
+     * 1h is used.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,14 +79,14 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           the project execution service account
      *           (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) is used.
      *     @type string $artifact_storage
-     *           Optional. Cloud Storage location in which to store execution outputs. This can
-     *           either be a bucket ("gs://my-bucket") or a path within a bucket
+     *           Optional. Cloud Storage location in which to store execution outputs. This
+     *           can either be a bucket ("gs://my-bucket") or a path within a bucket
      *           ("gs://my-bucket/my-dir").
      *           If unspecified, a default bucket located in the same region will be used.
      *     @type \Google\Protobuf\Duration $execution_timeout
-     *           Optional. Execution timeout for a Cloud Build Execution. This must be between 10m and
-     *           24h in seconds format.
-     *           If unspecified, a default timeout of 1h is used.
+     *           Optional. Execution timeout for a Cloud Build Execution. This must be
+     *           between 10m and 24h in seconds format. If unspecified, a default timeout of
+     *           1h is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,8 +245,8 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage location in which to store execution outputs. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location in which to store execution outputs. This
+     * can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *
@@ -259,8 +259,8 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage location in which to store execution outputs. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location in which to store execution outputs. This
+     * can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *
@@ -277,9 +277,9 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Execution timeout for a Cloud Build Execution. This must be between 10m and
-     * 24h in seconds format.
-     * If unspecified, a default timeout of 1h is used.
+     * Optional. Execution timeout for a Cloud Build Execution. This must be
+     * between 10m and 24h in seconds format. If unspecified, a default timeout of
+     * 1h is used.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -300,9 +300,9 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Execution timeout for a Cloud Build Execution. This must be between 10m and
-     * 24h in seconds format.
-     * If unspecified, a default timeout of 1h is used.
+     * Optional. Execution timeout for a Cloud Build Execution. This must be
+     * between 10m and 24h in seconds format. If unspecified, a default timeout of
+     * 1h is used.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

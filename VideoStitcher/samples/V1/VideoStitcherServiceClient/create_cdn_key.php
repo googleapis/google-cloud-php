@@ -24,17 +24,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_CreateCdnKey_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Rpc\Status;
 
 /**
  * Creates a new CDN key.
  *
- * @param string $formattedParent The project in which the CDN key should be created, in the form of
- *                                `projects/{project_number}/locations/{location}`. Please see
+ * @param string $formattedParent The project in which the CDN key should be created, in the form
+ *                                of `projects/{project_number}/locations/{location}`. Please see
  *                                {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $cdnKeyId        The ID to use for the CDN key, which will become the final component of
- *                                the CDN key's resource name.
+ * @param string $cdnKeyId        The ID to use for the CDN key, which will become the final
+ *                                component of the CDN key's resource name.
  *
  *                                This value should conform to RFC-1034, which restricts to
  *                                lower-case letters, numbers, and hyphen, with the first character a
@@ -50,9 +52,19 @@ function create_cdn_key_sample(string $formattedParent, string $cdnKeyId): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var CdnKey $response */
+        /** @var OperationResponse $response */
         $response = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var CdnKey $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

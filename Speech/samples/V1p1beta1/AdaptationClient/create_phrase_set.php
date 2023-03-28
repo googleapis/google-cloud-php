@@ -35,7 +35,7 @@ use Google\Cloud\Speech\V1p1beta1\PhraseSet;
  * @param string $formattedParent The parent resource where this phrase set will be created.
  *                                Format:
  *
- *                                `projects/{project}/locations/{location}/phraseSets`
+ *                                `projects/{project}/locations/{location}`
  *
  *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
  *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`

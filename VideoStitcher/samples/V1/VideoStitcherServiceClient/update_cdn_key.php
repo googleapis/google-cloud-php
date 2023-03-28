@@ -24,9 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_UpdateCdnKey_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 use Google\Protobuf\FieldMask;
+use Google\Rpc\Status;
 
 /**
  * Updates the specified CDN key. Only update fields specified
@@ -49,9 +51,19 @@ function update_cdn_key_sample(): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var CdnKey $response */
+        /** @var OperationResponse $response */
         $response = $videoStitcherServiceClient->updateCdnKey($cdnKey, $updateMask);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var CdnKey $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
