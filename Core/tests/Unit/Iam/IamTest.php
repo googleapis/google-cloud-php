@@ -21,8 +21,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -30,13 +29,11 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class IamTest extends TestCase
 {
-    use ExpectException;
-
     const RESOURCE = 'projects/my-project/topics/my-topic';
 
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(IamConnectionInterface::class);
     }

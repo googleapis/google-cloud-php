@@ -19,21 +19,18 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
 class MessageTest extends TestCase
 {
-    use AssertIsType;
-
     private $message;
 
     private $time = '2016-09-27T13:21:30.242Z';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->message = new Message([
             'data' => 'hello world',

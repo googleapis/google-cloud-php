@@ -19,19 +19,16 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
 class ArrayTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $impl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(ArrayTrait::class);
     }

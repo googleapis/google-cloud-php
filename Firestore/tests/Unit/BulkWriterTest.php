@@ -28,10 +28,7 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
@@ -39,9 +36,6 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class BulkWriterTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
-    use ExpectExceptionMessageMatches;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -51,7 +45,7 @@ class BulkWriterTest extends TestCase
     private $connection;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(BulkWriter::class, [

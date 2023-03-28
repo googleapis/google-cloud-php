@@ -28,8 +28,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
@@ -37,13 +36,12 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ValueMapperTest extends TestCase
 {
-    use ExpectException;
     use TimeTrait;
 
     private $connection;
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->mapper = TestHelpers::stub(ValueMapper::class, [

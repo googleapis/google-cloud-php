@@ -21,7 +21,7 @@ use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -30,7 +30,7 @@ class FileBreakpointStorageTest extends TestCase
 {
     private $storage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->storage = new FileBreakpointStorage();
     }

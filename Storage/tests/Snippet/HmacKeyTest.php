@@ -39,7 +39,7 @@ class HmacKeyTest extends SnippetTestCase
         'accessId' => 'foo'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

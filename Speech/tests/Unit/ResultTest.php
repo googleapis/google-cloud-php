@@ -19,7 +19,7 @@ namespace Google\Cloud\Speech\Tests\Unit;
 
 use Google\Cloud\Speech\Result;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
@@ -30,7 +30,7 @@ class ResultTest extends TestCase
     private $confidence;
     private $result;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->transcript = 'testing';
         $this->confidence = 1.0;

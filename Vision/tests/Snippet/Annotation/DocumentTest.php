@@ -32,7 +32,7 @@ class DocumentTest extends SnippetTestCase
     private $info;
     private $document;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'pages' => [['foo' => 'bar']],

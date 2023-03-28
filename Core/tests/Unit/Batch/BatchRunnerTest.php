@@ -23,8 +23,7 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -32,12 +31,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class BatchRunnerTest extends TestCase
 {
-    use ExpectException;
-
     private $configStorage;
     private $processor;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->configStorage = $this->prophesize(ConfigStorageInterface::class);
         $this->processor = $this->prophesize(ProcessItemInterface::class);

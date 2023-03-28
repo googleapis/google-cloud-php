@@ -26,7 +26,7 @@ use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Psr\Log\LoggerInterface;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -37,7 +37,7 @@ class AgentTest extends TestCase
     private $storage;
     private $oldDaemonEnv;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->oldDaemonEnv = getenv('IS_BATCH_DAEMON_RUNNING');
 

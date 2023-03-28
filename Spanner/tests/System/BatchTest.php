@@ -33,9 +33,9 @@ class BatchTest extends SpannerTestCase
     private static $tableName;
     private static $databaseRole;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
         self::$databaseRole = 'batchRole';
@@ -158,7 +158,7 @@ class BatchTest extends SpannerTestCase
 
         $this->assertInstanceOf(ServiceException::class, $error);
         $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
-        
+
         $snapshot->close();
     }
 
@@ -166,7 +166,7 @@ class BatchTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         self::$database->updateDdl(sprintf(
             'GRANT SELECT ON TABLE %s TO ROLE %s',
             self::$tableName,

@@ -22,7 +22,7 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Core\SysvTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -33,7 +33,7 @@ class SysvBreakpointStorageTest extends TestCase
 
     private $storage;
 
-    public function set_up()
+    public function setUp(): void
     {
         if (!$this->isSysvIPCLoaded()) {
             $this->markTestSkipped(

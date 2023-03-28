@@ -21,18 +21,15 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group datastore
  */
 class KeyTest extends SnippetTestCase
 {
-    use ExpectException;
-
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->key = new Key('my-awesome-project');
     }

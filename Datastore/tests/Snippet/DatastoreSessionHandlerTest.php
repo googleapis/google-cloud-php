@@ -24,7 +24,6 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group datastore
@@ -33,7 +32,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class DatastoreSessionHandlerTest extends SnippetTestCase
 {
-    use ExpectException;
     use DatastoreOperationRefreshTrait;
 
     const TRANSACTION = 'transaction-id';
@@ -41,9 +39,9 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         // Since the tests in this class must run in isolation, they won't be
         // recognized as having been covered, and will cause a CI error.
@@ -53,7 +51,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         self::snippetFromClass(DatastoreSessionHandler::class, 1);
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [

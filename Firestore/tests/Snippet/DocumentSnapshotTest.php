@@ -40,7 +40,7 @@ class DocumentSnapshotTest extends SnippetTestCase
 
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::DOCUMENT);

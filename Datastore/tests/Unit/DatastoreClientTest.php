@@ -35,8 +35,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -46,7 +45,6 @@ use Prophecy\Argument;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
-    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'example-project';
@@ -55,7 +53,7 @@ class DatastoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [

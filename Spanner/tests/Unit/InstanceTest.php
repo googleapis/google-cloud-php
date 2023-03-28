@@ -30,9 +30,8 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -40,7 +39,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class InstanceTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -54,7 +52,7 @@ class InstanceTest extends TestCase
     private $instance;
     private $lroConnection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

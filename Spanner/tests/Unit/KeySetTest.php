@@ -20,15 +20,12 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class KeySetTest extends TestCase
 {
-    use ExpectException;
-
     public function testAddRange()
     {
         $set = new KeySet;

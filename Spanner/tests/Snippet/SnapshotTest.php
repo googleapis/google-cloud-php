@@ -42,7 +42,7 @@ class SnapshotTest extends SnippetTestCase
     private $connection;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

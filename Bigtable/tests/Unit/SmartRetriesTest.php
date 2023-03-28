@@ -34,8 +34,7 @@ use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -44,8 +43,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SmartRetriesTest extends TestCase
 {
-    use ExpectException;
-
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';
@@ -59,7 +56,7 @@ class SmartRetriesTest extends TestCase
     private $retryingApiException;
     private $nonRetryingApiException;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->retryingApiException = new ApiException(
             'DEADLINE_EXCEEDED',

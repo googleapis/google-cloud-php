@@ -24,7 +24,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -42,7 +42,7 @@ class InstanceConfigurationTest extends TestCase
     private $connection;
     private $configuration;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

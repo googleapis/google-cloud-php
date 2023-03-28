@@ -27,10 +27,9 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Google\Cloud\Spanner\SpannerClient;
 
 /**
@@ -40,7 +39,6 @@ use Google\Cloud\Spanner\SpannerClient;
  */
 class BatchClientTest extends TestCase
 {
-    use ExpectException;
     use OperationRefreshTrait;
     use StubCreationTrait;
     use TimeTrait;
@@ -52,7 +50,7 @@ class BatchClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->getConnStub();
         $this->client = TestHelpers::stub(BatchClient::class, [

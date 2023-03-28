@@ -49,7 +49,7 @@ class BackupTest extends SnippetTestCase
     private $instance;
     private $expireTime;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

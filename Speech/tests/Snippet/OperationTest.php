@@ -34,7 +34,7 @@ class OperationTest extends SnippetTestCase
     private $connection;
     private $operation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->opData = [
             'done' => true,

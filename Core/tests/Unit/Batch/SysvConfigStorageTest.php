@@ -22,7 +22,7 @@ use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\SysvConfigStorage;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\TestSerializableObjectWithClosure;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -40,7 +40,7 @@ class SysvConfigStorageTest extends TestCase
 
     private $originalProject;
 
-    public function set_up()
+    public function setUp(): void
     {
         if (! $this->isSysvIPCLOaded()) {
             $this->markTestSkipped(

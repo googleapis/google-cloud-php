@@ -21,16 +21,13 @@ use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
 class PsrLoggerTest extends TestCase
 {
-    use ExpectException;
-
     public $connection;
     public $formattedName;
     public $logName = 'myLog';
@@ -39,7 +36,7 @@ class PsrLoggerTest extends TestCase
     public $resource = ['type' => 'global'];
     public $severity = 'ALERT';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/logs/$this->logName";
         $this->connection = $this->prophesize(ConnectionInterface::class);

@@ -20,7 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Model;
 use Google\Cloud\BigQuery\Table;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
@@ -49,7 +49,7 @@ class ExtractJobConfigurationTest extends TestCase
 
     private $expectedConfig;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->expectedConfig = [
             'projectId' => self::PROJECT_ID,

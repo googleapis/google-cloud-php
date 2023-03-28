@@ -31,7 +31,7 @@ class AclTest extends SnippetTestCase
     private $connection;
     private $acl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->acl = TestHelpers::stub(Acl::class, [

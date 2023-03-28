@@ -38,7 +38,7 @@ class QueryTest extends SnippetTestCase
     private $operation;
     private $query;
 
-    public function set_up()
+    public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
 

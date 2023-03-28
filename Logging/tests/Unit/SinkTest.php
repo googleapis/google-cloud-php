@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
@@ -36,7 +36,7 @@ class SinkTest extends TestCase
         'destination' => 'wow a destination'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/sinks/$this->sinkName";
         $this->connection = $this->prophesize(ConnectionInterface::class);

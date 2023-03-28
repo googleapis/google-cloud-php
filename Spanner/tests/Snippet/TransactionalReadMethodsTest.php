@@ -65,9 +65,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     private $transaction;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         $this->connection = $this->getConnStub();
         $this->session = $this->prophesize(Session::class);

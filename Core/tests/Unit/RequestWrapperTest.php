@@ -31,15 +31,12 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class RequestWrapperTest extends TestCase
 {
-    use ExpectException;
-
     const VERSION = 'v0.1';
 
     private static $requestOptions = [

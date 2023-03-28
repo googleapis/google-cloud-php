@@ -42,8 +42,7 @@ use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -51,8 +50,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class TableTest extends TestCase
 {
-    use ExpectException;
-
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';
@@ -66,7 +63,7 @@ class TableTest extends TestCase
     private $options;
     private $serverStream;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);

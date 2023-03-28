@@ -31,9 +31,8 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -42,7 +41,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class BatchSnapshotTest extends TestCase
 {
-    use ExpectException;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
@@ -56,7 +54,7 @@ class BatchSnapshotTest extends TestCase
     private $connection;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);

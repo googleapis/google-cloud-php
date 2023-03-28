@@ -25,7 +25,7 @@ use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\LogMetric;
 use Google\Cloud\Logging\V2\LogSink;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
@@ -37,7 +37,7 @@ class GrpcTest extends TestCase
     private $requestWrapper;
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

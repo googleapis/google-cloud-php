@@ -42,7 +42,7 @@ class CollectionReferenceTest extends SnippetTestCase
     private $connection;
     private $collection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->collection = TestHelpers::stub(CollectionReference::class, [

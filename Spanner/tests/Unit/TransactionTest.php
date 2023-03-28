@@ -31,16 +31,14 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class TransactionTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
@@ -66,7 +64,7 @@ class TransactionTest extends TestCase
     private $transaction;
     private $singleUseTransaction;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

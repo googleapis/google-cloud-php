@@ -32,7 +32,7 @@ class MetadataTest extends SnippetTestCase
     private $metadata;
     private $reader;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->reader = $this->prophesize(ReaderInterface::class);
         $this->metadata = new Metadata;

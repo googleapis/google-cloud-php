@@ -34,14 +34,12 @@ use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
  */
 class StorageObjectTest extends SnippetTestCase
 {
-    use AssertStringContains;
     use KeyPairGenerateTrait;
 
     const OBJECT = 'my-object';
@@ -50,7 +48,7 @@ class StorageObjectTest extends SnippetTestCase
     private $connection;
     private $object;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->object = TestHelpers::stub(StorageObject::class, [
@@ -678,7 +676,7 @@ class StorageObjectTest extends SnippetTestCase
 
     public function signedUploadSessionSnippet()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [$this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession')],

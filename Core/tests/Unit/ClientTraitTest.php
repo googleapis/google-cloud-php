@@ -21,9 +21,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -31,13 +29,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class ClientTraitTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
-
     private $impl;
     private $dependency;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(ClientTrait::class);
 

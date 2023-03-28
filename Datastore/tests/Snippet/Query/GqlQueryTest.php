@@ -37,7 +37,7 @@ class GqlQueryTest extends SnippetTestCase
     private $connection;
     private $operation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -166,7 +166,7 @@ class GqlQueryTest extends SnippetTestCase
 
     private function provideSnippets($name)
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         return [
             [$this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', $name)],

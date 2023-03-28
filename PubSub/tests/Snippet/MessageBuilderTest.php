@@ -32,7 +32,7 @@ class MessageBuilderTest extends SnippetTestCase
 {
     private $builder;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->builder = new MessageBuilder;
     }

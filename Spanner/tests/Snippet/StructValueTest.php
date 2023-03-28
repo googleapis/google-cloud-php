@@ -49,7 +49,7 @@ class StructValueTest extends SnippetTestCase
     private $database;
     private $value;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

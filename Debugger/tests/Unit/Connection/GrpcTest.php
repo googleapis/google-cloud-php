@@ -25,7 +25,7 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debuggee;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -37,7 +37,7 @@ class GrpcTest extends TestCase
     private $requestWrapper;
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

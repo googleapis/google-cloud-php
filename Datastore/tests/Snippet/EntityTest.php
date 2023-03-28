@@ -36,7 +36,7 @@ class EntityTest extends SnippetTestCase
     private $entity;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->options = [
             'cursor' => 'foo',

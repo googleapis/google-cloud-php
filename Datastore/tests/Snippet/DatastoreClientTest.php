@@ -35,14 +35,12 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group datastore
  */
 class DatastoreClientTest extends SnippetTestCase
 {
-    use AssertIsType;
     use DatastoreOperationRefreshTrait;
 
     const PROJECT = 'example-project';
@@ -52,7 +50,7 @@ class DatastoreClientTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);

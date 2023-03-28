@@ -19,8 +19,6 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -29,17 +27,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PgReadTest extends SpannerPgTestCase
 {
-    use AssertStringContains;
-    use ExpectException;
-
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
     private static $dataset;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$readTableName = "read_table";
         self::$rangeTableName = "range_table";

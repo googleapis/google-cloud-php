@@ -24,7 +24,7 @@ use Google\Cloud\Debugger\Daemon;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -35,7 +35,7 @@ class DaemonTest extends TestCase
     private $debuggee;
     private $storage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = $this->prophesize(DebuggerClient::class);
         $this->debuggee = $this->prophesize(Debuggee::class);

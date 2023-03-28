@@ -36,7 +36,7 @@ class LoggerTest extends SnippetTestCase
     private $connection;
     private $logger;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->logger = TestHelpers::stub(Logger::class, [

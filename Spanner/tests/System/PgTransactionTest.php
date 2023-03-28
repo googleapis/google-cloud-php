@@ -33,9 +33,9 @@ class PgTransactionTest extends SpannerPgTestCase
     private static $tableName;
     private static $table2;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$tableName = "transactions_test";
         self::$table2 = "transactions_users";

@@ -32,9 +32,8 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -42,7 +41,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class FirestoreClientTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'example_project';
@@ -51,7 +49,7 @@ class FirestoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

@@ -36,7 +36,7 @@ class RoutineTest extends SnippetTestCase
     private $routine;
     private $identity;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->identity = [

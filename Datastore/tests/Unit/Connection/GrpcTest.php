@@ -37,8 +37,7 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -47,7 +46,6 @@ use Prophecy\Argument;
  */
 class GrpcTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use GrpcTrait;
 
@@ -57,7 +55,7 @@ class GrpcTest extends TestCase
 
     private $serializer;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

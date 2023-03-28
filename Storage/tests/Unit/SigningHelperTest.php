@@ -24,10 +24,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
@@ -36,9 +34,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class SigningHelperTest extends TestCase
 {
-    use AssertStringContains;
-    use ExpectException;
-
     const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
     const BUCKET = 'test-bucket';
     const OBJECT = 'test-object';
@@ -46,7 +41,7 @@ class SigningHelperTest extends TestCase
 
     private $helper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->helper = TestHelpers::stub(SigningHelperStub::class);
     }

@@ -50,7 +50,7 @@ class ArrayTypeTest extends SnippetTestCase
     private $database;
     private $type;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

@@ -62,7 +62,7 @@ class TableTest extends SnippetTestCase
     private $serverStream;
     private $entries = [];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);

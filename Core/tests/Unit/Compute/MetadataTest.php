@@ -21,7 +21,7 @@ use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -32,7 +32,7 @@ class MetadataTest extends TestCase
     private $metadata;
     private $reader;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->metadata = TestHelpers::stub(Metadata::class, [], ['reader']);
         $this->reader = $this->prophesize(ReaderInterface::class);

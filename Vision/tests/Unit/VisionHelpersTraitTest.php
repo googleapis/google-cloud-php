@@ -29,20 +29,18 @@ use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use InvalidArgumentException;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
 class VisionHelpersTraitTest extends TestCase
 {
-    use ExpectException;
     use VisionHelpersTrait;
 
     private $implementation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = TestHelpers::impl(VisionHelpersTrait::class);
     }

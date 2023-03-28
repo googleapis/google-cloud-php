@@ -34,7 +34,7 @@ class SpeechClientTest extends SnippetTestCase
     private $client;
     private $transport;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new SpeechClient([

@@ -32,7 +32,7 @@ class EntityTest extends SnippetTestCase
     private $entityData;
     private $entity;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->entityData = [
             'mid' => 'testMid',

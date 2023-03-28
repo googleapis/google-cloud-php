@@ -24,9 +24,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -34,8 +33,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SnapshotTraitTest extends TestCase
 {
-    use ExpectException;
-
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
@@ -44,7 +41,7 @@ class SnapshotTraitTest extends TestCase
     private $mapper;
     private $impl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->impl = TestHelpers::impl(SnapshotTrait::class);

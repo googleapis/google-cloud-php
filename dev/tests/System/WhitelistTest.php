@@ -21,21 +21,18 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group whitelist
  */
 class WhitelistTest extends SystemTestCase
 {
-    use AssertStringContains;
-
     const MESSAGE = 'NOTE: Error may be due to Whitelist Restriction.';
     const TESTING_PREFIX = 'gcloud_whitelist_testing_';
 
     private $keyFilePath;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->markTestSkipped('Temporarily removed from the system test suite.');
         if (!getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH')) {

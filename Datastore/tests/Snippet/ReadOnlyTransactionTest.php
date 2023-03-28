@@ -45,7 +45,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

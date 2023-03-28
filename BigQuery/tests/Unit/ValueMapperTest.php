@@ -26,15 +26,12 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class ValueMapperTest extends TestCase
 {
-    use ExpectException;
-
     public function testThrowsExceptionWithUnhandledClass()
     {
         $this->expectException('\InvalidArgumentException');

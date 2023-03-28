@@ -53,7 +53,7 @@ class TransactionTest extends SnippetTestCase
     private $document;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->transaction = TestHelpers::stub(TransactionStub::class, [

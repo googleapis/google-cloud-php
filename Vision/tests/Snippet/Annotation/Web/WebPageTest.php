@@ -32,7 +32,7 @@ class WebPageTest extends SnippetTestCase
     private $info;
     private $image;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'url' => 'http://foo.bar/image.jpg',

@@ -32,7 +32,7 @@ use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -49,7 +49,7 @@ class GrpcTest extends TestCase
 
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

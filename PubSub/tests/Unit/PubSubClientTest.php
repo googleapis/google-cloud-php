@@ -34,16 +34,14 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class PubSubClientTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'project';
@@ -53,7 +51,7 @@ class PubSubClientTest extends TestCase
 
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

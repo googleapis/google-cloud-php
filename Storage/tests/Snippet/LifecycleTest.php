@@ -39,7 +39,7 @@ class LifecycleTest extends SnippetTestCase
         'isLive' => true
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->lifecycle = new Lifecycle;
     }

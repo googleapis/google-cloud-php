@@ -34,7 +34,7 @@ class SinkTest extends SnippetTestCase
     private $connection;
     private $sink;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->sink = TestHelpers::stub(Sink::class, [

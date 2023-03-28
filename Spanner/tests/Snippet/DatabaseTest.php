@@ -63,7 +63,7 @@ class DatabaseTest extends SnippetTestCase
     private $database;
     private $instance;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

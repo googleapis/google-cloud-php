@@ -20,7 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\HmacKey;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -39,7 +39,7 @@ class HmacKeyTest extends TestCase
         'accessId' => 'foo'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->key = TestHelpers::stub(HmacKey::class, [

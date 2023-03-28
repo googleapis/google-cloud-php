@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation\Web;
 
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class WebEntityTest extends TestCase
     private $info;
     private $entity;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'entityId' => 'foo',

@@ -22,7 +22,7 @@ use Google\Cloud\ErrorReporting\Bootstrap;
 use Google\Cloud\ErrorReporting\MockValues;
 use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 //@codingStandardsIgnoreStart
 require_once __DIR__ . '/fakeGlobalFunctions.php';
@@ -37,7 +37,7 @@ class BootstrapTest extends TestCase
     private $psrBatchLogger;
     private $metadataProvider;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->psrBatchLogger = $this->prophesize(PsrLogger::class);
     }

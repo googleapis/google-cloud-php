@@ -21,7 +21,7 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
@@ -31,7 +31,7 @@ class WebTest extends TestCase
     private $info;
     private $annotation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'webEntities' => [

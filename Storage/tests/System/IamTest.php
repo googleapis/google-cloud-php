@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
@@ -25,11 +24,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class IamTest extends StorageTestCase
 {
-    use AssertStringContains;
-
     private $b;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->b = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $this->b->update($this->bucketConfig());
