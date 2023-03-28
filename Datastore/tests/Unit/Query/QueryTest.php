@@ -166,8 +166,8 @@ class QueryTest extends TestCase
 
     public function testFilterWithFilterArrayArgument()
     {
-        $filter = Filter::or([
-            Filter::and([
+        $filter = Filter::doOr([
+            Filter::doAnd([
                 Filter::where('bar', '>', 1),
                 Filter::where('bar', '<', 4),
             ]),

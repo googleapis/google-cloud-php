@@ -59,7 +59,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testOrRunQuery(DatastoreClient $client)
     {
-        $filter = Filter::or([
+        $filter = Filter::doOr([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
         ]);
@@ -78,14 +78,14 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testMixOfOrAndRunQuery(DatastoreClient $client)
     {
-        $filter = Filter::and([
+        $filter = Filter::doAnd([
             Filter::where('Age', '<', 26),
-            Filter::or([
-                Filter::and([
+            Filter::doOr([
+                Filter::doAnd([
                     Filter::where('Age', '>', 23),
                     Filter::where('Age', '<', 30)
                 ]),
-                Filter::and([
+                Filter::doAnd([
                     Filter::where('Age', '>', 25),
                     Filter::where('Age', '<', 31)
                 ]),
@@ -105,7 +105,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testOrQueryViaTransaction(DatastoreClient $client)
     {
-        $filter = Filter::or([
+        $filter = Filter::doOr([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
         ]);
@@ -129,14 +129,14 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testMixOfOrAndViaTransaction(DatastoreClient $client)
     {
-        $filter = Filter::and([
+        $filter = Filter::doAnd([
             Filter::where('Age', '<', 26),
-            Filter::or([
-                Filter::and([
+            Filter::doOr([
+                Filter::doAnd([
                     Filter::where('Age', '>', 23),
                     Filter::where('Age', '<', 30)
                 ]),
-                Filter::and([
+                Filter::doAnd([
                     Filter::where('Age', '>', 25),
                     Filter::where('Age', '<', 31)
                 ]),
