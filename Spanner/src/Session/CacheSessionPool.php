@@ -502,8 +502,8 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
-     * @return bool Returns false if some sessions in pool failed to delete, true otherwise.
-     *        True maybe returned when delete for some sessions are not successful.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
     public function clear()
     {
@@ -866,8 +866,8 @@ class CacheSessionPool implements SessionPoolInterface
      * @param array $sessions
      * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
      *        to delete sessions. **Defaults to ** `false`.
-     * @return bool Returns false if some delete operations failed, true otherwise.
-     *        True maybe returned when delete for some sessions are not successful.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
     private function deleteSessions(array $sessions, $waitForPromises = false)
     {
@@ -880,15 +880,14 @@ class CacheSessionPool implements SessionPoolInterface
                 ]);
         }
 
-        if ($waitForPromises) {
+        if ($waitForPromises && !empty($this->deleteCalls)) {
             // try clearing sessions otherwise it could lead to leaking of sessions
             try {
                 $results = Utils::all($this->deleteCalls)->wait();
-                return empty($results) ||
-                    (
-                        count(array_unique($results, SORT_REGULAR)) === 1 &&
-                        empty(reset($results)->serializeToString())
-                    );
+                // successful session deletes should resolve to empty protobuf objects
+                // return true when $results has single unique object with empty string value
+                return count(array_unique($results, SORT_REGULAR)) === 1 &&
+                    empty(reset($results)->serializeToString());
             } catch (\GuzzleHttp\Promise\RejectionException $ex) {
                 return false;
             }
