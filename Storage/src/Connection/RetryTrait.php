@@ -44,7 +44,7 @@ trait RetryTrait
      * (Idempotent)
      * @var array
      */
-    public static $idempotentOps = [
+    private static $idempotentOps = [
         'bucket_acl.get',
         'bucket_acl.list',
         'buckets.delete',
@@ -74,7 +74,7 @@ trait RetryTrait
      * (Conditionally idempotent)
      * @var array
      */
-    public static $condIdempotentOps = [
+    private static $condIdempotentOps = [
         'buckets.patch' => ['ifMetagenerationMatch', 'etag'],
         // Currently etag is not supported, so this preCondition never available
         'buckets.setIamPolicy' => ['etag'],

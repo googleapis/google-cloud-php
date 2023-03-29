@@ -648,11 +648,11 @@ class RestTest extends TestCase
         foreach ($retryCases as $retryCase) {
             // For retry always
             $case = $retryCase;
-            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_ALWAYS;
+            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_ALWAYS;
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
             if (!in_array(
                 $retryCase[4],
-                RetryTrait::$httpRetryCodes
+                Rest::$httpRetryCodes
             ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
@@ -661,7 +661,7 @@ class RestTest extends TestCase
 
             // For retry never
             $case = $retryCase;
-            $case[3]['retryStrategy'] = RetryTrait::$RETRY_STRATEGY_NEVER;
+            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_NEVER;
             $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             $retryStrategyCases[] = $case;
         }

@@ -316,7 +316,7 @@ class Rest implements ConnectionInterface
 
         // Passing the preconditions we want to extract out of arguments
         // into our query params.
-        $preconditions = RetryTrait::$condIdempotentOps['objects.insert'];
+        $preconditions = self::$condIdempotentOps['objects.insert'];
         foreach ($preconditions as $precondition) {
             if (isset($args[$precondition])) {
                 $uriParams['query'][$precondition] = $args[$precondition];

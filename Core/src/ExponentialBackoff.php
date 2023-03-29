@@ -63,7 +63,7 @@ class ExponentialBackoff
      *        responsible to decide if a retry should happen or not, but it gives the
      *        users flexibility to consume exception messages and add custom logic.
      *        Function definition should match:
-     *            function (\Exception $e, int $attempt, array &$arguments) : void
+     *            function (\Exception $e, int $attempt, array &$arguments): void
      *        Ex: One might want to change headers on every retry, this function can
      *        be used to achieve such a functionality.
      * @param callable $onExecutionStartFunction [optional] runs before execution
@@ -71,7 +71,7 @@ class ExponentialBackoff
      *        thus gives users, the flexibility to add custom logic before the
      *        execution of request and override request / options in the $arguments.
      *        Function definition should match:
-     *            function (array &$arguments) : void
+     *            function (array &$arguments): void
      */
     public function __construct(
         $retries = null,
