@@ -45,4 +45,3 @@ trait TimestampTrait
         return $args;
     }
 }
-
