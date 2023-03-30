@@ -59,6 +59,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testOrRunQuery(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $filter = Filter::doOr([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
@@ -78,6 +79,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testMixOfOrAndRunQuery(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $filter = Filter::doAnd([
             Filter::where('Age', '<', 26),
             Filter::doOr([
@@ -105,6 +107,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testOrQueryViaTransaction(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $filter = Filter::doOr([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
@@ -129,6 +132,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
      */
     public function testMixOfOrAndViaTransaction(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $filter = Filter::doAnd([
             Filter::where('Age', '<', 26),
             Filter::doOr([
