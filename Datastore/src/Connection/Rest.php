@@ -69,8 +69,7 @@ class Rest implements ConnectionInterface
      */
     public function allocateIds(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'allocateIds', $args);
+        return $this->sendWithHeaders('projects', 'allocateIds', $args);
     }
 
     /**
@@ -78,8 +77,7 @@ class Rest implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'beginTransaction', $args);
+        return $this->sendWithHeaders('projects', 'beginTransaction', $args);
     }
 
     /**
@@ -87,8 +85,7 @@ class Rest implements ConnectionInterface
      */
     public function commit(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'commit', $args);
+        return $this->sendWithHeaders('projects', 'commit', $args);
     }
 
     /**
@@ -96,8 +93,7 @@ class Rest implements ConnectionInterface
      */
     public function lookup(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'lookup', $args);
+        return $this->sendWithHeaders('projects', 'lookup', $args);
     }
 
     /**
@@ -105,8 +101,7 @@ class Rest implements ConnectionInterface
      */
     public function rollback(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'rollback', $args);
+        return $this->sendWithHeaders('projects', 'rollback', $args);
     }
 
     /**
@@ -114,17 +109,19 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
-        $this->setHeader($args);
-        return $this->send('projects', 'runQuery', $args);
+        return $this->sendWithHeaders('projects', 'runQuery', $args);
     }
 
     /**
-     * Apply the `x-goog-request-params` header to the request. This header
+     * Deliver the request built from serice definition.
+     * Also apply the `x-goog-request-params` header to the request. This header
      * is required for operations involving a non-default databases.
      *
-     * @param array $args
+     * @param string $resource The resource type used for the request.
+     * @param string $method The method used for the request.
+     * @param array $args Options used to build out the request.
      */
-    private function setHeader(&$args)
+    private function sendWithHeaders($resource, $method, $args)
     {
         if (isset($args['projectId']) && isset($args['databaseId'])) {
             $args['restOptions']['headers']['x-goog-request-params'] = sprintf(
@@ -133,5 +130,7 @@ class Rest implements ConnectionInterface
                 $args['databaseId']
             );
         }
+
+        return $this->send($resource, $method, $args);
     }
 }
