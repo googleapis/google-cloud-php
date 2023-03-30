@@ -100,7 +100,8 @@ trait SnapshotTrait
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      * @throws NotFoundException If the document does not exist.
      */
     private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
