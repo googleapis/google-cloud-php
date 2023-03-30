@@ -195,6 +195,7 @@ class Query
     public function documents(array $options = [])
     {
         $options = $this->formatReadTimeOption($options);
+        
         $maxRetries = $this->pluck('maxRetries', $options, false);
         $maxRetries = $maxRetries === null
             ? FirestoreClient::MAX_RETRIES

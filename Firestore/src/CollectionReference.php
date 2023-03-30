@@ -272,7 +272,7 @@ class CollectionReference extends Query
         ];
 
         $options = $this->formatReadTimeOption($options);
-
+        
         return new ItemIterator(
             new PageIterator(
                 function ($document) {

@@ -390,6 +390,7 @@ class DocumentReference
     public function collections(array $options = [])
     {
         $options = $this->formatReadTimeOption($options);
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
