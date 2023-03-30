@@ -23,7 +23,6 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\SnapshotTrait;
-use Google\Cloud\Firestore\TimestampTrait;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -49,7 +48,6 @@ class Query
 {
     use DebugInfoTrait;
     use SnapshotTrait;
-    use TimestampTrait;
 
     /**
      * @deprecated

@@ -21,7 +21,6 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\TimestampTrait;
 
 /**
  * Represents a reference to a Firestore document.
@@ -38,7 +37,6 @@ class DocumentReference
 {
     use SnapshotTrait;
     use DebugInfoTrait;
-    use TimestampTrait;
 
     /**
      * @var ConnectionInterface
