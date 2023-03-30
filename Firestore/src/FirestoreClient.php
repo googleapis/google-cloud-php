@@ -26,9 +26,8 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
+use Google\Cloud\Firestore\TimestampTrait;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -296,7 +295,7 @@ class FirestoreClient
     public function collections(array $options = [])
     {
         $options = $this->formatReadTimeOption($options);
-        
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(

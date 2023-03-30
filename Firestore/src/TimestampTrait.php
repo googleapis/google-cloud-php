@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core;
+namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Timestamp;
 

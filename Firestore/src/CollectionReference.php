@@ -21,9 +21,8 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\TimestampTrait;
 
 /**
  * Represents a Cloud Firestore Collection.
@@ -272,7 +271,7 @@ class CollectionReference extends Query
         ];
 
         $options = $this->formatReadTimeOption($options);
-        
+
         return new ItemIterator(
             new PageIterator(
                 function ($document) {
