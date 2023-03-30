@@ -218,7 +218,6 @@ class DocumentAndCollectionTest extends FirestoreTestCase
     {
         // ListCollectionIds request doesn't support read_time in options
         // in emulator, thus skipping the tests for now.
-        $this->skipEmulatorTests();
 
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
