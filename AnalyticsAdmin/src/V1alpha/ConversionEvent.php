@@ -36,7 +36,7 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. If set, this event can currently be deleted via
+     * Output only. If set, this event can currently be deleted with
      * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -69,7 +69,7 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this conversion event was created in the property.
      *     @type bool $deletable
-     *           Output only. If set, this event can currently be deleted via
+     *           Output only. If set, this event can currently be deleted with
      *           DeleteConversionEvent.
      *     @type bool $custom
      *           Output only. If set to true, this conversion event refers to a custom
@@ -178,7 +178,7 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, this event can currently be deleted via
+     * Output only. If set, this event can currently be deleted with
      * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -190,7 +190,7 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, this event can currently be deleted via
+     * Output only. If set, this event can currently be deleted with
      * DeleteConversionEvent.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

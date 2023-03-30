@@ -46,6 +46,13 @@ class FailureCause
      * Generated from protobuf enum <code>VERIFICATION_CONFIG_NOT_FOUND = 4;</code>
      */
     const VERIFICATION_CONFIG_NOT_FOUND = 4;
+    /**
+     * Cloud Build failed to fulfill Google Cloud Deploy's request. See
+     * failure_message for additional details.
+     *
+     * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 5;</code>
+     */
+    const CLOUD_BUILD_REQUEST_FAILED = 5;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
@@ -53,6 +60,7 @@ class FailureCause
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::DEADLINE_EXCEEDED => 'DEADLINE_EXCEEDED',
         self::VERIFICATION_CONFIG_NOT_FOUND => 'VERIFICATION_CONFIG_NOT_FOUND',
+        self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
     ];
 
     public static function name($value)

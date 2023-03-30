@@ -33,8 +33,8 @@ use Google\Rpc\Status;
  * Creates a backup.
  *
  * @param string $formattedParent The backup's project and location, in the format
- *                                `projects/{project_number}/locations/{location}`. In Cloud Filestore,
- *                                backup locations map to GCP regions, for example **us-west1**. Please see
+ *                                `projects/{project_number}/locations/{location}`. In Filestore,
+ *                                backup locations map to Google Cloud regions, for example **us-west1**. Please see
  *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
  * @param string $backupId        The ID to use for the backup.
  *                                The ID must be unique within the specified project and location.

@@ -120,12 +120,12 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_options = null;
     /**
-     * If this is for a partitioned read and this field is set to `true`, the
+     * If this is for a partitioned query and this field is set to `true`, the
      * request will be executed via Spanner independent compute resources.
      * If the field is set to `true` but the request does not set
      * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
     private $data_boost_enabled = false;
 
@@ -195,7 +195,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
      *     @type bool $data_boost_enabled
-     *           If this is for a partitioned read and this field is set to `true`, the
+     *           If this is for a partitioned query and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
@@ -607,12 +607,12 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this is for a partitioned read and this field is set to `true`, the
+     * If this is for a partitioned query and this field is set to `true`, the
      * request will be executed via Spanner independent compute resources.
      * If the field is set to `true` but the request does not set
      * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      * @return bool
      */
     public function getDataBoostEnabled()
@@ -621,12 +621,12 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this is for a partitioned read and this field is set to `true`, the
+     * If this is for a partitioned query and this field is set to `true`, the
      * request will be executed via Spanner independent compute resources.
      * If the field is set to `true` but the request does not set
      * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
+     * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      * @param bool $var
      * @return $this
      */

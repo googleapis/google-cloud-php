@@ -55,7 +55,7 @@ class CloudWorkspaceSourceContext extends \Google\Protobuf\Internal\Message
      */
     public function getWorkspaceId()
     {
-        return isset($this->workspace_id) ? $this->workspace_id : null;
+        return $this->workspace_id;
     }
 
     public function hasWorkspaceId()

@@ -121,6 +121,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>CHANNEL_GROUP = 22;</code>
      */
     const CHANNEL_GROUP = 22;
+    /**
+     * EnhancedMeasurementSettings resource
+     *
+     * Generated from protobuf enum <code>ENHANCED_MEASUREMENT_SETTINGS = 24;</code>
+     */
+    const ENHANCED_MEASUREMENT_SETTINGS = 24;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -141,6 +147,7 @@ class ChangeHistoryResourceType
         self::ATTRIBUTION_SETTINGS => 'ATTRIBUTION_SETTINGS',
         self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
         self::CHANNEL_GROUP => 'CHANNEL_GROUP',
+        self::ENHANCED_MEASUREMENT_SETTINGS => 'ENHANCED_MEASUREMENT_SETTINGS',
     ];
 
     public static function name($value)

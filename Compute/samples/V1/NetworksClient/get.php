@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Network;
 use Google\Cloud\Compute\V1\NetworksClient;
 
 /**
- * Returns the specified network. Gets a list of available networks by making a list() request.
+ * Returns the specified network.
  *
  * @param string $network Name of the network to return.
  * @param string $project Project ID for this request.

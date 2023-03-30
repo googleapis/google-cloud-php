@@ -45,7 +45,7 @@ class ThirdPartyPrincipal extends \Google\Protobuf\Internal\Message
      */
     public function getThirdPartyClaims()
     {
-        return isset($this->third_party_claims) ? $this->third_party_claims : null;
+        return $this->third_party_claims;
     }
 
     public function hasThirdPartyClaims()

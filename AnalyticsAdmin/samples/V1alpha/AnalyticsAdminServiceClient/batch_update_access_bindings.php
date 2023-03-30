@@ -34,8 +34,9 @@ use Google\ApiCore\ApiException;
  * property.
  *
  * @param string $formattedParent The account or property that owns the access bindings. The parent
- *                                field in the UpdateAccessBindingRequest messages must either be empty or
- *                                match this field. Formats:
+ *                                of all provided AccessBinding in UpdateAccessBindingRequest messages must
+ *                                match this field.
+ *                                Formats:
  *                                - accounts/{account}
  *                                - properties/{property}
  *                                Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.

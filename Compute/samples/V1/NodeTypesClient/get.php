@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\NodeType;
 use Google\Cloud\Compute\V1\NodeTypesClient;
 
 /**
- * Returns the specified node type. Gets a list of available node types by making a list() request.
+ * Returns the specified node type.
  *
  * @param string $nodeType Name of the node type to return.
  * @param string $project  Project ID for this request.

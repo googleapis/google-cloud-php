@@ -24,7 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_DeleteSlate_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Rpc\Status;
 
 /**
  * Deletes the specified slate.
@@ -40,8 +42,17 @@ function delete_slate_sample(string $formattedName): void
 
     // Call the API and handle any network failures.
     try {
-        $videoStitcherServiceClient->deleteSlate($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var OperationResponse $response */
+        $response = $videoStitcherServiceClient->deleteSlate($formattedName);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

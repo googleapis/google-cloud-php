@@ -17,8 +17,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The instance's project and location, in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Filestore,
-     * locations map to GCP zones, for example **us-west1-b**.
+     * `projects/{project_id}/locations/{location}`. In Filestore,
+     * locations map to Google Cloud zones, for example **us-west1-b**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,8 +45,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The instance's project and location, in the format
-     *           `projects/{project_id}/locations/{location}`. In Cloud Filestore,
-     *           locations map to GCP zones, for example **us-west1-b**.
+     *           `projects/{project_id}/locations/{location}`. In Filestore,
+     *           locations map to Google Cloud zones, for example **us-west1-b**.
      *     @type string $instance_id
      *           Required. The name of the instance to create.
      *           The name must be unique for the specified project and location.
@@ -61,8 +61,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance's project and location, in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Filestore,
-     * locations map to GCP zones, for example **us-west1-b**.
+     * `projects/{project_id}/locations/{location}`. In Filestore,
+     * locations map to Google Cloud zones, for example **us-west1-b**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +74,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance's project and location, in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Filestore,
-     * locations map to GCP zones, for example **us-west1-b**.
+     * `projects/{project_id}/locations/{location}`. In Filestore,
+     * locations map to Google Cloud zones, for example **us-west1-b**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

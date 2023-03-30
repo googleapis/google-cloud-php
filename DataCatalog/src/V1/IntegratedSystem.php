@@ -43,6 +43,18 @@ class IntegratedSystem
      * Generated from protobuf enum <code>DATAPLEX = 4;</code>
      */
     const DATAPLEX = 4;
+    /**
+     * Cloud Sql
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL = 8;</code>
+     */
+    const CLOUD_SQL = 8;
+    /**
+     * Looker
+     *
+     * Generated from protobuf enum <code>LOOKER = 9;</code>
+     */
+    const LOOKER = 9;
 
     private static $valueToName = [
         self::INTEGRATED_SYSTEM_UNSPECIFIED => 'INTEGRATED_SYSTEM_UNSPECIFIED',
@@ -50,6 +62,8 @@ class IntegratedSystem
         self::CLOUD_PUBSUB => 'CLOUD_PUBSUB',
         self::DATAPROC_METASTORE => 'DATAPROC_METASTORE',
         self::DATAPLEX => 'DATAPLEX',
+        self::CLOUD_SQL => 'CLOUD_SQL',
+        self::LOOKER => 'LOOKER',
     ];
 
     public static function name($value)

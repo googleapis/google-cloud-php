@@ -30,7 +30,7 @@ use Google\Cloud\Speech\V2\SpeechClient;
 /**
  * Returns the requested
  * [Recognizer][google.cloud.speech.v2.Recognizer]. Fails with
- * [NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested recognizer doesn't
+ * [NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested Recognizer doesn't
  * exist.
  *
  * @param string $formattedName The name of the Recognizer to retrieve. The expected format is

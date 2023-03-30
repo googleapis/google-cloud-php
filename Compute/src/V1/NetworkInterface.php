@@ -53,7 +53,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $ipv6_access_type = null;
     /**
-     * An IPv6 internal network address for this network interface.
+     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
@@ -135,7 +135,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
      *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type string $ipv6_address
-     *           An IPv6 internal network address for this network interface.
+     *           An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
      *     @type string $name
@@ -352,7 +352,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv6 internal network address for this network interface.
+     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @return string
@@ -373,7 +373,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv6 internal network address for this network interface.
+     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @param string $var
