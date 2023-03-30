@@ -6,7 +6,7 @@ return [
             'CreateCdnKey' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\CdnKey',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -16,7 +16,7 @@ return [
             'CreateLiveConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\LiveConfig',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -26,7 +26,7 @@ return [
             'CreateSlate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\Slate',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -36,7 +36,7 @@ return [
             'DeleteCdnKey' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -46,7 +46,7 @@ return [
             'DeleteLiveConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -56,7 +56,7 @@ return [
             'DeleteSlate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -66,7 +66,7 @@ return [
             'UpdateCdnKey' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\CdnKey',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -76,7 +76,7 @@ return [
             'UpdateSlate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\Slate',
-                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
