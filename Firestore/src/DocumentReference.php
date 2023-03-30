@@ -21,6 +21,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -38,6 +39,7 @@ class DocumentReference
 {
     use SnapshotTrait;
     use DebugInfoTrait;
+    use TimestampTrait;
 
     /**
      * @var ConnectionInterface
@@ -387,16 +389,7 @@ class DocumentReference
      */
     public function collections(array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
+        $options = $this->formatReadTimeOption($options);
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
