@@ -29,6 +29,10 @@ trait TimestampTrait
      * Formats Google\Cloud\Core\Timestamp to api format is present in
      * $args['readTime'] and throws exception if $args['readTime'] is not
      * Google\Cloud\Core\Timestamp
+     *
+     * @param array $args The $args possibly containing ['readTime'] field.
+     * @return array
+     * @throws \InvalidArgumentException
      */
     private function formatReadTimeOption($args)
     {
