@@ -21,7 +21,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\Timestamp;
 
 /**
- * Helper methods to work on Google\Cloud\Core\Timestamps.
+ * Helper methods to work on Google\Cloud\Core\Timestamp.
  */
 trait TimestampTrait
 {
