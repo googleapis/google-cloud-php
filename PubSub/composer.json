@@ -9,10 +9,10 @@
         "google/gax": "^1.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0",
-        "phpspec/prophecy": "^1.10.3",
+        "phpunit/phpunit": "^9.0",
+        "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^3.0||^4.0",
+        "phpdocumentor/reflection": "^4.0",
         "erusev/parsedown": "^1.6",
         "rg/avro-php": "^1.8.0||^2.0.1||^3.0.0"
     },

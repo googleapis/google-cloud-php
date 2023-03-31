@@ -9,10 +9,10 @@
         "google/cloud-core": "^1.39"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0",
-        "phpspec/prophecy": "^1.10.3",
+        "phpunit/phpunit": "^9.0",
         "erusev/parsedown": "^1.6",
-        "phpdocumentor/reflection": "^3.0||^4.0"
+        "phpdocumentor/reflection": "^4.0",
+        "phpspec/prophecy-phpunit": "^2.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
