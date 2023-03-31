@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ExponentialBackoff;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group core

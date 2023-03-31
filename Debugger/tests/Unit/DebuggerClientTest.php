@@ -23,12 +23,15 @@ use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DebuggerClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'my-project';
 
     private $client;

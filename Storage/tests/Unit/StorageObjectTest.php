@@ -34,6 +34,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -46,6 +47,7 @@ use Psr\Http\Message\StreamInterface;
 class StorageObjectTest extends TestCase
 {
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const TIMESTAMP = '2025-01-01';
     const BUCKET = 'bucket';

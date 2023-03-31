@@ -23,6 +23,7 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Core\SysvTrait;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
@@ -30,6 +31,7 @@ use PHPUnit\Framework\TestCase;
 class SysvBreakpointStorageTest extends TestCase
 {
     use SysvTrait;
+    use ProphecyTrait;
 
     private $storage;
 

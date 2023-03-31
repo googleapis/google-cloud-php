@@ -25,6 +25,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -32,6 +33,8 @@ use PHPUnit\Framework\TestCase;
  */
 class DocumentSnapshotTest extends TestCase
 {
+    use ProphecyTrait;
+
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
 

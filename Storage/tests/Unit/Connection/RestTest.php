@@ -32,6 +32,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -40,6 +41,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class RestTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $successBody;
     private static $downloadOptions = [

@@ -20,8 +20,9 @@ namespace Google\Cloud\Core\Tests\Unit\Iam;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -29,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class IamTest extends TestCase
 {
+    use ProphecyTrait;
+
     const RESOURCE = 'projects/my-project/topics/my-topic';
 
     private $connection;

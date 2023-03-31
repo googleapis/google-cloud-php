@@ -25,6 +25,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -34,6 +35,8 @@ use Psr\Http\Message\RequestInterface;
  */
 class RestTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $successBody;
 

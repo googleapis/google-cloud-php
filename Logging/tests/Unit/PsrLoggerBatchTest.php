@@ -25,14 +25,17 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class PsrLoggerBatchTest extends TestCase
 {
+    use ProphecyTrait;
+
     const LOG_NAME = 'my-log';
 
     private $runner;

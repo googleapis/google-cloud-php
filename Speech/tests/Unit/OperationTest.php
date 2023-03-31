@@ -21,14 +21,17 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class OperationTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $operationName = 'myOperation';
     public $operationData = [

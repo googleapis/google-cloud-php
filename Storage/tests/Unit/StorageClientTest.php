@@ -30,6 +30,7 @@ use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -37,6 +38,8 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'my-project';
     public $connection;
 

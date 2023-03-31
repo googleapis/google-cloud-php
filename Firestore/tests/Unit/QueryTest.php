@@ -34,6 +34,7 @@ use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilte
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -41,6 +42,8 @@ use Prophecy\Argument;
  */
 class QueryTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';

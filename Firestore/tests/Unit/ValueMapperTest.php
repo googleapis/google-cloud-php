@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -36,6 +37,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ValueMapperTest extends TestCase
 {
+    use ProphecyTrait;
     use TimeTrait;
 
     private $connection;

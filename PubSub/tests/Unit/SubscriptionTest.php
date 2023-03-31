@@ -30,6 +30,7 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -37,6 +38,8 @@ use Prophecy\Argument;
  */
 class SubscriptionTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
     const TOPIC = 'projects/project-id/topics/topic-name';

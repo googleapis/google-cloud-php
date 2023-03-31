@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\SpannerClient;
 
@@ -40,6 +41,7 @@ use Google\Cloud\Spanner\SpannerClient;
 class BatchClientTest extends TestCase
 {
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
     use TimeTrait;
 

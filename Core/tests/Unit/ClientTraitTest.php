@@ -22,6 +22,7 @@ use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -29,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ClientTraitTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $impl;
     private $dependency;
 

@@ -36,6 +36,7 @@ use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -43,6 +44,7 @@ use Prophecy\Argument;
 class PubSubClientTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'project';
     const SCHEMA = 'schema';

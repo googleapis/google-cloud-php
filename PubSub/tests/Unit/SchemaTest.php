@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -29,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SchemaTest extends TestCase
 {
+    use ProphecyTrait;
+
     const NAME = "projects/example/schemas/my-schema";
 
     private $connection;

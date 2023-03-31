@@ -26,6 +26,7 @@ use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,6 +34,8 @@ use PHPUnit\Framework\TestCase;
  */
 class StreamableUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $stream;
     private $successBody;

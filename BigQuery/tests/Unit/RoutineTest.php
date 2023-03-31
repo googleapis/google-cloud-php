@@ -23,6 +23,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
@@ -30,6 +31,8 @@ use Prophecy\Argument;
  */
 class RoutineTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT_ID = 'project-id';
     const DATASET_ID = 'dataset-id';
     const ROUTINE_ID = 'routine-id';

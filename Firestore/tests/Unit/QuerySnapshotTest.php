@@ -22,6 +22,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -29,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class QuerySnapshotTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $snapshot;
 

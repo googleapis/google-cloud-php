@@ -20,12 +20,15 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class KeySetTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testAddRange()
     {
         $set = new KeySet;

@@ -39,12 +39,15 @@ use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class BucketTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TOPIC_NAME = 'my-topic';
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';

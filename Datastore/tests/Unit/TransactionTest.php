@@ -30,6 +30,7 @@ use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * This test case includes a data provider to run tests on both rw and ro transactions.
@@ -40,6 +41,7 @@ use Prophecy\Argument;
 class TransactionTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';

@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -42,6 +43,7 @@ use Prophecy\Argument;
 class BatchSnapshotTest extends TestCase
 {
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
 

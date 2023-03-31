@@ -52,7 +52,7 @@ class HandleFailureTraitTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         $this->delTree($this->testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');

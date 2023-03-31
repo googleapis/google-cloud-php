@@ -32,7 +32,7 @@ class WriteTest extends StreamWrapperTestCase
         unlink($this->fileUrl);
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         unlink($this->fileUrl);
     }

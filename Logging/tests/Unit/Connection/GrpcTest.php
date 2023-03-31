@@ -24,8 +24,8 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\LogMetric;
 use Google\Cloud\Logging\V2\LogSink;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group logging

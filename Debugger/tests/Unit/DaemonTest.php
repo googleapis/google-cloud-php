@@ -23,14 +23,17 @@ use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\Daemon;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DaemonTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $debuggee;
     private $storage;

@@ -22,8 +22,9 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -31,6 +32,8 @@ use PHPUnit\Framework\TestCase;
  */
 class BatchRunnerTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $configStorage;
     private $processor;
 

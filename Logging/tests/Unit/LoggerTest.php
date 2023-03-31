@@ -22,12 +22,15 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class LoggerTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $formattedName = 'projects/myProjectId/logs/myLog';
     private $logName = 'myLog';

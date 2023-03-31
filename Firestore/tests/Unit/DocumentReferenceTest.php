@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -35,6 +36,7 @@ use Prophecy\Argument;
  */
 class DocumentReferenceTest extends TestCase
 {
+    use ProphecyTrait;
     use TimeTrait;
 
     const PROJECT = 'example_project';

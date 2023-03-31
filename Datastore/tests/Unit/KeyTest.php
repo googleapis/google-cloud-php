@@ -19,12 +19,15 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\Key;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class KeyTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testWithInitialPath()
     {
         $key = new Key('foo', [

@@ -28,8 +28,8 @@ use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use InvalidArgumentException;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group vision

@@ -20,14 +20,17 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Notification;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class NotificationTest extends TestCase
 {
+    use ProphecyTrait;
+
     const BUCKET_NAME = 'my-bucket';
     const NOTIFICATION_ID = '1234';
 

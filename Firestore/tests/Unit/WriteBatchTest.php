@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class WriteBatchTest extends TestCase
 {
+    use ProphecyTrait;
+
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';

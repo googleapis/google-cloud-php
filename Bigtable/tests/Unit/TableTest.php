@@ -43,6 +43,7 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -50,6 +51,8 @@ use PHPUnit\Framework\TestCase;
  */
 class TableTest extends TestCase
 {
+    use ProphecyTrait;
+
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';

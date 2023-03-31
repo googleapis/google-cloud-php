@@ -26,6 +26,7 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -33,6 +34,8 @@ use PHPUnit\Framework\TestCase;
  */
 class EntityMapperTest extends TestCase
 {
+    use ProphecyTrait;
+
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
     const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 

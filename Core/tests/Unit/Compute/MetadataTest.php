@@ -22,6 +22,7 @@ use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -29,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class MetadataTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $metadata;
     private $reader;
 

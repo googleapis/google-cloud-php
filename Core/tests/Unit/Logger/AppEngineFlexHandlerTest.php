@@ -40,7 +40,7 @@ class AppEngineFlexHandlerTest extends TestCase
         $this->log->pushHandler($handler);
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         fclose($this->stream);
     }

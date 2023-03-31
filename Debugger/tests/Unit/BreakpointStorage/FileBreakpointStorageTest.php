@@ -22,12 +22,15 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class FileBreakpointStorageTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $storage;
 
     public function setUp(): void

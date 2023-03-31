@@ -26,6 +26,7 @@ use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,6 +34,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SignedUrlUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $stream;
     private $successBody;

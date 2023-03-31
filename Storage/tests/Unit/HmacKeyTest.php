@@ -22,6 +22,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\HmacKey;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -29,6 +30,8 @@ use Prophecy\Argument;
  */
 class HmacKeyTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'project';
 
     private $connection;

@@ -22,12 +22,15 @@ use Google\Cloud\Translate\V2\Connection\ConnectionInterface;
 use Google\Cloud\Translate\V2\TranslateClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group translate
  */
 class TranslateClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $connection;
     private $key = 'test_key';

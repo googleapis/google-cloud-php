@@ -24,6 +24,7 @@ use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\BatchClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -31,6 +32,7 @@ use Prophecy\Argument;
  */
 class BatchTraitTest extends TestCase
 {
+    use ProphecyTrait;
     const ID = 'some-id';
     const BATCH_METHOD = 'doBatch';
 

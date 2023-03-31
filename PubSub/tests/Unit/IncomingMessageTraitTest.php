@@ -23,12 +23,15 @@ use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class IncomingMessageTraitTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'my-project';
 
     private $connection;

@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
-use \Google\ApiCore\ServerStream;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -31,6 +32,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ChunkFormatterTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TABLE_NAME = 'test-table';
     private $serverStream;
     private $chunkFormatter;

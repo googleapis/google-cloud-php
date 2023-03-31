@@ -27,12 +27,15 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class TopicTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TOPIC = 'projects/project-name/topics/topic-name';
 
     private $topic;

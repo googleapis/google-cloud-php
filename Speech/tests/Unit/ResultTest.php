@@ -18,8 +18,8 @@
 namespace Google\Cloud\Speech\Tests\Unit;
 
 use Google\Cloud\Speech\Result;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group speech

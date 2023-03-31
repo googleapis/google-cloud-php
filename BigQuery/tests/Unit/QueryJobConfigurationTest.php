@@ -22,12 +22,15 @@ use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class QueryJobConfigurationTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';
     const TABLE_ID = 'my_table';

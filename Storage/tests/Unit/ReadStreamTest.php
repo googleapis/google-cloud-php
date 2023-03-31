@@ -19,15 +19,18 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\ReadStream;
 use Google\Cloud\Upload\StreamableUploader;
-use Prophecy\Argument;
 use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class ReadStreamTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testReadsFromHeadersWhenGetSizeIsNull()
     {
         $httpStream = $this->prophesize(StreamInterface::class);

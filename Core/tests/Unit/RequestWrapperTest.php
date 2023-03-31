@@ -29,14 +29,17 @@ use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
  */
 class RequestWrapperTest extends TestCase
 {
+    use ProphecyTrait;
+
     const VERSION = 'v0.1';
 
     private static $requestOptions = [

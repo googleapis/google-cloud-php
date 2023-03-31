@@ -24,12 +24,15 @@ use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group language
  */
 class LanguageClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $connection;
 

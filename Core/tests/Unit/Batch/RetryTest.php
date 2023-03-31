@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -28,6 +29,8 @@ use PHPUnit\Framework\TestCase;
  */
 class RetryTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $runner;
     private $job;
     private $retry;

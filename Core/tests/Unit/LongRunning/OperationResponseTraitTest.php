@@ -26,6 +26,7 @@ use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,6 +34,7 @@ use PHPUnit\Framework\TestCase;
  */
 class OperationResponseTraitTest extends TestCase
 {
+    use ProphecyTrait;
     use OperationResponseTrait;
 
     const RESULT_TYPE = 'resp-type';

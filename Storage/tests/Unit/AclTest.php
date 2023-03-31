@@ -19,14 +19,17 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class AclTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
 
     public function setUp(): void

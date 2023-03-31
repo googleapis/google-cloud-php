@@ -20,14 +20,17 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class MetricTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $formattedName;
     public $metricName = 'myMetric';

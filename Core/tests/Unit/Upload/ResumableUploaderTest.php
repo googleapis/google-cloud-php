@@ -22,10 +22,11 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -33,6 +34,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ResumableUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $stream;
     private $successBody;

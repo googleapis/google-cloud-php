@@ -24,8 +24,8 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debuggee;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group debugger

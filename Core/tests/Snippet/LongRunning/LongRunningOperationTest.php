@@ -22,6 +22,7 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -29,6 +30,8 @@ use Prophecy\Argument;
  */
 class LongRunningOperationTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $operation;
     private $callables;

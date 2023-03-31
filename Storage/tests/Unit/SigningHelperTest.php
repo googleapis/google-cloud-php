@@ -26,6 +26,7 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -34,6 +35,8 @@ use Prophecy\Argument;
  */
 class SigningHelperTest extends TestCase
 {
+    use ProphecyTrait;
+
     const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
     const BUCKET = 'test-bucket';
     const OBJECT = 'test-object';

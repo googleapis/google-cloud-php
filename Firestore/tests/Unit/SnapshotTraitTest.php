@@ -26,6 +26,7 @@ use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -33,6 +34,8 @@ use Prophecy\Argument;
  */
 class SnapshotTraitTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';

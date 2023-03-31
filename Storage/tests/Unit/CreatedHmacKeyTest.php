@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Storage\CreatedHmacKey;
 use Google\Cloud\Storage\HmacKey;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -27,6 +28,8 @@ use PHPUnit\Framework\TestCase;
  */
 class CreatedHmacKeyTest extends TestCase
 {
+    use ProphecyTrait;
+
     const ACCESS_ID = 'aid';
     const SECRET = 'secrettttt';
 

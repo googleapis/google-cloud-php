@@ -48,7 +48,7 @@ class SysvProcessorTest extends TestCase
         $this->clearQueue();
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         if ($this->isSysvIPCLoaded()) {
             $this->clearQueue();

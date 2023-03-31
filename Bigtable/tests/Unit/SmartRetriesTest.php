@@ -35,6 +35,7 @@ use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -43,6 +44,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SmartRetriesTest extends TestCase
 {
+    use ProphecyTrait;
+
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';

@@ -26,12 +26,15 @@ use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInte
 use Google\Cloud\Storage\StorageObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class ModelTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $storageConnection;
     private $model;

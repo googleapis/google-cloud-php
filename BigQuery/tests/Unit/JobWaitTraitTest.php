@@ -21,12 +21,15 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class JobWaitTraitTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $trait;
     private $job;
 

@@ -25,12 +25,15 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class QueryResultsTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $projectId = 'myProjectId';
     public $jobId = 'myJobId';

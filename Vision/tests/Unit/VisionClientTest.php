@@ -22,16 +22,18 @@ use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class VisionClientTest extends TestCase
 {
-    private $client;
+    use ProphecyTrait;
 
+    private $client;
     private $connection;
 
     public function setUp(): void

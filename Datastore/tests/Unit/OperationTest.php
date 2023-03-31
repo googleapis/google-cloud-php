@@ -27,8 +27,9 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -36,6 +37,8 @@ use PHPUnit\Framework\TestCase;
  */
 class OperationTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
     const DATABASEID = 'database-id';

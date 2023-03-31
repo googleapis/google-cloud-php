@@ -53,7 +53,7 @@ class SysvConfigStorageTest extends TestCase
         $this->originalProject = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         if ($this->originalShmSize === false) {
             putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE");

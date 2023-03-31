@@ -23,8 +23,8 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Trace\V2\Span;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group trace

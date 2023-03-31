@@ -28,6 +28,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class DatasetTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $mapper;
     public $projectId = 'myProjectId';

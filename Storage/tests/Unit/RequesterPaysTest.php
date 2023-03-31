@@ -24,6 +24,7 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -32,6 +33,8 @@ use Psr\Http\Message\RequestInterface;
  */
 class RequesterPaysTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const USER_PROJECT = 'foobar';
     const BUCKET = 'bucket';

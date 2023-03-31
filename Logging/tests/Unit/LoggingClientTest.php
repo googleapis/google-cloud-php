@@ -31,6 +31,7 @@ use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
@@ -38,6 +39,7 @@ use Prophecy\Argument;
 class LoggingClientTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     public $connection;
     public $formattedProjectId;

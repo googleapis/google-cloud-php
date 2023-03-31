@@ -21,12 +21,15 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Span;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
  */
 class TraceTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 

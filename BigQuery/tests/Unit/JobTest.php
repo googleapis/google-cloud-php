@@ -22,14 +22,17 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class JobTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $location = 'asia-northeast1';
     public $projectId = 'myProjectId';

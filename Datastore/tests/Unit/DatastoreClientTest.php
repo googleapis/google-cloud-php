@@ -37,6 +37,7 @@ use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -46,6 +47,7 @@ class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';

@@ -25,12 +25,15 @@ use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class SpeechClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     const GCS_URI = 'gs://bucket/object';
 
     private $client;

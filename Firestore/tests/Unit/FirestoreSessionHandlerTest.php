@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Iterator;
 
 /**
@@ -37,6 +38,8 @@ use Iterator;
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
+    use ProphecyTrait;
+
     const SESSION_SAVE_PATH = 'sessions';
     const SESSION_NAME = 'PHPSESSID';
     const PROJECT = 'example_project';

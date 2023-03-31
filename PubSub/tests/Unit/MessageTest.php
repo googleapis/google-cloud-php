@@ -20,12 +20,15 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class MessageTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $message;
 
     private $time = '2016-09-27T13:21:30.242Z';

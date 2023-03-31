@@ -22,14 +22,17 @@ use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\SourceContext;
 use Google\Cloud\Debugger\ExtendedSourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DebuggeeTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $connection;
 
     public function setUp(): void

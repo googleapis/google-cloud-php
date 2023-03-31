@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -36,6 +37,8 @@ use Prophecy\Argument;
  */
 class TransactionTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
