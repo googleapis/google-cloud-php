@@ -23,12 +23,15 @@ use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class CropHintTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $info;
     private $crop;
 

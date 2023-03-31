@@ -23,12 +23,15 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class ResultTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $transcript;
     private $resultData;
     private $result;

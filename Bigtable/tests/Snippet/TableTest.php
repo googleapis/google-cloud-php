@@ -47,6 +47,7 @@ use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -54,6 +55,8 @@ use Prophecy\Argument;
  */
 class TableTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;

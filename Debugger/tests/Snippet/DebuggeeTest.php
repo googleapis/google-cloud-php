@@ -22,12 +22,15 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DebuggeeTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
 
     public function setUp(): void

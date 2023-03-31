@@ -32,6 +32,7 @@ use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -40,6 +41,7 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE_ID = '(default)';

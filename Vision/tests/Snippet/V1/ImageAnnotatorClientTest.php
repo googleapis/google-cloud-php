@@ -26,6 +26,7 @@ use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision

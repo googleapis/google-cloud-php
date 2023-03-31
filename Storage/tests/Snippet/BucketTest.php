@@ -39,6 +39,7 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -46,6 +47,7 @@ use Prophecy\Argument;
 class BucketTest extends SnippetTestCase
 {
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const BUCKET = 'my-bucket';
     const PROJECT_ID = 'my-project';

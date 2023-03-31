@@ -23,12 +23,15 @@ use Google\Cloud\Vision\Annotation\SafeSearch;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class SafeSearchTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $ssData;
     private $ss;
 

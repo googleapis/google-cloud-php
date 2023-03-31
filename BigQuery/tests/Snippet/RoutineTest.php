@@ -22,12 +22,15 @@ use Google\Cloud\BigQuery\Routine;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class RoutineTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';
     const ROUTINE_ID = 'my_routine';

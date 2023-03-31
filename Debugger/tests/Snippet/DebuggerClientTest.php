@@ -23,12 +23,15 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DebuggerClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $client;
 

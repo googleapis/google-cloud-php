@@ -23,12 +23,15 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
  */
 class TraceClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $client;
 

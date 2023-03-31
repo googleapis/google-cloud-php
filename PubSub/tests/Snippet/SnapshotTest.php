@@ -24,12 +24,15 @@ use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class SnapshotTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'my-awesome-project';
     const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
 

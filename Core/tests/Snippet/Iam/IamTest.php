@@ -23,12 +23,15 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\PubSubClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group iam
  */
 class IamTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $policyData;
     private $resource;
 

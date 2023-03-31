@@ -22,12 +22,15 @@ use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class BatchPublisherTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $batchPublisher;
 
     public function setUp(): void

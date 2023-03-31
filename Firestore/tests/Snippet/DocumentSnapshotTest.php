@@ -27,6 +27,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -35,6 +36,7 @@ use Prophecy\Argument;
 class DocumentSnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 

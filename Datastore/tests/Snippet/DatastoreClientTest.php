@@ -35,6 +35,7 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -42,6 +43,7 @@ use Prophecy\Argument;
 class DatastoreClientTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
 

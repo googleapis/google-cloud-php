@@ -21,12 +21,15 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Debugger\Agent;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class AgentTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $storage;
 
     public function setUp(): void

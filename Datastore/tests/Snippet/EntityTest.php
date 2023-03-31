@@ -26,12 +26,15 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class EntityTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $options;
     private $entity;
     private $key;

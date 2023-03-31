@@ -28,12 +28,15 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class StorageClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const BUCKET = 'my-bucket';
     const PROJECT_ID = 'my-project';
 

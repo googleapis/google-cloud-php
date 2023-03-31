@@ -34,12 +34,15 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class TableTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const ID = 'foo';
     const DSID = 'bar';
     const PROJECT = 'my-awesome-project';

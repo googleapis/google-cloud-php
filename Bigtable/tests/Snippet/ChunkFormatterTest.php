@@ -23,6 +23,7 @@ use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -30,6 +31,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
  */
 class ChunkFormatterTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;

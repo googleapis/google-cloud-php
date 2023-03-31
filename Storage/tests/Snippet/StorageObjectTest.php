@@ -32,6 +32,7 @@ use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -41,6 +42,7 @@ use Psr\Http\Message\StreamInterface;
 class StorageObjectTest extends SnippetTestCase
 {
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const OBJECT = 'my-object';
     const BUCKET = 'my-bucket';

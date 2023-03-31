@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -32,6 +33,7 @@ use Prophecy\Argument;
 class ResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $database;
     private $result;

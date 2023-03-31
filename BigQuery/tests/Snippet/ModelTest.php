@@ -26,12 +26,15 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
 * @group bigquery
 */
 class ModelTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $model;
 

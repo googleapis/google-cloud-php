@@ -22,12 +22,15 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group language
  */
 class LanguageClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $connection;
 

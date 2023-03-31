@@ -24,12 +24,15 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class LoggerTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const NAME = 'myLogger';
     const PROJECT = 'my-awesome-project';
 

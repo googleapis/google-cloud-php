@@ -25,12 +25,15 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class LifecycleTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT_ID = 'project';
 
     private $lifecycle;

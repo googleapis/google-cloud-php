@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -36,6 +37,7 @@ use Prophecy\Argument;
 class BatchDmlResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
     use TimeTrait;
 

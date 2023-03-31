@@ -23,12 +23,15 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class PsrLoggerTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $psr;
 

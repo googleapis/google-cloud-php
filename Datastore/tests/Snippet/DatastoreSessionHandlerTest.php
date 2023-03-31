@@ -24,6 +24,7 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -33,6 +34,7 @@ use Prophecy\Argument;
 class DatastoreSessionHandlerTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const TRANSACTION = 'transaction-id';
 

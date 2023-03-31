@@ -21,12 +21,15 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class KeyTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $key;
 
     public function setUp(): void

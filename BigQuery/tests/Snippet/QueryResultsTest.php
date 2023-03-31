@@ -24,12 +24,15 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class QueryResultsTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const JOB_ID = 1;
     const PROJECT = 'my-awesome-project';
 

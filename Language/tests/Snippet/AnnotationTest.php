@@ -23,12 +23,15 @@ use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group language
  */
 class AnnotationTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $annotation;
     private $info;
 

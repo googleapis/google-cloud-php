@@ -27,12 +27,15 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class GqlQueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;

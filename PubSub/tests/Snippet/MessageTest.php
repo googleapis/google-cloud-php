@@ -24,12 +24,15 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class MessageTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
     const TOPIC = 'projects/my-awesome-project/topics/topic-name';
 

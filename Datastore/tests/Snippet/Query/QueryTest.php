@@ -27,12 +27,15 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Query;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class QueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;

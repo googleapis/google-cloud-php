@@ -29,6 +29,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -36,6 +37,7 @@ use Prophecy\Argument;
 class ReadOnlyTransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';

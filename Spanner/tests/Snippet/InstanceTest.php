@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -41,6 +42,7 @@ use Prophecy\Argument;
 class InstanceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';

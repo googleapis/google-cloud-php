@@ -24,6 +24,7 @@ use Google\Cloud\Storage\CreatedHmacKey;
 use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -31,6 +32,8 @@ use Prophecy\Argument;
  */
 class CreatedHmacKeyTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const ACCESS_ID = 'aid';
     const SECRET = 'secrettttt';
 

@@ -30,12 +30,15 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class AnnotationTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Annotation::class);

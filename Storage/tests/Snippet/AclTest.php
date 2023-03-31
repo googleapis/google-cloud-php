@@ -22,12 +22,15 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class AclTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $acl;
 
