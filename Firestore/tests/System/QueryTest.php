@@ -185,9 +185,6 @@ class QueryTest extends FirestoreTestCase
         $this->insertDoc([
             'foo' => $randomVal2
         ]);
-
-        $docs = self::$client->collection($name)->where('foos', 'in', [['foo']])->documents()->rows();
-
         $docs = self::$client->collection($name)->where(
             Filter::doOr(
                 [
@@ -197,6 +194,16 @@ class QueryTest extends FirestoreTestCase
             )
         )->documents()->rows();
         $this->assertCount(2, $docs);
+
+        $docs = self::$client->collection($name)->where(
+            Filter::doAnd(
+                [
+                    Filter::condition('foo', '=', $randomVal1),
+                    Filter::condition('foo', '=', $randomVal2)
+                ]
+            )
+        )->documents()->rows();
+        $this->assertCount(0, $docs);
     }
 
     public function testSnapshotCursors()

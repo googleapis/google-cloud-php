@@ -384,7 +384,9 @@ class QueryTest extends TestCase
     {
         $ret = $this->query->where('foo', $operator, 'bar');
         $this->assertInstanceOf(Query::class, $ret);
+
         $ret = $this->query->where(Filter::condition('foo', $operator, 'bar'));
+        $this->assertInstanceOf(Query::class, $ret);
     }
 
     public function whereOperators()
@@ -1208,6 +1210,182 @@ class QueryTest extends TestCase
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->where('foo', '>', 'bar');
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'op' => 3,
+                        'value' => [
+                            'stringValue' => 'bar'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::doOr([Filter::condition('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'compositeFilter' => [
+                        'op' => Operator::PBOR,
+                        'filters' => [
+                            [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'foo'
+                                    ],
+                                    'op' => 3,
+                                    'value' => [
+                                        'stringValue' => 'bar'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testPositionInequalityWithCompositeFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::doOr([Filter::condition('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'compositeFilter' => [
+                        'op' => Operator::PBOR,
+                        'filters' => [
+                            [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'foo'
+                                    ],
+                                    'op' => 3,
+                                    'value' => [
+                                        'stringValue' => 'bar'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testPositionInequalityWithFieldFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::condition('foo', '>', 'bar'));
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::QUERY_PARENT,

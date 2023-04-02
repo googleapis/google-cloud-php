@@ -41,7 +41,7 @@ class Filter
      * Helper function for `and` filter.
      *
      * @param array $filters A filter array.
-     * @return array A composite Filter array.
+     * @return array A composite filter array.
      */
     public static function doAnd(array $filters)
     {

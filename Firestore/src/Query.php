@@ -307,7 +307,6 @@ class Query
      */
     private function createNonCompositeFilter($fieldPath, $operator, $value)
     {
-        // filter could be like Filter->or([filter1, Filter->and([Filter->property('city', '=', 'Blr')])])
         $basePath = $this->basePath();
         if ($value instanceof FieldValueInterface) {
             throw new \InvalidArgumentException(sprintf(
@@ -390,7 +389,7 @@ class Query
      * @return array A non composite Filter array.
      * @throws \InvalidArgumentException If an invalid filter is encountered.
      */
-    private function findAndSetNonCompositeFilter(&$filter)
+    private function findAndSetNonCompositeFilter($filter)
     {
         $nonCompositeFilter = $this->createNonCompositeFilter(
             $filter['fieldFilter']['field'],
@@ -398,14 +397,7 @@ class Query
             $filter['fieldFilter']['value']
         );
 
-        if (isset($nonCompositeFilter['unaryFilter'])) {
-            unset($filter['fieldFilter']);
-            $filter['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
-        } else {
-            $filter['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
-        }
-
-        return $filter;
+        return $nonCompositeFilter;
     }
 
     /**
@@ -415,18 +407,25 @@ class Query
      * @return array A sanitized composite Filter array.
      * @throws \InvalidArgumentException If an invalid filter is encountered.
      */
-    private function createCompositeFilter(&$filters)
+    private function createCompositeFilter($filters)
     {
-        foreach ($filters as $key => &$filter) {
+        foreach ($filters as $key => $filter) {
             if ($key === 'fieldFilter') {
-                $this->findAndSetNonCompositeFilter($filters);
+                $nonCompositeFilter = $this->findAndSetNonCompositeFilter($filters);
+                if (isset($nonCompositeFilter['unaryFilter'])) {
+                    unset($filters['fieldFilter']);
+                    $filters['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
+                } else {
+                    $filters['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
+                }
             } elseif (isset($filter['fieldFilter'])) {
-                $this->findAndSetNonCompositeFilter($filter);
+                $filters[$key] = $this->findAndSetNonCompositeFilter($filter);
             } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
-                $this->createCompositeFilter($filter['filters']);
+                $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
             } elseif (isset($filter['compositeFilter']) &&
             isset($filter['compositeFilter']['filters'])) {
-                $this->createCompositeFilter($filter['compositeFilter']['filters']);
+                $filters[$key]['compositeFilter']['filters'] =
+                    $this->createCompositeFilter($filter['compositeFilter']['filters']);
             } else {
                 throw new \InvalidArgumentException(
                     'The filter is not set correctly.'
@@ -493,9 +492,7 @@ class Query
             'where' => [
                 'compositeFilter' => [
                     'op' => Operator::PBAND,
-                    'filters' => [
-                        $filters
-                    ]
+                    'filters' => [$filters]
                 ]
             ]
         ];
@@ -854,6 +851,27 @@ class Query
     }
 
     /**
+     * Find fieldFilters in a composite filter.
+     *
+     * @param array $filter The composite filter.
+     * @return array array of field filters.
+     */
+    private function flattenFilter($filter)
+    {
+        $ret = [];
+        $filters = $filter['compositeFilter']['filters'];
+        foreach ($filters as $fltr) {
+            $type = array_keys($fltr)[0];
+            if ($type === 'compositeFilter') {
+                $ret = array_merge($ret, $this->flattenFilter($fltr));
+            } else {
+                $ret[] = $fltr;
+            }
+        }
+        return $ret;
+    }
+
+    /**
      * Build cursors for document snapshots.
      *
      * @param DocumentSnapshot $snapshot The document snapshot
@@ -874,7 +892,8 @@ class Query
             // If there is inequality filter (anything other than equals),
             // append orderBy(the last inequality filter’s path, ascending).
             if (!$orderBy && $this->queryHas('where')) {
-                $filters = $this->query['where']['compositeFilter']['filters'];
+                // Flatten the filters array if compositeFilters are present
+                $filters = $this->flattenFilter($this->query['where']);
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
                     return !in_array($filter[$type]['op'], [
