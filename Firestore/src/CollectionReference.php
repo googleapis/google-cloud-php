@@ -21,8 +21,8 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\TimestampTrait;
 
 /**
  * Represents a Cloud Firestore Collection.

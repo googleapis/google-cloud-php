@@ -21,8 +21,8 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\TimestampTrait;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 
