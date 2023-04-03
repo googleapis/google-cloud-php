@@ -71,9 +71,11 @@ class TimestampTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TimestampTraitImpl
 {
     use TimestampTrait {
         formatReadTimeOption as public;
     }
 }
+//@codingStandardsIgnoreEnd
