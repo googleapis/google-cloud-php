@@ -22,7 +22,6 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 
@@ -34,7 +33,6 @@ trait SnapshotTrait
     use ArrayTrait;
     use PathTrait;
     use TimeTrait;
-    use TimestampTrait;
 
     /**
      * Execute a service request to retrieve a document snapshot.
@@ -108,7 +106,16 @@ trait SnapshotTrait
      */
     private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
     {
-        $options = $this->formatReadTimeOption($options);
+        if (isset($options['readTime'])) {
+            if (!($options['readTime'] instanceof Timestamp)) {
+                throw new \InvalidArgumentException(sprintf(
+                    '`$options.readTime` must be an instance of %s',
+                    Timestamp::class
+                ));
+            }
+
+            $options['readTime'] = $options['readTime']->formatForApi();
+        }
 
         $snapshot = $connection->batchGetDocuments([
             'database' => $this->databaseFromName($name),
