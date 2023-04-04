@@ -735,7 +735,7 @@ class RestCrc32cStub extends Rest
 class RetryTraitImpl
 {
     use RetryTrait {
-        RetryTrait::getRestRetryFunction as traitGetRestRetryFuncton;
+        RetryTrait::getRestRetryFunction as public;
     }
     public $retryStrategyAlways;
     public $retryStrategyNever;
@@ -746,19 +746,6 @@ class RetryTraitImpl
         $this->retryStrategyAlways = self::$RETRY_STRATEGY_ALWAYS;
         $this->retryStrategyNever = self::$RETRY_STRATEGY_NEVER;
         $this->httpErrorRetryCodes = self::$httpRetryCodes;
-    }
-    public function getRestRetryFuncton(
-        $resource,
-        $method,
-        $args,
-        $restRetryFunction
-    ) {
-        return $this->traitGetRestRetryFuncton(
-            $resource,
-            $method,
-            $args,
-            $restRetryFunction
-        );
     }
 }
 //@codingStandardsIgnoreEnd
