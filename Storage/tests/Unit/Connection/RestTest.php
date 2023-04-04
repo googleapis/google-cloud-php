@@ -643,17 +643,19 @@ class RestTest extends TestCase
      */
     public function retryStrategyCases()
     {
+        $retryTraitImpl = new RetryTraitImpl();
         $retryCases = $this->retryFunctionReturnValues();
         $retryStrategyCases = [];
         foreach ($retryCases as $retryCase) {
             // For retry always
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_ALWAYS;
+            $case[3]['retryStrategy'] = $retryTraitImpl->retryStrategyAlways;
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
-            if (!in_array(
-                $retryCase[4],
-                Rest::$httpRetryCodes
-            ) || $retryCase[5] > 3
+            if (
+                !in_array(
+                    $retryCase[4],
+                    $retryTraitImpl->httpErrorRetryCodes
+                ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             }
@@ -661,7 +663,7 @@ class RestTest extends TestCase
 
             // For retry never
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_NEVER;
+            $case[3]['retryStrategy'] = $retryTraitImpl->retryStrategyNever;
             $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             $retryStrategyCases[] = $case;
         }
@@ -693,7 +695,8 @@ class RestTest extends TestCase
      */
     private function assignExpectedOutcome($expected, $retryCase)
     {
-        if (isset($retryCase[3]['restRetryFunction'])
+        if (
+            isset($retryCase[3]['restRetryFunction'])
             || isset($retryCase[2]['restRetryFunction'])
         ) {
             return $retryCase[6];
@@ -729,3 +732,35 @@ class RestCrc32cStub extends Rest
         return $call($args);
     }
 }
+
+//@codingStandardsIgnoreStart
+class RetryTraitImpl
+{
+    use RetryTrait {
+        RetryTrait::getRestRetryFunction as traitGetRestRetryFuncton;
+    }
+    public $retryStrategyAlways;
+    public $retryStrategyNever;
+    public $httpErrorRetryCodes;
+
+    public function __construct()
+    {
+        $this->retryStrategyAlways = self::$RETRY_STRATEGY_ALWAYS;
+        $this->retryStrategyNever = self::$RETRY_STRATEGY_NEVER;
+        $this->httpErrorRetryCodes = self::$httpRetryCodes;
+    }
+    public function getRestRetryFuncton(
+        $resource,
+        $method,
+        $args,
+        $restRetryFunction
+    ) {
+        return $this->traitGetRestRetryFuncton(
+            $resource,
+            $method,
+            $args,
+            $restRetryFunction
+        );
+    }
+}
+//@codingStandardsIgnoreEnd

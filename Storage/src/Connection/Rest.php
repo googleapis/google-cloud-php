@@ -683,8 +683,9 @@ class Rest implements ConnectionInterface
         ) use ($requestHash) {
             // Since we the the last attempt number here, so incrementing it
             // to get the current attempt count.
-            // We're adding a '2' and not '1' as we need to incorporate the initial
-            // request as well.
+            // We're adding a '2' and not '1' as we need to incorporate the
+            // initial request as well.
+            // This is 1-index numbering.
             $this->updateRetryHeaders(
                 $arguments,
                 $requestHash,

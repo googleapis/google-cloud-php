@@ -28,7 +28,7 @@ trait RetryTrait
      * The HTTP codes that will be retried by our custom retry function.
      * @var array
      */
-    public static $httpRetryCodes = [
+    private static $httpRetryCodes = [
         0, // connetion-refused OR connection-reset gives status code of 0
         200, // partial download cases
         408,
@@ -105,20 +105,20 @@ trait RetryTrait
      * Retry an API operation when an exception occurs if the exception has a retryable error code.
      * @var string
      */
-    public static $RETRY_STRATEGY_ALWAYS = 'always';
+    private static $RETRY_STRATEGY_ALWAYS = 'always';
 
     /**
      * Never retry an API operation.
      * @var string
      */
-    public static $RETRY_STRATEGY_NEVER = 'never';
+    private static $RETRY_STRATEGY_NEVER = 'never';
 
     /**
      * Retry an API operation only if it is considered idempotent
      * and the exception has a retryable error code.
      * @var string
      */
-    public static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
+    private static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
 
     /**
      * Return a retry decider function.
