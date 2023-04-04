@@ -8,7 +8,6 @@ use UnexpectedValueException;
 
 /**
  * Represents a hardware accelerator type.
- * NEXT ID: 11.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.AcceleratorType</code>
  */

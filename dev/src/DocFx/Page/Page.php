@@ -21,6 +21,7 @@ use Google\Cloud\Dev\DocFx\Node\ClassNode;
 
 /**
  * Class to output the DocFX array before exporting to YAML.
+ * @internal
  */
 class Page
 {
