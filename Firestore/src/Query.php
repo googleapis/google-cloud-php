@@ -184,11 +184,15 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      * @throws \RuntimeException If limit-to-last is enabled but no order-by has
-     *       been specified.
+     *     been specified.
      */
     public function documents(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $maxRetries = $this->pluck('maxRetries', $options, false);
         $maxRetries = $maxRetries === null
             ? FirestoreClient::MAX_RETRIES
