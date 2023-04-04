@@ -156,7 +156,7 @@ class RetryConformanceTest extends TestCase
         $this->assertEquals(312 * 1024, $stream->getSize());
 
         // Now lets test the same when the download is interrupted
-        $caseId = $this->createRetryTestResource("storage.objects.get",["return-broken-stream-after-256K"]);
+        $caseId = $this->createRetryTestResource("storage.objects.get", ["return-broken-stream-after-256K"]);
         $options = [
             'restOptions' => [
                 'headers' => [
@@ -207,7 +207,7 @@ class RetryConformanceTest extends TestCase
         $this->assertEquals(512 * 1024, $stream->getSize());
 
         // Now we test the same for an interrupted download
-        $caseId = $this->createRetryTestResource("storage.objects.get",["return-broken-stream-after-256K"]);
+        $caseId = $this->createRetryTestResource("storage.objects.get", ["return-broken-stream-after-256K"]);
         $options = [
             'restOptions' => [
                 'headers' => [

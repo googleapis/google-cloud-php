@@ -651,11 +651,10 @@ class RestTest extends TestCase
             $case = $retryCase;
             $case[3]['retryStrategy'] = $retryTraitImpl->retryStrategyAlways;
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
-            if (
-                !in_array(
-                    $retryCase[4],
-                    $retryTraitImpl->httpErrorRetryCodes
-                ) || $retryCase[5] > 3
+            if (!in_array(
+                $retryCase[4],
+                $retryTraitImpl->httpErrorRetryCodes
+            ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             }
@@ -695,8 +694,7 @@ class RestTest extends TestCase
      */
     private function assignExpectedOutcome($expected, $retryCase)
     {
-        if (
-            isset($retryCase[3]['restRetryFunction'])
+        if (isset($retryCase[3]['restRetryFunction'])
             || isset($retryCase[2]['restRetryFunction'])
         ) {
             return $retryCase[6];
