@@ -77,14 +77,6 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.PrefetchConfig prefetch_config = 10;</code>
      */
     private $prefetch_config = null;
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     */
-    private $default_ad_break_duration = null;
 
     /**
      * Constructor.
@@ -118,10 +110,6 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      *           the ad break boundaries. If not specified, the default is `CUT_CURRENT`.
      *     @type \Google\Cloud\Video\Stitcher\V1\PrefetchConfig $prefetch_config
      *           The configuration for prefetching ads.
-     *     @type \Google\Protobuf\Duration $default_ad_break_duration
-     *           The default ad pod duration in seconds that will be requested when a
-     *           cue-out does not specify a duration.
-     *           The default value of this field is 30s.
      * }
      */
     public function __construct($data = NULL) {
@@ -395,46 +383,6 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\PrefetchConfig::class);
         $this->prefetch_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     * @return \Google\Protobuf\Duration|null
-     */
-    public function getDefaultAdBreakDuration()
-    {
-        return $this->default_ad_break_duration;
-    }
-
-    public function hasDefaultAdBreakDuration()
-    {
-        return isset($this->default_ad_break_duration);
-    }
-
-    public function clearDefaultAdBreakDuration()
-    {
-        unset($this->default_ad_break_duration);
-    }
-
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     * @param \Google\Protobuf\Duration $var
-     * @return $this
-     */
-    public function setDefaultAdBreakDuration($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
-        $this->default_ad_break_duration = $var;
 
         return $this;
     }
