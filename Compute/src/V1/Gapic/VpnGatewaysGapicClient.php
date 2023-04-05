@@ -410,7 +410,7 @@ class VpnGatewaysGapicClient
     }
 
     /**
-     * Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request.
+     * Returns the specified VPN gateway.
      *
      * Sample code:
      * ```

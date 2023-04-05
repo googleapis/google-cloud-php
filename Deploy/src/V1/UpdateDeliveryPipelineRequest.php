@@ -48,15 +48,15 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist will
-     * result in the creation of a new `DeliveryPipeline`.
+     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist
+     * will result in the creation of a new `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_missing = false;
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,11 +89,11 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $allow_missing
-     *           Optional. If set to true, updating a `DeliveryPipeline` that does not exist will
-     *           result in the creation of a new `DeliveryPipeline`.
+     *           Optional. If set to true, updating a `DeliveryPipeline` that does not exist
+     *           will result in the creation of a new `DeliveryPipeline`.
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,8 +228,8 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist will
-     * result in the creation of a new `DeliveryPipeline`.
+     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist
+     * will result in the creation of a new `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -240,8 +240,8 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist will
-     * result in the creation of a new `DeliveryPipeline`.
+     * Optional. If set to true, updating a `DeliveryPipeline` that does not exist
+     * will result in the creation of a new `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -256,8 +256,8 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -268,8 +268,8 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -405,7 +405,7 @@ class AutoscalersGapicClient
     }
 
     /**
-     * Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request.
+     * Returns the specified autoscaler resource.
      *
      * Sample code:
      * ```

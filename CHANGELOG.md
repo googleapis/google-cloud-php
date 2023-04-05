@@ -1,5 +1,342 @@
 # Changelog
 
+## 0.200.0
+
+<details><summary>google/cloud-alloydb 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 1.10.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.15</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.2.0</summary>
+
+
+
+### Features
+
+* Add spark connection properties type ([#5977](https://github.com/googleapis/google-cloud-php/issues/5977)) ([465811f](https://github.com/googleapis/google-cloud-php/commit/465811fb068cf981ebf54646428f71b9532495c9))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 0.2.0</summary>
+
+
+
+### Features
+
+* Add request_source field and update formatting ([#5990](https://github.com/googleapis/google-cloud-php/issues/5990)) ([579d308](https://github.com/googleapis/google-cloud-php/commit/579d308a296c17635c21786b5b9afdc453343e0d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.1.0</summary>
+
+
+
+### Features
+
+* Add edition/autoscale related fields ([#5992](https://github.com/googleapis/google-cloud-php/issues/5992)) ([f4134c2](https://github.com/googleapis/google-cloud-php/commit/f4134c2e06f6b7bf62e9f1786b6b6439478b3665))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.11</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 1.5.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 1.2.0</summary>
+
+
+
+### Features
+
+* Add ListEntitlementChanges ([150d787](https://github.com/googleapis/google-cloud-php/commit/150d7874580962337d2db7de26867c395b15a852))
+* Add show_future_offers to ListOffers ([#5962](https://github.com/googleapis/google-cloud-php/issues/5962)) ([150d787](https://github.com/googleapis/google-cloud-php/commit/150d7874580962337d2db7de26867c395b15a852))
+
+</details>
+
+<details><summary>google/cloud-compute 1.8.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20230307 ([#770](https://github.com/googleapis/google-cloud-php/issues/770)) ([#5973](https://github.com/googleapis/google-cloud-php/issues/5973)) ([f6d8866](https://github.com/googleapis/google-cloud-php/commit/f6d88660bd1ecd209d3f73be316b022749525216))
+* Update Compute Engine API to revision 20230307 ([#786](https://github.com/googleapis/google-cloud-php/issues/786)) ([#5986](https://github.com/googleapis/google-cloud-php/issues/5986)) ([8b1f6e3](https://github.com/googleapis/google-cloud-php/commit/8b1f6e3482aeb9a9962e5b92f3ff4806a2f95196))
+
+</details>
+
+<details><summary>google/cloud-container 1.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.11</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.5.0 ([#5947](https://github.com/googleapis/google-cloud-php/issues/5947)) ([1253f4b](https://github.com/googleapis/google-cloud-php/commit/1253f4bf02744344e7a01789b0c8a2c399857896))
+
+</details>
+
+<details><summary>google/cloud-core 1.49.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.4.0</summary>
+
+
+
+### Features
+
+* Add support for a ReconcileTags() API method ([cd27d6a](https://github.com/googleapis/google-cloud-php/commit/cd27d6ad468a045bed5c8022c991e40980bd9247))
+* Add support for entries associated with Looker and CloudSQL ([cd27d6a](https://github.com/googleapis/google-cloud-php/commit/cd27d6ad468a045bed5c8022c991e40980bd9247))
+* Add support for new ImportEntries() API, including format of the dump ([cd27d6a](https://github.com/googleapis/google-cloud-php/commit/cd27d6ad468a045bed5c8022c991e40980bd9247))
+* Add support for new ImportEntries() API, including format of the dump ([#5964](https://github.com/googleapis/google-cloud-php/issues/5964)) ([cd27d6a](https://github.com/googleapis/google-cloud-php/commit/cd27d6ad468a045bed5c8022c991e40980bd9247))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-deploy 0.4.0</summary>
+
+
+
+### Features
+
+* Added supported for Cloud Deploy Progressive Deployment Strategy ([#5989](https://github.com/googleapis/google-cloud-php/issues/5989)) ([4c76df3](https://github.com/googleapis/google-cloud-php/commit/4c76df32299fd6aeb2728535efd28cf20c49b4b3))
+
+</details>
+
+<details><summary>google/cloud-filestore 1.1.0</summary>
+
+
+
+### Features
+
+* Updating the client to match the latest v1 API ([#5979](https://github.com/googleapis/google-cloud-php/issues/5979)) ([9edb472](https://github.com/googleapis/google-cloud-php/commit/9edb4729eae11a7366510092d22a954b251efe71))
+
+</details>
+
+<details><summary>google/cloud-functions 1.1.0</summary>
+
+
+
+### Features
+
+* Add `available_cpu ` field ([#5974](https://github.com/googleapis/google-cloud-php/issues/5974)) ([8e6f436](https://github.com/googleapis/google-cloud-php/commit/8e6f4364766851d8e81df096296cdbaf0779466a))
+* Add `kms_key_name` field to ServiceConfig (the CMEK use case) ([8e6f436](https://github.com/googleapis/google-cloud-php/commit/8e6f4364766851d8e81df096296cdbaf0779466a))
+* Add `max_instance_request_concurrency` field ([8e6f436](https://github.com/googleapis/google-cloud-php/commit/8e6f4364766851d8e81df096296cdbaf0779466a))
+* Add `security_level` field ([8e6f436](https://github.com/googleapis/google-cloud-php/commit/8e6f4364766851d8e81df096296cdbaf0779466a))
+
+</details>
+
+<details><summary>google/grafeas 0.6.0</summary>
+
+
+
+### Features
+
+* Add VULNERABILITY_ASSESSMENT Note type to grafeas v1 API, adds Vex_Assessment derived from the Note to resources' occurrences, VEX notes now be written to add CVE assessments ([#5950](https://github.com/googleapis/google-cloud-php/issues/5950)) ([35e403c](https://github.com/googleapis/google-cloud-php/commit/35e403c35ad3cb7b35f25d4f5dbafabe3b699544))
+
+</details>
+
+<details><summary>google/cloud-iap 1.2.0</summary>
+
+
+
+### Features
+
+* Add an enum ENROLLED_SECOND_FACTORS under IapSettings ([#5963](https://github.com/googleapis/google-cloud-php/issues/5963)) ([534f8ab](https://github.com/googleapis/google-cloud-php/commit/534f8abf1db9da038811731a6c5267880860bc60))
+
+
+### Documentation
+
+* Update doc description for field_mask ([534f8ab](https://github.com/googleapis/google-cloud-php/commit/534f8abf1db9da038811731a6c5267880860bc60))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.10</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 1.16.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce KmsInventory ([#5942](https://github.com/googleapis/google-cloud-php/issues/5942)) ([efd9ec1](https://github.com/googleapis/google-cloud-php/commit/efd9ec19ebdece862ab6ab42855e39db2f806cdb))
+
+</details>
+
+<details><summary>google/longrunning 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.3.0</summary>
+
+
+
+### Features
+
+* Add reCAPTCHA Enterprise Fraud Prevention API ([#5978](https://github.com/googleapis/google-cloud-php/issues/5978)) ([fbf0439](https://github.com/googleapis/google-cloud-php/commit/fbf043908e187088c10d98e89bdf74842b01fe1a))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.7.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.10</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 1.14.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.58.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** Default creator role is empty str ([#5941](https://github.com/googleapis/google-cloud-php/issues/5941)) ([f922d6c](https://github.com/googleapis/google-cloud-php/commit/f922d6ce325abec9d97e6cb8d76d75441e5b182e))
+
+</details>
+
+<details><summary>google/cloud-speech 1.11.0</summary>
+
+
+
+### Features
+
+* Add support for BatchRecognize ([#5982](https://github.com/googleapis/google-cloud-php/issues/5982)) ([e2ceb7d](https://github.com/googleapis/google-cloud-php/commit/e2ceb7dd28baa6a9ed2032af34492c1e5aa7ab33))
+
+
+### Documentation
+
+* Fix the resource name format in comment for CreatePhraseSetRequest ([e2ceb7d](https://github.com/googleapis/google-cloud-php/commit/e2ceb7dd28baa6a9ed2032af34492c1e5aa7ab33))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.10</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.3.0</summary>
+
+
+
+### Features
+
+* Added Encryption for enabling output encryption with DRM systems ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+* Added InputConfig to allow enabling/disabling automatic failover ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+* Added new tasks to Event: inputSwitch, returnToProgram, mute, unmute ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+* Added support for audio normalization and audio gain ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+* Added TimecodeConfig for specifying the source of timecode used in media workflow synchronization ([#5987](https://github.com/googleapis/google-cloud-php/issues/5987)) ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+
+
+### Documentation
+
+* Clarify behavior when update_mask is omitted in PATCH requests ([2744091](https://github.com/googleapis/google-cloud-php/commit/2744091d4499da71ab7ebbea11502aba4bd74197))
+
+</details>
+
+<details><summary>google/cloud-vision 1.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.2.5</summary>
+
+
+
+</details>
+
 ## 0.199.0
 
 <details><summary>google/cloud-ai-platform 0.13.0</summary>

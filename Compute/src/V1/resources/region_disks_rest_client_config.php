@@ -253,6 +253,28 @@ return [
                     ],
                 ],
             ],
+            'Update' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/disks/{disk}',
+                'body' => 'disk_resource',
+                'placeholders' => [
+                    'disk' => [
+                        'getters' => [
+                            'getDisk',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.RegionOperations' => [
             'Delete' => [

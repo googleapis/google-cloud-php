@@ -14,6 +14,7 @@ class AnalyticsAdmin
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Analytics\Admin\V1Beta\AccessReport::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Beta\Resources::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
@@ -24,8 +25,28 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-çé
-3google/analytics/admin/v1beta/analytics_admin.protogoogle.analytics.admin.v1betagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"P
+äó
+3google/analytics/admin/v1beta/analytics_admin.protogoogle.analytics.admin.v1beta-google/analytics/admin/v1beta/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"û
+RunAccessReportRequest
+entity (	B
+
+dimensions (2..google.analytics.admin.v1beta.AccessDimension<
+metrics (2+.google.analytics.admin.v1beta.AccessMetricC
+date_ranges (2..google.analytics.admin.v1beta.AccessDateRangeO
+dimension_filter (25.google.analytics.admin.v1beta.AccessFilterExpressionL
+metric_filter (25.google.analytics.admin.v1beta.AccessFilterExpression
+offset (
+limit (
+	time_zone	 (	?
+	order_bys
+ (2,.google.analytics.admin.v1beta.AccessOrderBy
+return_entity_quota ("ª
+RunAccessReportResponseO
+dimension_headers (24.google.analytics.admin.v1beta.AccessDimensionHeaderI
+metric_headers (21.google.analytics.admin.v1beta.AccessMetricHeader6
+rows (2(.google.analytics.admin.v1beta.AccessRow
+	row_count (9
+quota (2*.google.analytics.admin.v1beta.AccessQuota"P
 GetAccountRequest;
 name (	B-‡A˙A\'
 %analyticsadmin.googleapis.com/Account"R
@@ -233,7 +254,7 @@ page_token (	"s
 next_page_token (	"V
 GetDataStreamRequest>
 name (	B0‡A˙A*
-(analyticsadmin.googleapis.com/DataStream2ÎL
+(analyticsadmin.googleapis.com/DataStream2⁄N
 AnalyticsAdminServiceê
 
 GetAccount0.google.analytics.admin.v1beta.GetAccountRequest&.google.analytics.admin.v1beta.Account"(Ç”‰ì/v1beta/{name=accounts/*}⁄Anameë
@@ -282,7 +303,8 @@ GetAccount0.google.analytics.admin.v1beta.GetAccountRequest&.google.analytics.
 DeleteDataStream6.google.analytics.admin.v1beta.DeleteDataStreamRequest.google.protobuf.Empty"8Ç”‰ì+*)/v1beta/{name=properties/*/dataStreams/*}⁄Aname€
 UpdateDataStream6.google.analytics.admin.v1beta.UpdateDataStreamRequest).google.analytics.admin.v1beta.DataStream"dÇ”‰ìD25/v1beta/{data_stream.name=properties/*/dataStreams/*}:data_stream⁄Adata_stream,update_maskº
 ListDataStreams5.google.analytics.admin.v1beta.ListDataStreamsRequest6.google.analytics.admin.v1beta.ListDataStreamsResponse":Ç”‰ì+)/v1beta/{parent=properties/*}/dataStreams⁄Aparent©
-GetDataStream3.google.analytics.admin.v1beta.GetDataStreamRequest).google.analytics.admin.v1beta.DataStream"8Ç”‰ì+)/v1beta/{name=properties/*/dataStreams/*}⁄AnameÑ Aanalyticsadmin.googleapis.com“Aahttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.readonlyB~
+GetDataStream3.google.analytics.admin.v1beta.GetDataStreamRequest).google.analytics.admin.v1beta.DataStream"8Ç”‰ì+)/v1beta/{name=properties/*/dataStreams/*}⁄AnameÏ
+RunAccessReport5.google.analytics.admin.v1beta.RunAccessReportRequest6.google.analytics.admin.v1beta.RunAccessReportResponse"jÇ”‰ìd"-/v1beta/{entity=properties/*}:runAccessReport:*Z0"+/v1beta/{entity=accounts/*}:runAccessReport:*Ñ Aanalyticsadmin.googleapis.com“Aahttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.readonlyB~
 !com.google.analytics.admin.v1betaBAnalyticsAdminProtoPZBgoogle.golang.org/genproto/googleapis/analytics/admin/v1beta;adminbproto3'
         , true);
 

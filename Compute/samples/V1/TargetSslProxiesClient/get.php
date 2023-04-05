@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\TargetSslProxiesClient;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 
 /**
- * Returns the specified TargetSslProxy resource. Gets a list of available target SSL proxies by making a list() request.
+ * Returns the specified TargetSslProxy resource.
  *
  * @param string $project        Project ID for this request.
  * @param string $targetSslProxy Name of the TargetSslProxy resource to return.
