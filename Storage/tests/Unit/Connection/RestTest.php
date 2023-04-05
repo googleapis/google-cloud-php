@@ -735,7 +735,7 @@ class RestCrc32cStub extends Rest
 class RetryTraitImpl
 {
     use RetryTrait {
-        RetryTrait::getRestRetryFunction as public;
+        getRestRetryFunction as public;
     }
     public $retryStrategyAlways;
     public $retryStrategyNever;
