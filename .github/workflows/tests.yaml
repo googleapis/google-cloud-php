@@ -5,6 +5,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     strategy:
@@ -23,14 +26,19 @@ jobs:
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v3
+    - name: Harden Runner
+      uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
     - name: Setup PHP
-      uses: shivammathur/setup-php@verbose
+      uses: shivammathur/setup-php@efcc5917efcb3b0996372d027b361a29144a0388 # verbose
       with:
         php-version: ${{ matrix.php }}
         extensions: grpc-1.49.0
     - name: Install Dependencies
-      uses: nick-invision/retry@v2
+      uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # v2.8.3
       with:
         timeout_minutes: 10
         max_attempts: 3
@@ -57,9 +65,14 @@ jobs:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Harden Runner
+      uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
     - name: Setup PHP
-      uses: shivammathur/setup-php@verbose
+      uses: shivammathur/setup-php@efcc5917efcb3b0996372d027b361a29144a0388 # verbose
       with:
         php-version: '8.0'
         extensions: grpc-1.49.0
@@ -70,9 +83,14 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Harden Runner
+      uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
     - name: Setup PHP
-      uses: shivammathur/setup-php@verbose
+      uses: shivammathur/setup-php@efcc5917efcb3b0996372d027b361a29144a0388 # verbose
       with:
         php-version: "8.0"
     - name: "Install dependencies"

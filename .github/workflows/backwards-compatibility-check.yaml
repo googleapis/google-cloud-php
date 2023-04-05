@@ -7,11 +7,16 @@ jobs:
   backwards-compatibility-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Harden Runner
+        uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
         with:
           fetch-depth: 0
       - name: "Install PHP"
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@d30ad8b1843ace22e6698ab99bbafaa747b6bd0d # v2
         with:
           php-version: "8.1"
       - name: "Install dependencies"
@@ -26,7 +31,7 @@ jobs:
       - name: Get Latest Release
         if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: pozetroninc/github-action-get-latest-release@d1dafdb6e338bdab109e6afce581a01858680dfb # master
         with:
           repository: ${{ github.repository }}
       - name: "Check for BC breaks (Next Release)"
@@ -43,7 +48,7 @@ jobs:
         if: |
           contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
           && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=')
-        uses: thollander/actions-comment-pull-request@v2.3.1
+        uses: thollander/actions-comment-pull-request@632cf9ce90574d125be56b5f3405cda41a84e2fd # v2.3.1
         with:
           message: |
             To skip the breaking change detector, the PR must contain a `BREAKING_CHANGE_REASON=[reason]`

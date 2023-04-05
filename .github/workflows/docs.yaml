@@ -12,26 +12,31 @@ jobs:
     env:
       PHPDOC_ENV: prod
     steps:
-    - uses: actions/checkout@v3
+    - name: Harden Runner
+      uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
       with:
         python-version: '3.9'
     - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
     - name: Setup PHP
-      uses: shivammathur/setup-php@verbose
+      uses: shivammathur/setup-php@efcc5917efcb3b0996372d027b361a29144a0388 # verbose
       with:
         php-version: "8.0"
     - name: Extract phpDocumentor
       id: extract
-      uses: shrink/actions-docker-extract@v2
+      uses: shrink/actions-docker-extract@40400b42f4f8b663c647f535e2c6674658e39fc6 # v2.0.0
       with:
         image: "phpdoc/phpdoc:202301112131087e6028"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
       run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
     - name: Install Dependencies
-      uses: nick-invision/retry@v2
+      uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # v2.8.3
       with:
         timeout_minutes: 10
         max_attempts: 3

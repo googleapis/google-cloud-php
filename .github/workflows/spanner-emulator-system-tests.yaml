@@ -10,6 +10,9 @@ on:
       - 'Spanner/**'
       - '.github/workflows/spanner-emulator-system-tests.yaml'
 name: Run Spanner System Tests With Emulator
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-20.04
@@ -22,11 +25,16 @@ jobs:
           - 9020:9020
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@03bee3930647ebbf994244c21ddbc0d4933aab4f # v2.3.0
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
 
       - name: Create Spanner instance
-        uses: google-github-actions/setup-gcloud@v1
+        uses: google-github-actions/setup-gcloud@62d4898025f6041e16b1068643bfc5a696863587 # v1.1.0
         with:
           version: '290.0.1'
       - run: gcloud info
@@ -37,7 +45,7 @@ jobs:
       - run: gcloud spanner instances create google-cloud-php-system-tests --config=emulator-config --description="Test Instance" --nodes=1
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@d30ad8b1843ace22e6698ab99bbafaa747b6bd0d # v2
         with:
           php-version: '7.4'
           tools: pecl
