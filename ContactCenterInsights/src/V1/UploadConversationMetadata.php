@@ -20,32 +20,32 @@ class UploadConversationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * Output only. The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $end_time = null;
+    private $end_time = null;
     /**
      * Output only. The original request.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.UploadConversationRequest request = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $request = null;
+    private $request = null;
     /**
      * Output only. The operation name for a successfully created analysis
      * operation, if any.
      *
      * Generated from protobuf field <code>string analysis_operation = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $analysis_operation = '';
+    private $analysis_operation = '';
     /**
      * Output only. The redaction config applied to the uploaded conversation.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig applied_redaction_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $applied_redaction_config = null;
+    private $applied_redaction_config = null;
 
     /**
      * Constructor.
