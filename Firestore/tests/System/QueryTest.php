@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
 
 /**
@@ -195,6 +196,24 @@ class QueryTest extends FirestoreTestCase
         });
 
         $this->assertEquals([2, 3, 4], $res);
+    }
+
+    public function testDocumentsWithReadTime()
+    {
+        $randomVal = base64_encode(random_bytes(10));
+        $this->insertDoc(['foo' => $randomVal]);
+        // without sleep, emulator system test may fail intermittently
+        sleep(1);
+
+        // Creating a current timestamp and then inserting another document
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $this->insertDoc(['foo' => $randomVal]);
+
+        $resultCount = $this->query
+            ->where('foo', '=', $randomVal)
+            ->documents(['readTime' => $readTime])
+            ->size();
+        $this->assertEquals(1, $resultCount);
     }
 
     private function insertDoc(array $fields)
