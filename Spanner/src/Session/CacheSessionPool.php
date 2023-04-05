@@ -24,6 +24,7 @@ use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\RejectionException;
 use GuzzleHttp\Promise\Utils;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
@@ -888,7 +889,7 @@ class CacheSessionPool implements SessionPoolInterface
                 // return true when $results has single unique object with empty string value
                 return count(array_unique($results, SORT_REGULAR)) === 1 &&
                     empty(reset($results)->serializeToString());
-            } catch (\GuzzleHttp\Promise\RejectionException $ex) {
+            } catch (RejectionException $ex) {
                 return false;
             }
         }
