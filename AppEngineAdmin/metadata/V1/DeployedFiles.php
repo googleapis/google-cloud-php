@@ -16,9 +16,9 @@ class DeployedFiles
         }
         $pool->internalAddGeneratedFile(
             '
-Ž
-(google/appengine/v1/deployed_files.protogoogle.appengine.v1BÄ
-com.google.appengine.v1BDeployedFilesProtoPZ<google.golang.org/genproto/googleapis/appengine/v1;appengineªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
+
+(google/appengine/v1/deployed_files.protogoogle.appengine.v1BÃ
+com.google.appengine.v1BDeployedFilesProtoPZ;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepbªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
         , true);
 
         static::$is_initialized = true;
