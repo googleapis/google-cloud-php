@@ -16,7 +16,7 @@ use UnexpectedValueException;
 class OutputCredentials
 {
     /**
-     * No output credential. This is an unsupported default.
+     * An output credential is required.
      *
      * Generated from protobuf enum <code>OUTPUT_CREDENTIALS_UNSPECIFIED = 0;</code>
      */

@@ -112,6 +112,22 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $private_service_connect_config = null;
+    /**
+     * Optional. If true, the deployed index will be accessible through public
+     * endpoint.
+     *
+     * Generated from protobuf field <code>bool public_endpoint_enabled = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $public_endpoint_enabled = false;
+    /**
+     * Output only. If
+     * [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
+     * is true, this field will be populated with the domain name to use for this
+     * index endpoint.
+     *
+     * Generated from protobuf field <code>string public_endpoint_domain_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $public_endpoint_domain_name = '';
 
     /**
      * Constructor.
@@ -170,6 +186,14 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           [network][google.cloud.aiplatform.v1.IndexEndpoint.network] and
      *           [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
      *           are mutually exclusive.
+     *     @type bool $public_endpoint_enabled
+     *           Optional. If true, the deployed index will be accessible through public
+     *           endpoint.
+     *     @type string $public_endpoint_domain_name
+     *           Output only. If
+     *           [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
+     *           is true, this field will be populated with the domain name to use for this
+     *           index endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -551,6 +575,66 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig::class);
         $this->private_service_connect_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the deployed index will be accessible through public
+     * endpoint.
+     *
+     * Generated from protobuf field <code>bool public_endpoint_enabled = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPublicEndpointEnabled()
+    {
+        return $this->public_endpoint_enabled;
+    }
+
+    /**
+     * Optional. If true, the deployed index will be accessible through public
+     * endpoint.
+     *
+     * Generated from protobuf field <code>bool public_endpoint_enabled = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPublicEndpointEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->public_endpoint_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If
+     * [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
+     * is true, this field will be populated with the domain name to use for this
+     * index endpoint.
+     *
+     * Generated from protobuf field <code>string public_endpoint_domain_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPublicEndpointDomainName()
+    {
+        return $this->public_endpoint_domain_name;
+    }
+
+    /**
+     * Output only. If
+     * [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
+     * is true, this field will be populated with the domain name to use for this
+     * index endpoint.
+     *
+     * Generated from protobuf field <code>string public_endpoint_domain_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicEndpointDomainName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_endpoint_domain_name = $var;
 
         return $this;
     }

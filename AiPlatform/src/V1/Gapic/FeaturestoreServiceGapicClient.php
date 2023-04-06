@@ -625,10 +625,7 @@ class FeaturestoreServiceGapicClient
      *                                                 `projects/{project}/locations/{location}/featurestores/{featurestore}`
      * @param FeatureValueDestination $destination     Required. Specifies output location and format.
      * @param EntityTypeSpec[]        $entityTypeSpecs Required. Specifies EntityType grouping Features to read values of and
-     *                                                 settings. Each EntityType referenced in
-     *                                                 [BatchReadFeatureValuesRequest.entity_type_specs] must have a column
-     *                                                 specifying entity IDs in the EntityType in
-     *                                                 [BatchReadFeatureValuesRequest.request][] .
+     *                                                 settings.
      * @param array                   $optionalArgs    {
      *     Optional.
      *
