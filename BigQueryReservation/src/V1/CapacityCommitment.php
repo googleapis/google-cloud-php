@@ -84,6 +84,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      */
@@ -131,6 +133,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           If set to true, this commitment is placed in the organization's
      *           secondary region which is designated for disaster recovery purposes.
      *           If false, this commitment is placed in the organization's default region.
+     *           NOTE: this is a preview feature. Project must be allow-listed in order to
+     *           set this field.
      *     @type int $edition
      *           Edition of the capacity commitment.
      * }
@@ -400,6 +404,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      * @return bool
@@ -415,6 +421,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      * @param bool $var

@@ -87,6 +87,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * If set to true, this reservation is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this reservation is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
      */
@@ -148,6 +150,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           If set to true, this reservation is placed in the organization's
      *           secondary region which is designated for disaster recovery purposes.
      *           If false, this reservation is placed in the organization's default region.
+     *           NOTE: this is a preview feature. Project must be allow-listed in order to
+     *           set this field.
      *     @type int $edition
      *           Edition of the reservation.
      * }
@@ -423,6 +427,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * If set to true, this reservation is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this reservation is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
      * @return bool
@@ -438,6 +444,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * If set to true, this reservation is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this reservation is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
      * @param bool $var
