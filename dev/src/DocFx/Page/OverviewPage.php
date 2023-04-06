@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\DocFx\Page;
 
 /**
  * Class to output the Overview Page
+ * @internal
  */
 class OverviewPage
 {

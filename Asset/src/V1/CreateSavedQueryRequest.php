@@ -19,8 +19,8 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this
      * saved_query should be created in. It can only be an organization number
      * (such as "organizations/123"), a folder number (such as "folders/123"), a
-     * project ID (such as "projects/my-project-id")", or a project number (such
-     * as "projects/12345").
+     * project ID (such as "projects/my-project-id"), or a project number (such as
+     * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,8 +55,8 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the project/folder/organization where this
      *           saved_query should be created in. It can only be an organization number
      *           (such as "organizations/123"), a folder number (such as "folders/123"), a
-     *           project ID (such as "projects/my-project-id")", or a project number (such
-     *           as "projects/12345").
+     *           project ID (such as "projects/my-project-id"), or a project number (such as
+     *           "projects/12345").
      *     @type \Google\Cloud\Asset\V1\SavedQuery $saved_query
      *           Required. The saved_query details. The `name` field must be empty as it
      *           will be generated based on the parent and saved_query_id.
@@ -79,8 +79,8 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this
      * saved_query should be created in. It can only be an organization number
      * (such as "organizations/123"), a folder number (such as "folders/123"), a
-     * project ID (such as "projects/my-project-id")", or a project number (such
-     * as "projects/12345").
+     * project ID (such as "projects/my-project-id"), or a project number (such as
+     * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,8 +94,8 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this
      * saved_query should be created in. It can only be an organization number
      * (such as "organizations/123"), a folder number (such as "folders/123"), a
-     * project ID (such as "projects/my-project-id")", or a project number (such
-     * as "projects/12345").
+     * project ID (such as "projects/my-project-id"), or a project number (such as
+     * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

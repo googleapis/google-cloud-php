@@ -74,4 +74,11 @@ class FirestoreTestCase extends SystemTestCase
             }
         });
     }
+
+    public static function skipEmulatorTests()
+    {
+        if ((bool) getenv("FIRESTORE_EMULATOR_HOST")) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
+    }
 }
