@@ -26,7 +26,6 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\Grpc;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -293,16 +292,8 @@ class FirestoreClient
      */
     public function collections(array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
+        $options = $this->formatReadTimeOption($options);
 
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(

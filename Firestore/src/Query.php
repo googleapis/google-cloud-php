@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
@@ -192,16 +191,8 @@ class Query
      */
     public function documents(array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
+        $options = $this->formatReadTimeOption($options);
 
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
         $maxRetries = $this->pluck('maxRetries', $options, false);
         $maxRetries = $maxRetries === null
             ? FirestoreClient::MAX_RETRIES

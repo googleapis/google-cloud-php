@@ -21,7 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -44,6 +44,7 @@ class CollectionReference extends Query
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
+    use TimestampTrait;
 
     /**
      * @var ConnectionInterface
@@ -269,16 +270,7 @@ class CollectionReference extends Query
             'mask' => []
         ];
 
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
+        $options = $this->formatReadTimeOption($options);
 
         return new ItemIterator(
             new PageIterator(
