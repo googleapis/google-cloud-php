@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -37,6 +38,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Rpc\Code;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -871,11 +873,16 @@ class Database
         };
 
         $delayFn = function (\Exception $e) {
-            if (!($e instanceof AbortedException)) {
-                throw $e;
+            if ($e instanceof AbortedException) {
+                return $e->getRetryDelay();
             }
-
-            return $e->getRetryDelay();
+            if ($e instanceof ServiceException &&
+                $e->getCode() === Code::INTERNAL &&
+                strpos($e->getMessage(), 'RST_STREAM') !== false
+            ) {
+                return $e->getRetryDelay();
+            }
+            throw $e;
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {

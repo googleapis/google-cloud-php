@@ -24,11 +24,13 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\FulfilledPromise;
+use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
+use ReflectionMethod;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
@@ -380,38 +382,92 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($expectedCreationCount, $response);
     }
 
-    public function testClearPool()
+    /**
+     * @dataProvider clearPoolTestDataProvider
+     */
+    public function testClearPool($cacheData, $willDeleteSessions, $expectedValue)
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $pool->clear();
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool($cacheData), [], $this->time);
+        $pool->setDatabase($this->getDatabase(false, $willDeleteSessions));
+        $res = $pool->clear();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
             sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
-
+        $this->assertEquals($expectedValue, $res);
+        // cached sessions should always be cleared
         $this->assertNull($actualCacheData);
     }
 
-    public function testReleaseSessionAfterClearingPoolSucceeds()
+    public function testDeleteSessionsForNoWait()
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $session = $pool->acquire();
-        $itemPool = $pool->cacheItemPool();
-        $pool->clear();
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], false);
 
-        $this->assertNull($cacheData);
+        $this->assertTrue($res);
+    }
 
-        $pool->release($session);
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
+    public function testDeleteSessionsForNoSessions()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], true);
 
-        $this->assertNull($cacheData);
+        $this->assertTrue($res);
+    }
+
+    public function clearPoolTestDataProvider()
+    {
+        $cacheData = [
+            'queue' => [
+                'session' => [
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
+            ],
+            'inUse' => [
+                'session' => [
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
+            ],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
+        ];
+        return [
+            // Set #0: null sessions in cache
+            [
+              null,
+              true,
+              true
+            ],
+            // Set #1: null sessions in cache
+            [
+              null,
+              false,
+              true
+            ],
+            // Set #2: clear returns false if delete session returns false
+            [
+              $cacheData,
+              false,
+              false
+            ],
+            // Set #3: clear returns true if delete session returns true
+            [
+              $cacheData,
+              true,
+              true
+            ],
+        ];
     }
 
     /**
@@ -802,20 +858,23 @@ class CacheSessionPoolTest extends TestCase
         $database = $this->prophesize(DatabaseStub::class);
         $session = $this->prophesize(SessionStub::class);
         $connection = $this->prophesize(Grpc::class);
-        $promise = $this->prophesize(PromiseInterface::class);
 
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $promise->wait()
-            ->willReturn(null);
-        $connection->deleteSessionAsync(Argument::any())
-            ->willReturn($promise->reveal());
-
         if ($willDeleteSessions) {
             $session->delete()
-                ->willReturn(null);
+            ->willReturn(null);
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new FulfilledPromise(
+                    new DumbObject()
+                ));
+        } else {
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new RejectedPromise(
+                    new DumbObject()
+                ));
         }
         $database->connection()
             ->willReturn($connection->reveal());
@@ -1187,6 +1246,11 @@ class DumbObject
     public function __call($name, $args)
     {
         return $this;
+    }
+
+    public function serializeToString()
+    {
+        return '';
     }
 }
 //@codingStandardsIgnoreEnd
