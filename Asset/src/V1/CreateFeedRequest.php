@@ -19,7 +19,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this feed
      * should be created in. It can only be an organization number (such as
      * "organizations/123"), a folder number (such as "folders/123"), a project ID
-     * (such as "projects/my-project-id")", or a project number (such as
+     * (such as "projects/my-project-id"), or a project number (such as
      * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -52,7 +52,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the project/folder/organization where this feed
      *           should be created in. It can only be an organization number (such as
      *           "organizations/123"), a folder number (such as "folders/123"), a project ID
-     *           (such as "projects/my-project-id")", or a project number (such as
+     *           (such as "projects/my-project-id"), or a project number (such as
      *           "projects/12345").
      *     @type string $feed_id
      *           Required. This is the client-assigned asset feed identifier and it needs to
@@ -73,7 +73,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this feed
      * should be created in. It can only be an organization number (such as
      * "organizations/123"), a folder number (such as "folders/123"), a project ID
-     * (such as "projects/my-project-id")", or a project number (such as
+     * (such as "projects/my-project-id"), or a project number (such as
      * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -88,7 +88,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project/folder/organization where this feed
      * should be created in. It can only be an organization number (such as
      * "organizations/123"), a folder number (such as "folders/123"), a project ID
-     * (such as "projects/my-project-id")", or a project number (such as
+     * (such as "projects/my-project-id"), or a project number (such as
      * "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
