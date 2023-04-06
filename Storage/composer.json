@@ -6,7 +6,8 @@
     "require": {
         "google/cloud-core": "^1.43",
         "google/crc32": "^0.1.0",
-        "ramsey/uuid": "^3.0|^4.0"
+        "ramsey/uuid": "^3.0|^4.0",
+        "google/gax": "^1.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0|^8.0",
