@@ -35,7 +35,7 @@ class SubjectRequestMode
     const PBDEFAULT = 1;
     /**
      * A mode reserved for special cases. Indicates that the certificate should
-     * have one or more SPIFFE
+     * have one SPIFFE
      * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] set
      * by the service based on the caller's identity. This mode will ignore any
      * explicitly specified [Subject][google.cloud.security.privateca.v1.Subject]
