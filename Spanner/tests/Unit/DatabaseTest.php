@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -47,6 +48,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use PHPUnit\Framework\TestCase;
+use Google\Rpc\Code;
 use Prophecy\Argument;
 
 /**
@@ -741,6 +743,31 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction(function ($t) {
             $this->database->runTransaction($this->noop());
         });
+    }
+
+    public function testRunTransactionShouldRetryOnRstStreamErrors()
+    {
+        $this->expectException('Google\Cloud\Core\Exception\ServerException');
+        $this->expectExceptionMessage('RST_STREAM');
+        $err = new ServerException('RST_STREAM', Code::INTERNAL);
+
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes(3)
+            ->willThrow($err);
+
+        $this->database->runTransaction(function ($t) {
+            // do nothing
+        }, ['maxRetries' => 2]);
     }
 
     public function testRunTransactionRetry()

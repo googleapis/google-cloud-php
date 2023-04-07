@@ -27,7 +27,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Øﬁ
+©ﬁ
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
@@ -611,8 +611,8 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 !UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏Ç”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settings⁄A)enhanced_measurement_settings,update_maskŒ
 CreateConnectedSiteTag=.google.analytics.admin.v1alpha.CreateConnectedSiteTagRequest>.google.analytics.admin.v1alpha.CreateConnectedSiteTagResponse"5Ç”‰ì/"*/v1alpha/properties:createConnectedSiteTag:*¶
 DeleteConnectedSiteTag=.google.analytics.admin.v1alpha.DeleteConnectedSiteTagRequest.google.protobuf.Empty"5Ç”‰ì/"*/v1alpha/properties:deleteConnectedSiteTag:* 
-ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
-"com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminbproto3'
+ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+"com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 
         static::$is_initialized = true;

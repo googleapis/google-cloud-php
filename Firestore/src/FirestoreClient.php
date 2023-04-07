@@ -287,9 +287,13 @@ class FirestoreClient
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function collections(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(

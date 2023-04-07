@@ -196,4 +196,64 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             iterator_to_array($client->collections())
         );
     }
+
+    public function testCollectionsWithReadTime()
+    {
+        $childName = uniqid(self::COLLECTION_NAME);
+        $child = $this->document->collection($childName);
+        self::$localDeletionQueue->add($child);
+        $child->add(['name' => 'John']);
+        // without sleep, emulator system test may fail intermittently
+        sleep(1);
+
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $collection = $this->document->collections([
+            'readTime' => $readTime
+        ])->current();
+
+        $this->assertEquals($childName, $collection->id());
+    }
+
+    public function testRootCollectionsWithReadTime()
+    {
+        // ListCollectionIds request doesn't support read_time in options
+        // in emulator, thus skipping the tests for now.
+
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        // without sleep, emulator system test may fail intermittently
+        sleep(1);
+
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $expectedCount = count(iterator_to_array(self::$client->collections()));
+
+        // Creating a random document
+        $document = $collection->newDocument();
+        $document->create(['firstName' => 'Yash']);
+
+        // Asserting we still get the collections at readTime instead of current
+        $collections = self::$client->collections(['readTime' => $readTime]);
+        $this->assertEquals(
+            $expectedCount,
+            count(iterator_to_array($collections))
+        );
+    }
+
+    public function testListDocumentsWithReadTime()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        $collection->add(['a' => 'b']);
+        // without sleep, emulator system test may fail intermittently
+        sleep(1);
+
+        // Creating a current timestamp and then adding a document
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $collection->add(['c' => 'd']);
+
+        // Reading at $readTime to get documents at that time
+        $list = $collection->listDocuments(['readTime' => $readTime]);
+        $this->assertCount(1, iterator_to_array($list));
+        $this->assertContainsOnlyInstancesOf(DocumentReference::class, $list);
+    }
 }
