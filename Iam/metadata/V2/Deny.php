@@ -17,15 +17,15 @@ class Deny
         \GPBMetadata\Google\Type\Expr::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
+Ü
 google/iam/v2/deny.protogoogle.iam.v2"«
 DenyRule
 denied_principals (	
 exception_principals (	
 denied_permissions (	
 exception_permissions (	+
-denial_condition (2.google.type.ExprB‚
-com.google.iam.v2BDenyRuleProtoPZ0google.golang.org/genproto/googleapis/iam/v2;iamªGoogle.Cloud.Iam.V2ÊGoogle\\Cloud\\Iam\\V2bproto3'
+denial_condition (2.google.type.ExprB{
+com.google.iam.v2BDenyRuleProtoPZ)cloud.google.com/go/iam/apiv2/iampb;iampbªGoogle.Cloud.Iam.V2ÊGoogle\\Cloud\\Iam\\V2bproto3'
         , true);
 
         static::$is_initialized = true;
