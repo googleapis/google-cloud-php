@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.contactcenterinsights.v1.ContactCenterInsights' => [
+            'BulkAnalyzeConversations' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'CreateAnalysis' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\Analysis',
@@ -53,10 +63,30 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'IngestConversations' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\IngestConversationsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'UndeployIssueModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelResponse',
                     'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'UploadConversation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\Conversation',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\UploadConversationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

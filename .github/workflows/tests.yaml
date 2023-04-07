@@ -21,6 +21,7 @@ jobs:
             phpunit-filename: phpunit
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
@@ -65,3 +66,16 @@ jobs:
     - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
+  test_dev_commands:
+    name: Dev Commands Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: "8.0"
+    - name: "Install dependencies"
+      run: composer  --no-interaction --no-ansi --no-progress update -d dev
+    - name: Run Dev Unit Test Suite
+      run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist

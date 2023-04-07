@@ -143,7 +143,7 @@ class AdaptationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $expectedResponse = new PhraseSet();
         $expectedResponse->setName($name);
         $expectedResponse->setBoost($boost);
@@ -389,7 +389,7 @@ class AdaptationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $expectedResponse = new PhraseSet();
         $expectedResponse->setName($name2);
         $expectedResponse->setBoost($boost);
@@ -649,7 +649,7 @@ class AdaptationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $boost = 9392221.0;
+        $boost = 9392221;
         $expectedResponse = new PhraseSet();
         $expectedResponse->setName($name);
         $expectedResponse->setBoost($boost);

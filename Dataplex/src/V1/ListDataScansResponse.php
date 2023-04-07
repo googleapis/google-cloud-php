@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDataScansResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * DataScans (metadata only) under the given parent location.
+     * DataScans (`BASIC` view only) under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScan data_scans = 1;</code>
      */
@@ -42,7 +42,7 @@ class ListDataScansResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataScan>|\Google\Protobuf\Internal\RepeatedField $data_scans
-     *           DataScans (metadata only) under the given parent location.
+     *           DataScans (`BASIC` view only) under the given parent location.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
@@ -56,7 +56,7 @@ class ListDataScansResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScans (metadata only) under the given parent location.
+     * DataScans (`BASIC` view only) under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScan data_scans = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,7 +67,7 @@ class ListDataScansResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataScans (metadata only) under the given parent location.
+     * DataScans (`BASIC` view only) under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataScan data_scans = 1;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataScan>|\Google\Protobuf\Internal\RepeatedField $var

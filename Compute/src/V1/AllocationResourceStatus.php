@@ -9,12 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * [Output Only] Contains output only fields.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationResourceStatus</code>
  */
 class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Allocation Properties of this reservation.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation specific_sku_allocation = 196231151;</code>
      */
     private $specific_sku_allocation = null;
@@ -26,6 +29,7 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AllocationResourceStatusSpecificSKUAllocation $specific_sku_allocation
+     *           Allocation Properties of this reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,6 +38,8 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Allocation Properties of this reservation.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation specific_sku_allocation = 196231151;</code>
      * @return \Google\Cloud\Compute\V1\AllocationResourceStatusSpecificSKUAllocation|null
      */
@@ -53,6 +59,8 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Allocation Properties of this reservation.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation specific_sku_allocation = 196231151;</code>
      * @param \Google\Cloud\Compute\V1\AllocationResourceStatusSpecificSKUAllocation $var
      * @return $this

@@ -22,6 +22,13 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * If set to true, all snapshots of the instance will also be deleted.
+     * (Otherwise, the request will only work if the instance has no snapshots.)
+     *
+     * Generated from protobuf field <code>bool force = 2;</code>
+     */
+    private $force = false;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The instance resource name, in the format
      *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *     @type bool $force
+     *           If set to true, all snapshots of the instance will also be deleted.
+     *           (Otherwise, the request will only work if the instance has no snapshots.)
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,34 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, all snapshots of the instance will also be deleted.
+     * (Otherwise, the request will only work if the instance has no snapshots.)
+     *
+     * Generated from protobuf field <code>bool force = 2;</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * If set to true, all snapshots of the instance will also be deleted.
+     * (Otherwise, the request will only work if the instance has no snapshots.)
+     *
+     * Generated from protobuf field <code>bool force = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

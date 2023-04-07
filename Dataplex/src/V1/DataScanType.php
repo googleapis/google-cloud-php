@@ -14,19 +14,19 @@ use UnexpectedValueException;
 class DataScanType
 {
     /**
-     * The DataScan Type is unspecified.
+     * The DataScan type is unspecified.
      *
      * Generated from protobuf enum <code>DATA_SCAN_TYPE_UNSPECIFIED = 0;</code>
      */
     const DATA_SCAN_TYPE_UNSPECIFIED = 0;
     /**
-     * Data Quality Scan.
+     * Data Quality scan.
      *
      * Generated from protobuf enum <code>DATA_QUALITY = 1;</code>
      */
     const DATA_QUALITY = 1;
     /**
-     * Data Profile Scan.
+     * Data Profile scan.
      *
      * Generated from protobuf enum <code>DATA_PROFILE = 2;</code>
      */

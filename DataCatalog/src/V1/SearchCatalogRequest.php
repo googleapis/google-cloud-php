@@ -26,9 +26,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     private $scope = null;
     /**
-     * Optional. The query string with a minimum of 3 characters and specific syntax.
-     * For more information, see
-     * [Data Catalog search
+     * Optional. The query string with a minimum of 3 characters and specific
+     * syntax. For more information, see [Data Catalog search
      * syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      * An empty query string returns all data assets (in the specified scope)
      * that you have access to.
@@ -50,9 +49,10 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. Pagination token that, if specified, returns the next page of search
-     * results. If empty, returns the first page.
-     * This token is returned in the [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
+     * Optional. Pagination token that, if specified, returns the next page of
+     * search results. If empty, returns the first page.
+     * This token is returned in the
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
      * field of the response to a previous
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call.
@@ -84,9 +84,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           empty AND `include_gcp_public_datasets` is set to `false`. In this case,
      *           the request returns an error.
      *     @type string $query
-     *           Optional. The query string with a minimum of 3 characters and specific syntax.
-     *           For more information, see
-     *           [Data Catalog search
+     *           Optional. The query string with a minimum of 3 characters and specific
+     *           syntax. For more information, see [Data Catalog search
      *           syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      *           An empty query string returns all data assets (in the specified scope)
      *           that you have access to.
@@ -100,9 +99,10 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number is 1000. If exceeded, throws an "invalid argument"
      *           exception.
      *     @type string $page_token
-     *           Optional. Pagination token that, if specified, returns the next page of search
-     *           results. If empty, returns the first page.
-     *           This token is returned in the [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
+     *           Optional. Pagination token that, if specified, returns the next page of
+     *           search results. If empty, returns the first page.
+     *           This token is returned in the
+     *           [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
      *           field of the response to a previous
      *           [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      *           call.
@@ -163,9 +163,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The query string with a minimum of 3 characters and specific syntax.
-     * For more information, see
-     * [Data Catalog search
+     * Optional. The query string with a minimum of 3 characters and specific
+     * syntax. For more information, see [Data Catalog search
      * syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      * An empty query string returns all data assets (in the specified scope)
      * that you have access to.
@@ -183,9 +182,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The query string with a minimum of 3 characters and specific syntax.
-     * For more information, see
-     * [Data Catalog search
+     * Optional. The query string with a minimum of 3 characters and specific
+     * syntax. For more information, see [Data Catalog search
      * syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
      * An empty query string returns all data assets (in the specified scope)
      * that you have access to.
@@ -239,9 +237,10 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Pagination token that, if specified, returns the next page of search
-     * results. If empty, returns the first page.
-     * This token is returned in the [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
+     * Optional. Pagination token that, if specified, returns the next page of
+     * search results. If empty, returns the first page.
+     * This token is returned in the
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
      * field of the response to a previous
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call.
@@ -255,9 +254,10 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Pagination token that, if specified, returns the next page of search
-     * results. If empty, returns the first page.
-     * This token is returned in the [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
+     * Optional. Pagination token that, if specified, returns the next page of
+     * search results. If empty, returns the first page.
+     * This token is returned in the
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token]
      * field of the response to a previous
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call.

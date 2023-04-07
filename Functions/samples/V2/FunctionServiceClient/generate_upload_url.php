@@ -52,8 +52,8 @@ use Google\Cloud\Functions\V2\GenerateUploadUrlResponse;
  *
  * * `Authorization: Bearer YOUR_TOKEN`
  *
- * @param string $formattedParent The project and location in which the Google Cloud Storage signed URL
- *                                should be generated, specified in the format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent The project and location in which the Google Cloud Storage signed
+ *                                URL should be generated, specified in the format `projects/&#42;/locations/*`. Please see
  *                                {@see FunctionServiceClient::locationName()} for help formatting this field.
  */
 function generate_upload_url_sample(string $formattedParent): void

@@ -42,7 +42,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\Target\DocumentsTarget $documents
      *           A target specified by a set of document names.
      *     @type string $resume_token
-     *           A resume token from a prior [TargetChange][google.firestore.v1.TargetChange] for an identical target.
+     *           A resume token from a prior
+     *           [TargetChange][google.firestore.v1.TargetChange] for an identical target.
      *           Using a resume token with a different target is unsupported and may fail.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Start listening after a specific `read_time`.
@@ -122,7 +123,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A resume token from a prior [TargetChange][google.firestore.v1.TargetChange] for an identical target.
+     * A resume token from a prior
+     * [TargetChange][google.firestore.v1.TargetChange] for an identical target.
      * Using a resume token with a different target is unsupported and may fail.
      *
      * Generated from protobuf field <code>bytes resume_token = 4;</code>
@@ -139,7 +141,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A resume token from a prior [TargetChange][google.firestore.v1.TargetChange] for an identical target.
+     * A resume token from a prior
+     * [TargetChange][google.firestore.v1.TargetChange] for an identical target.
      * Using a resume token with a different target is unsupported and may fail.
      *
      * Generated from protobuf field <code>bytes resume_token = 4;</code>

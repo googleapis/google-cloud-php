@@ -33,6 +33,12 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string conversation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $conversation = '';
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $annotator_selector = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The time the operation finished running.
      *     @type string $conversation
      *           Output only. The Conversation that this Analysis Operation belongs to.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $annotator_selector
+     *           Output only. The annotator selector used for the analysis (if any).
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,42 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->conversation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector|null
+     */
+    public function getAnnotatorSelector()
+    {
+        return $this->annotator_selector;
+    }
+
+    public function hasAnnotatorSelector()
+    {
+        return isset($this->annotator_selector);
+    }
+
+    public function clearAnnotatorSelector()
+    {
+        unset($this->annotator_selector);
+    }
+
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector $var
+     * @return $this
+     */
+    public function setAnnotatorSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector::class);
+        $this->annotator_selector = $var;
 
         return $this;
     }

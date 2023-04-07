@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetWorkerPoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
+     * Required. The name of the `WorkerPool` to retrieve.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,8 +30,8 @@ class GetWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The field will contain name of the resource requested, for example:
-     *           "projects/project-1/workerPools/workerpool-name"
+     *           Required. The name of the `WorkerPool` to retrieve.
+     *           Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +40,10 @@ class GetWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
+     * Required. The name of the `WorkerPool` to retrieve.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class GetWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
+     * Required. The name of the `WorkerPool` to retrieve.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

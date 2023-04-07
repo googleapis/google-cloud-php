@@ -29,10 +29,11 @@ use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 
 /**
- * Lists dataScans.
+ * Lists DataScans.
  *
- * @param string $formattedParent projects/{project}/locations/{location_id}
- *                                where `{project}` refers to a project_id or project_number and
+ * @param string $formattedParent The resource name of the parent location:
+ *                                `projects/{project}/locations/{location_id}`
+ *                                where `project` refers to a *project_id* or *project_number* and
  *                                `location_id` refers to a GCP region. Please see
  *                                {@see DataScanServiceClient::locationName()} for help formatting this field.
  */

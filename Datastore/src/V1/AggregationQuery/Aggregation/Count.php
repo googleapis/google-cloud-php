@@ -21,7 +21,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of entities to
      * count.
      * This provides a way to set an upper bound on the number of entities
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * If a zero value is provided, a count result of zero should always be
      * expected.
@@ -46,7 +46,7 @@ class Count extends \Google\Protobuf\Internal\Message
      *           Optional. Optional constraint on the maximum number of entities to
      *           count.
      *           This provides a way to set an upper bound on the number of entities
-     *           to scan, limiting latency and cost.
+     *           to scan, limiting latency, and cost.
      *           Unspecified is interpreted as no bound.
      *           If a zero value is provided, a count result of zero should always be
      *           expected.
@@ -67,7 +67,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of entities to
      * count.
      * This provides a way to set an upper bound on the number of entities
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * If a zero value is provided, a count result of zero should always be
      * expected.
@@ -102,7 +102,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of entities to
      * count.
      * This provides a way to set an upper bound on the number of entities
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * If a zero value is provided, a count result of zero should always be
      * expected.
@@ -125,7 +125,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of entities to
      * count.
      * This provides a way to set an upper bound on the number of entities
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * If a zero value is provided, a count result of zero should always be
      * expected.
@@ -154,7 +154,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of entities to
      * count.
      * This provides a way to set an upper bound on the number of entities
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * If a zero value is provided, a count result of zero should always be
      * expected.

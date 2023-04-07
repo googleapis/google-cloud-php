@@ -31,13 +31,14 @@ use Google\Protobuf\FieldMask;
 /**
  * Updates a job.
  *
- * If successful, the updated [Job][google.cloud.scheduler.v1.Job] is returned. If the job does
- * not exist, `NOT_FOUND` is returned.
+ * If successful, the updated [Job][google.cloud.scheduler.v1.Job] is
+ * returned. If the job does not exist, `NOT_FOUND` is returned.
  *
  * If UpdateJob does not successfully return, it is possible for the
- * job to be in an [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED] state. A job in this state may
- * not be executed. If this happens, retry the UpdateJob request
- * until a successful response is received.
+ * job to be in an
+ * [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]
+ * state. A job in this state may not be executed. If this happens, retry the
+ * UpdateJob request until a successful response is received.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

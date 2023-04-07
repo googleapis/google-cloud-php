@@ -75,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '1.27.3';
+    const VERSION = '1.28.0';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -290,9 +290,13 @@ class FirestoreClient
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function collections(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(

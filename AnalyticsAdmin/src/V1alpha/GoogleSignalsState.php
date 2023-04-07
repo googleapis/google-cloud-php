@@ -7,8 +7,7 @@ namespace Google\Analytics\Admin\V1alpha;
 use UnexpectedValueException;
 
 /**
- * Status of the Google Signals settings (i.e., whether this feature has been
- * enabled for the property).
+ * Status of the Google Signals settings.
  *
  * Protobuf type <code>google.analytics.admin.v1alpha.GoogleSignalsState</code>
  */

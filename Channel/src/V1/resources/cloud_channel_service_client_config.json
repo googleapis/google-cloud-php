@@ -158,6 +158,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListEntitlementChanges": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListEntitlements": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",

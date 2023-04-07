@@ -33,7 +33,8 @@ use Google\Cloud\Firestore\V1\FirestoreClient;
  * @param string $parent       The parent resource. For example:
  *                             `projects/{project_id}/databases/{database_id}/documents` or
  *                             `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
- * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+ * @param string $collectionId The collection ID, relative to `parent`, to list. For example:
+ *                             `chatrooms`.
  * @param string $documentId   The client-assigned document ID to use for this document.
  *
  *                             Optional. If not specified, an ID will be assigned by the service.

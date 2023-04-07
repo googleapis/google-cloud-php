@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\DiskType;
 use Google\Cloud\Compute\V1\DiskTypesClient;
 
 /**
- * Returns the specified disk type. Gets a list of available disk types by making a list() request.
+ * Returns the specified disk type.
  *
  * @param string $diskType Name of the disk type to return.
  * @param string $project  Project ID for this request.

@@ -16,14 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudRunMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`. Format is
+     * projects/{project}/locations/{location}/services/{service}.
      *
-     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $service = '';
     /**
-     * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
+     * Output only. The Cloud Run Service urls that are associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>repeated string service_urls = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -42,10 +44,12 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service
-     *           Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
-     *           Format is projects/{project}/locations/{location}/services/{service}.
+     *           Output only. The name of the Cloud Run Service that is associated with a
+     *           `Rollout`. Format is
+     *           projects/{project}/locations/{location}/services/{service}.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_urls
-     *           Output only. The Cloud Run Service urls that are associated with a `Rollout`.
+     *           Output only. The Cloud Run Service urls that are associated with a
+     *           `Rollout`.
      *     @type string $revision
      *           Output only. The Cloud Run Revision id associated with a `Rollout`.
      * }
@@ -56,10 +60,11 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`. Format is
+     * projects/{project}/locations/{location}/services/{service}.
      *
-     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getService()
@@ -68,10 +73,11 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
-     * Format is projects/{project}/locations/{location}/services/{service}.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`. Format is
+     * projects/{project}/locations/{location}/services/{service}.
      *
-     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +90,8 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
+     * Output only. The Cloud Run Service urls that are associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>repeated string service_urls = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -95,7 +102,8 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
+     * Output only. The Cloud Run Service urls that are associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>repeated string service_urls = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

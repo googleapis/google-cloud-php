@@ -27,7 +27,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˚Œ
+Øﬁ
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
@@ -485,7 +485,24 @@ page_token (	"Ñ
 page_token (	"z
 ListBigQueryLinksResponseD
 bigquery_links (2,.google.analytics.admin.v1alpha.BigQueryLink
-next_page_token (	2∞∏
+next_page_token (	"x
+%GetEnhancedMeasurementSettingsRequestO
+name (	BA‡A˙A;
+9analyticsadmin.googleapis.com/EnhancedMeasurementSettings"…
+(UpdateEnhancedMeasurementSettingsRequestg
+enhanced_measurement_settings (2;.google.analytics.admin.v1alpha.EnhancedMeasurementSettingsB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"Ñ
+CreateConnectedSiteTagRequest
+property (	Q
+connected_site_tag (20.google.analytics.admin.v1alpha.ConnectedSiteTagB‡A" 
+CreateConnectedSiteTagResponse"A
+DeleteConnectedSiteTagRequest
+property (	
+tag_id (	"0
+ListConnectedSiteTagsRequest
+property (	"n
+ListConnectedSiteTagsResponseM
+connected_site_tags (20.google.analytics.admin.v1alpha.ConnectedSiteTag2ê¬
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -570,8 +587,8 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 DeleteSearchAds360Link=.google.analytics.admin.v1alpha.DeleteSearchAds360LinkRequest.google.protobuf.Empty"?Ç”‰ì2*0/v1alpha/{name=properties/*/searchAds360Links/*}⁄Anameè
 UpdateSearchAds360Link=.google.analytics.admin.v1alpha.UpdateSearchAds360LinkRequest0.google.analytics.admin.v1alpha.SearchAds360Link"ÉÇ”‰ì[2D/v1alpha/{search_ads_360_link.name=properties/*/searchAds360Links/*}:search_ads_360_link⁄Asearch_ads_360_link,update_maskÕ
 GetAttributionSettings=.google.analytics.admin.v1alpha.GetAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"?Ç”‰ì20/v1alpha/{name=properties/*/attributionSettings}⁄Anameõ
-UpdateAttributionSettings@.google.analytics.admin.v1alpha.UpdateAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"ÜÇ”‰ì]2E/v1alpha/{attribution_settings.name=properties/*/attributionSettings}:attribution_settings⁄A attribution_settings,update_maskΩ
-RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*ü
+UpdateAttributionSettings@.google.analytics.admin.v1alpha.UpdateAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"ÜÇ”‰ì]2E/v1alpha/{attribution_settings.name=properties/*/attributionSettings}:attribution_settings⁄A attribution_settings,update_mask
+RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"lÇ”‰ìf"./v1alpha/{entity=properties/*}:runAccessReport:*Z1",/v1alpha/{entity=accounts/*}:runAccessReport:*ü
 CreateAccessBinding:.google.analytics.admin.v1alpha.CreateAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"úÇ”‰ì~"+/v1alpha/{parent=accounts/*}/accessBindings:access_bindingZ?"-/v1alpha/{parent=properties/*}/accessBindings:access_binding⁄Aparent,access_bindingÁ
 GetAccessBinding7.google.analytics.admin.v1alpha.GetAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"kÇ”‰ì^+/v1alpha/{name=accounts/*/accessBindings/*}Z/-/v1alpha/{name=properties/*/accessBindings/*}⁄Aname∑
 UpdateAccessBinding:.google.analytics.admin.v1alpha.UpdateAccessBindingRequest-.google.analytics.admin.v1alpha.AccessBinding"¥Ç”‰ìú2:/v1alpha/{access_binding.name=accounts/*/accessBindings/*}:access_bindingZN2</v1alpha/{access_binding.name=properties/*/accessBindings/*}:access_binding⁄Aaccess_binding÷
@@ -589,7 +606,12 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 "SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
 $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*¥
 GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";Ç”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}⁄Aname«
-ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks⁄Aparent¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
+ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks⁄Aparent˚
+GetEnhancedMeasurementSettingsE.google.analytics.admin.v1alpha.GetEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"UÇ”‰ìHF/v1alpha/{name=properties/*/dataStreams/*/enhancedMeasurementSettings}⁄AnameÂ
+!UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏Ç”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settings⁄A)enhanced_measurement_settings,update_maskŒ
+CreateConnectedSiteTag=.google.analytics.admin.v1alpha.CreateConnectedSiteTagRequest>.google.analytics.admin.v1alpha.CreateConnectedSiteTagResponse"5Ç”‰ì/"*/v1alpha/properties:createConnectedSiteTag:*¶
+DeleteConnectedSiteTag=.google.analytics.admin.v1alpha.DeleteConnectedSiteTagRequest.google.protobuf.Empty"5Ç”‰ì/"*/v1alpha/properties:deleteConnectedSiteTag:* 
+ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminbproto3'
         , true);
 

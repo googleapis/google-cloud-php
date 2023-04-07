@@ -1,4 +1,4 @@
-name: Test Suite
+name: CS Test Suite
 on:
   push:
     branches: [ main ]
@@ -16,14 +16,9 @@ jobs:
       with:
         php-version: '8.0'
     - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
+      run: composer global require "squizlabs/php_codesniffer:3.*"
     - name: Run PHPCS Code Style Checker
-      run: dev/sh/style
-
+      run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
   staticanalysis:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis

@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class EventTrigger extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Eventarc trigger. The format of this field is
-     * `projects/{project}/locations/{region}/triggers/{trigger}`.
+     * Output only. The resource name of the Eventarc trigger. The format of this
+     * field is `projects/{project}/locations/{region}/triggers/{trigger}`.
      *
      * Generated from protobuf field <code>string trigger = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -58,8 +58,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      */
     private $pubsub_topic = '';
     /**
-     * Optional. The email of the trigger's service account. The service account must have
-     * permission to invoke Cloud Run services, the permission is
+     * Optional. The email of the trigger's service account. The service account
+     * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
      * `{project_number}-compute&#64;developer.gserviceaccount.com`.
@@ -68,7 +68,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      */
     private $service_account_email = '';
     /**
-     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying them).
+     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying
+     * them).
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.EventTrigger.RetryPolicy retry_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,8 +90,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $trigger
-     *           Output only. The resource name of the Eventarc trigger. The format of this field is
-     *           `projects/{project}/locations/{region}/triggers/{trigger}`.
+     *           Output only. The resource name of the Eventarc trigger. The format of this
+     *           field is `projects/{project}/locations/{region}/triggers/{trigger}`.
      *     @type string $trigger_region
      *           The region that the trigger will be in. The trigger will only receive
      *           events originating in this region. It can be the same
@@ -110,13 +111,14 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *           `google.cloud.pubsub.topic.v1.messagePublished`. The topic provided here
      *           will not be deleted at function deletion.
      *     @type string $service_account_email
-     *           Optional. The email of the trigger's service account. The service account must have
-     *           permission to invoke Cloud Run services, the permission is
+     *           Optional. The email of the trigger's service account. The service account
+     *           must have permission to invoke Cloud Run services, the permission is
      *           `run.routes.invoke`.
      *           If empty, defaults to the Compute Engine default service account:
      *           `{project_number}-compute&#64;developer.gserviceaccount.com`.
      *     @type int $retry_policy
-     *           Optional. If unset, then defaults to ignoring failures (i.e. not retrying them).
+     *           Optional. If unset, then defaults to ignoring failures (i.e. not retrying
+     *           them).
      *     @type string $channel
      *           Optional. The name of the channel associated with the trigger in
      *           `projects/{project}/locations/{location}/channels/{channel}` format.
@@ -129,8 +131,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Eventarc trigger. The format of this field is
-     * `projects/{project}/locations/{region}/triggers/{trigger}`.
+     * Output only. The resource name of the Eventarc trigger. The format of this
+     * field is `projects/{project}/locations/{region}/triggers/{trigger}`.
      *
      * Generated from protobuf field <code>string trigger = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -141,8 +143,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Eventarc trigger. The format of this field is
-     * `projects/{project}/locations/{region}/triggers/{trigger}`.
+     * Output only. The resource name of the Eventarc trigger. The format of this
+     * field is `projects/{project}/locations/{region}/triggers/{trigger}`.
      *
      * Generated from protobuf field <code>string trigger = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -281,8 +283,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The email of the trigger's service account. The service account must have
-     * permission to invoke Cloud Run services, the permission is
+     * Optional. The email of the trigger's service account. The service account
+     * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
      * `{project_number}-compute&#64;developer.gserviceaccount.com`.
@@ -296,8 +298,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The email of the trigger's service account. The service account must have
-     * permission to invoke Cloud Run services, the permission is
+     * Optional. The email of the trigger's service account. The service account
+     * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
      * `{project_number}-compute&#64;developer.gserviceaccount.com`.
@@ -315,7 +317,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying them).
+     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying
+     * them).
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.EventTrigger.RetryPolicy retry_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -326,7 +329,8 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying them).
+     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying
+     * them).
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.EventTrigger.RetryPolicy retry_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

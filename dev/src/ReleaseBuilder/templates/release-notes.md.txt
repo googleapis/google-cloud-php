@@ -1,3 +1,0 @@
-## Google Cloud PHP v{version}
-
-{notes}

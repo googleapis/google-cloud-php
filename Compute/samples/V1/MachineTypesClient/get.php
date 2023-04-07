@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\MachineType;
 use Google\Cloud\Compute\V1\MachineTypesClient;
 
 /**
- * Returns the specified machine type. Gets a list of available machine types by making a list() request.
+ * Returns the specified machine type.
  *
  * @param string $machineType Name of the machine type to return.
  * @param string $project     Project ID for this request.

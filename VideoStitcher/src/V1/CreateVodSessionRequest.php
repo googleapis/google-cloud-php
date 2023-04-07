@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location in which the VOD session should be created, in the
-     * form of `projects/{project_number}/locations/{location}`.
+     * Required. The project and location in which the VOD session should be
+     * created, in the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +36,8 @@ class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location in which the VOD session should be created, in the
-     *           form of `projects/{project_number}/locations/{location}`.
+     *           Required. The project and location in which the VOD session should be
+     *           created, in the form of `projects/{project_number}/locations/{location}`.
      *     @type \Google\Cloud\Video\Stitcher\V1\VodSession $vod_session
      *           Required. Parameters for creating a session.
      * }
@@ -48,8 +48,8 @@ class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location in which the VOD session should be created, in the
-     * form of `projects/{project_number}/locations/{location}`.
+     * Required. The project and location in which the VOD session should be
+     * created, in the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +60,8 @@ class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location in which the VOD session should be created, in the
-     * form of `projects/{project_number}/locations/{location}`.
+     * Required. The project and location in which the VOD session should be
+     * created, in the form of `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

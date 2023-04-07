@@ -31,8 +31,8 @@ use Google\ApiCore\ApiException;
  * Deletes information about multiple users' links to an account or property.
  *
  * @param string $formattedParent       The account or property that owns the access bindings. The parent
- *                                      field in the DeleteAccessBindingRequest messages must either be empty or
- *                                      match this field. Formats:
+ *                                      of all provided values for the 'names' field in DeleteAccessBindingRequest
+ *                                      messages must match this field. Formats:
  *                                      - accounts/{account}
  *                                      - properties/{property}
  *                                      Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.

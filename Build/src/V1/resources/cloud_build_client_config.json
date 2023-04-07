@@ -20,6 +20,11 @@
                 }
             },
             "methods": {
+                "ApproveBuild": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "CancelBuild": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
@@ -62,7 +67,7 @@
                 },
                 "GetWorkerPool": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
+                    "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
                 "ListBuildTriggers": {
@@ -77,7 +82,7 @@
                 },
                 "ListWorkerPools": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
+                    "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
                 "ReceiveTriggerWebhook": {

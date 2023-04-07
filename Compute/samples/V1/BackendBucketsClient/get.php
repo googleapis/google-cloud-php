@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\BackendBucket;
 use Google\Cloud\Compute\V1\BackendBucketsClient;
 
 /**
- * Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request.
+ * Returns the specified BackendBucket resource.
  *
  * @param string $backendBucket Name of the BackendBucket resource to return.
  * @param string $project       Project ID for this request.
