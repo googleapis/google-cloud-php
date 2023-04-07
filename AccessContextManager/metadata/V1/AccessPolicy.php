@@ -18,7 +18,7 @@ class AccessPolicy
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
+É
 ;google/identity/accesscontextmanager/v1/access_policy.proto\'google.identity.accesscontextmanager.v1google/protobuf/timestamp.proto"’
 AccessPolicy
 name (	
@@ -28,8 +28,8 @@ class AccessPolicy
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp
 etag (	:UêAR
-0accesscontextmanager.googleapis.com/AccessPolicyaccessPolicies/{access_policy}B¡
-+com.google.identity.accesscontextmanager.v1BPolicyProtoPZ[google.golang.org/genproto/googleapis/identity/accesscontextmanager/v1;accesscontextmanager¢GACMª\'Google.Identity.AccessContextManager.V1Ê\'Google\\Identity\\AccessContextManager\\V1ê*Google::Identity::AccessContextManager::V1bproto3'
+0accesscontextmanager.googleapis.com/AccessPolicyaccessPolicies/{access_policy}B¢
++com.google.identity.accesscontextmanager.v1BPolicyProtoPZ\\cloud.google.com/go/accesscontextmanager/apiv1/accesscontextmanagerpb;accesscontextmanagerpb¢GACMª\'Google.Identity.AccessContextManager.V1Ê\'Google\\Identity\\AccessContextManager\\V1ê*Google::Identity::AccessContextManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;
