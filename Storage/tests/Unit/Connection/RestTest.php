@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
+use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -540,7 +541,7 @@ class RestTest extends TestCase
         $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
         $requestHash = 'dummy_hash';
         $currentAttempt = 1;
-        $headerLineName = RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION;
+        $headerLineName = AgentHeader::AGENT_HEADER_KEY;
 
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
@@ -648,11 +649,11 @@ class RestTest extends TestCase
         foreach ($retryCases as $retryCase) {
             // For retry always
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_ALWAYS;
+            $case[3]['retryStrategy'] = Rest::getStrategyAlwaysKey();
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
             if (!in_array(
                 $retryCase[4],
-                Rest::$httpRetryCodes
+                Rest::getHttpRetryCodes()
             ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
@@ -661,7 +662,7 @@ class RestTest extends TestCase
 
             // For retry never
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::$RETRY_STRATEGY_NEVER;
+            $case[3]['retryStrategy'] = Rest::getStrategyNeverKey();
             $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             $retryStrategyCases[] = $case;
         }

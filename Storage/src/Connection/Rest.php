@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Connection;
 
+use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\HeaderTrait;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
@@ -45,7 +46,9 @@ use Ramsey\Uuid\Uuid;
 class Rest implements ConnectionInterface
 {
     use RestTrait;
-    use RetryTrait;
+    use RetryTrait {
+        getRestRetryFunction as public;
+    }
     use UriTrait;
     use HeaderTrait;
 
@@ -722,14 +725,14 @@ class Rest implements ConnectionInterface
     ) {
         $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
         $this->updateHeader(
-            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
+            AgentHeader::AGENT_HEADER_KEY,
             $arguments,
             $valueToAdd
         );
 
         $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
         $this->updateHeader(
-            RequestWrapper::HEADER_API_CLIENT_IDENTIFICATION,
+            AgentHeader::AGENT_HEADER_KEY,
             $arguments,
             $valueToAdd,
             false
