@@ -60,6 +60,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use http\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -69,6 +70,7 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const CONFIG = 'projects/my-project/instanceConfigs/config-1';
     const DATABASE = 'projects/my-project/instances/instance-1/databases/database-1';

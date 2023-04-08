@@ -26,6 +26,7 @@ use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debuggee;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
@@ -33,6 +34,7 @@ use Prophecy\Argument;
 class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $successMessage;

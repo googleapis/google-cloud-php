@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -41,6 +42,7 @@ class TransactionTest extends TestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
     use TimeTrait;

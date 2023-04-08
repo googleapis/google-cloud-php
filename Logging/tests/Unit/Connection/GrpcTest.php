@@ -26,6 +26,7 @@ use Google\Cloud\Logging\V2\LogMetric;
 use Google\Cloud\Logging\V2\LogSink;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
@@ -33,6 +34,7 @@ use Prophecy\Argument;
 class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $successMessage;

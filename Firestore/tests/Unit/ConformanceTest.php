@@ -39,6 +39,7 @@ use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Exception\Call\UnexpectedCallException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -48,6 +49,7 @@ class ConformanceTest extends TestCase
 {
     use GrpcTestTrait;
     use PathTrait;
+    use ProphecyTrait;
     use TimeTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';

@@ -34,6 +34,7 @@ use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -42,6 +43,7 @@ use Prophecy\Argument;
 class FirestoreClientTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';

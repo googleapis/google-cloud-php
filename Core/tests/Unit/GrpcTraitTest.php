@@ -27,6 +27,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -34,6 +35,7 @@ use Prophecy\Argument;
 class GrpcTraitTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $implementation;
     private $requestWrapper;

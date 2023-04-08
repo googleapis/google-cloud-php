@@ -35,6 +35,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -43,6 +44,7 @@ use Prophecy\Argument;
 class BackupTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT_ID = 'test-project';
     const INSTANCE = 'instance-name';

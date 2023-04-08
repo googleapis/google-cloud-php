@@ -37,6 +37,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -47,6 +48,7 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     private $successMessage;
     private $serializer;

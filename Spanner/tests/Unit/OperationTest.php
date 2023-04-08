@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -43,6 +44,7 @@ use Prophecy\Argument;
 class OperationTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const SESSION = 'my-session-id';

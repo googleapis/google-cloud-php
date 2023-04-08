@@ -39,6 +39,7 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -48,6 +49,7 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const PROJECT_ID = 'my-project';
 

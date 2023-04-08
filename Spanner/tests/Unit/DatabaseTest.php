@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 use PHPUnit\Framework\TestCase;
 use Google\Rpc\Code;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -59,6 +60,7 @@ class DatabaseTest extends TestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
 

@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -33,6 +34,7 @@ use Prophecy\Argument;
 class ResultTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use ResultTestTrait;
 
     private $metadata = [

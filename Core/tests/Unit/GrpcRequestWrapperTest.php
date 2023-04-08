@@ -36,6 +36,7 @@ use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -43,6 +44,7 @@ use PHPUnit\Framework\TestCase;
 class GrpcRequestWrapperTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     public function setUp(): void
     {

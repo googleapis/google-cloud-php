@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -44,6 +45,7 @@ use Prophecy\Argument;
 class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use ResultTestTrait;
     use StubCreationTrait;
     use TimeTrait;

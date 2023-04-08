@@ -42,6 +42,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -49,6 +50,7 @@ use Prophecy\Argument;
 class SpannerClientTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';

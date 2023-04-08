@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner-admin
@@ -34,6 +35,7 @@ use Prophecy\Argument;
 class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT_ID = 'test-project';

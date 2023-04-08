@@ -28,9 +28,10 @@ use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
-use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionMethod;
 
 /**
@@ -40,6 +41,7 @@ use ReflectionMethod;
 class CacheSessionPoolTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
