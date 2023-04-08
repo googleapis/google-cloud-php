@@ -137,7 +137,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
-     * A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     * A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      * is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.FacetSpec facet_specs = 12;</code>
@@ -309,6 +309,17 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec spell_correction_spec = 35;</code>
      */
     private $spell_correction_spec = null;
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     * results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 38;</code>
+     */
+    private $entity = '';
 
     /**
      * Constructor.
@@ -393,7 +404,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type array<\Google\Cloud\Retail\V2\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
-     *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     *           A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec $dynamic_facet_spec
      *           Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic
@@ -524,6 +535,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Retail\V2\SearchRequest\SpellCorrectionSpec $spell_correction_spec
      *           The spell correction specification that specifies the mode under
      *           which spell correction will take effect.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           If this is set, it should be exactly matched with
+     *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     *           results boosted by entity.
      * }
      */
     public function __construct($data = NULL) {
@@ -935,7 +953,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
-     * A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     * A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      * is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.FacetSpec facet_specs = 12;</code>
@@ -948,7 +966,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
-     * A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     * A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      * is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.FacetSpec facet_specs = 12;</code>
@@ -1471,6 +1489,42 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchRequest\SpellCorrectionSpec::class);
         $this->spell_correction_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     * results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 38;</code>
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     * results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 38;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entity = $var;
 
         return $this;
     }

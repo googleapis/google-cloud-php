@@ -250,6 +250,9 @@ class PredictionServiceGapicClient
      *           * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones"))
      *           * (availability: ANY("IN_STOCK")) AND
      *           (colors: ANY("Red") OR categories: ANY("Phones"))
+     *
+     *           For more information, see
+     *           [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).
      *     @type bool $validateOnly
      *           Use validate only mode for this prediction query. If set to true, a
      *           dummy model will be used that returns arbitrary products.
