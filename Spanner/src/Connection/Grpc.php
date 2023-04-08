@@ -1016,8 +1016,11 @@ class Grpc implements ConnectionInterface
         $options = new TransactionOptions;
         $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
+            $readOnlyClass = PHP_VERSION_ID >= 80100
+                ? PBReadOnly::class
+                : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new PBReadOnly(),
+                new $readOnlyClass(), // @phpstan-ignore-line
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);
