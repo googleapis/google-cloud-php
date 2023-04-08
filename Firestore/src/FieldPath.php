@@ -119,7 +119,7 @@ class FieldPath
         $fieldNames = $this->fieldNames;
         $fieldNames[] = $part;
 
-        return new self($fieldNames);
+        return new static($fieldNames);
     }
 
     /**

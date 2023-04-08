@@ -132,7 +132,7 @@ class KeyRange
      */
     public static function prefixMatch(array $key)
     {
-        return new self([
+        return new static([
             'startType' => self::TYPE_CLOSED,
             'endType' => self::TYPE_CLOSED,
             'start' => $key,
