@@ -74,7 +74,7 @@ class QueryTest extends FirestoreTestCase
         $this->assertEquals($res->name(), $doc->name());
 
         $res = $this->getQueryRow($this->query->where(
-            Filter::condition('foo', '=', $randomVal)
+            Filter::field('foo', '=', $randomVal)
         ));
         $this->assertEquals($res->name(), $doc->name());
     }
@@ -89,7 +89,7 @@ class QueryTest extends FirestoreTestCase
         $this->assertEquals($res->name(), $doc->name());
 
         $res = $this->getQueryRow($this->query->where(
-            Filter::condition('foo', '=', null)
+            Filter::field('foo', '=', null)
         ));
         $this->assertEquals($res->name(), $doc->name());
     }
@@ -104,7 +104,7 @@ class QueryTest extends FirestoreTestCase
         $this->assertEquals($res->name(), $doc->name());
 
         $res = $this->getQueryRow($this->query->where(
-            Filter::condition('foo', '=', NAN)
+            Filter::field('foo', '=', NAN)
         ));
         $this->assertEquals($res->name(), $doc->name());
     }
@@ -145,25 +145,25 @@ class QueryTest extends FirestoreTestCase
         $this->assertContains($doc2->id(), $doc_ids);
 
         $docs = self::$client->collection($name)
-        ->where(Filter::condition('foos', 'in', [['foo']]))->documents()->rows();
+        ->where(Filter::field('foos', 'in', [['foo']]))->documents()->rows();
         $this->assertCount(1, $docs);
         $this->assertEquals($doc2->name(), $docs[0]->name());
 
         $docs = self::$client->collection($name)
-        ->where(Filter::condition('foos', 'in', [['bar']]))->documents()->rows();
+        ->where(Filter::field('foos', 'in', [['bar']]))->documents()->rows();
         $this->assertEmpty($docs);
 
         $docs = self::$client->collection($name)
-        ->where(Filter::condition('foos', 'in', [['foo', 'bar']]))->documents()->rows();
+        ->where(Filter::field('foos', 'in', [['foo', 'bar']]))->documents()->rows();
         $this->assertCount(1, $docs);
         $this->assertEquals($doc1->name(), $docs[0]->name());
 
         $docs = self::$client->collection($name)
-        ->where(Filter::condition('foos', 'in', [['bar', 'foo']]))->documents()->rows();
+        ->where(Filter::field('foos', 'in', [['bar', 'foo']]))->documents()->rows();
         $this->assertEmpty($docs);
 
         $docs = self::$client->collection($name)
-            ->where(Filter::condition(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()]))
+            ->where(Filter::field(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()]))
             ->documents()
             ->rows();
         $this->assertCount(2, $docs);
@@ -186,20 +186,20 @@ class QueryTest extends FirestoreTestCase
             'foo' => $randomVal2
         ]);
         $docs = self::$client->collection($name)->where(
-            Filter::doOr(
+            Filter::or(
                 [
-                    Filter::condition('foo', '=', $randomVal1),
-                    Filter::condition('foo', '=', $randomVal2)
+                    Filter::field('foo', '=', $randomVal1),
+                    Filter::field('foo', '=', $randomVal2)
                 ]
             )
         )->documents()->rows();
         $this->assertCount(2, $docs);
 
         $docs = self::$client->collection($name)->where(
-            Filter::doAnd(
+            Filter::and(
                 [
-                    Filter::condition('foo', '=', $randomVal1),
-                    Filter::condition('foo', '=', $randomVal2)
+                    Filter::field('foo', '=', $randomVal1),
+                    Filter::field('foo', '=', $randomVal2)
                 ]
             )
         )->documents()->rows();

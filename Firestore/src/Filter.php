@@ -26,13 +26,11 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
  *
  * Example:
  * ```
- * use Google\Cloud\Firestore\FirestoreClient;
  * use Google\Cloud\Firestore\Filter;
  *
- * $firestore = new FirestoreClient();
- *
- * $collection = $firestore->collection('users');
- * $query = $collection->where(Filter::condition('age', '>', 18));
+ * // Filtering with Filter::or and Filter::field
+ * $result = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
+ *                          Filter::field('firstName', '=', 'Monica')]));
  * ```
  */
 class Filter
@@ -40,10 +38,18 @@ class Filter
     /**
      * Helper function for `and` filter.
      *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * $result = $query->where(Filter::and([Filter::field('firstName', '=', 'John'),
+     *                          Filter::field('age', '>', '25')]));
+     * ```
+     *
      * @param array $filters A filter array.
      * @return array A composite filter array.
      */
-    public static function doAnd(array $filters)
+    public static function and(array $filters)
     {
         return self::compositeFilter(Operator::PBAND, $filters);
     }
@@ -51,23 +57,38 @@ class Filter
     /**
      * Helper function for `or` filter.
      *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * $result = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
+     *                          Filter::field('firstName', '=', 'Monica')]));
+     * ```
+     *
      * @param array $filters A filter array.
      * @return array A composite Filter array.
      */
-    public static function doOr(array $filters)
+    public static function or(array $filters)
     {
         return self::compositeFilter(Operator::PBOR, $filters);
     }
 
     /**
-     * Helper function for condition filter.
+     * Helper function for field filter.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * $result = $query->where(Filter::field('firstName', '=', 'John'));
+     * ```
      *
      * @param string|FieldPath $fieldPath A field to filter by.
      * @param string|int $operator An operator to filter by.
      * @param mixed $value A value to compare to.
      * @return array A field Filter array.
      */
-    public static function condition($fieldPath, $operator, $value)
+    public static function field($fieldPath, $operator, $value)
     {
         $filter = [
             'fieldFilter' => [

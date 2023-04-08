@@ -29,6 +29,8 @@ use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
+use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 
 /**
  * @group firestore
@@ -144,6 +146,40 @@ class QueryTest extends SnippetTestCase
                     ]
                 ]
             ]
+        ]);
+    }
+
+    public function testWhereWithFilter()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'where', 3);
+        $this->runAndAssert($snippet, 'where', [
+                'compositeFilter' => [
+                    'op' => Operator::PBOR,
+                    'filters' => [
+                        [
+                            'fieldFilter' => [
+                                'field' => [
+                                    'fieldPath' => 'firstName'
+                                ],
+                                'op' => FieldFilterOperator::EQUAL,
+                                'value' => [
+                                    'stringValue' => 'John'
+                                ]
+                            ]
+                        ],
+                        [
+                            'fieldFilter' => [
+                                'field' => [
+                                    'fieldPath' => 'firstName'
+                                ],
+                                'op' => FieldFilterOperator::EQUAL,
+                                'value' => [
+                                    'stringValue' => 'Monica'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
         ]);
     }
 

@@ -229,12 +229,12 @@ class QueryTest extends TestCase
             $res = $res->where('user.coolness', '=', null);
             $res = $res->where('user.numberOfFriends', '=', NAN);
             $res = $res->where(
-                Filter::doOr([
-                    Filter::condition('user.name', '=', 'John'),
-                    Filter::condition('user.age', '=', 30),
-                    Filter::doAnd([
-                        Filter::condition('user.coolness', '=', null),
-                        Filter::condition('user.numberOfFriends', '=', NAN)
+                Filter::or([
+                    Filter::field('user.name', '=', 'John'),
+                    Filter::field('user.age', '=', 30),
+                    Filter::and([
+                        Filter::field('user.coolness', '=', null),
+                        Filter::field('user.numberOfFriends', '=', NAN)
                         ])
                     ])
             );
@@ -360,7 +360,7 @@ class QueryTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        $this->query->where(Filter::condition('foo', $operator, null));
+        $this->query->where(Filter::field('foo', $operator, null));
     }
 
     public function invalidUnaryComparisonOperators()
@@ -385,7 +385,7 @@ class QueryTest extends TestCase
         $ret = $this->query->where('foo', $operator, 'bar');
         $this->assertInstanceOf(Query::class, $ret);
 
-        $ret = $this->query->where(Filter::condition('foo', $operator, 'bar'));
+        $ret = $this->query->where(Filter::field('foo', $operator, 'bar'));
         $this->assertInstanceOf(Query::class, $ret);
     }
 
@@ -429,7 +429,7 @@ class QueryTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        $this->query->where(Filter::condition('foo', '=', $sentinel));
+        $this->query->where(Filter::field('foo', '=', $sentinel));
     }
 
     public function testWhereInvalidOperator()
@@ -443,7 +443,7 @@ class QueryTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        $this->query->where(Filter::condition('foo', 'hello', 'bar'));
+        $this->query->where(Filter::field('foo', 'hello', 'bar'));
     }
 
     /**
@@ -482,7 +482,7 @@ class QueryTest extends TestCase
     public function testWhereDocumentIdWithFilter($document, $expected)
     {
         $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(Filter::condition(FieldPath::documentId(), '=', $document));
+            $res = $q->where(Filter::field(FieldPath::documentId(), '=', $document));
 
             return $res;
         }, [
@@ -548,7 +548,7 @@ class QueryTest extends TestCase
     public function testWhereDocumentIdInWithFilter($document, $expected)
     {
         $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(Filter::condition(FieldPath::documentId(), 'in', [$document]));
+            $res = $q->where(Filter::field(FieldPath::documentId(), 'in', [$document]));
 
             return $res;
         }, [
@@ -610,7 +610,7 @@ class QueryTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        $this->query->where(Filter::condition(FieldPath::documentId(), '=', $document));
+        $this->query->where(Filter::field(FieldPath::documentId(), '=', $document));
     }
 
     public function whereInvalidDocument()
@@ -1253,7 +1253,7 @@ class QueryTest extends TestCase
         ]);
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::doOr([Filter::condition('foo', '>', 'bar')]));
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::QUERY_PARENT,
@@ -1319,7 +1319,7 @@ class QueryTest extends TestCase
         $snapshot->get('foo')->willReturn('bar');
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::doOr([Filter::condition('foo', '>', 'bar')]));
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::QUERY_PARENT,
@@ -1385,7 +1385,7 @@ class QueryTest extends TestCase
         $snapshot->get('foo')->willReturn('bar');
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::condition('foo', '>', 'bar'));
+            $query = $this->query->where(Filter::field('foo', '>', 'bar'));
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::QUERY_PARENT,

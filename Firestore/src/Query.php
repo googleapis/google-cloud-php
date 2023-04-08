@@ -297,146 +297,6 @@ class Query
     }
 
     /**
-     * Create a non composite Filter.
-     *
-     * @param string|array|FieldPath $fieldPath A field to filter by.
-     * @param string|int $operator An operator to filter by.
-     * @param mixed $value A value to compare to.
-     * @return array A non composite Filter array.
-     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
-     */
-    private function createNonCompositeFilter($fieldPath, $operator, $value)
-    {
-        $basePath = $this->basePath();
-        if ($value instanceof FieldValueInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'Value cannot be a `%s` value.',
-                FieldValue::class
-            ));
-        }
-
-        if (!($fieldPath instanceof FieldPath)) {
-            $fieldPath = FieldPath::fromString($fieldPath);
-        }
-
-        $escapedPathString = $fieldPath->pathString();
-
-        // alias for friendlier error message below.
-        $originalOperator = $operator;
-        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
-            ? $this->shortOperators[strtolower($operator)]
-            : $operator;
-
-        try {
-            FieldFilterOperator::name($operator);
-        } catch (\UnexpectedValueException $e) {
-            throw new \InvalidArgumentException(sprintf(
-                'Operator %s is not a valid operator',
-                $originalOperator
-            ));
-        }
-
-        if ($escapedPathString === self::DOCUMENT_ID) {
-            if ($operator === FieldFilterOperator::IN) {
-                $value = array_map(function ($value) use ($basePath) {
-                    return $this->createDocumentReference($basePath, $value);
-                }, (array) $value);
-            } else {
-                $value = $this->createDocumentReference($basePath, $value);
-            }
-        }
-
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
-            if ($operator !== FieldFilterOperator::EQUAL) {
-                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
-            }
-
-            $unaryOperator = is_nan($value)
-                ? self::OP_NAN
-                : self::OP_NULL;
-
-            $filter = [
-                'unaryFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString
-                    ],
-                    'op' => $unaryOperator
-                ]
-            ];
-        } else {
-            $encodedValue = $operator === FieldFilterOperator::IN
-                ? $this->valueMapper->encodeMultiValue((array)$value)
-                : $this->valueMapper->encodeValue($value);
-
-            $filter = [
-                'fieldFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString,
-                    ],
-                    'op' => $operator,
-                    'value' => $encodedValue
-                ]
-            ];
-        }
-        
-        return $filter;
-    }
-
-    /**
-     * Find and set the the filter type to either Field or Unary.
-     *
-     * @param array $filter A field/unary filter array.
-     * @return array A non composite Filter array.
-     * @throws \InvalidArgumentException If an invalid filter is encountered.
-     */
-    private function findAndSetNonCompositeFilter($filter)
-    {
-        $nonCompositeFilter = $this->createNonCompositeFilter(
-            $filter['fieldFilter']['field'],
-            $filter['fieldFilter']['op'],
-            $filter['fieldFilter']['value']
-        );
-
-        return $nonCompositeFilter;
-    }
-
-    /**
-     * Create a composite filter from a filter array.
-     *
-     * @param array $filters A non sanitized composite filter array.
-     * @return array A sanitized composite Filter array.
-     * @throws \InvalidArgumentException If an invalid filter is encountered.
-     */
-    private function createCompositeFilter($filters)
-    {
-        foreach ($filters as $key => $filter) {
-            if ($key === 'fieldFilter') {
-                $nonCompositeFilter = $this->findAndSetNonCompositeFilter($filters);
-                if (isset($nonCompositeFilter['unaryFilter'])) {
-                    unset($filters['fieldFilter']);
-                    $filters['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
-                } else {
-                    $filters['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
-                }
-            } elseif (isset($filter['fieldFilter'])) {
-                $filters[$key] = $this->findAndSetNonCompositeFilter($filter);
-            } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
-                $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
-            } elseif (isset($filter['compositeFilter']) &&
-            isset($filter['compositeFilter']['filters'])) {
-                $filters[$key]['compositeFilter']['filters'] =
-                    $this->createCompositeFilter($filter['compositeFilter']['filters']);
-            } else {
-                throw new \InvalidArgumentException(
-                    'The filter is not set correctly.'
-                );
-            }
-        }
-
-        return $filters;
-    }
-
-    /**
      * Add a WHERE clause to the Query.
      *
      * For a list of all available operators, see
@@ -464,12 +324,15 @@ class Query
      * ```
      *
      * ```
-     * // Filtering with Filter::or condition
-     * $query = $query->where(Filter::or([Filter::condition('firstName', '=', 'John'),
-     *                          Filter::condition('firstName', '=', 'Monica')]));
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * // Filtering with Filter::or
+     * $query = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
+     *                          Filter::field('firstName', '=', 'Monica')]));
      * ```
      *
      * @param string|array|FieldPath $fieldPath The field to filter by, or array of Filters.
+     * If filter array is provided, other params will be ignored.
      * @param string|int $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
@@ -478,11 +341,6 @@ class Query
     public function where($fieldPath, $operator = null, $value = null)
     {
         if (is_array($fieldPath)) {
-            if (!is_null($operator) or !(is_null($operator))) {
-                throw new \InvalidArgumentException(
-                    'Filter with operator and value is not accepted'
-                );
-            }
             $filters = $this->createCompositeFilter($fieldPath);
         } else {
             $filters = $this->createNonCompositeFilter($fieldPath, $operator, $value);
@@ -1119,5 +977,145 @@ class Query
         return $this->allDescendants()
             ? $this->parentName
             : $this->childPath($this->parentName, $this->query['from'][0]['collectionId']);
+    }
+
+    /**
+     * Create a non composite Filter.
+     *
+     * @param string|array|FieldPath $fieldPath A field to filter by.
+     * @param string|int $operator An operator to filter by.
+     * @param mixed $value A value to compare to.
+     * @return array A non composite Filter array.
+     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
+     */
+    private function createNonCompositeFilter($fieldPath, $operator, $value)
+    {
+        $basePath = $this->basePath();
+        if ($value instanceof FieldValueInterface) {
+            throw new \InvalidArgumentException(sprintf(
+                'Value cannot be a `%s` value.',
+                FieldValue::class
+            ));
+        }
+
+        if (!($fieldPath instanceof FieldPath)) {
+            $fieldPath = FieldPath::fromString($fieldPath);
+        }
+
+        $escapedPathString = $fieldPath->pathString();
+
+        // alias for friendlier error message below.
+        $originalOperator = $operator;
+        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
+            ? $this->shortOperators[strtolower($operator)]
+            : $operator;
+
+        try {
+            FieldFilterOperator::name($operator);
+        } catch (\UnexpectedValueException $e) {
+            throw new \InvalidArgumentException(sprintf(
+                'Operator %s is not a valid operator',
+                $originalOperator
+            ));
+        }
+
+        if ($escapedPathString === self::DOCUMENT_ID) {
+            if ($operator === FieldFilterOperator::IN) {
+                $value = array_map(function ($value) use ($basePath) {
+                    return $this->createDocumentReference($basePath, $value);
+                }, (array) $value);
+            } else {
+                $value = $this->createDocumentReference($basePath, $value);
+            }
+        }
+
+        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+            if ($operator !== FieldFilterOperator::EQUAL) {
+                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
+            }
+
+            $unaryOperator = is_nan($value)
+                ? self::OP_NAN
+                : self::OP_NULL;
+
+            $filter = [
+                'unaryFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString
+                    ],
+                    'op' => $unaryOperator
+                ]
+            ];
+        } else {
+            $encodedValue = $operator === FieldFilterOperator::IN
+                ? $this->valueMapper->encodeMultiValue((array)$value)
+                : $this->valueMapper->encodeValue($value);
+
+            $filter = [
+                'fieldFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString,
+                    ],
+                    'op' => $operator,
+                    'value' => $encodedValue
+                ]
+            ];
+        }
+        
+        return $filter;
+    }
+
+    /**
+     * Find and set the the filter type to either Field or Unary.
+     *
+     * @param array $filter A field/unary filter array.
+     * @return array A non composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function findAndSetNonCompositeFilter($filter)
+    {
+        $nonCompositeFilter = $this->createNonCompositeFilter(
+            $filter['fieldFilter']['field'],
+            $filter['fieldFilter']['op'],
+            $filter['fieldFilter']['value']
+        );
+
+        return $nonCompositeFilter;
+    }
+
+    /**
+     * Create a composite filter from a filter array.
+     *
+     * @param array $filters A non sanitized composite filter array.
+     * @return array A sanitized composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function createCompositeFilter($filters)
+    {
+        foreach ($filters as $key => $filter) {
+            if ($key === 'fieldFilter') {
+                $nonCompositeFilter = $this->findAndSetNonCompositeFilter($filters);
+                if (isset($nonCompositeFilter['unaryFilter'])) {
+                    unset($filters['fieldFilter']);
+                    $filters['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
+                } else {
+                    $filters['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
+                }
+            } elseif (isset($filter['fieldFilter'])) {
+                $filters[$key] = $this->findAndSetNonCompositeFilter($filter);
+            } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
+                $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
+            } elseif (isset($filter['compositeFilter']) &&
+            isset($filter['compositeFilter']['filters'])) {
+                $filters[$key]['compositeFilter']['filters'] =
+                    $this->createCompositeFilter($filter['compositeFilter']['filters']);
+            } else {
+                throw new \InvalidArgumentException(
+                    'The filter is not set correctly.'
+                );
+            }
+        }
+
+        return $filters;
     }
 }
