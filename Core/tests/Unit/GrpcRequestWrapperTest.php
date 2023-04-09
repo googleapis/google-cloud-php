@@ -35,18 +35,18 @@ use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
  */
 class GrpcRequestWrapperTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }

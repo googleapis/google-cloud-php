@@ -32,9 +32,9 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -42,7 +42,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class QueryTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -58,7 +58,7 @@ class QueryTest extends TestCase
     private $query;
     private $collectionGroupQuery;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->query = TestHelpers::stub(Query::class, [

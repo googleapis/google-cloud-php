@@ -27,8 +27,9 @@ use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -36,6 +37,8 @@ use Prophecy\Argument;
  */
 class TransactionTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
@@ -46,7 +49,7 @@ class TransactionTest extends TestCase
     private $transaction;
     private $reference;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);

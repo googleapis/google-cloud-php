@@ -19,15 +19,12 @@ namespace Google\Cloud\Trace\Tests\Unit;
 
 use Google\Cloud\Trace\TimestampTrait;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class TimestampTraitTest extends TestCase
 {
-    use AssertionRenames;
-
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
 
     /**

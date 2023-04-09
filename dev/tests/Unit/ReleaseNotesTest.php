@@ -18,8 +18,7 @@
 namespace Google\Cloud\Dev\Tests\Unit;
 
 use Google\Cloud\Dev\ReleaseNotes;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group dev
@@ -27,11 +26,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class ReleaseNotesTest extends TestCase
 {
-    use AssertStringContains;
-
     private $releaseNotes;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->releaseNotes = new ReleaseNotes(
             file_get_contents(__DIR__ . '/../fixtures/split/release-notes.md')

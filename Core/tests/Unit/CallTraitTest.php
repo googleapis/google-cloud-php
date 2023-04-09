@@ -19,17 +19,12 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\CallTrait;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group core
  */
 class CallTraitTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
-
     public function testCall()
     {
         $t = new CallTraitStub(['foo' => 'bar']);

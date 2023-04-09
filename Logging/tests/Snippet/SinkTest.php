@@ -22,19 +22,22 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Sink;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class SinkTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const SINK = 'my-sink';
     const PROJECT = 'my-awesome-project';
 
     private $connection;
     private $sink;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->sink = TestHelpers::stub(Sink::class, [

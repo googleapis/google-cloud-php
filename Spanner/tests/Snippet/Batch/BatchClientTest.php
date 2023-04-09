@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -41,6 +42,7 @@ class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -50,7 +52,7 @@ class BatchClientTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

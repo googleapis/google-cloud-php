@@ -20,7 +20,8 @@ namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner-admin
@@ -28,13 +29,14 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class IamDatabaseTest extends TestCase
 {
+    use ProphecyTrait;
     use StubCreationTrait;
 
     private $connection;
 
     private $iam;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->getConnStub();
 

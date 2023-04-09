@@ -20,7 +20,6 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -28,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 trait CommonLockTrait
 {
-    use ExpectException;
-
     private $lock;
 
     private function setLock($lock)

@@ -34,7 +34,7 @@ class OperationsTest extends SpannerTestCase
     private static $name1;
     private static $name2;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$id1 = rand(1000, 9999);
         self::$id2 = rand(1, 999);
@@ -44,7 +44,7 @@ class OperationsTest extends SpannerTestCase
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,
@@ -202,7 +202,7 @@ class OperationsTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         $error = null;
         $db = self::$databaseWithReaderDatabaseRole;
 
@@ -224,7 +224,7 @@ class OperationsTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         $error = null;
         $db = self::$databaseWithReaderDatabaseRole;
 
@@ -246,7 +246,7 @@ class OperationsTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         $db = self::$databaseWithReaderDatabaseRole;
 
         $keySet = self::$client->keySet([
@@ -263,7 +263,7 @@ class OperationsTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         $error = null;
         $db = self::$databaseWithRestrictiveDatabaseRole;
 

@@ -19,14 +19,14 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\Key;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class KeyTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public function testWithInitialPath()
     {

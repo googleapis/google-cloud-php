@@ -23,9 +23,9 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -33,8 +33,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ResultTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
     use ResultTestTrait;
 
     private $metadata = [
@@ -48,7 +48,7 @@ class ResultTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }

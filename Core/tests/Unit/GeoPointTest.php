@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\GeoPoint;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class GeoPointTest extends TestCase
 {
-    use ExpectException;
-
     public function testGeoPoint()
     {
         $point = new GeoPoint(1.1, 2.2);

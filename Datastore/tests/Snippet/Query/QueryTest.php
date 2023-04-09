@@ -27,18 +27,21 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Query;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class QueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;
     private $query;
 
-    public function set_up()
+    public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
 

@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Testing\Snippet;
 use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Provide helpers for Snippet tests.
@@ -43,7 +43,7 @@ class SnippetTestCase extends TestCase
      * @experimental
      * @internal
      */
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$coverage = Container::$coverage;
         self::$parser = Container::$parser;

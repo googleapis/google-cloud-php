@@ -19,15 +19,12 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Numeric;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class NumericTest extends TestCase
 {
-    use ExpectException;
-
     /**
      * @dataProvider invalidValueProvider
      */

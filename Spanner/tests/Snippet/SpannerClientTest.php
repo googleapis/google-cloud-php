@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -48,6 +49,7 @@ use Prophecy\Argument;
 class SpannerClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -57,7 +59,7 @@ class SpannerClientTest extends SnippetTestCase
     private $client;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

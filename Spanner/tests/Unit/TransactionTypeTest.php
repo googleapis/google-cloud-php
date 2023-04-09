@@ -34,9 +34,9 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -44,8 +44,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class TransactionTypeTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
     use ResultTestTrait;
     use StubCreationTrait;
     use TimeTrait;
@@ -60,7 +60,7 @@ class TransactionTypeTest extends TestCase
 
     private $timestamp;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

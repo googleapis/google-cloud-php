@@ -19,15 +19,12 @@ namespace Google\Cloud\Trace\Tests\Unit;
 
 use Google\Cloud\Trace\Span;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class SpanTest extends TestCase
 {
-    use AssertionRenames;
-
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
     const TRACE_ID = 'abcd1234';
 

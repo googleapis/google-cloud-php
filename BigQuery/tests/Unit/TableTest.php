@@ -32,16 +32,16 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class TableTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
@@ -77,7 +77,7 @@ class TableTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);

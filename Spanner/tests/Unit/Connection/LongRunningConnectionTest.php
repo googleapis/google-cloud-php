@@ -20,7 +20,8 @@ namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -28,12 +29,13 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class LongRunningConnectionTest extends TestCase
 {
+    use ProphecyTrait;
     use StubCreationTrait;
 
     private $connection;
     private $lro;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->getConnStub();
         $this->lro = TestHelpers::stub(LongRunningConnection::class, [

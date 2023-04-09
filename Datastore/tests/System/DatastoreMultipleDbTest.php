@@ -47,7 +47,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         ],
     ];
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         parent::set_up_multi_db_before_class();
         self::$ancestor = self::$restMultiDbClient->key(self::$kind, 'V_A');
@@ -75,7 +75,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         self::$localDeletionQueue->add($key3);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::tearDownFixtures();
     }

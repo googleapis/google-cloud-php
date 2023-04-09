@@ -32,8 +32,9 @@ use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -43,13 +44,14 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

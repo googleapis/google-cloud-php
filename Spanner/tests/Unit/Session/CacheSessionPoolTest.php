@@ -28,11 +28,11 @@ use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionMethod;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -40,8 +40,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class CacheSessionPoolTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
@@ -51,7 +51,7 @@ class CacheSessionPoolTest extends TestCase
     private $time;
     private $cacheKey;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
