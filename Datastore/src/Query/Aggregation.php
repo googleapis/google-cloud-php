@@ -88,32 +88,6 @@ class Aggregation
     }
 
     /**
-     * Set the aggregation limit.
-     *
-     * Example:
-     * ```
-     * $count = Aggregation->count();
-     * $count->alias('total');
-     * $count->limit(2);
-     *
-     * echo $count->props()['count']['alias'];
-     * ```
-     *
-     * @param int $value The limit for aggregation.
-     * @return Aggregation
-     * @throws \InvalidArgumentException If value is non-positive.
-     */
-    public function limit($value)
-    {
-        if ($value <= 0) {
-            throw new \InvalidArgumentException('limit must be postive');
-        }
-
-        $this->props[$this->aggregationType] = ['upTo' => $value];
-        return $this;
-    }
-
-    /**
      * Get the array representation for the aggregation.
      *
      * @return array

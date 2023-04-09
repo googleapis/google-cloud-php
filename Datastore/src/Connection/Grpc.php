@@ -215,6 +215,9 @@ class Grpc implements ConnectionInterface
         ]);
     }
 
+    /**
+     * @param array $args
+     */
     public function runAggregationQuery(array $args)
     {
         $partitionId = $this->serializer->decodeMessage(
@@ -232,22 +235,6 @@ class Grpc implements ConnectionInterface
                 $args['aggregationQuery']['nestedQuery'] = $this->parseQuery(
                     $args['aggregationQuery']['nestedQuery']
                 );
-            }
-
-            if (isset($args['aggregationQuery']['aggregations'])) {
-                foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
-                    array_walk(
-                        $aggregation,
-                        function (&$item) {
-                            if (isset($item['upTo']) &&
-                                !is_array($item['upTo'])) {
-                                $item['upTo'] = [
-                                    'value' => $item['upTo']
-                                ];
-                            }
-                        }
-                    );
-                }
             }
 
             $args['aggregationQuery'] = $this->serializer->decodeMessage(

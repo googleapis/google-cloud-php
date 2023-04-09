@@ -112,6 +112,27 @@ class Rest implements ConnectionInterface
     }
 
     /**
+     * @param array $args
+     */
+    public function runAggregationQuery(array $args)
+    {
+        if (isset($args['aggregationQuery']['aggregations'])) {
+            foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
+                $aggregation = array_map(
+                    function ($item) {
+                        // if empty, force request to encode as {} rather than [].
+                        return (is_array($item) && count($item) === 0)
+                            ? new \stdClass()
+                            : $item;
+                    },
+                    $aggregation
+                );
+            }
+        }
+        return $this->sendWithHeaders('projects', 'runAggregationQuery', $args);
+    }
+
+    /**
      * Deliver the request built from serice definition.
      * Also apply the `x-goog-request-params` header to the request. This header
      * is required for operations involving a non-default databases.
@@ -131,26 +152,5 @@ class Rest implements ConnectionInterface
         }
 
         return $this->send($resource, $method, $args);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function runAggregationQuery(array $args)
-    {
-        if (isset($args['aggregationQuery']['aggregations'])) {
-            foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
-                array_walk(
-                    $aggregation,
-                    function (&$item) {
-                        if (is_array($item) && count($item) === 0) {
-                            // if empty, force request to encode as {} rather than [].
-                            $item = (object) [];
-                        }
-                    }
-                );
-            }
-        }
-        return $this->send('projects', 'runAggregationQuery', $args);
     }
 }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\Query\Query;
+use UnexpectedValueException;
 
 /**
  * Represents an [Aggregation Query](https://cloud.google.com/datastore/docs/aggregation-queries).
@@ -25,15 +26,34 @@ use Google\Cloud\Datastore\Query\Query;
  * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\Query\Aggregation;
  *
  * $datastore = new DatastoreClient();
  *
- * $query = $datastore->AggregationQuery();
+ * $query = $datastore->query();
  * $query->kind('Companies');
  * $query->filter('companyName', '=', 'Google');
- * $query->addAggregation(Aggregation::count()->alias('total_upto_100'));
+ * $aggregationQuery = $query->aggregation(Aggregation::count()->alias('total'));
  *
- * $res = $datastore->runAggregationQuery($query);
+ * $res = $datastore->runAggregationQuery($aggregationQuery);
+ * echo $res->get('total');
+ * ```
+ *
+ * Example (aggregated using over method):
+ * ```
+ * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\Query\Aggregation;
+ *
+ * $datastore = new DatastoreClient();
+ *
+ * $query = $datastore->query();
+ * $query->kind('Companies');
+ * $query->filter('companyName', '=', 'Google');
+ * $query->limit(100);
+ * $aggregationQuery = $datastore->aggregationQuery();
+ * $aggregationQuery->over($query)->addAggregation(Aggregation::count()->alias('total_upto_100'));
+ *
+ * $res = $datastore->runAggregationQuery($aggregationQuery);
  * echo $res->get('total_upto_100');
  * ```
  *
@@ -116,6 +136,9 @@ class AggregationQuery
         return $this;
     }
 
+    /**
+     * @throws UnexpectedValueException If the query is not supported.
+     */
     public function queryObject()
     {
         if ($this->query instanceof Query) {
@@ -125,13 +148,13 @@ class AggregationQuery
                     'aggregations' => $this->aggregates,
                 ]
             ];
-        } elseif ($this->query instanceof GqlQuery) {
+        }
+        if ($this->query instanceof GqlQuery) {
             return [
                 'gqlQuery' => $this->query->queryObject(),
             ];
-        } else {
-            throw new \UnexpectedValueException('unknown query type');
         }
+        throw new UnexpectedValueException('unknown query type');
     }
 
     /**

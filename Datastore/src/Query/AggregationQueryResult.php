@@ -32,7 +32,8 @@ use InvalidArgumentException;
  * $query = $datastore->AggregationQuery();
  * $query->kind('Companies');
  * $query->filter('companyName', '=', 'Google');
- * $query->addAggregation(Aggregation::count()->limit(100)->alias('total_upto_100'));
+ * $query->limit(100);
+ * $query->addAggregation(Aggregation::count()->alias('total_upto_100'));
  *
  * $res = $datastore->runAggregationQuery($query);
  * echo $res->get('total_upto_100');

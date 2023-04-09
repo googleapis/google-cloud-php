@@ -1200,6 +1200,7 @@ class DatastoreClient
      * $results = $datastore->runAggregationQuery($query);
      * echo $results->get('property_1');
      * ```
+     *
      * Example with readTime:
      * ```
      * $results = $datastore->runAggregationQuery($query, ['readTime' => $time]);

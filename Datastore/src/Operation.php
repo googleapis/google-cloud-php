@@ -593,7 +593,7 @@ class Operation
             $aggregateResult->transactionId = $res['transaction'];
         }
         $aggregateResult->aggregationResults = $res['batch']['aggregationResults'];
-        $aggregateResult->readTime = $this->parseTimeString($res['batch']['readTime']);
+        $aggregateResult->readTime = $this->formatReadTimeOption($res['batch']['readTime']);
 
         return $aggregateResult;
     }

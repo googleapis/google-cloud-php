@@ -469,10 +469,11 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $this->skipEmulatorTests();
         $query = $client->query()
             ->kind(self::$kind)
-            ->filter('lastName', '=', 'Smith');
+            ->filter('lastName', '=', 'Smith')
+            ->limit(2);
         $aggregationQuery = $client->aggregationQuery()
             ->over($query)
-            ->addAggregation(Aggregation::count()->limit(2)->alias('total_upto_2'));
+            ->addAggregation(Aggregation::count()->alias('total_upto_2'));
 
         $results = $client->runAggregationQuery($aggregationQuery);
 
@@ -516,12 +517,12 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $aggregationQuery = $client->aggregationQuery()
             ->over($query)
             ->addAggregation(Aggregation::count()->alias('total_count'))
-            ->addAggregation(Aggregation::count()->limit(2)->alias('total_upto_2'));
+            ->addAggregation(Aggregation::count()->alias('max_count'));
 
         $results = $client->runAggregationQuery($aggregationQuery);
 
         $this->assertEquals(3, $results->get('total_count'));
-        $this->assertEquals(2, $results->get('total_upto_2'));
+        $this->assertEquals(3, $results->get('max_count'));
     }
 
     /**
