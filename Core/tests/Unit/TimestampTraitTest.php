@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core

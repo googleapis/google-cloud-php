@@ -20,19 +20,16 @@ namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation\FeatureInterface;
 use Google\Cloud\Vision\Annotation\LikelihoodTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
 class LikelihoodTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $stub;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->stub = TestHelpers::impl(LikelihoodTrait::class);
     }

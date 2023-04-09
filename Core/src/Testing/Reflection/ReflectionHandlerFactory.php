@@ -17,27 +17,17 @@
 
 namespace Google\Cloud\Core\Testing\Reflection;
 
-use phpDocumentor\Reflection\File\LocalFile;
-use phpDocumentor\Reflection\Php\EnumCase;
-
 /**
- * Class for determining if phpdocumentor/reflection v3, v4 or v5 is being used.
+ * Class for determining which verison of phpdocumentor/reflection is being used.
+ * @internal
  */
 class ReflectionHandlerFactory
 {
     /**
-     * @return ReflectionHandlerV3|ReflectionHandlerV4|ReflectionHandlerV5
+     * @return ReflectionHandlerV5
      */
     public static function create()
     {
-        if (class_exists(EnumCase::class)) {
-            return new ReflectionHandlerV5();
-        }
-
-        if (class_exists(LocalFile::class)) {
-            return new ReflectionHandlerV4();
-        }
-
-        return new ReflectionHandlerV3();
+        return new ReflectionHandlerV5();
     }
 }

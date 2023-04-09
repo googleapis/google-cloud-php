@@ -27,17 +27,20 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class GqlQueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -166,7 +169,7 @@ class GqlQueryTest extends SnippetTestCase
 
     private function provideSnippets($name)
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         return [
             [$this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', $name)],

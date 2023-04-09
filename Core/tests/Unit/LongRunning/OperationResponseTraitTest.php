@@ -25,7 +25,8 @@ use Google\ApiCore\Serializer;
 use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,6 +34,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class OperationResponseTraitTest extends TestCase
 {
+    use ProphecyTrait;
     use OperationResponseTrait;
 
     const RESULT_TYPE = 'resp-type';
@@ -51,7 +53,7 @@ class OperationResponseTraitTest extends TestCase
         ],
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $serializer = $this->prophesize(Serializer::class);
         $serializer->encodeMessage(Argument::any())->will(function ($arg) {

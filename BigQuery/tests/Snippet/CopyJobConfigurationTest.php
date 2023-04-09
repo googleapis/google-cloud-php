@@ -34,7 +34,7 @@ class CopyJobConfigurationTest extends SnippetTestCase
 
     private $config;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->config = new CopyJobConfiguration(
             self::PROJECT_ID,

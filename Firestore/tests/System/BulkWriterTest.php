@@ -33,7 +33,7 @@ class BulkWriterTest extends FirestoreTestCase
     private $document;
     private $bulkwriter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $doc = self::$collection->newDocument();
         $this->bulkwriter = self::$client->bulkWriter();

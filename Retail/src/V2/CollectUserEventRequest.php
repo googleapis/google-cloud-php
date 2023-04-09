@@ -65,7 +65,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $prebuilt_rule
      *           The prebuilt rule name that can convert a specific type of raw_json.
-     *           For example: "default_schema/v1.0"
+     *           For example: "ga4_bq" rule for the GA4 user event schema.
      *     @type string $parent
      *           Required. The parent catalog name, such as
      *           `projects/1234/locations/global/catalogs/default_catalog`.
@@ -95,7 +95,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The prebuilt rule name that can convert a specific type of raw_json.
-     * For example: "default_schema/v1.0"
+     * For example: "ga4_bq" rule for the GA4 user event schema.
      *
      * Generated from protobuf field <code>string prebuilt_rule = 6;</code>
      * @return string
@@ -112,7 +112,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The prebuilt rule name that can convert a specific type of raw_json.
-     * For example: "default_schema/v1.0"
+     * For example: "ga4_bq" rule for the GA4 user event schema.
      *
      * Generated from protobuf field <code>string prebuilt_rule = 6;</code>
      * @param string $var

@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -27,16 +26,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ReadTest extends SpannerTestCase
 {
-    use ExpectException;
-
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
     private static $dataset;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);

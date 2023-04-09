@@ -24,17 +24,20 @@ use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class OperationTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $opData;
     private $connection;
     private $operation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->opData = [
             'done' => true,

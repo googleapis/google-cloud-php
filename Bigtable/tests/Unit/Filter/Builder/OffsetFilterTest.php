@@ -20,7 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\Builder\OffsetFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -30,7 +30,7 @@ class OffsetFilterTest extends TestCase
 {
     private $offsetFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->offsetFilter = Filter::offset();
     }

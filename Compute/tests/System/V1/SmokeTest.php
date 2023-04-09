@@ -39,8 +39,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SmokeTest extends TestCase
 {
-    use ExpectException;
-
     const ZONE = 'us-central1-a';
     const IMAGE = 'projects/debian-cloud/global/images/family/debian-10';
 

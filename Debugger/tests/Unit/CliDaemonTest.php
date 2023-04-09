@@ -19,15 +19,12 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Debugger\CliDaemon;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group debugger
  */
 class CliDaemonTest extends TestCase
 {
-    use ExpectException;
-
     public function testClientConfig()
     {
         $cliDaemon = new CliDaemon([

@@ -58,8 +58,9 @@ use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
 use http\Exception\InvalidArgumentException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -69,6 +70,7 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const CONFIG = 'projects/my-project/instanceConfigs/config-1';
     const DATABASE = 'projects/my-project/instances/instance-1/databases/database-1';
@@ -83,7 +85,7 @@ class GrpcTest extends TestCase
     private $successMessage;
     private $lro;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

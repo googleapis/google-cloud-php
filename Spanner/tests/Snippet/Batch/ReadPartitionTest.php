@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -38,6 +39,7 @@ class ReadPartitionTest extends SnippetTestCase
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -50,7 +52,7 @@ class ReadPartitionTest extends SnippetTestCase
     private $keySet;
     private $columns;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

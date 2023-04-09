@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -33,11 +34,12 @@ use Prophecy\Argument;
 class CommitTimestampTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }

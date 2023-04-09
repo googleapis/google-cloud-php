@@ -19,20 +19,20 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class AclTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

@@ -22,7 +22,6 @@ use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\SimpleJob;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -30,8 +29,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SimpleJobTraitTest extends TestCase
 {
-    use ExpectException;
-
     const ID = 'simple-job';
 
     public function testSetSimpleJobPropertiesThrowsExceptionWithoutIdentifier()

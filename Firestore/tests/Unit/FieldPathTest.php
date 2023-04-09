@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\FieldPath;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class FieldPathTest extends TestCase
 {
-    use ExpectException;
-
     private $pieces = ['foo', 'bar', 'hello', 'world'];
 
     public function testConstruct()

@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Debugger\SourceLocation;
 use Google\Cloud\Debugger\SourceLocationResolver;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
@@ -28,7 +28,7 @@ class SourceLocationResolverTest extends TestCase
 {
     private static $cwd;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$cwd = realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
     }

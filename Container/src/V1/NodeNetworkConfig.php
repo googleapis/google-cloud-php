@@ -68,6 +68,21 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
      */
     private $network_performance_config = null;
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     */
+    private $pod_cidr_overprovision_config = null;
 
     /**
      * Constructor.
@@ -108,6 +123,17 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
      *     @type \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $network_performance_config
      *           Network bandwidth tier configuration.
+     *     @type \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $pod_cidr_overprovision_config
+     *           [PRIVATE FIELD]
+     *           Pod CIDR size overprovisioning config for the nodepool.
+     *           Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     *           of max_pods_per_node is rounded off to next power of 2 and we then double
+     *           that to get the size of pod CIDR block per node.
+     *           Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     *           This config can disable the doubling of IPs (we still round off to next
+     *           power of 2)
+     *           Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     *           overprovisioning is disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,6 +333,60 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig::class);
         $this->network_performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     * @return \Google\Cloud\Container\V1\PodCIDROverprovisionConfig|null
+     */
+    public function getPodCidrOverprovisionConfig()
+    {
+        return $this->pod_cidr_overprovision_config;
+    }
+
+    public function hasPodCidrOverprovisionConfig()
+    {
+        return isset($this->pod_cidr_overprovision_config);
+    }
+
+    public function clearPodCidrOverprovisionConfig()
+    {
+        unset($this->pod_cidr_overprovision_config);
+    }
+
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     * @param \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $var
+     * @return $this
+     */
+    public function setPodCidrOverprovisionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodCIDROverprovisionConfig::class);
+        $this->pod_cidr_overprovision_config = $var;
 
         return $this;
     }

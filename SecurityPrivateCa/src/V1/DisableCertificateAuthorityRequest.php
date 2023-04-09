@@ -40,6 +40,15 @@ class DisableCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. This field allows this CA to be disabled even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ignore_dependent_resources = false;
 
     /**
      * Constructor.
@@ -63,6 +72,11 @@ class DisableCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messa
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $ignore_dependent_resources
+     *           Optional. This field allows this CA to be disabled even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,6 +156,38 @@ class DisableCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field allows this CA to be disabled even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreDependentResources()
+    {
+        return $this->ignore_dependent_resources;
+    }
+
+    /**
+     * Optional. This field allows this CA to be disabled even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreDependentResources($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_dependent_resources = $var;
 
         return $this;
     }

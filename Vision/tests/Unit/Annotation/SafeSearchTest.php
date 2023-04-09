@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
 use Google\Cloud\Vision\Annotation\SafeSearch;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
@@ -27,7 +27,7 @@ class SafeSearchTest extends TestCase
 {
     private $safeSearch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->safeSearch = new SafeSearch([
             'adult' => 'VERY_LIKELY',

@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -33,17 +33,17 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class FirestoreSessionHandlerTest extends SnippetTestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $client;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         // Since the tests in this class must run in isolation, they won't be
         // recognized as having been covered, and will cause a CI error.
@@ -54,7 +54,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         self::snippetFromMethod(FirestoreClient::class, 'sessionHandler');
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
