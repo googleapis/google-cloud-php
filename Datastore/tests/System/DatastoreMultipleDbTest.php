@@ -49,7 +49,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
 
     public static function setUpBeforeClass(): void
     {
-        parent::set_up_multi_db_before_class();
+        parent::setUpMultiDbBeforeClass();
         self::$ancestor = self::$restMultiDbClient->key(self::$kind, 'V_A');
         $key1 = self::$restMultiDbClient->key(self::$kind, 'B_S');
         $key1->ancestorKey(self::$ancestor);

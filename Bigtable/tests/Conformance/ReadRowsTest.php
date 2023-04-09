@@ -23,6 +23,7 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -30,6 +31,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ReadRowsTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $serverStream;
 
     public function setUp(): void

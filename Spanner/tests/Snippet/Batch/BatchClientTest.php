@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -42,7 +41,6 @@ class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
-    use ProphecyTrait;
     use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';

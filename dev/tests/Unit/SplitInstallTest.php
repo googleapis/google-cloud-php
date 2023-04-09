@@ -21,6 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\SplitInstall;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group dev
@@ -28,6 +29,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SplitInstallTest extends TestCase
 {
+    use ProphecyTrait;
+
     const ROOT_PATH = '/foo/www';
     const INSTALL_PATH = '/foo/bar/bin';
 
