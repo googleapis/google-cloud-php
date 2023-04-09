@@ -43,7 +43,7 @@ use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
  *
  * @internal
  */
-class ReflectionHandler
+class ReflectionHandlerV5
 {
     private $descriptionFactory;
     private $docBlockFactory;

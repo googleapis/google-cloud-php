@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Testing\Reflection;
 
 /**
  * Class for determining which verison of phpdocumentor/reflection is being used.
+ * @internal
  */
 class ReflectionHandlerFactory
 {
