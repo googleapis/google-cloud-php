@@ -55,8 +55,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing = false;
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,8 +92,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, updating a `Target` that does not exist will
      *           result in the creation of a new `Target`.
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,8 +256,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -268,8 +268,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

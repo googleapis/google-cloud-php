@@ -19,6 +19,9 @@ namespace Google\Cloud\Dev\DocFx\Node;
 
 use SimpleXMLElement;
 
+/**
+ * @internal
+ */
 class ConstantNode
 {
     use DocblockTrait;

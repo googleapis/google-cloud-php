@@ -34,7 +34,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The project that this resource belongs to, in the form of
+     * The project that this resource belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
      * belongs to a project.
      *
@@ -42,17 +42,17 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * The folder(s) that this resource belongs to, in the form of
+     * The folder(s) that this resource belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      */
     private $folders;
     /**
-     * The organization that this resource belongs to, in the form of
+     * The organization that this resource belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * resource belongs(directly or cascadingly) to an organization.
+     * resource belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
@@ -74,17 +74,17 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *           the parent of
      *           [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name].
      *     @type string $project
-     *           The project that this resource belongs to, in the form of
+     *           The project that this resource belongs to, in the format of
      *           projects/{PROJECT_NUMBER}. This field is available when the resource
      *           belongs to a project.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
-     *           The folder(s) that this resource belongs to, in the form of
+     *           The folder(s) that this resource belongs to, in the format of
      *           folders/{FOLDER_NUMBER}. This field is available when the resource
-     *           belongs(directly or cascadingly) to one or more folders.
+     *           belongs (directly or cascadingly) to one or more folders.
      *     @type string $organization
-     *           The organization that this resource belongs to, in the form of
+     *           The organization that this resource belongs to, in the format of
      *           organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     *           resource belongs(directly or cascadingly) to an organization.
+     *           resource belongs (directly or cascadingly) to an organization.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,7 +155,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project that this resource belongs to, in the form of
+     * The project that this resource belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
      * belongs to a project.
      *
@@ -168,7 +168,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project that this resource belongs to, in the form of
+     * The project that this resource belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
      * belongs to a project.
      *
@@ -185,9 +185,9 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The folder(s) that this resource belongs to, in the form of
+     * The folder(s) that this resource belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -198,9 +198,9 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The folder(s) that this resource belongs to, in the form of
+     * The folder(s) that this resource belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -215,9 +215,9 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The organization that this resource belongs to, in the form of
+     * The organization that this resource belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * resource belongs(directly or cascadingly) to an organization.
+     * resource belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      * @return string
@@ -228,9 +228,9 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The organization that this resource belongs to, in the form of
+     * The organization that this resource belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * resource belongs(directly or cascadingly) to an organization.
+     * resource belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      * @param string $var

@@ -79,7 +79,7 @@ class FirstPartyPrincipal extends \Google\Protobuf\Internal\Message
      */
     public function getServiceMetadata()
     {
-        return isset($this->service_metadata) ? $this->service_metadata : null;
+        return $this->service_metadata;
     }
 
     public function hasServiceMetadata()

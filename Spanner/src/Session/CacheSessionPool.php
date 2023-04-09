@@ -23,9 +23,9 @@ use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
-use Grpc\UnaryCall;
-use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\RejectionException;
+use GuzzleHttp\Promise\Utils;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -329,6 +329,7 @@ class CacheSessionPool implements SessionPoolInterface
         }
 
         if ($this->deleteQueue) {
+            // Note: This might not delete all sessions.
             $this->deleteSessions($this->deleteQueue);
             $this->deleteQueue = [];
         }
@@ -502,6 +503,8 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
     public function clear()
     {
@@ -514,7 +517,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $sessions;
         });
 
-        $this->deleteSessions($sessions);
+        return $this->deleteSessions($sessions, true);
     }
 
     /**
@@ -856,17 +859,20 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Delete the provided sessions.
+     * Attempt to delete the provided sessions.
+     * If $waitForPromises is set to false, then the caller doesn't wait for sessions
+     * to get deleted completely. So a side effect may be that sessions might not get
+     * deleted when gRPC calls go out of scope.
      *
      * @param array $sessions
+     * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
+     *        to delete sessions. **Defaults to ** `false`.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
-    private function deleteSessions(array $sessions)
+    private function deleteSessions(array $sessions, $waitForPromises = false)
     {
-        // gRPC calls appear to cancel when the corresponding UnaryCall object
-        // goes out of scope. Keeping the calls in scope allows time for the
-        // calls to complete at the expense of a small memory footprint.
         $this->deleteCalls = [];
-
         foreach ($sessions as $session) {
             $this->deleteCalls[] = $this->database->connection()
                 ->deleteSessionAsync([
@@ -874,6 +880,20 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
+
+        if ($waitForPromises && !empty($this->deleteCalls)) {
+            // try clearing sessions otherwise it could lead to leaking of sessions
+            try {
+                $results = Utils::all($this->deleteCalls)->wait();
+                // successful session deletes should resolve to empty protobuf objects
+                // return true when $results has single unique object with empty string value
+                return count(array_unique($results, SORT_REGULAR)) === 1 &&
+                    empty(reset($results)->serializeToString());
+            } catch (RejectionException $ex) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

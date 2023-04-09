@@ -37,7 +37,7 @@ user_agent (	
  (
 cache_fill_bytes (
 protocol (	Bè
- com.google.api.servicecontrol.v1BHttpRequestProtoPZJgoogle.golang.org/genproto/googleapis/api/servicecontrol/v1;servicecontrolªGoogle.Cloud.ServiceControl.V1ÊGoogle\\Cloud\\ServiceControl\\V1ê!Google::Cloud::ServiceControl::V1bproto3'
+ com.google.api.servicecontrol.v1BHttpRequestProtoPZJcloud.google.com/go/servicecontrol/apiv1/servicecontrolpb;servicecontrolpbªGoogle.Cloud.ServiceControl.V1ÊGoogle\\Cloud\\ServiceControl\\V1ê!Google::Cloud::ServiceControl::V1bproto3'
         , true);
 
         static::$is_initialized = true;

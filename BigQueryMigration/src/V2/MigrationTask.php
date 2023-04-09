@@ -29,7 +29,8 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
      * Translation_Snowflake2BQ, Translation_Netezza2BQ,
      * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ.
+     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
+     * Translation_Postgresql2BQ.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -78,7 +79,8 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      *           Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
      *           Translation_Snowflake2BQ, Translation_Netezza2BQ,
      *           Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     *           Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ.
+     *           Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
+     *           Translation_Postgresql2BQ.
      *     @type int $state
      *           Output only. The current state of the task.
      *     @type \Google\Rpc\ErrorInfo $processing_error
@@ -160,7 +162,8 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
      * Translation_Snowflake2BQ, Translation_Netezza2BQ,
      * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ.
+     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
+     * Translation_Postgresql2BQ.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -176,7 +179,8 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
      * Translation_Snowflake2BQ, Translation_Netezza2BQ,
      * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ.
+     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
+     * Translation_Postgresql2BQ.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var

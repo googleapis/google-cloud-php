@@ -13,7 +13,7 @@
         "component": {
             "id": "cloud-advisorynotifications",
             "path": "AdvisoryNotifications",
-            "target": "https://github.com/googleapis/google-cloud-php-advisorynotifications"
+            "target": "googleapis/google-cloud-php-advisorynotifications"
         }
     },
     "require": {

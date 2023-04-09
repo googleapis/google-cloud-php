@@ -62,6 +62,24 @@ class State
      * Generated from protobuf enum <code>PENDING_RELEASE = 7;</code>
      */
     const PENDING_RELEASE = 7;
+    /**
+     * The `Rollout` is in the process of being cancelled.
+     *
+     * Generated from protobuf enum <code>CANCELLING = 8;</code>
+     */
+    const CANCELLING = 8;
+    /**
+     * The `Rollout` has been cancelled.
+     *
+     * Generated from protobuf enum <code>CANCELLED = 9;</code>
+     */
+    const CANCELLED = 9;
+    /**
+     * The `Rollout` is halted.
+     *
+     * Generated from protobuf enum <code>HALTED = 10;</code>
+     */
+    const HALTED = 10;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -72,6 +90,9 @@ class State
         self::APPROVAL_REJECTED => 'APPROVAL_REJECTED',
         self::PENDING => 'PENDING',
         self::PENDING_RELEASE => 'PENDING_RELEASE',
+        self::CANCELLING => 'CANCELLING',
+        self::CANCELLED => 'CANCELLED',
+        self::HALTED => 'HALTED',
     ];
 
     public static function name($value)

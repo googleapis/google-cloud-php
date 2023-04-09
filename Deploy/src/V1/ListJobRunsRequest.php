@@ -22,16 +22,17 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of `JobRun` objects to return. The service may return
-     * fewer than this value. If unspecified, at most 50 `JobRun` objects will be
-     * returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     * Optional. The maximum number of `JobRun` objects to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `JobRun` objects
+     * will be returned. The maximum value is 1000; values above 1000 will be set
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A page token, received from a previous `ListJobRuns` call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListJobRuns` call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters match the call that provided
      * the page token.
      *
@@ -39,14 +40,15 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Filter results to be returned. See https://google.aip.dev/160 for more
-     * details.
+     * Optional. Filter results to be returned. See https://google.aip.dev/160 for
+     * more details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     * more details.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,19 +63,21 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The `Rollout` which owns this collection of `JobRun` objects.
      *     @type int $page_size
-     *           Optional. The maximum number of `JobRun` objects to return. The service may return
-     *           fewer than this value. If unspecified, at most 50 `JobRun` objects will be
-     *           returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *           Optional. The maximum number of `JobRun` objects to return. The service may
+     *           return fewer than this value. If unspecified, at most 50 `JobRun` objects
+     *           will be returned. The maximum value is 1000; values above 1000 will be set
+     *           to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous `ListJobRuns` call. Provide this
-     *           to retrieve the subsequent page.
+     *           Optional. A page token, received from a previous `ListJobRuns` call.
+     *           Provide this to retrieve the subsequent page.
      *           When paginating, all other provided parameters match the call that provided
      *           the page token.
      *     @type string $filter
-     *           Optional. Filter results to be returned. See https://google.aip.dev/160 for more
-     *           details.
+     *           Optional. Filter results to be returned. See https://google.aip.dev/160 for
+     *           more details.
      *     @type string $order_by
-     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,9 +112,10 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of `JobRun` objects to return. The service may return
-     * fewer than this value. If unspecified, at most 50 `JobRun` objects will be
-     * returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     * Optional. The maximum number of `JobRun` objects to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `JobRun` objects
+     * will be returned. The maximum value is 1000; values above 1000 will be set
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -121,9 +126,10 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of `JobRun` objects to return. The service may return
-     * fewer than this value. If unspecified, at most 50 `JobRun` objects will be
-     * returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     * Optional. The maximum number of `JobRun` objects to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `JobRun` objects
+     * will be returned. The maximum value is 1000; values above 1000 will be set
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -138,8 +144,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListJobRuns` call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListJobRuns` call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters match the call that provided
      * the page token.
      *
@@ -152,8 +158,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListJobRuns` call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListJobRuns` call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters match the call that provided
      * the page token.
      *
@@ -170,8 +176,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter results to be returned. See https://google.aip.dev/160 for more
-     * details.
+     * Optional. Filter results to be returned. See https://google.aip.dev/160 for
+     * more details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -182,8 +188,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter results to be returned. See https://google.aip.dev/160 for more
-     * details.
+     * Optional. Filter results to be returned. See https://google.aip.dev/160 for
+     * more details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -198,7 +204,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     * more details.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -209,7 +216,8 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     * more details.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

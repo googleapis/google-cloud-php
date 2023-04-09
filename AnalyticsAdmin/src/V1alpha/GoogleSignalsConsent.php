@@ -7,8 +7,7 @@ namespace Google\Analytics\Admin\V1alpha;
 use UnexpectedValueException;
 
 /**
- * Consent field of the Google Signals settings (i.e., whether the user has
- * consented to the Google Signals terms of service.)
+ * Consent field of the Google Signals settings.
  *
  * Protobuf type <code>google.analytics.admin.v1alpha.GoogleSignalsConsent</code>
  */

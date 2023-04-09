@@ -51,15 +51,15 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. The start of the current commitment period. It is applicable only for
-     * ACTIVE capacity commitments.
+     * Output only. The start of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $commitment_start_time = null;
     /**
-     * Output only. The end of the current commitment period. It is applicable only for ACTIVE
-     * capacity commitments.
+     * Output only. The end of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -84,10 +84,18 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      */
     private $multi_region_auxiliary = false;
+    /**
+     * Edition of the capacity commitment.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     */
+    private $edition = 0;
 
     /**
      * Constructor.
@@ -108,11 +116,11 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the commitment.
      *     @type \Google\Protobuf\Timestamp $commitment_start_time
-     *           Output only. The start of the current commitment period. It is applicable only for
-     *           ACTIVE capacity commitments.
+     *           Output only. The start of the current commitment period. It is applicable
+     *           only for ACTIVE capacity commitments.
      *     @type \Google\Protobuf\Timestamp $commitment_end_time
-     *           Output only. The end of the current commitment period. It is applicable only for ACTIVE
-     *           capacity commitments.
+     *           Output only. The end of the current commitment period. It is applicable
+     *           only for ACTIVE capacity commitments.
      *     @type \Google\Rpc\Status $failure_status
      *           Output only. For FAILED commitment plan, provides the reason of failure.
      *     @type int $renewal_plan
@@ -125,6 +133,10 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           If set to true, this commitment is placed in the organization's
      *           secondary region which is designated for disaster recovery purposes.
      *           If false, this commitment is placed in the organization's default region.
+     *           NOTE: this is a preview feature. Project must be allow-listed in order to
+     *           set this field.
+     *     @type int $edition
+     *           Edition of the capacity commitment.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,8 +257,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The start of the current commitment period. It is applicable only for
-     * ACTIVE capacity commitments.
+     * Output only. The start of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -267,8 +279,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The start of the current commitment period. It is applicable only for
-     * ACTIVE capacity commitments.
+     * Output only. The start of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -283,8 +295,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The end of the current commitment period. It is applicable only for ACTIVE
-     * capacity commitments.
+     * Output only. The end of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -305,8 +317,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The end of the current commitment period. It is applicable only for ACTIVE
-     * capacity commitments.
+     * Output only. The end of the current commitment period. It is applicable
+     * only for ACTIVE capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -392,6 +404,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      * @return bool
@@ -407,6 +421,8 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * If set to true, this commitment is placed in the organization's
      * secondary region which is designated for disaster recovery purposes.
      * If false, this commitment is placed in the organization's default region.
+     * NOTE: this is a preview feature. Project must be allow-listed in order to
+     * set this field.
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
      * @param bool $var
@@ -416,6 +432,32 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->multi_region_auxiliary = $var;
+
+        return $this;
+    }
+
+    /**
+     * Edition of the capacity commitment.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Edition of the capacity commitment.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Edition::class);
+        $this->edition = $var;
 
         return $this;
     }

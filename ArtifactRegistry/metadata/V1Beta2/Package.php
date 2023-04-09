@@ -17,7 +17,7 @@ class Package
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
+ú
 6google/devtools/artifactregistry/v1beta2/package.proto(google.devtools.artifactregistry.v1beta2"è
 Package
 name (	
@@ -35,8 +35,8 @@ page_token (	"t
 GetPackageRequest
 name (	"$
 DeletePackageRequest
-name (	Bì
-,com.google.devtools.artifactregistry.v1beta2BPackageProtoPZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
+name (	Bê
+,com.google.devtools.artifactregistry.v1beta2BPackageProtoPZUcloud.google.com/go/artifactregistry/apiv1beta2/artifactregistrypb;artifactregistrypb™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
         , true);
 
         static::$is_initialized = true;

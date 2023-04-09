@@ -3,6 +3,8 @@
   <testsuites>
     <testsuite name="DocFX Test Suite">
       <directory>./tests/Unit/DocFx</directory>
+      <directory>./tests/Unit/Command/DocFxCommandTest.php</directory>
     </testsuite>
   </testsuites>
 </phpunit>
+

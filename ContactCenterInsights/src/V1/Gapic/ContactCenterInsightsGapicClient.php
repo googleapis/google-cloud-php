@@ -83,6 +83,7 @@ use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
+use Google\Cloud\ContactCenterInsights\V1\RedactionConfig;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
@@ -91,6 +92,7 @@ use Google\Cloud\ContactCenterInsights\V1\UpdateIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
+use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -2908,6 +2910,105 @@ class ContactCenterInsightsGapicClient
             View::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Create a longrunning conversation upload operation. This method differs
+     * from CreateConversation by allowing audio transcription and optional DLP
+     * redaction.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $conversation = new Conversation();
+     *     $operationResponse = $contactCenterInsightsClient->uploadConversation($formattedParent, $conversation);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->uploadConversation($formattedParent, $conversation);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'uploadConversation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. The parent resource of the conversation.
+     * @param Conversation $conversation Required. The conversation resource to create.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $conversationId
+     *           Optional. A unique ID for the new conversation. This ID will become the
+     *           final component of the conversation's resource name. If no ID is specified,
+     *           a server-generated ID will be used.
+     *
+     *           This value should be 4-64 characters and must match the regular
+     *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
+     *     @type RedactionConfig $redactionConfig
+     *           Optional. DLP settings for transcript redaction. Optional, will default to
+     *           the config specified in Settings.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function uploadConversation(
+        $parent,
+        $conversation,
+        array $optionalArgs = []
+    ) {
+        $request = new UploadConversationRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setConversation($conversation);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['conversationId'])) {
+            $request->setConversationId($optionalArgs['conversationId']);
+        }
+
+        if (isset($optionalArgs['redactionConfig'])) {
+            $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UploadConversation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

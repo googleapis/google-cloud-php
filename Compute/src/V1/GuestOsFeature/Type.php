@@ -40,6 +40,10 @@ class Type
      */
     const SEV_CAPABLE = 87083793;
     /**
+     * Generated from protobuf enum <code>SEV_LIVE_MIGRATABLE = 392039820;</code>
+     */
+    const SEV_LIVE_MIGRATABLE = 392039820;
+    /**
      * Generated from protobuf enum <code>SEV_SNP_CAPABLE = 426919;</code>
      */
     const SEV_SNP_CAPABLE = 426919;
@@ -63,6 +67,7 @@ class Type
         self::MULTI_IP_SUBNET => 'MULTI_IP_SUBNET',
         self::SECURE_BOOT => 'SECURE_BOOT',
         self::SEV_CAPABLE => 'SEV_CAPABLE',
+        self::SEV_LIVE_MIGRATABLE => 'SEV_LIVE_MIGRATABLE',
         self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',

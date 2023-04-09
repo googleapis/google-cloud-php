@@ -21,8 +21,8 @@ class UserEvent
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ù
-\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"á
+Ñ
+\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"ó
 	UserEvent
 
 event_type (	B‡A
@@ -49,7 +49,8 @@ attributes (21.google.cloud.retail.v2.UserEvent.AttributesEntry
 	user_info (2 .google.cloud.retail.v2.UserInfo
 uri (	
 referrer_uri (	
-page_view_id (	Z
+page_view_id (	
+entity (	Z
 AttributesEntry
 key (	6
 value (2\'.google.cloud.retail.v2.CustomAttribute:8"u

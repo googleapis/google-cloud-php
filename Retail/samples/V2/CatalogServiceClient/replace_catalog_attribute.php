@@ -48,6 +48,10 @@ use Google\Cloud\Retail\V2\CatalogServiceClient;
  *                                          characters and underscores. For example, an attribute named
  *                                          `attributes.abc_xyz` can be indexed, but an attribute named
  *                                          `attributes.abc-xyz` cannot be indexed.
+ *
+ *                                          If the attribute key starts with `attributes.`, then the attribute is a
+ *                                          custom attribute. Attributes such as `brands`, `patterns`, and `title` are
+ *                                          built-in and called system attributes.
  */
 function replace_catalog_attribute_sample(
     string $formattedAttributesConfig,
