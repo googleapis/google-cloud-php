@@ -204,9 +204,7 @@ class Grpc implements ConnectionInterface
      */
     public function listDocuments(array $args)
     {
-        $mask = isset($args['mask'])
-            ? $args['mask']
-            : [];
+        $mask = $args['mask'] ?? [];
 
         $args['mask'] = $this->documentMask($mask);
         $args = $this->decodeTimestamp($args);

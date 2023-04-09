@@ -71,9 +71,7 @@ class FilterTest extends BigtableTestCase
         foreach ($data as $row) {
             $row = json_decode($row, true);
             foreach ($row as $rowKey => $family) {
-                $mutations = isset(self::$rowMutations[$rowKey])
-                    ? self::$rowMutations[$rowKey]
-                    : new Mutations;
+                $mutations = self::$rowMutations[$rowKey] ?? new Mutations;
                 $insertRows[$rowKey] = $family;
                 foreach ($family as $familyName => $qualifier) {
                     foreach ($qualifier as $qualifierName => $value) {

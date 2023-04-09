@@ -33,15 +33,9 @@ abstract class GAEMetadataProvider implements MetadataProviderInterface
      */
     public function __construct(array $server)
     {
-        $projectId = isset($server['GOOGLE_CLOUD_PROJECT'])
-            ? $server['GOOGLE_CLOUD_PROJECT']
-            : 'unknown-projectid';
-        $serviceId = isset($server['GAE_SERVICE'])
-            ? $server['GAE_SERVICE']
-            : 'unknown-service';
-        $versionId = isset($server['GAE_VERSION'])
-            ? $server['GAE_VERSION']
-            : 'unknown-version';
+        $projectId = $server['GOOGLE_CLOUD_PROJECT'] ?? 'unknown-projectid';
+        $serviceId = $server['GAE_SERVICE'] ?? 'unknown-service';
+        $versionId = $server['GAE_VERSION'] ?? 'unknown-version';
         $labels = isset($server['HTTP_X_CLOUD_TRACE_CONTEXT'])
             ? ['appengine.googleapis.com/trace_id' =>
                $this->getTraceValue($server)]

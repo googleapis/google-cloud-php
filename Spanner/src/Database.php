@@ -416,7 +416,7 @@ class Database
     public function create(array $options = [])
     {
         $statements = $this->pluck('statements', $options, false) ?: [];
-        $dialect = isset($options['databaseDialect']) ? $options['databaseDialect'] : null;
+        $dialect = $options['databaseDialect'] ?? null;
 
         $createStatement = $this->getCreateDbStatement($dialect);
 

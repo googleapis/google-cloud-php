@@ -352,9 +352,8 @@ class CacheSessionPool implements SessionPoolInterface
 
             if (isset($data['inUse'][$name])) {
                 // set creation time to an expired time if no value is found
-                $creationTime = isset($data['inUse'][$name]['creation'])
-                    ? $data['inUse'][$name]['creation']
-                    : $this->time() - self::DURATION_SESSION_LIFETIME;
+                $creationTime = $data['inUse'][$name]['creation']
+                    ?? $this->time() - self::DURATION_SESSION_LIFETIME;
                 unset($data['inUse'][$name]);
                 array_push($data['queue'], [
                     'name' => $name,
@@ -972,7 +971,7 @@ class CacheSessionPool implements SessionPoolInterface
 
             $now = $this->time();
             $soonToExpireThreshold = $now + 600;
-            $prevMaintainTime = isset($cachedData['maintainTime']) ? $cachedData['maintainTime'] : null;
+            $prevMaintainTime = $cachedData['maintainTime'] ?? null;
 
             $len = count($sessions);
             // Find sessions that already expired.

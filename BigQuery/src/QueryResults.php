@@ -160,7 +160,7 @@ class QueryResults implements \IteratorAggregate
         $options += $this->queryResultsOptions;
         $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
-        $returnRawResults = isset($options['returnRawResults']) ? $options['returnRawResults'] : false;
+        $returnRawResults = $options['returnRawResults'] ?? false;
 
         return new ItemIterator(
             new PageIterator(

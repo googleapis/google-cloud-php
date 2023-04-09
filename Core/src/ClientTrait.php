@@ -46,9 +46,7 @@ trait ClientTrait
     {
         $isGrpcExtensionLoaded = $this->isGrpcLoaded();
         $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
-        $transport = isset($config['transport'])
-            ? strtolower($config['transport'])
-            : $defaultTransport;
+        $transport = strtolower($config['transport'] ?? $defaultTransport);
 
         if ($transport === 'grpc') {
             if (!$isGrpcExtensionLoaded) {
