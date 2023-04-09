@@ -134,9 +134,7 @@ class ValueMapper
                 ));
             }
 
-            $type = isset($types[$key])
-                ? $types[$key]
-                : null;
+            $type = $types[$key] ?? null;
 
             if (!$type && is_array($value) && !$this->isAssoc($value)) {
                 $type = new ArrayType(null);
@@ -307,9 +305,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $fields = isset($type['structType']['fields'])
-                    ? $type['structType']['fields']
-                    : [];
+                $fields = $type['structType']['fields'] ?? [];
 
                 $value = $this->decodeValues($fields, $value, Result::RETURN_ASSOCIATIVE);
                 break;
@@ -554,9 +550,7 @@ class ValueMapper
 
             // Get the value which corresponds to the current type.
             $index = $names[$fieldName];
-            $paramValue = isset($values[$fieldName][$index])
-                ? $values[$fieldName][$index]
-                : null;
+            $paramValue = $values[$fieldName][$index] ?? null;
 
             // If the value didn't exist in the values structure, set it to null.
             // The $typeIndex will give us a hook to order fields properly.

@@ -402,12 +402,8 @@ class RequestWrapper
      */
     private function getRequestOptions(array $options)
     {
-        $restOptions = isset($options['restOptions'])
-            ? $options['restOptions']
-            : $this->restOptions;
-        $timeout = isset($options['requestTimeout'])
-            ? $options['requestTimeout']
-            : $this->requestTimeout;
+        $restOptions = $options['restOptions'] ?? $this->restOptions;
+        $timeout = $options['requestTimeout'] ?? $this->requestTimeout;
 
         if ($timeout && !array_key_exists('timeout', $restOptions)) {
             $restOptions['timeout'] = $timeout;

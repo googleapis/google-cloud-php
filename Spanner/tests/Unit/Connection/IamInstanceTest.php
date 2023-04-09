@@ -21,7 +21,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner-admin
@@ -29,7 +28,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class IamInstanceTest extends TestCase
 {
-    use ProphecyTrait;
     use StubCreationTrait;
 
     private $connection;

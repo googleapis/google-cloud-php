@@ -143,9 +143,8 @@ class PsrLogger implements LoggerInterface, \Serializable
         $this->logName = $logger->name();
         $this->logMessageProcessor = LogMessageProcessorFactory::build();
         $this->messageKey = $messageKey ?: 'message';
-        $this->metadataProvider = isset($options['metadataProvider'])
-            ? $options['metadataProvider']
-            : MetadataProviderUtils::autoSelect($_SERVER);
+        $this->metadataProvider = $options['metadataProvider']
+            ?? MetadataProviderUtils::autoSelect($_SERVER);
 
         if (isset($options['batchEnabled']) && $options['batchEnabled'] === true) {
             $this->batchEnabled = true;

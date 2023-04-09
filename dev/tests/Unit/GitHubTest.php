@@ -25,6 +25,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group dev
@@ -32,6 +33,8 @@ use Prophecy\Argument;
  */
 class GitHubTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TOKEN = 'test-token';
     const TARGET = 'foo/bar.git';
     const TARGET_CLEAN = 'foo/bar';

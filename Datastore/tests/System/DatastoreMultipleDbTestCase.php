@@ -23,6 +23,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Datastore does not use the default deletion queue. Because of the way
@@ -32,6 +33,8 @@ use Prophecy\Argument;
  */
 class DatastoreMultipleDbTestCase extends DatastoreTestCase
 {
+    use ProphecyTrait;
+
     const TEST_DB_NAME = 'gcloud-test-multidb';
 
     protected static $restMultiDbClient;
@@ -41,7 +44,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
     private static $projectId;
     private static $multipleDbValidationResult = false;
 
-    public static function set_up_multi_db_before_class()
+    public static function setUpMultiDbBeforeClass()
     {
         if (self::$hasSetUp) {
             return;
@@ -69,7 +72,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
     public function multiDbClientProvider()
     {
         self::setUpBeforeClass();
-        self::set_up_multi_db_before_class();
+        self::setUpMultiDbBeforeClass();
 
         if (!self::$multipleDbValidationResult) {
             $fsAdminClient = $this->getFirestoreAdminClient();

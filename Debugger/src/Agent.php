@@ -151,9 +151,7 @@ class Agent
             'identifier' => 'stackdriver-debugger',
             'batchMethod' => 'insertBatch'
         ]);
-        $this->logger = isset($options['logger'])
-            ? $options['logger']
-            : $this->defaultLogger();
+        $this->logger = $options['logger'] ?? $this->defaultLogger();
 
         if (empty($breakpoints)) {
             return;

@@ -116,9 +116,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
     {
         $subs = $client->subscriptions();
         $sub = $subs->current();
-        $ackDeadlineSeconds = isset($sub->info()['ackDeadlineSeconds'])
-            ? $sub->info()['ackDeadlineSeconds']
-            : false;
+        $ackDeadlineSeconds = $sub->info()['ackDeadlineSeconds'] ?? false;
 
         $newDeadline = rand(10, 200);
         $sub->update([

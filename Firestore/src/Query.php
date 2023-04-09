@@ -930,9 +930,7 @@ class Query
                 $query['endAt'] = $q['startAt'];
 
                 // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['endAt']['before'] = isset($query['endAt']['before'])
-                    ? !$query['endAt']['before']
-                    : true;
+                $query['endAt']['before'] = !($query['endAt']['before'] ?? false);
             }
 
             if (isset($q['endAt'])) {
@@ -940,9 +938,7 @@ class Query
                 $query['startAt'] = $q['endAt'];
 
                 // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['startAt']['before'] = isset($query['startAt']['before'])
-                    ? !$query['startAt']['before']
-                    : true;
+                $query['startAt']['before'] = !($query['startAt']['before'] ?? false);
             }
         }
 

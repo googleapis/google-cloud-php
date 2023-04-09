@@ -22,6 +22,7 @@ use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\Split;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group dev
@@ -29,6 +30,8 @@ use Prophecy\Argument;
  */
 class SplitTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $shell;
     private $split;
 
