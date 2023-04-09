@@ -23,7 +23,7 @@ class Apikeys
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£
+ú
 #google/api/apikeys/v2/apikeys.protogoogle.api.apikeys.v2%google/api/apikeys/v2/resources.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Ñ
 CreateKeyRequest2
 parent (	B"‡A˙Aapikeys.googleapis.com/Key,
@@ -75,8 +75,8 @@ key_string (	B‡A"1
 Keygoogle.protobuf.Empty¥
 UndeleteKey).google.api.apikeys.v2.UndeleteKeyRequest.google.longrunning.Operation"[Ç”‰ì6"1/v2/{name=projects/*/locations/*/keys/*}:undelete:* A
 Keygoogle.protobuf.Emptyz
-	LookupKey\'.google.api.apikeys.v2.LookupKeyRequest(.google.api.apikeys.v2.LookupKeyResponse"Ç”‰ì/v2/keys:lookupKeyÉ Aapikeys.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB∫
-com.google.api.apikeys.v2BApiKeysProtoPZ<google.golang.org/genproto/googleapis/api/apikeys/v2;apikeys™Google.Cloud.ApiKeys.V2 Google\\Cloud\\ApiKeys\\V2ÍGoogle::Cloud::ApiKeys::V2bproto3'
+	LookupKey\'.google.api.apikeys.v2.LookupKeyRequest(.google.api.apikeys.v2.LookupKeyResponse"Ç”‰ì/v2/keys:lookupKeyÉ Aapikeys.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB≥
+com.google.api.apikeys.v2BApiKeysProtoPZ5cloud.google.com/go/apikeys/apiv2/apikeyspb;apikeyspb™Google.Cloud.ApiKeys.V2 Google\\Cloud\\ApiKeys\\V2ÍGoogle::Cloud::ApiKeys::V2bproto3'
         , true);
 
         static::$is_initialized = true;

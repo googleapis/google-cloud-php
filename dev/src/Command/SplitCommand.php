@@ -161,7 +161,7 @@ class SplitCommand extends Command
                 $input->getOption('update-release-notes')
             );
             if (!$res) {
-                $errors[] = $componentId;
+                $errors[] = $component->getId();
             }
 
             $output->writeln('');

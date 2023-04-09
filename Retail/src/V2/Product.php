@@ -463,12 +463,11 @@ class Product extends \Google\Protobuf\Internal\Message
     private $variants;
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by
+     * This field can be managed by
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      * and
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     * APIs.
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -847,12 +846,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Do not set this field in API requests.
      *     @type array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
      *           Output only. A list of local inventories specific to different places.
-     *           This is only available for users who have Retail Search enabled, and it can
-     *           be managed by
+     *           This field can be managed by
      *           [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      *           and
      *           [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     *           APIs.
+     *           APIs if fine-grained, high-volume updates are necessary.
      * }
      */
     public function __construct($data = NULL) {
@@ -2439,12 +2437,11 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by
+     * This field can be managed by
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      * and
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     * APIs.
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -2456,12 +2453,11 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by
+     * This field can be managed by
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      * and
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     * APIs.
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var
