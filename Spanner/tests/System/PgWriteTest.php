@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Rpc\Code;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -35,15 +34,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PgWriteTest extends SpannerPgTestCase
 {
-    use ExpectException;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (

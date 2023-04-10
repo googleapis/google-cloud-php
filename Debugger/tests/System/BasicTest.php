@@ -21,15 +21,12 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group debugger
  */
 class BasicTest extends TestCase
 {
-    use AssertIsType;
-
     /**
      * @dataProvider transports
      */

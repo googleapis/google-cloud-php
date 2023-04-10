@@ -345,9 +345,8 @@ class Rest implements ConnectionInterface
 
         $args['metadata']['name'] = $args['name'];
         unset($args['name']);
-        $args['contentType'] = isset($args['metadata']['contentType'])
-            ? $args['metadata']['contentType']
-            : MimeType::fromFilename($args['metadata']['name']);
+        $args['contentType'] = $args['metadata']['contentType']
+            ?? MimeType::fromFilename($args['metadata']['name']);
 
         $uploaderOptionKeys = [
             'restOptions',

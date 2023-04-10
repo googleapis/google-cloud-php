@@ -19,8 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\RegexTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -28,11 +27,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class RegexTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $implementation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = TestHelpers::impl(RegexTrait::class);
     }

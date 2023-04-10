@@ -28,9 +28,9 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -38,7 +38,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SubscriptionTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
@@ -49,7 +49,7 @@ class SubscriptionTest extends TestCase
     private $ackIds;
     private $messages;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [

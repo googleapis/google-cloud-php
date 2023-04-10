@@ -16,10 +16,10 @@ class Location
         }
         $pool->internalAddGeneratedFile(
             '
-Å
+À
 (google/firestore/admin/v1/location.protogoogle.firestore.admin.v1"
-LocationMetadataBá
-com.google.firestore.admin.v1BLocationProtoPZ>google.golang.org/genproto/googleapis/firestore/admin/v1;admin¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
+LocationMetadataBÜ
+com.google.firestore.admin.v1BLocationProtoPZ9cloud.google.com/go/firestore/apiv1/admin/apiv1pb;apiv1pb¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
         , true);
 
         static::$is_initialized = true;

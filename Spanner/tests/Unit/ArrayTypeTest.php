@@ -21,7 +21,6 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -29,8 +28,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ArrayTypeTest extends TestCase
 {
-    use ExpectException;
-
     public function typesProvider()
     {
         return [

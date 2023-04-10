@@ -107,9 +107,8 @@ class Grpc implements ConnectionInterface
             );
         }
 
-        $this->datastoreClient = isset($config['gapicDatastoreClient'])
-            ? $config['gapicDatastoreClient']
-            : $this->constructGapic(DatastoreClient::class, $grpcConfig);
+        $this->datastoreClient = $config['gapicDatastoreClient']
+            ?? $this->constructGapic(DatastoreClient::class, $grpcConfig);
     }
 
     /**

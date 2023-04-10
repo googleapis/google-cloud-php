@@ -24,23 +24,23 @@ use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group core
  */
 class RestTraitTest extends TestCase
 {
-    use AssertStringContains;
+    use ProphecyTrait;
 
     private $implementation;
     private $requestBuilder;
     private $requestWrapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = $this->getObjectForTrait(RestTrait::class);
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);

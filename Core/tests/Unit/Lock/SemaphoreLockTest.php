@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -33,7 +33,7 @@ class SemaphoreLockTest extends TestCase
 
     const LOCK_NAME = 'test';
 
-    public function set_up()
+    public function setUp(): void
     {
         if (!$this->isSysvIPCLoaded()) {
             $this->markTestSkipped(

@@ -21,8 +21,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -30,9 +28,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageObjectsTest extends StorageTestCase
 {
-    use AssertIsType;
-    use ExpectException;
-
     const DATA = 'data';
 
     public function testListsObjects()

@@ -23,17 +23,20 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\SpeechClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class SpeechClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $testFile;
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->testFile = "'" . __DIR__ . '/fixtures/demo.flac' . "'";
         $this->connection = $this->prophesize(ConnectionInterface::class);

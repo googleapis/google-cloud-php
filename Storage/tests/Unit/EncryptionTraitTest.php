@@ -20,7 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\EncryptionTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
@@ -31,7 +31,7 @@ class EncryptionTraitTest extends TestCase
 
     private $impl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(EncryptionTrait::class);
     }

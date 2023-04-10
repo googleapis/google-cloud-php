@@ -22,7 +22,8 @@ use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -30,9 +31,11 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class ReadRowsTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $serverStream;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->serverStream = $this->prophesize(ServerStream::class);
     }

@@ -390,7 +390,7 @@ class SearchServiceGapicClient
      *     @type FacetSpec[] $facetSpecs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *
-     *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     *           A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
      *     @type DynamicFacetSpec $dynamicFacetSpec
      *           Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic
@@ -533,6 +533,13 @@ class SearchServiceGapicClient
      *     @type SpellCorrectionSpec $spellCorrectionSpec
      *           The spell correction specification that specifies the mode under
      *           which spell correction will take effect.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           If this is set, it should be exactly matched with
+     *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     *           results boosted by entity.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -630,6 +637,10 @@ class SearchServiceGapicClient
             $request->setSpellCorrectionSpec(
                 $optionalArgs['spellCorrectionSpec']
             );
+        }
+
+        if (isset($optionalArgs['entity'])) {
+            $request->setEntity($optionalArgs['entity']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

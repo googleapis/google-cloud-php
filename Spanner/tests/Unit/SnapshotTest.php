@@ -22,22 +22,22 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class SnapshotTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $timestamp;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

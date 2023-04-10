@@ -18,8 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\DataUtil;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -27,9 +26,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class DataUtilTest extends TestCase
 {
-    use ExpectException;
-
-    public function set_up()
+    public function setUp(): void
     {
         if (!DataUtil::isSupported()) {
             $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');

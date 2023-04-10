@@ -18,7 +18,7 @@ class Tag
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ƒ
+¡
 2google/devtools/artifactregistry/v1beta2/tag.proto(google.devtools.artifactregistry.v1beta2 google/protobuf/field_mask.proto"±
 Tag
 name (	
@@ -43,8 +43,8 @@ page_token (	"h
 tag (2-.google.devtools.artifactregistry.v1beta2.Tag/
 update_mask (2.google.protobuf.FieldMask" 
 DeleteTagRequest
-name (	Bè
-,com.google.devtools.artifactregistry.v1beta2BTagProtoPZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
+name (	Bå
+,com.google.devtools.artifactregistry.v1beta2BTagProtoPZUcloud.google.com/go/artifactregistry/apiv1beta2/artifactregistrypb;artifactregistrypb™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
         , true);
 
         static::$is_initialized = true;

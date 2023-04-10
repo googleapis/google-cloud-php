@@ -33,7 +33,7 @@ class CommitmentPlan
      * Same as FLEX, should only be used if flat-rate commitments are still
      * available.
      *
-     * Generated from protobuf enum <code>FLEX_FLAT_RATE = 7;</code>
+     * Generated from protobuf enum <code>FLEX_FLAT_RATE = 7 [deprecated = true];</code>
      */
     const FLEX_FLAT_RATE = 7;
     /**
@@ -57,7 +57,7 @@ class CommitmentPlan
      * Same as MONTHLY, should only be used if flat-rate commitments are still
      * available.
      *
-     * Generated from protobuf enum <code>MONTHLY_FLAT_RATE = 8;</code>
+     * Generated from protobuf enum <code>MONTHLY_FLAT_RATE = 8 [deprecated = true];</code>
      */
     const MONTHLY_FLAT_RATE = 8;
     /**
@@ -72,7 +72,7 @@ class CommitmentPlan
      * Same as ANNUAL, should only be used if flat-rate commitments are still
      * available.
      *
-     * Generated from protobuf enum <code>ANNUAL_FLAT_RATE = 9;</code>
+     * Generated from protobuf enum <code>ANNUAL_FLAT_RATE = 9 [deprecated = true];</code>
      */
     const ANNUAL_FLAT_RATE = 9;
     /**

@@ -19,9 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Logger;
 
 use Google\Cloud\Core\Logger\AppEngineFlexHandlerFactory;
 use Monolog\Logger;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -29,13 +27,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class AppEngineFlexHandlerTest extends TestCase
 {
-    use AssertStringContains;
-    use AssertIsType;
-
     private $stream;
     private $log;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->stream = tmpfile();
 
@@ -45,7 +40,7 @@ class AppEngineFlexHandlerTest extends TestCase
         $this->log->pushHandler($handler);
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         fclose($this->stream);
     }

@@ -22,20 +22,17 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Filter;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
 class QueryTest extends TestCase
 {
-    use ExpectException;
-
     private $query;
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new EntityMapper('foo', true, false);
         $this->query = new Query($this->mapper);

@@ -307,6 +307,21 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.StackType desired_stack_type = 119;</code>
      */
     private $desired_stack_type = 0;
+    /**
+     * The additional pod ranges to be added to the cluster. These pod ranges
+     * can be used by node pools to allocate pod IPs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 120;</code>
+     */
+    private $additional_pod_ranges_config = null;
+    /**
+     * The additional pod ranges that are to be removed from the cluster.
+     * The pod ranges specified here must have been specified earlier in the
+     * 'additional_pod_ranges_config' argument.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig removed_additional_pod_ranges_config = 121;</code>
+     */
+    private $removed_additional_pod_ranges_config = null;
 
     /**
      * Constructor.
@@ -444,6 +459,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired stack type of the cluster.
      *           If a stack type is provided and does not match the current stack type of
      *           the cluster, update will attempt to change the stack type to the new type.
+     *     @type \Google\Cloud\Container\V1\AdditionalPodRangesConfig $additional_pod_ranges_config
+     *           The additional pod ranges to be added to the cluster. These pod ranges
+     *           can be used by node pools to allocate pod IPs.
+     *     @type \Google\Cloud\Container\V1\AdditionalPodRangesConfig $removed_additional_pod_ranges_config
+     *           The additional pod ranges that are to be removed from the cluster.
+     *           The pod ranges specified here must have been specified earlier in the
+     *           'additional_pod_ranges_config' argument.
      * }
      */
     public function __construct($data = NULL) {
@@ -1877,6 +1899,84 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StackType::class);
         $this->desired_stack_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The additional pod ranges to be added to the cluster. These pod ranges
+     * can be used by node pools to allocate pod IPs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 120;</code>
+     * @return \Google\Cloud\Container\V1\AdditionalPodRangesConfig|null
+     */
+    public function getAdditionalPodRangesConfig()
+    {
+        return $this->additional_pod_ranges_config;
+    }
+
+    public function hasAdditionalPodRangesConfig()
+    {
+        return isset($this->additional_pod_ranges_config);
+    }
+
+    public function clearAdditionalPodRangesConfig()
+    {
+        unset($this->additional_pod_ranges_config);
+    }
+
+    /**
+     * The additional pod ranges to be added to the cluster. These pod ranges
+     * can be used by node pools to allocate pod IPs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 120;</code>
+     * @param \Google\Cloud\Container\V1\AdditionalPodRangesConfig $var
+     * @return $this
+     */
+    public function setAdditionalPodRangesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdditionalPodRangesConfig::class);
+        $this->additional_pod_ranges_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The additional pod ranges that are to be removed from the cluster.
+     * The pod ranges specified here must have been specified earlier in the
+     * 'additional_pod_ranges_config' argument.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig removed_additional_pod_ranges_config = 121;</code>
+     * @return \Google\Cloud\Container\V1\AdditionalPodRangesConfig|null
+     */
+    public function getRemovedAdditionalPodRangesConfig()
+    {
+        return $this->removed_additional_pod_ranges_config;
+    }
+
+    public function hasRemovedAdditionalPodRangesConfig()
+    {
+        return isset($this->removed_additional_pod_ranges_config);
+    }
+
+    public function clearRemovedAdditionalPodRangesConfig()
+    {
+        unset($this->removed_additional_pod_ranges_config);
+    }
+
+    /**
+     * The additional pod ranges that are to be removed from the cluster.
+     * The pod ranges specified here must have been specified earlier in the
+     * 'additional_pod_ranges_config' argument.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig removed_additional_pod_ranges_config = 121;</code>
+     * @param \Google\Cloud\Container\V1\AdditionalPodRangesConfig $var
+     * @return $this
+     */
+    public function setRemovedAdditionalPodRangesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdditionalPodRangesConfig::class);
+        $this->removed_additional_pod_ranges_config = $var;
 
         return $this;
     }

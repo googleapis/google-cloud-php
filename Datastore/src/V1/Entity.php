@@ -33,8 +33,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * The map's keys are property names.
      * A property name matching regex `__.*__` is reserved.
      * A reserved property name is forbidden in certain documented contexts.
-     * The name must not contain more than 500 characters.
-     * The name cannot be `""`.
+     * The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot
+     * be empty.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> properties = 3;</code>
      */
@@ -57,8 +57,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           The map's keys are property names.
      *           A property name matching regex `__.*__` is reserved.
      *           A reserved property name is forbidden in certain documented contexts.
-     *           The name must not contain more than 500 characters.
-     *           The name cannot be `""`.
+     *           The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot
+     *           be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,8 +115,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * The map's keys are property names.
      * A property name matching regex `__.*__` is reserved.
      * A reserved property name is forbidden in certain documented contexts.
-     * The name must not contain more than 500 characters.
-     * The name cannot be `""`.
+     * The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot
+     * be empty.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> properties = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -131,8 +131,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * The map's keys are property names.
      * A property name matching regex `__.*__` is reserved.
      * A reserved property name is forbidden in certain documented contexts.
-     * The name must not contain more than 500 characters.
-     * The name cannot be `""`.
+     * The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot
+     * be empty.
      *
      * Generated from protobuf field <code>map<string, .google.datastore.v1.Value> properties = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

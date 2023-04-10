@@ -23,17 +23,20 @@ use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
  */
 class DaemonTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $debuggee;
     private $storage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = $this->prophesize(DebuggerClient::class);
         $this->debuggee = $this->prophesize(Debuggee::class);
