@@ -55,8 +55,8 @@ class StorageObject
      * Header and value that helps us identify a transcoded obj
      * w/o making a metadata(info) call.
      */
-    const TRANSCODED_OBJ_HEADER_KEY = 'X-Goog-Stored-Content-Encoding';
-    const TRANSCODED_OBJ_HEADER_VAL = 'gzip';
+    private const TRANSCODED_OBJ_HEADER_KEY = 'X-Goog-Stored-Content-Encoding';
+    private const TRANSCODED_OBJ_HEADER_VAL = 'gzip';
 
     /**
      * @var Acl ACL for the object.
@@ -686,8 +686,8 @@ class StorageObject
 
         // We try to deduce if the object is a transcoded object when we receive the headers.
         $options['restOptions']['on_headers'] = function ($response) use (&$transcodedObj) {
-            $header = $response->getHeader(StorageObject::TRANSCODED_OBJ_HEADER_KEY);
-            if (is_array($header) && in_array(StorageObject::TRANSCODED_OBJ_HEADER_VAL, $header)) {
+            $header = $response->getHeader(self::TRANSCODED_OBJ_HEADER_KEY);
+            if (is_array($header) && in_array(self::TRANSCODED_OBJ_HEADER_VAL, $header)) {
                 $transcodedObj = true;
             }
         };
@@ -701,7 +701,7 @@ class StorageObject
                 $resultStream,
                 $requestedBytes
             ) {
-                    // if the exception has a response for us to use
+                // if the exception has a response for us to use
                 if ($e instanceof RequestException && $e->hasResponse()) {
                     $msg = (string) $e->getResponse()->getBody();
 
