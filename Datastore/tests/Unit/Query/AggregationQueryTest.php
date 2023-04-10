@@ -22,7 +22,7 @@ use Google\Cloud\Datastore\Query\Aggregation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
@@ -32,7 +32,7 @@ class AggregationQueryTest extends TestCase
     private $query;
     private $gqlQuery;
 
-    public function set_up()
+    public function setUp(): void
     {
         $mapper = new EntityMapper('foo', true, false);
         $this->query = new Query($mapper);

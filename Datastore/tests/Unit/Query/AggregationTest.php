@@ -18,7 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\Query\Aggregation;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore

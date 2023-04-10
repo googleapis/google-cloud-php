@@ -26,17 +26,20 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class AggregationQueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);

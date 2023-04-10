@@ -20,7 +20,8 @@ namespace Google\Cloud\Datastore\Tests\Unit\Query;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
@@ -29,7 +30,7 @@ class AggregationQueryResultTest extends TestCase
 {
     private $aggregationQueryResult;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->aggregationQueryResult = new AggregationQueryResult();
     }
@@ -50,7 +51,7 @@ class AggregationQueryResultTest extends TestCase
 
     public function testGetThrowsForInvalidKey()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('alias does not exist');
         $this->aggregationQueryResult->aggregationResults = [
             [
