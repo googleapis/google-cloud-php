@@ -55,7 +55,7 @@ class FilterTest extends TestCase
         $this->assertEquals($propertyFilter['value'], $value);
     }
 
-    private function getWhereCases()
+    public function getWhereCases()
     {
         $cases = [
             // Since $operator can be (=, <, >, <=, >=, !=), so string should be
@@ -68,7 +68,7 @@ class FilterTest extends TestCase
         return $cases;
     }
 
-    private function getCompositeFilterCases()
+    public function getCompositeFilterCases()
     {
         $cases = [
             ['and', [['foo' => 'bar1'], ['foo' => 'bar2']]],

@@ -320,7 +320,7 @@ class QueryTest extends TestCase
         $this->assertEquals($res['limit'], 2);
     }
 
-    private function getOperatorCases()
+    public function getOperatorCases()
     {
         return [
             ['=', 'EQUAL'],
