@@ -24,6 +24,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -32,11 +33,12 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 class FieldValueTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $connection;
     private $firestore;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

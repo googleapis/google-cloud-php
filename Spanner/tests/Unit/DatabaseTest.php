@@ -47,10 +47,10 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use PHPUnit\Framework\TestCase;
 use Google\Rpc\Code;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -58,9 +58,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class DatabaseTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
 
@@ -82,7 +82,7 @@ class DatabaseTest extends TestCase
     private $databaseWithDatabaseRole;
 
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

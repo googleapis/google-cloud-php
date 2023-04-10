@@ -1,4 +1,4 @@
-name: DoxFX Test Suite
+name: DocFX Test Suite
 on:
   push:
     branches: [ main ]

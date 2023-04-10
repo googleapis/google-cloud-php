@@ -19,7 +19,7 @@ namespace Google\Cloud\Speech\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Speech\SpeechHelpersTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
@@ -30,7 +30,7 @@ class SpeechHelpersTraitTest extends TestCase
 
     private $implementation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = TestHelpers::impl(SpeechHelpersTrait::class);
     }

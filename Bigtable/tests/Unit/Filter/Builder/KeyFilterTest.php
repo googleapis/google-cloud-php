@@ -20,8 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 use Google\Cloud\Bigtable\Filter\Builder\KeyFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -29,11 +28,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class KeyFilterTest extends TestCase
 {
-    use ExpectException;
-
     private $keyFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->keyFilter = new KeyFilter;
     }

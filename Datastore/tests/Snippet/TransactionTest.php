@@ -29,6 +29,7 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -36,6 +37,7 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
@@ -46,7 +48,7 @@ class TransactionTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

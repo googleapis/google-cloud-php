@@ -21,18 +21,21 @@ use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core-compute
  */
 class MetadataTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'my-project';
 
     private $metadata;
     private $reader;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->reader = $this->prophesize(ReaderInterface::class);
         $this->metadata = new Metadata;

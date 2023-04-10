@@ -275,9 +275,7 @@ class Operation
             );
         }
 
-        $statsItem = isset($options['statsItem'])
-            ? $options['statsItem']
-            : 'rowCountExact';
+        $statsItem = $options['statsItem'] ?? 'rowCountExact';
 
         return $stats[$statsItem];
     }
@@ -461,9 +459,7 @@ class Operation
             'tag' => null
         ];
 
-        $options['isRetry'] = isset($options['isRetry'])
-            ? $options['isRetry']
-            : false;
+        $options['isRetry'] = $options['isRetry'] ?? false;
 
         return new Transaction($this, $session, $res['id'], $options['isRetry'], $options['tag']);
     }

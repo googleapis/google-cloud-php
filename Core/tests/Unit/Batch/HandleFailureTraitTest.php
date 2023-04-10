@@ -19,8 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\HandleFailureTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -28,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class HandleFailureTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $impl;
     private $testDir;
 
@@ -43,7 +40,7 @@ class HandleFailureTraitTest extends TestCase
         return rmdir($dir);
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(HandleFailureTrait::class);
         $this->testDir = sprintf(
@@ -55,7 +52,7 @@ class HandleFailureTraitTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         $this->delTree($this->testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');

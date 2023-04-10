@@ -19,8 +19,7 @@ namespace Google\Cloud\Core\Tests\System\Batch;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -32,8 +31,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class BatchRunnerTest extends TestCase
 {
-    use AssertStringContains;
-
     private $runner;
 
     private static $daemon;
@@ -52,7 +49,7 @@ class BatchRunnerTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$testDir = sprintf(
             '%s/google-cloud-system-test-%d',
@@ -93,7 +90,7 @@ class BatchRunnerTest extends TestCase
         }
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         @proc_terminate(self::$daemon);
         @proc_close(self::$daemon);
@@ -104,7 +101,7 @@ class BatchRunnerTest extends TestCase
         putenv('IS_BATCH_DAEMON_RUNNING');
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->runner = new BatchRunner();
         $myJob = new MyJob(self::$commandFile, self::$targetFile);

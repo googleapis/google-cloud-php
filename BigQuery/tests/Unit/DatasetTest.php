@@ -26,8 +26,9 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class DatasetTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $mapper;
     public $projectId = 'myProjectId';
@@ -43,7 +46,7 @@ class DatasetTest extends TestCase
     public $modelId = 'testModelId';
     public $routineId = 'testRoutineId';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);

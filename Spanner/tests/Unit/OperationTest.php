@@ -34,8 +34,9 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -43,6 +44,7 @@ use Prophecy\Argument;
 class OperationTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const SESSION = 'my-session-id';
@@ -55,7 +57,7 @@ class OperationTest extends TestCase
     private $operation;
     private $session;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

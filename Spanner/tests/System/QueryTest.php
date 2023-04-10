@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -36,8 +35,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class QueryTest extends SpannerTestCase
 {
-    use ExpectException;
-
     /**
      * covers 19
      */

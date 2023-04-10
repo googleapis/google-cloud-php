@@ -22,11 +22,11 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -34,13 +34,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ResumableUploaderTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $stream;
     private $successBody;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = Utils::streamFor('abcd');

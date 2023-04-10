@@ -26,10 +26,9 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -37,8 +36,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  */
 class WriteBatchTest extends TestCase
 {
-    use ExpectException;
-    use ExpectExceptionMessageMatches;
+    use ProphecyTrait;
+
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -48,7 +47,7 @@ class WriteBatchTest extends TestCase
     private $connection;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(WriteBatch::class, [

@@ -27,6 +27,8 @@ use vierbergenlars\SemVer\version;
  */
 class Composer
 {
+    private const REQUIRE_PHP = '>=7.4';
+
     /**
      * @var array
      */
@@ -38,7 +40,7 @@ class Composer
      * @var array
      */
     private $defaultDevDeps = [
-        "phpunit/phpunit" => "^4.8|^5.0|^8.0"
+        "phpunit/phpunit" => "^9.0"
     ];
 
     /**
@@ -111,6 +113,7 @@ class Composer
             'suggest' => [],
         ];
 
+        $composer['require']['php'] = self::REQUIRE_PHP;
         foreach ($this->defaultDeps as $dep) {
             $composer['require'][$dep] = $this->getLatestVersion($dep);
         }

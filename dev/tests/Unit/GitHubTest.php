@@ -23,8 +23,9 @@ use Google\Cloud\Dev\RunShell;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group dev
@@ -32,6 +33,8 @@ use Prophecy\Argument;
  */
 class GitHubTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TOKEN = 'test-token';
     const TARGET = 'foo/bar.git';
     const TARGET_CLEAN = 'foo/bar';
@@ -42,7 +45,7 @@ class GitHubTest extends TestCase
     private $github;
     private $exception;
 
-    public function set_up()
+    public function setUp(): void
     {
         if (PHP_VERSION_ID < 50600) {
             $this->markTestSkipped("This test only runs on PHP 5.6+");
