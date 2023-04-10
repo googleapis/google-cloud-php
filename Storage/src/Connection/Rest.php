@@ -45,9 +45,7 @@ use Ramsey\Uuid\Uuid;
 class Rest implements ConnectionInterface
 {
     use RestTrait;
-    use RetryTrait {
-        getRestRetryFunction as public;
-    }
+    use RetryTrait;
     use UriTrait;
 
     /**
