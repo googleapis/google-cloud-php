@@ -28,9 +28,9 @@ use Google\Cloud\Datastore\Query\Filter;
 class FilterTest extends DatastoreMultipleDbTestCase
 {
     private static $kind = 'People';
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpMultiDbBeforeClass();
         $data = self::getInitialData();
         $entities = [];
         foreach ($data as $element) {
@@ -49,7 +49,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
         }
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::tearDownFixtures();
     }
