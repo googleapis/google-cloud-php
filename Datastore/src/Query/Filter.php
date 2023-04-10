@@ -67,7 +67,7 @@ class Filter
      * @param string $operator Operator, one of ('=', '<', '<=', '>', '>=',
      *        '!=', 'IN', 'NOT IN')
      * @param mixed $value Value for operation on property
-     * @return array
+     * @return array Returns array representation of a property filter.
      */
     public static function where($property, $operator, $value)
     {
@@ -77,8 +77,9 @@ class Filter
     /**
      * Creates an AND composite filter in array format.
      *
-     * @param array $filters An array of filters(array representations) to AND upon.
-     * @return array
+     * @param array $filters An array of filters(array representations) to AND
+     *        upon.
+     * @return array Returns array representation of AND composite filter.
      */
     public static function doAnd(array $filters)
     {
@@ -88,8 +89,9 @@ class Filter
     /**
      * Creates a OR composite filter in array format.
      *
-     * @param array $filters An array of filters(array representations) to OR upon.
-     * @return array
+     * @param array $filters An array of filters(array representations) to OR
+     *        upon.
+     * @return array Returns array representation of OR composite filter.
      */
     public static function doOr(array $filters)
     {
