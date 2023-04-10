@@ -49,7 +49,7 @@ class InsertResponseTest extends SnippetTestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->insertResponse = new InsertResponse($this->info, $this->rows);
     }

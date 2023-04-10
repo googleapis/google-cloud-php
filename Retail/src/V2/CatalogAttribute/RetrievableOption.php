@@ -14,8 +14,7 @@ use UnexpectedValueException;
 class RetrievableOption
 {
     /**
-     * Value used when unset. Defaults to
-     * [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
+     * Value used when unset.
      *
      * Generated from protobuf enum <code>RETRIEVABLE_OPTION_UNSPECIFIED = 0;</code>
      */

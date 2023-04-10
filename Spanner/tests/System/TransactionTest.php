@@ -35,9 +35,9 @@ class TransactionTest extends SpannerTestCase
     private static $tableName;
     private static $id1;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);
@@ -224,7 +224,7 @@ class TransactionTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
         $error = null;
         $db = self::$databaseWithRestrictiveDatabaseRole;
 

@@ -24,8 +24,7 @@ use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\BatchClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,9 +32,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class BatchTraitTest extends TestCase
 {
-    use AssertStringContains;
-    use ExpectException;
-
+    use ProphecyTrait;
     const ID = 'some-id';
     const BATCH_METHOD = 'doBatch';
 

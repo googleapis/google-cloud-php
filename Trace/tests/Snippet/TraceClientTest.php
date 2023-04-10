@@ -23,19 +23,19 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
  */
 class TraceClientTest extends SnippetTestCase
 {
-    use AssertionRenames;
+    use ProphecyTrait;
 
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(TraceClient::class);

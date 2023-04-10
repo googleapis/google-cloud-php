@@ -25,18 +25,16 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class DatastoreSessionHandlerTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
+    use ProphecyTrait;
 
     const KIND = 'PHPSESSID';
     const NAMESPACE_ID = 'sessions';
@@ -44,7 +42,7 @@ class DatastoreSessionHandlerTest extends TestCase
     private $datastore;
     private $transaction;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->datastore = $this->prophesize(DatastoreClient::class);
         $this->transaction = $this->prophesize(Transaction::class);

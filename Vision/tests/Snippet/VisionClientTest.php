@@ -24,16 +24,19 @@ use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class VisionClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(VisionClient::class);

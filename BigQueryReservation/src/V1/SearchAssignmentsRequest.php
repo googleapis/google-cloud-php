@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the admin project(containing project and location),
-     * e.g.:
+     * Required. The resource name of the admin project(containing project and
+     * location), e.g.:
      *   `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -56,8 +56,8 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the admin project(containing project and location),
-     *           e.g.:
+     *           Required. The resource name of the admin project(containing project and
+     *           location), e.g.:
      *             `projects/myproject/locations/US`.
      *     @type string $query
      *           Please specify resource name as assignee in the query.
@@ -77,8 +77,8 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the admin project(containing project and location),
-     * e.g.:
+     * Required. The resource name of the admin project(containing project and
+     * location), e.g.:
      *   `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -90,8 +90,8 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the admin project(containing project and location),
-     * e.g.:
+     * Required. The resource name of the admin project(containing project and
+     * location), e.g.:
      *   `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

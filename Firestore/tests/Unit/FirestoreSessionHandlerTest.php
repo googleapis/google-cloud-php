@@ -27,11 +27,10 @@ use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Iterator;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group firestore
@@ -39,8 +38,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
+    use ProphecyTrait;
 
     const SESSION_SAVE_PATH = 'sessions';
     const SESSION_NAME = 'PHPSESSID';
@@ -51,7 +49,7 @@ class FirestoreSessionHandlerTest extends TestCase
     private $valueMapper;
     private $documents;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = $this->prophesize(ValueMapper::class);

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation\Web;
 
 use Google\Cloud\Vision\Annotation\Web\WebImage;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class WebImageTest extends TestCase
     private $info;
     private $image;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'url' => 'http://foo.bar/bat',

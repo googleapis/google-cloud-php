@@ -27,10 +27,9 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -38,8 +37,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class OperationTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
@@ -48,7 +46,7 @@ class OperationTest extends TestCase
     private $operation;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->operation = TestHelpers::stub(Operation::class, [

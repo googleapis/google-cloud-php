@@ -20,8 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
@@ -29,11 +28,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class StructTypeTest extends TestCase
 {
-    use ExpectException;
-
     private $definition;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->definition = [
             [

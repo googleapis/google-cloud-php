@@ -24,8 +24,8 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
-     * Optional. Cloud Storage location where execution outputs should be stored. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location where execution outputs should be stored.
+     * This can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *
@@ -44,8 +44,8 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
      *           the project execution service account
      *           (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) will be used.
      *     @type string $artifact_storage
-     *           Optional. Cloud Storage location where execution outputs should be stored. This can
-     *           either be a bucket ("gs://my-bucket") or a path within a bucket
+     *           Optional. Cloud Storage location where execution outputs should be stored.
+     *           This can either be a bucket ("gs://my-bucket") or a path within a bucket
      *           ("gs://my-bucket/my-dir").
      *           If unspecified, a default bucket located in the same region will be used.
      * }
@@ -86,8 +86,8 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage location where execution outputs should be stored. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location where execution outputs should be stored.
+     * This can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *
@@ -100,8 +100,8 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud Storage location where execution outputs should be stored. This can
-     * either be a bucket ("gs://my-bucket") or a path within a bucket
+     * Optional. Cloud Storage location where execution outputs should be stored.
+     * This can either be a bucket ("gs://my-bucket") or a path within a bucket
      * ("gs://my-bucket/my-dir").
      * If unspecified, a default bucket located in the same region will be used.
      *

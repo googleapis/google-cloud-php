@@ -123,7 +123,7 @@ class ServiceException extends GoogleException
             $errorInfo = $this->getErrorInfoFromRestException();
 
             // Cache the result to be reused if needed
-            $this->errorInfoMetadata = isset($errorInfo['metadata']) ? $errorInfo['metadata'] : [];
+            $this->errorInfoMetadata = $errorInfo['metadata'] ?? [];
         }
 
         return $this->errorInfoMetadata;
@@ -147,7 +147,7 @@ class ServiceException extends GoogleException
             $errorInfo = $this->getErrorInfoFromRestException();
 
             // Cache the result to be reused if needed
-            $this->errorReason = isset($errorInfo['reason']) ? $errorInfo['reason'] : '';
+            $this->errorReason = $errorInfo['reason'] ?? '';
         }
 
         return $this->errorReason;

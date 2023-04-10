@@ -30,7 +30,7 @@ class LimitFilterTest extends SnippetTestCase
 {
     private $builder;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->builder = Filter::limit();
     }

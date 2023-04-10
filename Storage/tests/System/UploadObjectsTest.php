@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class UploadObjectsTest extends StorageTestCase
 {
-    use ExpectException;
-
     public function testUploadsObjectFromStringWithMetadata()
     {
         $data = 'somedata';

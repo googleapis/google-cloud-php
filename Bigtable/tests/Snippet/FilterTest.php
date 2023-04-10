@@ -33,6 +33,7 @@ use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
 use Google\Cloud\Bigtable\V2\TimestampRange;
 use Google\Cloud\Bigtable\V2\ValueRange;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -40,6 +41,8 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
  */
 class FilterTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     public function testClass()
     {
         $expectedRows = [

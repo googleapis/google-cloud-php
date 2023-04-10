@@ -26,13 +26,13 @@ class WriteTest extends StreamWrapperTestCase
 {
     private $fileUrl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->fileUrl = self::generateUrl('output.txt');
         unlink($this->fileUrl);
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         unlink($this->fileUrl);
     }

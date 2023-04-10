@@ -42,8 +42,8 @@ use Google\ApiCore\ApiException;
  *                                             May only contain alphanumeric and underscore characters, starting with a
  *                                             letter. Max length of 24 characters for user-scoped dimensions, 40
  *                                             characters for event-scoped dimensions.
- * @param string $customDimensionDisplayName   Display name for this custom dimension as shown in the Analytics UI.
- *                                             Max length of 82 characters, alphanumeric plus space and underscore
+ * @param string $customDimensionDisplayName   Display name for this custom dimension as shown in the Analytics
+ *                                             UI. Max length of 82 characters, alphanumeric plus space and underscore
  *                                             starting with a letter. Legacy system-generated display names may contain
  *                                             square brackets, but updates to this field will never permit square
  *                                             brackets.

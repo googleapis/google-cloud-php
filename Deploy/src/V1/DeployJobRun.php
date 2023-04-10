@@ -16,15 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeployJobRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy. Format is
+     * projects/{project}/locations/{location}/builds/{build}.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $build = '';
     /**
-     * Output only. The reason the deploy failed. This will always be unspecified while the
-     * deploy is in progress or if it succeeded.
+     * Output only. The reason the deploy failed. This will always be unspecified
+     * while the deploy is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployJobRun.FailureCause failure_cause = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -49,11 +50,12 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $build
-     *           Output only. The resource name of the Cloud Build `Build` object that is used to deploy.
-     *           Format is projects/{project}/locations/{location}/builds/{build}.
+     *           Output only. The resource name of the Cloud Build `Build` object that is
+     *           used to deploy. Format is
+     *           projects/{project}/locations/{location}/builds/{build}.
      *     @type int $failure_cause
-     *           Output only. The reason the deploy failed. This will always be unspecified while the
-     *           deploy is in progress or if it succeeded.
+     *           Output only. The reason the deploy failed. This will always be unspecified
+     *           while the deploy is in progress or if it succeeded.
      *     @type string $failure_message
      *           Output only. Additional information about the deploy failure, if available.
      *     @type \Google\Cloud\Deploy\V1\DeployJobRunMetadata $metadata
@@ -66,8 +68,9 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy. Format is
+     * projects/{project}/locations/{location}/builds/{build}.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,8 +81,9 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy.
-     * Format is projects/{project}/locations/{location}/builds/{build}.
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy. Format is
+     * projects/{project}/locations/{location}/builds/{build}.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -94,8 +98,8 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The reason the deploy failed. This will always be unspecified while the
-     * deploy is in progress or if it succeeded.
+     * Output only. The reason the deploy failed. This will always be unspecified
+     * while the deploy is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployJobRun.FailureCause failure_cause = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -106,8 +110,8 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The reason the deploy failed. This will always be unspecified while the
-     * deploy is in progress or if it succeeded.
+     * Output only. The reason the deploy failed. This will always be unspecified
+     * while the deploy is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployJobRun.FailureCause failure_cause = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

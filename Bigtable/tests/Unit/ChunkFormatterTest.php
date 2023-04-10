@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
-use \Google\ApiCore\ServerStream;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -32,13 +32,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ChunkFormatterTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const TABLE_NAME = 'test-table';
     private $serverStream;
     private $chunkFormatter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->chunkFormatter = new ChunkFormatter(

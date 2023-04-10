@@ -253,9 +253,8 @@ class Grpc implements ConnectionInterface
 
         $this->defaultQueryOptions = $config['queryOptions'];
 
-        $this->spannerClient = isset($config['gapicSpannerClient'])
-            ? $config['gapicSpannerClient']
-            : $this->constructGapic(SpannerClient::class, $grpcConfig);
+        $this->spannerClient = $config['gapicSpannerClient']
+            ?? $this->constructGapic(SpannerClient::class, $grpcConfig);
 
         //@codeCoverageIgnoreStart
         if (isset($config['gapicSpannerInstanceAdminClient'])) {

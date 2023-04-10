@@ -25,8 +25,8 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -34,13 +34,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class StreamableUploaderTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $stream;
     private $successBody;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = new BufferStream(16);

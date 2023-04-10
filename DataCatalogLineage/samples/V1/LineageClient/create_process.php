@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_CreateProcess_sync]
+// [START datalineage_v1_generated_Lineage_CreateProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
@@ -67,4 +67,4 @@ function callSample(): void
 
     create_process_sample($formattedParent);
 }
-// [END datacatalog-lineage_v1_generated_Lineage_CreateProcess_sync]
+// [END datalineage_v1_generated_Lineage_CreateProcess_sync]

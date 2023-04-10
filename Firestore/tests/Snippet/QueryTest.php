@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -36,6 +37,7 @@ use Prophecy\Argument;
 class QueryTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
     const COLLECTION = 'a';
@@ -43,7 +45,7 @@ class QueryTest extends SnippetTestCase
 
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

@@ -24,6 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Stitcher\V1\AdTracking;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 
@@ -31,16 +32,20 @@ use Google\Cloud\Video\Stitcher\V1\VodSession;
  * Creates a client side playback VOD session and returns the full
  * tracking and playback metadata of the session.
  *
- * @param string $formattedParent     The project and location in which the VOD session should be created, in the
- *                                    form of `projects/{project_number}/locations/{location}`. Please see
- *                                    {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $vodSessionSourceUri URI of the media to stitch.
- * @param string $vodSessionAdTagUri  Ad tag URI.
+ * @param string $formattedParent      The project and location in which the VOD session should be
+ *                                     created, in the form of `projects/{project_number}/locations/{location}`. Please see
+ *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+ * @param string $vodSessionSourceUri  URI of the media to stitch.
+ * @param string $vodSessionAdTagUri   Ad tag URI.
+ * @param int    $vodSessionAdTracking Determines how the ad should be tracked. If
+ *                                     [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
+ *                                     is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
  */
 function create_vod_session_sample(
     string $formattedParent,
     string $vodSessionSourceUri,
-    string $vodSessionAdTagUri
+    string $vodSessionAdTagUri,
+    int $vodSessionAdTracking
 ): void {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
@@ -48,7 +53,8 @@ function create_vod_session_sample(
     // Prepare any non-scalar elements to be passed along with the request.
     $vodSession = (new VodSession())
         ->setSourceUri($vodSessionSourceUri)
-        ->setAdTagUri($vodSessionAdTagUri);
+        ->setAdTagUri($vodSessionAdTagUri)
+        ->setAdTracking($vodSessionAdTracking);
 
     // Call the API and handle any network failures.
     try {
@@ -74,7 +80,13 @@ function callSample(): void
     $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $vodSessionSourceUri = '[SOURCE_URI]';
     $vodSessionAdTagUri = '[AD_TAG_URI]';
+    $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
 
-    create_vod_session_sample($formattedParent, $vodSessionSourceUri, $vodSessionAdTagUri);
+    create_vod_session_sample(
+        $formattedParent,
+        $vodSessionSourceUri,
+        $vodSessionAdTagUri,
+        $vodSessionAdTracking
+    );
 }
 // [END videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]

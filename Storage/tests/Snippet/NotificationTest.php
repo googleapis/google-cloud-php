@@ -26,19 +26,22 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Notification;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class NotificationTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const BUCKET = 'my-bucket';
     const NOTIFICATION_ID = '1234';
 
     private $connection;
     private $notification;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->notification = TestHelpers::stub(Notification::class, [

@@ -24,8 +24,9 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\LogMetric;
 use Google\Cloud\Logging\V2\LogSink;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
@@ -33,11 +34,12 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
