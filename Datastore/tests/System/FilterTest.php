@@ -97,7 +97,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
             ->kind(self::$kind)
             ->filter($filter);
 
-        $results = iterator_to_array($client->runQuery($query));
+        $results = $this->runQueryAndSortResults($client, $query);
         $this->assertEquals(count($results), 1);
         $this->assertEquals($results[0]['Name'], 'Eldredge');
     }
@@ -117,10 +117,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
             ->filter($filter);
 
         $transaction = $client->transaction();
-        $results = iterator_to_array($transaction->runQuery($query));
-        usort($results, function ($a, $b) {
-            return $a['Name'] < $b['Name'];
-        });
+        $results = $this->runQueryAndSortResults($transaction, $query);
         $this->assertEquals(count($results), 2);
         $this->assertEquals($results[0]['Name'], 'Hersch');
         $this->assertEquals($results[1]['Name'], 'Davy');
@@ -151,7 +148,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
             ->filter($filter);
 
         $transaction = $client->transaction();
-        $results = iterator_to_array($transaction->runQuery($query));
+        $results = $this->runQueryAndSortResults($transaction, $query);
         $this->assertEquals(count($results), 1);
         $this->assertEquals($results[0]['Name'], 'Eldredge');
         $transaction->commit();
