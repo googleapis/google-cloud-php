@@ -20,14 +20,14 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class KeySetTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public function testAddRange()
     {

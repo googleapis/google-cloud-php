@@ -32,8 +32,8 @@ use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
  * Returns a list of detailed stitching information of the specified VOD
  * session.
  *
- * @param string $formattedParent The VOD session where the stitch details belong to, in the form of
- *                                `projects/{project}/locations/{location}/vodSessions/{id}`. Please see
+ * @param string $formattedParent The VOD session where the stitch details belong to, in the form
+ *                                of `projects/{project}/locations/{location}/vodSessions/{id}`. Please see
  *                                {@see VideoStitcherServiceClient::vodSessionName()} for help formatting this field.
  */
 function list_vod_stitch_details_sample(string $formattedParent): void

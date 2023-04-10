@@ -24,14 +24,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_CreateSlate_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\Slate;
 use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Rpc\Status;
 
 /**
  * Creates a slate.
  *
  * @param string $formattedParent The project in which the slate should be created, in the form of
- *                                `projects/{project_number}`. Please see
+ *                                `projects/{project_number}/locations/{location}`. Please see
  *                                {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  * @param string $slateId         The unique identifier for the slate.
  *                                This value should conform to RFC-1034, which restricts to
@@ -48,9 +50,19 @@ function create_slate_sample(string $formattedParent, string $slateId): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var Slate $response */
+        /** @var OperationResponse $response */
         $response = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var Slate $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

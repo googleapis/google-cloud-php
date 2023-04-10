@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -28,6 +29,8 @@ use PHPUnit\Framework\TestCase;
  */
 class PgJsonbTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider validValueProvider
      */

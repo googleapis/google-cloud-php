@@ -122,9 +122,7 @@ trait RestTrait
      */
     private function getApiEndpoint($default, array $config)
     {
-        $res = isset($config['apiEndpoint'])
-            ? $config['apiEndpoint']
-            : $default;
+        $res = $config['apiEndpoint'] ?? $default;
 
         if (substr($res, -1) !== '/') {
             $res = $res . '/';

@@ -1450,7 +1450,7 @@ class AssetServiceGapicClient
      * @param string $parent       Required. The name of the project/folder/organization where this feed
      *                             should be created in. It can only be an organization number (such as
      *                             "organizations/123"), a folder number (such as "folders/123"), a project ID
-     *                             (such as "projects/my-project-id")", or a project number (such as
+     *                             (such as "projects/my-project-id"), or a project number (such as
      *                             "projects/12345").
      * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
      *                             be unique under a specific parent project/folder/organization.
@@ -1516,8 +1516,8 @@ class AssetServiceGapicClient
      * @param string     $parent       Required. The name of the project/folder/organization where this
      *                                 saved_query should be created in. It can only be an organization number
      *                                 (such as "organizations/123"), a folder number (such as "folders/123"), a
-     *                                 project ID (such as "projects/my-project-id")", or a project number (such
-     *                                 as "projects/12345").
+     *                                 project ID (such as "projects/my-project-id"), or a project number (such as
+     *                                 "projects/12345").
      * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it
      *                                 will be generated based on the parent and saved_query_id.
      * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the

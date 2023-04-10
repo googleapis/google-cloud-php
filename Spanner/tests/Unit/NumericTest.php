@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -28,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class NumericTest extends TestCase
 {
-    use ExpectException;
-
     /**
      * @dataProvider invalidValueProvider
      */

@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class IamConfigurationTest extends StorageTestCase
 {
-    use ExpectException;
-
     public function testUniformBucketLevelAccess()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));

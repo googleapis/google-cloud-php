@@ -17,16 +17,12 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-
 /**
  * @group bigquery
  * @group bigquery-regionalization
  */
 class RegionalizationTest extends BigQueryTestCase
 {
-    use ExpectException;
-
     const LOCATION_ASIA = 'asia-northeast1';
     const LOCATION_US = 'US';
     const QUERY_TEMPLATE = 'SELECT 1 FROM `%s.%s`';
@@ -35,9 +31,9 @@ class RegionalizationTest extends BigQueryTestCase
     private static $tableAsia;
     private static $bucketAsia;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$datasetAsia = self::createDataset(
             self::$client,
             uniqid(self::TESTING_PREFIX),

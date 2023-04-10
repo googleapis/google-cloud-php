@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.GetReservation][google.cloud.bigquery.reservation.v1.ReservationService.GetReservation].
+ * The request for
+ * [ReservationService.GetReservation][google.cloud.bigquery.reservation.v1.ReservationService.GetReservation].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.GetReservationRequest</code>
  */

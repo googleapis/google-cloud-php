@@ -16,7 +16,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.1
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.3
         ports:
           - 9010:9010
           - 9020:9020
@@ -45,7 +45,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Spanner
+          # ensure composer uses local Core instead of pulling from packagist
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.100"}}}' -d Spanner
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 
       - name: Run system tests

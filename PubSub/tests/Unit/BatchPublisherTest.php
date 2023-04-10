@@ -25,6 +25,7 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -32,6 +33,8 @@ use Prophecy\Argument;
  */
 class BatchPublisherTest extends TestCase
 {
+    use ProphecyTrait;
+
     const TOPIC_NAME = 'my-topic';
 
     /**
@@ -150,6 +153,8 @@ class BatchPublisherTest extends TestCase
 //@codingStandardsIgnoreStart
 class TestBatchPublisher extends BatchPublisher
 {
+    use ProphecyTrait;
+
     public function getCallbackArray()
     {
         return $this->getCallback();

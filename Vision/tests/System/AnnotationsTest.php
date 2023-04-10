@@ -29,18 +29,15 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group vision
  */
 class AnnotationsTest extends VisionTestCase
 {
-    use AssertIsType;
-
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = parent::$vision;
     }

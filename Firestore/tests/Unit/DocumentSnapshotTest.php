@@ -24,9 +24,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -34,15 +33,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class DocumentSnapshotTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
+    use ProphecyTrait;
 
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
 
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);

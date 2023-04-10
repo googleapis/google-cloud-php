@@ -35,7 +35,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$restClient],
@@ -43,7 +43,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

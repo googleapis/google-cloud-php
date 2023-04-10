@@ -19,14 +19,17 @@ namespace Google\Cloud\PubSub\Tests\Unit\Connection;
 
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class IamTopicTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider methodProvider
      */

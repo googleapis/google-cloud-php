@@ -37,14 +37,17 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class BigQueryClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
@@ -63,7 +66,7 @@ class BigQueryClientTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

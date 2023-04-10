@@ -21,8 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Condition;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -30,12 +29,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ConditionFilterTest extends TestCase
 {
-    use ExpectException;
-
     private $conditionFilter;
     private $condition;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->conditionFilter = new ConditionFilter(Filter::pass());
         $this->condition = new Condition();

@@ -18,14 +18,14 @@
 namespace Google\Cloud\Translate\Tests\System\V2;
 
 use Google\Cloud\Translate\TranslateClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class TranslateTestCase extends TestCase
 {
     protected static $hasSetUp = false;
     protected static $client;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

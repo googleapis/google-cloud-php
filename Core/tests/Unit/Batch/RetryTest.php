@@ -20,7 +20,8 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -28,6 +29,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class RetryTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $runner;
     private $job;
     private $retry;
@@ -43,7 +46,7 @@ class RetryTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$testDir = sprintf(
             '%s/google-cloud-unit-test-%d',
@@ -53,13 +56,13 @@ class RetryTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::delTree(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->runner = $this->prophesize(BatchRunner::class);
         $this->job = $this->prophesize(BatchJob::class);

@@ -571,7 +571,7 @@ class NetworkEndpointGroupsGapicClient
     }
 
     /**
-     * Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
+     * Returns the specified network endpoint group.
      *
      * Sample code:
      * ```

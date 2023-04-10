@@ -110,14 +110,15 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Additional information about the rollout failure, if available.
+     * Output only. Additional information about the rollout failure, if
+     * available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $failure_reason = '';
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy
-     * the Rollout. Format is
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy the Rollout. Format is
      * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string deploying_build = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -132,8 +133,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Output only. The reason this rollout failed. This will always be unspecified while the
-     * rollout is in progress.
+     * Output only. The reason this rollout failed. This will always be
+     * unspecified while the rollout is in progress.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -150,6 +151,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Metadata metadata = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metadata = null;
+    /**
+     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
+     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *
+     * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $controller_rollout = '';
 
     /**
      * Constructor.
@@ -199,22 +208,27 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. Current state of the `Rollout`.
      *     @type string $failure_reason
-     *           Output only. Additional information about the rollout failure, if available.
+     *           Output only. Additional information about the rollout failure, if
+     *           available.
      *     @type string $deploying_build
-     *           Output only. The resource name of the Cloud Build `Build` object that is used to deploy
-     *           the Rollout. Format is
+     *           Output only. The resource name of the Cloud Build `Build` object that is
+     *           used to deploy the Rollout. Format is
      *           `projects/{project}/locations/{location}/builds/{build}`.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type int $deploy_failure_cause
-     *           Output only. The reason this rollout failed. This will always be unspecified while the
-     *           rollout is in progress.
+     *           Output only. The reason this rollout failed. This will always be
+     *           unspecified while the rollout is in progress.
      *     @type array<\Google\Cloud\Deploy\V1\Phase>|\Google\Protobuf\Internal\RepeatedField $phases
      *           Output only. The phases that represent the workflows of this `Rollout`.
      *     @type \Google\Cloud\Deploy\V1\Metadata $metadata
      *           Output only. Metadata contains information about the rollout.
+     *     @type string $controller_rollout
+     *           Output only. Name of the `ControllerRollout`. Format is projects/{project}/
+     *           locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *           releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
      * }
      */
     public function __construct($data = NULL) {
@@ -641,7 +655,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the rollout failure, if available.
+     * Output only. Additional information about the rollout failure, if
+     * available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -652,7 +667,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the rollout failure, if available.
+     * Output only. Additional information about the rollout failure, if
+     * available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -667,8 +683,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy
-     * the Rollout. Format is
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy the Rollout. Format is
      * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string deploying_build = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -680,8 +696,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy
-     * the Rollout. Format is
+     * Output only. The resource name of the Cloud Build `Build` object that is
+     * used to deploy the Rollout. Format is
      * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string deploying_build = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -727,8 +743,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The reason this rollout failed. This will always be unspecified while the
-     * rollout is in progress.
+     * Output only. The reason this rollout failed. This will always be
+     * unspecified while the rollout is in progress.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -739,8 +755,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The reason this rollout failed. This will always be unspecified while the
-     * rollout is in progress.
+     * Output only. The reason this rollout failed. This will always be
+     * unspecified while the rollout is in progress.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -812,6 +828,36 @@ class Rollout extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Metadata::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
+     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *
+     * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getControllerRollout()
+    {
+        return $this->controller_rollout;
+    }
+
+    /**
+     * Output only. Name of the `ControllerRollout`. Format is projects/{project}/
+     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     * releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}.
+     *
+     * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setControllerRollout($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->controller_rollout = $var;
 
         return $this;
     }

@@ -94,6 +94,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
      */
     private $invalid_condition_boost_specs;
+    /**
+     * Metadata related to A/B testing [Experiment][] associated with this
+     * response. Only exists when an experiment is triggered.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
+     */
+    private $experiment_info;
 
     /**
      * Constructor.
@@ -139,6 +146,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           The invalid
      *           [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
      *           that are not applied during serving.
+     *     @type array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $experiment_info
+     *           Metadata related to A/B testing [Experiment][] associated with this
+     *           response. Only exists when an experiment is triggered.
      * }
      */
     public function __construct($data = NULL) {
@@ -448,6 +458,34 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec::class);
         $this->invalid_condition_boost_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Metadata related to A/B testing [Experiment][] associated with this
+     * response. Only exists when an experiment is triggered.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExperimentInfo()
+    {
+        return $this->experiment_info;
+    }
+
+    /**
+     * Metadata related to A/B testing [Experiment][] associated with this
+     * response. Only exists when an experiment is triggered.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
+     * @param array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExperimentInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ExperimentInfo::class);
+        $this->experiment_info = $arr;
 
         return $this;
     }

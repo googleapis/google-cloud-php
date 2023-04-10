@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Tests\Unit\Iam;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PolicyBuilderTest extends TestCase
 {
-    use ExpectException;
-
     public function testBuilder()
     {
         $role = 'test';

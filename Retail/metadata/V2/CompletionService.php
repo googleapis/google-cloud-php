@@ -23,8 +23,8 @@ class CompletionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
-/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"Í
+ý
+/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"Ý
 CompleteQueryRequest6
 catalog (	B%àAúA
 retail.googleapis.com/Catalog
@@ -34,7 +34,9 @@ visitor_id (	
 language_codes (	
 device_type (	
 dataset (	
-max_suggestions ("…
+max_suggestions (
+entity
+ (	"…
 CompleteQueryResponseZ
 completion_results (2>.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 attribution_token (	_

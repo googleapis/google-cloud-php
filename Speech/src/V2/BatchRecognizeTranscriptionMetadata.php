@@ -29,7 +29,7 @@ class BatchRecognizeTranscriptionMetadata extends \Google\Protobuf\Internal\Mess
      */
     private $error = null;
     /**
-     * The GCS URI to which recognition results will be written.
+     * The Cloud Storage URI to which recognition results will be written.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      */
@@ -46,7 +46,7 @@ class BatchRecognizeTranscriptionMetadata extends \Google\Protobuf\Internal\Mess
      *     @type \Google\Rpc\Status $error
      *           Error if one was encountered.
      *     @type string $uri
-     *           The GCS URI to which recognition results will be written.
+     *           The Cloud Storage URI to which recognition results will be written.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,7 +117,7 @@ class BatchRecognizeTranscriptionMetadata extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The GCS URI to which recognition results will be written.
+     * The Cloud Storage URI to which recognition results will be written.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @return string
@@ -128,7 +128,7 @@ class BatchRecognizeTranscriptionMetadata extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The GCS URI to which recognition results will be written.
+     * The Cloud Storage URI to which recognition results will be written.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @param string $var

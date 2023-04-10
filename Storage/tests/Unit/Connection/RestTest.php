@@ -32,8 +32,9 @@ use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -42,6 +43,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class RestTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $successBody;
     private static $downloadOptions = [
@@ -53,7 +56,7 @@ class RestTest extends TestCase
         'userProject' => 'myProject'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';

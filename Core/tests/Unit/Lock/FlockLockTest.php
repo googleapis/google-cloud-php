@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -31,7 +31,7 @@ class FlockLockTest extends TestCase
 
     const LOCK_NAME = 'test';
 
-    public function set_up()
+    public function setUp(): void
     {
         MockValues::initialize();
         $this->setLock(new FlockLock(self::LOCK_NAME));

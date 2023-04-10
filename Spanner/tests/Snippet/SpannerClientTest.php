@@ -57,7 +57,7 @@ class SpannerClientTest extends SnippetTestCase
     private $client;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

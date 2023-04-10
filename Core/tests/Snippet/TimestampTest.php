@@ -27,7 +27,7 @@ class TimestampTest extends SnippetTestCase
 {
     private $timestamp;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->dt = new \DateTime;
         $this->timestamp = new Timestamp($this->dt);

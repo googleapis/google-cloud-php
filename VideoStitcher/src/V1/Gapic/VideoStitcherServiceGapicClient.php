@@ -27,6 +27,8 @@ namespace Google\Cloud\Video\Stitcher\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -35,13 +37,16 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
 use Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest;
+use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteCdnKeyRequest;
+use Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest;
+use Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodAdTagDetailRequest;
@@ -51,6 +56,8 @@ use Google\Cloud\Video\Stitcher\V1\ListCdnKeysRequest;
 use Google\Cloud\Video\Stitcher\V1\ListCdnKeysResponse;
 use Google\Cloud\Video\Stitcher\V1\ListLiveAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListLiveAdTagDetailsResponse;
+use Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest;
+use Google\Cloud\Video\Stitcher\V1\ListLiveConfigsResponse;
 use Google\Cloud\Video\Stitcher\V1\ListSlatesRequest;
 use Google\Cloud\Video\Stitcher\V1\ListSlatesResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsRequest;
@@ -58,6 +65,7 @@ use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsResponse;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
+use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
 use Google\Cloud\Video\Stitcher\V1\Slate;
 use Google\Cloud\Video\Stitcher\V1\UpdateCdnKeyRequest;
@@ -65,8 +73,8 @@ use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
-use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Video-On-Demand content stitching API allows you to insert ads
@@ -84,7 +92,32 @@ use Google\Protobuf\GPBEmpty;
  *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
  *     $cdnKey = new CdnKey();
  *     $cdnKeyId = 'cdn_key_id';
- *     $response = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+ *     $operationResponse = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'createCdnKey');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $videoStitcherServiceClient->close();
  * }
@@ -120,6 +153,8 @@ class VideoStitcherServiceGapicClient
 
     private static $liveAdTagDetailNameTemplate;
 
+    private static $liveConfigNameTemplate;
+
     private static $liveSessionNameTemplate;
 
     private static $locationNameTemplate;
@@ -133,6 +168,8 @@ class VideoStitcherServiceGapicClient
     private static $vodStitchDetailNameTemplate;
 
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -182,6 +219,17 @@ class VideoStitcherServiceGapicClient
         }
 
         return self::$liveAdTagDetailNameTemplate;
+    }
+
+    private static function getLiveConfigNameTemplate()
+    {
+        if (self::$liveConfigNameTemplate == null) {
+            self::$liveConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/liveConfigs/{live_config}'
+            );
+        }
+
+        return self::$liveConfigNameTemplate;
     }
 
     private static function getLiveSessionNameTemplate()
@@ -256,6 +304,7 @@ class VideoStitcherServiceGapicClient
             self::$pathTemplateMap = [
                 'cdnKey' => self::getCdnKeyNameTemplate(),
                 'liveAdTagDetail' => self::getLiveAdTagDetailNameTemplate(),
+                'liveConfig' => self::getLiveConfigNameTemplate(),
                 'liveSession' => self::getLiveSessionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'slate' => self::getSlateNameTemplate(),
@@ -309,6 +358,25 @@ class VideoStitcherServiceGapicClient
             'location' => $location,
             'live_session' => $liveSession,
             'live_ad_tag_detail' => $liveAdTagDetail,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a live_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $liveConfig
+     *
+     * @return string The formatted live_config resource.
+     */
+    public static function liveConfigName($project, $location, $liveConfig)
+    {
+        return self::getLiveConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'live_config' => $liveConfig,
         ]);
     }
 
@@ -442,6 +510,7 @@ class VideoStitcherServiceGapicClient
      * Template: Pattern
      * - cdnKey: projects/{project}/locations/{location}/cdnKeys/{cdn_key}
      * - liveAdTagDetail: projects/{project}/locations/{location}/liveSessions/{live_session}/liveAdTagDetails/{live_ad_tag_detail}
+     * - liveConfig: projects/{project}/locations/{location}/liveConfigs/{live_config}
      * - liveSession: projects/{project}/locations/{location}/liveSessions/{live_session}
      * - location: projects/{project}/locations/{location}
      * - slate: projects/{project}/locations/{location}/slates/{slate}
@@ -486,6 +555,41 @@ class VideoStitcherServiceGapicClient
         throw new ValidationException(
             "Input did not match any known format. Input: $formattedName"
         );
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -546,6 +650,7 @@ class VideoStitcherServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -558,17 +663,42 @@ class VideoStitcherServiceGapicClient
      *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $cdnKey = new CdnKey();
      *     $cdnKeyId = 'cdn_key_id';
-     *     $response = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+     *     $operationResponse = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'createCdnKey');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project in which the CDN key should be created, in the form of
-     *                             `projects/{project_number}/locations/{location}`.
+     * @param string $parent       Required. The project in which the CDN key should be created, in the form
+     *                             of `projects/{project_number}/locations/{location}`.
      * @param CdnKey $cdnKey       Required. The CDN key resource to create.
-     * @param string $cdnKeyId     Required. The ID to use for the CDN key, which will become the final component of
-     *                             the CDN key's resource name.
+     * @param string $cdnKeyId     Required. The ID to use for the CDN key, which will become the final
+     *                             component of the CDN key's resource name.
      *
      *                             This value should conform to RFC-1034, which restricts to
      *                             lower-case letters, numbers, and hyphen, with the first character a
@@ -582,7 +712,7 @@ class VideoStitcherServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Video\Stitcher\V1\CdnKey
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -604,11 +734,114 @@ class VideoStitcherServiceGapicClient
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'CreateCdnKey',
-            CdnKey::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Registers the live config with the provided unique ID in
+     * the specified region.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $liveConfigId = 'live_config_id';
+     *     $liveConfig = new LiveConfig();
+     *     $operationResponse = $videoStitcherServiceClient->createLiveConfig($formattedParent, $liveConfigId, $liveConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->createLiveConfig($formattedParent, $liveConfigId, $liveConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'createLiveConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The project in which the live config should be created, in
+     *                                 the form of `projects/{project_number}/locations/{location}`.
+     * @param string     $liveConfigId Required. The unique identifier ID to use for the live config.
+     * @param LiveConfig $liveConfig   Required. The live config resource to create.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createLiveConfig(
+        $parent,
+        $liveConfigId,
+        $liveConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateLiveConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setLiveConfigId($liveConfigId);
+        $request->setLiveConfig($liveConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateLiveConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -627,8 +860,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. The project and location in which the live session should be created,
-     *                                  in the form of `projects/{project_number}/locations/{location}`.
+     * @param string      $parent       Required. The project and location in which the live session should be
+     *                                  created, in the form of `projects/{project_number}/locations/{location}`.
      * @param LiveSession $liveSession  Required. Parameters for creating a live session.
      * @param array       $optionalArgs {
      *     Optional.
@@ -677,14 +910,39 @@ class VideoStitcherServiceGapicClient
      *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $slateId = 'slate_id';
      *     $slate = new Slate();
-     *     $response = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
+     *     $operationResponse = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->createSlate($formattedParent, $slateId, $slate);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'createSlate');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
      * ```
      *
      * @param string $parent       Required. The project in which the slate should be created, in the form of
-     *                             `projects/{project_number}`.
+     *                             `projects/{project_number}/locations/{location}`.
      * @param string $slateId      Required. The unique identifier for the slate.
      *                             This value should conform to RFC-1034, which restricts to
      *                             lower-case letters, numbers, and hyphen, with the first character a
@@ -693,13 +951,27 @@ class VideoStitcherServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Video\Stitcher\V1\Slate
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -715,17 +987,21 @@ class VideoStitcherServiceGapicClient
         $request->setSlateId($slateId);
         $request->setSlate($slate);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'CreateSlate',
-            Slate::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -745,8 +1021,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The project and location in which the VOD session should be created, in the
-     *                                 form of `projects/{project_number}/locations/{location}`.
+     * @param string     $parent       Required. The project and location in which the VOD session should be
+     *                                 created, in the form of `projects/{project_number}/locations/{location}`.
      * @param VodSession $vodSession   Required. Parameters for creating a session.
      * @param array      $optionalArgs {
      *     Optional.
@@ -793,7 +1069,30 @@ class VideoStitcherServiceGapicClient
      * $videoStitcherServiceClient = new VideoStitcherServiceClient();
      * try {
      *     $formattedName = $videoStitcherServiceClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-     *     $videoStitcherServiceClient->deleteCdnKey($formattedName);
+     *     $operationResponse = $videoStitcherServiceClient->deleteCdnKey($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->deleteCdnKey($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'deleteCdnKey');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
@@ -810,6 +1109,8 @@ class VideoStitcherServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return \Google\ApiCore\OperationResponse
+     *
      * @throws ApiException if the remote call fails
      */
     public function deleteCdnKey($name, array $optionalArgs = [])
@@ -824,11 +1125,83 @@ class VideoStitcherServiceGapicClient
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'DeleteCdnKey',
-            GPBEmpty::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified live config.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedName = $videoStitcherServiceClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
+     *     $operationResponse = $videoStitcherServiceClient->deleteLiveConfig($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->deleteLiveConfig($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'deleteLiveConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the live config to be deleted, in the form of
+     *                             `projects/{project_number}/locations/{location}/liveConfigs/{id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteLiveConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteLiveConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteLiveConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -840,7 +1213,30 @@ class VideoStitcherServiceGapicClient
      * $videoStitcherServiceClient = new VideoStitcherServiceClient();
      * try {
      *     $formattedName = $videoStitcherServiceClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-     *     $videoStitcherServiceClient->deleteSlate($formattedName);
+     *     $operationResponse = $videoStitcherServiceClient->deleteSlate($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->deleteSlate($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'deleteSlate');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
@@ -857,6 +1253,8 @@ class VideoStitcherServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return \Google\ApiCore\OperationResponse
+     *
      * @throws ApiException if the remote call fails
      */
     public function deleteSlate($name, array $optionalArgs = [])
@@ -871,11 +1269,11 @@ class VideoStitcherServiceGapicClient
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'DeleteSlate',
-            GPBEmpty::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -978,6 +1376,57 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Returns the specified live config managed by the Video
+     * Stitcher service.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedName = $videoStitcherServiceClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
+     *     $response = $videoStitcherServiceClient->getLiveConfig($formattedName);
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the live config to be retrieved, in the form
+     *                             of
+     *                             `projects/{project_number}/locations/{location}/liveConfigs/{id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\LiveConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLiveConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetLiveConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLiveConfig',
+            LiveConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the details for the specified live session.
      *
      * Sample code:
@@ -1040,8 +1489,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the slate to be retrieved, of the slate, in the form of
-     *                             `projects/{project_number}/locations/{location}/slates/{id}`.
+     * @param string $name         Required. The name of the slate to be retrieved, of the slate, in the form
+     *                             of `projects/{project_number}/locations/{location}/slates/{id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1089,7 +1538,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the ad tag detail for the specified VOD session, in the form of
+     * @param string $name         Required. The name of the ad tag detail for the specified VOD session, in
+     *                             the form of
      *                             `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodAdTagDetails/{vod_ad_tag_detail}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1188,7 +1638,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the stitch detail in the specified VOD session, in the form of
+     * @param string $name         Required. The name of the stitch detail in the specified VOD session, in
+     *                             the form of
      *                             `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1392,6 +1843,100 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Lists all live configs managed by the Video Stitcher that
+     * belong to the specified project and region.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $videoStitcherServiceClient->listLiveConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $videoStitcherServiceClient->listLiveConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project that contains the list of live configs, in the
+     *                             form of `projects/{project_number}/locations/{location}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. The filter to apply to list results (see
+     *           [Filtering](https://google.aip.dev/160)).
+     *     @type string $orderBy
+     *           Optional. Specifies the ordering of results following
+     *           [Cloud API
+     *           syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLiveConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListLiveConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLiveConfigs',
+            $optionalArgs,
+            ListLiveConfigsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists all slates in the specified project and location.
      *
      * Sample code:
@@ -1417,7 +1962,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list slates, in the form of `projects/{project_number}`.
+     * @param string $parent       Required. The project to list slates, in the form of
+     *                             `projects/{project_number}/locations/{location}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1506,8 +2052,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The VOD session which the ad tag details belong to, in the form of
-     *                             `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
+     * @param string $parent       Required. The VOD session which the ad tag details belong to, in the form
+     *                             of `projects/{project}/locations/{location}/vodSessions/{vod_session_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1585,8 +2131,8 @@ class VideoStitcherServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The VOD session where the stitch details belong to, in the form of
-     *                             `projects/{project}/locations/{location}/vodSessions/{id}`.
+     * @param string $parent       Required. The VOD session where the stitch details belong to, in the form
+     *                             of `projects/{project}/locations/{location}/vodSessions/{id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1647,7 +2193,32 @@ class VideoStitcherServiceGapicClient
      * try {
      *     $cdnKey = new CdnKey();
      *     $updateMask = new FieldMask();
-     *     $response = $videoStitcherServiceClient->updateCdnKey($cdnKey, $updateMask);
+     *     $operationResponse = $videoStitcherServiceClient->updateCdnKey($cdnKey, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->updateCdnKey($cdnKey, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'updateCdnKey');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
@@ -1666,7 +2237,7 @@ class VideoStitcherServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Video\Stitcher\V1\CdnKey
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -1683,11 +2254,11 @@ class VideoStitcherServiceGapicClient
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'UpdateCdnKey',
-            CdnKey::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1700,7 +2271,32 @@ class VideoStitcherServiceGapicClient
      * try {
      *     $slate = new Slate();
      *     $updateMask = new FieldMask();
-     *     $response = $videoStitcherServiceClient->updateSlate($slate, $updateMask);
+     *     $operationResponse = $videoStitcherServiceClient->updateSlate($slate, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->updateSlate($slate, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'updateSlate');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $videoStitcherServiceClient->close();
      * }
@@ -1717,7 +2313,7 @@ class VideoStitcherServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Video\Stitcher\V1\Slate
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -1734,11 +2330,11 @@ class VideoStitcherServiceGapicClient
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
+        return $this->startOperationsCall(
             'UpdateSlate',
-            Slate::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

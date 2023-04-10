@@ -60,6 +60,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an ExpandedDataSet resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\BigQueryLink $bigquery_link
      *           A snapshot of a BigQuery link resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $enhanced_measurement_settings
+     *           A snapshot of EnhancedMeasurementSettings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -594,6 +596,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\BigQueryLink::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 24;</code>
+     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings|null
+     */
+    public function getEnhancedMeasurementSettings()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasEnhancedMeasurementSettings()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 24;</code>
+     * @param \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $var
+     * @return $this
+     */
+    public function setEnhancedMeasurementSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings::class);
+        $this->writeOneof(24, $var);
 
         return $this;
     }

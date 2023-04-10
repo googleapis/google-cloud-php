@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\GapicBackoff;
 
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 
@@ -29,7 +29,7 @@ class GapicBackoffTest extends TestCase
 {
     use GrpcTestTrait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }

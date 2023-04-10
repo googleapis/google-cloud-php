@@ -273,6 +273,11 @@ return [
                     ],
                 ],
             ],
+            'CreateConnectedSiteTag' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:createConnectedSiteTag',
+                'body' => '*',
+            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -456,6 +461,11 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'DeleteConnectedSiteTag' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:deleteConnectedSiteTag',
+                'body' => '*',
             ],
             'DeleteConversionEvent' => [
                 'method' => 'delete',
@@ -738,6 +748,17 @@ return [
                     ],
                 ],
             ],
+            'GetEnhancedMeasurementSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/enhancedMeasurementSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetExpandedDataSet' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -867,6 +888,11 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'ListConnectedSiteTags' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:listConnectedSiteTags',
+                'body' => '*',
             ],
             'ListConversionEvents' => [
                 'method' => 'get',
@@ -1022,6 +1048,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{entity=properties/*}:runAccessReport',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{entity=accounts/*}:runAccessReport',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'entity' => [
                         'getters' => [
@@ -1187,6 +1220,22 @@ return [
                     'display_video_360_advertiser_link.name' => [
                         'getters' => [
                             'getDisplayVideo360AdvertiserLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateEnhancedMeasurementSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}',
+                'body' => 'enhanced_measurement_settings',
+                'placeholders' => [
+                    'enhanced_measurement_settings.name' => [
+                        'getters' => [
+                            'getEnhancedMeasurementSettings',
                             'getName',
                         ],
                     ],

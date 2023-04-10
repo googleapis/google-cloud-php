@@ -83,6 +83,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'UploadConversation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\Conversation',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\UploadConversationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListAnalyses' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
