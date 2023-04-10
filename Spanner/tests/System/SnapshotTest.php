@@ -211,7 +211,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public function testSnapshotMinReadTimestampFails()
     {
-        $this->expectException('\BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $db = self::$database;
 
@@ -225,7 +225,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public function testSnapshotMaxStalenessFails()
     {
-        $this->expectException('\BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $db = self::$database;
 

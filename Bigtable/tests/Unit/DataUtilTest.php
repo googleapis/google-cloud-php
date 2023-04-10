@@ -18,6 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\DataUtil;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,7 +36,7 @@ class DataUtilTest extends TestCase
 
     public function testIntToByteStringThrowsExceptionWithoutInteger()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected argument to be of type int, instead got');
 
         DataUtil::intToByteString('abc');

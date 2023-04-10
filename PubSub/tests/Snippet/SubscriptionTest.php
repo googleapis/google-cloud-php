@@ -97,7 +97,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testAuthenticatedPushFails()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $authToken = 'foobar';
         $token = $this->prophesize(AccessToken::class);

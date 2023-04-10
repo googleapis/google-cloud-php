@@ -85,7 +85,7 @@ class PolicyBuilder
      * ```
      *
      * @param  array $policy A policy array
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function __construct(array $policy = [])
     {
@@ -125,7 +125,7 @@ class PolicyBuilder
      *
      * @param  array $bindings [optional] An array of bindings
      * @return PolicyBuilder
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setBindings(array $bindings = [])
     {
@@ -151,7 +151,7 @@ class PolicyBuilder
      * @param  string $role A valid role for the service
      * @param  array  $members An array of members to assign to the binding
      * @return PolicyBuilder
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @throws BadMethodCallException if the policy's version is greater than 1.
      * @deprecated
      */
@@ -193,7 +193,7 @@ class PolicyBuilder
      * @param  string $role A valid role for the service
      * @param  array  $members An array of members to remove from the role
      * @return PolicyBuilder
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @throws BadMethodCallException if the policy's version is greater than 1.
      * @deprecated
      */

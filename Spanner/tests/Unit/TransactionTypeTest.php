@@ -222,7 +222,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabasePreAllocatedSnapshotMinReadTimestamp()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
@@ -242,7 +242,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabasePreAllocatedSnapshotMaxStaleness()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $seconds = 1;
         $nanos = 2;
@@ -763,7 +763,7 @@ class TransactionTypeTest extends TestCase
 
     public function testTransactionSingleUseRollback()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::any())->shouldNotbeCalled();
         $this->connection->rollback(Argument::any())->shouldNotbeCalled();

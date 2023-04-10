@@ -59,7 +59,7 @@ class Acl
      * @param string $type The type of access control this instance applies to.
      * @param array $identity Represents which bucket, file, or generation this
      *        instance applies to.
-     * @throws InvalidArgumentException Thrown when an invalid type is passed in.
+     * @throws \InvalidArgumentException Thrown when an invalid type is passed in.
      */
     public function __construct(ConnectionInterface $connection, $type, array $identity)
     {

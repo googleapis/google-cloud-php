@@ -224,7 +224,7 @@ class Operation
      *           datastore indexes.
      * }
      * @return EntityInterface
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function entity($key = null, array $entity = [], array $options = [])
     {
@@ -297,7 +297,7 @@ class Operation
      * @param Key[] $keys The incomplete keys.
      * @param array $options [optional] Configuration Options.
      * @return Key[]
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function allocateIds(array $keys, array $options = [])
     {
@@ -368,7 +368,7 @@ class Operation
      *         Members of `found` will be instance of
      *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function lookup(array $keys, array $options = [])
     {
@@ -625,7 +625,7 @@ class Operation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
      * @return array [Mutation](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit#Mutation).
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function mutation(
         $operation,
@@ -677,7 +677,7 @@ class Operation
      * @param EntityInterface[] $entities the entities to be updated or upserted.
      * @param bool $allowOverwrite If `true`, entities may be overwritten.
      *        **Defaults to** `false`.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function checkOverwrite(array $entities, $allowOverwrite = false)

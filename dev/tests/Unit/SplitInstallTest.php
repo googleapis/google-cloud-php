@@ -74,7 +74,7 @@ class SplitInstallTest extends TestCase
 
     public function testInstallFromSourceFails()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Splitsh compile failed with output: Uh oh');
 
         $cmd = self::ROOT_PATH . '/' . SplitInstall::COMPILE_SCRIPT . ' ' . self::INSTALL_PATH;

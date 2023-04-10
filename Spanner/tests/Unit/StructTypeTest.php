@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -76,7 +77,7 @@ class StructTypeTest extends TestCase
 
     public function testAddInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Field type `foo` is not valid.');
 
         (new StructType)->add('name', 'foo');
@@ -87,7 +88,7 @@ class StructTypeTest extends TestCase
      */
     public function testInvalidTypeDefinition($type)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         (new StructType)->add('foo', $type);
     }

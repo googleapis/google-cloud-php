@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -77,7 +78,7 @@ class SnapshotTest extends TestCase
 
     public function testWithInvalidTimestamp()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $args = [
             'readTimestamp' => 'foo'
@@ -92,7 +93,7 @@ class SnapshotTest extends TestCase
 
     public function testSingleUseFailsOnSecondUse()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $operation = $this->prophesize(Operation::class);
         $operation->execute(Argument::any(), Argument::any(), Argument::any())

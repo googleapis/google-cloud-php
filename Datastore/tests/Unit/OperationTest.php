@@ -27,6 +27,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -134,7 +135,7 @@ class OperationTest extends TestCase
 
     public function testKeysNumberZero()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->operation->keys('Foo', [
             'number' => 0,
@@ -195,7 +196,7 @@ class OperationTest extends TestCase
 
     public function testInvalidKeyType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->operation->entity(1);
     }
@@ -211,7 +212,7 @@ class OperationTest extends TestCase
 
     public function testEntityCustomClassInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $e = $this->operation->entity('Foo', [], [
             'className' => Operation::class,
@@ -243,7 +244,7 @@ class OperationTest extends TestCase
 
     public function testAllocateIdsNamedKey()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = $this->operation->key('foo', 'Bar');
 
@@ -463,7 +464,7 @@ class OperationTest extends TestCase
 
     public function testLookupInvalidKey()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = $this->operation->key('Foo');
 
@@ -792,7 +793,7 @@ class OperationTest extends TestCase
 
     public function testMutateInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->operation->mutation('foo', (object) [], \stdClass::class);
     }
@@ -815,7 +816,7 @@ class OperationTest extends TestCase
 
     public function testCheckOverwriteWithException()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $e = $this->prophesize(Entity::class);
         $e->populatedByService()->willReturn(false);
@@ -889,7 +890,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResultArrayOfClassNamesMissingKindMapItem()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
@@ -955,7 +956,7 @@ class OperationTest extends TestCase
 
     public function testInvalidBatchType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->operation->lookup(['foo']);
     }

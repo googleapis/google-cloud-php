@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 
 /**
  * @group bigquery
@@ -144,7 +145,7 @@ class ManageDatasetsTest extends BigQueryTestCase
 
     public function testUpdateDatasetConcurrentUpdateFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $data = [
             'friendlyName' => 'foo',

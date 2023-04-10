@@ -215,7 +215,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The document name, in absolute form, or relative to the database.
      * @return DocumentReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getDocumentReference(
         ConnectionInterface $connection,
@@ -255,7 +255,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The collection name, in absolute form, or relative to the database.
      * @return CollectionReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getCollectionReference(
         ConnectionInterface $connection,
