@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\RateLimiter;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -66,7 +67,7 @@ class RateLimiterTest extends TestCase
         $this->assertFalse($this->rateLimiter->tryMakeRequest(751, (5 * 60 + 3) * 1000));
 
         // Rejects requests made before lastRefillTime.
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Request time should not be before the last token refill time');
         $this->rateLimiter->tryMakeRequest(751, (5 * 60 + 2) * 1000);
     }

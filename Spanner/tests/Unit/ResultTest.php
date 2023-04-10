@@ -72,7 +72,7 @@ class ResultTest extends TestCase
 
     public function testFailsWhenStreamThrowsUnrecoverableException()
     {
-        $this->expectException('\Exception');
+        $this->expectException(\Exception::class);
 
         $result = $this->getResultClass(
             null,
@@ -161,7 +161,7 @@ class ResultTest extends TestCase
 
     public function testThrowsExceptionWhenCannotRetry()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ServiceException');
+        $this->expectException(ServiceException::class);
 
         $chunks = [
             [

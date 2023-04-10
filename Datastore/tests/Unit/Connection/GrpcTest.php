@@ -37,6 +37,7 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -512,7 +513,7 @@ class GrpcTest extends TestCase
      */
     public function testInvalidFilter($filter)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         return $this->testQueryPropertyFilters($filter);
     }

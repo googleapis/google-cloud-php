@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
@@ -277,7 +278,7 @@ class StorageClientTest extends TestCase
      */
     public function testMethodsFailWithoutProjectId($method, array $args = [])
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);

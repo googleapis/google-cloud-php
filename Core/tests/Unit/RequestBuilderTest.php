@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\Testing\TestHelpers;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -138,7 +139,7 @@ class RequestBuilderTest extends TestCase
 
     public function testThrowsExceptionWithNonExistantMethod()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->builder->build('myResource', 'doesntExist');
     }

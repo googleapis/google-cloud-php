@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -215,7 +216,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testThrowsExceptionWhenDownloadsPrivateFileWithUnauthenticatedClient()
     {
-        $this->expectException('\Google\Cloud\Core\Exception\ServiceException');
+        $this->expectException(ServiceException::class);
         $this->expectExceptionCode(401);
 
         $objectName = uniqid(self::TESTING_PREFIX);

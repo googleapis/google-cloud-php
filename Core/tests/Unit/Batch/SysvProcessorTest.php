@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
+use Google\Cloud\Core\Batch\QueueOverflowException;
 use Google\Cloud\Core\Batch\SysvProcessor;
 use Google\Cloud\Core\SysvTrait;
 use PHPUnit\Framework\TestCase;
@@ -138,7 +139,7 @@ class SysvProcessorTest extends TestCase
      */
     public function testQueueOverflowFile()
     {
-        $this->expectException('\Google\Cloud\Core\Batch\QueueOverflowException');
+        $this->expectException(QueueOverflowException::class);
 
         $queueSize = $this->queueSize();
         $item = str_repeat('a', 8160);

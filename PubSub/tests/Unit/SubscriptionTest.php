@@ -28,6 +28,7 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -112,7 +113,7 @@ class SubscriptionTest extends TestCase
 
     public function testCreateWithoutTopicName()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $subscription = new Subscription(
             $this->connection->reveal(),
@@ -652,7 +653,7 @@ class SubscriptionTest extends TestCase
 
     public function testAcknowledgeBatchInvalidArgument()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->subscription->acknowledgeBatch(['foo']);
     }
@@ -902,7 +903,7 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->subscription->modifyAckDeadlineBatch(['foo'], 100);
     }

@@ -62,7 +62,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testOpenNotAllowed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->datastore->transaction()
             ->shouldNotBeCalled()
@@ -75,7 +75,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testOpenReserved()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->datastore->transaction()
             ->shouldNotBeCalled()
@@ -120,7 +120,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testReadWithException()
     {
-        $this->expectException('PHPUnit\Framework\Error\Warning');
+        $this->expectWarning();
 
         $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
@@ -212,7 +212,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testWriteWithException()
     {
-        $this->expectException('PHPUnit\Framework\Error\Warning');
+        $this->expectWarning();
 
         $data = 'sessiondata';
         $key = new Key('projectid');
@@ -352,7 +352,7 @@ class DatastoreSessionHandlerTest extends TestCase
      */
     public function testInvalidEntityOptions($datastoreSessionHandlerOptions)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new DatastoreSessionHandler(
             $this->datastore->reveal(),
@@ -403,7 +403,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testDestroyWithException()
     {
-        $this->expectException('PHPUnit\Framework\Error\Warning');
+        $this->expectWarning();
 
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -522,7 +522,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testGcWithException()
     {
-        $this->expectException('PHPUnit\Framework\Error\Warning');
+        $this->expectWarning();
 
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');

@@ -149,7 +149,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
 
     public function testClassErrorHandler()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $snippet = $this->snippetFromClass(FirestoreSessionHandler::class, 1);
         $snippet->replace('$firestore = new FirestoreClient();', '');

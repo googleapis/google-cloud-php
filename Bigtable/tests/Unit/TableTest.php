@@ -24,7 +24,6 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
@@ -41,6 +40,7 @@ use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
+use InvalidArgumentException;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -96,7 +96,7 @@ class TableTest extends TestCase
 
     public function testMutateRowsThrowsExceptionWhenRowMutationsIsList()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected rowMutations to be of type associative array, instead got list.');
 
         $this->table->mutateRows([1,2,3,4]);
@@ -186,7 +186,7 @@ class TableTest extends TestCase
 
     public function testMutateRowsApiExceptionInMutateRows()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('unauthenticated');
 
         $apiException =  new ApiException('unauthenticated', Code::UNAUTHENTICATED, 'unauthenticated');
@@ -235,14 +235,14 @@ class TableTest extends TestCase
                     $apiExceptionMetadata
                 )
             );
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $this->fail('Expected Exception of type BigtableDataOperationException.');
         }
     }
 
     public function testMutateRowsApiExceptionInReadAll()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('unauthenticated');
 
         $apiException =  new ApiException('unauthenticated', Code::UNAUTHENTICATED, 'unauthenticated');
@@ -827,7 +827,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenNoTrueOrFalseMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('checkAndMutateRow must have either trueMutations or falseMutations.');
 
         $this->table->checkAndMutateRow('rk1');
@@ -835,7 +835,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenPredicateFilterIsNotFilter()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('FilterInterface');
 
         $this->table->checkAndMutateRow('rk1', ['predicateFilter' => new \stdClass()]);
@@ -843,7 +843,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenTrueMutationsNotMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Mutations');
 
         $this->table->checkAndMutateRow('rk1', ['trueMutations' => new \stdClass()]);
@@ -851,7 +851,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenFalseMutationsNotMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Mutations');
 
         $this->table->checkAndMutateRow('rk1', ['falseMutations' => new \stdClass()]);

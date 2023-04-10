@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7\Utils;
 
@@ -128,7 +129,7 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testCrc32cChecksumFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $path = __DIR__ . '/data/5mb.txt';
 

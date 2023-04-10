@@ -86,7 +86,7 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsShouldRetryDefaultTimes()
     {
-        $this->expectException('Google\ApiCore\ApiException');
+        $this->expectException(ApiException::class);
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $expectedArgs = $this->options;
@@ -107,7 +107,7 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsShouldRetryForProvidedAttempts()
     {
-        $this->expectException('Google\ApiCore\ApiException');
+        $this->expectException(ApiException::class);
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $expectedArgs = $this->options;
@@ -453,7 +453,7 @@ class SmartRetriesTest extends TestCase
 
     public function testMutateRowsShouldRetryDefaultNumberOfTimes()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $this->serverStream->readAll()
@@ -473,7 +473,7 @@ class SmartRetriesTest extends TestCase
 
     public function testMutateRowsRespectRetriesAttempt()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $this->serverStream->readAll()

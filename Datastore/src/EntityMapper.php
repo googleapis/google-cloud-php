@@ -555,7 +555,7 @@ class EntityMapper
      *
      * @param array $value
      * @return string
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     private function getValueType(array $value)
     {

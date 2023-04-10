@@ -99,7 +99,7 @@ class SnapshotTest extends TestCase
 
     public function testCreateWithoutSubscription()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->snapshot->create();
     }
