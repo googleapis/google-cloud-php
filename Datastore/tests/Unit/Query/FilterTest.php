@@ -31,7 +31,7 @@ class FilterTest extends TestCase
      */
     public function testCompositeFilterMethods($methodName, $filters)
     {
-        $filter = call_user_func_array([Filter::class, $methodName], [$filters]);
+        $filter = Filter::$methodName($filters);
 
         $this->assertArrayHasKey('compositeFilter', $filter);
         $compositeFilter = $filter['compositeFilter'];

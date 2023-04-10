@@ -180,7 +180,6 @@ class QueryTest extends TestCase
         $this->assertEquals($expected, $queryObject);
     }
 
-
     /**
      * @dataProvider getOperatorCases
      */
