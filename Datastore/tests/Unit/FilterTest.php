@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
-use Google\Cloud\Datastore\Filter;
+use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
 use PHPUnit\Framework\TestCase;
 

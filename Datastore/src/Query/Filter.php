@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2023 Google Inc. All Rights Reserved.
  *
@@ -16,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Datastore;
+namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\Query\Query;
 

@@ -19,7 +19,7 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Filter;
+use Google\Cloud\Datastore\Query\Filter;
 
 /**
  * @group datastore

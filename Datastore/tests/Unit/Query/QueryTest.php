@@ -19,7 +19,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\Filter;
+use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use PHPUnit\Framework\TestCase;

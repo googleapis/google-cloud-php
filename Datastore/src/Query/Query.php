@@ -255,7 +255,7 @@ class Query implements QueryInterface
      * Using `(array $filter)` invocation to add composite/property filter.
      * ```
      *
-     * use Google\Cloud\Datastore\Filter;
+     * use Google\Cloud\Datastore\Query\Filter;
      * $filterA = Filter::doOr([$subFilter1, ...$subFilters]);
      * $filterB = Filter::doAnd([$subFilter2, ...$subFilter]);
      * $filterC = Filter::where($property1, $operator1, $value1);
