@@ -91,8 +91,9 @@ trait RestTrait
             'restOptions',
             'retries',
             'requestTimeout',
+            'retryHeaders',
             'restRetryFunction',
-            'restOnRetryExceptionFunction',
+            'restRetryListener',
         ], $options);
 
         try {

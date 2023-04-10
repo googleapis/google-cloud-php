@@ -523,10 +523,14 @@ class RestTest extends TestCase
     ) {
         $rest = new Rest($restConfig);
         $reflection = new \ReflectionClass($rest);
-        $property = $reflection->getProperty('restRetryFunction');
-        $property->setAccessible(true);
-        $restRetryFunction = $property->getValue($rest);
-        $retryFun = $rest->getRestRetryFunction($resource, $op, $args, $restRetryFunction);
+        $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
+        $reflectionMethod->setAccessible(true);
+        $retryFun = $reflectionMethod->invoke(
+            $rest,
+            $resource,
+            $op,
+            $args,
+        );
 
         $this->assertEquals(
             $expected,
@@ -539,32 +543,33 @@ class RestTest extends TestCase
      * updation is properly done when those callbacks are invoked in the
      * ExponentialBackoff::execute() method.
      */
-    public function testUpdateRetryHeaders()
+    public function testAddRetryListenerCallback()
     {
         $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
-        $requestHash = 'dummy_hash';
-        $currentAttempt = 1;
+        $invocationIdHeaderValue = 'gccl-invocation-id/value';
+        $retryAttempt = 1;
         $headerLineName = AgentHeader::AGENT_HEADER_KEY;
 
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
         $rest = new Rest();
         $reflection = new \ReflectionClass(Rest::class);
-        $reflectionMethod = $reflection->getMethod('updateRetryheaders');
+        $reflectionMethod = $reflection->getMethod('addRetryListenerCallback');
         $reflectionMethod->setAccessible(true);
         $reflectionMethod->invokeArgs($rest, [
-            &$arguments,
-            $requestHash,
-            $currentAttempt
+            $retryAttempt,
+            $arguments,
+            $invocationIdHeaderValue,
+            'gccl-attempt-count'
         ]);
 
-        $this->assertArrayHasKey($headerLineName, $arguments[1]['headers']);
         $expected = sprintf(
-            "gccl-invocation-id/%s gccl-attempt-count/%s",
-            $requestHash,
-            $currentAttempt
+            '%s gccl-attempt-count/%s',
+            $invocationIdHeaderValue,
+            $retryAttempt + 1
         );
-        $this->assertEquals($expected, $arguments[1]['headers'][$headerLineName]);
+        $actual = implode(' ', $arguments[0]->getHeader($headerLineName));
+        $this->assertEquals($expected, $actual);
     }
 
     public function retryFunctionReturnValues()

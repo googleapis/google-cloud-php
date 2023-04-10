@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core;
 
+use Google\ApiCore\AgentHeader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
@@ -36,6 +37,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class RequestWrapper
 {
+    use RequestTrait;
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
@@ -117,7 +119,7 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
-     *     @type callable $restOnRetryExceptionFunction Runs before the restRetryFunction.
+     *     @type callable $restRetryListener Runs before the restRetryFunction.
      *           This miight be used to simply consume the exception b/w retries.
      *           The $arguments parameter is passed by reference so that they may be
      *           modified on demand, for ex: changing the headers in b/w retries.
@@ -141,7 +143,7 @@ class RequestWrapper
             'shouldSignRequest' => true,
             'componentVersion' => null,
             'restRetryFunction' => null,
-            'restOnRetryExceptionFunction' => null,
+            'restRetryListener' => null,
             'restDelayFunction' => null,
             'restCalcDelayFunction' => null
         ];
@@ -178,7 +180,7 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
-     *     @type callable $restOnRetryExceptionFunction Runs before the restRetryFunction.
+     *     @type callable $restRetryListener Runs before the restRetryFunction.
      *           This miight be used to simply consume the exception b/w retries.
      *           The $arguments parameter is passed by reference so that they may be
      *           modified on demand, for ex: changing the headers in b/w retries.
@@ -199,7 +201,7 @@ class RequestWrapper
         $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
             $retryOptions['retryFunction'],
-            $retryOptions['onRetryExceptionFunction'],
+            $retryOptions['retryListener'],
         );
 
         if ($retryOptions['delayFunction']) {
@@ -208,6 +210,15 @@ class RequestWrapper
 
         if ($retryOptions['calcDelayFunction']) {
             $backoff->setCalcDelayFunction($retryOptions['calcDelayFunction']);
+        }
+
+        if (isset($options['retryHeaders'])) {
+            $request = $this->appendOrModifyHeaders(
+                $request,
+                AgentHeader::AGENT_HEADER_KEY,
+                $options['retryHeaders']
+            );
+            unset($options['retryHeaders']);
         }
 
         try {
@@ -437,8 +448,8 @@ class RequestWrapper
             'retryFunction' => isset($options['restRetryFunction'])
                 ? $options['restRetryFunction']
                 : $this->retryFunction,
-            'onRetryExceptionFunction' => isset($options['restOnRetryExceptionFunction'])
-                ? $options['restOnRetryExceptionFunction']
+            'retryListener' => isset($options['restRetryListener'])
+                ? $options['restRetryListener']
                 : null,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']

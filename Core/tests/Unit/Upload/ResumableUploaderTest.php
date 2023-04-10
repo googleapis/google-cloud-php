@@ -183,8 +183,7 @@ class ResumableUploaderTest extends TestCase
     {
         $options = [
             'restRetryFunction' => 'arg',
-            'onExecutionStart' => 'arg',
-            'onRetryException' => 'arg'
+            'retryListener' => 'arg'
         ];
         $uploader = new ResumableUploader(
             $this->requestWrapper->reveal(),

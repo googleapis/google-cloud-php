@@ -693,7 +693,7 @@ class StorageObject
         };
 
         $options += [
-            'restOnRetryExceptionFunction' => function (
+            'restRetryListener' => function (
                 \Exception $e,
                 $attempt,
                 &$arguments
