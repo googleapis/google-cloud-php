@@ -19,7 +19,7 @@ namespace Google\Cloud\Storage\Tests\Conformance;
 
 use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\SkippedTestError;
 use Google\Auth\Credentials\InsecureCredentials;
 
