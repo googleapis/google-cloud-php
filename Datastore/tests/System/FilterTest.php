@@ -60,7 +60,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
     public function testOrRunQuery(DatastoreClient $client)
     {
         $this->skipEmulatorTests();
-        $filter = Filter::doOr([
+        $filter = Filter::or([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
         ]);
@@ -80,14 +80,14 @@ class FilterTest extends DatastoreMultipleDbTestCase
     public function testMixOfOrAndRunQuery(DatastoreClient $client)
     {
         $this->skipEmulatorTests();
-        $filter = Filter::doAnd([
+        $filter = Filter::and([
             Filter::where('Age', '<', 26),
-            Filter::doOr([
-                Filter::doAnd([
+            Filter::or([
+                Filter::and([
                     Filter::where('Age', '>', 23),
                     Filter::where('Age', '<', 30)
                 ]),
-                Filter::doAnd([
+                Filter::and([
                     Filter::where('Age', '>', 25),
                     Filter::where('Age', '<', 31)
                 ]),
@@ -108,7 +108,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
     public function testOrQueryViaTransaction(DatastoreClient $client)
     {
         $this->skipEmulatorTests();
-        $filter = Filter::doOr([
+        $filter = Filter::or([
             Filter::where('Name', '=', 'Hersch'),
             Filter::where('Name', '=', 'Davy')
         ]);
@@ -133,14 +133,14 @@ class FilterTest extends DatastoreMultipleDbTestCase
     public function testMixOfOrAndViaTransaction(DatastoreClient $client)
     {
         $this->skipEmulatorTests();
-        $filter = Filter::doAnd([
+        $filter = Filter::and([
             Filter::where('Age', '<', 26),
-            Filter::doOr([
-                Filter::doAnd([
+            Filter::or([
+                Filter::and([
                     Filter::where('Age', '>', 23),
                     Filter::where('Age', '<', 30)
                 ]),
-                Filter::doAnd([
+                Filter::and([
                     Filter::where('Age', '>', 25),
                     Filter::where('Age', '<', 31)
                 ]),

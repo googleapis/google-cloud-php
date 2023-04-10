@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Datastore\Tests\Unit;
+namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\Query\Filter;
-use Google\Cloud\Datastore\Query\Query;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,10 +38,7 @@ class FilterTest extends TestCase
 
         $this->assertEquals($compositeFilter['filters'], $filters);
 
-        // Taking substring of $methodName from 3rd characted so that
-        // 'doAnd' => 'And' and 'doOr' => 'Or'.
-        $expectedOperator = substr($methodName, 2);
-        $this->assertEquals($compositeFilter['op'], strtoupper($expectedOperator));
+        $this->assertEquals($compositeFilter['op'], strtoupper($methodName));
     }
 
     /**
@@ -50,12 +46,12 @@ class FilterTest extends TestCase
      */
     public function testWhere($value)
     {
-        $filter = Filter::where('foo', 'op', $value);
+        $filter = Filter::where('foo', 'test_op', $value);
         $this->assertArrayHasKey('propertyFilter', $filter);
         $propertyFilter = $filter['propertyFilter'];
 
         $this->assertEquals($propertyFilter['property'], 'foo');
-        $this->assertEquals($propertyFilter['op'], 'op');
+        $this->assertEquals($propertyFilter['op'], 'test_op');
         $this->assertEquals($propertyFilter['value'], $value);
     }
 
@@ -75,8 +71,8 @@ class FilterTest extends TestCase
     private function getCompositeFilterCases()
     {
         $cases = [
-            ['doAnd', [['foo' => 'bar1'], ['foo' => 'bar2']]],
-            ['doOr', [['foo' => 'bar1'], ['foo' => 'bar2']]]
+            ['and', [['foo' => 'bar1'], ['foo' => 'bar2']]],
+            ['or', [['foo' => 'bar1'], ['foo' => 'bar2']]]
         ];
         return $cases;
     }

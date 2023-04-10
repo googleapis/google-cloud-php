@@ -46,10 +46,10 @@ use Google\Cloud\Datastore\Query\Query;
  * filters.
  * ```
  * // Or filter
- * $filterOr = Filter::doOr([$filter1, ...$filters]);
+ * $filterOr = Filter::or([$filter1, ...$filters]);
  *
  * // And Filter
- * $filterAnd = Filter::doAnd([$filter1, ...$filters]);
+ * $filterAnd = Filter::and([$filter1, ...$filters]);
  * ```
  *
  * Property Filter can be created by using the following shorthand operators:
@@ -81,7 +81,7 @@ class Filter
      *        upon.
      * @return array Returns array representation of AND composite filter.
      */
-    public static function doAnd(array $filters)
+    public static function and(array $filters)
     {
         return self::compositeFilter('AND', $filters);
     }
@@ -93,7 +93,7 @@ class Filter
      *        upon.
      * @return array Returns array representation of OR composite filter.
      */
-    public static function doOr(array $filters)
+    public static function or(array $filters)
     {
         return self::compositeFilter('OR', $filters);
     }
