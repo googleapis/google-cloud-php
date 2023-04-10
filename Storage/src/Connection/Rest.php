@@ -693,13 +693,6 @@ class Rest implements ConnectionInterface
                 $currentAttempt + 2
             );
         };
-
-        $args['restOnExecutionStartFunction'] = function (&$arguments) use ($requestHash) {
-            $this->updateRetryHeaders(
-                $arguments,
-                $requestHash
-            );
-        };
         return $args;
     }
 

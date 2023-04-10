@@ -121,9 +121,6 @@ class RequestWrapper
      *           This miight be used to simply consume the exception b/w retries.
      *           The $arguments parameter is passed by reference so that they may be
      *           modified on demand, for ex: changing the headers in b/w retries.
-     *     @type callable $restOnExecutionStartFunction Runs before the $request is sent.
-     *           This might be used as an alternative to sending options for the
-     *           purpose of setting args/headers for a request.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -145,7 +142,6 @@ class RequestWrapper
             'componentVersion' => null,
             'restRetryFunction' => null,
             'restOnRetryExceptionFunction' => null,
-            'restOnExecutionStartFunction' => null,
             'restDelayFunction' => null,
             'restCalcDelayFunction' => null
         ];
@@ -186,9 +182,6 @@ class RequestWrapper
      *           This miight be used to simply consume the exception b/w retries.
      *           The $arguments parameter is passed by reference so that they may be
      *           modified on demand, for ex: changing the headers in b/w retries.
-     *     @type callable $restOnExecutionStartFunction Runs before the $request is sent.
-     *           This might be used as an alternative to sending options for the
-     *           purpose of setting args/headers for a request.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -207,7 +200,6 @@ class RequestWrapper
             $retryOptions['retries'],
             $retryOptions['retryFunction'],
             $retryOptions['onRetryExceptionFunction'],
-            $retryOptions['onExecutionStartFunction']
         );
 
         if ($retryOptions['delayFunction']) {
@@ -447,9 +439,6 @@ class RequestWrapper
                 : $this->retryFunction,
             'onRetryExceptionFunction' => isset($options['restOnRetryExceptionFunction'])
                 ? $options['restOnRetryExceptionFunction']
-                : null,
-            'onExecutionStartFunction' => isset($options['restOnExecutionStartFunction'])
-                ? $options['restOnExecutionStartFunction']
                 : null,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']

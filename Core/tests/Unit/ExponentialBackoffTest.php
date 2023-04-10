@@ -193,32 +193,4 @@ class ExponentialBackoffTest extends TestCase
             // "Intentionally failing request"
         }
     }
-
-    /**
-     * Tests whether `testOnExecutionStartFunction()` callback is
-     * properly invoked when exception occurs in the request being made.
-     */
-    public function testOnExecutionStartFunction()
-    {
-        $args = ['foo' => 'bar'];
-        $onExecutionStartFunction = function ($arguments) {
-            self::assertEquals('bar', $arguments[0]['foo']);
-        };
-
-        // Setting $retries to 0 so that no retry happens after first failures
-        $backoff = new ExponentialBackoff(0, null, null, $onExecutionStartFunction);
-
-        try {
-            $backoff->execute(
-                function () {
-                    throw new \Exception('Intentionally failing request');
-                },
-                [$args]
-            );
-        } catch (\Exception $err) {
-            // Do nothing.
-            // Catched the intentional failing call being made above:
-            // "Intentionally failing request"
-        }
-    }
 }
