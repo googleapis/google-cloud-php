@@ -281,7 +281,7 @@ class Query implements QueryInterface
      *        used in the first argument.
      * @return Query
      */
-    public function filter($property, $operator = null, $value = null)
+    public function filter($filterOrProperty, $operator = null, $value = null)
     {
         if (!isset($this->query['filter']) ||
             !isset($this->query['filter']['compositeFilter'])
@@ -289,17 +289,17 @@ class Query implements QueryInterface
             $this->initializeFilter();
         }
 
-        if (is_string($property)) {
+        if (is_string($filterOrProperty)) {
             $this->query['filter']['compositeFilter']['filters'][] = [
                 'propertyFilter' => [
-                    'property' => $this->propertyName($property),
+                    'property' => $this->propertyName($filterOrProperty),
                     'value' => $this->entityMapper->valueObject($value),
                     'op' => $this->mapOperator($operator)
                 ]
             ];
         } else {
             $this->query['filter']['compositeFilter']['filters'][] =
-                $this->convertFilterToApiFormat($property);
+                $this->convertFilterToApiFormat($filterOrProperty);
         }
 
         return $this;
