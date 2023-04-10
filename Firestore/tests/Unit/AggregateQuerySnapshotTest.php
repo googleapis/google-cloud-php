@@ -19,7 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
