@@ -576,7 +576,7 @@ class BackendServicesGapicClient
     }
 
     /**
-     * Returns the specified BackendService resource. Gets a list of available backend services.
+     * Returns the specified BackendService resource.
      *
      * Sample code:
      * ```

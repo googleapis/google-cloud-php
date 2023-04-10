@@ -25,9 +25,8 @@ use Google\Cloud\Datastore\EntityInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -35,15 +34,14 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class EntityMapperTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
+    use ProphecyTrait;
 
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
     const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new EntityMapper('foo', true, false);
     }

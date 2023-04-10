@@ -314,6 +314,10 @@ class Metric
      */
     const NETWORKS = 485481477;
     /**
+     * Generated from protobuf enum <code>NETWORK_ATTACHMENTS = 149028575;</code>
+     */
+    const NETWORK_ATTACHMENTS = 149028575;
+    /**
      * Generated from protobuf enum <code>NETWORK_ENDPOINT_GROUPS = 102144909;</code>
      */
     const NETWORK_ENDPOINT_GROUPS = 102144909;
@@ -663,6 +667,7 @@ class Metric
         self::N2D_CPUS => 'N2D_CPUS',
         self::N2_CPUS => 'N2_CPUS',
         self::NETWORKS => 'NETWORKS',
+        self::NETWORK_ATTACHMENTS => 'NETWORK_ATTACHMENTS',
         self::NETWORK_ENDPOINT_GROUPS => 'NETWORK_ENDPOINT_GROUPS',
         self::NETWORK_FIREWALL_POLICIES => 'NETWORK_FIREWALL_POLICIES',
         self::NODE_GROUPS => 'NODE_GROUPS',

@@ -40,12 +40,15 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class BigQueryClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'my-awesome-project';
     const CREATE_DISPOSITION = 'CREATE_NEVER';
@@ -75,7 +78,7 @@ class BigQueryClientTest extends SnippetTestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(BigQueryTestClient::class);

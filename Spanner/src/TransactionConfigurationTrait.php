@@ -136,9 +136,7 @@ trait TransactionConfigurationTrait
             'maxStaleness' => null,
         ];
 
-        $previousOptions = isset($previous['transactionOptions']['readOnly'])
-            ? $previous['transactionOptions']['readOnly']
-            : [];
+        $previousOptions = $previous['transactionOptions']['readOnly'] ?? [];
 
         // These are only available in single-use transactions.
         if (!$options['singleUse'] && ($options['maxStaleness'] || $options['minReadTimestamp'])) {

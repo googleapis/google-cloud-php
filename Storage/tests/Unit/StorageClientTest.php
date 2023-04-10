@@ -28,9 +28,9 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -38,12 +38,12 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'my-project';
     public $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);

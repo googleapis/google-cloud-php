@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Route;
 use Google\Cloud\Compute\V1\RoutesClient;
 
 /**
- * Returns the specified Route resource. Gets a list of available routes by making a list() request.
+ * Returns the specified Route resource.
  *
  * @param string $project Project ID for this request.
  * @param string $route   Name of the Route resource to return.

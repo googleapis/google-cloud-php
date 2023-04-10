@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Autoscaler;
 use Google\Cloud\Compute\V1\AutoscalersClient;
 
 /**
- * Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request.
+ * Returns the specified autoscaler resource.
  *
  * @param string $autoscaler Name of the autoscaler to return.
  * @param string $project    Project ID for this request.

@@ -127,7 +127,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *
@@ -228,7 +228,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           If set, we will deploy the index within the provided ip ranges. Otherwise,
      *           the index might be deployed to any ip ranges under the provided VPC
      *           network.
-     *           The value sohuld be the name of the address
+     *           The value should be the name of the address
      *           (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      *           Example: 'vertex-ai-ip-range'.
      *     @type string $deployment_group
@@ -667,7 +667,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *
@@ -685,7 +685,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *

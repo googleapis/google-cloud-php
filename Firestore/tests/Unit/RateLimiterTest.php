@@ -18,9 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\RateLimiter;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
@@ -28,12 +26,10 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class RateLimiterTest extends TestCase
 {
-    use ExpectException;
-    use ExpectExceptionMessageMatches;
 
     private $rateLimiter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->rateLimiter = new RateLimiter(
             500, // initialCapacity

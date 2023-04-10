@@ -57,9 +57,6 @@ use Google\Rpc\Status;
  * updates will not be marked as [done][google.longrunning.Operation.done]
  * until being obsolete.
  *
- * This feature is only available for users who have Retail Search enabled.
- * Enable Retail Search on Cloud Console before using this feature.
- *
  * @param string $formattedProduct Full resource name of [Product][google.cloud.retail.v2.Product],
  *                                 such as
  *                                 `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.

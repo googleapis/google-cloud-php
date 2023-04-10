@@ -37,9 +37,9 @@ class ManageModelsTest extends BigQueryTestCase
     private static $keyName1;
     private static $keyName2;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$modelId = uniqid(self::TESTING_PREFIX);
 

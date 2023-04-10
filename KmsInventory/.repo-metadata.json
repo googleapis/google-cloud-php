@@ -1,0 +1,7 @@
+{
+    "distribution_name": "google/cloud-kms-inventory",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-kms-inventory/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "kmsinventory"
+}

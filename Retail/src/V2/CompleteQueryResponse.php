@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response of the auto-complete query.
+ * Response of the autocomplete query.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.CompleteQueryResponse</code>
  */

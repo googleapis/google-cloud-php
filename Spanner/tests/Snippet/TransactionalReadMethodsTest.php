@@ -35,6 +35,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Much of the execute and read tests are duplicated, and often fall out of sync
@@ -49,6 +50,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -65,9 +67,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     private $transaction;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         $this->connection = $this->getConnStub();
         $this->session = $this->prophesize(Session::class);

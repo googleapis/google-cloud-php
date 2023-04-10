@@ -30,7 +30,8 @@ use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
 /**
  * Returns the specified stitching information for the specified VOD session.
  *
- * @param string $formattedName The name of the stitch detail in the specified VOD session, in the form of
+ * @param string $formattedName The name of the stitch detail in the specified VOD session, in
+ *                              the form of
  *                              `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`. Please see
  *                              {@see VideoStitcherServiceClient::vodStitchDetailName()} for help formatting this field.
  */

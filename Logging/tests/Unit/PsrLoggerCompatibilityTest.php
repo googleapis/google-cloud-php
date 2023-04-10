@@ -22,7 +22,7 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Psr\Log\Test\LoggerInterfaceTest;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 // phpcs:disable
 if (!class_exists(LoggerInterfaceTest::class)) {
@@ -39,7 +39,7 @@ if (!class_exists(LoggerInterfaceTest::class)) {
  */
 class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public static $logs = [];
 

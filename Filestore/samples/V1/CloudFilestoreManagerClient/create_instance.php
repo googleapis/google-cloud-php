@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * larger than the minimum capacity of the tier).
  *
  * @param string $formattedParent The instance's project and location, in the format
- *                                `projects/{project_id}/locations/{location}`. In Cloud Filestore,
- *                                locations map to GCP zones, for example **us-west1-b**. Please see
+ *                                `projects/{project_id}/locations/{location}`. In Filestore,
+ *                                locations map to Google Cloud zones, for example **us-west1-b**. Please see
  *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
  * @param string $instanceId      The name of the instance to create.
  *                                The name must be unique for the specified project and location.

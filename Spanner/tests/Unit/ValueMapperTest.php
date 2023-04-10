@@ -32,8 +32,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
@@ -41,14 +40,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ValueMapperTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
 
     const FORMAT_TEST_VALUE = 'abc';
 
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
         $this->mapper = new ValueMapper(false);

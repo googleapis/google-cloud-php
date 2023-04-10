@@ -332,7 +332,7 @@ class UserEventServiceGapicClient
      *
      *     @type string $prebuiltRule
      *           The prebuilt rule name that can convert a specific type of raw_json.
-     *           For example: "default_schema/v1.0"
+     *           For example: "ga4_bq" rule for the GA4 user event schema.
      *     @type string $uri
      *           The URL including cgi-parameters but excluding the hash fragment with a
      *           length limit of 5,000 characters. This is often more useful than the

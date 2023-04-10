@@ -16,8 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutomaticFailover extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s of inputs to failover to when this input is
-     * disconnected. Currently, only up to one backup input is supported.
+     * The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s
+     * of inputs to failover to when this input is disconnected. Currently, only
+     * up to one backup input is supported.
      *
      * Generated from protobuf field <code>repeated string input_keys = 1;</code>
      */
@@ -30,8 +32,10 @@ class AutomaticFailover extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_keys
-     *           The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s of inputs to failover to when this input is
-     *           disconnected. Currently, only up to one backup input is supported.
+     *           The
+     *           [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s
+     *           of inputs to failover to when this input is disconnected. Currently, only
+     *           up to one backup input is supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +44,10 @@ class AutomaticFailover extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s of inputs to failover to when this input is
-     * disconnected. Currently, only up to one backup input is supported.
+     * The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s
+     * of inputs to failover to when this input is disconnected. Currently, only
+     * up to one backup input is supported.
      *
      * Generated from protobuf field <code>repeated string input_keys = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -52,8 +58,10 @@ class AutomaticFailover extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s of inputs to failover to when this input is
-     * disconnected. Currently, only up to one backup input is supported.
+     * The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]s
+     * of inputs to failover to when this input is disconnected. Currently, only
+     * up to one backup input is supported.
      *
      * Generated from protobuf field <code>repeated string input_keys = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -22,24 +22,21 @@ use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class VisionClientTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
+    use ProphecyTrait;
 
     private $client;
-
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = TestHelpers::stub(VisionClient::class, [['suppressKeyFileNotice' => true]]);
         $this->connection = $this->prophesize(ConnectionInterface::class);

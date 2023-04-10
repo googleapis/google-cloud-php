@@ -24,9 +24,10 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
-use Prophecy\Argument;
-use Psr\Http\Message\RequestInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @group core
@@ -34,6 +35,8 @@ use PHPUnit\Framework\TestCase;
  */
 class MultipartUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testUploadsData()
     {
         $requestWrapper = $this->prophesize(RequestWrapper::class);

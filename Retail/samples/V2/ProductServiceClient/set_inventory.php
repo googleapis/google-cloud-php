@@ -81,9 +81,6 @@ use Google\Rpc\Status;
  * updates are not marked as [done][google.longrunning.Operation.done] until
  * they are obsolete.
  *
- * This feature is only available for users who have Retail Search enabled.
- * Enable Retail Search on Cloud Console before using this feature.
- *
  * @param string $inventoryTitle Product title.
  *
  *                               This field must be a UTF-8 encoded string with a length limit of 1,000

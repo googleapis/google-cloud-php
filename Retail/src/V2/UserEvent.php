@@ -274,6 +274,16 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_view_id = 15;</code>
      */
     private $page_view_id = '';
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * It is recommended to set this field to get better per-entity search,
+     * completion and prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 23;</code>
+     */
+    private $entity = '';
 
     /**
      * Constructor.
@@ -459,6 +469,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           properly.
      *           When using the client side event reporting with JavaScript pixel and Google
      *           Tag Manager, this value is filled in automatically.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           It is recommended to set this field to get better per-entity search,
+     *           completion and prediction results.
      * }
      */
     public function __construct($data = NULL) {
@@ -1298,6 +1314,40 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_view_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * It is recommended to set this field to get better per-entity search,
+     * completion and prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 23;</code>
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * It is recommended to set this field to get better per-entity search,
+     * completion and prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entity = $var;
 
         return $this;
     }

@@ -30,6 +30,14 @@ use Google\Cloud\Retail\V2\ProductServiceClient;
 use Google\Rpc\Status;
 
 /**
+ * It is recommended to use the
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+ * method instead of
+ * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces].
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+ * achieves the same results but provides more fine-grained control over
+ * ingesting local inventory data.
+ *
  * Incrementally adds place IDs to
  * [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
  *
@@ -51,9 +59,6 @@ use Google\Rpc\Status;
  * [Operation][google.longrunning.Operation]s associated with the stale
  * updates will not be marked as [done][google.longrunning.Operation.done]
  * until being obsolete.
- *
- * This feature is only available for users who have Retail Search enabled.
- * Enable Retail Search on Cloud Console before using this feature.
  *
  * @param string $formattedProduct Full resource name of [Product][google.cloud.retail.v2.Product],
  *                                 such as

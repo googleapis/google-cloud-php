@@ -184,11 +184,15 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      * @throws \RuntimeException If limit-to-last is enabled but no order-by has
-     *       been specified.
+     *     been specified.
      */
     public function documents(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $maxRetries = $this->pluck('maxRetries', $options, false);
         $maxRetries = $maxRetries === null
             ? FirestoreClient::MAX_RETRIES
@@ -926,9 +930,7 @@ class Query
                 $query['endAt'] = $q['startAt'];
 
                 // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['endAt']['before'] = isset($query['endAt']['before'])
-                    ? !$query['endAt']['before']
-                    : true;
+                $query['endAt']['before'] = !($query['endAt']['before'] ?? false);
             }
 
             if (isset($q['endAt'])) {
@@ -936,9 +938,7 @@ class Query
                 $query['startAt'] = $q['endAt'];
 
                 // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['startAt']['before'] = isset($query['startAt']['before'])
-                    ? !$query['startAt']['before']
-                    : true;
+                $query['startAt']['before'] = !($query['startAt']['before'] ?? false);
             }
         }
 

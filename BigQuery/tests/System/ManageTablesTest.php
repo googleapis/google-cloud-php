@@ -20,7 +20,6 @@ namespace Google\Cloud\BigQuery\Tests\System;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\ExponentialBackoff;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
@@ -28,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageTablesTest extends BigQueryTestCase
 {
-    use ExpectException;
-
     public function testListTables()
     {
         $foundTables = [];

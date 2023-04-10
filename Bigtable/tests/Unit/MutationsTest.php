@@ -24,7 +24,7 @@ use Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily;
 use Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow;
 use Google\Cloud\Bigtable\V2\Mutation\SetCell;
 use Google\Cloud\Bigtable\V2\TimestampRange;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -39,7 +39,7 @@ class MutationsTest extends TestCase
 
     private $mutations;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mutations = new MutationsStub;
     }

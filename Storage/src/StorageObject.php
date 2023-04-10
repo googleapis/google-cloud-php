@@ -321,8 +321,8 @@ class StorageObject
      */
     public function copy($destination, array $options = [])
     {
-        $key = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
-        $keySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+        $key = $options['encryptionKey'] ?? null;
+        $keySHA256 = $options['encryptionKeySHA256'] ?? null;
 
         $response = $this->connection->copyObject(
             $this->formatDestinationRequest($destination, $options)
@@ -450,16 +450,14 @@ class StorageObject
     public function rewrite($destination, array $options = [])
     {
         $options['useCopySourceHeaders'] = true;
-        $destinationKey = isset($options['destinationEncryptionKey']) ? $options['destinationEncryptionKey'] : null;
-        $destinationKeySHA256 = isset($options['destinationEncryptionKeySHA256'])
-            ? $options['destinationEncryptionKeySHA256']
-            : null;
+        $destinationKey = $options['destinationEncryptionKey'] ?? null;
+        $destinationKeySHA256 = $options['destinationEncryptionKeySHA256'] ?? null;
 
         $options = $this->formatDestinationRequest($destination, $options);
 
         do {
             $response = $this->connection->rewriteObject($options);
-            $options['rewriteToken'] = isset($response['rewriteToken']) ? $response['rewriteToken'] : null;
+            $options['rewriteToken'] = $response['rewriteToken'] ?? null;
         } while ($options['rewriteToken']);
 
         return new StorageObject(
@@ -534,9 +532,7 @@ class StorageObject
      */
     public function rename($name, array $options = [])
     {
-        $destinationBucket = isset($options['destinationBucket'])
-            ? $options['destinationBucket']
-            : $this->identity['bucket'];
+        $destinationBucket = $options['destinationBucket'] ?? $this->identity['bucket'];
         unset($options['destinationBucket']);
 
         $copiedObject = $this->copy($destinationBucket, [
@@ -1323,8 +1319,8 @@ class StorageObject
             );
         }
 
-        $destAcl = isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null;
-        $destObject = isset($options['name']) ? $options['name'] : $this->identity['object'];
+        $destAcl = $options['predefinedAcl'] ?? null;
+        $destObject = $options['name'] ?? $this->identity['object'];
 
         unset($options['name']);
         unset($options['predefinedAcl']);

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The GCS URI to which recognition results were written.
+     * The Cloud Storage URI to which recognition results were written.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
@@ -27,6 +27,19 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
      */
     private $error = null;
+    /**
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 3;</code>
+     */
+    private $metadata = null;
+    /**
+     * The transcript for the audio file. This is populated only when
+     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     */
+    private $transcript = null;
 
     /**
      * Constructor.
@@ -35,9 +48,15 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The GCS URI to which recognition results were written.
+     *           The Cloud Storage URI to which recognition results were written.
      *     @type \Google\Rpc\Status $error
      *           Error if one was encountered.
+     *     @type \Google\Cloud\Speech\V2\RecognitionResponseMetadata $metadata
+     *     @type \Google\Cloud\Speech\V2\BatchRecognizeResults $transcript
+     *           The transcript for the audio file. This is populated only when
+     *           [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
+     *           the
+     *           [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +65,7 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCS URI to which recognition results were written.
+     * The Cloud Storage URI to which recognition results were written.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -57,7 +76,7 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCS URI to which recognition results were written.
+     * The Cloud Storage URI to which recognition results were written.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var
@@ -103,6 +122,80 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 3;</code>
+     * @return \Google\Cloud\Speech\V2\RecognitionResponseMetadata|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 3;</code>
+     * @param \Google\Cloud\Speech\V2\RecognitionResponseMetadata $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\RecognitionResponseMetadata::class);
+        $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * The transcript for the audio file. This is populated only when
+     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     * @return \Google\Cloud\Speech\V2\BatchRecognizeResults|null
+     */
+    public function getTranscript()
+    {
+        return $this->transcript;
+    }
+
+    public function hasTranscript()
+    {
+        return isset($this->transcript);
+    }
+
+    public function clearTranscript()
+    {
+        unset($this->transcript);
+    }
+
+    /**
+     * The transcript for the audio file. This is populated only when
+     * [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
+     * the
+     * [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 4;</code>
+     * @param \Google\Cloud\Speech\V2\BatchRecognizeResults $var
+     * @return $this
+     */
+    public function setTranscript($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\BatchRecognizeResults::class);
+        $this->transcript = $var;
 
         return $this;
     }

@@ -31,7 +31,8 @@ use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 /**
  * Lists all slates in the specified project and location.
  *
- * @param string $formattedParent The project to list slates, in the form of `projects/{project_number}`. Please see
+ * @param string $formattedParent The project to list slates, in the form of
+ *                                `projects/{project_number}/locations/{location}`. Please see
  *                                {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  */
 function list_slates_sample(string $formattedParent): void

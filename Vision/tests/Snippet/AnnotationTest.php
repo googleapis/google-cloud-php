@@ -30,14 +30,14 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class AnnotationTest extends SnippetTestCase
 {
-    use AssertIsType;
+    use ProphecyTrait;
 
     public function testClass()
     {

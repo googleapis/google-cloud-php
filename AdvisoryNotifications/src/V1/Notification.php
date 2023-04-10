@@ -42,6 +42,12 @@ class Notification extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
+    /**
+     * Type of notification
+     *
+     * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.NotificationType notification_type = 12;</code>
+     */
+    protected $notification_type = 0;
 
     /**
      * Constructor.
@@ -59,6 +65,8 @@ class Notification extends \Google\Protobuf\Internal\Message
      *           A list of messages in the notification.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time the notification was created.
+     *     @type int $notification_type
+     *           Type of notification
      * }
      */
     public function __construct($data = NULL) {
@@ -190,6 +198,32 @@ class Notification extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of notification
+     *
+     * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.NotificationType notification_type = 12;</code>
+     * @return int
+     */
+    public function getNotificationType()
+    {
+        return $this->notification_type;
+    }
+
+    /**
+     * Type of notification
+     *
+     * Generated from protobuf field <code>.google.cloud.advisorynotifications.v1.NotificationType notification_type = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNotificationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AdvisoryNotifications\V1\NotificationType::class);
+        $this->notification_type = $var;
 
         return $this;
     }

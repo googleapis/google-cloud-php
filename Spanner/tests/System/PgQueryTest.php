@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -36,15 +35,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PgQueryTest extends SpannerPgTestCase
 {
-    use ExpectException;
-
     const TABLE_NAME = 'test';
 
     public static $timestampVal;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::TABLE_NAME . ' (

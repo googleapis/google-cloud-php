@@ -20,19 +20,22 @@ namespace Google\Cloud\Translate\Tests\Unit\V2;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Translate\V2\Connection\ConnectionInterface;
 use Google\Cloud\Translate\V2\TranslateClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group translate
  */
 class TranslateClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $connection;
     private $key = 'test_key';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = TestHelpers::stub(TranslateClient::class, [
             ['key' => $this->key]

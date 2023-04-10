@@ -32,13 +32,13 @@ use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -46,8 +46,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class StorageObjectTest extends TestCase
 {
-    use ExpectException;
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const TIMESTAMP = '2025-01-01';
     const BUCKET = 'bucket';
@@ -59,7 +59,7 @@ class StorageObjectTest extends TestCase
     private $key;
     private $kf;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->key = $this->getKeyPair();

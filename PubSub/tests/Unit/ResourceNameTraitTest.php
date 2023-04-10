@@ -19,19 +19,16 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\ResourceNameTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
 class ResourceNameTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $trait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->trait = TestHelpers::impl(ResourceNameTrait::class);
     }

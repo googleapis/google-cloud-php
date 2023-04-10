@@ -514,6 +514,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 139;</code>
      */
     private $etag = '';
+    /**
+     * Fleet information for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet fleet = 140;</code>
+     */
+    private $fleet = null;
 
     /**
      * Constructor.
@@ -761,6 +767,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of cluster
      *           fields, and may be sent on update requests to ensure the client has an
      *           up-to-date value before proceeding.
+     *     @type \Google\Cloud\Container\V1\Fleet $fleet
+     *           Fleet information for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -2960,6 +2968,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fleet information for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet fleet = 140;</code>
+     * @return \Google\Cloud\Container\V1\Fleet|null
+     */
+    public function getFleet()
+    {
+        return $this->fleet;
+    }
+
+    public function hasFleet()
+    {
+        return isset($this->fleet);
+    }
+
+    public function clearFleet()
+    {
+        unset($this->fleet);
+    }
+
+    /**
+     * Fleet information for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet fleet = 140;</code>
+     * @param \Google\Cloud\Container\V1\Fleet $var
+     * @return $this
+     */
+    public function setFleet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\Fleet::class);
+        $this->fleet = $var;
 
         return $this;
     }

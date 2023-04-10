@@ -37,16 +37,16 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class BucketTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const TOPIC_NAME = 'my-topic';
     const BUCKET_NAME = 'my-bucket';
@@ -56,7 +56,7 @@ class BucketTest extends TestCase
     private $connection;
     private $resumableUploader;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);

@@ -22,19 +22,16 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Transaction;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
 class DatastoreTraitTest extends TestCase
 {
-    use AssertIsType;
-
     private $stub;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->stub = TestHelpers::impl(DatastoreTrait::class);
     }

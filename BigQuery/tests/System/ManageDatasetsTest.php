@@ -18,7 +18,6 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
@@ -26,8 +25,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageDatasetsTest extends BigQueryTestCase
 {
-    use ExpectException;
-
     const KEY_RING_ID = 'bq-kms-kr';
     const CRYPTO_KEY_ID = 'bq-dataset-key1';
 
