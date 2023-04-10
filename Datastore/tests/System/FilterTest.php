@@ -23,7 +23,7 @@ use Google\Cloud\Datastore\Query\Filter;
 
 /**
  * @group datastore
- * @group datastore-or
+ * @group datastore-query
  */
 class FilterTest extends DatastoreMultipleDbTestCase
 {
