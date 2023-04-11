@@ -720,8 +720,8 @@ class Rest implements ConnectionInterface
             // In some cases there might be a listener present
             // So, we want to execute that after incrementing the attempt count
             // Ex in case of downloads
-            if(!is_null($currentListener)) {
-                $arguments = call_user_func_array($currentListener,[
+            if (!is_null($currentListener)) {
+                $arguments = call_user_func_array($currentListener, [
                     $e, $retryAttempt, $arguments
                 ]);
             }
