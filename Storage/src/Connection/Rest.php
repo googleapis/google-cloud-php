@@ -656,15 +656,15 @@ class Rest implements ConnectionInterface
             'objectAccessControls' => 'object_acl'
         ];
         $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
-        $args['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
+        $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
             $retryResource,
             $method,
-            $args,
+            $options
         );
 
-        $args = $this->addRetryHeaderLogic($args);
+        $options = $this->addRetryHeaderLogic($options);
 
-        return $this->traitSend($resource, $method, $args);
+        return $this->traitSend($resource, $method, $options);
     }
 
     /**

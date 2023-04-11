@@ -292,7 +292,7 @@ class RequestWrapper
      * @param array $options
      * @return RequestInterface
      */
-    private function applyHeaders(RequestInterface $request, $options)
+    private function applyHeaders(RequestInterface $request, array $options = [])
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
