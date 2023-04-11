@@ -646,7 +646,8 @@ class Rest implements ConnectionInterface
      *
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
-     * @param array $args
+     * @param array $options [optional] Options used to build out the request.
+     * @param array $whitelisted [optional]
      */
     public function send($resource, $method, array $options = [], $whitelisted = false)
     {
