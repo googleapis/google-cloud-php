@@ -46,7 +46,7 @@ class RetryHeadersHttpMiddleware
         $this->currentAttempt++;
 
         // add the retry headers
-        $options = $this->addRetryHeaders($request, $options);
+        $request = $this->addRetryHeaders($request, $options);
 
         // Call the next middleware
         $handler = $this->nextHandler;
@@ -60,7 +60,7 @@ class RetryHeadersHttpMiddleware
      *
      * @return array
      */
-    private function addRetryHeaders(RequestInterface $request, array $options): array
+    private function addRetryHeaders(RequestInterface $request, array $options): RequestInterface
     {
         $agentHeader = $headers['headers'][AgentHeader::AGENT_HEADER_KEY]
             ?? $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY)
@@ -71,10 +71,6 @@ class RetryHeadersHttpMiddleware
         $agentHeaderParts[] = sprintf('gccl-invocation-id/%s', $requestHash);
         $agentHeaderParts[] = sprintf('gccl-attempt-count/%s', $this->currentAttempt);
 
-        $headers = $options['headers'] ?? [];
-        $headers[AgentHeader::AGENT_HEADER_KEY] = implode(' ', $agentHeaderParts);
-        $options['headers'] = $headers;
-
-        return $options;
+        return $request->withHeader(AgentHeader::AGENT_HEADER_KEY, implode(' ', $agentHeaderParts));
     }
 }
