@@ -116,14 +116,6 @@ class ExponentialBackoff
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
-                if ($this->onRetryExceptionFunction) {
-                    // The $arguments are passed by reference so that the user has the ability to modify
-                    // some elements of the request on every retry(for example headers).
-                    call_user_func_array(
-                        $this->onRetryExceptionFunction,
-                        [$exception, $retryAttempt, &$arguments]
-                    );
-                }
                 if ($this->retryFunction) {
                     if (!call_user_func($this->retryFunction, $exception, $retryAttempt)) {
                         throw $exception;
@@ -136,6 +128,15 @@ class ExponentialBackoff
 
                 $delayFunction($calcDelayFunction($retryAttempt));
                 $retryAttempt++;
+
+                if ($this->onRetryExceptionFunction) {
+                    // The $arguments are passed by reference so that the user has the ability to modify
+                    // some elements of the request on every retry(for example headers).
+                    call_user_func_array(
+                        $this->onRetryExceptionFunction,
+                        [$exception, $retryAttempt, &$arguments]
+                    );
+                }
             }
         }
 

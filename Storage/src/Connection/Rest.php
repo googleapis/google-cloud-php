@@ -680,7 +680,7 @@ class Rest implements ConnectionInterface
         $requestHash = Uuid::uuid4()->toString();
         $args['restOnRetryExceptionFunction'] = function (
             \Exception $e,
-            $currentAttempt,
+            $retryAttempt,
             &$arguments
         ) use ($requestHash) {
             // Since we the the last attempt number here, so incrementing it
@@ -690,7 +690,7 @@ class Rest implements ConnectionInterface
             $this->updateRetryHeaders(
                 $arguments,
                 $requestHash,
-                $currentAttempt + 2
+                $retryAttempt
             );
         };
 
@@ -711,14 +711,13 @@ class Rest implements ConnectionInterface
      * execute method of ExponentialBackoff object.
      * @param string $requestHash A UUID4 string value that represents a request and
      * it's retries.
-     * @param int $currentAttempt The original attempt is of a value 1, and retries are
-     * 2, 3 and so on.
+     * @param int $retryAttempt The retry number for this attempt, 0 for the first attempt.
      * @return void
      */
     private function updateRetryHeaders(
         &$arguments,
         $requestHash,
-        $currentAttempt = 1
+        $retryAttempt = 0
     ) {
         $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
         $this->updateHeader(
@@ -727,6 +726,9 @@ class Rest implements ConnectionInterface
             $valueToAdd
         );
 
+        // The "ExponentialBackoff" class uses "$retryAttempt" instead of "$currentAttempt",
+        // So the value will always be 1 less than the attempt count.
+        $currentAttempt = $retryAttempt + 1;
         $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
         $this->updateHeader(
             AgentHeader::AGENT_HEADER_KEY,

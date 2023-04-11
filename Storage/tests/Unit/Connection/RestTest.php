@@ -543,7 +543,7 @@ class RestTest extends TestCase
     {
         $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
         $requestHash = 'dummy_hash';
-        $currentAttempt = 1;
+        $retryAttempt = 0;
         $headerLineName = AgentHeader::AGENT_HEADER_KEY;
 
         // Using Reflection instead of Prophecy because we want to test a
@@ -555,14 +555,14 @@ class RestTest extends TestCase
         $reflectionMethod->invokeArgs($rest, [
             &$arguments,
             $requestHash,
-            $currentAttempt
+            $retryAttempt
         ]);
 
         $this->assertArrayHasKey($headerLineName, $arguments[1]['headers']);
         $expected = sprintf(
             "gccl-invocation-id/%s gccl-attempt-count/%s",
             $requestHash,
-            $currentAttempt
+            $retryAttempt + 1
         );
         $this->assertEquals($expected, $arguments[1]['headers'][$headerLineName]);
     }
