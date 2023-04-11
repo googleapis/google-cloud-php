@@ -47,42 +47,29 @@ class ExponentialBackoff
     /**
      * @var callable|null
      */
-    private $onRetryExceptionFunction;
-
-    /**
-     * @var callable|null
-     */
-    private $onExecutionStartFunction;
+    private $retryListener;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
      * @param callable $retryFunction [optional] returns bool for whether or not
      *        to retry
-     * @param callable $onRetryExceptionFunction [optional] runs before the
+     * @param callable $retryListener [optional] Runs after the
      *        $retryFunction. Unlike the $retryFunction,this function isn't
      *        responsible to decide if a retry should happen or not, but it gives the
      *        users flexibility to consume exception messages and add custom logic.
      *        Function definition should match:
-     *            function (\Exception $e, int $attempt, array &$arguments): void
+     *            function (\Exception $e, int $attempt, array $arguments): array
      *        Ex: One might want to change headers on every retry, this function can
      *        be used to achieve such a functionality.
-     * @param callable $onExecutionStartFunction [optional] runs before execution
-     *        of the execute function. Taken in $arguments as reference and
-     *        thus gives users, the flexibility to add custom logic before the
-     *        execution of request and override request / options in the $arguments.
-     *        Function definition should match:
-     *            function (array &$arguments): void
      */
     public function __construct(
         $retries = null,
         callable $retryFunction = null,
-        callable $onRetryExceptionFunction = null,
-        callable $onExecutionStartFunction = null
+        callable $retryListener = null
     ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->retryFunction = $retryFunction;
-        $this->onRetryExceptionFunction = $onRetryExceptionFunction;
-        $this->onExecutionStartFunction = $onExecutionStartFunction;
+        $this->retryListener = $retryListener;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = static function ($delay) {
@@ -106,12 +93,6 @@ class ExponentialBackoff
         $retryAttempt = 0;
         $exception = null;
 
-        // The $arguments are passed by reference
-        // thus are modifiable before the execution starts.
-        if ($this->onExecutionStartFunction) {
-            call_user_func_array($this->onExecutionStartFunction, [&$arguments]);
-        }
-
         while (true) {
             try {
                 return call_user_func_array($function, $arguments);
@@ -128,13 +109,12 @@ class ExponentialBackoff
 
                 $delayFunction($calcDelayFunction($retryAttempt));
                 $retryAttempt++;
-
-                if ($this->onRetryExceptionFunction) {
-                    // The $arguments are passed by reference so that the user has the ability to modify
-                    // some elements of the request on every retry(for example headers).
-                    call_user_func_array(
-                        $this->onRetryExceptionFunction,
-                        [$exception, $retryAttempt, &$arguments]
+                if ($this->retryListener) {
+                    // Developer can modify the $arguments using the retryListener
+                    // callback.
+                    $arguments = call_user_func_array(
+                        $this->retryListener,
+                        [$exception, $retryAttempt, $arguments]
                     );
                 }
             }
