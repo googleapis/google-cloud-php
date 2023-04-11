@@ -18,6 +18,8 @@
 namespace Google\Cloud\Storage\Connection;
 
 use Google\ApiCore\AgentHeader;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Core\HttpMiddleware\RetryHeadersHttpMiddleware;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
@@ -102,6 +104,12 @@ class Rest implements ConnectionInterface
         ];
 
         $this->apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
+
+
+        // Wrap the httpHandler in the RetryHeadersHttpMiddleware
+        $config['httpHandler'] = new RetryHeadersHttpMiddleware(
+            $config['httpHandler'] ?? HttpHandlerFactory::build()
+        );
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
@@ -395,10 +403,6 @@ class Rest implements ConnectionInterface
         );
         $args['uploaderOptions']['restRetryFunction'] = $retryFunc;
 
-        $args['uploaderOptions'] = $this->addRetryHeaderCallbacks(
-            $args['uploaderOptions']
-        );
-
         return $args;
     }
 
@@ -531,7 +535,6 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
-            'restOnRetryExceptionFunction' => null,
             'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
@@ -663,176 +666,6 @@ class Rest implements ConnectionInterface
             $this->restRetryFunction
         );
 
-        $args = $this->addRetryHeaderCallbacks($args);
-
         return $this->send($resource, $method, $args);
-    }
-
-    /**
-     * Adds the callback methods to $args which amends retry hash and attempt
-     * count to the headers.
-     * @param array $args
-     *
-     * @return array
-     */
-    private function addRetryHeaderCallbacks(array $args)
-    {
-        $requestHash = Uuid::uuid4()->toString();
-        $args['restOnRetryExceptionFunction'] = function (
-            \Exception $e,
-            $currentAttempt,
-            &$arguments
-        ) use ($requestHash) {
-            // Since we the the last attempt number here, so incrementing it
-            // to get the current attempt count.
-            // We're adding a '2' and not '1' as we need to incorporate the initial
-            // request as well.
-            $this->updateRetryHeaders(
-                $arguments,
-                $requestHash,
-                $currentAttempt + 2
-            );
-        };
-
-        $args['restOnExecutionStartFunction'] = function (&$arguments) use ($requestHash) {
-            $this->updateRetryHeaders(
-                $arguments,
-                $requestHash
-            );
-        };
-        return $args;
-    }
-
-    /**
-     * Updates the api client identification header value with UUID
-     * and retry count
-     *
-     * @param array &$arguments The arguments array(passed by reference) used by
-     * execute method of ExponentialBackoff object.
-     * @param string $requestHash A UUID4 string value that represents a request and
-     * it's retries.
-     * @param int $currentAttempt The original attempt is of a value 1, and retries are
-     * 2, 3 and so on.
-     * @return void
-     */
-    private function updateRetryHeaders(
-        &$arguments,
-        $requestHash,
-        $currentAttempt = 1
-    ) {
-        $valueToAdd = sprintf("gccl-invocation-id/%s", $requestHash);
-        $this->updateHeader(
-            AgentHeader::AGENT_HEADER_KEY,
-            $arguments,
-            $valueToAdd
-        );
-
-        $valueToAdd = sprintf("gccl-attempt-count/%s", $currentAttempt);
-        $this->updateHeader(
-            AgentHeader::AGENT_HEADER_KEY,
-            $arguments,
-            $valueToAdd,
-            false
-        );
-    }
-
-    /**
-     * Amends the given header key with new value for a request such that
-     * the $request headers aren't modified directly and instead $options array
-     * which are applied to the request just before sending it at core level.
-     * Thus the $request object remains the same between each retry request at
-     * RequestWrappers' level.
-     *
-     * @param string $headerLine The header line to update.
-     * @param array &$arguments The arguments array(passed by reference) used by
-     *        execute method of ExponentialBackoff object.
-     * @param string $value The value to be ammended in the header line.
-     * @param bool $getHeaderFromRequest [optional] A flag which determines if
-     *        existing header value is read from $request or from $options. It's
-     *        useful to read from $options incase we update multiple values to a
-     *        single header key.
-     */
-    private function updateHeader(
-        $headerLine,
-        &$arguments,
-        $value,
-        $getHeaderFromRequest = true
-    ) {
-        // Fetch request and options
-        $request = $this->fetchRequest($arguments);
-        $options = $this->fetchOptions($arguments);
-
-        // add empty headers to handle requests where headers aren't passed.
-        $options += [
-            'headers' => []
-        ];
-
-        // Create the modified header
-        $headerValue = '';
-        if ($getHeaderFromRequest) {
-            $headerValues = $request->getHeader($headerLine);
-            $headerValues[] = $value;
-            $headerValue = implode(' ', $headerValues);
-        } else {
-            $headerValue = (isset($options['headers']) &&
-                isset($options['headers'][$headerLine]))
-                ? $options['headers'][$headerLine]
-                : '';
-            $headerValue .= (' ' . $value);
-        }
-
-        // Amend the $option's header value
-        $options['headers'][$headerLine] = $headerValue;
-
-        // Set the $argument's options array
-        $this->setOptions($arguments, $options);
-    }
-
-
-    /**
-     * This helper method fetches Request object from the $argument list.
-     * @param mixed $arguments
-     * @return Request|null
-     */
-    private function fetchRequest($arguments)
-    {
-        $request = null;
-        foreach ($arguments as $argument) {
-            if ($argument instanceof Request) {
-                $request = $argument;
-            }
-        }
-        return $request;
-    }
-
-    /**
-     * This helper method fetches $options array from the $argument list.
-     * @param mixed $arguments
-     * @return array
-     */
-    private function fetchOptions($arguments)
-    {
-        foreach ($arguments as $argument) {
-            if (is_array($argument)) {
-                return $argument;
-            }
-        }
-        return [];
-    }
-
-    /**
-     * This helper method sets the $options array in the $argument list
-     * @param array &$arguments Argument list as reference
-     * @param array $options
-     * @return void
-     */
-    private function setOptions(array &$arguments, array $options)
-    {
-        foreach ($arguments as &$argument) {
-            if (is_array($argument)) {
-                $argument = $options;
-                break;
-            }
-        }
     }
 }

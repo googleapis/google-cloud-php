@@ -651,7 +651,6 @@ class RequestWrapperTest extends TestCase
         $options = [
             'restRetryFunction' => $placeholderCallback,
             'restOnRetryExceptionFunction' => $placeholderCallback,
-            'restOnExecutionStartFunction' => $placeholderCallback,
         ];
 
         $result = $reflectionMethod->invoke($requestWrapper, $options);

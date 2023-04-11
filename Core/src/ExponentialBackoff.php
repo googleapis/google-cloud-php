@@ -50,11 +50,6 @@ class ExponentialBackoff
     private $onRetryExceptionFunction;
 
     /**
-     * @var callable|null
-     */
-    private $onExecutionStartFunction;
-
-    /**
      * @param int $retries [optional] Number of retries for a failed request.
      * @param callable $retryFunction [optional] returns bool for whether or not
      *        to retry
@@ -66,12 +61,6 @@ class ExponentialBackoff
      *            function (\Exception $e, int $attempt, array &$arguments): void
      *        Ex: One might want to change headers on every retry, this function can
      *        be used to achieve such a functionality.
-     * @param callable $onExecutionStartFunction [optional] runs before execution
-     *        of the execute function. Taken in $arguments as reference and
-     *        thus gives users, the flexibility to add custom logic before the
-     *        execution of request and override request / options in the $arguments.
-     *        Function definition should match:
-     *            function (array &$arguments): void
      */
     public function __construct(
         $retries = null,
@@ -82,7 +71,6 @@ class ExponentialBackoff
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->retryFunction = $retryFunction;
         $this->onRetryExceptionFunction = $onRetryExceptionFunction;
-        $this->onExecutionStartFunction = $onExecutionStartFunction;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = static function ($delay) {
@@ -105,12 +93,6 @@ class ExponentialBackoff
         $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
         $retryAttempt = 0;
         $exception = null;
-
-        // The $arguments are passed by reference
-        // thus are modifiable before the execution starts.
-        if ($this->onExecutionStartFunction) {
-            call_user_func_array($this->onExecutionStartFunction, [&$arguments]);
-        }
 
         while (true) {
             try {
