@@ -274,8 +274,6 @@ class Rest implements ConnectionInterface
 
         $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $requestOptions);
 
-        $requestOptions = $this->addRetryHeaderLogic($requestOptions);
-
         return $this->requestWrapper->send(
             $request,
             $requestOptions

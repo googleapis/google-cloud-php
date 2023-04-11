@@ -574,7 +574,8 @@ class RestTest extends TestCase
                 return new Response(200, [], '{"access_token": "abc"}');
             },
             // Mock the delay function so the tests execute faster
-            'restDelayFunction' => function () {},
+            'restDelayFunction' => function () {
+            },
         ]);
 
         // Call any method to test the retry
