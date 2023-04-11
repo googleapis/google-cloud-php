@@ -523,14 +523,21 @@ class RestTest extends TestCase
     ) {
         $rest = new Rest($restConfig);
         $reflection = new \ReflectionClass($rest);
-        $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
-        $reflectionMethod->setAccessible(true);
-        $retryFun = $reflectionMethod->invoke(
-            $rest,
-            $resource,
-            $op,
-            $args,
-        );
+        $reflectionProp = $reflection->getProperty('restRetryFunction');
+        $reflectionProp->setAccessible(true);
+        $restRetryFunction = $reflectionProp->getValue($rest);
+        if (isset($restRetryFunction)) {
+            $retryFun = $restRetryFunction;
+        } else {
+            $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
+            $reflectionMethod->setAccessible(true);
+            $retryFun = $reflectionMethod->invoke(
+                $rest,
+                $resource,
+                $op,
+                $args,
+            );
+        }
 
         $this->assertEquals(
             $expected,
@@ -628,7 +635,7 @@ class RestTest extends TestCase
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             // Precedence given to restRetryFunction in the operation than in the StorageClient
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, true],
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }

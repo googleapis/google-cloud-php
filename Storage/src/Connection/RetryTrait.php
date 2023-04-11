@@ -126,15 +126,12 @@ trait RetryTrait
      * @param string $resource resource name, eg: buckets.
      * @param string $method method name, eg: get
      * @param array $args
-     * @param callable $restRetryFunction User given retry function
      * @return callable
      */
-    private function getRestRetryFunction($resource, $method, array $args, $restRetryFunction = null)
+    private function getRestRetryFunction($resource, $method, array $args)
     {
         if (isset($args['restRetryFunction'])) {
             return $args['restRetryFunction'];
-        } elseif (!is_null($restRetryFunction)) {
-            return $restRetryFunction;
         }
         $methodName = sprintf('%s.%s', $resource, $method);
         $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
