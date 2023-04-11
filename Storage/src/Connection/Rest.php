@@ -813,7 +813,7 @@ class Rest implements ConnectionInterface
     private function fetchOptions($arguments)
     {
         foreach ($arguments as $argument) {
-            if (is_array($argument) && isset($argument['headers'])) {
+            if (is_array($argument)) {
                 return $argument;
             }
         }
@@ -829,7 +829,7 @@ class Rest implements ConnectionInterface
     private function setOptions(array &$arguments, array $options)
     {
         foreach ($arguments as &$argument) {
-            if (is_array($argument) && isset($argument['headers'])) {
+            if (is_array($argument)) {
                 $argument = $options;
                 break;
             }
