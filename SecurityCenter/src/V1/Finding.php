@@ -150,7 +150,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $indicator = null;
     /**
-     * Represents vulnerability-specific fields like CVE and CVS scores.
+     * Represents vulnerability-specific fields like CVE and CVSS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -164,8 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -206,9 +206,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $processes;
     /**
-     * Output only. Map containing the points of contact for the given finding. The key
-     * represents the type of contact, while the value contains a list of all the
-     * contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding.
+     * The key represents the type of contact, while the value contains a list of
+     * all the contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -264,6 +264,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_steps = 40;</code>
      */
     private $next_steps = '';
+    /**
+     * Unique identifier of the module which generated the finding.
+     * Example:
+     * folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     *
+     * Generated from protobuf field <code>string module_name = 41;</code>
+     */
+    private $module_name = '';
     /**
      * Containers associated with the finding. containers provides information
      * for both Kubernetes and non-Kubernetes containers.
@@ -372,14 +380,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           intrusion.
      *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      *     @type \Google\Cloud\SecurityCenter\V1\Vulnerability $vulnerability
-     *           Represents vulnerability-specific fields like CVE and CVS scores.
+     *           Represents vulnerability-specific fields like CVE and CVSS scores.
      *           CVE stands for Common Vulnerabilities and Exposures
      *           (https://cve.mitre.org/about/)
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     *           information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
+     *           system information and external system finding fields.
      *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
@@ -396,9 +404,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
-     *           Output only. Map containing the points of contact for the given finding. The key
-     *           represents the type of contact, while the value contains a list of all the
-     *           contacts that pertain. Please refer to:
+     *           Output only. Map containing the points of contact for the given finding.
+     *           The key represents the type of contact, while the value contains a list of
+     *           all the contacts that pertain. Please refer to:
      *           https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *               {
      *                 "security": {
@@ -426,6 +434,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Represents IAM bindings associated with the Finding.
      *     @type string $next_steps
      *           Next steps associate to the finding.
+     *     @type string $module_name
+     *           Unique identifier of the module which generated the finding.
+     *           Example:
+     *           folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
      *     @type array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Containers associated with the finding. containers provides information
      *           for both Kubernetes and non-Kubernetes containers.
@@ -953,7 +965,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents vulnerability-specific fields like CVE and CVS scores.
+     * Represents vulnerability-specific fields like CVE and CVSS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -976,7 +988,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents vulnerability-specific fields like CVE and CVS scores.
+     * Represents vulnerability-specific fields like CVE and CVSS scores.
      * CVE stands for Common Vulnerabilities and Exposures
      * (https://cve.mitre.org/about/)
      *
@@ -1029,8 +1041,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -1041,8 +1053,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1217,9 +1229,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the points of contact for the given finding. The key
-     * represents the type of contact, while the value contains a list of all the
-     * contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding.
+     * The key represents the type of contact, while the value contains a list of
+     * all the contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -1243,9 +1255,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the points of contact for the given finding. The key
-     * represents the type of contact, while the value contains a list of all the
-     * contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding.
+     * The key represents the type of contact, while the value contains a list of
+     * all the contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -1438,6 +1450,36 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_steps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique identifier of the module which generated the finding.
+     * Example:
+     * folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     *
+     * Generated from protobuf field <code>string module_name = 41;</code>
+     * @return string
+     */
+    public function getModuleName()
+    {
+        return $this->module_name;
+    }
+
+    /**
+     * Unique identifier of the module which generated the finding.
+     * Example:
+     * folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     *
+     * Generated from protobuf field <code>string module_name = 41;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModuleName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->module_name = $var;
 
         return $this;
     }

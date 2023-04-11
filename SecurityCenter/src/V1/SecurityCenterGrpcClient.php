@@ -50,6 +50,24 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the
+     * given CRM parent, and also creates inherited
+     * SecurityHealthAnalyticsCustomModules for all CRM descendants of the given
+     * parent. These modules are enabled by default.
+     * @param \Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateSecurityHealthAnalyticsCustomModule(\Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateSecurityHealthAnalyticsCustomModule',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a source.
      * @param \Google\Cloud\SecurityCenter\V1\CreateSourceRequest $argument input argument
      * @param array $metadata metadata
@@ -141,6 +159,23 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Deletes the specified SecurityHealthAnalyticsCustomModule and all of its
+     * descendants in the CRM hierarchy. This method is only supported for
+     * resident custom modules.
+     * @param \Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteSecurityHealthAnalyticsCustomModule(\Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/DeleteSecurityHealthAnalyticsCustomModule',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets a BigQuery export.
      * @param \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument input argument
      * @param array $metadata metadata
@@ -216,6 +251,36 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
+     * @param \Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEffectiveSecurityHealthAnalyticsCustomModule(\Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetEffectiveSecurityHealthAnalyticsCustomModule',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieves a SecurityHealthAnalyticsCustomModule.
+     * @param \Google\Cloud\SecurityCenter\V1\GetSecurityHealthAnalyticsCustomModuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetSecurityHealthAnalyticsCustomModule(\Google\Cloud\SecurityCenter\V1\GetSecurityHealthAnalyticsCustomModuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetSecurityHealthAnalyticsCustomModule',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets a source.
      * @param \Google\Cloud\SecurityCenter\V1\GetSourceRequest $argument input argument
      * @param array $metadata metadata
@@ -283,6 +348,22 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
+     * the given CRM parent and all of the parent’s CRM descendants.
+     * @param \Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListDescendantSecurityHealthAnalyticsCustomModules(\Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListDescendantSecurityHealthAnalyticsCustomModules',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists an organization or source's findings.
      *
      * To list across all sources provide a `-` as the source id.
@@ -327,6 +408,40 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListNotificationConfigs',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the
+     * given parent. This includes resident modules defined at the scope of the
+     * parent, and inherited modules, inherited from CRM ancestors.
+     * @param \Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListEffectiveSecurityHealthAnalyticsCustomModules(\Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListEffectiveSecurityHealthAnalyticsCustomModules',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns a list of all SecurityHealthAnalyticsCustomModules for the given
+     * parent. This includes resident modules defined at the scope of the parent,
+     * and inherited modules, inherited from CRM ancestors.
+     * @param \Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSecurityHealthAnalyticsCustomModules(\Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListSecurityHealthAnalyticsCustomModules',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -500,6 +615,25 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateOrganizationSettings',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\OrganizationSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the SecurityHealthAnalyticsCustomModule under the given name based
+     * on the given update mask. Updating the enablement state is supported on
+     * both resident and inherited modules (though resident modules cannot have an
+     * enablement state of “inherited”). Updating the display name and custom
+     * config of a module is supported on resident modules only.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateSecurityHealthAnalyticsCustomModule(\Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityHealthAnalyticsCustomModule',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule', 'decode'],
         $metadata, $options);
     }
 
