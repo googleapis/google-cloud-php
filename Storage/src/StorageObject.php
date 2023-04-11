@@ -696,7 +696,7 @@ class StorageObject
             'restRetryListener' => function (
                 \Exception $e,
                 $attempt,
-                &$arguments
+                $arguments
             ) use (
                 $resultStream,
                 $requestedBytes
@@ -715,7 +715,12 @@ class StorageObject
                     $endByte = $requestedBytes['endByte'];
 
                     // modify the range headers to fetch the remaining data
-                    $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
+                    $rangeHeaders = ['Range' => sprintf('bytes=%s-%s', $startByte, $endByte)];
+                    $arguments[0] = Utils::modifyRequest($arguments[0], [
+                        'set_headers' => $rangeHeaders
+                    ]);
+
+                    return $arguments;
                 }
             }
         ];
