@@ -23,6 +23,8 @@ use GuzzleHttp\Psr7\Utils;
 
 /**
  * Provides a light wrapper around often used request modification functions.
+ *
+ * @internal
  */
 trait RequestTrait
 {
@@ -38,10 +40,10 @@ trait RequestTrait
      * @return Request
      */
     private function appendOrModifyHeaders(
-        $request,
-        $headerKey,
-        $values,
-        $delimiter = '/'
+        Request $request,
+        string $headerKey,
+        array $values,
+        string $delimiter = '/'
     ) {
         $headerValues = [];
         $headerLine = $request->getHeaderLine($headerKey);
