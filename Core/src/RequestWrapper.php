@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\AgentHeader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
@@ -37,7 +36,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class RequestWrapper
 {
-    use RequestTrait;
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
@@ -212,15 +210,6 @@ class RequestWrapper
 
         if ($retryOptions['calcDelayFunction']) {
             $backoff->setCalcDelayFunction($retryOptions['calcDelayFunction']);
-        }
-
-        if (isset($options['retryHeaders'])) {
-            $request = $this->appendOrModifyHeaders(
-                $request,
-                AgentHeader::AGENT_HEADER_KEY,
-                $options['retryHeaders']
-            );
-            unset($options['retryHeaders']);
         }
 
         try {

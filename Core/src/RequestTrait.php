@@ -44,7 +44,9 @@ trait RequestTrait
         $delimiter = '/'
     ) {
         $headerValues = [];
-        foreach ($request->getHeader($headerKey) as $value) {
+        $headerLine = $request->getHeaderLine($headerKey);
+        $splitHeaders = explode(' ', $headerLine);
+        foreach ($splitHeaders as $value) {
             $elements = explode('/', $value);
             $headerValues[$elements[0]] = $elements[1];
         }

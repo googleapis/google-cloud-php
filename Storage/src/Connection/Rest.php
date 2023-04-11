@@ -683,7 +683,7 @@ class Rest implements ConnectionInterface
         $attempCountKey = 'gccl-attempt-count';
         // Would be applied later in ExponentialBackoff>execute() after reading
         // existing header value from Request object.
-        $args['retryHeaders'] = [
+        $args['restOptions']['retryHeaders'] = [
             $invocationIdHeaderValue,
             sprintf('%s/%d', $attempCountKey, 1)
         ];
