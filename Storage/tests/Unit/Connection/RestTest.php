@@ -538,51 +538,18 @@ class RestTest extends TestCase
      * This tests whether the $arguments passed to the callbacks for header
      * updation is properly done when those callbacks are invoked in the
      * ExponentialBackoff::execute() method.
+     *
+     * @dataProvider provideRetryHeaders
      */
-    public function testRetryHeadersBeforeRetry()
+    public function testRetryHeaders(int $maxAttempts)
     {
+        $attempt = 0;
         $response = new Response(200, [], $this->successBody);
         $actualOptions = [];
 
-        $httpHandler = function ($request, $options) use (&$attempt, &$actualOptions, $response) {
-            $actualOptions = $options;
-            return $response;
-        };
-
-        $rest = new Rest([
-            'httpHandler' => $httpHandler,
-            // Mock the authHttpHandler so it doesn't make a real request
-            'authHttpHandler' => function () {
-                return new Response(200, [], '{"access_token": "abc"}');
-            },
-        ]);
-
-        // Call any method to test the retry
-        $rest->listBuckets();
-
-        $this->assertArrayHasKey('headers', $actualOptions);
-        $this->assertArrayHasKey(AgentHeader::AGENT_HEADER_KEY, $actualOptions['headers']);
-
-        $agentHeader = $actualOptions['headers'][AgentHeader::AGENT_HEADER_KEY];
-        $agentHeaderParts = explode(' ', $agentHeader);
-        $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
-        $this->assertEquals('gccl-attempt-count/1', $agentHeaderParts[3]);
-    }
-
-    /**
-     * This tests whether the $arguments passed to the callbacks for header
-     * updation is properly done when those callbacks are invoked in the
-     * ExponentialBackoff::execute() method.
-     */
-    public function testRetryHeadersAfterRetry()
-    {
-        $response = new Response(200, [], $this->successBody);
-        $actualOptions = [];
-        $attempt = 1;
-
-        $httpHandler = function ($request, $options) use (&$attempt, &$actualOptions, $response) {
-            if ($attempt == 1) {
-                $attempt++;
+        $httpHandler = function ($request, $options) use (&$attempt, &$actualOptions, $response, $maxAttempts) {
+            $attempt++;
+            if ($attempt < $maxAttempts) {
                 throw new \Exception('Retrying');
             }
             $actualOptions = $options;
@@ -595,6 +562,8 @@ class RestTest extends TestCase
             'authHttpHandler' => function () {
                 return new Response(200, [], '{"access_token": "abc"}');
             },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {},
         ]);
 
         // Call any method to test the retry
@@ -606,7 +575,16 @@ class RestTest extends TestCase
         $agentHeader = $actualOptions['headers'][AgentHeader::AGENT_HEADER_KEY];
         $agentHeaderParts = explode(' ', $agentHeader);
         $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
-        $this->assertEquals('gccl-attempt-count/2', $agentHeaderParts[3]);
+        $this->assertEquals('gccl-attempt-count/' . $maxAttempts, $agentHeaderParts[3]);
+    }
+
+    public function provideRetryHeaders()
+    {
+        return [
+            [1],
+            [2],
+            [3],
+        ];
     }
 
     public function retryFunctionReturnValues()
