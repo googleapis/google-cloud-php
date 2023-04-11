@@ -121,6 +121,18 @@ trait RetryTrait
     private static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
 
     /**
+     * Header that identifies a specific request hash. The
+     * hash needs to stay the same for multiple retries.
+     */
+    private static $INVOCATION_ID_HEADER = 'gccl-invocation-id';
+
+    /**
+     * Header that identifies the attempt count for a request. The
+     * value will increment by 1 with every retry.
+     */
+    private static $ATTEMPT_COUNT_HEADER = 'gccl-attempt-count';
+
+    /**
      * Return a retry decider function.
      *
      * @param string $resource resource name, eg: buckets.
@@ -269,5 +281,17 @@ trait RetryTrait
     public static function getHttpRetryCodes()
     {
         return self::$httpRetryCodes;
+    }
+
+    /**
+     * Utility func that returns the list of headers that need to be
+     * attached to every request and its retries.
+     */
+    public static function getRetryHeaders($invocationId, $attemptCount)
+    {
+        return [
+            sprintf('%s/%s', self::$INVOCATION_ID_HEADER, $invocationId),
+            sprintf('%s/%d', self::$ATTEMPT_COUNT_HEADER, $attemptCount)
+        ];
     }
 }

@@ -677,15 +677,13 @@ class Rest implements ConnectionInterface
      */
     private function addRetryHeaderLogic(array $args)
     {
-        $requestHash = Uuid::uuid4()->toString();
-        $invocationIdHeaderValue = 'gccl-invocation-id/' . $requestHash;
-        $attempCountKey = 'gccl-attempt-count';
-        // Would be applied later in ExponentialBackoff>execute() after reading
-        // existing header value from Request object.
-        $args['restOptions']['retryHeaders'] = [
-            $invocationIdHeaderValue,
-            sprintf('%s/%d', $attempCountKey, 1)
-        ];
+        $invocationId = Uuid::uuid4()->toString();
+        $currentHeaders = $args['restOptions']['headers'] ?? [];
+
+        $retryHeaders = self::getRetryHeaders($invocationId, 1);
+
+        $args['restOptions'] = array_merge($currentHeaders, $retryHeaders);
+
 
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
@@ -693,34 +691,17 @@ class Rest implements ConnectionInterface
             $retryAttempt,
             $arguments
         ) use (
-            $invocationIdHeaderValue,
-            $attempCountKey
-) {
-            $arguments[0] = $this->addRetryListenerCallback(
-                $retryAttempt,
+            $invocationId
+        ) {
+            $headerChanges = self::getRetryHeaders($invocationId, $retryAttempt);
+            $arguments[0] = $this->appendOrModifyHeaders(
                 $arguments[0],
-                $invocationIdHeaderValue,
-                $attempCountKey
+                AgentHeader::AGENT_HEADER_KEY,
+                $headerChanges
             );
             return $arguments;
         };
-        return $args;
-    }
 
-    private function addRetryListenerCallback(
-        $retryAttempt,
-        $request,
-        $invocationIdHeaderValue,
-        $attempCountKey
-    ) {
-        $headerChanges = [
-            $invocationIdHeaderValue,
-            sprintf('%s/%d', $attempCountKey, $retryAttempt + 1)
-        ];
-        return $this->appendOrModifyHeaders(
-            $request,
-            AgentHeader::AGENT_HEADER_KEY,
-            $headerChanges
-        );
+        return $args;
     }
 }

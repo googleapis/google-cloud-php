@@ -545,40 +545,6 @@ class RestTest extends TestCase
         );
     }
 
-    /**
-     * This tests whether the $arguments passed to the callbacks for header
-     * updation is properly done when those callbacks are invoked in the
-     * ExponentialBackoff::execute() method.
-     */
-    public function testAddRetryListenerCallback()
-    {
-        $request = new Request('GET', '/somewhere');
-        $invocationIdHeaderValue = 'gccl-invocation-id/value';
-        $retryAttempt = 1;
-        $headerLineName = AgentHeader::AGENT_HEADER_KEY;
-
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $rest = new Rest();
-        $reflection = new \ReflectionClass(Rest::class);
-        $reflectionMethod = $reflection->getMethod('addRetryListenerCallback');
-        $reflectionMethod->setAccessible(true);
-        $request = $reflectionMethod->invokeArgs($rest, [
-            $retryAttempt,
-            $request,
-            $invocationIdHeaderValue,
-            'gccl-attempt-count'
-        ]);
-
-        $expected = sprintf(
-            '%s gccl-attempt-count/%s',
-            $invocationIdHeaderValue,
-            $retryAttempt + 1
-        );
-        $actual = implode(' ', $request->getHeader($headerLineName));
-        $this->assertEquals($expected, $actual);
-    }
-
     public function retryFunctionReturnValues()
     {
         $restMaxRetry = 7;

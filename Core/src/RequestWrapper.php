@@ -30,6 +30,7 @@ use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Google\ApiCore\AgentHeader;
 
 /**
  * The RequestWrapper is responsible for delivering and signing requests.
@@ -292,9 +293,13 @@ class RequestWrapper
      */
     private function applyHeaders(RequestInterface $request)
     {
+        $currentApiClientHeaders = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
         $headers = [
-            'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            'x-goog-api-client' => 'gl-php/' . PHP_VERSION . ' gccl/' . $this->componentVersion,
+            'User-Agent' => sprintf('gcloud-php/%s', $this->componentVersion),
+            AgentHeader::AGENT_HEADER_KEY => sprintf('%s gl-php/%s gccl/',
+                $currentApiClientHeaders,
+                PHP_VERSION,
+                $this->componentVersion),
         ];
 
         if ($this->shouldSignRequest) {
