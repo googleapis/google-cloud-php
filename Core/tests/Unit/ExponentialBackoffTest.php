@@ -162,13 +162,13 @@ class ExponentialBackoffTest extends TestCase
     }
 
     /**
-     * Tests whether `onRetryExceptionFunction()` callback is
+     * Tests whether `retryListener()` callback is
      * properly invoked when exception occurs in the request being made.
      */
-    public function testOnRetryExceptionFunction()
+    public function testRetryListener()
     {
         $args = ['foo' => 'bar'];
-        $onRetryExceptionFunction = function (
+        $retryListener = function (
             $ex,
             $retryAttempt,
             $arguments
@@ -179,7 +179,7 @@ class ExponentialBackoffTest extends TestCase
 
         // Setting $retries to 0 so that retry doesn't happens after first
         // failure.
-        $backoff = new ExponentialBackoff(0, null, $onRetryExceptionFunction);
+        $backoff = new ExponentialBackoff(0, null, $retryListener);
         try {
             $backoff->execute(
                 function () {
@@ -189,7 +189,7 @@ class ExponentialBackoffTest extends TestCase
             );
         } catch (\Exception $err) {
             // Do nothing.
-            // Catched the intentional failing call being made above:
+            // Catching the intentional failing call being made above:
             // "Intentionally failing request"
         }
     }
