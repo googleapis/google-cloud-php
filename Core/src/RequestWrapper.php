@@ -37,6 +37,7 @@ use Google\ApiCore\AgentHeader;
  */
 class RequestWrapper
 {
+    use RequestTrait;
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
@@ -215,7 +216,7 @@ class RequestWrapper
 
         try {
             return $backoff->execute($this->httpHandler, [
-                $this->applyHeaders($request),
+                $this->applyHeaders($request, $options),
                 $this->getRequestOptions($options)
             ]);
         } catch (\Exception $ex) {
@@ -289,17 +290,18 @@ class RequestWrapper
      * Applies headers to the request.
      *
      * @param RequestInterface $request A PSR-7 request.
+     * @param array $options
      * @return RequestInterface
      */
-    private function applyHeaders(RequestInterface $request)
+    private function applyHeaders(RequestInterface $request, $options)
     {
-        $currentApiClientHeaders = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
         $headers = [
-            'User-Agent' => sprintf('gcloud-php/%s', $this->componentVersion),
-            AgentHeader::AGENT_HEADER_KEY => sprintf('%s gl-php/%s gccl/',
-                $currentApiClientHeaders,
+            'User-Agent' => 'gcloud-php/' . $this->componentVersion,
+            AgentHeader::AGENT_HEADER_KEY => sprintf(
+                'gl-php/%s gccl/%s',
                 PHP_VERSION,
-                $this->componentVersion),
+                $this->componentVersion
+            ),
         ];
 
         if ($this->shouldSignRequest) {
@@ -324,7 +326,20 @@ class RequestWrapper
             }
         }
 
-        return Utils::modifyRequest($request, ['set_headers' => $headers]);
+        $request = Utils::modifyRequest($request, ['set_headers' => $headers]);
+
+        if (isset($options['restOptions'])
+            && isset($options['restOptions']['retryHeaders'])
+        ) {
+            $request = $this->appendOrModifyHeaders(
+                $request,
+                AgentHeader::AGENT_HEADER_KEY,
+                $options['restOptions']['retryHeaders']
+            );
+            unset($options['restOptions']['retryHeaders']);
+        }
+
+        return $request;
     }
 
     /**

@@ -678,12 +678,7 @@ class Rest implements ConnectionInterface
     private function addRetryHeaderLogic(array $args)
     {
         $invocationId = Uuid::uuid4()->toString();
-        $currentHeaders = $args['restOptions']['headers'] ?? [];
-
-        $retryHeaders = self::getRetryHeaders($invocationId, 1);
-
-        $args['restOptions'] = array_merge($currentHeaders, $retryHeaders);
-
+        $args['restOptions']['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
 
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (

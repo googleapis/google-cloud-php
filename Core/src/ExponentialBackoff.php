@@ -17,14 +17,11 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\AgentHeader;
-
 /**
  * Exponential backoff implementation.
  */
 class ExponentialBackoff
 {
-    use RequestTrait;
     const MAX_DELAY_MICROSECONDS = 60000000;
 
     /**
@@ -95,16 +92,6 @@ class ExponentialBackoff
         $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
         $retryAttempt = 0;
         $exception = null;
-
-        if (isset($arguments[1]) && isset($arguments[1]['retryHeaders'])) {
-            // Then $arguments[0] == $request object
-            $arguments[0] = $this->appendOrModifyHeaders(
-                $arguments[0],
-                AgentHeader::AGENT_HEADER_KEY,
-                $arguments[1]['retryHeaders']
-            );
-            unset($arguments[1]['retryHeaders']);
-        }
 
         while (true) {
             try {
