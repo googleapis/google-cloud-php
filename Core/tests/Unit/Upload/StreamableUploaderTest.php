@@ -125,7 +125,7 @@ class StreamableUploaderTest extends TestCase
 
     public function testThrowsExceptionWithFailedUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 
@@ -176,7 +176,7 @@ class StreamableUploaderTest extends TestCase
 
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new StreamableUploader(

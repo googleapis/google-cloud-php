@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -46,7 +47,7 @@ class ArrayTraitTest extends TestCase
 
     public function testPluckThrowsExceptionWithInvalidKey()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $array = [];
         $this->impl->call('pluck', ['not_here', &$array]);

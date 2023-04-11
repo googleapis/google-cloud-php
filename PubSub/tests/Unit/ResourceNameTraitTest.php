@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\ResourceNameTrait;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -65,7 +66,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testPluckNameInvalidFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('pluckName', ['lame', 'bar']);
     }
@@ -93,7 +94,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testFormatNameInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('formatName', ['lame', 'foo']);
     }
@@ -139,7 +140,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testIsFullyQualifiedNameInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('isFullyQualifiedName', ['lame', 'foo']);
     }

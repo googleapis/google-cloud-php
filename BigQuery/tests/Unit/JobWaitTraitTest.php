@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
+use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -85,7 +86,7 @@ class JobWaitTraitTest extends TestCase
 
     public function testWaitThrowsExceptionWhenMaxAttemptsMet()
     {
-        $this->expectException('Google\Cloud\BigQuery\Exception\JobException');
+        $this->expectException(JobException::class);
         $this->expectExceptionMessage('Job did not complete within the allowed number of retries.');
 
         $this->trait->call('wait', [

@@ -49,7 +49,7 @@ class MessageBuilderTest extends TestCase
 
     public function testMissingData()
     {
-        $this->expectException('\BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         (new MessageBuilder)->build();
     }

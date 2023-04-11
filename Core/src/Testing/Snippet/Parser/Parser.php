@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
-use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerFactory;
 use DOMDocument;
 use Parsedown;
@@ -59,7 +58,7 @@ class Parser
      * @param string $class the name of the class
      * @param int|string $index The index of the example to return.
      * @return Snippet
-     * @throws Exception
+     * @throws \Exception
      */
     public function classExample($class, $index = 0)
     {

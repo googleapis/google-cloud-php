@@ -32,6 +32,7 @@ use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -211,7 +212,7 @@ class StorageObjectTest extends TestCase
 
     public function testCopyObjectThrowsExceptionWithInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->copy($object);
@@ -316,7 +317,7 @@ class StorageObjectTest extends TestCase
 
     public function testRewriteObjectThrowsExceptionWithInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->rewrite($object);
@@ -700,7 +701,7 @@ class StorageObjectTest extends TestCase
      */
     public function testInvalidSigningVersion()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time()+1, [
             'version' => uniqid()
@@ -755,7 +756,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFilePath()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time(), [
             'keyFilePath' => __DIR__ . '/foo/bar/json.json'
@@ -767,7 +768,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFileData()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $file = tmpfile();
         $path = stream_get_meta_data($file)['uri'];
         fwrite($file, '{');

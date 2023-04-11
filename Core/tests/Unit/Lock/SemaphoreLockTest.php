@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Testing\Lock\MockValues;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,14 +48,14 @@ class SemaphoreLockTest extends TestCase
 
     public function testThrowsExceptionWithInvalidKey()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new SemaphoreLock('abc');
     }
 
     public function testThrowsExceptionWhenSemAcquireFailsOnAcquire()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to acquire lock.');
 
         MockValues::$sem_acquireReturnValue = false;
@@ -63,7 +64,7 @@ class SemaphoreLockTest extends TestCase
 
     public function testThrowsExceptionWhenSemReleaseFailsOnRelease()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to release lock.');
 
         $this->lock->acquire();
@@ -73,7 +74,7 @@ class SemaphoreLockTest extends TestCase
 
     public function testThrowsExceptionWhenSemGetFails()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to generate semaphore ID.');
 
         MockValues::$sem_getReturnValue = false;

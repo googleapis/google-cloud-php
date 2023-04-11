@@ -28,10 +28,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -47,8 +44,8 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use PHPUnit\Framework\TestCase;
 use Google\Rpc\Code;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -594,21 +591,21 @@ class DatabaseTest extends TestCase
 
     public function testSnapshotMinReadTimestamp()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->snapshot(['minReadTimestamp' => 'foo']);
     }
 
     public function testSnapshotMaxStaleness()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->snapshot(['maxStaleness' => 'foo']);
     }
 
     public function testSnapshotNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -685,7 +682,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNoCommit()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -721,7 +718,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -749,7 +746,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionShouldRetryOnRstStreamErrors()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ServerException');
+        $this->expectException(ServerException::class);
         $this->expectExceptionMessage('RST_STREAM');
         $err = new ServerException('RST_STREAM', Code::INTERNAL);
 
@@ -834,7 +831,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionAborted()
     {
-        $this->expectException('Google\Cloud\Core\Exception\AbortedException');
+        $this->expectException(AbortedException::class);
 
         $abort = new AbortedException('foo', 409, null, [
             [
@@ -916,7 +913,7 @@ class DatabaseTest extends TestCase
 
     public function testTransactionNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -1247,7 +1244,7 @@ class DatabaseTest extends TestCase
 
     public function testExecuteBeginMaxStalenessFails()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->___setProperty('sessionPool', null);
         $this->database->___setProperty('session', $this->session);

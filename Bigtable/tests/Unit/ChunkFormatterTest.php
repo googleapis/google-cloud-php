@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
+use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
@@ -52,7 +53,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenNoRowKey()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A row key must be set.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -99,7 +100,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenResetIsTrue()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A new row cannot be reset.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -115,7 +116,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenNoFamilyName()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A family must be set.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -130,7 +131,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenNoQualifier()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A column qualifier must be set.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -148,7 +149,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenValueSizeAndCommitRow()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A row cannot have a value size and be a commit row.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -171,7 +172,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenSameRowKeyFollows()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A commit happened but the same key followed.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -380,7 +381,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testNewRowShouldThrowWhenPendingRow()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('Response ended with pending row without commit.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -404,7 +405,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testValidateResetWithRowKey()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -432,7 +433,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testValidateResetWithQualifier()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -460,7 +461,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testValidateResetWithValue()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -488,7 +489,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testValidateResetWithTimestampMicro()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -516,7 +517,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testRowInProgressDifferentRowKey()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A commit is required between row keys.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -543,7 +544,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testRowInProgressFamilyNameWithouQualifier()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A qualifier must be specified.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -573,7 +574,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testRowInProgressValueSizeAndCommit()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A row cannot have a value size and be a commit row.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -820,7 +821,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testCellInProgressValueSizeAndCommit()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A row cannot have a value size and be a commit row.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -849,7 +850,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testCellInProgressValidateResetWithRowKey()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -878,7 +879,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testCellInProgressValidateResetWithQualifier()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -909,7 +910,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testCellInProgressValidateResetWithValue()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;
@@ -938,7 +939,7 @@ class ChunkFormatterTest extends TestCase
 
     public function testCellInProgressValidateResetWithTimestampMicro()
     {
-        $this->expectException('\Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A reset should have no data.');
 
         $readRowsResponse = new ReadRowsResponse;

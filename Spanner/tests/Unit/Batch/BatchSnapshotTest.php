@@ -248,7 +248,7 @@ class BatchSnapshotTest extends TestCase
 
     public function testExecutePartitionInvalidType()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Unsupported partition type.');
 
         $dummy = new DummyPartition;

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
@@ -64,7 +65,7 @@ class IncomingMessageTraitTest extends TestCase
 
     public function testInvalidMessage()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $this->stub->call(
             'messageFactory',
