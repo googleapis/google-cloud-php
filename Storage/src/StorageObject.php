@@ -692,35 +692,33 @@ class StorageObject
             }
         };
 
-        $options += [
-            'restRetryListener' => function (
-                \Exception $e,
-                $attempt,
-                $arguments
-            ) use (
-                $resultStream,
-                $requestedBytes
-            ) {
-                // if the exception has a response for us to use
-                if ($e instanceof RequestException && $e->hasResponse()) {
-                    $msg = (string) $e->getResponse()->getBody();
+        $options['restRetryListener'] = function (
+            \Exception $e,
+            $attempt,
+            $arguments
+        ) use (
+            $resultStream,
+            $requestedBytes
+        ) {
+            // if the exception has a response for us to use
+            if ($e instanceof RequestException && $e->hasResponse()) {
+                $msg = (string) $e->getResponse()->getBody();
 
-                    $fetchedStream = Utils::streamFor($msg);
+                $fetchedStream = Utils::streamFor($msg);
 
-                    // add the partial response to our stream that we will return
-                    Utils::copyToStream($fetchedStream, $resultStream);
+                // add the partial response to our stream that we will return
+                Utils::copyToStream($fetchedStream, $resultStream);
 
-                    // Start from the byte that was last fetched
-                    $startByte = intval($requestedBytes['startByte']) + $resultStream->getSize();
-                    $endByte = $requestedBytes['endByte'];
+                // Start from the byte that was last fetched
+                $startByte = intval($requestedBytes['startByte']) + $resultStream->getSize();
+                $endByte = $requestedBytes['endByte'];
 
-                    // modify the range headers to fetch the remaining data
-                    $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
+                // modify the range headers to fetch the remaining data
+                $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
 
-                    return $arguments;
-                }
+                return $arguments;
             }
-        ];
+        };
 
         $fetchedStream = $this->connection->downloadObject(
             $this->formatEncryptionHeaders(

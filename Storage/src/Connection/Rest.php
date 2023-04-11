@@ -533,7 +533,6 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
-            'restRetryListener' => null,
             'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
@@ -681,16 +680,13 @@ class Rest implements ConnectionInterface
         $invocationId = Uuid::uuid4()->toString();
         $args['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
 
-        $currentListener = $args['restRetryListener'] ?? null;
-
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
             \Exception $e,
             $retryAttempt,
             $arguments
         ) use (
-            $invocationId,
-            $currentListener
+            $invocationId
         ) {
             $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
             $request = $arguments[0];
@@ -717,15 +713,6 @@ class Rest implements ConnectionInterface
                     AgentHeader::AGENT_HEADER_KEY => implode(' ', $headerElements)
                 ]
             ]);
-
-            // In some cases there might be a listener present
-            // So, we want to execute that after incrementing the attempt count
-            // Ex in case of downloads
-            if (!is_null($currentListener)) {
-                $arguments = call_user_func_array($currentListener, [
-                    $e, $retryAttempt, $arguments
-                ]);
-            }
 
             return $arguments;
         };
