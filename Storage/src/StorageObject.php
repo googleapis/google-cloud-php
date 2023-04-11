@@ -715,10 +715,7 @@ class StorageObject
                     $endByte = $requestedBytes['endByte'];
 
                     // modify the range headers to fetch the remaining data
-                    $rangeHeaders = ['Range' => sprintf('bytes=%s-%s', $startByte, $endByte)];
-                    $arguments[0] = Utils::modifyRequest($arguments[0], [
-                        'set_headers' => $rangeHeaders
-                    ]);
+                    $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
 
                     return $arguments;
                 }
