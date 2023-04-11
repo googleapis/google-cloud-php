@@ -556,14 +556,14 @@ class RestTest extends TestCase
     {
         $attempt = 0;
         $response = new Response(200, [], $this->successBody);
-        $actualOptions = [];
+        $actualRequest = null;
 
-        $httpHandler = function ($request, $options) use (&$attempt, &$actualOptions, $response, $maxAttempts) {
+        $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, $response, $maxAttempts) {
             $attempt++;
             if ($attempt < $maxAttempts) {
                 throw new \Exception('Retrying');
             }
-            $actualOptions = $options;
+            $actualRequest = $request;
             return $response;
         };
 
@@ -580,10 +580,9 @@ class RestTest extends TestCase
         // Call any method to test the retry
         $rest->listBuckets();
 
-        $this->assertArrayHasKey('headers', $actualOptions);
-        $this->assertArrayHasKey(AgentHeader::AGENT_HEADER_KEY, $actualOptions['headers']);
+        $this->assertNotNull($actualRequest);
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(AgentHeader::AGENT_HEADER_KEY));
 
-        $agentHeader = $actualOptions['headers'][AgentHeader::AGENT_HEADER_KEY];
         $agentHeaderParts = explode(' ', $agentHeader);
         $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
         $this->assertEquals('gccl-attempt-count/' . $maxAttempts, $agentHeaderParts[3]);
