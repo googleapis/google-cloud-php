@@ -73,7 +73,7 @@ trait RequestTrait
         // Adding existing values
         $headerLineValues = explode(' ', $headerLine);
         foreach ($headerLineValues as $value) {
-            $key = explode('/', $value)[0];
+            $key = explode($delimiter, $value)[0];
             $headerElements[$key] = $value;
         }
 
