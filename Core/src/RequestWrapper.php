@@ -37,7 +37,6 @@ use Google\ApiCore\AgentHeader;
  */
 class RequestWrapper
 {
-    use RequestTrait;
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
@@ -266,7 +265,7 @@ class RequestWrapper
             }
 
             return $asyncHttpHandler(
-                $this->applyHeaders($request),
+                $this->applyHeaders($request, $options),
                 $this->getRequestOptions($options)
             )->then(null, function (\Exception $ex) use ($fn, $retryAttempt, $retryOptions) {
                 $shouldRetry = $retryOptions['retryFunction']($ex, $retryAttempt);
@@ -300,9 +299,18 @@ class RequestWrapper
             AgentHeader::AGENT_HEADER_KEY => sprintf(
                 'gl-php/%s gccl/%s',
                 PHP_VERSION,
-                $this->componentVersion
+                $this->componentVersion,
             ),
         ];
+
+        if (isset($options['retryHeaders'])) {
+            $headers[AgentHeader::AGENT_HEADER_KEY] = sprintf(
+                '%s %s',
+                $headers[AgentHeader::AGENT_HEADER_KEY],
+                implode(' ', $options['retryHeaders'])
+            );
+            unset($options['retryHeaders']);
+        }
 
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
@@ -326,20 +334,7 @@ class RequestWrapper
             }
         }
 
-        $request = Utils::modifyRequest($request, ['set_headers' => $headers]);
-
-        if (isset($options['restOptions'])
-            && isset($options['restOptions']['retryHeaders'])
-        ) {
-            $request = $this->appendOrModifyHeaders(
-                $request,
-                AgentHeader::AGENT_HEADER_KEY,
-                $options['restOptions']['retryHeaders']
-            );
-            unset($options['restOptions']['retryHeaders']);
-        }
-
-        return $request;
+        return Utils::modifyRequest($request, ['set_headers' => $headers]);
     }
 
     /**

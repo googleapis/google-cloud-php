@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -19,7 +20,6 @@ namespace Google\Cloud\Storage\Connection;
 
 use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\RequestBuilder;
-use Google\Cloud\Core\RequestTrait;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Storage\Connection\RetryTrait;
@@ -45,7 +45,6 @@ use Ramsey\Uuid\Uuid;
  */
 class Rest implements ConnectionInterface
 {
-    use RequestTrait;
     use RestTrait {
         send as private traitSend;
     }
@@ -678,7 +677,7 @@ class Rest implements ConnectionInterface
     private function addRetryHeaderLogic(array $args)
     {
         $invocationId = Uuid::uuid4()->toString();
-        $args['restOptions']['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
+        $args['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
 
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
@@ -688,12 +687,31 @@ class Rest implements ConnectionInterface
         ) use (
             $invocationId
         ) {
-            $headerChanges = self::getRetryHeaders($invocationId, $retryAttempt);
-            $arguments[0] = $this->appendOrModifyHeaders(
-                $arguments[0],
-                AgentHeader::AGENT_HEADER_KEY,
-                $headerChanges
-            );
+            $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
+            $request = $arguments[0];
+            $headerLine = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
+
+            // An associative array to contain final header values as
+            // $headerValueKey => $headerValue
+            $headerElements = [];
+
+            // Adding existing values
+            $headerLineValues = explode(' ', $headerLine);
+            foreach ($headerLineValues as $value) {
+                $key = explode('/', $value)[0];
+                $headerElements[$key] = $value;
+            }
+
+            // Adding changes with replacing value if $key already present
+            foreach ($changes as $change) {
+                $key = explode('/', $change)[0];
+                $headerElements[$key] = $change;
+            }
+            $arguments[0] = Utils::modifyRequest($request, [
+                'set_headers' => [
+                    AgentHeader::AGENT_HEADER_KEY => implode(' ', $headerElements)
+                ]
+            ]);
             return $arguments;
         };
 
