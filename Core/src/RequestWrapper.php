@@ -299,7 +299,7 @@ class RequestWrapper
             AgentHeader::AGENT_HEADER_KEY => sprintf(
                 'gl-php/%s gccl/%s',
                 PHP_VERSION,
-                $this->componentVersion,
+                $this->componentVersion
             ),
         ];
 
