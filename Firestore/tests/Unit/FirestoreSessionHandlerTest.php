@@ -90,7 +90,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testReadNotAllowed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)

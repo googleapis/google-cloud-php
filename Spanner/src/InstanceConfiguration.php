@@ -301,7 +301,7 @@ class InstanceConfiguration
      *           response. **Defaults to** `false`.
      * }
      * @return LongRunningOperation<InstanceConfiguration>
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
     {

@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -49,7 +50,7 @@ class ClientTraitTest extends TestCase
      */
     public function testGetConnectionTypeInvalidStatus($dependencyStatus, $config)
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $this->dependency->___setProperty('dependencyStatus', $dependencyStatus);
         $this->dependency->call('getConnectionType', [$config]);
@@ -119,7 +120,7 @@ class ClientTraitTest extends TestCase
 
     public function testRequireGrpcThrowsExceptionWithoutGrpc()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $this->dependency->___setProperty('dependencyStatus', false);
         $this->dependency->call('requireGrpc');
@@ -165,7 +166,7 @@ class ClientTraitTest extends TestCase
 
     public function testConfigureAuthenticationWithInvalidKeyFilePath()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $keyFilePath = __DIR__ . '/i/sure/hope/this/doesnt/exist';
 
@@ -176,7 +177,7 @@ class ClientTraitTest extends TestCase
 
     public function testConfigureAuthenticationWithKeyFileThatCantBeDecoded()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $keyFilePath = __DIR__ . '/ClientTraitTest.php';
 
@@ -187,7 +188,7 @@ class ClientTraitTest extends TestCase
 
     public function testDetectProjectIdWithNoProjectIdAvailable()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $conf = $this->impl->call('detectProjectId', [[
             'projectIdRequired' => true,
@@ -287,7 +288,7 @@ class ClientTraitTest extends TestCase
 
     public function testDetectProjectIdOnGceButOhNoThereStillIsntAProjectId()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $projectId = null;
 

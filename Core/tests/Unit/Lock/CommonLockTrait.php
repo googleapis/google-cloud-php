@@ -59,7 +59,7 @@ trait CommonLockTrait
 
     public function testSynchronizeLockThrowsException()
     {
-        $this->expectException('\Exception');
+        $this->expectException(\Exception::class);
 
         $this->lock->synchronize(function () {
             throw new \Exception();

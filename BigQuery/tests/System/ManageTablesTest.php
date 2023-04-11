@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 
 /**
  * @group bigquery
@@ -134,7 +135,7 @@ class ManageTablesTest extends BigQueryTestCase
 
     public function testUpdateTableConcurrentUpdateFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $data = [
             'friendlyName' => 'foo',

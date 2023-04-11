@@ -406,7 +406,7 @@ class FirestoreClient
      *        collection or subcollection with this ID as the last segment of
      *        its path will be included. May not contain a slash.
      * @return Query
-     * @throws InvalidArgumentException If the collection ID is not well-formed.
+     * @throws \InvalidArgumentException If the collection ID is not well-formed.
      */
     public function collectionGroup($id)
     {

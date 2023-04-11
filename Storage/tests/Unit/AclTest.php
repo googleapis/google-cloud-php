@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -39,7 +40,7 @@ class AclTest extends TestCase
 
     public function testThrowsExceptionWithInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $acl = new Acl($this->connection->reveal(), 'nope', ['bucket' => 'bucket']);
     }

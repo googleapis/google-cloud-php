@@ -369,7 +369,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           precision.
      * }
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function log($level, $message, array $context = [])
     {
@@ -516,7 +516,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *
      * @param string|int $level The severity of the log entry.
      * @return bool
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function validateLogLevel($level)
     {

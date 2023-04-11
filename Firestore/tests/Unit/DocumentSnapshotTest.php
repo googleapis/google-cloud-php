@@ -23,6 +23,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use InvalidArgumentException;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -171,14 +172,14 @@ class DocumentSnapshotTest extends TestCase
 
     public function testGetInvalid()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->snapshot->get('foo');
     }
 
     public function testGetInvalidArgumentType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->snapshot->get(1234);
     }
@@ -193,14 +194,14 @@ class DocumentSnapshotTest extends TestCase
 
     public function testArrayAccessSetDisabled()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->snapshot['name'] = 'bob';
     }
 
     public function testArrayAccessUnsetDisabled()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         unset($this->snapshot['name']);
     }

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -24,6 +25,7 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\ValueMapper;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -146,7 +148,7 @@ class SnapshotTraitTest extends TestCase
 
     public function testGetSnapshotReadTimeInvalidReadTime()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
@@ -157,7 +159,7 @@ class SnapshotTraitTest extends TestCase
 
     public function testGetSnapshotNotFound()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),

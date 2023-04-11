@@ -415,7 +415,7 @@ class SigningHelperTest extends TestCase
 
     public function testV4SignInvalidExpiration()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
@@ -474,7 +474,7 @@ class SigningHelperTest extends TestCase
      */
     public function testInvalidExpiration($method)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->$method(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
@@ -543,7 +543,7 @@ class SigningHelperTest extends TestCase
      */
     public function testNormalizeOptionsInvalidTimestamps($timestamp)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->proxyPrivateMethodCall('normalizeOptions', [
             ['timestamp' => $timestamp]
@@ -601,7 +601,7 @@ class SigningHelperTest extends TestCase
      */
     public function testV2InvalidHeaders($header)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->v2Sign(
             $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
@@ -749,7 +749,7 @@ class SigningHelperTest extends TestCase
 
     public function testGetSigningCredentialsInvalidKeyfilePath()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $conn = $this->mockConnection();
 

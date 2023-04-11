@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -82,7 +83,7 @@ class ArrayTypeTest extends TestCase
      */
     public function testFailsOnInvalidType($type)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new ArrayType($type);
     }

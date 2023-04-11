@@ -107,7 +107,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     public function testClassErrorHandler()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
@@ -116,8 +116,8 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
                 return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                 && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                 && isset($args['keys'][0]['path'][0]['name']);
+                    && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && isset($args['keys'][0]['path'][0]['name']);
             })
         ))->shouldBeCalled()->willReturn([]);
 

@@ -22,6 +22,7 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
@@ -92,7 +93,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testUploadsDataWithInvalidCallback()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $callback = 'foo';
 
@@ -207,7 +208,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new ResumableUploader(
@@ -221,7 +222,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testThrowsExceptionWhenResumingNonSeekableStream()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $stream = $this->prophesize(StreamInterface::class);
         $stream->isSeekable()->willReturn(false);
@@ -238,7 +239,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testThrowsExceptionWithFailedUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 
