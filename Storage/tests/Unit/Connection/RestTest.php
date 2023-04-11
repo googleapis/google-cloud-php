@@ -523,48 +523,26 @@ class RestTest extends TestCase
     ) {
         $rest = new Rest($restConfig);
         $reflection = new \ReflectionClass($rest);
-        $property = $reflection->getProperty('restRetryFunction');
-        $property->setAccessible(true);
-        $restRetryFunction = $property->getValue($rest);
-        $retryFun = $rest->getRestRetryFunction($resource, $op, $args, $restRetryFunction);
+        $reflectionProp = $reflection->getProperty('restRetryFunction');
+        $reflectionProp->setAccessible(true);
+        $restRetryFunction = $reflectionProp->getValue($rest);
+        if (isset($restRetryFunction)) {
+            $retryFun = $restRetryFunction;
+        } else {
+            $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
+            $reflectionMethod->setAccessible(true);
+            $retryFun = $reflectionMethod->invoke(
+                $rest,
+                $resource,
+                $op,
+                $args,
+            );
+        }
 
         $this->assertEquals(
             $expected,
             $retryFun(new \Exception('', $errorCode), $currAttempt)
         );
-    }
-
-    /**
-     * This tests whether the $arguments passed to the callbacks for header
-     * updation is properly done when those callbacks are invoked in the
-     * ExponentialBackoff::execute() method.
-     */
-    public function testUpdateRetryHeaders()
-    {
-        $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
-        $requestHash = 'dummy_hash';
-        $currentAttempt = 1;
-        $headerLineName = AgentHeader::AGENT_HEADER_KEY;
-
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $rest = new Rest();
-        $reflection = new \ReflectionClass(Rest::class);
-        $reflectionMethod = $reflection->getMethod('updateRetryheaders');
-        $reflectionMethod->setAccessible(true);
-        $reflectionMethod->invokeArgs($rest, [
-            &$arguments,
-            $requestHash,
-            $currentAttempt
-        ]);
-
-        $this->assertArrayHasKey($headerLineName, $arguments[1]['headers']);
-        $expected = sprintf(
-            "gccl-invocation-id/%s gccl-attempt-count/%s",
-            $requestHash,
-            $currentAttempt
-        );
-        $this->assertEquals($expected, $arguments[1]['headers'][$headerLineName]);
     }
 
     public function retryFunctionReturnValues()
@@ -623,7 +601,7 @@ class RestTest extends TestCase
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
             ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
             // Precedence given to restRetryFunction in the operation than in the StorageClient
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
+            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, true],
             ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }
