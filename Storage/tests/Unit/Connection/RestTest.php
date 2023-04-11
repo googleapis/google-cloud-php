@@ -552,7 +552,7 @@ class RestTest extends TestCase
         $rest = new Rest([
             'httpHandler' => $httpHandler,
             // Mock the authHttpHandler so it doesn't make a real request
-            'authHttpHandler' => function() {
+            'authHttpHandler' => function () {
                 return new Response(200, [], '{"access_token": "abc"}');
             },
         ]);
@@ -592,7 +592,7 @@ class RestTest extends TestCase
         $rest = new Rest([
             'httpHandler' => $httpHandler,
             // Mock the authHttpHandler so it doesn't make a real request
-            'authHttpHandler' => function() {
+            'authHttpHandler' => function () {
                 return new Response(200, [], '{"access_token": "abc"}');
             },
         ]);
