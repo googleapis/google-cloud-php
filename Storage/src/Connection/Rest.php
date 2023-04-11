@@ -693,7 +693,10 @@ class Rest implements ConnectionInterface
             \Exception $e,
             $retryAttempt,
             $arguments
-        ) use ($invocationIdHeaderValue, $attempCountKey) {
+        ) use (
+            $invocationIdHeaderValue,
+            $attempCountKey
+) {
             $arguments[0] = $this->addRetryListenerCallback(
                 $retryAttempt,
                 $arguments[0],
@@ -710,8 +713,7 @@ class Rest implements ConnectionInterface
         $request,
         $invocationIdHeaderValue,
         $attempCountKey
-    )
-    {
+    ) {
         $headerChanges = [
             $invocationIdHeaderValue,
             sprintf('%s/%d', $attempCountKey, $retryAttempt + 1)
@@ -722,4 +724,4 @@ class Rest implements ConnectionInterface
             $headerChanges
         );
     }
- }
+}
