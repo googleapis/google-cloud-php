@@ -545,7 +545,7 @@ class RestTest extends TestCase
      */
     public function testAddRetryListenerCallback()
     {
-        $arguments = [new Request('GET', '/somewhere'), ['headers' => []]];
+        $request = new Request('GET', '/somewhere');
         $invocationIdHeaderValue = 'gccl-invocation-id/value';
         $retryAttempt = 1;
         $headerLineName = AgentHeader::AGENT_HEADER_KEY;
@@ -556,9 +556,9 @@ class RestTest extends TestCase
         $reflection = new \ReflectionClass(Rest::class);
         $reflectionMethod = $reflection->getMethod('addRetryListenerCallback');
         $reflectionMethod->setAccessible(true);
-        $reflectionMethod->invokeArgs($rest, [
+        $request = $reflectionMethod->invokeArgs($rest, [
             $retryAttempt,
-            $arguments,
+            $request,
             $invocationIdHeaderValue,
             'gccl-attempt-count'
         ]);
@@ -568,7 +568,7 @@ class RestTest extends TestCase
             $invocationIdHeaderValue,
             $retryAttempt + 1
         );
-        $actual = implode(' ', $arguments[0]->getHeader($headerLineName));
+        $actual = implode(' ', $request->getHeader($headerLineName));
         $this->assertEquals($expected, $actual);
     }
 

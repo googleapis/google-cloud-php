@@ -692,31 +692,31 @@ class Rest implements ConnectionInterface
         $args['restRetryListener'] = function (
             \Exception $e,
             $retryAttempt,
-            &$arguments
+            $arguments
         ) use ($invocationIdHeaderValue, $attempCountKey) {
-            $this->addRetryListenerCallback(
+            $arguments[0] = $this->addRetryListenerCallback(
                 $retryAttempt,
-                $arguments,
+                $arguments[0],
                 $invocationIdHeaderValue,
                 $attempCountKey
             );
+            return $arguments;
         };
         return $args;
     }
 
     private function addRetryListenerCallback(
         $retryAttempt,
-        &$arguments,
+        $request,
         $invocationIdHeaderValue,
         $attempCountKey
     )
     {
-        $request = $arguments[0];
         $headerChanges = [
             $invocationIdHeaderValue,
             sprintf('%s/%d', $attempCountKey, $retryAttempt + 1)
         ];
-        $arguments[0] = $this->appendOrModifyHeaders(
+        return $this->appendOrModifyHeaders(
             $request,
             AgentHeader::AGENT_HEADER_KEY,
             $headerChanges
