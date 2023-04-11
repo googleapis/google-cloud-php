@@ -47,7 +47,7 @@ class ExponentialBackoff
     /**
      * @var callable|null
      */
-    private $onRetryExceptionFunction;
+    private $retryListener;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
