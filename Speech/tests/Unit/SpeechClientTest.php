@@ -23,6 +23,7 @@ use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -49,7 +50,7 @@ class SpeechClientTest extends TestCase
 
     public function testThrowsExceptionWithoutLanguageCode()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $client = TestHelpers::stub(SpeechClient::class, [['suppressKeyFileNotice' => true]]);
         $client->recognize(self::GCS_URI);

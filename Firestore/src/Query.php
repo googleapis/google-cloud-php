@@ -958,7 +958,7 @@ class Query
      * @param string $basePath The relative base of the document reference.
      * @param mixed $document The document.
      * @return DocumentReference
-     * @throws InvalidArgumentException If $document is not a valid document.
+     * @throws \InvalidArgumentException If $document is not a valid document.
      */
     private function createDocumentReference($basePath, $document)
     {

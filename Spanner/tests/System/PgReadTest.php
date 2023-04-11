@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\DeadlineExceededException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 
@@ -386,7 +388,7 @@ class PgReadTest extends SpannerPgTestCase
 
     public function testReadInvalidDatabase()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$client->connect('google-cloud-php-system-tests', uniqid(self::TESTING_PREFIX));
         $keyset = new KeySet(['all' => true]);
@@ -396,7 +398,7 @@ class PgReadTest extends SpannerPgTestCase
 
     public function testReadInvalidTable()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
@@ -406,7 +408,7 @@ class PgReadTest extends SpannerPgTestCase
 
     public function testReadInvalidColumn()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
@@ -416,7 +418,7 @@ class PgReadTest extends SpannerPgTestCase
 
     public function testReadFailsOnDeadlineExceeded()
     {
-        $this->expectException('Google\Cloud\Core\Exception\DeadlineExceededException');
+        $this->expectException(DeadlineExceededException::class);
 
         $this->skipEmulatorTests();
         $db = self::$database;

@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Iam;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -106,7 +107,7 @@ class IamTest extends TestCase
 
     public function testSetPolicyWithInvalidPolicy()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $iam = new Iam($this->connection->reveal(), self::RESOURCE);
         $res = $iam->setPolicy('foo');

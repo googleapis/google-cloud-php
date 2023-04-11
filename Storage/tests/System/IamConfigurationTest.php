@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Storage\StorageObject;
 
 /**
@@ -40,7 +41,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testUniformBucketLevelAccessAclFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $bucket->update($this->ublaConfig());
@@ -50,7 +51,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testObjectPolicyOnlyAclFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
 
@@ -141,7 +142,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testSetBucketAclToPublicAccessFailsWithPublicAccessPrevention()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->papConfig());
         $bucket->acl()->add('allUsers', 'READER');
@@ -149,7 +150,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testSetObjectAclToPublicAccessFailsWithPublicAccessPrevention()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->papConfig());
         $object = $bucket->upload('hello world', [
@@ -162,7 +163,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testInvalidPublicAccessPreventionSettingFailsOnCreate()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $config = $this->papConfig();
         $config['iamConfiguration']['publicAccessPrevention'] = 'well maybe we should? idk what do you think';
@@ -174,7 +175,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testInvalidPublicAccessPreventionSettingFailsOnUpdate()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         try {
             $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));

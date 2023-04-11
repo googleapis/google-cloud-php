@@ -405,7 +405,7 @@ class DatastoreClientTest extends TestCase
 
     public function testSingleMutationConflict()
     {
-        $this->expectException('DomainException');
+        $this->expectException(\DomainException::class);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()

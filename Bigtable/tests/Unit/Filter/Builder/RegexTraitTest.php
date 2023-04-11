@@ -44,7 +44,7 @@ class RegexTraitTest extends TestCase
 
     public function testEscapeLiteralValueShouldThrowIfNotByteArrayOrString()
     {
-        $this->expectException('\Exception');
+        $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Expected byte array or string, instead got \'object\'.');
 
         $this->implementation->call('escapeLiteralValue', [new \stdClass]);

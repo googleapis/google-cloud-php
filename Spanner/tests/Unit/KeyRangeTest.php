@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -87,7 +88,7 @@ class KeyRangeTest extends TestCase
 
     public function testSetStartInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->range->setStart('foo', ['foo']);
     }
@@ -101,7 +102,7 @@ class KeyRangeTest extends TestCase
 
     public function testSetEndInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->range->setEnd('foo', ['foo']);
     }
@@ -118,7 +119,7 @@ class KeyRangeTest extends TestCase
 
     public function testKeyRangeObjectBadRange()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->range->keyRangeObject();
     }
