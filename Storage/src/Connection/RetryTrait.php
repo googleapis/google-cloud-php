@@ -224,10 +224,6 @@ trait RetryTrait
         $maxRetries,
         $retryStrategy
     ) {
-        // No retry if maxRetries reached
-        if ($maxRetries <= $currentAttempt) {
-            return false;
-        }
         if ($retryStrategy == self::$RETRY_STRATEGY_NEVER) {
             return false;
         }
