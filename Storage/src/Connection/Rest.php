@@ -712,11 +712,10 @@ class Rest implements ConnectionInterface
                 $key = explode('/', $change)[0];
                 $headerElements[$key] = $change;
             }
-            $arguments[0] = Utils::modifyRequest($request, [
-                'set_headers' => [
-                    AgentHeader::AGENT_HEADER_KEY => implode(' ', $headerElements)
-                ]
-            ]);
+            $arguments[0] = $request->withHeader(
+                AgentHeader::AGENT_HEADER_KEY,
+                implode(' ', $headerElements)
+            );
 
             // In some cases there might be a listener present
             // So, we want to execute that after incrementing the attempt count

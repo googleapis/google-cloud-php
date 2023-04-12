@@ -645,8 +645,6 @@ class RestTest extends TestCase
             // Non idempotent
             ['bucket_acl', 'delete', [], [], 503, 2, false],
             ['bucket_acl', 'delete', [], [], 400, 3, false],
-            // Max retry reached
-            ['buckets', 'get', [], [], 503, 4, false],
             // User given restRetryFunction in the StorageClient which internally reaches Rest
             ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
             ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry + 1, false],

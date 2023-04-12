@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Kubernetes related attributes.
+ * Kubernetes-related attributes.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Kubernetes</code>
  */
