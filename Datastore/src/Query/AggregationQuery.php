@@ -137,6 +137,9 @@ class AggregationQuery
     }
 
     /**
+     * Format the query for use in the API.
+     *
+     * @return array
      * @throws UnexpectedValueException If the query is not supported.
      */
     private function aggregationQueryObject()

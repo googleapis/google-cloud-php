@@ -128,12 +128,9 @@ class Rest implements ConnectionInterface
         if (isset($args['aggregationQuery']['aggregations'])) {
             foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
                 $aggregation = array_map(
-                    function ($item) {
-                        // if empty, force request to encode as {} rather than [].
-                        return (is_array($item) && count($item) === 0)
-                            ? new \stdClass()
-                            : $item;
-                    },
+                    fn ($item) => is_array($item) && count($item) === 0
+                        ? new \stdClass
+                        : $item,
                     $aggregation
                 );
             }

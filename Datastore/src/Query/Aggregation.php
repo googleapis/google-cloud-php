@@ -39,7 +39,7 @@ class Aggregation
     /**
      * @var array Properties for an aggregation query.
      */
-    private $props = [];
+    private array $props = [];
 
     /**
      * @var string Holds key for aggregation type.
