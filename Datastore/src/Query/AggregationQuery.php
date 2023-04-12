@@ -72,7 +72,7 @@ class AggregationQuery
     /**
      * @var array
      */
-    private $aggregates = [];
+    private array $aggregates = [];
 
     /**
      * Create an aggregation query.
@@ -100,8 +100,7 @@ class AggregationQuery
      * echo json_encode($query->queryObject());
      * ```
      *
-     * @param Aggregation|null $aggregation The Aggregation to be included.
-     *        Should be null for GqlQuery.
+     * @param Aggregation $aggregation The Aggregation to be included.
      * @return AggregationQuery
      */
     public function addAggregation($aggregation)

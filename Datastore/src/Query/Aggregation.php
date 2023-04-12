@@ -46,6 +46,11 @@ class Aggregation
      */
     private $aggregationType;
 
+    /**
+     * Construct an Aggregation object.
+     *
+     * @param string $aggregationType
+     */
     private function __construct($aggregationType)
     {
         $this->aggregationType = $aggregationType;

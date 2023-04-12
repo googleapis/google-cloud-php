@@ -61,7 +61,7 @@ class AggregationQueryResult
     /**
      * @var array
      */
-    private $aggregationResults = [];
+    private array $aggregationResults = [];
 
     /**
      * @var string|null
@@ -71,12 +71,13 @@ class AggregationQueryResult
     /**
      * Create AggregationQueryResult object.
      *
-     * @param array $result
+     * @param array $result Response of
+     *        [RunAggregationQuery](https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects/runAggregationQuery)
      */
     public function __construct($result = [])
     {
-        // When executing a GQL Query, the server will parse the query
-        // and return it with the first response batch.
+        // When executing an Agggregation query nested with GqlQuery, the server will return
+        // the parsed query with the first response batch.
         if (isset($result['query'])) {
             $this->query = new AggregationQuery(
                 $result['query']['nestedQuery'],
@@ -93,8 +94,6 @@ class AggregationQueryResult
             $this->readTime = $result['batch']['readTime'];
         }
     }
-
-
 
     /**
      * Get the Query Aggregation value.
