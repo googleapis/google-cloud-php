@@ -27,6 +27,8 @@ use Google\Cloud\Datastore\DatastoreClient;
 /**
  * Implementation of the
  * [Google Datastore JSON API](https://cloud.google.com/datastore/reference/rest/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
@@ -65,6 +67,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function allocateIds(array $args)
     {
@@ -73,6 +76,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function beginTransaction(array $args)
     {
@@ -81,6 +85,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function commit(array $args)
     {
@@ -89,6 +94,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function lookup(array $args)
     {
@@ -97,6 +103,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function rollback(array $args)
     {
@@ -105,6 +112,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runQuery(array $args)
     {
@@ -113,6 +121,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runAggregationQuery(array $args)
     {

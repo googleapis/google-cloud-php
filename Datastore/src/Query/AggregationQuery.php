@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Datastore\Query;
 
-use Google\Cloud\Datastore\Query\Query;
 use UnexpectedValueException;
 
 /**
@@ -63,7 +62,7 @@ use UnexpectedValueException;
  */
 class AggregationQuery
 {
-    const TYPE_COUNT = 'count';
+    use QueryTrait;
 
     /**
      * @var QueryInterface|null
@@ -80,9 +79,10 @@ class AggregationQuery
      *
      * @param QueryInterface|null $query
      */
-    public function __construct($query = null)
+    public function __construct($query = null, $aggregates = [])
     {
         $this->query = $query;
+        $this->aggregates = $aggregates;
     }
 
     /**
@@ -139,7 +139,7 @@ class AggregationQuery
     /**
      * @throws UnexpectedValueException If the query is not supported.
      */
-    public function queryObject()
+    private function aggregationQueryObject()
     {
         if ($this->query instanceof Query) {
             return [
@@ -155,16 +155,5 @@ class AggregationQuery
             ];
         }
         throw new UnexpectedValueException('unknown query type');
-    }
-
-    /**
-     * Return the query_type union field name.
-     *
-     * @return string
-     * @access private
-     */
-    public function queryKey()
-    {
-        return "aggregationQuery";
     }
 }

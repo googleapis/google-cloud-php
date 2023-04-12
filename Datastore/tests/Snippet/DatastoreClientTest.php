@@ -730,7 +730,6 @@ class DatastoreClientTest extends SnippetTestCase
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([]);
-        $query->queryKey()->willReturn('aggregateQuery');
         $snippet->addLocal('query', $query->reveal());
 
         $this->connection->runAggregationQuery(Argument::any())

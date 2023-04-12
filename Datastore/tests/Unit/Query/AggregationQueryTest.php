@@ -78,13 +78,6 @@ class AggregationQueryTest extends TestCase
         $this->assertArrayNotHasKey('aggregationQuery', $query->queryObject());
     }
 
-    public function testQueryKeyIsCorrect()
-    {
-        $query = new AggregationQuery(['foo' => 'bar']);
-
-        $this->assertEquals($query->queryKey(), 'aggregationQuery');
-    }
-
     public function testLimit()
     {
         $self = $this->query->limit(2);

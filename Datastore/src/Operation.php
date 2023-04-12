@@ -582,20 +582,7 @@ class Operation
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
         $res = $this->connection->runAggregationQuery($request);
-
-        $aggregateResult = new AggregationQueryResult();
-        // When executing a GQL Query, the server will parse the query
-        // and return it with the first response batch.
-        if (isset($res['query'])) {
-            $aggregateResult->query = new AggregationQuery($res['query']);
-        }
-        if (isset($res['transaction'])) {
-            $aggregateResult->transactionId = $res['transaction'];
-        }
-        $aggregateResult->aggregationResults = $res['batch']['aggregationResults'];
-        $aggregateResult->readTime = $this->formatReadTimeOption($res['batch']['readTime']);
-
-        return $aggregateResult;
+        return new AggregationQueryResult($res);
     }
 
     /**

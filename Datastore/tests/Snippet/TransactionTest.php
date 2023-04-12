@@ -420,7 +420,6 @@ class TransactionTest extends SnippetTestCase
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([]);
-        $query->queryKey()->willReturn('aggregationQuery');
         $snippet->addLocal('query', $query->reveal());
 
         $this->connection->runAggregationQuery(Argument::withEntry('transaction', self::TRANSACTION))

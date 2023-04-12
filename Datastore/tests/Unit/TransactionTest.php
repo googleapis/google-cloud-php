@@ -268,7 +268,6 @@ class TransactionTest extends TestCase
         ]);
 
         $query = $this->prophesize(AggregationQuery::class);
-        $query->queryKey()->willReturn('aggregationQuery');
         $query->queryObject()->willReturn([
             'gqlQuery' => [
                 'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'

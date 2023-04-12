@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimestampTrait;
 use InvalidArgumentException;
 
 /**
@@ -45,25 +46,55 @@ use InvalidArgumentException;
  */
 class AggregationQueryResult
 {
+    use TimestampTrait;
+
     /**
      * @var AggregationQuery
      */
-    public $query;
+    private $query;
 
     /**
      * @var Timestamp
      */
-    public $readTime;
+    private $readTime;
 
     /**
      * @var array
      */
-    public $aggregationResults = [];
+    private $aggregationResults = [];
 
     /**
      * @var string|null
      */
-    public $transactionId;
+    private $transaction;
+
+    /**
+     * Create AggregationQueryResult object.
+     *
+     * @param array $result
+     */
+    public function __construct($result = [])
+    {
+        // When executing a GQL Query, the server will parse the query
+        // and return it with the first response batch.
+        if (isset($result['query'])) {
+            $this->query = new AggregationQuery(
+                $result['query']['nestedQuery'],
+                $result['query']['aggregations']
+            );
+        }
+        if (isset($result['transaction'])) {
+            $this->transaction = $result['transaction'];
+        }
+        if (isset($result['batch']['aggregationResults'])) {
+            $this->aggregationResults = $result['batch']['aggregationResults'];
+        }
+        if (isset($result['batch']['readTime'])) {
+            $this->readTime = $result['batch']['readTime'];
+        }
+    }
+
+
 
     /**
      * Get the Query Aggregation value.
@@ -92,5 +123,35 @@ class AggregationQueryResult
             return $result['integerValue'];
         }
         return $result;
+    }
+
+    /**
+     * Gets the value of query for example in case of a GqlQuery.
+     *
+     * @return AggregationQuery
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
+     * Gets the transaction id when Aggregation is associated with a Transaction.
+     *
+     * @return string|null
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * Gets the timsstamp when Aggregation was executed.
+     *
+     * @return Timestamp
+     */
+    public function getReadTime()
+    {
+        return $this->readTime;
     }
 }
