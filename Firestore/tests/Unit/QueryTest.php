@@ -36,7 +36,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Google\Cloud\Firestore\Filter;
 
 /**

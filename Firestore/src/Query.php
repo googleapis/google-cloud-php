@@ -327,12 +327,14 @@ class Query
      * use Google\Cloud\Firestore\Filter;
      *
      * // Filtering with Filter::or
-     * $query = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
-     *                          Filter::field('firstName', '=', 'Monica')]));
+     * $query = $query->where(Filter::or([
+     *     Filter::field('firstName', '=', 'John'),
+     *     Filter::field('firstName', '=', 'Monica')
+     * ]));
      * ```
      *
      * @param string|array|FieldPath $fieldPath The field to filter by, or array of Filters.
-     * If filter array is provided, other params will be ignored.
+     *     If filter array is provided, other params will be ignored.
      * @param string|int $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
@@ -343,7 +345,7 @@ class Query
         if (is_array($fieldPath)) {
             $filters = $this->createCompositeFilter($fieldPath);
         } else {
-            $filters = $this->createNonCompositeFilter($fieldPath, $operator, $value);
+            $filters = $this->createFieldFilter($fieldPath, $operator, $value);
         }
 
         $query = [
@@ -980,15 +982,15 @@ class Query
     }
 
     /**
-     * Create a non composite Filter.
+     * Create a field/unary Filter.
      *
      * @param string|array|FieldPath $fieldPath A field to filter by.
      * @param string|int $operator An operator to filter by.
      * @param mixed $value A value to compare to.
-     * @return array A non composite Filter array.
+     * @return array A field/unary Filter array.
      * @throws \InvalidArgumentException If an invalid operator or value is encountered.
      */
-    private function createNonCompositeFilter($fieldPath, $operator, $value)
+    private function createFieldFilter($fieldPath, $operator, $value)
     {
         $basePath = $this->basePath();
         if ($value instanceof FieldValueInterface) {
@@ -1066,21 +1068,21 @@ class Query
     }
 
     /**
-     * Find and set the the filter type to either Field or Unary.
+     * Find the filter type to either Field or Unary.
      *
      * @param array $filter A field/unary filter array.
-     * @return array A non composite Filter array.
+     * @return array A field/unary Filter array.
      * @throws \InvalidArgumentException If an invalid filter is encountered.
      */
-    private function findAndSetNonCompositeFilter($filter)
+    private function findFilterType($filter)
     {
-        $nonCompositeFilter = $this->createNonCompositeFilter(
+        $fieldFilter = $this->createFieldFilter(
             $filter['fieldFilter']['field'],
             $filter['fieldFilter']['op'],
             $filter['fieldFilter']['value']
         );
 
-        return $nonCompositeFilter;
+        return $fieldFilter;
     }
 
     /**
@@ -1094,19 +1096,19 @@ class Query
     {
         foreach ($filters as $key => $filter) {
             if ($key === 'fieldFilter') {
-                $nonCompositeFilter = $this->findAndSetNonCompositeFilter($filters);
-                if (isset($nonCompositeFilter['unaryFilter'])) {
+                $fieldFilter = $this->findFilterType($filters);
+                if (isset($fieldFilter['unaryFilter'])) {
                     unset($filters['fieldFilter']);
-                    $filters['unaryFilter'] = $nonCompositeFilter['unaryFilter'];
+                    $filters['unaryFilter'] = $fieldFilter['unaryFilter'];
                 } else {
-                    $filters['fieldFilter'] = $nonCompositeFilter['fieldFilter'];
+                    $filters['fieldFilter'] = $fieldFilter['fieldFilter'];
                 }
             } elseif (isset($filter['fieldFilter'])) {
-                $filters[$key] = $this->findAndSetNonCompositeFilter($filter);
+                $filters[$key] = $this->findFilterType($filter);
             } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
                 $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
             } elseif (isset($filter['compositeFilter']) &&
-            isset($filter['compositeFilter']['filters'])) {
+                isset($filter['compositeFilter']['filters'])) {
                 $filters[$key]['compositeFilter']['filters'] =
                     $this->createCompositeFilter($filter['compositeFilter']['filters']);
             } else {
