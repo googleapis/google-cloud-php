@@ -32,9 +32,11 @@ use Google\Cloud\Tasks\V2beta2\Task;
  *
  * Tasks cannot be updated after creation; there is no UpdateTask command.
  *
- * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget], the maximum task size is
+ * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget],
+ * the maximum task size is
  * 100KB.
- * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum task size is 1MB.
+ * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum
+ * task size is 1MB.
  *
  * @param string $formattedParent The queue name. For example:
  *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Task extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * Optionally caller-specified in
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -56,15 +57,18 @@ class Task extends \Google\Protobuf\Internal\Message
      * The deadline for requests sent to the worker. If the worker does not
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
-     * task according to the [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
+     * task according to the
+     * [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
      * Note that when the request is cancelled, Cloud Tasks will stop listening
      * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
-     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is 10 minutes. The deadline
+     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is
+     * 10 minutes. The deadline
      *   must be in the interval [15 seconds, 30 minutes].
-     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest], 0 indicates that the
+     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest],
+     * 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
      *   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)
@@ -99,8 +103,9 @@ class Task extends \Google\Protobuf\Internal\Message
     private $response_count = 0;
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will be set.
-     * The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information is not retained by Cloud Tasks.
+     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will
+     * be set. The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information
+     * is not retained by Cloud Tasks.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Attempt first_attempt = 8;</code>
      */
@@ -112,8 +117,8 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $last_attempt = null;
     /**
-     * Output only. The view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] has
-     * been returned.
+     * Output only. The view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] has been returned.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View view = 10;</code>
      */
@@ -127,7 +132,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *           Optionally caller-specified in
+     *           [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
      *           The task name.
      *           The task name must have the following format:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -146,15 +152,18 @@ class Task extends \Google\Protobuf\Internal\Message
      *             hyphens (-), or underscores (_). The maximum length is 500 characters.
      *     @type \Google\Cloud\Tasks\V2beta3\AppEngineHttpRequest $app_engine_http_request
      *           HTTP request that is sent to the App Engine app handler.
-     *           An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] set.
+     *           An App Engine task is a task that has
+     *           [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]
+     *           set.
      *     @type \Google\Cloud\Tasks\V2beta3\HttpRequest $http_request
      *           HTTP request that is sent to the task's target.
-     *           An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
+     *           An HTTP task is a task that has
+     *           [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *     @type \Google\Cloud\Tasks\V2beta3\PullMessage $pull_message
-     *           Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
-     *           payload type cannot be explicitly set through Cloud Tasks API. Its
-     *           purpose, currently is to provide backward compatibility with App Engine
-     *           Task Queue
+     *           Pull Message contained in a task in a
+     *           [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This payload
+     *           type cannot be explicitly set through Cloud Tasks API. Its purpose,
+     *           currently is to provide backward compatibility with App Engine Task Queue
      *           [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
      *           queues to provide a way to inspect contents of pull tasks through the
      *           [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
@@ -169,15 +178,18 @@ class Task extends \Google\Protobuf\Internal\Message
      *           The deadline for requests sent to the worker. If the worker does not
      *           respond by this deadline then the request is cancelled and the attempt
      *           is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
-     *           task according to the [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
+     *           task according to the
+     *           [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
      *           Note that when the request is cancelled, Cloud Tasks will stop listening
      *           for the response, but whether the worker stops processing depends on the
      *           worker. For example, if the worker is stuck, it may not react to cancelled
      *           requests.
      *           The default and maximum values depend on the type of request:
-     *           * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is 10 minutes. The deadline
+     *           * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is
+     *           10 minutes. The deadline
      *             must be in the interval [15 seconds, 30 minutes].
-     *           * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest], 0 indicates that the
+     *           * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest],
+     *           0 indicates that the
      *             request has the default deadline. The default deadline depends on the
      *             [scaling
      *             type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)
@@ -200,13 +212,14 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Output only. The number of attempts which have received a response.
      *     @type \Google\Cloud\Tasks\V2beta3\Attempt $first_attempt
      *           Output only. The status of the task's first attempt.
-     *           Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will be set.
-     *           The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information is not retained by Cloud Tasks.
+     *           Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will
+     *           be set. The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information
+     *           is not retained by Cloud Tasks.
      *     @type \Google\Cloud\Tasks\V2beta3\Attempt $last_attempt
      *           Output only. The status of the task's last attempt.
      *     @type int $view
-     *           Output only. The view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] has
-     *           been returned.
+     *           Output only. The view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta3.Task] has been returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,7 +228,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * Optionally caller-specified in
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -242,7 +256,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * Optionally caller-specified in
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -274,7 +289,9 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the App Engine app handler.
-     * An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] set.
+     * An App Engine task is a task that has
+     * [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]
+     * set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpRequest app_engine_http_request = 3;</code>
      * @return \Google\Cloud\Tasks\V2beta3\AppEngineHttpRequest|null
@@ -291,7 +308,9 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the App Engine app handler.
-     * An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] set.
+     * An App Engine task is a task that has
+     * [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]
+     * set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpRequest app_engine_http_request = 3;</code>
      * @param \Google\Cloud\Tasks\V2beta3\AppEngineHttpRequest $var
@@ -307,7 +326,8 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the task's target.
-     * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
+     * An HTTP task is a task that has
+     * [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpRequest http_request = 11;</code>
      * @return \Google\Cloud\Tasks\V2beta3\HttpRequest|null
@@ -324,7 +344,8 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the task's target.
-     * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
+     * An HTTP task is a task that has
+     * [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpRequest http_request = 11;</code>
      * @param \Google\Cloud\Tasks\V2beta3\HttpRequest $var
@@ -339,10 +360,10 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
-     * payload type cannot be explicitly set through Cloud Tasks API. Its
-     * purpose, currently is to provide backward compatibility with App Engine
-     * Task Queue
+     * Pull Message contained in a task in a
+     * [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This payload
+     * type cannot be explicitly set through Cloud Tasks API. Its purpose,
+     * currently is to provide backward compatibility with App Engine Task Queue
      * [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
      * queues to provide a way to inspect contents of pull tasks through the
      * [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
@@ -361,10 +382,10 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
-     * payload type cannot be explicitly set through Cloud Tasks API. Its
-     * purpose, currently is to provide backward compatibility with App Engine
-     * Task Queue
+     * Pull Message contained in a task in a
+     * [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This payload
+     * type cannot be explicitly set through Cloud Tasks API. Its purpose,
+     * currently is to provide backward compatibility with App Engine Task Queue
      * [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
      * queues to provide a way to inspect contents of pull tasks through the
      * [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
@@ -463,15 +484,18 @@ class Task extends \Google\Protobuf\Internal\Message
      * The deadline for requests sent to the worker. If the worker does not
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
-     * task according to the [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
+     * task according to the
+     * [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
      * Note that when the request is cancelled, Cloud Tasks will stop listening
      * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
-     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is 10 minutes. The deadline
+     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is
+     * 10 minutes. The deadline
      *   must be in the interval [15 seconds, 30 minutes].
-     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest], 0 indicates that the
+     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest],
+     * 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
      *   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)
@@ -509,15 +533,18 @@ class Task extends \Google\Protobuf\Internal\Message
      * The deadline for requests sent to the worker. If the worker does not
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
-     * task according to the [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
+     * task according to the
+     * [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
      * Note that when the request is cancelled, Cloud Tasks will stop listening
      * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
-     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is 10 minutes. The deadline
+     * * For [HTTP tasks][google.cloud.tasks.v2beta3.HttpRequest], the default is
+     * 10 minutes. The deadline
      *   must be in the interval [15 seconds, 30 minutes].
-     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest], 0 indicates that the
+     * * For [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest],
+     * 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
      *   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)
@@ -603,8 +630,9 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will be set.
-     * The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information is not retained by Cloud Tasks.
+     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will
+     * be set. The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information
+     * is not retained by Cloud Tasks.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Attempt first_attempt = 8;</code>
      * @return \Google\Cloud\Tasks\V2beta3\Attempt|null
@@ -626,8 +654,9 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will be set.
-     * The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information is not retained by Cloud Tasks.
+     * Only [dispatch_time][google.cloud.tasks.v2beta3.Attempt.dispatch_time] will
+     * be set. The other [Attempt][google.cloud.tasks.v2beta3.Attempt] information
+     * is not retained by Cloud Tasks.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Attempt first_attempt = 8;</code>
      * @param \Google\Cloud\Tasks\V2beta3\Attempt $var
@@ -678,8 +707,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] has
-     * been returned.
+     * Output only. The view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] has been returned.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View view = 10;</code>
      * @return int
@@ -690,8 +719,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] has
-     * been returned.
+     * Output only. The view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] has been returned.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View view = 10;</code>
      * @param int $var

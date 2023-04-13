@@ -32,9 +32,9 @@ use Google\Protobuf\Timestamp;
  * Cancel a pull task's lease.
  *
  * The worker can use this method to cancel a task's lease by
- * setting its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] to now. This will
- * make the task available to be leased to the next caller of
- * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
+ * setting its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]
+ * to now. This will make the task available to be leased to the next caller
+ * of [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
  *
  * @param string $formattedName The task name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
