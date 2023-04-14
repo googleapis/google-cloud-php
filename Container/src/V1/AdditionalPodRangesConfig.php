@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Name for pod secondary ipv4 range which has the actual range defined ahead.
+     *
+     * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
+     */
+    private $pod_range_names;
 
     /**
      * Constructor.
@@ -23,11 +29,39 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_range_names
+     *           Name for pod secondary ipv4 range which has the actual range defined ahead.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Name for pod secondary ipv4 range which has the actual range defined ahead.
+     *
+     * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPodRangeNames()
+    {
+        return $this->pod_range_names;
+    }
+
+    /**
+     * Name for pod secondary ipv4 range which has the actual range defined ahead.
+     *
+     * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPodRangeNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->pod_range_names = $arr;
+
+        return $this;
     }
 
 }
