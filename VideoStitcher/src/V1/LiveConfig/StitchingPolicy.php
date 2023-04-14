@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Defines the ad stitching behavior in case the ad duration does not align
  * exactly with the ad break boundaries. If not specified, the default is
- * CUT_CURRENT.
+ * `CUT_CURRENT`.
  *
  * Protobuf type <code>google.cloud.video.stitcher.v1.LiveConfig.StitchingPolicy</code>
  */

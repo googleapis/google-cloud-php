@@ -7,7 +7,7 @@ namespace Google\Cloud\Video\Stitcher\V1;
 use UnexpectedValueException;
 
 /**
- * Determines the Ad tracking policy.
+ * Determines the ad tracking policy.
  *
  * Protobuf type <code>google.cloud.video.stitcher.v1.AdTracking</code>
  */
@@ -20,7 +20,7 @@ class AdTracking
      */
     const AD_TRACKING_UNSPECIFIED = 0;
     /**
-     * Client side ad tracking is specified. The client player is expected to
+     * Client-side ad tracking is specified. The client player is expected to
      * trigger playback and activity events itself.
      *
      * Generated from protobuf enum <code>CLIENT = 1;</code>

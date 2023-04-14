@@ -39,7 +39,7 @@ use Google\Rpc\Status;
  *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  * @param string $liveConfigId         The unique identifier ID to use for the live config.
  * @param string $liveConfigSourceUri  Source URI for the live stream manifest.
- * @param int    $liveConfigAdTracking Determines how the ads should be tracked. If
+ * @param int    $liveConfigAdTracking Determines how the ads are tracked. If
  *                                     [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
  *                                     is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
  */
