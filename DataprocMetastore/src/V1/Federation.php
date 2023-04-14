@@ -42,8 +42,8 @@ class Federation extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Immutable. The Apache Hive metastore version of the federation. All backend metastore
-     * versions must be compatible with the federation version.
+     * Immutable. The Apache Hive metastore version of the federation. All backend
+     * metastore versions must be compatible with the federation version.
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -72,14 +72,15 @@ class Federation extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Additional information about the current state of the metastore federation,
-     * if available.
+     * Output only. Additional information about the current state of the
+     * metastore federation, if available.
      *
      * Generated from protobuf field <code>string state_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_message = '';
     /**
-     * Output only. The globally unique resource identifier of the metastore federation.
+     * Output only. The globally unique resource identifier of the metastore
+     * federation.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -102,8 +103,8 @@ class Federation extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels for the metastore federation.
      *     @type string $version
-     *           Immutable. The Apache Hive metastore version of the federation. All backend metastore
-     *           versions must be compatible with the federation version.
+     *           Immutable. The Apache Hive metastore version of the federation. All backend
+     *           metastore versions must be compatible with the federation version.
      *     @type array|\Google\Protobuf\Internal\MapField $backend_metastores
      *           A map from `BackendMetastore` rank to `BackendMetastore`s from which the
      *           federation service serves metadata at query time. The map key represents
@@ -116,10 +117,11 @@ class Federation extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state of the federation.
      *     @type string $state_message
-     *           Output only. Additional information about the current state of the metastore federation,
-     *           if available.
+     *           Output only. Additional information about the current state of the
+     *           metastore federation, if available.
      *     @type string $uid
-     *           Output only. The globally unique resource identifier of the metastore federation.
+     *           Output only. The globally unique resource identifier of the metastore
+     *           federation.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,8 +258,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Apache Hive metastore version of the federation. All backend metastore
-     * versions must be compatible with the federation version.
+     * Immutable. The Apache Hive metastore version of the federation. All backend
+     * metastore versions must be compatible with the federation version.
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -268,8 +270,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Apache Hive metastore version of the federation. All backend metastore
-     * versions must be compatible with the federation version.
+     * Immutable. The Apache Hive metastore version of the federation. All backend
+     * metastore versions must be compatible with the federation version.
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -372,8 +374,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the current state of the metastore federation,
-     * if available.
+     * Output only. Additional information about the current state of the
+     * metastore federation, if available.
      *
      * Generated from protobuf field <code>string state_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -384,8 +386,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional information about the current state of the metastore federation,
-     * if available.
+     * Output only. Additional information about the current state of the
+     * metastore federation, if available.
      *
      * Generated from protobuf field <code>string state_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -400,7 +402,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The globally unique resource identifier of the metastore federation.
+     * Output only. The globally unique resource identifier of the metastore
+     * federation.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -411,7 +414,8 @@ class Federation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The globally unique resource identifier of the metastore federation.
+     * Output only. The globally unique resource identifier of the metastore
+     * federation.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

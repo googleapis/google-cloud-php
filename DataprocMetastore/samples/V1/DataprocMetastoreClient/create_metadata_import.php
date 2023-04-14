@@ -32,13 +32,13 @@ use Google\Rpc\Status;
 /**
  * Creates a new MetadataImport in a given project and location.
  *
- * @param string $formattedParent  The relative resource name of the service in which to create a metastore
- *                                 import, in the following form:
+ * @param string $formattedParent  The relative resource name of the service in which to create a
+ *                                 metastore import, in the following form:
  *
  *                                 `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
  *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
- * @param string $metadataImportId The ID of the metadata import, which is used as the final component of the
- *                                 metadata import's name.
+ * @param string $metadataImportId The ID of the metadata import, which is used as the final
+ *                                 component of the metadata import's name.
  *
  *                                 This value must be between 1 and 64 characters long, begin with a letter,
  *                                 end with a letter or number, and consist of alpha-numeric ASCII characters
