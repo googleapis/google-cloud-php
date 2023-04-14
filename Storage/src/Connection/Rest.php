@@ -687,7 +687,7 @@ class Rest implements ConnectionInterface
         $args['restRetryListener'] = function (
             \Exception $e,
             $retryAttempt,
-            $arguments
+            &$arguments
         ) use (
             $invocationId,
             $currentListener
@@ -721,8 +721,8 @@ class Rest implements ConnectionInterface
             // So, we want to execute that after incrementing the attempt count
             // Ex in case of downloads
             if (!is_null($currentListener)) {
-                $arguments = call_user_func_array($currentListener, [
-                    $e, $retryAttempt, $arguments
+                call_user_func_array($currentListener, [
+                    $e, $retryAttempt, &$arguments
                 ]);
             }
 
