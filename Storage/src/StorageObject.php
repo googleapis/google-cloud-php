@@ -22,7 +22,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
@@ -50,13 +49,6 @@ class StorageObject
      * @deprecated
      */
     const DEFAULT_DOWNLOAD_URL = SigningHelper::DEFAULT_DOWNLOAD_HOST;
-
-    /**
-     * Header and value that helps us identify a transcoded obj
-     * w/o making a metadata(info) call.
-     */
-    private const TRANSCODED_OBJ_HEADER_KEY = 'X-Goog-Stored-Content-Encoding';
-    private const TRANSCODED_OBJ_HEADER_VAL = 'gzip';
 
     /**
      * @var Acl ACL for the object.
@@ -679,67 +671,13 @@ class StorageObject
      */
     public function downloadAsStream(array $options = [])
     {
-        // This makes sure we honour the range headers specified by the user
-        $requestedBytes = $this->getRequestedBytes($options);
-        $resultStream = Utils::streamFor(null);
-        $transcodedObj = false;
-
-        // We try to deduce if the object is a transcoded object when we receive the headers.
-        $options['restOptions']['on_headers'] = function ($response) use (&$transcodedObj) {
-            $header = $response->getHeader(self::TRANSCODED_OBJ_HEADER_KEY);
-            if (is_array($header) && in_array(self::TRANSCODED_OBJ_HEADER_VAL, $header)) {
-                $transcodedObj = true;
-            }
-        };
-
-        $options += [
-            'restRetryListener' => function (
-                \Exception $e,
-                $attempt,
-                &$arguments
-            ) use (
-                $resultStream,
-                $requestedBytes
-            ) {
-                // if the exception has a response for us to use
-                if ($e instanceof RequestException && $e->hasResponse()) {
-                    $msg = (string) $e->getResponse()->getBody();
-
-                    $fetchedStream = Utils::streamFor($msg);
-
-                    // add the partial response to our stream that we will return
-                    Utils::copyToStream($fetchedStream, $resultStream);
-
-                    // Start from the byte that was last fetched
-                    $startByte = intval($requestedBytes['startByte']) + $resultStream->getSize();
-                    $endByte = $requestedBytes['endByte'];
-
-                    // modify the range headers to fetch the remaining data
-                    $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
-                }
-            }
-        ];
-
-        $fetchedStream = $this->connection->downloadObject(
+        return $this->connection->downloadObject(
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
                 + array_filter($this->identity)
             )
         );
-
-        // If our object is a transcoded object, then Range headers are not honoured.
-        // That means even if we had a partial download available, the final obj
-        // that was fetched will contain the complete object. So, we don't need to copy
-        // the partial stream, we can just return the stream we fetched.
-        if ($transcodedObj) {
-            return $fetchedStream;
-        }
-
-        Utils::copyToStream($fetchedStream, $resultStream);
-
-        $resultStream->seek(0);
-        return $resultStream;
     }
 
     /**
@@ -1334,30 +1272,5 @@ class StorageObject
             'sourceGeneration' => $this->identity['generation'],
             'userProject' => $this->identity['userProject'],
         ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
-    }
-
-    /**
-     * Util function to compute the bytes requested for a download request.
-     *
-     * @param array $options Request options
-     * @return array
-     */
-    private function getRequestedBytes(array $options)
-    {
-        $startByte = 0;
-        $endByte = '';
-
-        if (isset($options['restOptions']) && isset($options['restOptions']['headers'])) {
-            $headers = $options['restOptions']['headers'];
-            if (isset($headers['Range']) || isset($headers['range'])) {
-                $header = isset($headers['Range']) ? $headers['Range'] : $headers['range'];
-                $range = explode('=', $header);
-                $bytes = explode('-', $range[1]);
-                $startByte = $bytes[0];
-                $endByte = $bytes[1];
-            }
-        }
-
-        return compact('startByte', 'endByte');
     }
 }
