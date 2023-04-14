@@ -81,12 +81,12 @@ class VodSession extends \Google\Protobuf\Internal\Message
      */
     private $ad_tracking = 0;
     /**
-     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
-     * is used for the ads.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSession.GamSettings gam_settings = 13;</code>
      */
-    private $gam_vod_config = null;
+    private $gam_settings = null;
 
     /**
      * Constructor.
@@ -123,9 +123,9 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *           Required. Determines how the ad should be tracked. If
      *           [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
      *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
-     *     @type \Google\Cloud\Video\Stitcher\V1\GamVodConfig $gam_vod_config
-     *           This has the Google Ad Manager (GAM) related metadata in the case where GAM
-     *           is used for the ads.
+     *     @type \Google\Cloud\Video\Stitcher\V1\VodSession\GamSettings $gam_settings
+     *           This field should be set with appropriate values if GAM is being used for
+     *           ads.
      * }
      */
     public function __construct($data = NULL) {
@@ -410,39 +410,39 @@ class VodSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
-     * is used for the ads.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
-     * @return \Google\Cloud\Video\Stitcher\V1\GamVodConfig|null
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSession.GamSettings gam_settings = 13;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\VodSession\GamSettings|null
      */
-    public function getGamVodConfig()
+    public function getGamSettings()
     {
-        return $this->gam_vod_config;
+        return $this->gam_settings;
     }
 
-    public function hasGamVodConfig()
+    public function hasGamSettings()
     {
-        return isset($this->gam_vod_config);
+        return isset($this->gam_settings);
     }
 
-    public function clearGamVodConfig()
+    public function clearGamSettings()
     {
-        unset($this->gam_vod_config);
+        unset($this->gam_settings);
     }
 
     /**
-     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
-     * is used for the ads.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\GamVodConfig $var
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSession.GamSettings gam_settings = 13;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\VodSession\GamSettings $var
      * @return $this
      */
-    public function setGamVodConfig($var)
+    public function setGamSettings($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\GamVodConfig::class);
-        $this->gam_vod_config = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\VodSession\GamSettings::class);
+        $this->gam_settings = $var;
 
         return $this;
     }
