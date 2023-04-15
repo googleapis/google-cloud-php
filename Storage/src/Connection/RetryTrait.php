@@ -248,42 +248,10 @@ trait RetryTrait
     }
 
     /**
-     * Getter function that returns the RETRY_STRATEGY_ALWAYS key.
-     */
-    public static function getStrategyAlwaysKey()
-    {
-        return self::$RETRY_STRATEGY_ALWAYS;
-    }
-
-    /**
-     * Getter function that returns the RETRY_STRATEGY_NEVER key.
-     */
-    public static function getStrategyNeverKey()
-    {
-        return self::$RETRY_STRATEGY_NEVER;
-    }
-
-    /**
-     * Getter function that returns the RETRY_STRATEGY_IDEMPOTENT key.
-     */
-    public static function getStrategyIdempotentKey()
-    {
-        return self::$RETRY_STRATEGY_IDEMPOTENT;
-    }
-
-    /**
-     * Getter function that returns the HTTP retry codes.
-     */
-    public static function getHttpRetryCodes()
-    {
-        return self::$httpRetryCodes;
-    }
-
-    /**
      * Utility func that returns the list of headers that need to be
      * attached to every request and its retries.
      */
-    public static function getRetryHeaders($invocationId, $attemptCount)
+    private static function getRetryHeaders($invocationId, $attemptCount)
     {
         return [
             sprintf('%s/%s', self::$INVOCATION_ID_HEADER, $invocationId),

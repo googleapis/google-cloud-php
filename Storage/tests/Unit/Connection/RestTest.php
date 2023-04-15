@@ -681,11 +681,11 @@ class RestTest extends TestCase
         foreach ($retryCases as $retryCase) {
             // For retry always
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::getStrategyAlwaysKey();
+            $case[3]['retryStrategy'] = 'always';
             $case[6] = $this->assignExpectedOutcome(true, $retryCase);
             if (!in_array(
                 $retryCase[4],
-                Rest::getHttpRetryCodes()
+                RetryTraitImpl::getHttpRetryCodes()
             ) || $retryCase[5] > 3
             ) {
                 $case[6] = $this->assignExpectedOutcome(false, $retryCase);
@@ -694,7 +694,7 @@ class RestTest extends TestCase
 
             // For retry never
             $case = $retryCase;
-            $case[3]['retryStrategy'] = Rest::getStrategyNeverKey();
+            $case[3]['retryStrategy'] = 'never';
             $case[6] = $this->assignExpectedOutcome(false, $retryCase);
             $retryStrategyCases[] = $case;
         }
@@ -762,3 +762,17 @@ class RestCrc32cStub extends Rest
         return $call($args);
     }
 }
+
+// @codeCoverageIgnoreStart
+class RetryTraitImpl
+{
+    use RetryTrait {
+        isPreconditionSupplied as public;
+    }
+
+    public static function getHttpRetryCodes()
+    {
+        return self::$httpRetryCodes;
+    }
+}
+// @codeCoverageIgnoreEnd
