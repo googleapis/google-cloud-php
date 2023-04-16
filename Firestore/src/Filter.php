@@ -29,8 +29,10 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
  * use Google\Cloud\Firestore\Filter;
  *
  * // Filtering with Filter::or and Filter::field
- * $result = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
- *                          Filter::field('firstName', '=', 'Monica')]));
+ * $result = $query->where(Filter::or([
+ *     Filter::field('firstName', '=', 'John'),
+ *     Filter::field('firstName', '=', 'Monica')
+ * ]));
  * ```
  */
 class Filter
@@ -42,8 +44,10 @@ class Filter
      * ```
      * use Google\Cloud\Firestore\Filter;
      *
-     * $result = $query->where(Filter::and([Filter::field('firstName', '=', 'John'),
-     *                          Filter::field('age', '>', '25')]));
+     * $result = $query->where(Filter::and([
+     *     Filter::field('firstName', '=', 'John'),
+     *     Filter::field('age', '>', '25')
+     * ]));
      * ```
      *
      * @param array $filters A filter array.
@@ -61,8 +65,10 @@ class Filter
      * ```
      * use Google\Cloud\Firestore\Filter;
      *
-     * $result = $query->where(Filter::or([Filter::field('firstName', '=', 'John'),
-     *                          Filter::field('firstName', '=', 'Monica')]));
+     * $result = $query->where(Filter::or([
+     *     Filter::field('firstName', '=', 'John'),
+     *     Filter::field('firstName', '=', 'Monica')
+     * ]));
      * ```
      *
      * @param array $filters A filter array.
