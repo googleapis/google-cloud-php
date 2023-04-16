@@ -10,6 +10,8 @@ on:
       - 'Spanner/**'
       - '.github/workflows/spanner-emulator-system-tests.yaml'
 name: Run Spanner System Tests With Emulator
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-20.04
