@@ -22,7 +22,7 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    protected $url = '';
+    private $url = '';
     /**
      * Directory, relative to the source root, in which to run the build.
      * This must be a relative path. If a step's `dir` is specified and is an
@@ -30,7 +30,7 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dir = 5;</code>
      */
-    protected $dir = '';
+    private $dir = '';
     /**
      * The revision to fetch from the Git repository such as a branch, a tag, a
      * commit SHA, or any Git ref.
@@ -43,7 +43,7 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision = 6;</code>
      */
-    protected $revision = '';
+    private $revision = '';
 
     /**
      * Constructor.
