@@ -252,17 +252,16 @@ class Query implements QueryInterface
      *     ->filter('lastName', '=', 'Testguy');
      * ```
      *
-     * Using `(array $filter)` invocation to add composite/property filter.
+     * Using (array $filter) invocation to add composite/property filter.
      * ```
-     *
      * use Google\Cloud\Datastore\Query\Filter;
-     * $filterA = Filter::or([$subFilter1, ...$subFilters]);
-     * $filterB = Filter::and([$subFilter2, ...$subFilter]);
-     * $filterC = Filter::where($property1, $operator1, $value1);
+     * $filterA = Filter::or([$testFilter, ...$testFilters]); // OR filter
+     * $filterB = Filter::and([$testFilter, ...$testFilters]); // AND filter
+     * $filterC = Filter::where('foo', 'NOT IN', ['bar']); // Property filter
      * $query->filter($filterA)
      *     ->filter($filterB)
      *     ->filter($filterC)
-     *     ->filter($property2, $operator2, $value2);
+     *     ->filter('foo', '<', 'bar');
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
