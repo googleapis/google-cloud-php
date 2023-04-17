@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
-use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\Query;
 
 /**
@@ -30,7 +29,7 @@ class AggregateQueryTest extends FirestoreTestCase
 {
     private $query;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->query = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($this->query);
@@ -94,10 +93,10 @@ class AggregateQueryTest extends FirestoreTestCase
     public function testWhereInArray()
     {
         $name = $this->query->name();
-        $doc1 = $this->insertDoc([
+        $this->insertDoc([
             'foos' => ['foo', 'bar'],
         ]);
-        $doc2 = $this->insertDoc([
+        $this->insertDoc([
             'foos' => ['foo'],
         ]);
 
@@ -196,6 +195,7 @@ class AggregateQueryTest extends FirestoreTestCase
         foreach ($aggregations as $aggregation) {
             $query = $query->addAggregation($aggregation);
         }
+        $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
 
         $snapshot = $query->getSnapshot();
 
@@ -207,11 +207,11 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
         $actualTimestamp = $snapshot->getReadTime();
-        $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
         $this->assertInstanceOf(Timestamp::class, $snapshot->getReadTime());
-        $this->assertLessThanOrEqual(
+        $this->assertEqualsWithDelta(
             $expectedTimestamp->get()->getTimestamp(),
-            $actualTimestamp->get()->getTimestamp()
+            $actualTimestamp->get()->getTimestamp(),
+            10
         );
     }
 }

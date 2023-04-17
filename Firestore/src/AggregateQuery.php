@@ -113,12 +113,9 @@ class AggregateQuery
     /**
      * Clean up the query array before sending.
      *
-     * @internal Only supposed to be used internally.
-     *
-     * @access private
      * @return array The final aggregation query data.
      */
-    public function finalQueryPrepare()
+    private function finalQueryPrepare()
     {
         $parsedAggregates = [];
         foreach ($this->aggregates as $aggregate) {

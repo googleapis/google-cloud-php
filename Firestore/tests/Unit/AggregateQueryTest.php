@@ -23,7 +23,9 @@ use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionMethod;
 
 /**
  * @group firestore
@@ -31,6 +33,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class AggregateQueryTest extends TestCase
 {
+    use ProphecyTrait;
+
     const QUERY_PARENT = 'projects/example_project/databases/(default)/';
 
     private $queryObj = [
@@ -44,7 +48,7 @@ class AggregateQueryTest extends TestCase
     private $aggregate;
     private $aggregateQuery;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->query = TestHelpers::stub(Query::class, [
@@ -67,7 +71,10 @@ class AggregateQueryTest extends TestCase
         $expectedProps = [
             ['count' => []]
         ];
-        $aggregations = $this->aggregateQuery->finalQueryPrepare();
+
+        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
+        $finalQueryPrepare->setAccessible(true);
+        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery);
 
         $this->assertEquals($expectedProps, $aggregations['aggregations']);
         $this->assertArrayHasKey('structuredQuery', $aggregations);
@@ -87,7 +94,9 @@ class AggregateQueryTest extends TestCase
             ->limit(2)
         );
 
-        $aggregations = $this->aggregateQuery->finalQueryPrepare();
+        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
+        $finalQueryPrepare->setAccessible(true);
+        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery);
 
         $this->assertEquals($expectedProps, $aggregations['aggregations']);
         $this->assertArrayHasKey('structuredQuery', $aggregations);

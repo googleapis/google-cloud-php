@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use InvalidArgumentException;
+
 /**
  * Represents Aggregate properties.
  *
@@ -106,7 +108,7 @@ class Aggregate
     public function limit($value)
     {
         if ($value <= 0) {
-            throw new \InvalidArgumentException('limit must be postive');
+            throw new InvalidArgumentException('limit must be postive');
         }
 
         $this->props[$this->aggregationType] = ['upTo' => ['value' => $value]];
