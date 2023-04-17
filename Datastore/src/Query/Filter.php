@@ -28,17 +28,14 @@ use Google\Cloud\Datastore\Query\Query;
  *
  * Example:
  * ```
- * use Google\Cloud\Datastore\DatastoreClient;
- *
- * $datastore = new DatastoreClient();
- *
  * $filter = Filter::where('CompanyName', '=', 'Google');
- * $query = $datastore->query()
- * $query->kind('Companies')
+ * $query = $datastore->query();
+ * $query->kind('Companies');
  * $query->filter($filter);
  * $results = $datastore->runQuery($query);
+ * $finalResult = [];
  * foreach ($results as $result) {
- *     echo $result['CompanyName']; // Google
+ *     $finalResult[] = $result['companyName'];
  * }
  * ```
  *
@@ -46,17 +43,19 @@ use Google\Cloud\Datastore\Query\Query;
  * filters.
  * ```
  * // Or filter
- * $filterOr = Filter::or([$filter1, ...$filters]);
- *
- * // And Filter
- * $filterAnd = Filter::and([$filter1, ...$filters]);
+ * $filterType = 'or';
+ * $filterOr = Filter::or([$filter, ...$filters]);
+ * $query = $datastore->query();
+ * $query->kind('Companies');
+ * $query->filter($filter);
+ * $results = $datastore->runQuery($query);
+ * $finalResult = [];
+ * foreach ($results as $result) {
+ *     $finalResult[] = $result['companyName'];
+ * }
  * ```
  *
- * Property Filter can be created by using the following shorthand operators:
- *     `$operator = One of ['=', '<', '<=', '>', '>=', '!=', 'IN', 'NOT IN']`
- * ```
- * $filter = Filter::where($property, $operator, $value);
- * ```
+ * Similaryly, `AND` filter can be created using `Filter::and` method.
  */
 class Filter
 {
