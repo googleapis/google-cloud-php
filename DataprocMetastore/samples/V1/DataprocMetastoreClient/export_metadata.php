@@ -32,8 +32,8 @@ use Google\Rpc\Status;
 /**
  * Exports metadata from a service.
  *
- * @param string $formattedService The relative resource name of the metastore service to run export, in the
- *                                 following form:
+ * @param string $formattedService The relative resource name of the metastore service to run
+ *                                 export, in the following form:
  *
  *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
  *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.

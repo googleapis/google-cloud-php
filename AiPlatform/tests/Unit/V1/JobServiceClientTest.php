@@ -393,6 +393,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelVersionId = 'modelVersionId-1385431880';
         $serviceAccount = 'serviceAccount-1948028253';
         $generateExplanation = false;
+        $disableContainerLogging = true;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -400,6 +401,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGenerateExplanation($generateExplanation);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1647,6 +1649,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelVersionId = 'modelVersionId-1385431880';
         $serviceAccount = 'serviceAccount-1948028253';
         $generateExplanation = false;
+        $disableContainerLogging = true;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1654,6 +1657,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGenerateExplanation($generateExplanation);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');

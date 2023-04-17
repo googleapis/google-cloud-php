@@ -23,7 +23,7 @@ class Cloudscheduler
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ö
+Ä
 .google/cloud/scheduler/v1/cloudscheduler.protogoogle.cloud.scheduler.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/scheduler/v1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"s
 ListJobsRequest9
 parent (	B)‡A˙A#!cloudscheduler.googleapis.com/Job
@@ -38,10 +38,10 @@ page_token (	"Y
 !cloudscheduler.googleapis.com/Job"
 CreateJobRequest9
 parent (	B)‡A˙A#!cloudscheduler.googleapis.com/Job0
-job (2.google.cloud.scheduler.v1.JobB‡A"z
+job (2.google.cloud.scheduler.v1.JobB‡A"u
 UpdateJobRequest0
-job (2.google.cloud.scheduler.v1.JobB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"K
+job (2.google.cloud.scheduler.v1.JobB‡A/
+update_mask (2.google.protobuf.FieldMask"K
 DeleteJobRequest7
 name (	B)‡A˙A#
 !cloudscheduler.googleapis.com/Job"J

@@ -40,6 +40,26 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.Artifacts.ArtifactObjects objects = 2;</code>
      */
     private $objects = null;
+    /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Artifacts in the workspace matching specified paths globs will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any artifacts fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.MavenArtifact maven_artifacts = 3;</code>
+     */
+    private $maven_artifacts;
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * The build service account credentials will be used to perform the upload.
+     * If any objects fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.PythonPackage python_packages = 5;</code>
+     */
+    private $python_packages;
 
     /**
      * Constructor.
@@ -47,7 +67,7 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $images
      *           A list of images to be pushed upon the successful completion of all build
      *           steps.
      *           The images will be pushed using the builder service account's credentials.
@@ -62,6 +82,18 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      *           credentials.
      *           The location and generation of the uploaded objects will be stored in the
      *           Build resource's results field.
+     *           If any objects fail to be pushed, the build is marked FAILURE.
+     *     @type array<\Google\Cloud\Build\V1\Artifacts\MavenArtifact>|\Google\Protobuf\Internal\RepeatedField $maven_artifacts
+     *           A list of Maven artifacts to be uploaded to Artifact Registry upon
+     *           successful completion of all build steps.
+     *           Artifacts in the workspace matching specified paths globs will be uploaded
+     *           to the specified Artifact Registry repository using the builder service
+     *           account's credentials.
+     *           If any artifacts fail to be pushed, the build is marked FAILURE.
+     *     @type array<\Google\Cloud\Build\V1\Artifacts\PythonPackage>|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *           A list of Python packages to be uploaded to Artifact Registry upon
+     *           successful completion of all build steps.
+     *           The build service account credentials will be used to perform the upload.
      *           If any objects fail to be pushed, the build is marked FAILURE.
      * }
      */
@@ -95,7 +127,7 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      * If any of the images fail to be pushed, the build is marked FAILURE.
      *
      * Generated from protobuf field <code>repeated string images = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)
@@ -121,7 +153,7 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      */
     public function getObjects()
     {
-        return isset($this->objects) ? $this->objects : null;
+        return $this->objects;
     }
 
     public function hasObjects()
@@ -152,6 +184,74 @@ class Artifacts extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\Artifacts\ArtifactObjects::class);
         $this->objects = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Artifacts in the workspace matching specified paths globs will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any artifacts fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.MavenArtifact maven_artifacts = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMavenArtifacts()
+    {
+        return $this->maven_artifacts;
+    }
+
+    /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Artifacts in the workspace matching specified paths globs will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any artifacts fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.MavenArtifact maven_artifacts = 3;</code>
+     * @param array<\Google\Cloud\Build\V1\Artifacts\MavenArtifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMavenArtifacts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Artifacts\MavenArtifact::class);
+        $this->maven_artifacts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * The build service account credentials will be used to perform the upload.
+     * If any objects fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.PythonPackage python_packages = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPythonPackages()
+    {
+        return $this->python_packages;
+    }
+
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * The build service account credentials will be used to perform the upload.
+     * If any objects fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.PythonPackage python_packages = 5;</code>
+     * @param array<\Google\Cloud\Build\V1\Artifacts\PythonPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPythonPackages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Artifacts\PythonPackage::class);
+        $this->python_packages = $arr;
 
         return $this;
     }

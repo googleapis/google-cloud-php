@@ -24,14 +24,17 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class ModelTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $storageConnection;
     private $model;
@@ -43,7 +46,7 @@ class ModelTest extends TestCase
     const BUCKET_NAME = 'myBucket';
     const FILE_NAME = 'myfile';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);

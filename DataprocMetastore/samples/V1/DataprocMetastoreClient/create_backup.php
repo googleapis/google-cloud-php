@@ -32,8 +32,8 @@ use Google\Rpc\Status;
 /**
  * Creates a new backup in a given project and location.
  *
- * @param string $formattedParent The relative resource name of the service in which to create a backup
- *                                of the following form:
+ * @param string $formattedParent The relative resource name of the service in which to create a
+ *                                backup of the following form:
  *
  *                                `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
  *                                {@see DataprocMetastoreClient::serviceName()} for help formatting this field.

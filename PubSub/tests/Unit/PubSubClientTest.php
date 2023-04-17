@@ -34,17 +34,18 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class PubSubClientTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'project';
     const SCHEMA = 'schema';
@@ -53,7 +54,7 @@ class PubSubClientTest extends TestCase
 
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
@@ -504,7 +505,7 @@ class PubSubClientTest extends TestCase
 
     public function testValidateSchemaThrowsException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $this->connection->validateSchema(Argument::any())
             ->shouldBeCalled()
@@ -568,7 +569,7 @@ class PubSubClientTest extends TestCase
 
     public function testValidateMessageInvalidSchema()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->client->validateMessage(1, 'foo', 'bar');
     }

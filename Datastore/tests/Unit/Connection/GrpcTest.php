@@ -37,9 +37,10 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -47,9 +48,9 @@ use Prophecy\Argument;
  */
 class GrpcTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const PROJECT_ID = 'my-project';
 
@@ -57,7 +58,7 @@ class GrpcTest extends TestCase
 
     private $serializer;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -512,7 +513,7 @@ class GrpcTest extends TestCase
      */
     public function testInvalidFilter($filter)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         return $this->testQueryPropertyFilters($filter);
     }

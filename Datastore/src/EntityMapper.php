@@ -239,9 +239,7 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $properties = isset($value['properties'])
-                    ? $value['properties']
-                    : [];
+                $properties = $value['properties'] ?? [];
 
                 $decoded = $this->responseToEntityProperties($properties, $className);
                 $props = $decoded['properties'];
@@ -557,7 +555,7 @@ class EntityMapper
      *
      * @param array $value
      * @return string
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     private function getValueType(array $value)
     {

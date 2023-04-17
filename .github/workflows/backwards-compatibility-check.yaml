@@ -1,11 +1,11 @@
 name: Backwards Compatibility Check
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled, edited]
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
     runs-on: ubuntu-latest
-    # Disable this check by applying the 'breaking change allowed' label to the PR.
-    if: "!contains(github.event.pull_request.labels.*.name, 'breaking change allowed')"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,18 +17,40 @@ jobs:
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: "Check for BC breaks"
-        if: github.actor != 'release-please[bot]'
+        if: github.event.pull_request.user.login != 'release-please[bot]'
+        # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
+        # NOTE: PR should contain a BREAKING_CHANGE_REASON=[reason] in the description.
+        continue-on-error: ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
       - name: Get Latest Release
-        if: github.actor == 'release-please[bot]'
+        if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
       - name: "Check for BC breaks (Next Release)"
-        if: github.actor == 'release-please[bot]'
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        # We've already approved and justified the breaking changes. Run the check but continue on error
+        continue-on-error: true
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
+        # Verify that if the "breaking change allowed" label exists, so does a BREAKING_CHANGE_REASON in
+        # the description of the PR. Comment and exit 1 if not.
+      - name: "Allow breaking change: Comment"
+        if: |
+          contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
+          && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=')
+        uses: thollander/actions-comment-pull-request@v2.3.1
+        with:
+          message: |
+            To skip the breaking change detector, the PR must contain a `BREAKING_CHANGE_REASON=[reason]`
+            in the PR description.
+          comment_tag: breaking_change_justification
+      - name: "Allow breaking change: Fail the build"
+        if: |
+          contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
+          && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=')
+        run: exit 1

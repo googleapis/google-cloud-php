@@ -19,15 +19,17 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\WriteStream;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Prophecy\Argument;
-
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class WriteStreamTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testUploadsWhenWriteOverflowsBuffer()
     {
         $uploader = $this->prophesize(StreamableUploader::class);

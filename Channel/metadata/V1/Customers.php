@@ -21,8 +21,8 @@ class Customers
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
-\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"—
+´
+\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"Ó
 Customer
 name (	B‡A
 org_display_name (	B‡A;
@@ -36,7 +36,8 @@ class Customers
 language_code
  (	B‡AL
 cloud_identity_info (2*.google.cloud.channel.v1.CloudIdentityInfoB‡A
-channel_partner_id (	:RÍAO
+channel_partner_id (	
+correlation_id (	B‡A:RÍAO
 $cloudchannel.googleapis.com/Customer\'accounts/{account}/customers/{customer}"Å
 ContactInfo
 

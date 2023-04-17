@@ -25,11 +25,12 @@ class TensorboardService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TensorboardRun::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TensorboardTimeSeries::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Îx
-4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"œ
+ëx
+4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"œ
 CreateTensorboardRequest=
 parent (	B-àAúA\'
 %aiplatform.googleapis.com/TensorboardA

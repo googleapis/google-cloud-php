@@ -31,18 +31,19 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class TransactionTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
     use TimeTrait;
@@ -66,7 +67,7 @@ class TransactionTest extends TestCase
     private $transaction;
     private $singleUseTransaction;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -104,7 +105,7 @@ class TransactionTest extends TestCase
 
     public function testSingleUseTagError()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new Transaction(
             $this->operation,
@@ -398,7 +399,7 @@ class TransactionTest extends TestCase
 
     public function testExecuteUpdateBatchInvalidStatement()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->transaction->executeUpdateBatch([
             ['foo' => 'bar']
@@ -429,7 +430,7 @@ class TransactionTest extends TestCase
 
     public function testExecuteUpdateNonDml()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
@@ -528,7 +529,7 @@ class TransactionTest extends TestCase
 
     public function testCommitInvalidState()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->transaction->___setProperty('state', 'foo');
         $this->transaction->commit();
@@ -546,7 +547,7 @@ class TransactionTest extends TestCase
 
     public function testRollbackInvalidState()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->transaction->___setProperty('state', 'foo');
         $this->transaction->rollback();
@@ -567,7 +568,7 @@ class TransactionTest extends TestCase
 
     public function testInvalidReadContext()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->singleUseTransaction->execute('foo');
     }

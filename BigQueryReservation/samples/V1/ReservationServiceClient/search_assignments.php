@@ -53,8 +53,8 @@ use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
  * **Note** "-" cannot be used for projects
  * nor locations.
  *
- * @param string $formattedParent The resource name of the admin project(containing project and location),
- *                                e.g.:
+ * @param string $formattedParent The resource name of the admin project(containing project and
+ *                                location), e.g.:
  *                                `projects/myproject/locations/US`. Please see
  *                                {@see ReservationServiceClient::locationName()} for help formatting this field.
  */

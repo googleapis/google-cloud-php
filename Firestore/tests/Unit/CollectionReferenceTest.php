@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -33,6 +34,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReferenceTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a/doc';
@@ -41,7 +44,7 @@ class CollectionReferenceTest extends TestCase
     private $connection;
     private $collection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->collection = TestHelpers::stub(CollectionReference::class, [

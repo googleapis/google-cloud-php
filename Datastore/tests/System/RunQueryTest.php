@@ -51,9 +51,9 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         ]
     ];
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$ancestor = self::$restClient->key(self::$kind, 'Grandpa Frank');
         $key1 = self::$restClient->key(self::$kind, 'Frank');
         $key1->ancestorKey(self::$ancestor);
@@ -79,7 +79,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         self::$localDeletionQueue->add($key3);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::tearDownFixtures();
     }

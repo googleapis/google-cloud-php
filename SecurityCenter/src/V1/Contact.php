@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Representa a single contact's email address
+ * The email address of a contact.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Contact</code>
  */
 class Contact extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An email address e.g. "person123&#64;company.com"
+     * An email address. For example, "`person123&#64;company.com`".
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
@@ -29,7 +29,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $email
-     *           An email address e.g. "person123&#64;company.com"
+     *           An email address. For example, "`person123&#64;company.com`".
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An email address e.g. "person123&#64;company.com"
+     * An email address. For example, "`person123&#64;company.com`".
      *
      * Generated from protobuf field <code>string email = 1;</code>
      * @return string
@@ -49,7 +49,7 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An email address e.g. "person123&#64;company.com"
+     * An email address. For example, "`person123&#64;company.com`".
      *
      * Generated from protobuf field <code>string email = 1;</code>
      * @param string $var

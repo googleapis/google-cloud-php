@@ -305,6 +305,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -312,6 +313,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1198,6 +1200,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1205,6 +1208,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
@@ -1942,6 +1946,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1949,6 +1954,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -23,20 +23,17 @@ use Google\Cloud\Trace\Link;
 use Google\Cloud\Trace\MessageEvent;
 use Google\Cloud\Trace\Span;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class SpanTest extends SnippetTestCase
 {
-    use AssertionRenames;
-
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
 
     private $span;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->span = new Span('abcd1234', ['name' => 'span name']);
     }

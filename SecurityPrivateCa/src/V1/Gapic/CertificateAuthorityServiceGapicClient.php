@@ -1078,6 +1078,11 @@ class CertificateAuthorityServiceGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this pool to be deleted even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the pool will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1096,6 +1101,10 @@ class CertificateAuthorityServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1170,6 +1179,11 @@ class CertificateAuthorityServiceGapicClient
      *           Optional. If this flag is set, the Certificate Authority will be deleted as
      *           soon as possible without a 30-day grace period where undeletion would have
      *           been allowed. If you proceed, there will be no way to recover this CA.
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this ca to be deleted even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1196,6 +1210,10 @@ class CertificateAuthorityServiceGapicClient
 
         if (isset($optionalArgs['skipGracePeriod'])) {
             $request->setSkipGracePeriod($optionalArgs['skipGracePeriod']);
+        }
+
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1346,6 +1364,11 @@ class CertificateAuthorityServiceGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this CA to be disabled even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1364,6 +1387,10 @@ class CertificateAuthorityServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

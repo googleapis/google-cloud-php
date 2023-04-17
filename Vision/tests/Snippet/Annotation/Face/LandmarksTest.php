@@ -23,17 +23,20 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class LandmarksTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $pos;
     private $landmarksData;
     private $landmarks;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->pos = [
             'x' => 1,

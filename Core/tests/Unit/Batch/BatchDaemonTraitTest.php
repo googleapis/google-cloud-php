@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -27,7 +27,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class BatchDaemonTraitTest extends TestCase
 {
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(BatchDaemonTrait::class);
     }

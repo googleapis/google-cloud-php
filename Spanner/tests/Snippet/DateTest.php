@@ -32,7 +32,7 @@ class DateTest extends SnippetTestCase
     private $dt;
     private $date;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

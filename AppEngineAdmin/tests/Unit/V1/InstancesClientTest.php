@@ -94,7 +94,7 @@ class InstancesClientTest extends GeneratedTest
         $vmId = 'vmId112317347';
         $requests = 393257020;
         $errors = 1294635157;
-        $qps = 11218.0;
+        $qps = 11218;
         $averageLatency = 1814586588;
         $memoryUsage = 1034557667;
         $vmStatus = 'vmStatus-22474118';
@@ -332,7 +332,7 @@ class InstancesClientTest extends GeneratedTest
         $vmId = 'vmId112317347';
         $requests = 393257020;
         $errors = 1294635157;
-        $qps = 11218.0;
+        $qps = 11218;
         $averageLatency = 1814586588;
         $memoryUsage = 1034557667;
         $vmStatus = 'vmStatus-22474118';

@@ -27,7 +27,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ]
+÷]
 &google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"³
 CreateLakeRequest9
 parent (	B)àAúA#
@@ -277,8 +277,8 @@ DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Ope
 google.protobuf.EmptyOperationMetadataÄ
 ListEnvironments1.google.cloud.dataplex.v1.ListEnvironmentsRequest2.google.cloud.dataplex.v1.ListEnvironmentsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*}/environmentsÚAparent±
 GetEnvironment/.google.cloud.dataplex.v1.GetEnvironmentRequest%.google.cloud.dataplex.v1.Environment"G‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/environments/*}ÚAnameÃ
-ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"T‚Óä“EC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessionsÚAparentKÊAdataplex.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBp
-com.google.cloud.dataplex.v1BServiceProtoPZ@google.golang.org/genproto/googleapis/cloud/dataplex/v1;dataplexbproto3'
+ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"T‚Óä“EC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessionsÚAparentKÊAdataplex.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBh
+com.google.cloud.dataplex.v1BServiceProtoPZ8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbbproto3'
         , true);
 
         static::$is_initialized = true;

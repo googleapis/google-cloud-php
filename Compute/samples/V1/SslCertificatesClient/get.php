@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\SslCertificate;
 use Google\Cloud\Compute\V1\SslCertificatesClient;
 
 /**
- * Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request.
+ * Returns the specified SslCertificate resource.
  *
  * @param string $project        Project ID for this request.
  * @param string $sslCertificate Name of the SslCertificate resource to return.

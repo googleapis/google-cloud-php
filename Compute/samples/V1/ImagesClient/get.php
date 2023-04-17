@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Image;
 use Google\Cloud\Compute\V1\ImagesClient;
 
 /**
- * Returns the specified image. Gets a list of available images by making a list() request.
+ * Returns the specified image.
  *
  * @param string $image   Name of the image resource to return.
  * @param string $project Project ID for this request.

@@ -20,20 +20,18 @@ namespace Google\Cloud\Datastore\Tests\Unit\Query;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
 class QueryTest extends TestCase
 {
-    use ExpectException;
-
     private $query;
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new EntityMapper('foo', true, false);
         $this->query = new Query($this->mapper);
@@ -157,7 +155,7 @@ class QueryTest extends TestCase
 
     public function testFilterInvalidOperator()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->filter('propname', 'foo', 12);
     }

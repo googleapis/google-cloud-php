@@ -402,7 +402,7 @@ class TargetTcpProxiesGapicClient
     }
 
     /**
-     * Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request.
+     * Returns the specified TargetTcpProxy resource.
      *
      * Sample code:
      * ```

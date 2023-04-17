@@ -23,8 +23,7 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
@@ -32,7 +31,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class TransactionConfigurationTraitTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use TimeTrait;
 
@@ -43,7 +41,7 @@ class TransactionConfigurationTraitTest extends TestCase
     private $duration;
     private $dur = [];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -145,7 +143,7 @@ class TransactionConfigurationTraitTest extends TestCase
 
     public function testTransactionSelectorInvalidContext()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $args = ['transactionType' => 'foo'];
         $this->impl->proxyTransactionSelector($args);
@@ -153,7 +151,7 @@ class TransactionConfigurationTraitTest extends TestCase
 
     public function testConfigureSnapshotOptionsInvalidExactStaleness()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $args = ['exactStaleness' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
@@ -161,7 +159,7 @@ class TransactionConfigurationTraitTest extends TestCase
 
     public function testConfigureSnapshotOptionsInvalidMaxStaleness()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $args = ['maxStaleness' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
@@ -169,7 +167,7 @@ class TransactionConfigurationTraitTest extends TestCase
 
     public function testConfigureSnapshotOptionsInvalidMinReadTimestamp()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $args = ['minReadTimestamp' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
@@ -177,7 +175,7 @@ class TransactionConfigurationTraitTest extends TestCase
 
     public function testConfigureSnapshotOptionsInvalidReadTimestamp()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $args = ['readTimestamp' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);

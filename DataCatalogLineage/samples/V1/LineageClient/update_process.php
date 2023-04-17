@@ -22,7 +22,7 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START datacatalog-lineage_v1_generated_Lineage_UpdateProcess_sync]
+// [START datalineage_v1_generated_Lineage_UpdateProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
@@ -53,4 +53,4 @@ function update_process_sample(): void
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END datacatalog-lineage_v1_generated_Lineage_UpdateProcess_sync]
+// [END datalineage_v1_generated_Lineage_UpdateProcess_sync]

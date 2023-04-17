@@ -34,7 +34,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      */
     private $policy = null;
     /**
-     * The project that this IAM policy belongs to, in the form of
+     * The project that this IAM policy belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the IAM policy
      * belongs to a project.
      *
@@ -42,17 +42,17 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * The folder(s) that this IAM policy belongs to, in the form of
+     * The folder(s) that this IAM policy belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the IAM policy
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      */
     private $folders;
     /**
-     * The organization that this IAM policy belongs to, in the form of
+     * The organization that this IAM policy belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * IAM policy belongs(directly or cascadingly) to an organization.
+     * IAM policy belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
@@ -74,17 +74,17 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iam\V1\Policy $policy
      *           The IAM policy directly set on the given resource.
      *     @type string $project
-     *           The project that this IAM policy belongs to, in the form of
+     *           The project that this IAM policy belongs to, in the format of
      *           projects/{PROJECT_NUMBER}. This field is available when the IAM policy
      *           belongs to a project.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
-     *           The folder(s) that this IAM policy belongs to, in the form of
+     *           The folder(s) that this IAM policy belongs to, in the format of
      *           folders/{FOLDER_NUMBER}. This field is available when the IAM policy
-     *           belongs(directly or cascadingly) to one or more folders.
+     *           belongs (directly or cascadingly) to one or more folders.
      *     @type string $organization
-     *           The organization that this IAM policy belongs to, in the form of
+     *           The organization that this IAM policy belongs to, in the format of
      *           organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     *           IAM policy belongs(directly or cascadingly) to an organization.
+     *           IAM policy belongs (directly or cascadingly) to an organization.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,7 +165,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project that this IAM policy belongs to, in the form of
+     * The project that this IAM policy belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the IAM policy
      * belongs to a project.
      *
@@ -178,7 +178,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project that this IAM policy belongs to, in the form of
+     * The project that this IAM policy belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the IAM policy
      * belongs to a project.
      *
@@ -195,9 +195,9 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The folder(s) that this IAM policy belongs to, in the form of
+     * The folder(s) that this IAM policy belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the IAM policy
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -208,9 +208,9 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The folder(s) that this IAM policy belongs to, in the form of
+     * The folder(s) that this IAM policy belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the IAM policy
-     * belongs(directly or cascadingly) to one or more folders.
+     * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -225,9 +225,9 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The organization that this IAM policy belongs to, in the form of
+     * The organization that this IAM policy belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * IAM policy belongs(directly or cascadingly) to an organization.
+     * IAM policy belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      * @return string
@@ -238,9 +238,9 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The organization that this IAM policy belongs to, in the form of
+     * The organization that this IAM policy belongs to, in the format of
      * organizations/{ORGANIZATION_NUMBER}. This field is available when the
-     * IAM policy belongs(directly or cascadingly) to an organization.
+     * IAM policy belongs (directly or cascadingly) to an organization.
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      * @param string $var

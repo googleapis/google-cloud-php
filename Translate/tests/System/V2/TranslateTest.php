@@ -17,19 +17,12 @@
 
 namespace Google\Cloud\Translate\Tests\System\V2;
 
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group translate
  */
 class TranslateTest extends TranslateTestCase
 {
-    use AssertIsType;
-    use AssertStringContains;
-    use ExpectException;
-
     const INPUT_LANGUAGE = 'es';
     const INPUT_STRING = '¿hola, como estas?';
     const OUTPUT_STRING = 'Hello how are you?';

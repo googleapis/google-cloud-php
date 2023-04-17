@@ -104,7 +104,8 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $build_artifacts;
     /**
-     * Output only. Snapshot of the parent pipeline taken at release creation time.
+     * Output only. Snapshot of the parent pipeline taken at release creation
+     * time.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeliveryPipeline delivery_pipeline_snapshot = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -146,11 +147,18 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $target_artifacts;
     /**
-     * Output only. Map from target ID to details of the render operation for that target.
+     * Output only. Map from target ID to details of the render operation for that
+     * target.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.Release.TargetRender> target_renders = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $target_renders;
+    /**
+     * Output only. Information around the state of the Release.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseCondition condition = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $condition = null;
 
     /**
      * Constructor.
@@ -197,7 +205,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $build_artifacts
      *           List of artifacts to pass through to Skaffold command.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
-     *           Output only. Snapshot of the parent pipeline taken at release creation time.
+     *           Output only. Snapshot of the parent pipeline taken at release creation
+     *           time.
      *     @type array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $target_snapshots
      *           Output only. Snapshot of the targets taken at release creation time.
      *     @type int $render_state
@@ -215,7 +224,10 @@ class Release extends \Google\Protobuf\Internal\Message
      *           Output only. Map from target ID to the target artifacts created
      *           during the render operation.
      *     @type array|\Google\Protobuf\Internal\MapField $target_renders
-     *           Output only. Map from target ID to details of the render operation for that target.
+     *           Output only. Map from target ID to details of the render operation for that
+     *           target.
+     *     @type \Google\Cloud\Deploy\V1\Release\ReleaseCondition $condition
+     *           Output only. Information around the state of the Release.
      * }
      */
     public function __construct($data = NULL) {
@@ -594,7 +606,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline taken at release creation time.
+     * Output only. Snapshot of the parent pipeline taken at release creation
+     * time.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeliveryPipeline delivery_pipeline_snapshot = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\DeliveryPipeline|null
@@ -615,7 +628,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline taken at release creation time.
+     * Output only. Snapshot of the parent pipeline taken at release creation
+     * time.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeliveryPipeline delivery_pipeline_snapshot = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $var
@@ -772,7 +786,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map from target ID to details of the render operation for that target.
+     * Output only. Map from target ID to details of the render operation for that
+     * target.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.Release.TargetRender> target_renders = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -783,7 +798,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map from target ID to details of the render operation for that target.
+     * Output only. Map from target ID to details of the render operation for that
+     * target.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.Release.TargetRender> target_renders = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -793,6 +809,42 @@ class Release extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\Release\TargetRender::class);
         $this->target_renders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information around the state of the Release.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseCondition condition = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\Release\ReleaseCondition|null
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
+    }
+
+    /**
+     * Output only. Information around the state of the Release.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseCondition condition = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\Release\ReleaseCondition $var
+     * @return $this
+     */
+    public function setCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Release\ReleaseCondition::class);
+        $this->condition = $var;
 
         return $this;
     }

@@ -19,17 +19,15 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
 class RequestBuilderTest extends TestCase
 {
-    use ExpectException;
-
-    public function set_up()
+    public function setUp(): void
     {
         $this->builder = new RequestBuilder(
             Fixtures::SERVICE_FIXTURE(),
@@ -141,7 +139,7 @@ class RequestBuilderTest extends TestCase
 
     public function testThrowsExceptionWithNonExistantMethod()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->builder->build('myResource', 'doesntExist');
     }

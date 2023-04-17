@@ -9,20 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The event being assessed.
+ *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.Event</code>
  */
 class Event extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA Enterprise
+     * client-side integration on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $token = '';
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your
+     * site and generate the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,6 +58,14 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $hashed_account_id = '';
+    /**
+     * Optional. Data describing a payment transaction to be assessed. Sending
+     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * FraudPreventionAssessment component in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $transaction_data = null;
 
     /**
      * Constructor.
@@ -64,11 +74,11 @@ class Event extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $token
-     *           Optional. The user response token provided by the reCAPTCHA client-side
-     *           integration on your site.
+     *           Optional. The user response token provided by the reCAPTCHA Enterprise
+     *           client-side integration on your site.
      *     @type string $site_key
-     *           Optional. The site key that was used to invoke reCAPTCHA on your site and
-     *           generate the token.
+     *           Optional. The site key that was used to invoke reCAPTCHA Enterprise on your
+     *           site and generate the token.
      *     @type string $user_agent
      *           Optional. The user agent present in the request from the user's device
      *           related to this event.
@@ -82,6 +92,10 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $hashed_account_id
      *           Optional. Unique stable hashed user identifier for the request. The
      *           identifier must be hashed using hmac-sha256 with stable secret.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData $transaction_data
+     *           Optional. Data describing a payment transaction to be assessed. Sending
+     *           this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     *           FraudPreventionAssessment component in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,8 +104,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA Enterprise
+     * client-side integration on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,8 +116,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA Enterprise
+     * client-side integration on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -118,8 +132,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your
+     * site and generate the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -130,8 +144,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your
+     * site and generate the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -255,6 +269,46 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Data describing a payment transaction to be assessed. Sending
+     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * FraudPreventionAssessment component in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionData|null
+     */
+    public function getTransactionData()
+    {
+        return $this->transaction_data;
+    }
+
+    public function hasTransactionData()
+    {
+        return isset($this->transaction_data);
+    }
+
+    public function clearTransactionData()
+    {
+        unset($this->transaction_data);
+    }
+
+    /**
+     * Optional. Data describing a payment transaction to be assessed. Sending
+     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * FraudPreventionAssessment component in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData $var
+     * @return $this
+     */
+    public function setTransactionData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData::class);
+        $this->transaction_data = $var;
 
         return $this;
     }

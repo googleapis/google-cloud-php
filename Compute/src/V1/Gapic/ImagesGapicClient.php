@@ -406,7 +406,7 @@ class ImagesGapicClient
     }
 
     /**
-     * Returns the specified image. Gets a list of available images by making a list() request.
+     * Returns the specified image.
      *
      * Sample code:
      * ```
@@ -449,7 +449,7 @@ class ImagesGapicClient
     }
 
     /**
-     * Returns the latest image that is part of an image family and is not deprecated.
+     * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
      *
      * Sample code:
      * ```
@@ -464,7 +464,7 @@ class ImagesGapicClient
      * ```
      *
      * @param string $family       Name of the image family to search for.
-     * @param string $project      Project ID for this request.
+     * @param string $project      The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      * @param array  $optionalArgs {
      *     Optional.
      *

@@ -79,6 +79,12 @@ class NoteKind
      * Generated from protobuf enum <code>DSSE_ATTESTATION = 10;</code>
      */
     const DSSE_ATTESTATION = 10;
+    /**
+     * This represents a Vulnerability Assessment.
+     *
+     * Generated from protobuf enum <code>VULNERABILITY_ASSESSMENT = 11;</code>
+     */
+    const VULNERABILITY_ASSESSMENT = 11;
 
     private static $valueToName = [
         self::NOTE_KIND_UNSPECIFIED => 'NOTE_KIND_UNSPECIFIED',
@@ -92,6 +98,7 @@ class NoteKind
         self::UPGRADE => 'UPGRADE',
         self::COMPLIANCE => 'COMPLIANCE',
         self::DSSE_ATTESTATION => 'DSSE_ATTESTATION',
+        self::VULNERABILITY_ASSESSMENT => 'VULNERABILITY_ASSESSMENT',
     ];
 
     public static function name($value)

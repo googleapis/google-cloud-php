@@ -303,11 +303,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -583,11 +587,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -837,11 +845,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1085,11 +1097,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob2 = 'importJob2-1714851050';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob2);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1583,11 +1599,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1785,11 +1805,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request

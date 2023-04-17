@@ -42,7 +42,7 @@ use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
 use Google\LongRunning\Operation;
 
 /**
- * Service Description: Auto-completion service for retail.
+ * Service Description: Autocomplete service for retail.
  *
  * This feature is only available for users who have Retail Search enabled.
  * Enable Retail Search on Cloud Console before using this feature.
@@ -385,6 +385,13 @@ class CompletionServiceGapicClient
      *
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           If this is set, it should be exactly matched with
+     *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
+     *           per-entity autocomplete results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -420,6 +427,10 @@ class CompletionServiceGapicClient
 
         if (isset($optionalArgs['maxSuggestions'])) {
             $request->setMaxSuggestions($optionalArgs['maxSuggestions']);
+        }
+
+        if (isset($optionalArgs['entity'])) {
+            $request->setEntity($optionalArgs['entity']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

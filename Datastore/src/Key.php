@@ -163,7 +163,7 @@ class Key implements JsonSerializable
      *           `Key::TYPE_NAME` will force the pathElement identifier type.
      * }
      * @return Key
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function pathElement($kind, $identifier = null, array $options = [])
     {
@@ -240,7 +240,7 @@ class Key implements JsonSerializable
      *
      * @param Key $key The ancestor Key.
      * @return Key
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function ancestorKey(Key $key)
     {
@@ -462,7 +462,7 @@ class Key implements JsonSerializable
      * @param string|null $identifierType If not null and allowed, this will be
      *        used as the type. If null, type will be inferred.
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function determineIdentifierType($identifier, $identifierType)
     {
@@ -489,7 +489,7 @@ class Key implements JsonSerializable
      *
      * @param array $path
      * @return array
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function normalizePath(array $path)
     {

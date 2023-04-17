@@ -18,22 +18,20 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Numeric;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class NumericTest extends TestCase
 {
-    use ExpectException;
-
     /**
      * @dataProvider invalidValueProvider
      */
     public function testInvalidValues($value)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new Numeric($value);
     }

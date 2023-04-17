@@ -32,9 +32,10 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -42,7 +43,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class QueryTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -58,7 +59,7 @@ class QueryTest extends TestCase
     private $query;
     private $collectionGroupQuery;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->query = TestHelpers::stub(Query::class, [
@@ -80,7 +81,7 @@ class QueryTest extends TestCase
 
     public function testConstructMissingFrom()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new Query(
             $this->connection->reveal(),
@@ -324,7 +325,7 @@ class QueryTest extends TestCase
      */
     public function testWhereUnaryInvalidComparisonOperator($operator)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', $operator, null);
     }
@@ -380,14 +381,14 @@ class QueryTest extends TestCase
      */
     public function testWhereInvalidSentinelValue($sentinel)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', '=', $sentinel);
     }
 
     public function testWhereInvalidOperator()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', 'hello', 'bar');
     }
@@ -478,7 +479,7 @@ class QueryTest extends TestCase
      */
     public function testWhereInvalidDocument($document)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->where(FieldPath::documentId(), '=', $document);
     }
@@ -522,7 +523,7 @@ class QueryTest extends TestCase
      */
     public function testOrderByAfterCursor($cursor)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy('foo')->$cursor(['bar'])->orderBy('world');
     }
@@ -561,7 +562,7 @@ class QueryTest extends TestCase
 
     public function testOrderByInvalidOperator()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy('foo', 'hello');
     }
@@ -763,7 +764,7 @@ class QueryTest extends TestCase
 
     public function testLimitToLastWithoutOrderBy()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $this->query->limitToLast(1)->documents()->current();
     }
@@ -997,7 +998,7 @@ class QueryTest extends TestCase
 
     public function testSnapshotInFieldValue()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $this->query->startAt([$snapshot->reveal()]);
@@ -1005,7 +1006,7 @@ class QueryTest extends TestCase
 
     public function testInvalidFieldValues()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->startAt('foo');
     }
@@ -1125,14 +1126,14 @@ class QueryTest extends TestCase
 
     public function testBuildPositionTooManyCursorValues()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy('foo')->endAt(['a','b']);
     }
 
     public function testBuildPositionOutOfBounds()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::QUERY_PARENT .'/whatev/john');
@@ -1146,14 +1147,14 @@ class QueryTest extends TestCase
 
     public function testBuildPositionInvalidCursorType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([10]);
     }
 
     public function testBuildPositionInvalidDocumentName()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt(['a/b']);
     }
@@ -1163,14 +1164,14 @@ class QueryTest extends TestCase
      */
     public function testBuildPositionInvalidSentinelValue($sentinel)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$sentinel]);
     }
 
     public function testBuildPositionNestedChild()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $c = $this->prophesize(CollectionReference::class);
         $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');

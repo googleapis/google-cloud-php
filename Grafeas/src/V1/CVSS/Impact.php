@@ -27,12 +27,22 @@ class Impact
      * Generated from protobuf enum <code>IMPACT_NONE = 3;</code>
      */
     const IMPACT_NONE = 3;
+    /**
+     * Generated from protobuf enum <code>IMPACT_PARTIAL = 4;</code>
+     */
+    const IMPACT_PARTIAL = 4;
+    /**
+     * Generated from protobuf enum <code>IMPACT_COMPLETE = 5;</code>
+     */
+    const IMPACT_COMPLETE = 5;
 
     private static $valueToName = [
         self::IMPACT_UNSPECIFIED => 'IMPACT_UNSPECIFIED',
         self::IMPACT_HIGH => 'IMPACT_HIGH',
         self::IMPACT_LOW => 'IMPACT_LOW',
         self::IMPACT_NONE => 'IMPACT_NONE',
+        self::IMPACT_PARTIAL => 'IMPACT_PARTIAL',
+        self::IMPACT_COMPLETE => 'IMPACT_COMPLETE',
     ];
 
     public static function name($value)

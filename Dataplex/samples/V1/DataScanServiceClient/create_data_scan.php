@@ -31,14 +31,15 @@ use Google\Cloud\Dataplex\V1\DataSource;
 use Google\Rpc\Status;
 
 /**
- * Creates a dataScan resource.
+ * Creates a DataScan resource.
  *
  * @param string $formattedParent The resource name of the parent location:
- *                                projects/{project}/locations/{location_id}
- *                                where `{project}` refers to a project_id or project_number and
+ *                                `projects/{project}/locations/{location_id}`
+ *                                where `project` refers to a *project_id* or *project_number* and
  *                                `location_id` refers to a GCP region. Please see
  *                                {@see DataScanServiceClient::locationName()} for help formatting this field.
  * @param string $dataScanId      DataScan identifier.
+ *
  *                                * Must contain only lowercase letters, numbers and hyphens.
  *                                * Must start with a letter.
  *                                * Must end with a number or a letter.

@@ -40,17 +40,18 @@ use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class SpannerClientTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -61,7 +62,7 @@ class SpannerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -275,7 +276,7 @@ class SpannerClientTest extends TestCase
      */
     public function testCreateInstanceRaisesInvalidArgument()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $config = $this->prophesize(InstanceConfiguration::class);
 

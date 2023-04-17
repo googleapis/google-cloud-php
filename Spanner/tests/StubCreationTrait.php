@@ -19,12 +19,15 @@ namespace Google\Cloud\Spanner\Tests;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Creates stubs with required global expectations.
  */
 trait StubCreationTrait
 {
+    use ProphecyTrait;
+
     private function getConnStub()
     {
         $c = $this->prophesize(ConnectionInterface::class);

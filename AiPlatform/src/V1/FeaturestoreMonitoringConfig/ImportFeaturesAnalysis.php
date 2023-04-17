@@ -11,7 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration of the Featurestore's ImportFeature Analysis Based
  * Monitoring. This type of analysis generates statistics for values of each
- * Feature imported by every [ImportFeatureValues][] operation.
+ * Feature imported by every
+ * [ImportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis</code>
  */

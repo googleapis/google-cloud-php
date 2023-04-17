@@ -9,23 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.CreateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.CreateMetadataImport].
+ * Request message for
+ * [DataprocMetastore.CreateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.CreateMetadataImport].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1.CreateMetadataImportRequest</code>
  */
 class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the service in which to create a metastore
-     * import, in the following form:
+     * Required. The relative resource name of the service in which to create a
+     * metastore import, in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The ID of the metadata import, which is used as the final component of the
-     * metadata import's name.
+     * Required. The ID of the metadata import, which is used as the final
+     * component of the metadata import's name.
      * This value must be between 1 and 64 characters long, begin with a letter,
      * end with a letter or number, and consist of alpha-numeric ASCII characters
      * or hyphens.
@@ -34,18 +35,18 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      */
     private $metadata_import_id = '';
     /**
-     * Required. The metadata import to create. The `name` field is ignored. The ID of the
-     * created metadata import must be provided in the request's
+     * Required. The metadata import to create. The `name` field is ignored. The
+     * ID of the created metadata import must be provided in the request's
      * `metadata_import_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataImport metadata_import = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metadata_import = null;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -64,24 +65,24 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative resource name of the service in which to create a metastore
-     *           import, in the following form:
+     *           Required. The relative resource name of the service in which to create a
+     *           metastore import, in the following form:
      *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type string $metadata_import_id
-     *           Required. The ID of the metadata import, which is used as the final component of the
-     *           metadata import's name.
+     *           Required. The ID of the metadata import, which is used as the final
+     *           component of the metadata import's name.
      *           This value must be between 1 and 64 characters long, begin with a letter,
      *           end with a letter or number, and consist of alpha-numeric ASCII characters
      *           or hyphens.
      *     @type \Google\Cloud\Metastore\V1\MetadataImport $metadata_import
-     *           Required. The metadata import to create. The `name` field is ignored. The ID of the
-     *           created metadata import must be provided in the request's
+     *           Required. The metadata import to create. The `name` field is ignored. The
+     *           ID of the created metadata import must be provided in the request's
      *           `metadata_import_id` field.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -96,8 +97,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the service in which to create a metastore
-     * import, in the following form:
+     * Required. The relative resource name of the service in which to create a
+     * metastore import, in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -109,8 +110,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the service in which to create a metastore
-     * import, in the following form:
+     * Required. The relative resource name of the service in which to create a
+     * metastore import, in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -126,8 +127,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the metadata import, which is used as the final component of the
-     * metadata import's name.
+     * Required. The ID of the metadata import, which is used as the final
+     * component of the metadata import's name.
      * This value must be between 1 and 64 characters long, begin with a letter,
      * end with a letter or number, and consist of alpha-numeric ASCII characters
      * or hyphens.
@@ -141,8 +142,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the metadata import, which is used as the final component of the
-     * metadata import's name.
+     * Required. The ID of the metadata import, which is used as the final
+     * component of the metadata import's name.
      * This value must be between 1 and 64 characters long, begin with a letter,
      * end with a letter or number, and consist of alpha-numeric ASCII characters
      * or hyphens.
@@ -160,8 +161,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metadata import to create. The `name` field is ignored. The ID of the
-     * created metadata import must be provided in the request's
+     * Required. The metadata import to create. The `name` field is ignored. The
+     * ID of the created metadata import must be provided in the request's
      * `metadata_import_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataImport metadata_import = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -183,8 +184,8 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metadata import to create. The `name` field is ignored. The ID of the
-     * created metadata import must be provided in the request's
+     * Required. The metadata import to create. The `name` field is ignored. The
+     * ID of the created metadata import must be provided in the request's
      * `metadata_import_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataImport metadata_import = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -200,10 +201,10 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -220,10 +221,10 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

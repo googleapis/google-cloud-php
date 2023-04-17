@@ -26,14 +26,14 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class SubscriptionTest extends SnippetTestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
@@ -42,7 +42,7 @@ class SubscriptionTest extends SnippetTestCase
     private $subscription;
     private $pubsub;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
@@ -97,7 +97,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testAuthenticatedPushFails()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $authToken = 'foobar';
         $token = $this->prophesize(AccessToken::class);
