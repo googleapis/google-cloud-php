@@ -34,6 +34,9 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -44,6 +47,7 @@ class InstanceTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use StubCreationTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
@@ -581,6 +585,67 @@ class InstanceTest extends TestCase
 
         $sql = 'SELECT * FROM Table';
         $database->execute($sql);
+    }
+
+    public function testInstanceExecuteIncludeReplicas()
+    {
+        $database = $this->instance->database(
+            $this::DATABASE,
+            ['includeReplicas' => ['us-central1']]
+        );
+        $this->connection->createSession(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+        ]);
+
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'includeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn(
+            $this->resultGenerator()
+        );
+
+        $sql = 'SELECT * FROM Table';
+        $res = $database->execute($sql);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testInstanceReadIncludeReplicas()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $database = $this->instance->database(
+            $this::DATABASE,
+            ['excludeReplicas' => ['us-central1']]
+        );
+        $this->connection->createSession(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+        ]);
+
+        $this->connection->streamingRead(Argument::withEntry(
+            'excludeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn(
+            $this->resultGenerator()
+        );
+
+        $res = $database->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns,
+            ['excludeReplicas' => ['us-central1']]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
     }
 
     // ************** //

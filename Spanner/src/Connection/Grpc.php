@@ -71,6 +71,11 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Protobuf\Timestamp;
 use GuzzleHttp\Promise\PromiseInterface;
+use Google\Cloud\Spanner\V1\DirectedReadOptions;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\IncludeReplicas;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection;
+use \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -932,6 +937,14 @@ class Grpc implements ConnectionInterface
             );
         }
 
+        $directedReadOptions = $this->getDirectedReadOptions($args);
+        if (!empty($directedReadOptions)) {
+            $args['directedReadOptions'] = $this->serializer->decodeMessage(
+                new DirectedReadOptions,
+                $directedReadOptions
+            );
+        }
+
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
         if ($requestOptions) {
             $args['requestOptions'] = $this->serializer->decodeMessage(
@@ -961,6 +974,14 @@ class Grpc implements ConnectionInterface
             $args['requestOptions'] = $this->serializer->decodeMessage(
                 new RequestOptions,
                 $requestOptions
+            );
+        }
+
+        $directedReadOptions = $this->getDirectedReadOptions($args);
+        if (!empty($directedReadOptions)) {
+            $args['directedReadOptions'] = $this->serializer->decodeMessage(
+                new DirectedReadOptions,
+                $directedReadOptions
             );
         }
 
@@ -1579,5 +1600,47 @@ class Grpc implements ConnectionInterface
         }
 
         return null;
+    }
+
+    private function getDirectedReadOptions($args)
+    {
+        $directedReadOptions = [];
+        if (!empty($args['includeReplicas'])) {
+            $includeReplicas = [
+                'auto_failover_disabled' => !($args['includeReplicas']['failover'] ?? True)
+            ];
+            unset ($args['includeReplicas']['failover']);
+            $includeReplicas = $this->serializer->decodeMessage(
+                new IncludeReplicas,
+                $this->createReplicaSelections($args, 'includeReplicas')
+            );
+            $directedReadOptions['include_replicas'] = $includeReplicas;
+        }
+
+        if (!empty($args['excludeReplicas'])) {
+            $excludeReplicas = $this->serializer->decodeMessage(
+                new ExcludeReplicas,
+                $this->createReplicaSelections($args, 'excludeReplicas')
+            );
+            $directedReadOptions['exclude_replicas'] = $excludeReplicas;
+        }
+        return $directedReadOptions;
+    }
+
+    private function createReplicaSelections($args, $replicaType)
+    {
+        $replicas = ['replica_selections' => []];
+        foreach ($args[$replicaType] as $replica) {
+            $replica = explode(':', $replica);
+            $location = $replica[0];
+            $type = (isset($replica[1]) and $replica[1] == 'readOnly') ?
+                ReplicaType::READ_ONLY : ReplicaType::TYPE_UNSPECIFIED;
+            $replicaSelection = $this->serializer->decodeMessage(
+                new ReplicaSelection,
+                ['location' => $location, 'type' => $type]
+            );
+            array_push($replicas['replica_selections'], $replicaSelection);
+        }
+        return $replicas;
     }
 }

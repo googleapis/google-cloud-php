@@ -177,6 +177,11 @@ class Database
     private $databaseRole;
 
     /**
+     * @var array
+     */
+    private $directedReadOptions;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -193,6 +198,23 @@ class Database
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
+     * @param array directedReadOptions {
+     *     Directed read options
+     *
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     * }
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -204,7 +226,8 @@ class Database
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = ''
+        $databaseRole = '',
+        $directedReadOptions = []
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -220,6 +243,7 @@ class Database
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->databaseRole = $databaseRole;
+        $this->directedReadOptions = $directedReadOptions;
     }
 
     /**
@@ -1589,6 +1613,21 @@ class Database
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
      *         transactions.
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannstreamingreaderClient includeReplicas/excludeReplicas setting.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1608,7 +1647,10 @@ class Database
         ) = $this->transactionSelector($options);
 
         try {
-            return $this->operation->execute($session, $sql, $options);
+            return $this->operation->execute(
+                $session,
+                $sql,
+                $options + $this->directedReadOptions);
         } finally {
             $session->setExpiration();
         }
@@ -1860,6 +1902,21 @@ class Database
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1877,7 +1934,12 @@ class Database
         $options['transactionContext'] = $context;
 
         try {
-            return $this->operation->read($session, $table, $keySet, $columns, $options);
+            return $this->operation->read(
+                $session,
+                $table,
+                $keySet,
+                $columns,
+                $options + $this->directedReadOptions);
         } finally {
             $session->setExpiration();
         }

@@ -586,6 +586,13 @@ class SpannerClient
      * $database = $spanner->connect('instance-id', 'database-id', ['databaseRole' => 'Reader']);
      * ```
      *
+     * Example to configure include replicas:
+     * ```
+     * $database = $spanner->connect('instance-id', 'database-id',[
+     *     'includeReplicas' => ['us-central1']
+     * ]);
+     * ```
+     *
      * @param Instance|string $instance The instance object or instance name.
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -594,6 +601,21 @@ class SpannerClient
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @return Database
      */

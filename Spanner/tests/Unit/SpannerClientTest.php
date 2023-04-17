@@ -444,4 +444,30 @@ class SpannerClientTest extends TestCase
         $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
         $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
+
+    public function testSpannerClientIncludeReplicas()
+    {
+        $instance = $this->prophesize(Instance::class);
+        $instance->database(Argument::any(), [
+            'includeReplicas' => ['us-central1']
+        ])->shouldBeCalled();
+        $this->client->connect(
+            $instance->reveal(),
+            self::DATABASE,
+            ['includeReplicas' => ['us-central1']]
+        );
+    }
+
+    public function testSpannerClientExcludeReplicas()
+    {
+        $instance = $this->prophesize(Instance::class);
+        $instance->database(Argument::any(), [
+            'excludeReplicas' => ['us-central1']
+        ])->shouldBeCalled();
+        $this->client->connect(
+            $instance->reveal(),
+            self::DATABASE,
+            ['excludeReplicas' => ['us-central1']]
+        );
+    }
 }

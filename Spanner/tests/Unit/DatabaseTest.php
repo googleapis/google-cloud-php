@@ -77,6 +77,8 @@ class DatabaseTest extends TestCase
     private $database;
     private $session;
     private $databaseWithDatabaseRole;
+    private $databaseWithIncludeReplicas;
+    private $databaseWithExcludeReplicas;
 
 
     public function setUp(): void
@@ -131,7 +133,18 @@ class DatabaseTest extends TestCase
             'connection', 'operation', 'session', 'sessionPool', 'instance'
         ];
 
+        array_push($args, ['includeReplicas' => ['us-central1']]);
         $this->database = TestHelpers::stub(Database::class, $args, $props);
+        $this->databaseWithIncludeReplicas = TestHelpers::stub(
+            Database::class,
+            $args,
+            $props);
+        $args[10] = ['excludeReplicas' => ['us-central1']];
+        $this->databaseWithExcludeReplicas = TestHelpers::stub(
+            Database::class,
+            $args,
+            $props);
+        $args[10] = null;
         $args[6] = null;
         $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
@@ -1430,5 +1443,155 @@ class DatabaseTest extends TestCase
 
         $sql = 'SELECT * FROM Table';
         $this->databaseWithDatabaseRole->execute($sql);
+    }
+
+    public function testDBExecuteIncludeReplicas()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'includeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->databaseWithIncludeReplicas->execute($sql);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testDBExecuteExcludeReplicas()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'excludeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->databaseWithExcludeReplicas->execute($sql);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testPrioritizeExecuteIncludeReplicas()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'includeReplicas',
+            ['us-central2']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->databaseWithIncludeReplicas->execute($sql, [
+            'includeReplicas' => ['us-central2']
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testExecuteExcludeReplicas()
+    {
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'excludeReplicas',
+            ['us-central2']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $sql = 'SELECT * FROM Table';
+        $res = $this->database->execute($sql, [
+            'excludeReplicas' => ['us-central2']
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testDBReadIncludeReplicas()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'includeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->databaseWithIncludeReplicas->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testDBReadExcludeReplicas()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'excludeReplicas',
+            ['us-central1']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->databaseWithExcludeReplicas->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testPrioritizeReadIncludeReplicas()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'includeReplicas',
+            ['us-central2']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->databaseWithIncludeReplicas->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns,
+            ['includeReplicas' => ['us-central2']]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    public function testReadExcludeReplicas()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $this->connection->streamingRead(Argument::withEntry(
+            'excludeReplicas',
+            ['us-central2']
+        ))
+        ->shouldBeCalled()
+        ->willReturn($this->resultGenerator());
+
+        $res = $this->database->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns,
+            ['excludeReplicas' => ['us-central2']]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
     }
 }

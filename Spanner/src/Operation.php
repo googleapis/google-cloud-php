@@ -205,6 +205,21 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @return Result
      */
@@ -371,6 +386,21 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $includeReplicas Regions/Replica to be included for the read query.
+     *           If the specified replicas are not part of instance configuration,
+     *           Spanner will fallback to the default routing algorithm by selecting
+     *           the nearest healthy replica.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
+     *           eg: ['us-central1'] means Spanner will include region us-central1.
+     *               ['us-central1:readOnly'] means Spanner will include the read only
+     *                               replica in the us-central1 region.
+     *               ['us-central1:readOnly', 'failover'=false] means Spanner will not failover
+     *                               to other replicas if us-central1:readOnly is unhealthy.
+     *                               default failover value is true.
+     *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
+     *           $includeReplicas and $excludeReplicas are mutually exclusive.
+     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @return Result
      */
