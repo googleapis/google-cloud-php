@@ -59,9 +59,9 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $parent_display_name = '';
     /**
-     * Output only. Contains a Folder message for each folder in the assets ancestry.
-     * The first folder is the deepest nested folder, and the last folder is the
-     * folder directly under the Organization.
+     * Output only. Contains a Folder message for each folder in the assets
+     * ancestry. The first folder is the deepest nested folder, and the last
+     * folder is the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -89,9 +89,9 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     @type string $parent_display_name
      *           The human readable name of resource's parent.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
-     *           Output only. Contains a Folder message for each folder in the assets ancestry.
-     *           The first folder is the deepest nested folder, and the last folder is the
-     *           folder directly under the Organization.
+     *           Output only. Contains a Folder message for each folder in the assets
+     *           ancestry. The first folder is the deepest nested folder, and the last
+     *           folder is the folder directly under the Organization.
      * }
      */
     public function __construct($data = NULL) {
@@ -284,9 +284,9 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Contains a Folder message for each folder in the assets ancestry.
-     * The first folder is the deepest nested folder, and the last folder is the
-     * folder directly under the Organization.
+     * Output only. Contains a Folder message for each folder in the assets
+     * ancestry. The first folder is the deepest nested folder, and the last
+     * folder is the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -297,9 +297,9 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Contains a Folder message for each folder in the assets ancestry.
-     * The first folder is the deepest nested folder, and the last folder is the
-     * folder directly under the Organization.
+     * Output only. Contains a Folder message for each folder in the assets
+     * ancestry. The first folder is the deepest nested folder, and the last
+     * folder is the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $var

@@ -31,8 +31,8 @@ use Google\Cloud\Metastore\V1\MetadataImport;
 /**
  * Lists imports in a service.
  *
- * @param string $formattedParent The relative resource name of the service whose metadata imports to
- *                                list, in the following form:
+ * @param string $formattedParent The relative resource name of the service whose metadata imports
+ *                                to list, in the following form:
  *
  *                                `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports`. Please see
  *                                {@see DataprocMetastoreClient::serviceName()} for help formatting this field.

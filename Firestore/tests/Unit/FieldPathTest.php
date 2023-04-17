@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\FieldPath;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -36,7 +37,7 @@ class FieldPathTest extends TestCase
 
     public function testEmptyElements()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new FieldPath(['']);
     }
@@ -58,7 +59,7 @@ class FieldPathTest extends TestCase
      */
     public function testInvalidPaths($path)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         FieldPath::fromString($path);
     }

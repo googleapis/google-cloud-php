@@ -48,7 +48,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -57,8 +57,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     private $ad_tracking = 0;
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>
@@ -97,13 +97,13 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the live config.
      *     @type int $ad_tracking
-     *           Required. Determines how the ads should be tracked. If
+     *           Required. Determines how the ads are tracked. If
      *           [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *     @type string $default_slate
      *           This must refer to a slate in the same
-     *           project. In case Google Ad Manager (GAM) is being used for ads this will be
-     *           used to set the appropriate value of slateCreativeId in
+     *           project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     *           value of `slateCreativeId` in
      *           https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *     @type int $stitching_policy
      *           Defines the stitcher behavior in case an ad does not align exactly with
@@ -262,7 +262,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -275,7 +275,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -293,8 +293,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>
@@ -307,8 +307,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>

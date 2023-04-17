@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Testing\Lock\MockValues;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,14 +40,14 @@ class FlockLockTest extends TestCase
 
     public function testThrowsExceptionWithInvalidFileName()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new FlockLock(123);
     }
 
     public function testThrowsExceptionWhenFlockFailsOnAcquire()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to acquire lock.');
 
         MockValues::$flockReturnValue = false;
@@ -55,7 +56,7 @@ class FlockLockTest extends TestCase
 
     public function testThrowsExceptionWhenFlockFailsOnRelease()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to release lock.');
 
         $this->lock->acquire();
@@ -65,7 +66,7 @@ class FlockLockTest extends TestCase
 
     public function testThrowsExceptionWhenFopenFails()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Failed to open lock file.');
 
         MockValues::$fopenReturnValue = false;

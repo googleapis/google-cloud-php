@@ -22,6 +22,7 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -156,7 +157,7 @@ class QueryTest extends TestCase
 
     public function testFilterInvalidOperator()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->query->filter('propname', 'foo', 12);
     }

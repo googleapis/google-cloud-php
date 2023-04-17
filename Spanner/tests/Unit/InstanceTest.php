@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -298,7 +299,7 @@ class InstanceTest extends TestCase
 
     public function testUpdateRaisesInvalidArgument()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
     }

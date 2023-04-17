@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\Range;
 use Google\Cloud\Core\Testing\TestHelpers;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,7 +44,7 @@ class RangeTest extends TestCase
 
     public function testGetStartShouldThrow()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Start is unbounded');
 
         $this->range->getStart();
@@ -51,7 +52,7 @@ class RangeTest extends TestCase
 
     public function testGetEndShouldThrow()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('End is unbounded');
 
         $this->range->getEnd();
@@ -66,7 +67,7 @@ class RangeTest extends TestCase
 
     public function testStartUnboundedShouldThrowOnGetStart()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Start is unbounded');
 
         $this->range->startUnbounded()->getStart();
@@ -74,7 +75,7 @@ class RangeTest extends TestCase
 
     public function testStartOpenShouldThrow()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('startOpen accepts only string or numeric types.');
 
         $this->range->startOpen(null);
@@ -90,7 +91,7 @@ class RangeTest extends TestCase
 
     public function testStartClosedShouldThrow()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('startClosed accepts only string or numeric types.');
 
         $this->range->startClosed(null);
@@ -113,7 +114,7 @@ class RangeTest extends TestCase
 
     public function testEndUnboundedShouldThrow()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('End is unbounded');
 
         $this->range->endUnbounded()->getEnd();
@@ -121,7 +122,7 @@ class RangeTest extends TestCase
 
     public function testEndOpenShouldThrow()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('endOpen accepts only string or numeric types.');
 
         $this->range->endOpen(null);
@@ -137,7 +138,7 @@ class RangeTest extends TestCase
 
     public function testEndClosedShouldThrow()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('endClosed accepts only string or numeric types.');
 
         $this->range->endClosed(null);

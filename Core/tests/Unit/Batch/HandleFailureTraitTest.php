@@ -66,7 +66,7 @@ class HandleFailureTraitTest extends TestCase
         if (0 === posix_getuid()) {
             $this->markTestSkipped('Cannot test init failure as root');
         }
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/bad/write/dir');
         $this->impl->call('initFailureFile');

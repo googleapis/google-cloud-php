@@ -30,8 +30,8 @@ use Google\Cloud\Metastore\V1\MetadataImport;
 /**
  * Gets details of a single import.
  *
- * @param string $formattedName The relative resource name of the metadata import to retrieve, in the
- *                              following form:
+ * @param string $formattedName The relative resource name of the metadata import to retrieve, in
+ *                              the following form:
  *
  *                              `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`. Please see
  *                              {@see DataprocMetastoreClient::metadataImportName()} for help formatting this field.

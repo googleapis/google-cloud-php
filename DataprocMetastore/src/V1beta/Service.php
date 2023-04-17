@@ -150,6 +150,12 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.metastore.v1beta.TelemetryConfig telemetry_config = 23;</code>
      */
     private $telemetry_config = null;
+    /**
+     * Scaling configuration of the metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1beta.ScalingConfig scaling_config = 24;</code>
+     */
+    private $scaling_config = null;
     protected $metastore_config;
 
     /**
@@ -216,6 +222,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Metastore\V1beta\TelemetryConfig $telemetry_config
      *           The configuration specifying telemetry settings for the Dataproc Metastore
      *           service. If unspecified defaults to `JSON`.
+     *     @type \Google\Cloud\Metastore\V1beta\ScalingConfig $scaling_config
+     *           Scaling configuration of the metastore service.
      * }
      */
     public function __construct($data = NULL) {
@@ -882,6 +890,42 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1beta\TelemetryConfig::class);
         $this->telemetry_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Scaling configuration of the metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1beta.ScalingConfig scaling_config = 24;</code>
+     * @return \Google\Cloud\Metastore\V1beta\ScalingConfig|null
+     */
+    public function getScalingConfig()
+    {
+        return $this->scaling_config;
+    }
+
+    public function hasScalingConfig()
+    {
+        return isset($this->scaling_config);
+    }
+
+    public function clearScalingConfig()
+    {
+        unset($this->scaling_config);
+    }
+
+    /**
+     * Scaling configuration of the metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1beta.ScalingConfig scaling_config = 24;</code>
+     * @param \Google\Cloud\Metastore\V1beta\ScalingConfig $var
+     * @return $this
+     */
+    public function setScalingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1beta\ScalingConfig::class);
+        $this->scaling_config = $var;
 
         return $this;
     }

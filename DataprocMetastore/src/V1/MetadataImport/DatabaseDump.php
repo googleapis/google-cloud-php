@@ -31,7 +31,8 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     private $gcs_uri = '';
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,7 +50,8 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      *           A Cloud Storage object or folder URI that specifies the source from which
      *           to import metadata. It must begin with `gs://`.
      *     @type int $type
-     *           Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     *           Optional. The type of the database dump. If unspecified, defaults to
+     *           `MYSQL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +118,8 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -127,7 +130,8 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

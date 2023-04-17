@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.GetService][google.cloud.metastore.v1.DataprocMetastore.GetService].
+ * Request message for
+ * [DataprocMetastore.GetService][google.cloud.metastore.v1.DataprocMetastore.GetService].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1.GetServiceRequest</code>
  */
 class GetServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the metastore service to retrieve, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to retrieve,
+     * in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,8 +32,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The relative resource name of the metastore service to retrieve, in the
-     *           following form:
+     *           Required. The relative resource name of the metastore service to retrieve,
+     *           in the following form:
      *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * }
      */
@@ -42,8 +43,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to retrieve, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to retrieve,
+     * in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -55,8 +56,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to retrieve, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to retrieve,
+     * in the following form:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

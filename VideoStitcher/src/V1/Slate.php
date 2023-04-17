@@ -30,7 +30,7 @@ class Slate extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
-     * gam_slate has all the GAM related attributes of slates.
+     * gam_slate has all the GAM-related attributes of slates.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
      */
@@ -49,7 +49,7 @@ class Slate extends \Google\Protobuf\Internal\Message
      *           The URI to fetch the source content for the slate. This URI must return an
      *           MP4 video with at least one audio track.
      *     @type \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate $gam_slate
-     *           gam_slate has all the GAM related attributes of slates.
+     *           gam_slate has all the GAM-related attributes of slates.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +114,7 @@ class Slate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * gam_slate has all the GAM related attributes of slates.
+     * gam_slate has all the GAM-related attributes of slates.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
      * @return \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate|null
@@ -135,7 +135,7 @@ class Slate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * gam_slate has all the GAM related attributes of slates.
+     * gam_slate has all the GAM-related attributes of slates.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
      * @param \Google\Cloud\Video\Stitcher\V1\Slate\GamSlate $var

@@ -115,7 +115,7 @@ class Table
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails.
-     * @throws InvalidArgumentException If rowMutations is a list instead of associative array indexed by row key.
+     * @throws \InvalidArgumentException If rowMutations is a list instead of associative array indexed by row key.
      */
     public function mutateRows(array $rowMutations, array $options = [])
     {
