@@ -5,7 +5,7 @@ branchProtectionRules:
 - pattern: main
   isAdminEnforced: true
   requiredStatusCheckContexts:
-    - 'PHP 7.0 Unit Test protobuf,grpc'
+    - 'PHP 7.0 Unit Test protobuf,grpc-1.49.0'
     - 'PHP 7.0 Unit Test'
     - 'PHP 7.1 Unit Test'
     - 'PHP 7.2 Unit Test'
@@ -13,7 +13,7 @@ branchProtectionRules:
     - 'PHP 7.4 Unit Test'
     - 'PHP 8.0 Unit Test'
     - 'PHP 8.1 Unit Test'
-    - 'PHP 8.1 Unit Test protobuf,grpc'
+    - 'PHP 8.1 Unit Test protobuf,grpc-1.49.0'
     - 'Composer Conflict Test'
     - 'PHP Style Check'
     - 'cla/google'
