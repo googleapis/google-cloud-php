@@ -19,12 +19,11 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\EntityTrait;
 use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\EntityInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -292,7 +291,7 @@ class EntityMapperTest extends TestCase
 
     public function testResponseToPropertiesEntityValueInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $data = [
             'foo' => [
@@ -311,7 +310,7 @@ class EntityMapperTest extends TestCase
 
     public function testResponseToPropertiesEntityValueInvalidMappingType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $data = [
             'invalid' => [
@@ -352,7 +351,7 @@ class EntityMapperTest extends TestCase
 
     public function testResponseToPropertiesNoValuePresent()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $data = [
             'foo' => [
@@ -625,7 +624,7 @@ class EntityMapperTest extends TestCase
 
     public function testConvertValueInvalidType()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $type = 'fooBarValue';
         $val = 'nothanks';
@@ -841,7 +840,7 @@ class EntityMapperTest extends TestCase
 
     public function testObjectPropertyInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->mapper->valueObject($this);
     }

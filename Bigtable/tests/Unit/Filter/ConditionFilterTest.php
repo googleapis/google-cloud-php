@@ -46,7 +46,7 @@ class ConditionFilterTest extends TestCase
      */
     public function testPredicate()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('In order to utilize a condition filter you must');
 
         $this->conditionFilter->toProto();

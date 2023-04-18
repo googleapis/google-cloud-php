@@ -30,8 +30,8 @@ use Google\Cloud\Metastore\V1\Service;
 /**
  * Gets the details of a single service.
  *
- * @param string $formattedName The relative resource name of the metastore service to retrieve, in the
- *                              following form:
+ * @param string $formattedName The relative resource name of the metastore service to retrieve,
+ *                              in the following form:
  *
  *                              `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
  *                              {@see DataprocMetastoreClient::serviceName()} for help formatting this field.

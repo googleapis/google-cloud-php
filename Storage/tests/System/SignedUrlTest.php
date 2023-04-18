@@ -110,7 +110,7 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrlDelete($version)
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX));
 

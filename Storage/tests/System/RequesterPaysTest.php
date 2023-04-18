@@ -18,6 +18,8 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use GuzzleHttp\Client;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
@@ -149,7 +151,7 @@ class RequesterPaysTest extends StorageTestCase
      */
     public function testRequesterPaysMethodsWithoutUserProject(callable $call)
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $object = $bucket->object(self::$object1->name());
@@ -360,7 +362,7 @@ class RequesterPaysTest extends StorageTestCase
      */
     public function testUploadMethodsWithoutUserProject(callable $call)
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $call($bucket);
@@ -407,7 +409,7 @@ class RequesterPaysTest extends StorageTestCase
 
     public function testDeleteNotificationFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $bucket->notification(self::$notificationId)->delete();

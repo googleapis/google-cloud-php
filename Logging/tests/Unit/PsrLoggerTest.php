@@ -22,6 +22,7 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\InvalidArgumentException;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -177,7 +178,7 @@ class PsrLoggerTest extends TestCase
 
     public function testLogThrowsExceptionWithInvalidLevel()
     {
-        $this->expectException('Psr\Log\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $psrLogger = $this->getPsrLogger($this->connection);
         $psrLogger->log('INVALID-LEVEL', $this->textPayload);

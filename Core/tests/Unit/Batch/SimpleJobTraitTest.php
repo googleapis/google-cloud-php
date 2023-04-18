@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\InMemoryConfigStorage;
 use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\SimpleJob;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,7 +34,7 @@ class SimpleJobTraitTest extends TestCase
 
     public function testSetSimpleJobPropertiesThrowsExceptionWithoutIdentifier()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $job = new SimpleClass();
         $job->setSimpleJobProperties([]);

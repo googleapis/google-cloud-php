@@ -90,7 +90,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionUnableToSaveItem()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(
             'Failed to save session pool data. This can often be related to ' .
             'your chosen cache implementation running out of memory. ' .
@@ -121,7 +121,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -147,7 +147,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWithNoAvailableSessions()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -1031,7 +1031,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testMaintainNoDatabase()
     {
-        $this->expectException('\LogicException');
+        $this->expectException(\LogicException::class);
 
         $cache = $this->getCacheItemPool();
         $pool = new CacheSessionPoolStub($cache, [], $this->time);

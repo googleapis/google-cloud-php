@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Numeric;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,7 +31,7 @@ class NumericTest extends TestCase
      */
     public function testInvalidValues($value)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new Numeric($value);
     }

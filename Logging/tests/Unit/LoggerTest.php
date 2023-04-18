@@ -20,6 +20,7 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -192,7 +193,7 @@ class LoggerTest extends TestCase
 
     public function testCreateEntryThrowsExceptionWithInvalidData()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $logger = $this->getLogger($this->connection);
         $entry = $logger->entry(123123);

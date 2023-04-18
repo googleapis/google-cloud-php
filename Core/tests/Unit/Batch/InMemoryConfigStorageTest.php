@@ -102,7 +102,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testSerializeThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Serialization not supported');
 
         $configStorage = InMemoryConfigStorage::getInstance();
@@ -111,7 +111,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testUnserializeThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Serialization not supported');
 
         $configStorage = InMemoryConfigStorage::getInstance();

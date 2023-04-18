@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Lifecycle;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -138,7 +139,7 @@ class LifecycleTest extends TestCase
 
     public function testClearRulesThrowsExceptionWithInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->lifecycle
             ->clearRules(123);

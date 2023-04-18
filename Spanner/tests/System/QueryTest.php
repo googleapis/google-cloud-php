@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
@@ -67,7 +68,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testInvalidQueryFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $db = self::$database;
 

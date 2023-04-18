@@ -30,8 +30,8 @@ use Google\Cloud\Metastore\V1\Federation;
 /**
  * Gets the details of a single federation.
  *
- * @param string $formattedName The relative resource name of the metastore federation to retrieve,
- *                              in the following form:
+ * @param string $formattedName The relative resource name of the metastore federation to
+ *                              retrieve, in the following form:
  *
  *                              `projects/{project_number}/locations/{location_id}/federations/{federation_id}`. Please see
  *                              {@see DataprocMetastoreFederationClient::federationName()} for help formatting this field.

@@ -305,6 +305,8 @@ class Query
      * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
      * the `array-contains`, `IN` and `array-contains-any` operators are also
      * available.
+     * This method also supports usage of Filters (see {@see Google\Cloud\Firestore\Filter}).
+     * The Filter class helps to create complex queries using AND and OR operators.
      *
      * Example:
      * ```
@@ -321,94 +323,36 @@ class Query
      * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
      * ```
      *
-     * @param string|FieldPath $fieldPath The field to filter by.
+     * ```
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * // Filtering with Filter::or
+     * $query = $query->where(Filter::or([
+     *     Filter::field('firstName', '=', 'John'),
+     *     Filter::field('firstName', '=', 'Monica')
+     * ]));
+     * ```
+     *
+     * @param string|array|FieldPath $fieldPath The field to filter by, or array of Filters.
+     *     If filter array is provided, other params will be ignored.
      * @param string|int $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid operator or value is encountered.
      */
-    public function where($fieldPath, $operator, $value)
+    public function where($fieldPath, $operator = null, $value = null)
     {
-        $basePath = $this->basePath();
-
-        if ($value instanceof FieldValueInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'Value cannot be a `%s` value.',
-                FieldValue::class
-            ));
-        }
-
-        if (!($fieldPath instanceof FieldPath)) {
-            $fieldPath = FieldPath::fromString($fieldPath);
-        }
-
-        $escapedPathString = $fieldPath->pathString();
-
-        // alias for friendlier error message below.
-        $originalOperator = $operator;
-        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
-            ? $this->shortOperators[strtolower($operator)]
-            : $operator;
-
-        try {
-            FieldFilterOperator::name($operator);
-        } catch (\UnexpectedValueException $e) {
-            throw new \InvalidArgumentException(sprintf(
-                'Operator %s is not a valid operator',
-                $originalOperator
-            ));
-        }
-
-        if ($escapedPathString === self::DOCUMENT_ID) {
-            if ($operator === FieldFilterOperator::IN) {
-                $value = array_map(function ($value) use ($basePath) {
-                    return $this->createDocumentReference($basePath, $value);
-                }, (array) $value);
-            } else {
-                $value = $this->createDocumentReference($basePath, $value);
-            }
-        }
-
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
-            if ($operator !== FieldFilterOperator::EQUAL) {
-                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
-            }
-
-            $unaryOperator = is_nan($value)
-                ? self::OP_NAN
-                : self::OP_NULL;
-
-            $filter = [
-                'unaryFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString
-                    ],
-                    'op' => $unaryOperator
-                ]
-            ];
+        if (is_array($fieldPath)) {
+            $filters = $this->createCompositeFilter($fieldPath);
         } else {
-            $encodedValue = $operator === FieldFilterOperator::IN
-                ? $this->valueMapper->encodeMultiValue((array)$value)
-                : $this->valueMapper->encodeValue($value);
-
-            $filter = [
-                'fieldFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString,
-                    ],
-                    'op' => $operator,
-                    'value' => $encodedValue
-                ]
-            ];
+            $filters = $this->createFieldFilter($fieldPath, $operator, $value);
         }
 
         $query = [
             'where' => [
                 'compositeFilter' => [
                     'op' => Operator::PBAND,
-                    'filters' => [
-                        $filter
-                    ]
+                    'filters' => [$filters]
                 ]
             ]
         ];
@@ -767,6 +711,27 @@ class Query
     }
 
     /**
+     * Find fieldFilters in a composite filter.
+     *
+     * @param array $filter The composite filter.
+     * @return array array of field filters.
+     */
+    private function flattenFilter($filter)
+    {
+        $ret = [];
+        $filters = $filter['compositeFilter']['filters'];
+        foreach ($filters as $fltr) {
+            $type = array_keys($fltr)[0];
+            if ($type === 'compositeFilter') {
+                $ret = array_merge($ret, $this->flattenFilter($fltr));
+            } else {
+                $ret[] = $fltr;
+            }
+        }
+        return $ret;
+    }
+
+    /**
      * Build cursors for document snapshots.
      *
      * @param DocumentSnapshot $snapshot The document snapshot
@@ -787,7 +752,8 @@ class Query
             // If there is inequality filter (anything other than equals),
             // append orderBy(the last inequality filter’s path, ascending).
             if (!$orderBy && $this->queryHas('where')) {
-                $filters = $this->query['where']['compositeFilter']['filters'];
+                // Flatten the filters array if compositeFilters are present
+                $filters = $this->flattenFilter($this->query['where']);
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
                     return !in_array($filter[$type]['op'], [
@@ -958,7 +924,7 @@ class Query
      * @param string $basePath The relative base of the document reference.
      * @param mixed $document The document.
      * @return DocumentReference
-     * @throws InvalidArgumentException If $document is not a valid document.
+     * @throws \InvalidArgumentException If $document is not a valid document.
      */
     private function createDocumentReference($basePath, $document)
     {
@@ -1013,5 +979,145 @@ class Query
         return $this->allDescendants()
             ? $this->parentName
             : $this->childPath($this->parentName, $this->query['from'][0]['collectionId']);
+    }
+
+    /**
+     * Create a field/unary Filter.
+     *
+     * @param string|array|FieldPath $fieldPath A field to filter by.
+     * @param string|int $operator An operator to filter by.
+     * @param mixed $value A value to compare to.
+     * @return array A field/unary Filter array.
+     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
+     */
+    private function createFieldFilter($fieldPath, $operator, $value)
+    {
+        $basePath = $this->basePath();
+        if ($value instanceof FieldValueInterface) {
+            throw new \InvalidArgumentException(sprintf(
+                'Value cannot be a `%s` value.',
+                FieldValue::class
+            ));
+        }
+
+        if (!($fieldPath instanceof FieldPath)) {
+            $fieldPath = FieldPath::fromString($fieldPath);
+        }
+
+        $escapedPathString = $fieldPath->pathString();
+
+        // alias for friendlier error message below.
+        $originalOperator = $operator;
+        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
+            ? $this->shortOperators[strtolower($operator)]
+            : $operator;
+
+        try {
+            FieldFilterOperator::name($operator);
+        } catch (\UnexpectedValueException $e) {
+            throw new \InvalidArgumentException(sprintf(
+                'Operator %s is not a valid operator',
+                $originalOperator
+            ));
+        }
+
+        if ($escapedPathString === self::DOCUMENT_ID) {
+            if ($operator === FieldFilterOperator::IN) {
+                $value = array_map(function ($value) use ($basePath) {
+                    return $this->createDocumentReference($basePath, $value);
+                }, (array) $value);
+            } else {
+                $value = $this->createDocumentReference($basePath, $value);
+            }
+        }
+
+        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+            if ($operator !== FieldFilterOperator::EQUAL) {
+                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
+            }
+
+            $unaryOperator = is_nan($value)
+                ? self::OP_NAN
+                : self::OP_NULL;
+
+            $filter = [
+                'unaryFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString
+                    ],
+                    'op' => $unaryOperator
+                ]
+            ];
+        } else {
+            $encodedValue = $operator === FieldFilterOperator::IN
+                ? $this->valueMapper->encodeMultiValue((array)$value)
+                : $this->valueMapper->encodeValue($value);
+
+            $filter = [
+                'fieldFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString,
+                    ],
+                    'op' => $operator,
+                    'value' => $encodedValue
+                ]
+            ];
+        }
+        
+        return $filter;
+    }
+
+    /**
+     * Find the filter type to either Field or Unary.
+     *
+     * @param array $filter A field/unary filter array.
+     * @return array A field/unary Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function findFilterType($filter)
+    {
+        $fieldFilter = $this->createFieldFilter(
+            $filter['fieldFilter']['field'],
+            $filter['fieldFilter']['op'],
+            $filter['fieldFilter']['value']
+        );
+
+        return $fieldFilter;
+    }
+
+    /**
+     * Create a composite filter from a filter array.
+     *
+     * @param array $filters A non sanitized composite filter array.
+     * @return array A sanitized composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function createCompositeFilter($filters)
+    {
+        foreach ($filters as $key => $filter) {
+            if ($key === 'fieldFilter') {
+                $fieldFilter = $this->findFilterType($filters);
+                if (isset($fieldFilter['unaryFilter'])) {
+                    unset($filters['fieldFilter']);
+                    $filters['unaryFilter'] = $fieldFilter['unaryFilter'];
+                } else {
+                    $filters['fieldFilter'] = $fieldFilter['fieldFilter'];
+                }
+            } elseif (isset($filter['fieldFilter'])) {
+                $filters[$key] = $this->findFilterType($filter);
+            } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
+                $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
+            } elseif (isset($filter['compositeFilter']) &&
+                isset($filter['compositeFilter']['filters'])) {
+                $filters[$key]['compositeFilter']['filters'] =
+                    $this->createCompositeFilter($filter['compositeFilter']['filters']);
+            } else {
+                throw new \InvalidArgumentException(
+                    'The filter is not set correctly.'
+                );
+            }
+        }
+
+        return $filters;
     }
 }

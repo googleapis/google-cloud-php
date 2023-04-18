@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,7 +41,7 @@ class JsonTraitTest extends TestCase
 
     public function testJsonEncodeThrowsException()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->implementation->call('jsonEncode', [fopen('php://temp', 'r')]);
     }
@@ -52,7 +53,7 @@ class JsonTraitTest extends TestCase
 
     public function testJsonDecodeThrowsException()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->implementation->call('jsonDecode', ['.|.']);
     }

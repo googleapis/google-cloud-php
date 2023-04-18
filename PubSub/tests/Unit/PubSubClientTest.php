@@ -34,6 +34,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -504,7 +505,7 @@ class PubSubClientTest extends TestCase
 
     public function testValidateSchemaThrowsException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $this->connection->validateSchema(Argument::any())
             ->shouldBeCalled()
@@ -568,7 +569,7 @@ class PubSubClientTest extends TestCase
 
     public function testValidateMessageInvalidSchema()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->client->validateMessage(1, 'foo', 'bar');
     }
