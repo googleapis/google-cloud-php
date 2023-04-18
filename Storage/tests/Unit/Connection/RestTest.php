@@ -472,40 +472,53 @@ class RestTest extends TestCase
     }
 
     /**
-     * @dataProvider retryFunctionReturnValues
+     * Tests the truthy case of isPreconditionSupplied
+     * We simply pass in an operation that is conditionally idempotent
+     * and we also pass a valid precondition to thet op.
      */
-    public function testIsPreconditionSupplied(
-        $resource,
-        $op,
-        $restConfig,
-        $args,
-        $errorCode,
-        $currAttempt,
-        $expected
-    ) {
+    public function testIsPreconditionSuppliedWithValidPrecondition() {
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
-        $rest = new Rest($restConfig);
+        $rest = new Rest([]);
         $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
         $method = $reflector->getMethod('isPreConditionSupplied');
-        $condIdempotentOps = $reflector->getProperty('condIdempotentOps');
         $method->setAccessible(true);
-        $condIdempotentOps->setAccessible(true);
-        $condIdempotentOps = $condIdempotentOps->getValue($rest);
-        $methodName = sprintf('%s.%s', $resource, $op);
-        $preconditionNeeded = array_key_exists($methodName, $condIdempotentOps);
-        $result = $method->invokeArgs($rest, array($methodName, $args));
-        if ($preconditionNeeded and $errorCode != 400) {
-            $this->assertEquals($result, $expected);
-        } else {
-            // This case will imply:
-            //     * Precondition needed & errorCode == 400 => No retry
-            //     * Precondition non needed => idempotent / non idempotent op
-            // In both the case, this function's response will never be taken
-            // into consideration for deciding whether to retry or not. Thus
-            // we can just put a dummy assertion here.
-            $this->assertTrue(true);
-        }
+        $result = $method->invokeArgs($rest, array('buckets.patch', ['ifMetagenerationMatch' => 1]));
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Tests the falsy case of isPreconditionSupplied
+     * We simply pass in an operation that is conditionally idempotent
+     * but we don't pass any precondition or we pass an invalid
+     * precondition to that particular op.
+     */
+    public function testIsPreconditionSuppliedWithInvalidPrecondition() {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $rest = new Rest([]);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $method->setAccessible(true);
+        $result = $method->invokeArgs($rest, array('buckets.patch', []));
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Tests another falsy case of isPreconditionSupplied
+     * We simply pass in an operation that is not conditionally
+     * idempotent. With that it shouldn't matter if the precondition
+     * is actually passed or not.
+     */
+    public function testIsPreconditionSuppliedWithInvalidOp() {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $rest = new Rest([]);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $method->setAccessible(true);
+        $result = $method->invokeArgs($rest, array('bucket_acl.get', ['ifMetagenerationMatch' => 1]));
+        $this->assertFalse($result);
     }
 
     /**
