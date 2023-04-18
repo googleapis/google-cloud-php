@@ -476,7 +476,8 @@ class RestTest extends TestCase
      * We simply pass in an operation that is conditionally idempotent
      * and we also pass a valid precondition to thet op.
      */
-    public function testIsPreconditionSuppliedWithValidPrecondition() {
+    public function testIsPreconditionSuppliedWithValidPrecondition()
+    {
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
         $rest = new Rest([]);
@@ -493,7 +494,8 @@ class RestTest extends TestCase
      * but we don't pass any precondition or we pass an invalid
      * precondition to that particular op.
      */
-    public function testIsPreconditionSuppliedWithInvalidPrecondition() {
+    public function testIsPreconditionSuppliedWithInvalidPrecondition()
+    {
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
         $rest = new Rest([]);
@@ -510,7 +512,8 @@ class RestTest extends TestCase
      * idempotent. With that it shouldn't matter if the precondition
      * is actually passed or not.
      */
-    public function testIsPreconditionSuppliedWithInvalidOp() {
+    public function testIsPreconditionSuppliedWithInvalidOp()
+    {
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
         $rest = new Rest([]);
