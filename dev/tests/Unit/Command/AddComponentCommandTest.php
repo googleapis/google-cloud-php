@@ -102,7 +102,7 @@ class AddComponentCommandTest extends TestCase
             'google.custom.proto.package',                                  // custom value for "protoPackage"
             'Google\Cloud\CustomNamespace',                                 // custom value for "phpNamespace"
             'Google Cloud Custom Display Name',                             // custom value for "displayName"
-            'CustomInputs',                                                 // custom value for "componentName"
+            'CustomInput',                                                  // custom value for "componentName"
             self::$tmpDir . '/CustomInput',                                 // custom value for "componentPath"
             'google/custom-composer-package-name',                          // custom value for "composerPackage"
             'googleapis/google-cloud-php-custom-repo',                      // custom value for "githubRepo"
@@ -125,7 +125,7 @@ class AddComponentCommandTest extends TestCase
         | protoPackage         | google.custom.proto.package
         | phpNamespace         | Google\Cloud\CustomNamespace
         | displayName          | Google Cloud Custom Display Name
-        | componentName        | CustomInputs
+        | componentName        | CustomInput
         | componentPath        | %s/CustomInput
         | composerPackage      | google/custom-composer-package-name
         | githubRepo           | googleapis/google-cloud-php-custom-repo
@@ -145,5 +145,33 @@ class AddComponentCommandTest extends TestCase
                 self::$tmpDir . '/CustomInput/' . $file
             );
         }
+    }
+
+    public function testAddComponentWithMismatchingComponentPathThrowsException()
+    {
+        self::$commandTester->setInputs([
+            'n',                                                            // Does this information look correct? [Y/n]
+            '',                                                             // default value for "protoPackage"
+            '',                                                             // default value for "phpNamespace"
+            '',                                                             // default value for "displayName"
+            'CustomComponentName',                                          // custom value for "componentName"
+            '',                                                             // default value for "componentPath" (not updated)
+            '',                                                             // default value for "composerPackage"
+            '',                                                             // default value for "githubRepo"
+            '',                                                             // default value for "gpbMetadataNamespace"
+            '',                                                             // default value for "shortName"
+            '',                                                             // default value for "protoPath"
+            '',                                                             // default value for "version"
+            'Y',                                                            // Does this information look correct? [Y/n]
+            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
+            'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
+        ]);
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The componentPath must match the componentName.');
+
+        self::$commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+        ]);
     }
 }

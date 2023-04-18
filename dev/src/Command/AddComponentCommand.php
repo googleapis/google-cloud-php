@@ -41,13 +41,13 @@ class AddComponentCommand extends Command
 {
     private const TEMPLATE_DIR = __DIR__ . '/../../templates';
     private const COPY_FILES = [
-        '.github/pull_request_template.md',
         '.gitattributes',
         'CONTRIBUTING.md',
         'LICENSE',
         'VERSION'
     ];
     private const TEMPLATE_FILES = [
+        '.github/pull_request_template.md.twig',
         '.OwlBot.yaml.twig',
         'owlbot.py.twig',
         'phpunit.xml.dist.twig',
@@ -108,6 +108,10 @@ class AddComponentCommand extends Command
             (new Table($output))
                 ->setRows(array_map($f, array_keys($newArray), $newArray))
                 ->render();
+        }
+
+        if (basename($new->componentPath) !== $new->componentName) {
+            throw new RuntimeException('The componentPath must match the componentName.');
         }
 
         $productHomepage = $this->getHelper('question')->ask(
