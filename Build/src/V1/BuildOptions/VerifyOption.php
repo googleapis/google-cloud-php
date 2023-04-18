@@ -14,13 +14,13 @@ use UnexpectedValueException;
 class VerifyOption
 {
     /**
-     * Not a verifiable build. (default)
+     * Not a verifiable build (the default).
      *
      * Generated from protobuf enum <code>NOT_VERIFIED = 0;</code>
      */
     const NOT_VERIFIED = 0;
     /**
-     * Verified build.
+     * Build must be verified.
      *
      * Generated from protobuf enum <code>VERIFIED = 1;</code>
      */

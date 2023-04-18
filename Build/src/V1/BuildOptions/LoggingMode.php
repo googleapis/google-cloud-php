@@ -21,13 +21,13 @@ class LoggingMode
      */
     const LOGGING_UNSPECIFIED = 0;
     /**
-     * Cloud Logging and Cloud Storage logging are enabled.
+     * Build logs are stored in Cloud Logging and Cloud Storage.
      *
      * Generated from protobuf enum <code>LEGACY = 1;</code>
      */
     const LEGACY = 1;
     /**
-     * Only Cloud Storage logging is enabled.
+     * Build logs are stored in Cloud Storage.
      *
      * Generated from protobuf enum <code>GCS_ONLY = 2;</code>
      */
@@ -39,9 +39,9 @@ class LoggingMode
      */
     const STACKDRIVER_ONLY = 3;
     /**
-     * Only Cloud Logging is enabled. Note that logs for both the Cloud Console
-     * UI and Cloud SDK are based on Cloud Storage logs, so neither will provide
-     * logs if this option is chosen.
+     * Build logs are stored in Cloud Logging. Selecting this option will not
+     * allow [logs
+     * streaming](https://cloud.google.com/sdk/gcloud/reference/builds/log).
      *
      * Generated from protobuf enum <code>CLOUD_LOGGING_ONLY = 5;</code>
      */
