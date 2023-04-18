@@ -283,7 +283,7 @@ trait RetryTrait
      * Utility func that returns the list of headers that need to be
      * attached to every request and its retries.
      */
-    public static function getRetryHeaders($invocationId, $attemptCount)
+    private static function getRetryHeaders($invocationId, $attemptCount)
     {
         return [
             sprintf('%s/%s', self::$INVOCATION_ID_HEADER, $invocationId),
