@@ -21,7 +21,7 @@ class NetworkType
      */
     const NETWORK_TYPE_UNSPECIFIED = 0;
     /**
-     * A network hosted within Google Cloud Platform.
+     * A network hosted within Google Cloud.
      * To receive more detailed output, specify the URI for the source or
      * destination network.
      *
@@ -29,7 +29,7 @@ class NetworkType
      */
     const GCP_NETWORK = 1;
     /**
-     * A network hosted outside of Google Cloud Platform.
+     * A network hosted outside of Google Cloud.
      * This can be an on-premises network, or a network hosted by another cloud
      * provider.
      *
