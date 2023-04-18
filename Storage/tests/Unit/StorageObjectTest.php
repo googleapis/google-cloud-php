@@ -612,8 +612,8 @@ class StorageObjectTest extends TestCase
         $stream = $object->downloadAsStream($options);
 
         $this->assertIsArray($actualOptions);
-        $this->assertArrayHasKey('headers' , $actualOptions);
-        $this->assertArrayHasKey('Range' , $actualOptions['headers']);
+        $this->assertArrayHasKey('headers', $actualOptions);
+        $this->assertArrayHasKey('Range', $actualOptions['headers']);
         $this->assertEquals($expectedRange, $actualOptions['headers']['Range']);
 
         $this->assertNotNull($actualRequest);
