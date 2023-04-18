@@ -22,6 +22,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
@@ -1064,7 +1065,7 @@ class Query
                 ]
             ];
         }
-        
+
         return $filter;
     }
 

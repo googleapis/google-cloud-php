@@ -33,6 +33,8 @@ use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
@@ -120,6 +122,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function batchGetDocuments(array $args)
     {
@@ -134,6 +137,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function beginTransaction(array $args)
     {
@@ -154,6 +158,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function commit(array $args)
     {
@@ -171,6 +176,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function batchWrite(array $args)
     {
@@ -189,6 +195,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listCollectionIds(array $args)
     {
@@ -202,6 +209,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listDocuments(array $args)
     {
@@ -221,6 +229,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function rollback(array $args)
     {
@@ -233,6 +242,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runQuery(array $args)
     {
@@ -250,6 +260,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runAggregationQuery(array $args)
     {

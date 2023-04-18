@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\QueryTrait;
 
 /**
  * A Cloud Firestore Aggregate Query.
