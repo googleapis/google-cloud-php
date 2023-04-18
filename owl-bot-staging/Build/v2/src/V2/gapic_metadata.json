@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.cloudbuild.v2",
+    "libraryPackage": "Google\\Cloud\\Build\\V2",
+    "services": {
+        "RepositoryManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RepositoryManagerGapicClient",
+                    "rpcs": {
+                        "BatchCreateRepositories": {
+                            "methods": [
+                                "batchCreateRepositories"
+                            ]
+                        },
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
+                        "CreateRepository": {
+                            "methods": [
+                                "createRepository"
+                            ]
+                        },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
+                        "DeleteRepository": {
+                            "methods": [
+                                "deleteRepository"
+                            ]
+                        },
+                        "FetchLinkableRepositories": {
+                            "methods": [
+                                "fetchLinkableRepositories"
+                            ]
+                        },
+                        "FetchReadToken": {
+                            "methods": [
+                                "fetchReadToken"
+                            ]
+                        },
+                        "FetchReadWriteToken": {
+                            "methods": [
+                                "fetchReadWriteToken"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
+                            ]
+                        },
+                        "GetRepository": {
+                            "methods": [
+                                "getRepository"
+                            ]
+                        },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
+                            ]
+                        },
+                        "ListRepositories": {
+                            "methods": [
+                                "listRepositories"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
