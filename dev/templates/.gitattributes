@@ -6,4 +6,3 @@
 /src/**/gapic_metadata.json export-ignore
 /samples export-ignore
 /tests export-ignore
-
