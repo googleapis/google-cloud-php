@@ -31,9 +31,11 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\CRC32\Builtin;
 use Google\CRC32\CRC32;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Ramsey\Uuid\Uuid;
@@ -49,6 +51,13 @@ class Rest implements ConnectionInterface
     }
     use RetryTrait;
     use UriTrait;
+
+    /**
+     * Header and value that helps us identify a transcoded obj
+     * w/o making a metadata(info) call.
+     */
+    private const TRANSCODED_OBJ_HEADER_KEY = 'X-Goog-Stored-Content-Encoding';
+    private const TRANSCODED_OBJ_HEADER_VAL = 'gzip';
 
     /**
      * @deprecated
@@ -262,16 +271,68 @@ class Rest implements ConnectionInterface
      */
     public function downloadObject(array $args = [])
     {
+        // This makes sure we honour the range headers specified by the user
+        $requestedBytes = $this->getRequestedBytes($args);
+        $resultStream = Utils::streamFor(null);
+        $transcodedObj = false;
+
         list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
 
+        $invocationId = Uuid::uuid4()->toString();
+        $requestOptions['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
         $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $requestOptions);
+        // We try to deduce if the object is a transcoded object when we receive the headers.
+        $requestOptions['restOptions']['on_headers'] = function ($response) use (&$transcodedObj) {
+            $header = $response->getHeader(self::TRANSCODED_OBJ_HEADER_KEY);
+            if (is_array($header) && in_array(self::TRANSCODED_OBJ_HEADER_VAL, $header)) {
+                $transcodedObj = true;
+            }
+        };
+        $requestOptions['restRetryListener'] = function (
+            \Exception $e,
+            $retryAttempt,
+            &$arguments
+        ) use (
+            $resultStream,
+            $requestedBytes,
+            $invocationId
+        ) {
+            // if the exception has a response for us to use
+            if ($e instanceof RequestException && $e->hasResponse()) {
+                $msg = (string) $e->getResponse()->getBody();
 
-        $requestOptions = $this->addRetryHeaderLogic($requestOptions);
+                $fetchedStream = Utils::streamFor($msg);
 
-        return $this->requestWrapper->send(
+                // add the partial response to our stream that we will return
+                Utils::copyToStream($fetchedStream, $resultStream);
+
+                // Start from the byte that was last fetched
+                $startByte = intval($requestedBytes['startByte']) + $resultStream->getSize();
+                $endByte = $requestedBytes['endByte'];
+
+                // modify the range headers to fetch the remaining data
+                $arguments[1]['headers']['Range'] = sprintf('bytes=%s-%s', $startByte, $endByte);
+                $arguments[0] = $this->modifyRequestForRetry($arguments[0], $retryAttempt, $invocationId);
+            }
+        };
+
+        $fetchedStream = $this->requestWrapper->send(
             $request,
             $requestOptions
         )->getBody();
+
+        // If our object is a transcoded object, then Range headers are not honoured.
+        // That means even if we had a partial download available, the final obj
+        // that was fetched will contain the complete object. So, we don't need to copy
+        // the partial stream, we can just return the stream we fetched.
+        if ($transcodedObj) {
+            return $fetchedStream;
+        }
+
+        Utils::copyToStream($fetchedStream, $resultStream);
+
+        $resultStream->seek(0);
+        return $resultStream;
     }
 
     /**
@@ -533,7 +594,6 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
-            'restRetryListener' => null,
             'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
@@ -681,54 +741,77 @@ class Rest implements ConnectionInterface
         $invocationId = Uuid::uuid4()->toString();
         $args['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
 
-        $currentListener = $args['restRetryListener'] ?? null;
-
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
             \Exception $e,
             $retryAttempt,
-            $arguments
+            &$arguments
         ) use (
-            $invocationId,
-            $currentListener
+            $invocationId
         ) {
-            $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
-            $request = $arguments[0];
-            $headerLine = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
-
-            // An associative array to contain final header values as
-            // $headerValueKey => $headerValue
-            $headerElements = [];
-
-            // Adding existing values
-            $headerLineValues = explode(' ', $headerLine);
-            foreach ($headerLineValues as $value) {
-                $key = explode('/', $value)[0];
-                $headerElements[$key] = $value;
-            }
-
-            // Adding changes with replacing value if $key already present
-            foreach ($changes as $change) {
-                $key = explode('/', $change)[0];
-                $headerElements[$key] = $change;
-            }
-            $arguments[0] = $request->withHeader(
-                AgentHeader::AGENT_HEADER_KEY,
-                implode(' ', $headerElements)
+            $arguments[0] = $this->modifyRequestForRetry(
+                $arguments[0],
+                $retryAttempt,
+                $invocationId
             );
-
-            // In some cases there might be a listener present
-            // So, we want to execute that after incrementing the attempt count
-            // Ex in case of downloads
-            if (!is_null($currentListener)) {
-                $arguments = call_user_func_array($currentListener, [
-                    $e, $retryAttempt, $arguments
-                ]);
-            }
-
-            return $arguments;
         };
 
         return $args;
+    }
+
+    private function modifyRequestForRetry(
+        RequestInterface $request,
+        int $retryAttempt,
+        string $invocationId
+    ) {
+        $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
+        $headerLine = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
+
+        // An associative array to contain final header values as
+        // $headerValueKey => $headerValue
+        $headerElements = [];
+
+        // Adding existing values
+        $headerLineValues = explode(' ', $headerLine);
+        foreach ($headerLineValues as $value) {
+            $key = explode('/', $value)[0];
+            $headerElements[$key] = $value;
+        }
+
+        // Adding changes with replacing value if $key already present
+        foreach ($changes as $change) {
+            $key = explode('/', $change)[0];
+            $headerElements[$key] = $change;
+        }
+
+        return $request->withHeader(
+            AgentHeader::AGENT_HEADER_KEY,
+            implode(' ', $headerElements)
+        );
+    }
+
+    /**
+     * Util function to compute the bytes requested for a download request.
+     *
+     * @param array $options Request options
+     * @return array
+     */
+    private function getRequestedBytes(array $options)
+    {
+        $startByte = 0;
+        $endByte = '';
+
+        if (isset($options['restOptions']) && isset($options['restOptions']['headers'])) {
+            $headers = $options['restOptions']['headers'];
+            if (isset($headers['Range']) || isset($headers['range'])) {
+                $header = isset($headers['Range']) ? $headers['Range'] : $headers['range'];
+                $range = explode('=', $header);
+                $bytes = explode('-', $range[1]);
+                $startByte = $bytes[0];
+                $endByte = $bytes[1];
+            }
+        }
+
+        return compact('startByte', 'endByte');
     }
 }

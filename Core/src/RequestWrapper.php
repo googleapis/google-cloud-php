@@ -118,11 +118,6 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
-     *     @type callable $restRetryListener Runs after the restRetryFunction.
-     *           This might be used to simply consume the exception and
-     *           $arguments b/w retries. This returns the new $arguments thus
-     *           allowing modification on demand for $arguments. For ex:
-     *           changing the headers in b/w retries.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -143,7 +138,6 @@ class RequestWrapper
             'shouldSignRequest' => true,
             'componentVersion' => null,
             'restRetryFunction' => null,
-            'restRetryListener' => null,
             'restDelayFunction' => null,
             'restCalcDelayFunction' => null
         ];
