@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * instances or Cloud Spanner instances), or the database instance itself.
  * Some database resources may not have the full resource name populated
  * because these resource types are not yet supported by Cloud Asset Inventory
- * (e.g. CloudSQL databases).  In these cases only the display name will be
+ * (e.g. CloudSQL databases). In these cases only the display name will be
  * provided.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Database</code>

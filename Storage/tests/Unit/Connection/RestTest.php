@@ -553,6 +553,59 @@ class RestTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether the $arguments passed to the callbacks for header
+     * updation is properly done when those callbacks are invoked in the
+     * ExponentialBackoff::execute() method.
+     *
+     * @dataProvider provideRetryHeaders
+     */
+    public function testRetryHeaders(int $maxAttempts)
+    {
+        $attempt = 0;
+        $response = new Response(200, [], $this->successBody);
+        $actualRequest = null;
+
+        $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, $response, $maxAttempts) {
+            $attempt++;
+            if ($attempt < $maxAttempts) {
+                throw new \Exception('Retrying');
+            }
+            $actualRequest = $request;
+            return $response;
+        };
+
+        $rest = new Rest([
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        // Call any method to test the retry
+        $rest->listBuckets();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(AgentHeader::AGENT_HEADER_KEY));
+
+        $agentHeaderParts = explode(' ', $agentHeader);
+        $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
+        $this->assertEquals('gccl-attempt-count/' . $maxAttempts, $agentHeaderParts[3]);
+    }
+
+    public function provideRetryHeaders()
+    {
+        return [
+            [1],
+            [2],
+            [3],
+        ];
+    }
+
     public function retryFunctionReturnValues()
     {
         return [
