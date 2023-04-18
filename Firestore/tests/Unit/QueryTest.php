@@ -36,6 +36,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Firestore\Filter;
 
 /**
  * @group firestore
@@ -226,57 +227,119 @@ class QueryTest extends TestCase
             $res = $res->where('user.age', '=', 30);
             $res = $res->where('user.coolness', '=', null);
             $res = $res->where('user.numberOfFriends', '=', NAN);
+            $res = $res->where(
+                Filter::or([
+                    Filter::field('user.name', '=', 'John'),
+                    Filter::field('user.age', '=', 30),
+                    Filter::and([
+                        Filter::field('user.coolness', '=', null),
+                        Filter::field('user.numberOfFriends', '=', NAN)
+                        ])
+                    ])
+            );
 
             return $res;
-        }, [
-            'parent' => self::QUERY_PARENT,
-            'structuredQuery' => [
-                'from' => $this->queryFrom(),
-                'where' => [
-                    'compositeFilter' => [
-                        'op' => Operator::PBAND,
-                        'filters' => [
-                            [
-                                'fieldFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.name'
-                                    ],
-                                    'op' => FieldFilterOperator::EQUAL,
-                                    'value' => [
-                                        'stringValue' => 'John'
+        },
+            [
+                'parent' => self::QUERY_PARENT,
+                'structuredQuery' => [
+                    'from' => $this->queryFrom(),
+                    'where' => [
+                        'compositeFilter' => [
+                            'op' => Operator::PBAND,
+                            'filters' => [
+                                [
+                                    'fieldFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.name'
+                                        ],
+                                        'op' => FieldFilterOperator::EQUAL,
+                                        'value' => [
+                                            'stringValue' => 'John'
+                                        ]
                                     ]
-                                ]
-                            ], [
-                                'fieldFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.age'
-                                    ],
-                                    'op' => FieldFilterOperator::EQUAL,
-                                    'value' => [
-                                        'integerValue' => '30'
+                                ], [
+                                    'fieldFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.age'
+                                        ],
+                                        'op' => FieldFilterOperator::EQUAL,
+                                        'value' => [
+                                            'integerValue' => '30'
+                                        ]
                                     ]
-                                ]
-                            ],
-                            [
-                                'unaryFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.coolness'
-                                    ],
-                                    'op' => Query::OP_NULL
-                                ]
-                            ], [
-                                'unaryFilter' => [
-                                    'field' => [
-                                        'fieldPath' => 'user.numberOfFriends'
-                                    ],
-                                    'op' => Query::OP_NAN
+                                ],
+                                [
+                                    'unaryFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.coolness'
+                                        ],
+                                        'op' => Query::OP_NULL
+                                    ]
+                                ], [
+                                    'unaryFilter' => [
+                                        'field' => [
+                                            'fieldPath' => 'user.numberOfFriends'
+                                        ],
+                                        'op' => Query::OP_NAN
+                                    ]
+                                ], [
+                                    'compositeFilter' => [
+                                        'op' => Operator::PBOR,
+                                        'filters' => [
+                                            [
+                                                'fieldFilter' => [
+                                                    'field' => [
+                                                        'fieldPath' => 'user.name'
+                                                    ],
+                                                    'op' => FieldFilterOperator::EQUAL,
+                                                    'value' => [
+                                                        'stringValue' => 'John'
+                                                    ]
+                                                ]
+                                            ],
+                                            [
+                                                'fieldFilter' => [
+                                                    'field' => [
+                                                        'fieldPath' => 'user.age'
+                                                    ],
+                                                    'op' => FieldFilterOperator::EQUAL,
+                                                    'value' => [
+                                                        'integerValue' => '30'
+                                                    ]
+                                                ]
+                                            ],
+                                            [
+                                                'compositeFilter' => [
+                                                    'op' => Operator::PBAND,
+                                                    'filters' => [
+                                                        [
+                                                            'unaryFilter' => [
+                                                                'field' => [
+                                                                    'fieldPath' => 'user.coolness'
+                                                                ],
+                                                                'op' => Query::OP_NULL
+                                                            ]
+                                                        ],
+                                                        [
+                                                            'unaryFilter' => [
+                                                                'field' => [
+                                                                    'fieldPath' => 'user.numberOfFriends'
+                                                                ],
+                                                                'op' => Query::OP_NAN
+                                                            ]
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
                                 ]
                             ]
                         ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
     }
 
     /**
@@ -287,6 +350,16 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', $operator, null);
+    }
+
+    /**
+     * @dataProvider invalidUnaryComparisonOperators
+     */
+    public function testWhereUnaryInvalidComparisonOperatorWithFilter($operator)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::field('foo', $operator, null));
     }
 
     public function invalidUnaryComparisonOperators()
@@ -309,6 +382,9 @@ class QueryTest extends TestCase
     public function testWhereOperators($operator)
     {
         $ret = $this->query->where('foo', $operator, 'bar');
+        $this->assertInstanceOf(Query::class, $ret);
+
+        $ret = $this->query->where(Filter::field('foo', $operator, 'bar'));
         $this->assertInstanceOf(Query::class, $ret);
     }
 
@@ -345,11 +421,28 @@ class QueryTest extends TestCase
         $this->query->where('foo', '=', $sentinel);
     }
 
+    /**
+     * @dataProvider sentinels
+     */
+    public function testWhereInvalidSentinelValueWithFilter($sentinel)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::field('foo', '=', $sentinel));
+    }
+
     public function testWhereInvalidOperator()
     {
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where('foo', 'hello', 'bar');
+    }
+
+    public function testWhereInvalidOperatorWithFilter()
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::field('foo', 'hello', 'bar'));
     }
 
     /**
@@ -359,6 +452,36 @@ class QueryTest extends TestCase
     {
         $this->runAndAssert(function (Query $q) use ($document) {
             $res = $q->where(FieldPath::documentId(), '=', $document);
+
+            return $res;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::EQUAL,
+                        'value' => [
+                            'referenceValue' => is_string($expected)
+                                ? $expected
+                                : $expected->name()
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentIdWithFilter($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::field(FieldPath::documentId(), '=', $document));
 
             return $res;
         }, [
@@ -418,6 +541,42 @@ class QueryTest extends TestCase
         ]);
     }
 
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentIdInWithFilter($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::field(FieldPath::documentId(), 'in', [$document]));
+
+            return $res;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::IN,
+                        'value' => [
+                            'arrayValue' => [
+                                'values' => [
+                                    [
+                                        'referenceValue' => is_string($expected)
+                                            ? $expected
+                                            : $expected->name()
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function whereDocument()
     {
         $name = FirestoreGapicClient::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
@@ -441,6 +600,16 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->query->where(FieldPath::documentId(), '=', $document);
+    }
+
+    /**
+     * @dataProvider whereInvalidDocument
+     */
+    public function testWhereInvalidDocumentWithFilter($document)
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->query->where(Filter::field(FieldPath::documentId(), '=', $document));
     }
 
     public function whereInvalidDocument()
@@ -1040,6 +1209,182 @@ class QueryTest extends TestCase
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->where('foo', '>', 'bar');
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'op' => 3,
+                        'value' => [
+                            'stringValue' => 'bar'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'compositeFilter' => [
+                        'op' => Operator::PBOR,
+                        'filters' => [
+                            [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'foo'
+                                    ],
+                                    'op' => 3,
+                                    'value' => [
+                                        'stringValue' => 'bar'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testPositionInequalityWithCompositeFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                'where' => [
+                    'compositeFilter' => [
+                        'op' => Operator::PBOR,
+                        'filters' => [
+                            [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'foo'
+                                    ],
+                                    'op' => 3,
+                                    'value' => [
+                                        'stringValue' => 'bar'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testPositionInequalityWithFieldFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::field('foo', '>', 'bar'));
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::QUERY_PARENT,
