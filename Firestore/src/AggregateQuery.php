@@ -34,13 +34,15 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class AggregateQuery
 {
+    use QueryTrait;
+
     /**
      * @var ConnectionInterface
      */
     private $connection;
 
     /**
-     * @var Query
+     * @var array
      */
     private $query;
 
@@ -59,13 +61,13 @@ class AggregateQuery
      *
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param string $parent The parent of the query.
-     * @param Query $query
+     * @param array $query Represents the underlying structured query.
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
         ConnectionInterface $connection,
         $parent,
-        Query $query,
+        array $query,
         Aggregate $aggregate
     ) {
         $this->connection = $connection;
@@ -104,26 +106,11 @@ class AggregateQuery
         }
         $snapshot = $this->connection->runAggregationQuery([
             'parent' => $this->parentName,
-            'structuredAggregationQuery' => $this->finalQueryPrepare(),
-        ]+ $options)->current();
+            'structuredAggregationQuery' => $this->finalQueryPrepare([
+                'aggregates' => $this->aggregates
+            ] + $this->query),
+        ] + $options)->current();
 
         return new AggregateQuerySnapshot($snapshot);
-    }
-
-    /**
-     * Clean up the query array before sending.
-     *
-     * @return array The final aggregation query data.
-     */
-    private function finalQueryPrepare()
-    {
-        $parsedAggregates = [];
-        foreach ($this->aggregates as $aggregate) {
-            $parsedAggregates[] = $aggregate->getProps();
-        }
-        return [
-            'structuredQuery' => $this->query->finalQueryPrepare(),
-            'aggregations' => $parsedAggregates
-        ];
     }
 }

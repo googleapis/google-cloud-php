@@ -195,7 +195,7 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
-        $this->assertEquals('Found 2 documents!', $res->output());
+        $this->assertEquals('2 documents found!', $res->output());
     }
 
     public function testRunTransaction()

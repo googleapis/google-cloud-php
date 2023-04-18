@@ -111,13 +111,11 @@ class TransactionTest extends TestCase
         $this->connection->runAggregationQuery(Argument::any())
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
-        $q = $this->prophesize(Query::class);
-        $q->finalQueryPrepare()->willReturn([]);
 
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
             self::DOCUMENT,
-            $q->reveal(),
+            ['query' => []],
             Aggregate::count()
         );
 
@@ -135,13 +133,10 @@ class TransactionTest extends TestCase
             'nanos' => 501
         ];
 
-        $q = $this->prophesize(Query::class);
-        $q->finalQueryPrepare()->willReturn([]);
-
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
             self::DOCUMENT,
-            $q->reveal(),
+            ['query' => []],
             Aggregate::count()
         );
         $this->connection->runAggregationQuery(

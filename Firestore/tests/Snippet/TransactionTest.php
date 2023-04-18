@@ -122,12 +122,10 @@ class TransactionTest extends SnippetTestCase
         $this->connection->runAggregationQuery(Argument::any())
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
-        $q = $this->prophesize(Query::class);
-        $q->finalQueryPrepare()->willReturn([]);
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
             self::DOCUMENT,
-            $q->reveal(),
+            ['query' => []],
             Aggregate::count()
         );
 

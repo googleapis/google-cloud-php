@@ -58,12 +58,12 @@ class AggregateQueryTest extends TestCase
             $this->queryObj
         ], ['connection', 'query']);
         $this->aggregate = Aggregate::count();
-        $this->aggregateQuery = new AggregateQuery(
+        $this->aggregateQuery = TestHelpers::stub(AggregateQuery::class, [
             $this->connection->reveal(),
             self::QUERY_PARENT,
-            $this->query,
+            ['query' => $this->queryObj],
             $this->aggregate
-        );
+        ], ['connection', 'query', 'aggregates']);
     }
 
     public function testAggregation()
@@ -71,10 +71,15 @@ class AggregateQueryTest extends TestCase
         $expectedProps = [
             ['count' => []]
         ];
+        $query = $this->aggregateQuery->___getProperty('query');
+        $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
         $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
         $finalQueryPrepare->setAccessible(true);
-        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery);
+        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
+            'query' => $query,
+            'aggregates' => $aggregates
+        ]);
 
         $this->assertEquals($expectedProps, $aggregations['aggregations']);
         $this->assertArrayHasKey('structuredQuery', $aggregations);
@@ -93,10 +98,15 @@ class AggregateQueryTest extends TestCase
             ->alias('count_upto_2')
             ->limit(2)
         );
+        $query = $this->aggregateQuery->___getProperty('query');
+        $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
         $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
         $finalQueryPrepare->setAccessible(true);
-        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery);
+        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
+            'query' => $query,
+            'aggregates' => $aggregates
+        ]);
 
         $this->assertEquals($expectedProps, $aggregations['aggregations']);
         $this->assertArrayHasKey('structuredQuery', $aggregations);

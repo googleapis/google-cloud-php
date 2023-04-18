@@ -48,6 +48,7 @@ class Query
 {
     use DebugInfoTrait;
     use SnapshotTrait;
+    use QueryTrait;
 
     /**
      * @deprecated
@@ -210,7 +211,10 @@ class Query
         $aggregateQuery = new AggregateQuery(
             $this->connection,
             $this->parentName,
-            $this,
+            [
+                'query' => $this->query,
+                'limitToLast' => $this->limitToLast
+            ],
             $aggregate
         );
 
@@ -249,7 +253,10 @@ class Query
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $query = $this->finalQueryPrepare();
+        $query = $this->finalQueryPrepare([
+            'query' => $this->query,
+            'limitToLast' => $this->limitToLast
+        ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
@@ -942,66 +949,6 @@ class Query
             $query,
             $limitToLast
         );
-    }
-
-    /**
-     * Clean up the query array before sending.
-     *
-     * Some optimizations cannot be performed ahead of time and must be done
-     * at execution.
-     *
-     * @internal Only supposed to be used internally.
-     *
-     * @access private
-     * @return array The final query data
-     */
-    public function finalQueryPrepare()
-    {
-        $query = $this->query;
-        if ($this->limitToLast) {
-            if (!isset($query['orderBy']) || !$query['orderBy']) {
-                throw new \RuntimeException(
-                    'Limit-to-last queries require specifying at least one orderBy clause.'
-                );
-            }
-
-            // reverse the direction of orderBy clauses.
-            foreach (array_keys($query['orderBy']) as $i) {
-                $query['orderBy'][$i]['direction'] = $query['orderBy'][$i]['direction'] === Direction::ASCENDING
-                    ? Direction::DESCENDING
-                    : Direction::ASCENDING;
-            }
-
-            // Swap the cursors to match the now-flipped query ordering.
-            // endAt becomes startAt and vice versa, and `before` is switched.
-            $q = $query;
-
-            // unset the values on the final query object so we start fresh.
-            unset($query['startAt'], $query['endAt']);
-
-            if (isset($q['startAt'])) {
-                // first, copy the old startAt value to endAt.
-                $query['endAt'] = $q['startAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['endAt']['before'] = !($query['endAt']['before'] ?? false);
-            }
-
-            if (isset($q['endAt'])) {
-                // first, copy the old endAt value to startAt.
-                $query['startAt'] = $q['endAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['startAt']['before'] = !($query['startAt']['before'] ?? false);
-            }
-        }
-
-        if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
-            $filter = $query['where']['compositeFilter']['filters'][0];
-            $query['where'] = $filter;
-        }
-
-        return $query;
     }
 
     /**

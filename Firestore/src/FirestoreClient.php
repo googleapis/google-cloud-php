@@ -399,7 +399,7 @@ class FirestoreClient
      * $query = $firestore->collectionGroup('users');
      * $querySnapshot = $query->documents();
      *
-     * echo sprintf('Found %d documents!', $querySnapshot->size());
+     * echo $querySnapshot->size() . ' documents found!';
      * ```
      *
      * @param string $id Identifies the collection to query over. Every
