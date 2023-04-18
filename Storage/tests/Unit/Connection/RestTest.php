@@ -473,91 +473,6 @@ class RestTest extends TestCase
     }
 
     /**
-     * Tests the truthy case of isPreconditionSupplied
-     * We simply pass in an operation that is conditionally idempotent
-     * and we also pass a valid precondition to thet op.
-     */
-    public function testIsPreconditionSuppliedWithValidPrecondition()
-    {
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $rest = new Rest([]);
-        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
-        $method = $reflector->getMethod('isPreConditionSupplied');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($rest, array('buckets.patch', ['ifMetagenerationMatch' => 1]));
-        $this->assertTrue($result);
-    }
-
-    /**
-     * Tests the falsy case of isPreconditionSupplied
-     * We simply pass in an operation that is conditionally idempotent
-     * but we don't pass any precondition or we pass an invalid
-     * precondition to that particular op.
-     */
-    public function testIsPreconditionSuppliedWithInvalidPrecondition()
-    {
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $rest = new Rest([]);
-        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
-        $method = $reflector->getMethod('isPreConditionSupplied');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($rest, array('buckets.patch', []));
-        $this->assertFalse($result);
-    }
-
-    /**
-     * Tests another falsy case of isPreconditionSupplied
-     * We simply pass in an operation that is not conditionally
-     * idempotent. With that it shouldn't matter if the precondition
-     * is actually passed or not.
-     */
-    public function testIsPreconditionSuppliedWithInvalidOp()
-    {
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $rest = new Rest([]);
-        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
-        $method = $reflector->getMethod('isPreConditionSupplied');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($rest, array('bucket_acl.get', ['ifMetagenerationMatch' => 1]));
-        $this->assertFalse($result);
-    }
-
-    /**
-     * @dataProvider retryFunctionReturnValues
-     */
-    public function testRetryFunction(
-        $resource,
-        $op,
-        $restConfig,
-        $args,
-        $errorCode,
-        $currAttempt,
-        $expected
-    ) {
-        $rest = new Rest($restConfig);
-        $reflection = new \ReflectionClass($rest);
-        $reflectionProp = $reflection->getProperty('restRetryFunction');
-        $reflectionProp->setAccessible(true);
-
-        $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
-        $reflectionMethod->setAccessible(true);
-        $retryFun = $reflectionMethod->invoke(
-            $rest,
-            $resource,
-            $op,
-            $args,
-        );
-
-        $this->assertEquals(
-            $expected,
-            $retryFun(new \Exception('', $errorCode), $currAttempt)
-        );
-    }
-
-    /**
      * This tests whether the $arguments passed to the callbacks for header
      * updation is properly done when those callbacks are invoked in the
      * ExponentialBackoff::execute() method.
@@ -610,90 +525,6 @@ class RestTest extends TestCase
         ];
     }
 
-    public function retryFunctionReturnValues()
-    {
-        return [
-            // Idempotent operation with retriable error code
-            ['buckets', 'get', [], [], 503, 1, true],
-            ['serviceaccount', 'get', [], [], 504, 1, true],
-            // Idempotent operation with non retriable error code
-            ['buckets', 'get', [], [], 400, 1, false],
-            // Conditionally Idempotent with retriable error code
-            // correct precondition provided
-            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 503, 1, true],
-            // Conditionally Idempotent with retriable error code
-            // wrong precondition provided
-            ['buckets', 'update', [], ['ifGenerationMatch' => 0], 503, 1, false],
-            // Conditionally Idempotent with non retriable error code
-            // precondition provided
-            ['buckets', 'update', [], ['ifMetagenerationMatch' => 0], 400, 1, false],
-            // Conditionally Idempotent with retriable error code
-            // precondition not provided
-            ['buckets', 'update', [], [], 503, 1, false],
-            // Conditionally Idempotent with non retriable error code
-            // precondition not provided
-            ['buckets', 'update', [], [], 400, 1, false],
-            // Non idempotent
-            ['bucket_acl', 'delete', [], [], 503, 2, false],
-            ['bucket_acl', 'delete', [], [], 400, 3, false],
-        ];
-    }
-
-    /**
-     * Checks different cases for the retry strategy.
-     * Essentially there are 4 cases(if an error is retryable):
-     * - When the strategy is 'always', we retry the error,
-     *      regardless of the operation type.
-     * - When the strategy is 'never' we simply don't retry ever.
-     *      even if the op is idempotent etc.
-     * - When the strategy is idempotent(default),
-     *      the decidion is based on the op context.
-     */
-    public function retryStrategyProvider()
-    {
-        // We intentionally pass a retryable exception
-        // so that the decision is completely based on the retry strategy
-        $retryAbleException = new \Exception("", 503);
-        return [
-            // The op is a conditionally idempotent operation,
-            // but it should still be retried because we pass the strategy as 'always'
-            [$retryAbleException, false, true, false, StorageClient::RETRY_ALWAYS, true],
-            // The op is an idempotent operation,
-            // but it should still not be retried because we pass the strategy as 'never'
-            [$retryAbleException, true, false, false, StorageClient::RETRY_NEVER, false],
-            // The op is a conditionally idempotent operation,
-            // so, the decision is based on the status of the precondition supplied by the user
-            [$retryAbleException, false, true, false, StorageClient::RETRY_IDEMPOTENT, false],
-            [$retryAbleException, false, true, true, StorageClient::RETRY_IDEMPOTENT, true],
-        ];
-    }
-
-    /**
-     * @dataProvider retryStrategyProvider
-     */
-    public function testRetryStrategy(
-        \Exception $ex,
-        bool $isIdempotent,
-        bool $condIdempotent,
-        bool $preconditionSupplied,
-        string $strategy,
-        bool $expected
-    ) {
-        $rest = new Rest([]);
-        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
-        $method = $reflector->getMethod('retryDeciderFunction');
-        $method->setAccessible(true);
-        $shouldRetry = $method->invokeArgs($rest, [
-            $ex,
-            $isIdempotent,
-            $condIdempotent,
-            $preconditionSupplied,
-            $strategy
-        ]);
-
-        $this->assertEquals($shouldRetry, $expected);
-    }
-
     private function getContentTypeAndMetadata(RequestInterface $request)
     {
         // Resumable upload request
@@ -710,21 +541,6 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
-    }
-
-    /**
-     * Method to check if we need to change the expected outcome incase of
-     * specific retry strategies like 'always' and 'never'.
-     */
-    private function assignExpectedOutcome($expected, $retryCase)
-    {
-        if (isset($retryCase[3]['restRetryFunction'])
-            || isset($retryCase[2]['restRetryFunction'])
-        ) {
-            return $retryCase[6];
-        }
-
-        return $expected;
     }
 }
 
