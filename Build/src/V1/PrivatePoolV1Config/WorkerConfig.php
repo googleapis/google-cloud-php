@@ -29,7 +29,7 @@ class WorkerConfig extends \Google\Protobuf\Internal\Message
      * Size of the disk attached to the worker, in GB.
      * See [Worker pool config
      * file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema).
-     * Specify a value of up to 1000. If `0` is specified, Cloud Build will use
+     * Specify a value of up to 2000. If `0` is specified, Cloud Build will use
      * a standard disk size.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 2;</code>
@@ -51,7 +51,7 @@ class WorkerConfig extends \Google\Protobuf\Internal\Message
      *           Size of the disk attached to the worker, in GB.
      *           See [Worker pool config
      *           file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema).
-     *           Specify a value of up to 1000. If `0` is specified, Cloud Build will use
+     *           Specify a value of up to 2000. If `0` is specified, Cloud Build will use
      *           a standard disk size.
      * }
      */
@@ -96,7 +96,7 @@ class WorkerConfig extends \Google\Protobuf\Internal\Message
      * Size of the disk attached to the worker, in GB.
      * See [Worker pool config
      * file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema).
-     * Specify a value of up to 1000. If `0` is specified, Cloud Build will use
+     * Specify a value of up to 2000. If `0` is specified, Cloud Build will use
      * a standard disk size.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 2;</code>
@@ -111,7 +111,7 @@ class WorkerConfig extends \Google\Protobuf\Internal\Message
      * Size of the disk attached to the worker, in GB.
      * See [Worker pool config
      * file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema).
-     * Specify a value of up to 1000. If `0` is specified, Cloud Build will use
+     * Specify a value of up to 2000. If `0` is specified, Cloud Build will use
      * a standard disk size.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 2;</code>

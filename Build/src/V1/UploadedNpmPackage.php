@@ -9,30 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Artifact uploaded using the PythonPackage directive.
+ * An npm package uploaded to Artifact Registry using the NpmPackage
+ * directive.
  *
- * Generated from protobuf message <code>google.devtools.cloudbuild.v1.UploadedPythonPackage</code>
+ * Generated from protobuf message <code>google.devtools.cloudbuild.v1.UploadedNpmPackage</code>
  */
-class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
+class UploadedNpmPackage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI of the uploaded artifact.
+     * URI of the uploaded npm package.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    protected $uri = '';
+    private $uri = '';
     /**
-     * Hash types and values of the Python Artifact.
+     * Hash types and values of the npm package.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.FileHashes file_hashes = 2;</code>
      */
-    protected $file_hashes = null;
+    private $file_hashes = null;
     /**
      * Output only. Stores timing information for pushing the specified artifact.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.TimeSpan push_timing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $push_timing = null;
+    private $push_timing = null;
 
     /**
      * Constructor.
@@ -41,9 +42,9 @@ class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           URI of the uploaded artifact.
+     *           URI of the uploaded npm package.
      *     @type \Google\Cloud\Build\V1\FileHashes $file_hashes
-     *           Hash types and values of the Python Artifact.
+     *           Hash types and values of the npm package.
      *     @type \Google\Cloud\Build\V1\TimeSpan $push_timing
      *           Output only. Stores timing information for pushing the specified artifact.
      * }
@@ -54,7 +55,7 @@ class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the uploaded artifact.
+     * URI of the uploaded npm package.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -65,7 +66,7 @@ class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the uploaded artifact.
+     * URI of the uploaded npm package.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var
@@ -80,7 +81,7 @@ class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hash types and values of the Python Artifact.
+     * Hash types and values of the npm package.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.FileHashes file_hashes = 2;</code>
      * @return \Google\Cloud\Build\V1\FileHashes|null
@@ -101,7 +102,7 @@ class UploadedPythonPackage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hash types and values of the Python Artifact.
+     * Hash types and values of the npm package.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.FileHashes file_hashes = 2;</code>
      * @param \Google\Cloud\Build\V1\FileHashes $var

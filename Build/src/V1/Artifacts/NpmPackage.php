@@ -24,14 +24,14 @@ class NpmPackage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository = 1;</code>
      */
-    protected $repository = '';
+    private $repository = '';
     /**
      * Path to the package.json.
      * e.g. workspace/path/to/package
      *
      * Generated from protobuf field <code>string package_path = 2;</code>
      */
-    protected $package_path = '';
+    private $package_path = '';
 
     /**
      * Constructor.
@@ -116,6 +116,4 @@ class NpmPackage extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NpmPackage::class, \Google\Cloud\Build\V1\Artifacts_NpmPackage::class);
 
