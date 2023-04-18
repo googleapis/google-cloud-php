@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Storage\Connection;
 
+use Google\Cloud\Storage\StorageClient;
+
 /**
  * Trait which provides helper methods for retry logic.
  *
@@ -96,29 +98,7 @@ trait RetryTrait
      *     - Retrying only when the operation is considered idempotent(default).
      * These configurations are supplied for per api call basis.
      *
-     * We can set $options['retryStrategy'] to one of "always", "never" and
-     * "idempotent". Anything apart from them is considered as "idempotent" and will be
-     * retried as intended.
      */
-
-    /**
-     * Retry an API operation when an exception occurs if the exception has a retryable error code.
-     * @var string
-     */
-    private static $RETRY_STRATEGY_ALWAYS = 'always';
-
-    /**
-     * Never retry an API operation.
-     * @var string
-     */
-    private static $RETRY_STRATEGY_NEVER = 'never';
-
-    /**
-     * Retry an API operation only if it is considered idempotent
-     * and the exception has a retryable error code.
-     * @var string
-     */
-    private static $RETRY_STRATEGY_IDEMPOTENT = 'idempotent';
 
     /**
      * Header that identifies a specific request hash. The
@@ -151,7 +131,7 @@ trait RetryTrait
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
         $retryStrategy = isset($args['retryStrategy']) ?
             $args['retryStrategy'] :
-            self::$RETRY_STRATEGY_IDEMPOTENT;
+            StorageClient::RETRY_IDEMPOTENT;
 
         return function (
             \Exception $exception
@@ -217,7 +197,7 @@ trait RetryTrait
         $preconditionSupplied,
         $retryStrategy
     ) {
-        if ($retryStrategy == self::$RETRY_STRATEGY_NEVER) {
+        if ($retryStrategy == StorageClient::RETRY_NEVER) {
             return false;
         }
 
@@ -228,7 +208,7 @@ trait RetryTrait
         // idempotent with preconditions supplied.
 
         if (in_array($statusCode, self::$httpRetryCodes)) {
-            if ($retryStrategy == self::$RETRY_STRATEGY_ALWAYS) {
+            if ($retryStrategy == StorageClient::RETRY_ALWAYS) {
                 return true;
             } elseif ($isIdempotent) {
                 return true;
