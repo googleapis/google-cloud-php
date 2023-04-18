@@ -31,30 +31,33 @@ use Google\Cloud\Tasks\V2beta2\Task;
  * Forces a task to run now.
  *
  * When this method is called, Cloud Tasks will dispatch the task, even if
- * the task is already running, the queue has reached its [RateLimits][google.cloud.tasks.v2beta2.RateLimits] or
- * is [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
+ * the task is already running, the queue has reached its
+ * [RateLimits][google.cloud.tasks.v2beta2.RateLimits] or is
+ * [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
  *
  * This command is meant to be used for manual debugging. For
- * example, [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] can be used to retry a failed
- * task after a fix has been made or to manually force a task to be
- * dispatched now.
+ * example, [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] can be
+ * used to retry a failed task after a fix has been made or to manually force
+ * a task to be dispatched now.
  *
  * The dispatched task is returned. That is, the task that is returned
- * contains the [status][google.cloud.tasks.v2beta2.Task.status] after the task is dispatched but
- * before the task is received by its target.
+ * contains the [status][google.cloud.tasks.v2beta2.Task.status] after the
+ * task is dispatched but before the task is received by its target.
  *
  * If Cloud Tasks receives a successful response from the task's
  * target, then the task will be deleted; otherwise the task's
- * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be reset to the time that
- * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] was called plus the retry delay specified
- * in the queue's [RetryConfig][google.cloud.tasks.v2beta2.RetryConfig].
+ * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be
+ * reset to the time that
+ * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] was called plus
+ * the retry delay specified in the queue's
+ * [RetryConfig][google.cloud.tasks.v2beta2.RetryConfig].
  *
  * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] returns
  * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
  * task that has already succeeded or permanently failed.
  *
- * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] cannot be called on a
- * [pull task][google.cloud.tasks.v2beta2.PullMessage].
+ * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] cannot be called
+ * on a [pull task][google.cloud.tasks.v2beta2.PullMessage].
  *
  * @param string $formattedName The task name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`

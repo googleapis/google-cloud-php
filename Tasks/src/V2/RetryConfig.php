@@ -35,9 +35,9 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * If positive, `max_retry_duration` specifies the time limit for
      * retrying a failed task, measured from when the task was first
      * attempted. Once `max_retry_duration` time has passed *and* the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times, no further attempts will be made and the task will be
-     * deleted.
+     * task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times, no
+     * further attempts will be made and the task will be deleted.
      * If zero, then the task age is unlimited.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
@@ -50,11 +50,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      */
     private $max_retry_duration = null;
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `min_backoff` will be truncated to the nearest second.
@@ -66,11 +67,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      */
     private $min_backoff = null;
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `max_backoff` will be truncated to the nearest second.
@@ -89,15 +91,16 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * retries retries at intervals of
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] up to
      * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times.
-     * For example, if [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
+     * For example, if
+     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] is 300s, and
      * `max_doublings` is 3, then the a task will first be retried in
      * 10s. The retry interval will double three times, and then
      * increase linearly by 2^3 * 10s.  Finally, the task will retry at
-     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] until the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s,
-     * 240s, 300s, 300s, ....
+     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff]
+     * until the task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times. Thus,
+     * the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * This field has the same meaning as
@@ -129,9 +132,9 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           If positive, `max_retry_duration` specifies the time limit for
      *           retrying a failed task, measured from when the task was first
      *           attempted. Once `max_retry_duration` time has passed *and* the
-     *           task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     *           times, no further attempts will be made and the task will be
-     *           deleted.
+     *           task has been attempted
+     *           [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times, no
+     *           further attempts will be made and the task will be deleted.
      *           If zero, then the task age is unlimited.
      *           If unspecified when the queue is created, Cloud Tasks will pick the
      *           default.
@@ -140,11 +143,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           [task_age_limit in
      *           queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      *     @type \Google\Protobuf\Duration $min_backoff
-     *           A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     *           [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     *           [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     *           if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     *           retried.
+     *           A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     *           retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     *           and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     *           after it fails, if the queue's
+     *           [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     *           should be retried.
      *           If unspecified when the queue is created, Cloud Tasks will pick the
      *           default.
      *           `min_backoff` will be truncated to the nearest second.
@@ -152,11 +156,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           [min_backoff_seconds in
      *           queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      *     @type \Google\Protobuf\Duration $max_backoff
-     *           A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     *           [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     *           [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     *           if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     *           retried.
+     *           A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     *           retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     *           and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     *           after it fails, if the queue's
+     *           [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     *           should be retried.
      *           If unspecified when the queue is created, Cloud Tasks will pick the
      *           default.
      *           `max_backoff` will be truncated to the nearest second.
@@ -171,15 +176,16 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           retries retries at intervals of
      *           [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] up to
      *           [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times.
-     *           For example, if [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
+     *           For example, if
+     *           [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
      *           [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] is 300s, and
      *           `max_doublings` is 3, then the a task will first be retried in
      *           10s. The retry interval will double three times, and then
      *           increase linearly by 2^3 * 10s.  Finally, the task will retry at
-     *           intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] until the
-     *           task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     *           times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s,
-     *           240s, 300s, 300s, ....
+     *           intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff]
+     *           until the task has been attempted
+     *           [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times. Thus,
+     *           the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
      *           If unspecified when the queue is created, Cloud Tasks will pick the
      *           default.
      *           This field has the same meaning as
@@ -240,9 +246,9 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * If positive, `max_retry_duration` specifies the time limit for
      * retrying a failed task, measured from when the task was first
      * attempted. Once `max_retry_duration` time has passed *and* the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times, no further attempts will be made and the task will be
-     * deleted.
+     * task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times, no
+     * further attempts will be made and the task will be deleted.
      * If zero, then the task age is unlimited.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
@@ -273,9 +279,9 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * If positive, `max_retry_duration` specifies the time limit for
      * retrying a failed task, measured from when the task was first
      * attempted. Once `max_retry_duration` time has passed *and* the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times, no further attempts will be made and the task will be
-     * deleted.
+     * task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times, no
+     * further attempts will be made and the task will be deleted.
      * If zero, then the task age is unlimited.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
@@ -297,11 +303,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `min_backoff` will be truncated to the nearest second.
@@ -328,11 +335,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `min_backoff` will be truncated to the nearest second.
@@ -353,11 +361,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `max_backoff` will be truncated to the nearest second.
@@ -384,11 +393,12 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for retry between
-     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] and
-     * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration after it fails,
-     * if the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task should be
-     * retried.
+     * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
+     * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
+     * and [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] duration
+     * after it fails, if the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig] specifies that the task
+     * should be retried.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * `max_backoff` will be truncated to the nearest second.
@@ -416,15 +426,16 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * retries retries at intervals of
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] up to
      * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times.
-     * For example, if [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
+     * For example, if
+     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] is 300s, and
      * `max_doublings` is 3, then the a task will first be retried in
      * 10s. The retry interval will double three times, and then
      * increase linearly by 2^3 * 10s.  Finally, the task will retry at
-     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] until the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s,
-     * 240s, 300s, 300s, ....
+     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff]
+     * until the task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times. Thus,
+     * the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * This field has the same meaning as
@@ -447,15 +458,16 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * retries retries at intervals of
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] up to
      * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times.
-     * For example, if [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
+     * For example, if
+     * [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff] is 10s,
      * [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] is 300s, and
      * `max_doublings` is 3, then the a task will first be retried in
      * 10s. The retry interval will double three times, and then
      * increase linearly by 2^3 * 10s.  Finally, the task will retry at
-     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff] until the
-     * task has been attempted [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts]
-     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s,
-     * 240s, 300s, 300s, ....
+     * intervals of [max_backoff][google.cloud.tasks.v2.RetryConfig.max_backoff]
+     * until the task has been attempted
+     * [max_attempts][google.cloud.tasks.v2.RetryConfig.max_attempts] times. Thus,
+     * the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
      * This field has the same meaning as
