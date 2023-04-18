@@ -146,7 +146,6 @@ trait RetryTrait
             return $args['restRetryFunction'];
         }
         $methodName = sprintf('%s.%s', $resource, $method);
-        $maxRetries = (int) (isset($args['retries']) ? $args['retries'] : 3);
         $isOpIdempotent = in_array($methodName, self::$idempotentOps);
         $preconditionNeeded = array_key_exists($methodName, self::$condIdempotentOps);
         $preconditionSupplied = $this->isPreConditionSupplied($methodName, $args);
@@ -155,22 +154,18 @@ trait RetryTrait
             self::$RETRY_STRATEGY_IDEMPOTENT;
 
         return function (
-            \Exception $exception,
-            $currentAttempt
+            \Exception $exception
         ) use (
             $isOpIdempotent,
             $preconditionNeeded,
             $preconditionSupplied,
-            $maxRetries,
             $retryStrategy
         ) {
             return $this->retryDeciderFunction(
                 $exception,
-                $currentAttempt,
                 $isOpIdempotent,
                 $preconditionNeeded,
                 $preconditionSupplied,
-                $maxRetries,
                 $retryStrategy
             );
         };
@@ -217,11 +212,9 @@ trait RetryTrait
      */
     private function retryDeciderFunction(
         \Exception $exception,
-        $currentAttempt,
         $isIdempotent,
         $preconditionNeeded,
         $preconditionSupplied,
-        $maxRetries,
         $retryStrategy
     ) {
         if ($retryStrategy == self::$RETRY_STRATEGY_NEVER) {

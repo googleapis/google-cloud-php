@@ -684,11 +684,9 @@ class RestTest extends TestCase
         $method->setAccessible(true);
         $shouldRetry = $method->invokeArgs($rest, [
             $ex,
-            1,
             $isIdempotent,
             $condIdempotent,
             $preconditionSupplied,
-            3,
             $strategy
         ]);
 
