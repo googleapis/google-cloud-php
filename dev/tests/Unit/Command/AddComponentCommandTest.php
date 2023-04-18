@@ -74,7 +74,7 @@ class AddComponentCommandTest extends TestCase
         | phpNamespace         | Google\Cloud\SecretManager
         | displayName          | Google Cloud Secret Manager
         | componentName        | SecretManager
-        | componentPath        | %s/SecretManager
+        | componentPath        | %s
         | composerPackage      | google/cloud-secretmanager
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
@@ -103,7 +103,7 @@ class AddComponentCommandTest extends TestCase
             'Google\Cloud\CustomNamespace',                                 // custom value for "phpNamespace"
             'Google Cloud Custom Display Name',                             // custom value for "displayName"
             'CustomInput',                                                  // custom value for "componentName"
-            self::$tmpDir . '/CustomInput',                                 // custom value for "componentPath"
+            self::$tmpDir,                                                  // custom value for "componentPath"
             'google/custom-composer-package-name',                          // custom value for "composerPackage"
             'googleapis/google-cloud-php-custom-repo',                      // custom value for "githubRepo"
             'GPBMetadata\Google\Custommetadatanamespace',                   // custom value for "gpbMetadataNamespace"
@@ -126,7 +126,7 @@ class AddComponentCommandTest extends TestCase
         | phpNamespace         | Google\Cloud\CustomNamespace
         | displayName          | Google Cloud Custom Display Name
         | componentName        | CustomInput
-        | componentPath        | %s/CustomInput
+        | componentPath        | %s
         | composerPackage      | google/custom-composer-package-name
         | githubRepo           | googleapis/google-cloud-php-custom-repo
         | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace
@@ -145,33 +145,5 @@ class AddComponentCommandTest extends TestCase
                 self::$tmpDir . '/CustomInput/' . $file
             );
         }
-    }
-
-    public function testAddComponentWithMismatchingComponentPathThrowsException()
-    {
-        self::$commandTester->setInputs([
-            'n',                                                            // Does this information look correct? [Y/n]
-            '',                                                             // default value for "protoPackage"
-            '',                                                             // default value for "phpNamespace"
-            '',                                                             // default value for "displayName"
-            'CustomComponentName',                                          // custom value for "componentName"
-            '',                                                             // default value for "componentPath" (not updated)
-            '',                                                             // default value for "composerPackage"
-            '',                                                             // default value for "githubRepo"
-            '',                                                             // default value for "gpbMetadataNamespace"
-            '',                                                             // default value for "shortName"
-            '',                                                             // default value for "protoPath"
-            '',                                                             // default value for "version"
-            'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/coustom-product',                     // What is the product homepage?
-            'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
-        ]);
-
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('The componentPath must match the componentName.');
-
-        self::$commandTester->execute([
-            'proto' => 'google/cloud/secretmanager/v1/service.proto',
-        ]);
     }
 }
