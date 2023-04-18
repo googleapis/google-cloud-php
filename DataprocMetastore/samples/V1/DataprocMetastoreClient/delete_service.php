@@ -31,8 +31,8 @@ use Google\Rpc\Status;
 /**
  * Deletes a single service.
  *
- * @param string $formattedName The relative resource name of the metastore service to delete, in the
- *                              following form:
+ * @param string $formattedName The relative resource name of the metastore service to delete, in
+ *                              the following form:
  *
  *                              `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
  *                              {@see DataprocMetastoreClient::serviceName()} for help formatting this field.

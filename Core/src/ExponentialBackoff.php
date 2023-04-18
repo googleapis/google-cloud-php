@@ -92,7 +92,6 @@ class ExponentialBackoff
         $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
         $retryAttempt = 0;
         $exception = null;
-
         while (true) {
             try {
                 return call_user_func_array($function, $arguments);
@@ -112,9 +111,9 @@ class ExponentialBackoff
                 if ($this->retryListener) {
                     // Developer can modify the $arguments using the retryListener
                     // callback.
-                    $arguments = call_user_func_array(
+                    call_user_func_array(
                         $this->retryListener,
-                        [$exception, $retryAttempt, $arguments]
+                        [$exception, $retryAttempt, &$arguments]
                     );
                 }
             }

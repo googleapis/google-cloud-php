@@ -104,7 +104,7 @@ ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admi
 ListDatabases/.google.firestore.admin.v1.ListDatabasesRequest0.google.firestore.admin.v1.ListDatabasesResponse"2Ç”‰ì#!/v1/{parent=projects/*}/databases⁄Aparent€
 UpdateDatabase0.google.firestore.admin.v1.UpdateDatabaseRequest.google.longrunning.Operation"xÇ”‰ì62*/v1/{database.name=projects/*/databases/*}:database⁄Adatabase,update_mask A"
 DatabaseUpdateDatabaseMetadatav Afirestore.googleapis.com“AXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB•
-com.google.firestore.admin.v1BFirestoreAdminProtoPZ9cloud.google.com/go/firestore/apiv1/admin/apiv1pb;apiv1pb¢GCFS™Google.Cloud.Firestore.Admin.V1 Google\\Cloud\\Firestore\\Admin\\V1Í#Google::Cloud::Firestore::Admin::V1ÍAL
+com.google.firestore.admin.v1BFirestoreAdminProtoPZ9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb¢GCFS™Google.Cloud.Firestore.Admin.V1 Google\\Cloud\\Firestore\\Admin\\V1Í#Google::Cloud::Firestore::Admin::V1ÍAL
 !firestore.googleapis.com/Location\'projects/{project}/locations/{location}ÍAq
 (firestore.googleapis.com/CollectionGroupEprojects/{project}/databases/{database}/collectionGroups/{collection}bproto3'
         , true);

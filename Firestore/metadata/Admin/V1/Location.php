@@ -19,7 +19,7 @@ class Location
 À
 (google/firestore/admin/v1/location.protogoogle.firestore.admin.v1"
 LocationMetadataBÜ
-com.google.firestore.admin.v1BLocationProtoPZ9cloud.google.com/go/firestore/apiv1/admin/apiv1pb;apiv1pb¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
+com.google.firestore.admin.v1BLocationProtoPZ9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
         , true);
 
         static::$is_initialized = true;

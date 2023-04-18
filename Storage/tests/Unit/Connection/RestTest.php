@@ -472,45 +472,60 @@ class RestTest extends TestCase
     }
 
     /**
-     * @dataProvider retryFunctionReturnValues
+     * Tests the truthy case of isPreconditionSupplied
+     * We simply pass in an operation that is conditionally idempotent
+     * and we also pass a valid precondition to thet op.
      */
-    public function testIsPreconditionSupplied(
-        $resource,
-        $op,
-        $restConfig,
-        $args,
-        $errorCode,
-        $currAttempt,
-        $expected
-    ) {
+    public function testIsPreconditionSuppliedWithValidPrecondition()
+    {
         // Using Reflection instead of Prophecy because we want to test a
         // private method's logic by verifying the output for a given input.
-        $rest = new Rest($restConfig);
+        $rest = new Rest([]);
         $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
         $method = $reflector->getMethod('isPreConditionSupplied');
-        $condIdempotentOps = $reflector->getProperty('condIdempotentOps');
         $method->setAccessible(true);
-        $condIdempotentOps->setAccessible(true);
-        $condIdempotentOps = $condIdempotentOps->getValue($rest);
-        $methodName = sprintf('%s.%s', $resource, $op);
-        $preconditionNeeded = array_key_exists($methodName, $condIdempotentOps);
-        $result = $method->invokeArgs($rest, array($methodName, $args));
-        if ($preconditionNeeded and $errorCode != 400) {
-            $this->assertEquals($result, $expected);
-        } else {
-            // This case will imply:
-            //     * Precondition needed & errorCode == 400 => No retry
-            //     * Precondition non needed => idempotent / non idempotent op
-            // In both the case, this function's response will never be taken
-            // into consideration for deciding whether to retry or not. Thus
-            // we can just put a dummy assertion here.
-            $this->assertTrue(true);
-        }
+        $result = $method->invokeArgs($rest, array('buckets.patch', ['ifMetagenerationMatch' => 1]));
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Tests the falsy case of isPreconditionSupplied
+     * We simply pass in an operation that is conditionally idempotent
+     * but we don't pass any precondition or we pass an invalid
+     * precondition to that particular op.
+     */
+    public function testIsPreconditionSuppliedWithInvalidPrecondition()
+    {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $rest = new Rest([]);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $method->setAccessible(true);
+        $result = $method->invokeArgs($rest, array('buckets.patch', []));
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Tests another falsy case of isPreconditionSupplied
+     * We simply pass in an operation that is not conditionally
+     * idempotent. With that it shouldn't matter if the precondition
+     * is actually passed or not.
+     */
+    public function testIsPreconditionSuppliedWithInvalidOp()
+    {
+        // Using Reflection instead of Prophecy because we want to test a
+        // private method's logic by verifying the output for a given input.
+        $rest = new Rest([]);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('isPreConditionSupplied');
+        $method->setAccessible(true);
+        $result = $method->invokeArgs($rest, array('bucket_acl.get', ['ifMetagenerationMatch' => 1]));
+        $this->assertFalse($result);
     }
 
     /**
      * @dataProvider retryFunctionReturnValues
-     * @dataProvider retryStrategyCases
      */
     public function testRetryFunction(
         $resource,
@@ -525,19 +540,15 @@ class RestTest extends TestCase
         $reflection = new \ReflectionClass($rest);
         $reflectionProp = $reflection->getProperty('restRetryFunction');
         $reflectionProp->setAccessible(true);
-        $restRetryFunction = $reflectionProp->getValue($rest);
-        if (isset($restRetryFunction)) {
-            $retryFun = $restRetryFunction;
-        } else {
-            $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
-            $reflectionMethod->setAccessible(true);
-            $retryFun = $reflectionMethod->invoke(
-                $rest,
-                $resource,
-                $op,
-                $args,
-            );
-        }
+
+        $reflectionMethod = $reflection->getMethod('getRestRetryFunction');
+        $reflectionMethod->setAccessible(true);
+        $retryFun = $reflectionMethod->invoke(
+            $rest,
+            $resource,
+            $op,
+            $args,
+        );
 
         $this->assertEquals(
             $expected,
@@ -600,27 +611,6 @@ class RestTest extends TestCase
 
     public function retryFunctionReturnValues()
     {
-        $restMaxRetry = 7;
-        $opMaxRetry = 5;
-        $restRetryFunctionArg = ['restRetryFunction' => function (
-            \Exception $exception,
-            $currentAttempt
-        ) use ($restMaxRetry) {
-            if ($currentAttempt > $restMaxRetry) {
-                return false;
-            }
-            return true;
-        }];
-        $opRetryFunctionArg = ['restRetryFunction' => function (
-            \Exception $exception,
-            $currentAttempt
-        ) use ($opMaxRetry) {
-            if ($currentAttempt > $opMaxRetry) {
-                return false;
-            }
-            return true;
-        }];
-
         return [
             // Idempotent operation with retriable error code
             ['buckets', 'get', [], [], 503, 1, true],
@@ -645,61 +635,62 @@ class RestTest extends TestCase
             // Non idempotent
             ['bucket_acl', 'delete', [], [], 503, 2, false],
             ['bucket_acl', 'delete', [], [], 400, 3, false],
-            // User given restRetryFunction in the StorageClient which internally reaches Rest
-            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry, true],
-            ['buckets', 'get', $restRetryFunctionArg, [], 503, $restMaxRetry + 1, false],
-            // User given restRetryFunction in the operation
-            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry, true],
-            ['buckets', 'get', [], $opRetryFunctionArg, 503, $opMaxRetry + 1, false],
-            // Precedence given to restRetryFunction in the operation than in the StorageClient
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry + 1, true],
-            ['buckets', 'get', $restRetryFunctionArg, $opRetryFunctionArg, 503, $opMaxRetry, true]
         ];
     }
 
     /**
-     * Creates retry strategy test cases(for 'always' and 'never' retry cases)
-     * from the existing retry cases of @dataprovider: retryFunctionReturnValues
-     *
-     * Each case of this @dataprovider is of the format
-     * [
-     *     $resource,
-     *     $operation,
-     *     $restConfig,
-     *     $args,
-     *     $errorCode,
-     *     $retryCount,
-     *     $expectedResult
-     * ]
-     *
-     * @return array<array>
+     * Checks different cases for the retry strategy.
+     * Essentially there are 4 cases(if an error is retryable):
+     * - When the strategy is 'always', we retry the error,
+     *      regardless of the operation type.
+     * - When the strategy is 'never' we simply don't retry ever.
+     *      even if the op is idempotent etc.
+     * - When the strategy is idempotent(default),
+     *      the decidion is based on the op context.
      */
-    public function retryStrategyCases()
+    public function retryStrategyProvider()
     {
-        $retryCases = $this->retryFunctionReturnValues();
-        $retryStrategyCases = [];
-        foreach ($retryCases as $retryCase) {
-            // For retry always
-            $case = $retryCase;
-            $case[3]['retryStrategy'] = 'always';
-            $case[6] = $this->assignExpectedOutcome(true, $retryCase);
-            if (!in_array(
-                $retryCase[4],
-                RetryTraitImpl::getHttpRetryCodes()
-            ) || $retryCase[5] > 3
-            ) {
-                $case[6] = $this->assignExpectedOutcome(false, $retryCase);
-            }
-            $retryStrategyCases[] = $case;
+        // We intentionally pass a retryable exception
+        // so that the decision is completely based on the retry strategy
+        $retryAbleException = new \Exception("", 503);
+        return [
+            // The op is a conditionally idempotent operation,
+            // but it should still be retried because we pass the strategy as 'always'
+            [$retryAbleException, false, true, false, Rest::getStrategyAlwaysKey(), true],
+            // The op is an idempotent operation,
+            // but it should still not be retried because we pass the strategy as 'never'
+            [$retryAbleException, true, false, false, Rest::getStrategyNeverKey(), false],
+            // The op is a conditionally idempotent operation,
+            // so, the decision is based on the status of the precondition supplied by the user
+            [$retryAbleException, false, true, false, Rest::getStrategyIdempotentKey(), false],
+            [$retryAbleException, false, true, true, Rest::getStrategyIdempotentKey(), true],
+        ];
+    }
 
-            // For retry never
-            $case = $retryCase;
-            $case[3]['retryStrategy'] = 'never';
-            $case[6] = $this->assignExpectedOutcome(false, $retryCase);
-            $retryStrategyCases[] = $case;
-        }
+    /**
+     * @dataProvider retryStrategyProvider
+     */
+    public function testRetryStrategy(
+        \Exception $ex,
+        bool $isIdempotent,
+        bool $condIdempotent,
+        bool $preconditionSupplied,
+        string $strategy,
+        bool $expected
+    ) {
+        $rest = new Rest([]);
+        $reflector = new \ReflectionClass('Google\Cloud\Storage\Connection\Rest');
+        $method = $reflector->getMethod('retryDeciderFunction');
+        $method->setAccessible(true);
+        $shouldRetry = $method->invokeArgs($rest, [
+            $ex,
+            $isIdempotent,
+            $condIdempotent,
+            $preconditionSupplied,
+            $strategy
+        ]);
 
-        return $retryStrategyCases;
+        $this->assertEquals($shouldRetry, $expected);
     }
 
     private function getContentTypeAndMetadata(RequestInterface $request)
