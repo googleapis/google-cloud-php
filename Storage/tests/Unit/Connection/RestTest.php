@@ -26,6 +26,7 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Connection\RetryTrait;
+use Google\Cloud\Storage\StorageClient;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -656,14 +657,14 @@ class RestTest extends TestCase
         return [
             // The op is a conditionally idempotent operation,
             // but it should still be retried because we pass the strategy as 'always'
-            [$retryAbleException, false, true, false, Rest::getStrategyAlwaysKey(), true],
+            [$retryAbleException, false, true, false, StorageClient::RETRY_ALWAYS, true],
             // The op is an idempotent operation,
             // but it should still not be retried because we pass the strategy as 'never'
-            [$retryAbleException, true, false, false, Rest::getStrategyNeverKey(), false],
+            [$retryAbleException, true, false, false, StorageClient::RETRY_NEVER, false],
             // The op is a conditionally idempotent operation,
             // so, the decision is based on the status of the precondition supplied by the user
-            [$retryAbleException, false, true, false, Rest::getStrategyIdempotentKey(), false],
-            [$retryAbleException, false, true, true, Rest::getStrategyIdempotentKey(), true],
+            [$retryAbleException, false, true, false, StorageClient::RETRY_IDEMPOTENT, false],
+            [$retryAbleException, false, true, true, StorageClient::RETRY_IDEMPOTENT, true],
         ];
     }
 
