@@ -65,7 +65,7 @@ class FieldValueTest extends SnippetTestCase
                     ],
                 ],
             ],
-        ])->willReturn([[]]);
+        ])->willReturn([[]])->shouldBeCalledTimes(1);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 
@@ -96,7 +96,7 @@ class FieldValueTest extends SnippetTestCase
                     ],
                 ],
             ],
-        ])->willReturn([[]]);
+        ])->willReturn([[]])->shouldBeCalledTimes(1);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 
@@ -135,7 +135,7 @@ class FieldValueTest extends SnippetTestCase
                     ],
                 ],
             ],
-        ])->willReturn([[]]);
+        ])->willReturn([[]])->shouldBeCalledTimes(1);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 
@@ -172,7 +172,7 @@ class FieldValueTest extends SnippetTestCase
                     ],
                 ],
             ],
-        ])->willReturn([[]]);
+        ])->willReturn([[]])->shouldBeCalledTimes(1);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 
@@ -205,7 +205,7 @@ class FieldValueTest extends SnippetTestCase
                     ],
                 ],
             ],
-        ])->willReturn([[]]);
+        ])->willReturn([[]])->shouldBeCalledTimes(1);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 

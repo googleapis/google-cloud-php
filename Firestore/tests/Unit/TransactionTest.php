@@ -23,6 +23,9 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\Aggregate;
+use Google\Cloud\Firestore\AggregateQuery;
+use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
@@ -101,6 +104,73 @@ class TransactionTest extends TestCase
 
         $res = $this->transaction->runQuery($query);
         $this->assertInstanceOf(QuerySnapshot::class, $res);
+    }
+
+    public function testRunAggregateQuery()
+    {
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([]));
+
+        $aggregateQuery = new AggregateQuery(
+            $this->connection->reveal(),
+            self::DOCUMENT,
+            ['query' => []],
+            Aggregate::count()
+        );
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->transaction->runAggregateQuery($aggregateQuery);
+
+        $this->assertInstanceOf(AggregateQuerySnapshot::class, $res);
+    }
+
+    public function testGetAggregateSnapshotReadTime()
+    {
+        $timestamp = [
+            'seconds' => 100,
+            'nanos' => 501
+        ];
+
+        $aggregateQuery = new AggregateQuery(
+            $this->connection->reveal(),
+            self::DOCUMENT,
+            ['query' => []],
+            Aggregate::count()
+        );
+        $this->connection->runAggregationQuery(
+            Argument::withEntry('readTime', $timestamp)
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'result' => [
+                    'aggregateFields' => [
+                        'count' => ['integerValue' => 1]
+                    ]
+                ]
+            ]
+        ]));
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->transaction->runAggregateQuery($aggregateQuery, [
+            'readTime' => new Timestamp(
+                \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']),
+                $timestamp['nanos']
+            )
+        ]);
+
+        $this->assertEquals(1, $res->get('count'));
+    }
+
+    public function testGetAggregateSnapshotReadTimeInvalidReadTime()
+    {
+        $this->expectException('InvalidArgumentException');
+        $q = $this->prophesize(AggregateQuery::class);
+
+        $res = $this->transaction->runAggregateQuery($q->reveal(), [
+            'readTime' => 'invalid_time'
+        ]);
     }
 
     public function testCreate()

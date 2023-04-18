@@ -22,6 +22,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
@@ -48,6 +49,7 @@ class Query
 {
     use DebugInfoTrait;
     use SnapshotTrait;
+    use QueryTrait;
 
     /**
      * @deprecated
@@ -167,6 +169,60 @@ class Query
     }
 
     /**
+     * Gets the count of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $count = $query->count();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return int
+     */
+    public function count(array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('count');
+    }
+
+    /**
+     * Returns an aggregate query provided an aggregation with existing query filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Aggregate;
+     *
+     * $aggregation = Aggregate::count()->alias('count_upto_1');
+     * $aggregateQuery = $query->limit(1)->addAggregation($aggregation);
+     * $aggregateQuerySnapshot = $aggregateQuery->getSnapshot();
+     * $countUpto1 = $aggregateQuerySnapshot->get('count_upto_1');
+     * ```
+     *
+     * @param Aggregate $aggregate Aggregate properties to be applied over query.
+     * @return AggregateQuery
+     */
+    public function addAggregation($aggregate)
+    {
+        $aggregateQuery = new AggregateQuery(
+            $this->connection,
+            $this->parentName,
+            [
+                'query' => $this->query,
+                'limitToLast' => $this->limitToLast
+            ],
+            $aggregate
+        );
+
+        return $aggregateQuery;
+    }
+
+    /**
      * Get all documents matching the provided query filters.
      *
      * Example:
@@ -198,7 +254,10 @@ class Query
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $query = $this->finalQueryPrepare($this->query);
+        $query = $this->finalQueryPrepare([
+            'query' => $this->query,
+            'limitToLast' => $this->limitToLast
+        ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
@@ -860,63 +919,6 @@ class Query
     }
 
     /**
-     * Clean up the query array before sending.
-     *
-     * Some optimizations cannot be performed ahead of time and must be done
-     * at execution.
-     *
-     * @param array $query The incoming query
-     * @return array The final query data
-     */
-    private function finalQueryPrepare(array $query)
-    {
-        if ($this->limitToLast) {
-            if (!isset($query['orderBy']) || !$query['orderBy']) {
-                throw new \RuntimeException(
-                    'Limit-to-last queries require specifying at least one orderBy clause.'
-                );
-            }
-
-            // reverse the direction of orderBy clauses.
-            foreach (array_keys($query['orderBy']) as $i) {
-                $query['orderBy'][$i]['direction'] = $query['orderBy'][$i]['direction'] === Direction::ASCENDING
-                    ? Direction::DESCENDING
-                    : Direction::ASCENDING;
-            }
-
-            // Swap the cursors to match the now-flipped query ordering.
-            // endAt becomes startAt and vice versa, and `before` is switched.
-            $q = $query;
-
-            // unset the values on the final query object so we start fresh.
-            unset($query['startAt'], $query['endAt']);
-
-            if (isset($q['startAt'])) {
-                // first, copy the old startAt value to endAt.
-                $query['endAt'] = $q['startAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['endAt']['before'] = !($query['endAt']['before'] ?? false);
-            }
-
-            if (isset($q['endAt'])) {
-                // first, copy the old endAt value to startAt.
-                $query['startAt'] = $q['endAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['startAt']['before'] = !($query['startAt']['before'] ?? false);
-            }
-        }
-
-        if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
-            $filter = $query['where']['compositeFilter']['filters'][0];
-            $query['where'] = $filter;
-        }
-
-        return $query;
-    }
-
-    /**
      * Creates a document reference from a string, relative to a given base.
      *
      * Returns `false` if the path is not a valid document.
@@ -1063,7 +1065,7 @@ class Query
                 ]
             ];
         }
-        
+
         return $filter;
     }
 

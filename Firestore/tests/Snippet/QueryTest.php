@@ -88,6 +88,76 @@ class QueryTest extends SnippetTestCase
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
     }
 
+    public function testCount()
+    {
+        $query = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => [
+                    [
+                        'collectionId' => self::COLLECTION,
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+              [
+                  'result' => [
+                      'aggregateFields' => [
+                          'count' => ['integerValue' => 1]
+                      ]
+                  ]
+              ]
+          ]));
+
+        $query->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Query::class, 'count');
+        $snippet->addLocal('query', $query);
+        $res = $snippet->invoke('count');
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testAddAggregation()
+    {
+        $query = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => [
+                    [
+                        'collectionId' => self::COLLECTION,
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+              [
+                  'result' => [
+                      'aggregateFields' => [
+                          'count_upto_1' => ['integerValue' => 1]
+                      ]
+                  ]
+              ]
+          ]));
+
+        $query->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Query::class, 'addAggregation');
+        $snippet->addLocal('query', $query);
+        $res = $snippet->invoke('countUpto1');
+        $this->assertEquals(1, $res->returnVal());
+    }
+
     public function testSelect()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'select');
