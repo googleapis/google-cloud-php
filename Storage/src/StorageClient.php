@@ -56,7 +56,7 @@ class StorageClient
     /**
      * Retry strategy to signify that we never want to retry an operation
      * even if the error is retryable.
-     * 
+     *
      * We can set $options['retryStrategy'] to one of "always", "never" and
      * "idempotent".
      */
