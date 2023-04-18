@@ -2,6 +2,7 @@ name: Backwards Compatibility Check
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled, edited]
+    branches: ['main']
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
