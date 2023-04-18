@@ -22,6 +22,7 @@ use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Datastore\DatastoreClient as ManualDatastoreClient;
+use Google\Cloud\Datastore\V1\AggregationQuery;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
 use Google\Cloud\Datastore\V1\DatastoreClient;
@@ -216,6 +217,44 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function runAggregationQuery(array $args)
+    {
+        $partitionId = $this->serializer->decodeMessage(
+            new PartitionId(),
+            $this->pluck('partitionId', $args)
+        );
+        $args['partitionId'] = $partitionId;
+
+        if (isset($args['readOptions'])) {
+            $args['readOptions'] = $this->readOptions($args['readOptions']);
+        }
+
+        if (isset($args['aggregationQuery'])) {
+            if (isset($args['aggregationQuery']['nestedQuery'])) {
+                $args['aggregationQuery']['nestedQuery'] = $this->parseQuery(
+                    $args['aggregationQuery']['nestedQuery']
+                );
+            }
+
+            $args['aggregationQuery'] = $this->serializer->decodeMessage(
+                new AggregationQuery,
+                $args['aggregationQuery']
+            );
+        }
+
+        if (isset($args['gqlQuery'])) {
+            $args['gqlQuery'] = $this->parseGqlQuery($args['gqlQuery']);
+        }
+
+        return $this->send([$this->datastoreClient, 'runAggregationQuery'], [
+            $this->pluck('projectId', $args),
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function runQuery(array $args)
     {
         $partitionId = $this->serializer->decodeMessage(
@@ -228,58 +267,11 @@ class Grpc implements ConnectionInterface
         }
 
         if (isset($args['query'])) {
-            $query = $args['query'];
-            if (isset($query['order'])) {
-                foreach ($query['order'] as &$order) {
-                    $order['direction'] = $order['direction'] === 'ASCENDING'
-                        ? Direction::ASCENDING
-                        : Direction::DESCENDING;
-                }
-            }
-
-            if (isset($query['filter'])) {
-                $query['filter'] = $this->convertFilterProps($query['filter']);
-            }
-
-            if (isset($query['limit']) && !is_array($query['limit'])) {
-                $query['limit'] = [
-                    'value' => $query['limit']
-                ];
-            }
-
-            $args['query'] = $this->serializer->decodeMessage(
-                new Query,
-                $query
-            );
+            $args['query'] = $this->parseQuery($args['query']);
         }
 
         if (isset($args['gqlQuery'])) {
-            $gqlQuery = $args['gqlQuery'];
-
-            if (isset($gqlQuery['namedBindings'])) {
-                foreach ($gqlQuery['namedBindings'] as $name => &$binding) {
-                    if (!isset($binding['value'])) {
-                        continue;
-                    }
-
-                    $binding = $this->prepareQueryBinding($binding);
-                }
-            }
-
-            if (isset($gqlQuery['positionalBindings'])) {
-                foreach ($gqlQuery['positionalBindings'] as &$binding) {
-                    if (!isset($binding['value'])) {
-                        continue;
-                    }
-
-                    $binding = $this->prepareQueryBinding($binding);
-                }
-            }
-
-            $args['gqlQuery'] = $this->serializer->decodeMessage(
-                new GqlQuery,
-                $gqlQuery
-            );
+            $args['gqlQuery'] = $this->parseGqlQuery($args['gqlQuery']);
         }
 
         return $this->send([$this->datastoreClient, 'runQuery'], [
@@ -287,6 +279,75 @@ class Grpc implements ConnectionInterface
             $partitionId,
             $args
         ]);
+    }
+
+    /**
+     * Convert array representation of Query to {@see Google\Cloud\Datastore\V1\Query}.
+     *
+     * @param array $query
+     * @return Query
+     */
+    private function parseQuery(array $query)
+    {
+        if (isset($query['order'])) {
+            foreach ($query['order'] as &$order) {
+                $order['direction'] = $order['direction'] === 'ASCENDING'
+                    ? Direction::ASCENDING
+                    : Direction::DESCENDING;
+            }
+        }
+
+        if (isset($query['filter'])) {
+            $query['filter'] = $this->convertFilterProps($query['filter']);
+        }
+
+        if (isset($query['limit']) && !is_array($query['limit'])) {
+            $query['limit'] = [
+                'value' => $query['limit']
+            ];
+        }
+
+        $parsedQuery = $this->serializer->decodeMessage(
+            new Query,
+            $query
+        );
+        return $parsedQuery;
+    }
+
+    /**
+     * Convert array representation of GqlQuery to {@see Google\Cloud\Datastore\V1\GqlQuery}.
+     *
+     * @param array $gqlQuery
+     * @return GqlQuery
+     */
+    private function parseGqlQuery(array $gqlQuery)
+    {
+        if (isset($gqlQuery['namedBindings'])) {
+            foreach ($gqlQuery['namedBindings'] as $name => &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        if (isset($gqlQuery['positionalBindings'])) {
+            foreach ($gqlQuery['positionalBindings'] as &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        $parsedGqlQuery = $this->serializer->decodeMessage(
+            new GqlQuery,
+            $gqlQuery
+        );
+
+        return $parsedGqlQuery;
     }
 
     /**
