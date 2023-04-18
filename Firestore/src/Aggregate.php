@@ -35,7 +35,7 @@ class Aggregate
     /**
      * Default placeholder for all count aggregate props.
      */
-    const TYPE_COUNT = 'count';
+    private const TYPE_COUNT = 'count';
 
     /**
      * @var array Aggregation properties for an AggregateQuery.
