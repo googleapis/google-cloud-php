@@ -26,7 +26,6 @@ use InvalidArgumentException;
  * ```
  * $count = Aggregate::count();
  * $count->alias('count');
- * $count->limit(100);
  *
  * echo json_encode($count->getProps());
  * ```
@@ -86,32 +85,6 @@ class Aggregate
     public function alias($alias)
     {
         $this->props['alias'] = $alias;
-        return $this;
-    }
-
-    /**
-     * Set the aggregate limit value.
-     *
-     * Example:
-     * ```
-     * $count = Aggregate->count();
-     * $count->alias('total');
-     * $count->limit(2);
-     *
-     * echo $count->props()['count']['upto'];
-     * ```
-     *
-     * @param int $value The limit for aggregate.
-     * @return Aggregate
-     * @throws InvalidArgumentException If value is non-positive.
-     */
-    public function limit($value)
-    {
-        if ($value <= 0) {
-            throw new InvalidArgumentException('limit must be postive');
-        }
-
-        $this->props[$this->aggregationType] = ['upTo' => ['value' => $value]];
         return $this;
     }
 

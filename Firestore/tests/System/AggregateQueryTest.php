@@ -184,13 +184,13 @@ class AggregateQueryTest extends FirestoreTestCase
     ) {
         $aggregations = [
             Aggregate::count()->alias('count'),
-            Aggregate::count()->alias('count_upto_1')->limit(1),
-            Aggregate::count()->alias('count_upto_2')->limit(2),
+            Aggregate::count()->alias('count_with_alias_a'),
+            Aggregate::count()->alias('count_with_alias_b'),
         ];
         $expectedCounts = [
             'count' => $expectedCount,
-            'count_upto_1' => min($expectedCount, 1),
-            'count_upto_2' => min($expectedCount, 2),
+            'count_with_alias_a' => $expectedCount,
+            'count_with_alias_b' => $expectedCount,
         ];
         foreach ($aggregations as $aggregation) {
             $query = $query->addAggregation($aggregation);

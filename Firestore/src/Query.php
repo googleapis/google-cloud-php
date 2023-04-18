@@ -197,8 +197,8 @@ class Query
      * ```
      * use Google\Cloud\Firestore\Aggregate;
      *
-     * $aggregation = Aggregate::count()->alias('count_upto_1')->limit(1);
-     * $aggregateQuery = $query->addAggregation($aggregation);
+     * $aggregation = Aggregate::count()->alias('count_upto_1');
+     * $aggregateQuery = $query->limit(1)->addAggregation($aggregation);
      * $aggregateQuerySnapshot = $aggregateQuery->getSnapshot();
      * $countUpto1 = $aggregateQuerySnapshot->get('count_upto_1');
      * ```

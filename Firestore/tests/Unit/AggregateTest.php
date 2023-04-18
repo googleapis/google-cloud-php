@@ -49,25 +49,4 @@ class AggregateTest extends TestCase
 
         $this->assertEquals($expectedQuery, $aggregation->getProps());
     }
-
-    public function testLimit()
-    {
-        $expectedQuery = [
-            'count' => [
-                'upTo' => ['value' => 1]
-            ]
-        ];
-
-        $aggregation = Aggregate::count()->limit(1);
-
-        $this->assertEquals($expectedQuery, $aggregation->getProps());
-    }
-
-    public function testLimitShouldThrow()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('limit must be postive');
-
-        Aggregate::count()->limit(0);
-    }
 }

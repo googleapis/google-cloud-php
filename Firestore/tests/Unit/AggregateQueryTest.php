@@ -90,13 +90,12 @@ class AggregateQueryTest extends TestCase
         $expectedProps = [
             ['count' => []],
             ['count' => [], 'alias' => 'total'],
-            ['count' => ['upTo' => ['value' => 2]], 'alias' => 'count_upto_2'],
+            ['count' => [], 'alias' => 'count_with_another_alias'],
         ];
         $this->aggregateQuery->addAggregation(Aggregate::count()->alias('total'));
         $this->aggregateQuery->addAggregation(
             Aggregate::count()
-            ->alias('count_upto_2')
-            ->limit(2)
+            ->alias('count_with_another_alias')
         );
         $query = $this->aggregateQuery->___getProperty('query');
         $aggregates = $this->aggregateQuery->___getProperty('aggregates');

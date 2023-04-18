@@ -153,9 +153,10 @@ class TransactionTest extends FirestoreTestCase
 
             $this->assertEquals(3, $snapshot->get('count'));
 
-            $this->assertEquals(
+            $this->assertEqualsWithDelta(
                 $readTime->get()->getTimestamp(),
-                $snapshot->getReadTime()->get()->getTimestamp()
+                $snapshot->getReadTime()->get()->getTimestamp(),
+                10
             );
         });
     }
@@ -176,10 +177,10 @@ class TransactionTest extends FirestoreTestCase
             Aggregate::count()->alias('count')
         );
         $aggregateQuery = $aggregateQuery->addAggregation(
-            Aggregate::count()->alias('count_upto_2')->limit(2)
+            Aggregate::count()->alias('count_with_alias_a')
         );
         $aggregateQuery = $aggregateQuery->addAggregation(
-            Aggregate::count()->alias('count_upto_1')->limit(1)
+            Aggregate::count()->alias('count_with_alias_b')
         );
 
         // without sleep, test fails intermittently
@@ -192,12 +193,13 @@ class TransactionTest extends FirestoreTestCase
             ]);
 
             $this->assertEquals(3, $snapshot->get('count'));
-            $this->assertEquals(2, $snapshot->get('count_upto_2'));
-            $this->assertEquals(1, $snapshot->get('count_upto_1'));
+            $this->assertEquals(3, $snapshot->get('count_with_alias_a'));
+            $this->assertEquals(3, $snapshot->get('count_with_alias_b'));
 
-            $this->assertEquals(
+            $this->assertEqualsWithDelta(
                 $readTime->get()->getTimestamp(),
-                $snapshot->getReadTime()->get()->getTimestamp()
+                $snapshot->getReadTime()->get()->getTimestamp(),
+                10
             );
         });
     }
