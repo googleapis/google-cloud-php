@@ -35,8 +35,8 @@ class State
      * Tasks are paused by the user. If the queue is paused then Cloud
      * Tasks will stop delivering tasks from it, but more tasks can
      * still be added to it by the user. When a pull queue is paused,
-     * all [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] calls will return a
-     * [FAILED_PRECONDITION][google.rpc.Code.FAILED_PRECONDITION].
+     * all [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] calls
+     * will return a [FAILED_PRECONDITION][google.rpc.Code.FAILED_PRECONDITION].
      *
      * Generated from protobuf enum <code>PAUSED = 2;</code>
      */
@@ -51,8 +51,8 @@ class State
      * a queue.
      * When a queue is disabled, tasks can still be added to a queue
      * but the tasks are not dispatched and
-     * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] calls return a
-     * `FAILED_PRECONDITION` error.
+     * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] calls
+     * return a `FAILED_PRECONDITION` error.
      * To permanently delete this queue and all of its tasks, call
      * [DeleteQueue][google.cloud.tasks.v2beta2.CloudTasks.DeleteQueue].
      *

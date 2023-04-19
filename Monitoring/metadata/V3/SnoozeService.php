@@ -22,7 +22,7 @@ class SnoozeService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-’
+•
 )google/monitoring/v3/snooze_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto!google/monitoring/v3/snooze.proto google/protobuf/field_mask.proto"‚
 CreateSnoozeRequest8
 parent (	B(àAúA" monitoring.googleapis.com/Snooze1
@@ -46,8 +46,8 @@ page_token (	BàA"]
 CreateSnooze).google.monitoring.v3.CreateSnoozeRequest.google.monitoring.v3.Snooze"?‚Óä“)"/v3/{parent=projects/*}/snoozes:snoozeÚAparent,snooze”
 ListSnoozes(.google.monitoring.v3.ListSnoozesRequest).google.monitoring.v3.ListSnoozesResponse"0‚Óä“!/v3/{parent=projects/*}/snoozesÚAparent
 	GetSnooze&.google.monitoring.v3.GetSnoozeRequest.google.monitoring.v3.Snooze".‚Óä“!/v3/{name=projects/*/snoozes/*}ÚAname¤
-UpdateSnooze).google.monitoring.v3.UpdateSnoozeRequest.google.monitoring.v3.Snooze"K‚Óä“02&/v3/{snooze.name=projects/*/snoozes/*}:snoozeÚAsnooze,update_mask©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÊ
-com.google.monitoring.v3BSnoozeServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+UpdateSnooze).google.monitoring.v3.UpdateSnoozeRequest.google.monitoring.v3.Snooze"K‚Óä“02&/v3/{snooze.name=projects/*/snoozes/*}:snoozeÚAsnooze,update_mask©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÍ
+com.google.monitoring.v3BSnoozeServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

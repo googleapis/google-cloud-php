@@ -156,6 +156,47 @@ class QueryTest extends TestCase
         $this->assertInstanceOf(Timestamp::class, $res->readTime());
     }
 
+    public function testCount()
+    {
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'result' => [
+                        'aggregateFields' => [
+                            'count' => ['integerValue' => 1]
+                        ]
+                    ]
+                ]
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->count();
+        $this->assertEquals(1, $res);
+    }
+
+    public function testCountWithReadTime()
+    {
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+        $this->connection->runAggregationQuery(Argument::withEntry('readTime', $readTime))
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'result' => [
+                        'aggregateFields' => [
+                            'count' => ['integerValue' => 1]
+                        ]
+                    ]
+                ]
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->count(['readTime' => $readTime]);
+        $this->assertEquals(1, $res);
+    }
+
     public function testSelect()
     {
         $paths = [

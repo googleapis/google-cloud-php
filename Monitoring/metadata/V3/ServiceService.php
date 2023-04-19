@@ -23,7 +23,7 @@ class ServiceService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ð 
+ó 
 *google/monitoring/v3/service_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/monitoring/v3/service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"š
 CreateServiceRequest9
 parent (	B)àAúA#!monitoring.googleapis.com/Service
@@ -85,8 +85,8 @@ GetService\'.google.monitoring.v3.GetServiceRequest.google.monitoring.v3.Serv
 GetServiceLevelObjective5.google.monitoring.v3.GetServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"A‚Óä“42/v3/{name=*/*/services/*/serviceLevelObjectives/*}ÚAnameÔ
 ListServiceLevelObjectives7.google.monitoring.v3.ListServiceLevelObjectivesRequest8.google.monitoring.v3.ListServiceLevelObjectivesResponse"C‚Óä“42/v3/{parent=*/*/services/*}/serviceLevelObjectivesÚAparentŒ
 UpdateServiceLevelObjective8.google.monitoring.v3.UpdateServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"…‚Óä“e2J/v3/{service_level_objective.name=*/*/services/*/serviceLevelObjectives/*}:service_level_objectiveÚAservice_level_objective²
-DeleteServiceLevelObjective8.google.monitoring.v3.DeleteServiceLevelObjectiveRequest.google.protobuf.Empty"A‚Óä“4*2/v3/{name=*/*/services/*/serviceLevelObjectives/*}ÚAname©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÕ
-com.google.monitoring.v3BServiceMonitoringServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+DeleteServiceLevelObjective8.google.monitoring.v3.DeleteServiceLevelObjectiveRequest.google.protobuf.Empty"A‚Óä“4*2/v3/{name=*/*/services/*/serviceLevelObjectives/*}ÚAname©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBØ
+com.google.monitoring.v3BServiceMonitoringServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

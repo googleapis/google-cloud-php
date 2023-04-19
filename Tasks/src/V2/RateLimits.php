@@ -12,8 +12,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * Rate limits.
  * This message determines the maximum rate that tasks can be dispatched by a
  * queue, regardless of whether the dispatch is a first task attempt or a retry.
- * Note: The debugging command, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask], will run a task
- * even if the queue has reached its [RateLimits][google.cloud.tasks.v2.RateLimits].
+ * Note: The debugging command,
+ * [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask], will run a task even if
+ * the queue has reached its [RateLimits][google.cloud.tasks.v2.RateLimits].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.RateLimits</code>
  */
@@ -53,9 +54,9 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if
-     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a queue
-     * created by `queue.yaml/xml`, `max_burst_size` will be reset based
-     * on the value of
+     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a
+     * queue created by `queue.yaml/xml`, `max_burst_size` will be reset based on
+     * the value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second],
      * regardless of whether
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second]
@@ -116,9 +117,9 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *           `queue.yaml/xml`, `max_burst_size` is equal to
      *           [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      *           Since `max_burst_size` is output only, if
-     *           [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a queue
-     *           created by `queue.yaml/xml`, `max_burst_size` will be reset based
-     *           on the value of
+     *           [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a
+     *           queue created by `queue.yaml/xml`, `max_burst_size` will be reset based on
+     *           the value of
      *           [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second],
      *           regardless of whether
      *           [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second]
@@ -201,9 +202,9 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if
-     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a queue
-     * created by `queue.yaml/xml`, `max_burst_size` will be reset based
-     * on the value of
+     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a
+     * queue created by `queue.yaml/xml`, `max_burst_size` will be reset based on
+     * the value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second],
      * regardless of whether
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second]
@@ -239,9 +240,9 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if
-     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a queue
-     * created by `queue.yaml/xml`, `max_burst_size` will be reset based
-     * on the value of
+     * [UpdateQueue][google.cloud.tasks.v2.CloudTasks.UpdateQueue] is called on a
+     * queue created by `queue.yaml/xml`, `max_burst_size` will be reset based on
+     * the value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second],
      * regardless of whether
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second]

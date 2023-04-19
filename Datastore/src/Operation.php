@@ -21,6 +21,8 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
@@ -541,6 +543,46 @@ class Operation
                 $iteratorConfig
             )
         );
+    }
+
+    /**
+     * Run an aggregation query and return aggregated results.
+     *
+     * @param AggregationQuery $query The Aggregation Query object.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $transaction The transaction ID, if the query should be
+     *           run in a transaction.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregationQueryResult
+     */
+    public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = [])
+    {
+        $options += [
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
+        ];
+
+        $args = [
+            'query' => [],
+        ];
+        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+        $request = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+        ] + $requestQueryArr + $this->readOptions($options) + $options;
+
+        $res = $this->connection->runAggregationQuery($request);
+        return new AggregationQueryResult($res);
     }
 
     /**

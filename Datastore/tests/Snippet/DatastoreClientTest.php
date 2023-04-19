@@ -30,6 +30,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
@@ -653,6 +654,15 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
+    public function testAggregationQuery()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'aggregationQuery');
+        $snippet->addLocal('datastore', $this->client);
+
+        $res = $snippet->invoke('query');
+        $this->assertInstanceOf(AggregationQuery::class, $res->returnVal());
+    }
+
     /**
      * Other GQL snippets are found in {@see Google\Cloud\Datastore\Tests\Snippets\Query\GqlQueryTest}.
      */
@@ -711,6 +721,45 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('time', new Timestamp(new \DateTime()));
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
+    }
+
+    public function testRunAggregationQuery()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runAggregationQuery');
+        $snippet->addLocal('datastore', $this->client);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([]);
+        $snippet->addLocal('query', $query->reveal());
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => [
+                                'property_1' => 1,
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('1', $res->output());
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runAggregationQuery', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('query', $query->reveal());
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke();
+        $this->assertEquals('1', $res->output());
     }
 
     // ******** HELPERS

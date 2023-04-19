@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
@@ -96,6 +97,22 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         $this->assertEquals(self::$data[2], $results[2]->get());
         $this->assertEquals(self::$data[3], $results[3]->get());
         $this->assertCount(4, $results);
+    }
+
+    /**
+     * @dataProvider multiDbClientProvider
+     */
+    public function testAggregationQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances')
+            ->aggregation(Aggregation::count()->alias('total'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(4, $results->get('total'));
     }
 
     /**
