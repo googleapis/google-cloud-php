@@ -25,11 +25,15 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * This test case includes a data provider to run tests on both rw and ro transactions.
@@ -40,6 +44,7 @@ use Prophecy\Argument;
 class TransactionTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
@@ -50,7 +55,7 @@ class TransactionTest extends TestCase
     private $key;
     private $entity;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
@@ -234,6 +239,43 @@ class TransactionTest extends TestCase
 
         $res = iterator_to_array($transaction->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testRunAggregationQuery(callable $transaction)
+    {
+        $this->connection->runAggregationQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'aggregationResults' => [
+                    [
+                        'aggregateProperties' => ['property_1' => 1]
+                    ]
+                ],
+                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+            ]
+        ]);
+
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([
+            'gqlQuery' => [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ]
+        ]);
+
+        $res = $transaction->runAggregationQuery($query->reveal());
+        $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
     public function testRunQueryWithReadTime()

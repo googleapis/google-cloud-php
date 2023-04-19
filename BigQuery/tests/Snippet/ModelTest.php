@@ -26,12 +26,15 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
 * @group bigquery
 */
 class ModelTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $model;
 
@@ -40,7 +43,7 @@ class ModelTest extends SnippetTestCase
     const MODEL_ID = 'myModelId';
     const JOB_ID = 'myJob';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->model = TestHelpers::stub(Model::class, [

@@ -146,7 +146,7 @@ class BatchClient
     {
         $this->operation = $operation;
         $this->databaseName = $databaseName;
-        $this->databaseRole = isset($options['databaseRole']) ? $options['databaseRole'] : '';
+        $this->databaseRole = $options['databaseRole'] ?? '';
     }
 
     /**

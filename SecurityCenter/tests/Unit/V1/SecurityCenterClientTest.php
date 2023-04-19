@@ -31,6 +31,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
+use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
@@ -41,16 +42,20 @@ use Google\Cloud\SecurityCenter\V1\GroupResult;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
 use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse;
+use Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesResponse;
+use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
+use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
 use Google\Cloud\SecurityCenter\V1\MuteConfig;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
 use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\LongRunning\GetOperationRequest;
@@ -303,6 +308,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
+        $moduleName = 'moduleName-1195003778';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent2);
@@ -314,6 +320,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
+        $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -513,6 +520,76 @@ class SecurityCenterClientTest extends GeneratedTest
         $notificationConfig = new NotificationConfig();
         try {
             $gapicClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $lastEditor = 'lastEditor1620154166';
+        $ancestorModule = 'ancestorModule-521996712';
+        $expectedResponse = new SecurityHealthAnalyticsCustomModule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setLastEditor($lastEditor);
+        $expectedResponse->setAncestorModule($ancestorModule);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+        $response = $gapicClient->createSecurityHealthAnalyticsCustomModule($formattedParent, $securityHealthAnalyticsCustomModule);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
+        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+        try {
+            $gapicClient->createSecurityHealthAnalyticsCustomModule($formattedParent, $securityHealthAnalyticsCustomModule);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -766,6 +843,63 @@ class SecurityCenterClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+        $gapicClient->deleteSecurityHealthAnalyticsCustomModule($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+        try {
+            $gapicClient->deleteSecurityHealthAnalyticsCustomModule($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBigQueryExportTest()
     {
         $transport = $this->createTransport();
@@ -824,6 +958,68 @@ class SecurityCenterClientTest extends GeneratedTest
         $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
         try {
             $gapicClient->getBigQueryExport($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEffectiveSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new EffectiveSecurityHealthAnalyticsCustomModule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
+        $response = $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetEffectiveSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEffectiveSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
+        try {
+            $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1082,6 +1278,72 @@ class SecurityCenterClientTest extends GeneratedTest
         $formattedName = $gapicClient->organizationSettingsName('[ORGANIZATION]');
         try {
             $gapicClient->getOrganizationSettings($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $lastEditor = 'lastEditor1620154166';
+        $ancestorModule = 'ancestorModule-521996712';
+        $expectedResponse = new SecurityHealthAnalyticsCustomModule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setLastEditor($lastEditor);
+        $expectedResponse->setAncestorModule($ancestorModule);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+        $response = $gapicClient->getSecurityHealthAnalyticsCustomModule($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+        try {
+            $gapicClient->getSecurityHealthAnalyticsCustomModule($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1446,6 +1708,142 @@ class SecurityCenterClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listDescendantSecurityHealthAnalyticsCustomModulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $securityHealthAnalyticsCustomModulesElement = new SecurityHealthAnalyticsCustomModule();
+        $securityHealthAnalyticsCustomModules = [
+            $securityHealthAnalyticsCustomModulesElement,
+        ];
+        $expectedResponse = new ListDescendantSecurityHealthAnalyticsCustomModulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        $response = $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSecurityHealthAnalyticsCustomModules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListDescendantSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDescendantSecurityHealthAnalyticsCustomModulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        try {
+            $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEffectiveSecurityHealthAnalyticsCustomModulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $effectiveSecurityHealthAnalyticsCustomModulesElement = new EffectiveSecurityHealthAnalyticsCustomModule();
+        $effectiveSecurityHealthAnalyticsCustomModules = [
+            $effectiveSecurityHealthAnalyticsCustomModulesElement,
+        ];
+        $expectedResponse = new ListEffectiveSecurityHealthAnalyticsCustomModulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEffectiveSecurityHealthAnalyticsCustomModules($effectiveSecurityHealthAnalyticsCustomModules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        $response = $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEffectiveSecurityHealthAnalyticsCustomModules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListEffectiveSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEffectiveSecurityHealthAnalyticsCustomModulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        try {
+            $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listFindingsTest()
     {
         $transport = $this->createTransport();
@@ -1640,6 +2038,74 @@ class SecurityCenterClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
             $gapicClient->listNotificationConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSecurityHealthAnalyticsCustomModulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $securityHealthAnalyticsCustomModulesElement = new SecurityHealthAnalyticsCustomModule();
+        $securityHealthAnalyticsCustomModules = [
+            $securityHealthAnalyticsCustomModulesElement,
+        ];
+        $expectedResponse = new ListSecurityHealthAnalyticsCustomModulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        $response = $gapicClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSecurityHealthAnalyticsCustomModules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListSecurityHealthAnalyticsCustomModules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSecurityHealthAnalyticsCustomModulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+        try {
+            $gapicClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1855,6 +2321,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
+        $moduleName = 'moduleName-1195003778';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -1866,6 +2333,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
+        $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -2007,6 +2475,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
+        $moduleName = 'moduleName-1195003778';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -2018,6 +2487,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
+        $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -2285,6 +2755,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
+        $moduleName = 'moduleName-1195003778';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
@@ -2296,6 +2767,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
+        $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $finding = new Finding();
@@ -2533,6 +3005,72 @@ class SecurityCenterClientTest extends GeneratedTest
         $organizationSettings = new OrganizationSettings();
         try {
             $gapicClient->updateOrganizationSettings($organizationSettings);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSecurityHealthAnalyticsCustomModuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $lastEditor = 'lastEditor1620154166';
+        $ancestorModule = 'ancestorModule-521996712';
+        $expectedResponse = new SecurityHealthAnalyticsCustomModule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setLastEditor($lastEditor);
+        $expectedResponse->setAncestorModule($ancestorModule);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+        $response = $gapicClient->updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
+        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSecurityHealthAnalyticsCustomModuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+        try {
+            $gapicClient->updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

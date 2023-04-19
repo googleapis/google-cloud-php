@@ -34,8 +34,8 @@ class Binding extends \Google\Protobuf\Internal\Message
      */
     private $role = null;
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      */
@@ -54,8 +54,8 @@ class Binding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Role $role
      *           The Role or ClusterRole referenced by the binding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $subjects
-     *           Represents the subjects(s) bound to the role. Not always available
-     *           for PATCH requests.
+     *           Represents one or more subjects that are bound to the role. Not always
+     *           available for PATCH requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,8 +152,8 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -164,8 +164,8 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $var

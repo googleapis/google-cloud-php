@@ -22,7 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -31,7 +31,7 @@ class RetryDeciderTraitTest extends TestCase
 {
     private $impl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(RetryDeciderTrait::class);
     }

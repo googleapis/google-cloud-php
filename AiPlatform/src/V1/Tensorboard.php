@@ -91,6 +91,16 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 9;</code>
      */
     private $etag = '';
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     */
+    private $is_default = false;
 
     /**
      * Constructor.
@@ -132,6 +142,12 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Used to perform a consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
+     *     @type bool $is_default
+     *           Used to indicate if the TensorBoard instance is the default one.
+     *           Each project & region can have at most one default TensorBoard instance.
+     *           Creation of a default TensorBoard instance and updating an existing
+     *           TensorBoard instance to be default will mark all other TensorBoard
+     *           instances (if any) as non default.
      * }
      */
     public function __construct($data = NULL) {
@@ -453,6 +469,40 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     * @return bool
+     */
+    public function getIsDefault()
+    {
+        return $this->is_default;
+    }
+
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsDefault($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_default = $var;
 
         return $this;
     }

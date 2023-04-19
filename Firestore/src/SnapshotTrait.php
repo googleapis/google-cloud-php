@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -215,7 +214,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The document name, in absolute form, or relative to the database.
      * @return DocumentReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getDocumentReference(
         ConnectionInterface $connection,
@@ -255,7 +254,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The collection name, in absolute form, or relative to the database.
      * @return CollectionReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getCollectionReference(
         ConnectionInterface $connection,
@@ -291,7 +290,7 @@ trait SnapshotTrait
                 continue;
             }
 
-            list ($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
+            list($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
 
             $data[$timestampField] = new Timestamp($dt, $nanos);
         }

@@ -20,8 +20,8 @@ namespace Google\Cloud\Dev\Tests\Unit;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\SplitInstall;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group dev
@@ -29,7 +29,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SplitInstallTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const ROOT_PATH = '/foo/www';
     const INSTALL_PATH = '/foo/bar/bin';
@@ -37,7 +37,7 @@ class SplitInstallTest extends TestCase
     private $shell;
     private $install;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->shell = $this->prophesize(RunShell::class);
         $this->install = TestHelpers::stub(SplitInstallStub::class, [
@@ -74,7 +74,7 @@ class SplitInstallTest extends TestCase
 
     public function testInstallFromSourceFails()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Splitsh compile failed with output: Uh oh');
 
         $cmd = self::ROOT_PATH . '/' . SplitInstall::COMPILE_SCRIPT . ' ' . self::INSTALL_PATH;

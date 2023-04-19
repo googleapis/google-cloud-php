@@ -47,18 +47,23 @@ use Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\CreateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
+use Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
+use Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
 use Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest;
+use Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest;
+use Google\Cloud\SecurityCenter\V1\GetSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\GetSourceRequest;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsResponse;
@@ -68,18 +73,25 @@ use Google\Cloud\SecurityCenter\V1\ListAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest;
 use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse;
+use Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesResponse;
+use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
+use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListSourcesRequest;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
 use Google\Cloud\SecurityCenter\V1\MuteConfig;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest;
+use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
@@ -90,6 +102,7 @@ use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
+use Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
 use Google\LongRunning\Operation;
@@ -167,6 +180,8 @@ class SecurityCenterGapicClient
 
     private static $bigQueryExportNameTemplate;
 
+    private static $effectiveSecurityHealthAnalyticsCustomModuleNameTemplate;
+
     private static $externalSystemNameTemplate;
 
     private static $findingNameTemplate;
@@ -175,11 +190,17 @@ class SecurityCenterGapicClient
 
     private static $folderAssetSecurityMarksNameTemplate;
 
+    private static $folderCustomModuleNameTemplate;
+
+    private static $folderEffectiveCustomModuleNameTemplate;
+
     private static $folderExportNameTemplate;
 
     private static $folderMuteConfigNameTemplate;
 
     private static $folderNotificationConfigNameTemplate;
+
+    private static $folderSecurityHealthAnalyticsSettingsNameTemplate;
 
     private static $folderSourceNameTemplate;
 
@@ -197,11 +218,17 @@ class SecurityCenterGapicClient
 
     private static $organizationAssetSecurityMarksNameTemplate;
 
+    private static $organizationCustomModuleNameTemplate;
+
+    private static $organizationEffectiveCustomModuleNameTemplate;
+
     private static $organizationExportNameTemplate;
 
     private static $organizationMuteConfigNameTemplate;
 
     private static $organizationNotificationConfigNameTemplate;
+
+    private static $organizationSecurityHealthAnalyticsSettingsNameTemplate;
 
     private static $organizationSettingsNameTemplate;
 
@@ -217,11 +244,17 @@ class SecurityCenterGapicClient
 
     private static $projectAssetSecurityMarksNameTemplate;
 
+    private static $projectCustomModuleNameTemplate;
+
+    private static $projectEffectiveCustomModuleNameTemplate;
+
     private static $projectExportNameTemplate;
 
     private static $projectMuteConfigNameTemplate;
 
     private static $projectNotificationConfigNameTemplate;
+
+    private static $projectSecurityHealthAnalyticsSettingsNameTemplate;
 
     private static $projectSourceNameTemplate;
 
@@ -230,6 +263,10 @@ class SecurityCenterGapicClient
     private static $projectSourceFindingExternalsystemNameTemplate;
 
     private static $projectSourceFindingSecurityMarksNameTemplate;
+
+    private static $securityHealthAnalyticsCustomModuleNameTemplate;
+
+    private static $securityHealthAnalyticsSettingsNameTemplate;
 
     private static $securityMarksNameTemplate;
 
@@ -269,6 +306,15 @@ class SecurityCenterGapicClient
         return self::$bigQueryExportNameTemplate;
     }
 
+    private static function getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate()
+    {
+        if (self::$effectiveSecurityHealthAnalyticsCustomModuleNameTemplate == null) {
+            self::$effectiveSecurityHealthAnalyticsCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}');
+        }
+
+        return self::$effectiveSecurityHealthAnalyticsCustomModuleNameTemplate;
+    }
+
     private static function getExternalSystemNameTemplate()
     {
         if (self::$externalSystemNameTemplate == null) {
@@ -305,6 +351,24 @@ class SecurityCenterGapicClient
         return self::$folderAssetSecurityMarksNameTemplate;
     }
 
+    private static function getFolderCustomModuleNameTemplate()
+    {
+        if (self::$folderCustomModuleNameTemplate == null) {
+            self::$folderCustomModuleNameTemplate = new PathTemplate('folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}');
+        }
+
+        return self::$folderCustomModuleNameTemplate;
+    }
+
+    private static function getFolderEffectiveCustomModuleNameTemplate()
+    {
+        if (self::$folderEffectiveCustomModuleNameTemplate == null) {
+            self::$folderEffectiveCustomModuleNameTemplate = new PathTemplate('folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}');
+        }
+
+        return self::$folderEffectiveCustomModuleNameTemplate;
+    }
+
     private static function getFolderExportNameTemplate()
     {
         if (self::$folderExportNameTemplate == null) {
@@ -330,6 +394,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderNotificationConfigNameTemplate;
+    }
+
+    private static function getFolderSecurityHealthAnalyticsSettingsNameTemplate()
+    {
+        if (self::$folderSecurityHealthAnalyticsSettingsNameTemplate == null) {
+            self::$folderSecurityHealthAnalyticsSettingsNameTemplate = new PathTemplate('folders/{folder}/securityHealthAnalyticsSettings');
+        }
+
+        return self::$folderSecurityHealthAnalyticsSettingsNameTemplate;
     }
 
     private static function getFolderSourceNameTemplate()
@@ -404,6 +477,24 @@ class SecurityCenterGapicClient
         return self::$organizationAssetSecurityMarksNameTemplate;
     }
 
+    private static function getOrganizationCustomModuleNameTemplate()
+    {
+        if (self::$organizationCustomModuleNameTemplate == null) {
+            self::$organizationCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}');
+        }
+
+        return self::$organizationCustomModuleNameTemplate;
+    }
+
+    private static function getOrganizationEffectiveCustomModuleNameTemplate()
+    {
+        if (self::$organizationEffectiveCustomModuleNameTemplate == null) {
+            self::$organizationEffectiveCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}');
+        }
+
+        return self::$organizationEffectiveCustomModuleNameTemplate;
+    }
+
     private static function getOrganizationExportNameTemplate()
     {
         if (self::$organizationExportNameTemplate == null) {
@@ -429,6 +520,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$organizationNotificationConfigNameTemplate;
+    }
+
+    private static function getOrganizationSecurityHealthAnalyticsSettingsNameTemplate()
+    {
+        if (self::$organizationSecurityHealthAnalyticsSettingsNameTemplate == null) {
+            self::$organizationSecurityHealthAnalyticsSettingsNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings');
+        }
+
+        return self::$organizationSecurityHealthAnalyticsSettingsNameTemplate;
     }
 
     private static function getOrganizationSettingsNameTemplate()
@@ -494,6 +594,24 @@ class SecurityCenterGapicClient
         return self::$projectAssetSecurityMarksNameTemplate;
     }
 
+    private static function getProjectCustomModuleNameTemplate()
+    {
+        if (self::$projectCustomModuleNameTemplate == null) {
+            self::$projectCustomModuleNameTemplate = new PathTemplate('projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}');
+        }
+
+        return self::$projectCustomModuleNameTemplate;
+    }
+
+    private static function getProjectEffectiveCustomModuleNameTemplate()
+    {
+        if (self::$projectEffectiveCustomModuleNameTemplate == null) {
+            self::$projectEffectiveCustomModuleNameTemplate = new PathTemplate('projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}');
+        }
+
+        return self::$projectEffectiveCustomModuleNameTemplate;
+    }
+
     private static function getProjectExportNameTemplate()
     {
         if (self::$projectExportNameTemplate == null) {
@@ -519,6 +637,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectNotificationConfigNameTemplate;
+    }
+
+    private static function getProjectSecurityHealthAnalyticsSettingsNameTemplate()
+    {
+        if (self::$projectSecurityHealthAnalyticsSettingsNameTemplate == null) {
+            self::$projectSecurityHealthAnalyticsSettingsNameTemplate = new PathTemplate('projects/{project}/securityHealthAnalyticsSettings');
+        }
+
+        return self::$projectSecurityHealthAnalyticsSettingsNameTemplate;
     }
 
     private static function getProjectSourceNameTemplate()
@@ -557,6 +684,24 @@ class SecurityCenterGapicClient
         return self::$projectSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getSecurityHealthAnalyticsCustomModuleNameTemplate()
+    {
+        if (self::$securityHealthAnalyticsCustomModuleNameTemplate == null) {
+            self::$securityHealthAnalyticsCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}');
+        }
+
+        return self::$securityHealthAnalyticsCustomModuleNameTemplate;
+    }
+
+    private static function getSecurityHealthAnalyticsSettingsNameTemplate()
+    {
+        if (self::$securityHealthAnalyticsSettingsNameTemplate == null) {
+            self::$securityHealthAnalyticsSettingsNameTemplate = new PathTemplate('organizations/{organization}/securityHealthAnalyticsSettings');
+        }
+
+        return self::$securityHealthAnalyticsSettingsNameTemplate;
+    }
+
     private static function getSecurityMarksNameTemplate()
     {
         if (self::$securityMarksNameTemplate == null) {
@@ -589,13 +734,17 @@ class SecurityCenterGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'bigQueryExport' => self::getBigQueryExportNameTemplate(),
+                'effectiveSecurityHealthAnalyticsCustomModule' => self::getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate(),
                 'externalSystem' => self::getExternalSystemNameTemplate(),
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
+                'folderCustomModule' => self::getFolderCustomModuleNameTemplate(),
+                'folderEffectiveCustomModule' => self::getFolderEffectiveCustomModuleNameTemplate(),
                 'folderExport' => self::getFolderExportNameTemplate(),
                 'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
                 'folderNotificationConfig' => self::getFolderNotificationConfigNameTemplate(),
+                'folderSecurityHealthAnalyticsSettings' => self::getFolderSecurityHealthAnalyticsSettingsNameTemplate(),
                 'folderSource' => self::getFolderSourceNameTemplate(),
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
                 'folderSourceFindingExternalsystem' => self::getFolderSourceFindingExternalsystemNameTemplate(),
@@ -604,9 +753,12 @@ class SecurityCenterGapicClient
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
+                'organizationCustomModule' => self::getOrganizationCustomModuleNameTemplate(),
+                'organizationEffectiveCustomModule' => self::getOrganizationEffectiveCustomModuleNameTemplate(),
                 'organizationExport' => self::getOrganizationExportNameTemplate(),
                 'organizationMuteConfig' => self::getOrganizationMuteConfigNameTemplate(),
                 'organizationNotificationConfig' => self::getOrganizationNotificationConfigNameTemplate(),
+                'organizationSecurityHealthAnalyticsSettings' => self::getOrganizationSecurityHealthAnalyticsSettingsNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSource' => self::getOrganizationSourceNameTemplate(),
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
@@ -614,13 +766,18 @@ class SecurityCenterGapicClient
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
+                'projectCustomModule' => self::getProjectCustomModuleNameTemplate(),
+                'projectEffectiveCustomModule' => self::getProjectEffectiveCustomModuleNameTemplate(),
                 'projectExport' => self::getProjectExportNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
                 'projectNotificationConfig' => self::getProjectNotificationConfigNameTemplate(),
+                'projectSecurityHealthAnalyticsSettings' => self::getProjectSecurityHealthAnalyticsSettingsNameTemplate(),
                 'projectSource' => self::getProjectSourceNameTemplate(),
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
                 'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
                 'projectSourceFindingSecurityMarks' => self::getProjectSourceFindingSecurityMarksNameTemplate(),
+                'securityHealthAnalyticsCustomModule' => self::getSecurityHealthAnalyticsCustomModuleNameTemplate(),
+                'securityHealthAnalyticsSettings' => self::getSecurityHealthAnalyticsSettingsNameTemplate(),
                 'securityMarks' => self::getSecurityMarksNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
@@ -644,6 +801,23 @@ class SecurityCenterGapicClient
         return self::getBigQueryExportNameTemplate()->render([
             'organization' => $organization,
             'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * effective_security_health_analytics_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $effectiveCustomModule
+     *
+     * @return string The formatted effective_security_health_analytics_custom_module resource.
+     */
+    public static function effectiveSecurityHealthAnalyticsCustomModuleName($organization, $effectiveCustomModule)
+    {
+        return self::getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'effective_custom_module' => $effectiveCustomModule,
         ]);
     }
 
@@ -721,6 +895,40 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_custom_module resource.
+     *
+     * @param string $folder
+     * @param string $customModule
+     *
+     * @return string The formatted folder_custom_module resource.
+     */
+    public static function folderCustomModuleName($folder, $customModule)
+    {
+        return self::getFolderCustomModuleNameTemplate()->render([
+            'folder' => $folder,
+            'custom_module' => $customModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_effective_custom_module resource.
+     *
+     * @param string $folder
+     * @param string $effectiveCustomModule
+     *
+     * @return string The formatted folder_effective_custom_module resource.
+     */
+    public static function folderEffectiveCustomModuleName($folder, $effectiveCustomModule)
+    {
+        return self::getFolderEffectiveCustomModuleNameTemplate()->render([
+            'folder' => $folder,
+            'effective_custom_module' => $effectiveCustomModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_export resource.
      *
      * @param string $folder
@@ -767,6 +975,21 @@ class SecurityCenterGapicClient
         return self::getFolderNotificationConfigNameTemplate()->render([
             'folder' => $folder,
             'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_securityHealthAnalyticsSettings resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder_securityHealthAnalyticsSettings resource.
+     */
+    public static function folderSecurityHealthAnalyticsSettingsName($folder)
+    {
+        return self::getFolderSecurityHealthAnalyticsSettingsNameTemplate()->render([
+            'folder' => $folder,
         ]);
     }
 
@@ -914,6 +1137,40 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $customModule
+     *
+     * @return string The formatted organization_custom_module resource.
+     */
+    public static function organizationCustomModuleName($organization, $customModule)
+    {
+        return self::getOrganizationCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'custom_module' => $customModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_effective_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $effectiveCustomModule
+     *
+     * @return string The formatted organization_effective_custom_module resource.
+     */
+    public static function organizationEffectiveCustomModuleName($organization, $effectiveCustomModule)
+    {
+        return self::getOrganizationEffectiveCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'effective_custom_module' => $effectiveCustomModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_export resource.
      *
      * @param string $organization
@@ -960,6 +1217,21 @@ class SecurityCenterGapicClient
         return self::getOrganizationNotificationConfigNameTemplate()->render([
             'organization' => $organization,
             'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_securityHealthAnalyticsSettings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization_securityHealthAnalyticsSettings resource.
+     */
+    public static function organizationSecurityHealthAnalyticsSettingsName($organization)
+    {
+        return self::getOrganizationSecurityHealthAnalyticsSettingsNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -1088,6 +1360,40 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_custom_module resource.
+     *
+     * @param string $project
+     * @param string $customModule
+     *
+     * @return string The formatted project_custom_module resource.
+     */
+    public static function projectCustomModuleName($project, $customModule)
+    {
+        return self::getProjectCustomModuleNameTemplate()->render([
+            'project' => $project,
+            'custom_module' => $customModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_effective_custom_module resource.
+     *
+     * @param string $project
+     * @param string $effectiveCustomModule
+     *
+     * @return string The formatted project_effective_custom_module resource.
+     */
+    public static function projectEffectiveCustomModuleName($project, $effectiveCustomModule)
+    {
+        return self::getProjectEffectiveCustomModuleNameTemplate()->render([
+            'project' => $project,
+            'effective_custom_module' => $effectiveCustomModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_export resource.
      *
      * @param string $project
@@ -1134,6 +1440,21 @@ class SecurityCenterGapicClient
         return self::getProjectNotificationConfigNameTemplate()->render([
             'project' => $project,
             'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_securityHealthAnalyticsSettings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_securityHealthAnalyticsSettings resource.
+     */
+    public static function projectSecurityHealthAnalyticsSettingsName($project)
+    {
+        return self::getProjectSecurityHealthAnalyticsSettingsNameTemplate()->render([
+            'project' => $project,
         ]);
     }
 
@@ -1215,6 +1536,38 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * security_health_analytics_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $customModule
+     *
+     * @return string The formatted security_health_analytics_custom_module resource.
+     */
+    public static function securityHealthAnalyticsCustomModuleName($organization, $customModule)
+    {
+        return self::getSecurityHealthAnalyticsCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'custom_module' => $customModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * security_health_analytics_settings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted security_health_analytics_settings resource.
+     */
+    public static function securityHealthAnalyticsSettingsName($organization)
+    {
+        return self::getSecurityHealthAnalyticsSettingsNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * security_marks resource.
      *
      * @param string $organization
@@ -1269,13 +1622,17 @@ class SecurityCenterGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - bigQueryExport: organizations/{organization}/bigQueryExports/{export}
+     * - effectiveSecurityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - externalSystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderCustomModule: folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}
+     * - folderEffectiveCustomModule: folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - folderExport: folders/{folder}/bigQueryExports/{export}
      * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
      * - folderNotificationConfig: folders/{folder}/notificationConfigs/{notification_config}
+     * - folderSecurityHealthAnalyticsSettings: folders/{folder}/securityHealthAnalyticsSettings
      * - folderSource: folders/{folder}/sources/{source}
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
      * - folderSourceFindingExternalsystem: folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1284,9 +1641,12 @@ class SecurityCenterGapicClient
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
+     * - organizationEffectiveCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - organizationNotificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
+     * - organizationSecurityHealthAnalyticsSettings: organizations/{organization}/securityHealthAnalyticsSettings
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
@@ -1294,13 +1654,18 @@ class SecurityCenterGapicClient
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
+     * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - projectExport: projects/{project}/bigQueryExports/{export}
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
      * - projectNotificationConfig: projects/{project}/notificationConfigs/{notification_config}
+     * - projectSecurityHealthAnalyticsSettings: projects/{project}/securityHealthAnalyticsSettings
      * - projectSource: projects/{project}/sources/{source}
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
      * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - projectSourceFindingSecurityMarks: projects/{project}/sources/{source}/findings/{finding}/securityMarks
+     * - securityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
+     * - securityHealthAnalyticsSettings: organizations/{organization}/securityHealthAnalyticsSettings
      * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - source: organizations/{organization}/sources/{source}
      * - topic: projects/{project}/topics/{topic}
@@ -1733,6 +2098,56 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the
+     * given CRM parent, and also creates inherited
+     * SecurityHealthAnalyticsCustomModules for all CRM descendants of the given
+     * parent. These modules are enabled by default.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+     *     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+     *     $response = $securityCenterClient->createSecurityHealthAnalyticsCustomModule($formattedParent, $securityHealthAnalyticsCustomModule);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string                              $parent                              Required. Resource name of the new custom module's parent. Its format is
+     *                                                                                 "organizations/{organization}/securityHealthAnalyticsSettings",
+     *                                                                                 "folders/{folder}/securityHealthAnalyticsSettings", or
+     *                                                                                 "projects/{project}/securityHealthAnalyticsSettings"
+     * @param SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. SecurityHealthAnalytics custom module to create. The provided
+     *                                                                                 name is ignored and reset with provided parent information and
+     *                                                                                 server-generated ID.
+     * @param array                               $optionalArgs                        {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createSecurityHealthAnalyticsCustomModule($parent, $securityHealthAnalyticsCustomModule, array $optionalArgs = [])
+    {
+        $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSecurityHealthAnalyticsCustomModule', SecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a source.
      *
      * Sample code:
@@ -1897,6 +2312,49 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Deletes the specified SecurityHealthAnalyticsCustomModule and all of its
+     * descendants in the CRM hierarchy. This method is only supported for
+     * resident custom modules.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+     *     $securityCenterClient->deleteSecurityHealthAnalyticsCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the custom module to delete. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             or
+     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSecurityHealthAnalyticsCustomModule', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a BigQuery export.
      *
      * Sample code:
@@ -1936,6 +2394,49 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
+     *     $response = $securityCenterClient->getEffectiveSecurityHealthAnalyticsCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the effective custom module to get. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *                             or
+     *                             "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEffectiveSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEffectiveSecurityHealthAnalyticsCustomModule', EffectiveSecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2107,6 +2608,49 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOrganizationSettings', OrganizationSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves a SecurityHealthAnalyticsCustomModule.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
+     *     $response = $securityCenterClient->getSecurityHealthAnalyticsCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the custom module to get. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             or
+     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSecurityHealthAnalyticsCustomModule', SecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2841,6 +3385,151 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
+     * the given CRM parent and all of the parent’s CRM descendants.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of parent to list descendant custom modules. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
+     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listDescendantSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDescendantSecurityHealthAnalyticsCustomModules', $optionalArgs, ListDescendantSecurityHealthAnalyticsCustomModulesResponse::class, $request);
+    }
+
+    /**
+     * Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the
+     * given parent. This includes resident modules defined at the scope of the
+     * parent, and inherited modules, inherited from CRM ancestors.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of parent to list effective custom modules. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
+     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listEffectiveSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListEffectiveSecurityHealthAnalyticsCustomModules', $optionalArgs, ListEffectiveSecurityHealthAnalyticsCustomModulesResponse::class, $request);
+    }
+
+    /**
      * Lists an organization or source's findings.
      *
      * To list across all sources provide a `-` as the source id.
@@ -3195,6 +3884,79 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListNotificationConfigs', $optionalArgs, ListNotificationConfigsResponse::class, $request);
+    }
+
+    /**
+     * Returns a list of all SecurityHealthAnalyticsCustomModules for the given
+     * parent. This includes resident modules defined at the scope of the parent,
+     * and inherited modules, inherited from CRM ancestors.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of parent to list custom modules. Its format is
+     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
+     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
+     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSecurityHealthAnalyticsCustomModules', $optionalArgs, ListSecurityHealthAnalyticsCustomModulesResponse::class, $request);
     }
 
     /**
@@ -3828,6 +4590,55 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateOrganizationSettings', OrganizationSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates the SecurityHealthAnalyticsCustomModule under the given name based
+     * on the given update mask. Updating the enablement state is supported on
+     * both resident and inherited modules (though resident modules cannot have an
+     * enablement state of “inherited”). Updating the display name and custom
+     * config of a module is supported on resident modules only.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
+     *     $response = $securityCenterClient->updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The SecurityHealthAnalytics custom module to update.
+     * @param array                               $optionalArgs                        {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to update.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule, array $optionalArgs = [])
+    {
+        $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $requestParamHeaders['security_health_analytics_custom_module.name'] = $securityHealthAnalyticsCustomModule->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSecurityHealthAnalyticsCustomModule', SecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
     }
 
     /**

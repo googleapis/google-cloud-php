@@ -23,23 +23,24 @@ use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class SpeechClientTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const GCS_URI = 'gs://bucket/object';
 
     private $client;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = TestHelpers::stub(SpeechClient::class, [
             ['languageCode' => 'en-US', 'suppressKeyFileNotice' => true]
@@ -49,7 +50,7 @@ class SpeechClientTest extends TestCase
 
     public function testThrowsExceptionWithoutLanguageCode()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $client = TestHelpers::stub(SpeechClient::class, [['suppressKeyFileNotice' => true]]);
         $client->recognize(self::GCS_URI);

@@ -23,10 +23,10 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use InvalidArgumentException;
 use Google\Cloud\Firestore\ValueMapper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -34,15 +34,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class DocumentSnapshotTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
+    use ProphecyTrait;
 
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
 
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
@@ -173,14 +172,14 @@ class DocumentSnapshotTest extends TestCase
 
     public function testGetInvalid()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->snapshot->get('foo');
     }
 
     public function testGetInvalidArgumentType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->snapshot->get(1234);
     }
@@ -195,14 +194,14 @@ class DocumentSnapshotTest extends TestCase
 
     public function testArrayAccessSetDisabled()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->snapshot['name'] = 'bob';
     }
 
     public function testArrayAccessUnsetDisabled()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         unset($this->snapshot['name']);
     }

@@ -31,8 +31,8 @@ use Google\Cloud\Metastore\V1\Service;
 /**
  * Lists services in a project and location.
  *
- * @param string $formattedParent The relative resource name of the location of metastore services to
- *                                list, in the following form:
+ * @param string $formattedParent The relative resource name of the location of metastore services
+ *                                to list, in the following form:
  *
  *                                `projects/{project_number}/locations/{location_id}`. Please see
  *                                {@see DataprocMetastoreClient::locationName()} for help formatting this field.

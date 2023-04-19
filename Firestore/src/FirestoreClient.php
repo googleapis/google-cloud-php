@@ -75,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '1.28.0';
+    const VERSION = '1.29.0';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -402,14 +402,14 @@ class FirestoreClient
      * $query = $firestore->collectionGroup('users');
      * $querySnapshot = $query->documents();
      *
-     * echo sprintf('Found %d documents!', $querySnapshot->size());
+     * echo $querySnapshot->size() . ' documents found!';
      * ```
      *
      * @param string $id Identifies the collection to query over. Every
      *        collection or subcollection with this ID as the last segment of
      *        its path will be included. May not contain a slash.
      * @return Query
-     * @throws InvalidArgumentException If the collection ID is not well-formed.
+     * @throws \InvalidArgumentException If the collection ID is not well-formed.
      */
     public function collectionGroup($id)
     {

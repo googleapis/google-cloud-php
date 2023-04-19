@@ -29,7 +29,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 {
     private $document;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->document = self::$collection->add([
             'firstName' => 'John',

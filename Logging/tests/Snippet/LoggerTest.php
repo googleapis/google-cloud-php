@@ -24,19 +24,22 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class LoggerTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const NAME = 'myLogger';
     const PROJECT = 'my-awesome-project';
 
     private $connection;
     private $logger;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->logger = TestHelpers::stub(Logger::class, [

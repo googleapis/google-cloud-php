@@ -25,9 +25,11 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -35,6 +37,7 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
@@ -45,7 +48,7 @@ class TransactionTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
@@ -407,6 +410,39 @@ class TransactionTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
+    }
+
+    public function testRunAggregationQuery()
+    {
+        $snippet = $this->snippetFromMethod(Transaction::class, 'runAggregationQuery');
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('transaction', $this->transaction);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([]);
+        $snippet->addLocal('query', $query->reveal());
+
+        $this->connection->runAggregationQuery(Argument::withEntry('transaction', self::TRANSACTION))
+            ->shouldBeCalled()
+            ->willReturn([
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => [
+                                'total' => 1,
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('1', $res->output());
     }
 
     public function testCommit()

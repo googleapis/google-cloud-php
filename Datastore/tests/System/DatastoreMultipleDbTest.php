@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
@@ -47,9 +48,9 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         ],
     ];
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_multi_db_before_class();
+        parent::setUpMultiDbBeforeClass();
         self::$ancestor = self::$restMultiDbClient->key(self::$kind, 'V_A');
         $key1 = self::$restMultiDbClient->key(self::$kind, 'B_S');
         $key1->ancestorKey(self::$ancestor);
@@ -75,7 +76,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         self::$localDeletionQueue->add($key3);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::tearDownFixtures();
     }
@@ -96,6 +97,22 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         $this->assertEquals(self::$data[2], $results[2]->get());
         $this->assertEquals(self::$data[3], $results[3]->get());
         $this->assertCount(4, $results);
+    }
+
+    /**
+     * @dataProvider multiDbClientProvider
+     */
+    public function testAggregationQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances')
+            ->aggregation(Aggregation::count()->alias('total'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(4, $results->get('total'));
     }
 
     /**

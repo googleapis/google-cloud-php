@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -35,6 +36,7 @@ class SnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const TRANSACTION = 'my-transaction';
@@ -42,7 +44,7 @@ class SnapshotTest extends SnippetTestCase
     private $connection;
     private $snapshot;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

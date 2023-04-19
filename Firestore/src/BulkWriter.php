@@ -1058,9 +1058,7 @@ class BulkWriter
      */
     private function validatePrecondition(array &$options)
     {
-        $precondition = isset($options['precondition'])
-            ? $options['precondition']
-            : null;
+        $precondition = $options['precondition'] ?? null;
 
         if (!$precondition) {
             return;
@@ -1293,9 +1291,7 @@ class BulkWriter
             return $options;
         }
 
-        $precondition = isset($options['precondition'])
-            ? $options['precondition']
-            : [];
+        $precondition = $options['precondition'] ?? [];
 
         if (isset($precondition['updateTime'])) {
             return $options;

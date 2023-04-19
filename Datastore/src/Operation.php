@@ -21,6 +21,8 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
@@ -224,7 +226,7 @@ class Operation
      *           datastore indexes.
      * }
      * @return EntityInterface
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function entity($key = null, array $entity = [], array $options = [])
     {
@@ -297,7 +299,7 @@ class Operation
      * @param Key[] $keys The incomplete keys.
      * @param array $options [optional] Configuration Options.
      * @return Key[]
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function allocateIds(array $keys, array $options = [])
     {
@@ -368,7 +370,7 @@ class Operation
      *         Members of `found` will be instance of
      *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function lookup(array $keys, array $options = [])
     {
@@ -544,6 +546,46 @@ class Operation
     }
 
     /**
+     * Run an aggregation query and return aggregated results.
+     *
+     * @param AggregationQuery $query The Aggregation Query object.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $transaction The transaction ID, if the query should be
+     *           run in a transaction.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregationQueryResult
+     */
+    public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = [])
+    {
+        $options += [
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
+        ];
+
+        $args = [
+            'query' => [],
+        ];
+        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+        $request = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+        ] + $requestQueryArr + $this->readOptions($options) + $options;
+
+        $res = $this->connection->runAggregationQuery($request);
+        return new AggregationQueryResult($res);
+    }
+
+    /**
      * Commit all mutations
      *
      * Calling this method will end the operation (and close the transaction,
@@ -625,7 +667,7 @@ class Operation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
      * @return array [Mutation](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit#Mutation).
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function mutation(
         $operation,
@@ -677,7 +719,7 @@ class Operation
      * @param EntityInterface[] $entities the entities to be updated or upserted.
      * @param bool $allowOverwrite If `true`, entities may be overwritten.
      *        **Defaults to** `false`.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function checkOverwrite(array $entities, $allowOverwrite = false)

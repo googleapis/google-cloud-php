@@ -5,20 +5,14 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
 jobs:
   test:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2" ]
-        phpunit-filename: [phpunit]
-        include:
-          - platform: ubuntu-latest
-            php: "5.6"
-            phpunit-filename: phpunit-php5
-          - platform: ubuntu-latest
-            php: "7.0"
-            phpunit-filename: phpunit
+        php: [ "7.4", "8.0", "8.1", "8.2" ]
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
@@ -38,20 +32,20 @@ jobs:
     - if: ${{ matrix.platform == 'windows-latest' }}
       name: Run Unit Test Suite (Windows)
       run: |
-        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        vendor/bin/phpunit -c phpunit.xml.dist
         if ( "$?" -ne "0" )
         {
           echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
-          vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+          vendor/bin/phpunit -c phpunit.xml.dist
         }
     - if: ${{ matrix.platform != 'windows-latest' }}
       name: Run Unit Test Suite
       run: |
-        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        vendor/bin/phpunit -c phpunit.xml.dist
     - if: ${{ matrix.platform != 'windows-latest' }}
       name: Run Snippet Test Suite
       run: |
-        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
+        vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
   test_packages:
     name: Package Tests

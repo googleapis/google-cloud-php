@@ -194,6 +194,15 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $services_ipv6_cidr_block = '';
+    /**
+     * Output only. [Output only] The additional pod ranges that are added to the
+     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * automatically. Once the range is removed it will not show up in
+     * IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $additional_pod_ranges_config = null;
 
     /**
      * Constructor.
@@ -305,6 +314,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           pods.
      *     @type string $services_ipv6_cidr_block
      *           Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     *     @type \Google\Cloud\Container\V1\AdditionalPodRangesConfig $additional_pod_ranges_config
+     *           Output only. [Output only] The additional pod ranges that are added to the
+     *           cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     *           automatically. Once the range is removed it will not show up in
+     *           IPAllocationPolicy.
      * }
      */
     public function __construct($data = NULL) {
@@ -934,6 +948,48 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->services_ipv6_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The additional pod ranges that are added to the
+     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * automatically. Once the range is removed it will not show up in
+     * IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\AdditionalPodRangesConfig|null
+     */
+    public function getAdditionalPodRangesConfig()
+    {
+        return $this->additional_pod_ranges_config;
+    }
+
+    public function hasAdditionalPodRangesConfig()
+    {
+        return isset($this->additional_pod_ranges_config);
+    }
+
+    public function clearAdditionalPodRangesConfig()
+    {
+        unset($this->additional_pod_ranges_config);
+    }
+
+    /**
+     * Output only. [Output only] The additional pod ranges that are added to the
+     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * automatically. Once the range is removed it will not show up in
+     * IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\AdditionalPodRangesConfig $var
+     * @return $this
+     */
+    public function setAdditionalPodRangesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdditionalPodRangesConfig::class);
+        $this->additional_pod_ranges_config = $var;
 
         return $this;
     }

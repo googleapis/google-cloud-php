@@ -41,8 +41,12 @@ class JobStats extends \Google\Protobuf\Internal\Message
     protected $total_slot_ms = 0;
     /**
      * Reservation usage attributed from each tier of a reservation hierarchy.
+     * This field reported misleading information and will no longer be
+     * populated. Aggregate usage of all jobs submitted to a reservation
+     * should provide a more reliable indicator of reservation imbalance.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11 [deprecated = true];</code>
+     * @deprecated
      */
     private $reservation_usage;
     /**
@@ -75,6 +79,9 @@ class JobStats extends \Google\Protobuf\Internal\Message
      *           The total number of slot-ms consumed by the query job.
      *     @type array<\Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage>|\Google\Protobuf\Internal\RepeatedField $reservation_usage
      *           Reservation usage attributed from each tier of a reservation hierarchy.
+     *           This field reported misleading information and will no longer be
+     *           populated. Aggregate usage of all jobs submitted to a reservation
+     *           should provide a more reliable indicator of reservation imbalance.
      *     @type string $parent_job_name
      *           Parent job name. Only present for child jobs.
      * }
@@ -313,24 +320,34 @@ class JobStats extends \Google\Protobuf\Internal\Message
 
     /**
      * Reservation usage attributed from each tier of a reservation hierarchy.
+     * This field reported misleading information and will no longer be
+     * populated. Aggregate usage of all jobs submitted to a reservation
+     * should provide a more reliable indicator of reservation imbalance.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getReservationUsage()
     {
+        @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         return $this->reservation_usage;
     }
 
     /**
      * Reservation usage attributed from each tier of a reservation hierarchy.
+     * This field reported misleading information and will no longer be
+     * populated. Aggregate usage of all jobs submitted to a reservation
+     * should provide a more reliable indicator of reservation imbalance.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11 [deprecated = true];</code>
      * @param array<\Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setReservationUsage($var)
     {
+        @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage::class);
         $this->reservation_usage = $arr;
 

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Consumer extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The URI of the endpoint used to access the metastore service.
+     * Output only. The URI of the endpoint used to access the metastore
+     * service.
      *
      * Generated from protobuf field <code>string endpoint_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,15 +31,16 @@ class Consumer extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subnetwork
-     *           Immutable. The subnetwork of the customer project from which an IP address is
-     *           reserved and used as the Dataproc Metastore service's
+     *           Immutable. The subnetwork of the customer project from which an IP
+     *           address is reserved and used as the Dataproc Metastore service's
      *           endpoint. It is accessible to hosts in the subnet and to all
      *           hosts in a subnet in the same region and same network. There must
      *           be at least one IP address available in the subnet's primary range. The
      *           subnet is specified in the following form:
      *           `projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}`
      *     @type string $endpoint_uri
-     *           Output only. The URI of the endpoint used to access the metastore service.
+     *           Output only. The URI of the endpoint used to access the metastore
+     *           service.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,8 +49,8 @@ class Consumer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The subnetwork of the customer project from which an IP address is
-     * reserved and used as the Dataproc Metastore service's
+     * Immutable. The subnetwork of the customer project from which an IP
+     * address is reserved and used as the Dataproc Metastore service's
      * endpoint. It is accessible to hosts in the subnet and to all
      * hosts in a subnet in the same region and same network. There must
      * be at least one IP address available in the subnet's primary range. The
@@ -69,8 +71,8 @@ class Consumer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The subnetwork of the customer project from which an IP address is
-     * reserved and used as the Dataproc Metastore service's
+     * Immutable. The subnetwork of the customer project from which an IP
+     * address is reserved and used as the Dataproc Metastore service's
      * endpoint. It is accessible to hosts in the subnet and to all
      * hosts in a subnet in the same region and same network. There must
      * be at least one IP address available in the subnet's primary range. The
@@ -90,7 +92,8 @@ class Consumer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the endpoint used to access the metastore service.
+     * Output only. The URI of the endpoint used to access the metastore
+     * service.
      *
      * Generated from protobuf field <code>string endpoint_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -101,7 +104,8 @@ class Consumer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the endpoint used to access the metastore service.
+     * Output only. The URI of the endpoint used to access the metastore
+     * service.
      *
      * Generated from protobuf field <code>string endpoint_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

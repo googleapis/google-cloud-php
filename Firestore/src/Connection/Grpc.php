@@ -24,6 +24,7 @@ use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
@@ -32,6 +33,8 @@ use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
@@ -119,6 +122,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function batchGetDocuments(array $args)
     {
@@ -133,6 +137,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function beginTransaction(array $args)
     {
@@ -153,6 +158,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function commit(array $args)
     {
@@ -170,6 +176,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function batchWrite(array $args)
     {
@@ -188,6 +195,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listCollectionIds(array $args)
     {
@@ -201,12 +209,11 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listDocuments(array $args)
     {
-        $mask = isset($args['mask'])
-            ? $args['mask']
-            : [];
+        $mask = $args['mask'] ?? [];
 
         $args['mask'] = $this->documentMask($mask);
         $args = $this->decodeTimestamp($args);
@@ -222,6 +229,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function rollback(array $args)
     {
@@ -234,6 +242,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runQuery(array $args)
     {
@@ -244,6 +253,29 @@ class Grpc implements ConnectionInterface
         $args = $this->decodeTimestamp($args);
 
         return $this->send([$this->firestore, 'runQuery'], [
+            $this->pluck('parent', $args),
+            $this->addRequestHeaders($args)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function runAggregationQuery(array $args)
+    {
+        if (isset($args['readTime'])) {
+            $args['readTime'] = $this->serializer->decodeMessage(
+                new ProtobufTimestamp(),
+                $args['readTime']
+            );
+        }
+        $args['structuredAggregationQuery'] = $this->serializer->decodeMessage(
+            new StructuredAggregationQuery,
+            $this->pluck('structuredAggregationQuery', $args)
+        );
+
+        return $this->send([$this->firestore, 'runAggregationQuery'], [
             $this->pluck('parent', $args),
             $this->addRequestHeaders($args)
         ]);

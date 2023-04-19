@@ -28,8 +28,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
 
 /**
- * Sets the access control policy for a [Queue][google.cloud.tasks.v2beta2.Queue]. Replaces any existing
- * policy.
+ * Sets the access control policy for a
+ * [Queue][google.cloud.tasks.v2beta2.Queue]. Replaces any existing policy.
  *
  * Note: The Cloud Console does not check queue-level IAM permissions yet.
  * Project-level permissions are required to use the Cloud Console.

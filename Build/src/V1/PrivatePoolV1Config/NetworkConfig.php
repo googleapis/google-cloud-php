@@ -34,6 +34,19 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.PrivatePoolV1Config.NetworkConfig.EgressOption egress_option = 2;</code>
      */
     private $egress_option = 0;
+    /**
+     * Immutable. Subnet IP range within the peered network. This is specified
+     * in CIDR notation with a slash and the subnet prefix size. You can
+     * optionally specify an IP address before the subnet prefix value. e.g.
+     * `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a
+     * prefix size of 29 bits.
+     * `/16` would specify a prefix size of 16 bits, with an automatically
+     * determined IP within the peered VPC.
+     * If unspecified, a value of `/24` will be used.
+     *
+     * Generated from protobuf field <code>string peered_network_ip_range = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $peered_network_ip_range = '';
 
     /**
      * Constructor.
@@ -52,6 +65,15 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           options](https://cloud.google.com/build/docs/private-pools/set-up-private-pool-environment)
      *     @type int $egress_option
      *           Option to configure network egress for the workers.
+     *     @type string $peered_network_ip_range
+     *           Immutable. Subnet IP range within the peered network. This is specified
+     *           in CIDR notation with a slash and the subnet prefix size. You can
+     *           optionally specify an IP address before the subnet prefix value. e.g.
+     *           `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a
+     *           prefix size of 29 bits.
+     *           `/16` would specify a prefix size of 16 bits, with an automatically
+     *           determined IP within the peered VPC.
+     *           If unspecified, a value of `/24` will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +143,46 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\PrivatePoolV1Config\NetworkConfig\EgressOption::class);
         $this->egress_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Subnet IP range within the peered network. This is specified
+     * in CIDR notation with a slash and the subnet prefix size. You can
+     * optionally specify an IP address before the subnet prefix value. e.g.
+     * `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a
+     * prefix size of 29 bits.
+     * `/16` would specify a prefix size of 16 bits, with an automatically
+     * determined IP within the peered VPC.
+     * If unspecified, a value of `/24` will be used.
+     *
+     * Generated from protobuf field <code>string peered_network_ip_range = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getPeeredNetworkIpRange()
+    {
+        return $this->peered_network_ip_range;
+    }
+
+    /**
+     * Immutable. Subnet IP range within the peered network. This is specified
+     * in CIDR notation with a slash and the subnet prefix size. You can
+     * optionally specify an IP address before the subnet prefix value. e.g.
+     * `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a
+     * prefix size of 29 bits.
+     * `/16` would specify a prefix size of 16 bits, with an automatically
+     * determined IP within the peered VPC.
+     * If unspecified, a value of `/24` will be used.
+     *
+     * Generated from protobuf field <code>string peered_network_ip_range = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeeredNetworkIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peered_network_ip_range = $var;
 
         return $this;
     }

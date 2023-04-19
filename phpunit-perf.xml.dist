@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./Core/perf-bootstrap.php" colors="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./Core/perf-bootstrap.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include/>
+    <exclude>
+      <directory suffix=".php">*/src/V[!a-zA-Z]*</directory>
+    </exclude>
+  </coverage>
   <testsuites>
     <testsuite name="Perf Test Suite">
       <directory>*/tests/Perf</directory>
     </testsuite>
   </testsuites>
-  <filter>
-    <whitelist>
-      <exclude>
-        <directory suffix=".php">*/src/V[!a-zA-Z]*</directory>
-      </exclude>
-    </whitelist>
-  </filter>
   <php>
     <ini name="memory_limit" value="2048M"/>
   </php>

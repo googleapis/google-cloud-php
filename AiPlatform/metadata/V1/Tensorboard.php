@@ -20,8 +20,8 @@ class Tensorboard
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆
-,google/cloud/aiplatform/v1/tensorboard.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"≤
+⁄
+,google/cloud/aiplatform/v1/tensorboard.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"∆
 Tensorboard
 name (	B‡A
 display_name (	B‡A
@@ -33,7 +33,9 @@ class Tensorboard
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡AC
 labels (23.google.cloud.aiplatform.v1.Tensorboard.LabelsEntry
-etag	 (	-
+etag	 (	
+
+is_default (-
 LabelsEntry
 key (	
 value (	:8:nÍAk

@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ExponentialBackoff;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -28,7 +28,7 @@ class ExponentialBackoffTest extends TestCase
 {
     private $delayFunction;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->delayFunction = function () {
             return;

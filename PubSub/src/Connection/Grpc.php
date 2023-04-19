@@ -143,9 +143,7 @@ class Grpc implements ConnectionInterface
     public function createTopic(array $args)
     {
         if (isset($args['schemaSettings'])) {
-            $enc = isset($args['schemaSettings']['encoding'])
-                ? $args['schemaSettings']['encoding']
-                : Encoding::ENCODING_UNSPECIFIED;
+            $enc = $args['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
 
             if (is_string($enc)) {
                 $args['schemaSettings']['encoding'] = Encoding::value($enc);
@@ -207,9 +205,7 @@ class Grpc implements ConnectionInterface
         ]);
 
         if (isset($args['topic']['schemaSettings'])) {
-            $enc = isset($args['topic']['schemaSettings']['encoding'])
-                ? $args['topic']['schemaSettings']['encoding']
-                : Encoding::ENCODING_UNSPECIFIED;
+            $enc = $args['topic']['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
 
             if (is_string($enc)) {
                 $args['topic']['schemaSettings']['encoding'] = Encoding::value($enc);

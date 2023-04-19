@@ -28,7 +28,7 @@ class PostPolicyTest extends StorageTestCase
 {
     private $guzzle;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->guzzle = new Client;
     }

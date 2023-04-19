@@ -71,14 +71,15 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
+     * supported in MP4 files.
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      */
     private $language_code = '';
     /**
      * The name for this particular audio stream that
-     * will be added to the HLS/DASH manifest.
+     * will be added to the HLS/DASH manifest. Not supported in MP4 files.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      */
@@ -122,10 +123,11 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      *           information, see
-     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
+     *           supported in MP4 files.
      *     @type string $display_name
      *           The name for this particular audio stream that
-     *           will be added to the HLS/DASH manifest.
+     *           will be added to the HLS/DASH manifest. Not supported in MP4 files.
      * }
      */
     public function __construct($data = NULL) {
@@ -326,7 +328,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
+     * supported in MP4 files.
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      * @return string
@@ -339,7 +342,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
+     * supported in MP4 files.
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      * @param string $var
@@ -355,7 +359,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
 
     /**
      * The name for this particular audio stream that
-     * will be added to the HLS/DASH manifest.
+     * will be added to the HLS/DASH manifest. Not supported in MP4 files.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      * @return string
@@ -367,7 +371,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
 
     /**
      * The name for this particular audio stream that
-     * will be added to the HLS/DASH manifest.
+     * will be added to the HLS/DASH manifest. Not supported in MP4 files.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      * @param string $var

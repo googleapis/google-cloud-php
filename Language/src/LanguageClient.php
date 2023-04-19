@@ -455,9 +455,7 @@ class LanguageClient
      */
     public function annotateText($content, array $options = [])
     {
-        $features = isset($options['features'])
-            ? $options['features']
-            : array_values($this->featureShortNames);
+        $features = $options['features'] ?? array_values($this->featureShortNames);
         $options['features'] = $this->normalizeFeatures($features);
 
         return new Annotation(

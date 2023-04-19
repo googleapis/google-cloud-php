@@ -19,20 +19,19 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
 class KeyRangeTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
 
     private $range;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -89,7 +88,7 @@ class KeyRangeTest extends TestCase
 
     public function testSetStartInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->range->setStart('foo', ['foo']);
     }
@@ -103,7 +102,7 @@ class KeyRangeTest extends TestCase
 
     public function testSetEndInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->range->setEnd('foo', ['foo']);
     }
@@ -120,7 +119,7 @@ class KeyRangeTest extends TestCase
 
     public function testKeyRangeObjectBadRange()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->range->keyRangeObject();
     }

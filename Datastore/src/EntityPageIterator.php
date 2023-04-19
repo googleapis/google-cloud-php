@@ -58,9 +58,7 @@ class EntityPageIterator implements \Iterator
             $this->page = $this->executeCall();
         }
 
-        $this->moreResultsType = isset($this->page['batch']['moreResults'])
-            ? $this->page['batch']['moreResults']
-            : null;
+        $this->moreResultsType = $this->page['batch']['moreResults'] ?? null;
 
         return $this->get($this->itemsPath, $this->page);
     }

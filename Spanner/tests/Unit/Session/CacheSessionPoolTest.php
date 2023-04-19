@@ -28,11 +28,11 @@ use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionMethod;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -40,8 +40,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class CacheSessionPoolTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
@@ -51,7 +51,7 @@ class CacheSessionPoolTest extends TestCase
     private $time;
     private $cacheKey;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
@@ -90,7 +90,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionUnableToSaveItem()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(
             'Failed to save session pool data. This can often be related to ' .
             'your chosen cache implementation running out of memory. ' .
@@ -121,7 +121,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -147,7 +147,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWithNoAvailableSessions()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -1031,7 +1031,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testMaintainNoDatabase()
     {
-        $this->expectException('\LogicException');
+        $this->expectException(\LogicException::class);
 
         $cache = $this->getCacheItemPool();
         $pool = new CacheSessionPoolStub($cache, [], $this->time);

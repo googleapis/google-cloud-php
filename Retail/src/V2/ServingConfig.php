@@ -53,7 +53,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * click-through and conversion rates.
      *  Allowed values are:
      * * `no-price-reranking`
-     * * `low-price-raranking`
+     * * `low-price-reranking`
      * * `medium-price-reranking`
      * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
@@ -212,8 +212,8 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      */
     private $diversity_level = '';
     /**
-     * What kind of diversity to use - data driven or rule based. If unset,
-     * the server behavior defaults to
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
      * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
@@ -292,7 +292,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           click-through and conversion rates.
      *            Allowed values are:
      *           * `no-price-reranking`
-     *           * `low-price-raranking`
+     *           * `low-price-reranking`
      *           * `medium-price-reranking`
      *           * `high-price-reranking`
      *           If not specified, we choose default based on model type. Default value:
@@ -403,8 +403,8 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *     @type int $diversity_type
-     *           What kind of diversity to use - data driven or rule based. If unset,
-     *           the server behavior defaults to
+     *           What kind of diversity to use - data driven or rule based. If unset, the
+     *           server behavior defaults to
      *           [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
      *     @type string $enable_category_filter_level
      *           Whether to add additional category filters on the `similar-items` model.
@@ -550,7 +550,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * click-through and conversion rates.
      *  Allowed values are:
      * * `no-price-reranking`
-     * * `low-price-raranking`
+     * * `low-price-reranking`
      * * `medium-price-reranking`
      * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
@@ -575,7 +575,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * click-through and conversion rates.
      *  Allowed values are:
      * * `no-price-reranking`
-     * * `low-price-raranking`
+     * * `low-price-reranking`
      * * `medium-price-reranking`
      * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
@@ -1053,8 +1053,8 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What kind of diversity to use - data driven or rule based. If unset,
-     * the server behavior defaults to
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
      * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
@@ -1066,8 +1066,8 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What kind of diversity to use - data driven or rule based. If unset,
-     * the server behavior defaults to
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
      * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>

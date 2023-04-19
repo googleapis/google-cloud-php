@@ -22,7 +22,7 @@ class Tracing
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è
+˜
 +google/devtools/cloudtrace/v2/tracing.protogoogle.devtools.cloudtrace.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/devtools/cloudtrace/v2/trace.protogoogle/protobuf/empty.proto"î
 BatchWriteSpansRequestA
 name (	B3‡A˙A-
@@ -32,8 +32,8 @@ class Tracing
 BatchWriteSpans5.google.devtools.cloudtrace.v2.BatchWriteSpansRequest.google.protobuf.Empty"?Ç”‰ì,"\'/v2/{name=projects/*}/traces:batchWrite:*⁄A
 name,spansâ
 
-CreateSpan#.google.devtools.cloudtrace.v2.Span#.google.devtools.cloudtrace.v2.Span"1Ç”‰ì+"&/v2/{name=projects/*/traces/*/spans/*}:*z Acloudtrace.googleapis.com“A[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/trace.appendB«
-!com.google.devtools.cloudtrace.v2BTracingProtoPZGgoogle.golang.org/genproto/googleapis/devtools/cloudtrace/v2;cloudtrace™Google.Cloud.Trace.V2 Google\\Cloud\\Trace\\V2ÍGoogle::Cloud::Trace::V2bproto3'
+CreateSpan#.google.devtools.cloudtrace.v2.Span#.google.devtools.cloudtrace.v2.Span"1Ç”‰ì+"&/v2/{name=projects/*/traces/*/spans/*}:*z Acloudtrace.googleapis.com“A[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/trace.appendBØ
+!com.google.devtools.cloudtrace.v2BTracingProtoPZ/cloud.google.com/go/trace/apiv2/tracepb;tracepb™Google.Cloud.Trace.V2 Google\\Cloud\\Trace\\V2ÍGoogle::Cloud::Trace::V2bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -60,6 +60,17 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.PythonPackage python_packages = 5;</code>
      */
     private $python_packages;
+    /**
+     * A list of npm packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Npm packages in the specified paths will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any packages fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.NpmPackage npm_packages = 6;</code>
+     */
+    private $npm_packages;
 
     /**
      * Constructor.
@@ -95,6 +106,13 @@ class Artifacts extends \Google\Protobuf\Internal\Message
      *           successful completion of all build steps.
      *           The build service account credentials will be used to perform the upload.
      *           If any objects fail to be pushed, the build is marked FAILURE.
+     *     @type array<\Google\Cloud\Build\V1\Artifacts\NpmPackage>|\Google\Protobuf\Internal\RepeatedField $npm_packages
+     *           A list of npm packages to be uploaded to Artifact Registry upon
+     *           successful completion of all build steps.
+     *           Npm packages in the specified paths will be uploaded
+     *           to the specified Artifact Registry repository using the builder service
+     *           account's credentials.
+     *           If any packages fail to be pushed, the build is marked FAILURE.
      * }
      */
     public function __construct($data = NULL) {
@@ -252,6 +270,42 @@ class Artifacts extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Artifacts\PythonPackage::class);
         $this->python_packages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of npm packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Npm packages in the specified paths will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any packages fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.NpmPackage npm_packages = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNpmPackages()
+    {
+        return $this->npm_packages;
+    }
+
+    /**
+     * A list of npm packages to be uploaded to Artifact Registry upon
+     * successful completion of all build steps.
+     * Npm packages in the specified paths will be uploaded
+     * to the specified Artifact Registry repository using the builder service
+     * account's credentials.
+     * If any packages fail to be pushed, the build is marked FAILURE.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Artifacts.NpmPackage npm_packages = 6;</code>
+     * @param array<\Google\Cloud\Build\V1\Artifacts\NpmPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNpmPackages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Artifacts\NpmPackage::class);
+        $this->npm_packages = $arr;
 
         return $this;
     }
