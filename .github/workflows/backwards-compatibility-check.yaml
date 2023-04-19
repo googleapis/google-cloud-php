@@ -31,7 +31,8 @@ jobs:
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
-              --to=origin/main --format=github-actions
+              --format=github-actions \
+              ${{ (github.event.pull_request.user.login == 'release-please[bot]' && '--to=origin/main') || '' }}
         # Verify that if the "breaking change allowed" label exists, so does a BREAKING_CHANGE_REASON in
         # the description of the PR. Comment and exit 1 if not.
       - name: "Allow breaking change: Comment"
