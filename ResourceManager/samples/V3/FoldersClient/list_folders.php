@@ -37,9 +37,13 @@ use Google\Cloud\ResourceManager\V3\FoldersClient;
  * The caller must have `resourcemanager.folders.list` permission on the
  * identified parent.
  *
- * @param string $parent The resource name of the organization or folder whose folders are
- *                       being listed.
- *                       Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+ * @param string $parent The name of the parent resource whose folders are being listed.
+ *                       Only children of this parent resource are listed; descendants are not
+ *                       listed.
+ *
+ *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
+ *                       parent is an organization, use the value `organizations/{org_id}`.
+ *
  *                       Access to this method is controlled by checking the
  *                       `resourcemanager.folders.list` permission on the `parent`.
  */

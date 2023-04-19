@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetOrganizationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Organization to fetch. This is the organization's
-     * relative path in the API, formatted as "organizations/[organizationId]".
-     * For example, "organizations/1234".
+     * Required. The resource name of the Organization to fetch. This is the
+     * organization's relative path in the API, formatted as
+     * "organizations/[organizationId]". For example, "organizations/1234".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,9 +32,9 @@ class GetOrganizationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the Organization to fetch. This is the organization's
-     *           relative path in the API, formatted as "organizations/[organizationId]".
-     *           For example, "organizations/1234".
+     *           Required. The resource name of the Organization to fetch. This is the
+     *           organization's relative path in the API, formatted as
+     *           "organizations/[organizationId]". For example, "organizations/1234".
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +43,9 @@ class GetOrganizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Organization to fetch. This is the organization's
-     * relative path in the API, formatted as "organizations/[organizationId]".
-     * For example, "organizations/1234".
+     * Required. The resource name of the Organization to fetch. This is the
+     * organization's relative path in the API, formatted as
+     * "organizations/[organizationId]". For example, "organizations/1234".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -56,9 +56,9 @@ class GetOrganizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Organization to fetch. This is the organization's
-     * relative path in the API, formatted as "organizations/[organizationId]".
-     * For example, "organizations/1234".
+     * Required. The resource name of the Organization to fetch. This is the
+     * organization's relative path in the API, formatted as
+     * "organizations/[organizationId]". For example, "organizations/1234".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -20,21 +20,21 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query string for searching for projects that the caller has
      * `resourcemanager.projects.get` permission to. If multiple fields are
-     * included in the query, the it will return results that match any of the
+     * included in the query, then it will return results that match any of the
      * fields. Some eligible fields are:
      * ```
      * | Field                   | Description                                  |
      * |-------------------------|----------------------------------------------|
      * | displayName, name       | Filters by displayName.                      |
-     * | parent                  | Project's parent. (for example: folders/123,
-     * organizations/&#42;) Prefer parent field over parent.type and parent.id. |
-     * | parent.type             | Parent's type: `folder` or `organization`.   |
-     * | parent.id               | Parent's id number (for example: 123)        |
-     * | id, projectId           | Filters by projectId.                        |
-     * | state, lifecycleState   | Filters by state.                            |
-     * | labels                  | Filters by label name or value.              |
-     * | labels.<key> (where *key* is the name of a label) | Filters by label
-     * name. |
+     * | parent                  | Project's parent (for example: folders/123,
+     * organizations/&#42;). Prefer parent field over parent.type and parent.id.| |
+     * parent.type             | Parent's type: `folder` or `organization`.   | |
+     * parent.id               | Parent's id number (for example: 123)        | |
+     * id, projectId           | Filters by projectId.                        | |
+     * state, lifecycleState   | Filters by state.                            | |
+     * labels                  | Filters by label name or value.              | |
+     * labels.\<key\> (where *key* is the name of a label) | Filters by label
+     * name.|
      * ```
      * Search expressions are case insensitive.
      * Some examples queries:
@@ -47,8 +47,8 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * | NAME:howl        | Equivalent to above.                                |
      * | labels.color:*   | The project has the label `color`.                  |
      * | labels.color:red | The project's label `color` has the value `red`.    |
-     * | labels.color:red&nbsp;labels.size:big | The project's label `color` has
-     * the value `red` and its label `size` has the value `big`.                |
+     * | labels.color:red labels.size:big | The project's label `color` has the
+     * value `red` or its label `size` has the value `big`.                     |
      * ```
      * If no query is specified, the call will return projects for which the user
      * has the `resourcemanager.projects.get` permission.
@@ -57,9 +57,9 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -82,21 +82,21 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $query
      *           Optional. A query string for searching for projects that the caller has
      *           `resourcemanager.projects.get` permission to. If multiple fields are
-     *           included in the query, the it will return results that match any of the
+     *           included in the query, then it will return results that match any of the
      *           fields. Some eligible fields are:
      *           ```
      *           | Field                   | Description                                  |
      *           |-------------------------|----------------------------------------------|
      *           | displayName, name       | Filters by displayName.                      |
-     *           | parent                  | Project's parent. (for example: folders/123,
-     *           organizations/&#42;) Prefer parent field over parent.type and parent.id. |
-     *           | parent.type             | Parent's type: `folder` or `organization`.   |
-     *           | parent.id               | Parent's id number (for example: 123)        |
-     *           | id, projectId           | Filters by projectId.                        |
-     *           | state, lifecycleState   | Filters by state.                            |
-     *           | labels                  | Filters by label name or value.              |
-     *           | labels.<key> (where *key* is the name of a label) | Filters by label
-     *           name. |
+     *           | parent                  | Project's parent (for example: folders/123,
+     *           organizations/&#42;). Prefer parent field over parent.type and parent.id.| |
+     *           parent.type             | Parent's type: `folder` or `organization`.   | |
+     *           parent.id               | Parent's id number (for example: 123)        | |
+     *           id, projectId           | Filters by projectId.                        | |
+     *           state, lifecycleState   | Filters by state.                            | |
+     *           labels                  | Filters by label name or value.              | |
+     *           labels.\<key\> (where *key* is the name of a label) | Filters by label
+     *           name.|
      *           ```
      *           Search expressions are case insensitive.
      *           Some examples queries:
@@ -109,15 +109,15 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *           | NAME:howl        | Equivalent to above.                                |
      *           | labels.color:*   | The project has the label `color`.                  |
      *           | labels.color:red | The project's label `color` has the value `red`.    |
-     *           | labels.color:red&nbsp;labels.size:big | The project's label `color` has
-     *           the value `red` and its label `size` has the value `big`.                |
+     *           | labels.color:red labels.size:big | The project's label `color` has the
+     *           value `red` or its label `size` has the value `big`.                     |
      *           ```
      *           If no query is specified, the call will return projects for which the user
      *           has the `resourcemanager.projects.get` permission.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to [ListProjects]
-     *           [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     *           that indicates from where listing should continue.
+     *           Optional. A pagination token returned from a previous call to
+     *           [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     *           indicates from where listing should continue.
      *     @type int $page_size
      *           Optional. The maximum number of projects to return in the response.
      *           The server can return fewer projects than requested.
@@ -132,21 +132,21 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query string for searching for projects that the caller has
      * `resourcemanager.projects.get` permission to. If multiple fields are
-     * included in the query, the it will return results that match any of the
+     * included in the query, then it will return results that match any of the
      * fields. Some eligible fields are:
      * ```
      * | Field                   | Description                                  |
      * |-------------------------|----------------------------------------------|
      * | displayName, name       | Filters by displayName.                      |
-     * | parent                  | Project's parent. (for example: folders/123,
-     * organizations/&#42;) Prefer parent field over parent.type and parent.id. |
-     * | parent.type             | Parent's type: `folder` or `organization`.   |
-     * | parent.id               | Parent's id number (for example: 123)        |
-     * | id, projectId           | Filters by projectId.                        |
-     * | state, lifecycleState   | Filters by state.                            |
-     * | labels                  | Filters by label name or value.              |
-     * | labels.<key> (where *key* is the name of a label) | Filters by label
-     * name. |
+     * | parent                  | Project's parent (for example: folders/123,
+     * organizations/&#42;). Prefer parent field over parent.type and parent.id.| |
+     * parent.type             | Parent's type: `folder` or `organization`.   | |
+     * parent.id               | Parent's id number (for example: 123)        | |
+     * id, projectId           | Filters by projectId.                        | |
+     * state, lifecycleState   | Filters by state.                            | |
+     * labels                  | Filters by label name or value.              | |
+     * labels.\<key\> (where *key* is the name of a label) | Filters by label
+     * name.|
      * ```
      * Search expressions are case insensitive.
      * Some examples queries:
@@ -159,8 +159,8 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * | NAME:howl        | Equivalent to above.                                |
      * | labels.color:*   | The project has the label `color`.                  |
      * | labels.color:red | The project's label `color` has the value `red`.    |
-     * | labels.color:red&nbsp;labels.size:big | The project's label `color` has
-     * the value `red` and its label `size` has the value `big`.                |
+     * | labels.color:red labels.size:big | The project's label `color` has the
+     * value `red` or its label `size` has the value `big`.                     |
      * ```
      * If no query is specified, the call will return projects for which the user
      * has the `resourcemanager.projects.get` permission.
@@ -176,21 +176,21 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query string for searching for projects that the caller has
      * `resourcemanager.projects.get` permission to. If multiple fields are
-     * included in the query, the it will return results that match any of the
+     * included in the query, then it will return results that match any of the
      * fields. Some eligible fields are:
      * ```
      * | Field                   | Description                                  |
      * |-------------------------|----------------------------------------------|
      * | displayName, name       | Filters by displayName.                      |
-     * | parent                  | Project's parent. (for example: folders/123,
-     * organizations/&#42;) Prefer parent field over parent.type and parent.id. |
-     * | parent.type             | Parent's type: `folder` or `organization`.   |
-     * | parent.id               | Parent's id number (for example: 123)        |
-     * | id, projectId           | Filters by projectId.                        |
-     * | state, lifecycleState   | Filters by state.                            |
-     * | labels                  | Filters by label name or value.              |
-     * | labels.<key> (where *key* is the name of a label) | Filters by label
-     * name. |
+     * | parent                  | Project's parent (for example: folders/123,
+     * organizations/&#42;). Prefer parent field over parent.type and parent.id.| |
+     * parent.type             | Parent's type: `folder` or `organization`.   | |
+     * parent.id               | Parent's id number (for example: 123)        | |
+     * id, projectId           | Filters by projectId.                        | |
+     * state, lifecycleState   | Filters by state.                            | |
+     * labels                  | Filters by label name or value.              | |
+     * labels.\<key\> (where *key* is the name of a label) | Filters by label
+     * name.|
      * ```
      * Search expressions are case insensitive.
      * Some examples queries:
@@ -203,8 +203,8 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * | NAME:howl        | Equivalent to above.                                |
      * | labels.color:*   | The project has the label `color`.                  |
      * | labels.color:red | The project's label `color` has the value `red`.    |
-     * | labels.color:red&nbsp;labels.size:big | The project's label `color` has
-     * the value `red` and its label `size` has the value `big`.                |
+     * | labels.color:red labels.size:big | The project's label `color` has the
+     * value `red` or its label `size` has the value `big`.                     |
      * ```
      * If no query is specified, the call will return projects for which the user
      * has the `resourcemanager.projects.get` permission.
@@ -222,9 +222,9 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -235,9 +235,9 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

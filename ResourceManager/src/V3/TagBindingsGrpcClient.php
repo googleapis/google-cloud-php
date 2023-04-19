@@ -20,7 +20,7 @@ namespace Google\Cloud\ResourceManager\V3;
 
 /**
  * Allow users to create and manage TagBindings between TagValues and
- * different cloud resources throughout the GCP resource hierarchy.
+ * different Google Cloud resources throughout the GCP resource hierarchy.
  */
 class TagBindingsGrpcClient extends \Grpc\BaseStub {
 
@@ -34,8 +34,8 @@ class TagBindingsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the TagBindings for the given cloud resource, as specified with
-     * `parent`.
+     * Lists the TagBindings for the given Google Cloud resource, as specified
+     * with `parent`.
      *
      * NOTE: The `parent` field is expected to be a full resource name:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
@@ -53,8 +53,7 @@ class TagBindingsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a TagBinding between a TagValue and a cloud resource
-     * (currently project, folder, or organization).
+     * Creates a TagBinding between a TagValue and a Google Cloud resource.
      * @param \Google\Cloud\ResourceManager\V3\CreateTagBindingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -80,6 +79,22 @@ class TagBindingsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.resourcemanager.v3.TagBindings/DeleteTagBinding',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Return a list of effective tags for the given Google Cloud resource, as
+     * specified in `parent`.
+     * @param \Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListEffectiveTags(\Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.resourcemanager.v3.TagBindings/ListEffectiveTags',
+        $argument,
+        ['\Google\Cloud\ResourceManager\V3\ListEffectiveTagsResponse', 'decode'],
         $metadata, $options);
     }
 

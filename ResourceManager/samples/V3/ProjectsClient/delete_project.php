@@ -38,7 +38,8 @@ use Google\Rpc\Status;
  *
  * This method changes the Project's lifecycle state from
  * [ACTIVE][google.cloud.resourcemanager.v3.Project.State.ACTIVE]
- * to [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED].
+ * to
+ * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED].
  * The deletion starts at an unspecified time,
  * at which point the Project is no longer accessible.
  *
