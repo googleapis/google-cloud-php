@@ -79,7 +79,7 @@ class AddComponentCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
         | shortName            | secretmanager
-        | protoPath            | google/cloud/secretmanager/(.*)
+        | protoPath            | google/cloud/secretmanager/(v1)
         | version              | v1
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {

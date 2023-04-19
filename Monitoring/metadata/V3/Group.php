@@ -17,7 +17,7 @@ class Group
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
+‹
  google/monitoring/v3/group.protogoogle.monitoring.v3"€
 Group
 name (	
@@ -26,9 +26,9 @@ class Group
 filter (	
 
 is_cluster (:™êA•
-monitoring.googleapis.com/Group!projects/{project}/groups/{group}+organizations/{organization}/groups/{group}folders/{folder}/groups/{group}*BÂ
+monitoring.googleapis.com/Group!projects/{project}/groups/{group}+organizations/{organization}/groups/{group}folders/{folder}/groups/{group}*BÅ
 com.google.monitoring.v3B
-GroupProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+GroupProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

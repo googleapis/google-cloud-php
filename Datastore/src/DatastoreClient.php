@@ -25,6 +25,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -1054,6 +1055,24 @@ class DatastoreClient
     }
 
     /**
+     * Create an AggregationQuery object.
+     *
+     * In addition to Query features, it supports aggregations.
+     *
+     * Example:
+     * ```
+     * $query = $datastore->aggregationQuery();
+     * ```
+     *
+     * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
+     * @return AggregationQuery
+     */
+    public function aggregationQuery(array $query = [])
+    {
+        return new AggregationQuery($this->query($query));
+    }
+
+    /**
      * Create a GqlQuery object.
      *
      * Returns a Query object which can be executed using
@@ -1168,6 +1187,42 @@ class DatastoreClient
     public function runQuery(QueryInterface $query, array $options = [])
     {
         return $this->operation->runQuery($query, $options);
+    }
+
+    /**
+     * Run an aggregation query and return results.
+     *
+     * To query datastore inside a transaction, use
+     * {@see Google\Cloud\Datastore\Transaction::runAggregationQuery()}.
+     *
+     * Example:
+     * ```
+     * $results = $datastore->runAggregationQuery($query);
+     * echo $results->get('property_1');
+     * ```
+     *
+     * Example with readTime:
+     * ```
+     * $results = $datastore->runAggregationQuery($query, ['readTime' => $time]);
+     * echo $results->get('property_1');
+     * ```
+     *
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/runAggregationQuery
+     * RunAggregationQuery API documentation
+     *
+     * @param AggregationQuery $query A query object.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregationQueryResult
+     */
+    public function runAggregationQuery(AggregationQuery $query, array $options = [])
+    {
+        return $this->operation->runAggregationQuery($query, $options);
     }
 
     /**

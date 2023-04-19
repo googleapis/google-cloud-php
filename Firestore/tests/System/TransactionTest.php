@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Firestore\Aggregate;
+use Google\Cloud\Core\Timestamp;
+
 /**
  * @group firestore
  * @group firestore-transaction
@@ -120,6 +123,84 @@ class TransactionTest extends FirestoreTestCase
             $s = $t->snapshot($this->document);
             $this->assertTrue($s->exists());
             $this->assertEquals('bar', $s['foo']);
+        });
+    }
+
+    public function testAggregateQuery()
+    {
+        $this->document->create([
+            'foos' => ['foobar'],
+        ]);
+        self::$collection->add([
+            'foos' => ['foo', 'bar'],
+        ]);
+        self::$collection->add([
+            'foos' => ['foo'],
+        ]);
+
+        $aggregateQuery = self::$collection->where('foos', '!=', [])->addAggregation(
+            Aggregate::count()->alias('count')
+        );
+
+        // without sleep, test fails intermittently
+        sleep(1);
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+
+        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
+            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+                'readTime' => $readTime
+            ]);
+
+            $this->assertEquals(3, $snapshot->get('count'));
+
+            $this->assertEqualsWithDelta(
+                $readTime->get()->getTimestamp(),
+                $snapshot->getReadTime()->get()->getTimestamp(),
+                10
+            );
+        });
+    }
+
+    public function testAggregateQueryWithMultipleAggregation()
+    {
+        $this->document->create([
+            'bars' => ['foobar'],
+        ]);
+        self::$collection->add([
+            'bars' => ['foo', 'bar'],
+        ]);
+        self::$collection->add([
+            'bars' => ['foo'],
+        ]);
+
+        $aggregateQuery = self::$collection->where('bars', '!=', [])->addAggregation(
+            Aggregate::count()->alias('count')
+        );
+        $aggregateQuery = $aggregateQuery->addAggregation(
+            Aggregate::count()->alias('count_with_alias_a')
+        );
+        $aggregateQuery = $aggregateQuery->addAggregation(
+            Aggregate::count()->alias('count_with_alias_b')
+        );
+
+        // without sleep, test fails intermittently
+        sleep(1);
+        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+
+        self::$client->runTransaction(function ($t) use ($aggregateQuery, $readTime) {
+            $snapshot = $t->runAggregateQuery($aggregateQuery, [
+                'readTime' => $readTime
+            ]);
+
+            $this->assertEquals(3, $snapshot->get('count'));
+            $this->assertEquals(3, $snapshot->get('count_with_alias_a'));
+            $this->assertEquals(3, $snapshot->get('count_with_alias_b'));
+
+            $this->assertEqualsWithDelta(
+                $readTime->get()->getTimestamp(),
+                $snapshot->getReadTime()->get()->getTimestamp(),
+                10
+            );
         });
     }
 

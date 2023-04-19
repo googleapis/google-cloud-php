@@ -30,6 +30,9 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -641,6 +644,39 @@ class DatastoreClientTest extends TestCase
 
         $res = iterator_to_array($this->client->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunAggregationQuery()
+    {
+        $this->connection->runAggregationQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'aggregationResults' => [
+                    [
+                        'aggregateProperties' => ['property_1' => 1]
+                    ]
+                ],
+                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([
+            'gqlQuery' => [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ]
+        ]);
+
+        $res = $this->client->runAggregationQuery($query->reveal());
+        $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
     public function testRunQueryWithReadTime()

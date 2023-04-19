@@ -31,11 +31,18 @@ class HashType
      * Generated from protobuf enum <code>MD5 = 2;</code>
      */
     const MD5 = 2;
+    /**
+     * Use a sha512 hash.
+     *
+     * Generated from protobuf enum <code>SHA512 = 4;</code>
+     */
+    const SHA512 = 4;
 
     private static $valueToName = [
         self::NONE => 'NONE',
         self::SHA256 => 'SHA256',
         self::MD5 => 'MD5',
+        self::SHA512 => 'SHA512',
     ];
 
     public static function name($value)

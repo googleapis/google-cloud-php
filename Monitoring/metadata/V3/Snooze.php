@@ -19,7 +19,7 @@ class Snooze
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
+ê
 !google/monitoring/v3/snooze.protogoogle.monitoring.v3google/api/resource.proto!google/monitoring/v3/common.proto"≈
 Snooze
 name (	B‡A<
@@ -29,8 +29,8 @@ class Snooze
 Criteria<
 policies (	B*˙A\'
 %monitoring.googleapis.com/AlertPolicy:JÍAG
- monitoring.googleapis.com/Snooze#projects/{project}/snoozes/{snooze}B√
-com.google.monitoring.v3BSnoozeProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoring™Google.Cloud.Monitoring.V3 Google\\Cloud\\Monitoring\\V3ÍGoogle::Cloud::Monitoring::V3bproto3'
+ monitoring.googleapis.com/Snooze#projects/{project}/snoozes/{snooze}B∆
+com.google.monitoring.v3BSnoozeProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpb™Google.Cloud.Monitoring.V3 Google\\Cloud\\Monitoring\\V3ÍGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -24,7 +24,7 @@ class NotificationService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¹%
+¼%
 /google/monitoring/v3/notification_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/monitoring/v3/notification.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¡
 )ListNotificationChannelDescriptorsRequestM
 name (	B?àAúA97monitoring.googleapis.com/NotificationChannelDescriptor
@@ -87,8 +87,8 @@ total_size ("d
 name,forceÜ
 \'SendNotificationChannelVerificationCodeD.google.monitoring.v3.SendNotificationChannelVerificationCodeRequest.google.protobuf.Empty"S‚Óä“F"A/v3/{name=projects/*/notificationChannels/*}:sendVerificationCode:*ÚAname‡
 &GetNotificationChannelVerificationCodeC.google.monitoring.v3.GetNotificationChannelVerificationCodeRequestD.google.monitoring.v3.GetNotificationChannelVerificationCodeResponse"R‚Óä“E"@/v3/{name=projects/*/notificationChannels/*}:getVerificationCode:*ÚAnameÊ
-VerifyNotificationChannel6.google.monitoring.v3.VerifyNotificationChannelRequest).google.monitoring.v3.NotificationChannel"J‚Óä“8"3/v3/{name=projects/*/notificationChannels/*}:verify:*ÚA	name,code©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÐ
-com.google.monitoring.v3BNotificationServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+VerifyNotificationChannel6.google.monitoring.v3.VerifyNotificationChannelRequest).google.monitoring.v3.NotificationChannel"J‚Óä“8"3/v3/{name=projects/*/notificationChannels/*}:verify:*ÚA	name,code©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÓ
+com.google.monitoring.v3BNotificationServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

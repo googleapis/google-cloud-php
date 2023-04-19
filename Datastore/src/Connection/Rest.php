@@ -23,11 +23,12 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Core\Timestamp;
 
 /**
  * Implementation of the
  * [Google Datastore JSON API](https://cloud.google.com/datastore/reference/rest/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
@@ -66,6 +67,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function allocateIds(array $args)
     {
@@ -74,6 +76,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function beginTransaction(array $args)
     {
@@ -82,6 +85,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function commit(array $args)
     {
@@ -90,6 +94,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function lookup(array $args)
     {
@@ -98,6 +103,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function rollback(array $args)
     {
@@ -106,10 +112,30 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function runQuery(array $args)
     {
         return $this->sendWithHeaders('projects', 'runQuery', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function runAggregationQuery(array $args)
+    {
+        if (isset($args['aggregationQuery']['aggregations'])) {
+            foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
+                $aggregation = array_map(
+                    fn ($item) => is_array($item) && count($item) === 0
+                        ? new \stdClass
+                        : $item,
+                    $aggregation
+                );
+            }
+        }
+        return $this->sendWithHeaders('projects', 'runAggregationQuery', $args);
     }
 
     /**
