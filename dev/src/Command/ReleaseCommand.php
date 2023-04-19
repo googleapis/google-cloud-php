@@ -139,6 +139,8 @@ class ReleaseCommand extends Command
             'Release %s generated!',
             $version
         ));
+
+        return 0;
     }
 
     private function getNextVersionName($type, array $component)

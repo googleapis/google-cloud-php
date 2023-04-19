@@ -249,13 +249,13 @@ class Component
         if (empty($repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "release_level" for component "%s"',
-                $component
+                $this->name
             ));
         }
         if (empty($repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "client_documentation" for component "%s"',
-                $component
+                $this->name
             ));
         }
         $this->releaseLevel = $repoMetadataJson['release_level'];

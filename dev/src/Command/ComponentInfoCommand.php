@@ -79,6 +79,8 @@ class ComponentInfoCommand extends Command
             ;
             $table->render();
         }
+
+        return 0;
     }
 
     private function checkComponent(Component $component, bool $verbose): array

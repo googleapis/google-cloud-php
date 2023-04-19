@@ -176,6 +176,8 @@ class DocFxCommand extends Command
             $process->mustRun();
             $output->writeln('Done.');
         }
+
+        return 0;
     }
 
     public static function getPhpDocCommand(string $componentPath, string $outDir): Process
