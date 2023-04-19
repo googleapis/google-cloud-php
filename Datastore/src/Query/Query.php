@@ -76,7 +76,6 @@ use InvalidArgumentException;
 class Query implements QueryInterface
 {
     use DatastoreTrait;
-    use QueryTrait;
 
     const OP_DEFAULT                = self::OP_EQUALS;
     const OP_LESS_THAN              = 'LESS_THAN';
@@ -495,7 +494,7 @@ class Query implements QueryInterface
      *
      * @return array
      */
-    private function standardQueryobject()
+    public function queryObject()
     {
         return array_filter($this->query);
     }
