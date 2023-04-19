@@ -4,6 +4,9 @@ on:
         tags:
             - "*"
     workflow_dispatch:
+
+permissions:
+    contents: read
 jobs:
     docs:
         name: "Split and Release Components"

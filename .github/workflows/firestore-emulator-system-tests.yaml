@@ -12,6 +12,8 @@ on:
       - '.github/workflows/firestore-emulator-system-tests.yaml'
       - '.github/emulator/**'
 name: Run Firestore System Tests With Emulator
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
