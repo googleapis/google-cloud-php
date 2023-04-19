@@ -27,8 +27,8 @@ class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,8 +47,8 @@ class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
      *           Required. The task's current schedule time, available in the
      *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     *           to ensure that your worker currently holds the lease.
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *           This restriction is to ensure that your worker currently holds the lease.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,8 +88,8 @@ class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -113,8 +113,8 @@ class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var

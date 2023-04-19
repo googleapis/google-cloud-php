@@ -11,10 +11,14 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * App Engine HTTP queue.
  * The task will be delivered to the App Engine application hostname
- * specified by its [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] and [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest].
- * The documentation for [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] explains how the
- * task's host URL is constructed.
- * Using [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] requires
+ * specified by its
+ * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] and
+ * [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]. The
+ * documentation for
+ * [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]
+ * explains how the task's host URL is constructed.
+ * Using [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue]
+ * requires
  * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
  * Google IAM permission for the project
  * and the following scope:
@@ -26,10 +30,12 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
 {
     /**
      * Overrides for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      * If set, `app_engine_routing_override` is used for all tasks in
      * the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing_override = 1;</code>
      */
@@ -43,10 +49,12 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Tasks\V2beta3\AppEngineRouting $app_engine_routing_override
      *           Overrides for the
-     *           [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     *           [task-level
+     *           app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *           If set, `app_engine_routing_override` is used for all tasks in
      *           the queue, no matter what the setting is for the
-     *           [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     *           [task-level
+     *           app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      * }
      */
     public function __construct($data = NULL) {
@@ -56,10 +64,12 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
 
     /**
      * Overrides for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      * If set, `app_engine_routing_override` is used for all tasks in
      * the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing_override = 1;</code>
      * @return \Google\Cloud\Tasks\V2beta3\AppEngineRouting|null
@@ -81,10 +91,12 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
 
     /**
      * Overrides for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      * If set, `app_engine_routing_override` is used for all tasks in
      * the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing_override = 1;</code>
      * @param \Google\Cloud\Tasks\V2beta3\AppEngineRouting $var

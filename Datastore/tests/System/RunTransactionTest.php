@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
@@ -63,7 +64,8 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $transaction2 = $client->transaction();
         $query = $client->query()
             ->kind($kind)
-            ->hasAncestor($key1);
+            ->hasAncestor($key1)
+            ->filter('lastName', '=', 'Smith');
         $results = iterator_to_array($transaction2->runQuery($query));
         $results[1]['lastName'] = $newLastName;
         $transaction2->update($results[1]);
@@ -77,6 +79,54 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $transaction3->rollback();
 
         $this->assertEquals($newLastName, $result['lastName']);
+    }
+
+    /**
+     * @dataProvider multiDbClientProvider
+     */
+    public function testRunAggregationQueryWithTransactions(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $kind = 'Person';
+        $testId = rand(1, 999999);
+        $key1 = $client->key($kind, $testId);
+        $data = ['lastName' => 'Smith'];
+        $newLastName = 'NotSmith';
+        $entity1 = $client->entity($key1, $data);
+
+        $transaction = $client->transaction();
+        $transaction->insert($entity1);
+        $transaction->commit();
+
+        self::$localDeletionQueue->add($key1);
+
+        // validate default DB should not have data
+        $defaultDbClient = current(self::defaultDbClientProvider())[0];
+        $this->assertOtherDbEntities($defaultDbClient, $kind, $testId, 0);
+
+        // transaction with query
+        $transaction2 = $client->transaction();
+        $query = $client->query()
+            ->kind($kind)
+            ->hasAncestor($key1)
+            ->filter('lastName', '=', 'Smith');
+        $results = iterator_to_array($transaction2->runQuery($query));
+
+        $this->assertAggregationQueryResult($transaction2, $query, 1);
+
+        $results[0]['lastName'] = $newLastName;
+        $transaction2->update($results[0]);
+        $transaction2->commit();
+
+        $this->assertCount(1, $results);
+
+        // read transaction with aggregation query
+        $transaction3 = $client->readOnlyTransaction();
+        $query = $client->query()
+            ->kind($kind)
+            ->hasAncestor($key1)
+            ->filter('lastName', '=', 'Smith');
+        $this->assertAggregationQueryResult($transaction3, $query, 0);
     }
 
     /**
@@ -195,5 +245,12 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         $results = iterator_to_array($client->runQuery($query));
 
         $this->assertCount($expectedCount, $results);
+    }
+
+    private function assertAggregationQueryResult($transaction, $query, $expectedAggregationCount)
+    {
+        $aggregationQuery = $query->aggregation(Aggregation::count()->alias('total'));
+        $results = $transaction->runAggregationQuery($aggregationQuery);
+        $this->assertEquals($expectedAggregationCount, $results->get('total'));
     }
 }

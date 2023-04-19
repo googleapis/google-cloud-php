@@ -18,7 +18,7 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the `WorkerPool` to delete.
      * Format:
-     * `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+     * `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +54,7 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the `WorkerPool` to delete.
      *           Format:
-     *           `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+     *           `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *     @type string $etag
      *           Optional. If this is provided, it must match the server's etag on the
      *           workerpool for the request to be processed.
@@ -74,7 +74,7 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the `WorkerPool` to delete.
      * Format:
-     * `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+     * `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,7 +87,7 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the `WorkerPool` to delete.
      * Format:
-     * `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+     * `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

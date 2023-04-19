@@ -76,6 +76,7 @@ use InvalidArgumentException;
 class Query implements QueryInterface
 {
     use DatastoreTrait;
+    use QueryTrait;
 
     const OP_DEFAULT                = self::OP_EQUALS;
     const OP_LESS_THAN              = 'LESS_THAN';
@@ -492,12 +493,9 @@ class Query implements QueryInterface
     /**
      * Return a service-compliant array.
      *
-     * This method is intended for use internally by the PHP client.
-     *
-     * @access private
      * @return array
      */
-    public function queryObject()
+    private function standardQueryobject()
     {
         return array_filter($this->query);
     }
@@ -511,6 +509,14 @@ class Query implements QueryInterface
     public function queryKey()
     {
         return "query";
+    }
+
+    public function aggregation(Aggregation $aggregation)
+    {
+        $aggregationQuery = new AggregationQuery($this);
+        $aggregationQuery->addAggregation($aggregation);
+
+        return $aggregationQuery;
     }
 
     /**

@@ -79,23 +79,23 @@ class NewComponentTest extends TestCase
             ],
             [
                 'foo/bar/v1/admin.proto',
-                ['version' => 'v1', 'protoPath' => 'foo/bar/(.*)']
+                ['version' => 'v1', 'protoPath' => 'foo/bar/(v1)']
             ],
             [
                 'foo/bar/v2/admin/admin.proto',
-                ['version' => 'v2', 'protoPath' => 'foo/bar/(.*)/admin']
+                ['version' => 'v2', 'protoPath' => 'foo/bar/(v2)/admin']
             ],
             [
                 'foo/bar/v2beta1/admin/admin.proto',
-                ['version' => 'v2beta1', 'protoPath' => 'foo/bar/(.*)/admin']
+                ['version' => 'v2beta1', 'protoPath' => 'foo/bar/(v2beta1)/admin']
             ],
             [
                 'foo/bar/v1p1beta1/admin/admin.proto',
-                ['version' => 'v1p1beta1', 'protoPath' => 'foo/bar/(.*)/admin']
+                ['version' => 'v1p1beta1', 'protoPath' => 'foo/bar/(v1p1beta1)/admin']
             ],
             [
                 'foo/v2/admin/v1/admin.proto',
-                ['version' => 'v1', 'protoPath' => 'foo/v2/admin/(.*)']
+                ['version' => 'v1', 'protoPath' => 'foo/v2/admin/(v1)']
             ],
             [
                 'foo/bar/admin/admin.proto',

@@ -16,15 +16,15 @@ class DroppedLabels
         }
         $pool->internalAddGeneratedFile(
             '
-”
+—
 )google/monitoring/v3/dropped_labels.protogoogle.monitoring.v3"|
 DroppedLabels=
 label (2..google.monitoring.v3.DroppedLabels.LabelEntry,
 
 LabelEntry
 key (	
-value (	:8BÊ
-com.google.monitoring.v3BDroppedLabelsProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+value (	:8BÍ
+com.google.monitoring.v3BDroppedLabelsProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

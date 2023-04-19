@@ -110,7 +110,7 @@ class NewComponent
         }
         $parts = explode('/', $protoPath);
         if ($i = array_search($version, $parts)) {
-            $parts[$i] = "(.*)";
+            $parts[$i] = "($version)";
         }
 
         return implode('/', $parts);

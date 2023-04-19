@@ -25,6 +25,9 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
@@ -236,6 +239,43 @@ class TransactionTest extends TestCase
 
         $res = iterator_to_array($transaction->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testRunAggregationQuery(callable $transaction)
+    {
+        $this->connection->runAggregationQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'aggregationResults' => [
+                    [
+                        'aggregateProperties' => ['property_1' => 1]
+                    ]
+                ],
+                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+            ]
+        ]);
+
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([
+            'gqlQuery' => [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ]
+        ]);
+
+        $res = $transaction->runAggregationQuery($query->reveal());
+        $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
     public function testRunQueryWithReadTime()

@@ -29,8 +29,10 @@ use Google\Cloud\Language\V1\Document;
 use Google\Cloud\Language\V1\LanguageServiceClient;
 
 /**
- * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
- * sentiment associated with each entity and its mentions.
+ * Finds entities, similar to
+ * [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities]
+ * in the text and analyzes sentiment associated with each entity and its
+ * mentions.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
