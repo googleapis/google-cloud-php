@@ -5,4 +5,6 @@ deep-copy-regex:
       dest: /owl-bot-staging/CommonProtos/devtools-protos/$1
     - source: /google/cloud/common/.*-php/(.*)
       dest: /owl-bot-staging/CommonProtos/common-protos/$1
+    - source: /google/rpc/context/.*-php/(.*)
+      dest: /owl-bot-staging/CommonProtos/rpccontext-protos/$1
 api-name: CommonProtos

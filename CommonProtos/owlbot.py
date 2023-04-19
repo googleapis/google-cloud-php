@@ -28,12 +28,14 @@ logging.basicConfig(level=logging.DEBUG)
 audit_src = Path(f"../{php.STAGING_DIR}/CommonProtos/audit-protos").resolve()
 devtools_src = Path(f"../{php.STAGING_DIR}/CommonProtos/devtools-protos").resolve()
 common_src = Path(f"../{php.STAGING_DIR}/CommonProtos/common-protos").resolve()
+rpccontext_src = Path(f"../{php.STAGING_DIR}/CommonProtos/rpccontext-protos").resolve()
 dest = Path().resolve()
 
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(audit_src)
 _tracked_paths.add(devtools_src)
 _tracked_paths.add(common_src)
+_tracked_paths.add(rpccontext_src)
 
 # use owlbot_copy_version instead of owlbot_main and set "version_string"
 # manually because some common protos do not have a version
@@ -60,6 +62,14 @@ php.owlbot_copy_version(
         common_src / "**/[A-Z]*_*.php"
     ],
     version_string="common",
+)
+php.owlbot_copy_version(
+    src=rpccontext_src,
+    dest=dest,
+    copy_excludes=[
+        rpccontext_src / "**/[A-Z]*_*.php"
+    ],
+    version_string="context",
 )
 
 # remove class_alias code (but keep the existing class aliases)
