@@ -26,8 +26,8 @@ jobs:
         # Ensure the build still passes by adding the 'breaking change allowed' label to the PR.
         # NOTE: PR should contain a BREAKING_CHANGE_REASON=[reason] in the description.
         continue-on-error: |
-          ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed') }}
-          || ${{ github.event.pull_request.user.login == 'release-please[bot]' }}
+          ${{ contains(github.event.pull_request.labels.*.name, 'breaking change allowed')
+          || github.event.pull_request.user.login == 'release-please[bot]' }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
