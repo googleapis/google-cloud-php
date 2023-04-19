@@ -637,34 +637,36 @@ class RequestWrapperTest extends TestCase
      * properly mapped and set in the RequestWrapper's `$requestOptions`
      * property.
      */
-    public function testRetryOptionsPassingInGetRetryOptions()
+    public function testPassingInRetryOptions()
     {
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $requestWrapper = new RequestWrapper();
-        $reflection = new \ReflectionClass($requestWrapper);
-        $reflectionMethod = $reflection->getMethod('getRetryOptions');
-        $reflectionMethod->setAccessible(true);
-
-        $placeholderCallback = function () {
-        };
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
         $options = [
-            'restRetryFunction' => $placeholderCallback,
-            'restRetryListener' => $placeholderCallback,
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
         ];
+        $request = new Request('GET', 'http://www.example.com');
+        $requestWrapper = new RequestWrapper([
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, []);
+            }
+        ]);
+        $requestWrapper->send($request, $options);
 
-        $result = $reflectionMethod->invoke($requestWrapper, $options);
-
-        // In the `getRetryOptions` method, the keys of $options are mapped after
-        // removing the prefix 'rest'. For example, 'restRetryFunction' becomes
-        // 'retryFunction'. Therefore, we take the substring after 4th character
-        // , convert first upper case character to lower and the use this as the
-        // new key for the respective value
-        foreach ($options as $key => $value) {
-            $key = lcfirst(substr($key, 4));
-            $this->assertArrayHasKey($key, $result);
-            $this->assertEquals($value, $result[$key]);
-        }
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
     }
 }
 

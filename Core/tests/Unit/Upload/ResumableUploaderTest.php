@@ -182,27 +182,39 @@ class ResumableUploaderTest extends TestCase
      */
     public function testRetryOptionsPassing()
     {
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, [], $this->successBody);
+            },
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+        ]);
         $options = [
-            'restRetryFunction' => 'arg',
-            'retryListener' => 'arg'
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
         ];
         $uploader = new ResumableUploader(
-            $this->requestWrapper->reveal(),
+            $requestWrapper,
             $this->stream,
             'http://www.example.com',
             $options
         );
+        $uploader->upload();
 
-        // Using Reflection instead of Prophecy because we want to test a
-        // private method's logic by verifying the output for a given input.
-        $reflection = new \ReflectionObject($uploader);
-        $requestOptionsProperty = $reflection->getProperty('requestOptions');
-        $requestOptionsProperty->setAccessible(true);
-        $requestOptions = $requestOptionsProperty->getValue($uploader);
-        foreach ($options as $key => $value) {
-            $this->assertArrayHasKey($key, $requestOptions);
-            $this->assertEquals($value, $requestOptions[$key]);
-        }
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
     }
 
     public function testThrowsExceptionWhenAttemptsAsyncUpload()

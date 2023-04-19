@@ -105,7 +105,7 @@ abstract class AbstractUploader
             'retries' => null,
             'requestTimeout' => null,
             'restRetryFunction' => null,
-            'retryListener' => null
+            'restRetryListener' => null
         ]);
 
         $this->contentType = $options['contentType'] ?? 'application/octet-stream';
