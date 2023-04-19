@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\CloudRunMetadataProvider;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
