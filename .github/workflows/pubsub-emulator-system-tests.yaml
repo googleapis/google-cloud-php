@@ -12,6 +12,8 @@ on:
       - '.github/workflows/pubsub-emulator-system-tests.yaml'
       - '.github/emulator/**'
 name: Run PubSub System Tests With Emulator
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest

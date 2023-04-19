@@ -467,8 +467,13 @@ class Grpc implements ConnectionInterface
         }
 
         if (isset($filter['compositeFilter'])) {
-            $filter['compositeFilter']['op'] = CompositeFilterOperator::PBAND;
-
+            if ($filter['compositeFilter']['op'] == 'AND') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBAND;
+            } elseif ($filter['compositeFilter']['op'] == 'OR') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBOR;
+            } else {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::OPERATOR_UNSPECIFIED;
+            }
             foreach ($filter['compositeFilter']['filters'] as &$nested) {
                 $nested = $this->convertFilterProps($nested);
             }

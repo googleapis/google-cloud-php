@@ -53,7 +53,7 @@
         "google/gax": "^1.12",
         "google/common-protos": "^3.0",
         "google/auth": "^1.18",
-        "google/crc32": "^0.1.0"
+        "google/crc32": "^0.2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -110,6 +110,7 @@
         "google/cloud-channel": "1.2.0",
         "google/cloud-common-protos": "0.4.0",
         "google/cloud-compute": "1.8.1",
+        "google/cloud-confidentialcomputing": "0.0.0",
         "google/cloud-contact-center-insights": "1.2.0",
         "google/cloud-container": "1.11.0",
         "google/cloud-container-analysis": "0.2.12",
@@ -263,8 +264,9 @@
             "GPBMetadata\\Google\\Cloud\\Certificatemanager\\": "CertificateManager/metadata",
             "GPBMetadata\\Google\\Cloud\\Channel\\": "Channel/metadata",
             "GPBMetadata\\Google\\Cloud\\Clouddms\\": "Dms/metadata",
-            "GPBMetadata\\Google\\Cloud\\Compute\\": "Compute/metadata",
             "GPBMetadata\\Google\\Cloud\\Common\\": "CommonProtos/metadata/Common",
+            "GPBMetadata\\Google\\Cloud\\Compute\\": "Compute/metadata",
+            "GPBMetadata\\Google\\Cloud\\Confidentialcomputing\\": "ConfidentialComputing/metadata",
             "GPBMetadata\\Google\\Cloud\\Contactcenterinsights\\": "ContactCenterInsights/metadata",
             "GPBMetadata\\Google\\Cloud\\Datacatalog\\": "DataCatalog/metadata",
             "GPBMetadata\\Google\\Cloud\\Datacatalog\\Lineage\\": "DataCatalogLineage/metadata",
@@ -420,6 +422,7 @@
             "Google\\Cloud\\Channel\\": "Channel/src",
             "Google\\Cloud\\CloudDms\\": "Dms/src",
             "Google\\Cloud\\Compute\\": "Compute/src",
+            "Google\\Cloud\\ConfidentialComputing\\": "ConfidentialComputing/src",
             "Google\\Cloud\\ContactCenterInsights\\": "ContactCenterInsights/src",
             "Google\\Cloud\\ContainerAnalysis\\": "ContainerAnalysis/src",
             "Google\\Cloud\\Container\\": "Container/src",
