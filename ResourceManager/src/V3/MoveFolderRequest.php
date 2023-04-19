@@ -23,9 +23,9 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The resource name of the folder or organization which should be the
-     * folder's new parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the folder or organization which should be
+     * the folder's new parent. Must be of the form `folders/{folder_id}` or
+     * `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,9 +41,9 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Folder to move.
      *           Must be of the form folders/{folder_id}
      *     @type string $destination_parent
-     *           Required. The resource name of the folder or organization which should be the
-     *           folder's new parent.
-     *           Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     *           Required. The resource name of the folder or organization which should be
+     *           the folder's new parent. Must be of the form `folders/{folder_id}` or
+     *           `organizations/{org_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,9 +80,9 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the folder or organization which should be the
-     * folder's new parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the folder or organization which should be
+     * the folder's new parent. Must be of the form `folders/{folder_id}` or
+     * `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,9 +93,9 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the folder or organization which should be the
-     * folder's new parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the folder or organization which should be
+     * the folder's new parent. Must be of the form `folders/{folder_id}` or
+     * `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string destination_parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

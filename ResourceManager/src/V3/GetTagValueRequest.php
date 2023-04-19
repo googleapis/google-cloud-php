@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetTagValueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     * Required. Resource name for TagValue to be fetched in the format
+     * `tagValues/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +30,8 @@ class GetTagValueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     *           Required. Resource name for TagValue to be fetched in the format
+     *           `tagValues/456`.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class GetTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     * Required. Resource name for TagValue to be fetched in the format
+     * `tagValues/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +52,8 @@ class GetTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     * Required. Resource name for TagValue to be fetched in the format
+     * `tagValues/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
