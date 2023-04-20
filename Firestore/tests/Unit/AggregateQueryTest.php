@@ -74,7 +74,7 @@ class AggregateQueryTest extends TestCase
         $query = $this->aggregateQuery->___getProperty('query');
         $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
-        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
+        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'aggregateQueryPrepare');
         $finalQueryPrepare->setAccessible(true);
         $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
             'query' => $query,
@@ -100,7 +100,7 @@ class AggregateQueryTest extends TestCase
         $query = $this->aggregateQuery->___getProperty('query');
         $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
-        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'finalQueryPrepare');
+        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'aggregateQueryPrepare');
         $finalQueryPrepare->setAccessible(true);
         $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
             'query' => $query,
