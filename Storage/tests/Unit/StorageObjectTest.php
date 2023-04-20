@@ -588,7 +588,7 @@ class StorageObjectTest extends TestCase
         $actualOptions = null;
 
         $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, &$actualOptions, $responses) {
-            if ($attempt++ < 3) {
+            if (++$attempt < 3) {
                 throw RequestException::create($request, $responses[$attempt]);
             }
             $actualRequest = $request;
