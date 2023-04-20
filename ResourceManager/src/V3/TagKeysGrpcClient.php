@@ -64,10 +64,27 @@ class TagKeysGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Retrieves a TagKey by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the key does not exist
+     * or the user does not have permission to view it.
+     * @param \Google\Cloud\ResourceManager\V3\GetNamespacedTagKeyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNamespacedTagKey(\Google\Cloud\ResourceManager\V3\GetNamespacedTagKeyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.resourcemanager.v3.TagKeys/GetNamespacedTagKey',
+        $argument,
+        ['\Google\Cloud\ResourceManager\V3\TagKey', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a new TagKey. If another request with the same parameters is
      * sent while the original request is in process, the second request
-     * will receive an error. A maximum of 300 TagKeys can exist under a parent at
-     * any given time.
+     * will receive an error. A maximum of 1000 TagKeys can exist under a parent
+     * at any given time.
      * @param \Google\Cloud\ResourceManager\V3\CreateTagKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

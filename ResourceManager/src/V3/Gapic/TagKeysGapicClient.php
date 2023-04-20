@@ -43,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\CreateTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagKeyRequest;
+use Google\Cloud\ResourceManager\V3\GetNamespacedTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\GetTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysResponse;
@@ -313,8 +314,8 @@ class TagKeysGapicClient
     /**
      * Creates a new TagKey. If another request with the same parameters is
      * sent while the original request is in process, the second request
-     * will receive an error. A maximum of 300 TagKeys can exist under a parent at
-     * any given time.
+     * will receive an error. A maximum of 1000 TagKeys can exist under a parent
+     * at any given time.
      *
      * Sample code:
      * ```
@@ -352,14 +353,14 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The TagKey to be created. Only fields `short_name`, `description`,
-     *                             and `parent` are considered during the creation request.
+     * @param TagKey $tagKey       Required. The TagKey to be created. Only fields `short_name`,
+     *                             `description`, and `parent` are considered during the creation request.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set to true to perform validations necessary for creating the resource, but
-     *           not actually perform the action.
+     *           Optional. Set to true to perform validations necessary for creating the
+     *           resource, but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -421,18 +422,18 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of a TagKey to be deleted in the format `tagKeys/123`.
-     *                             The TagKey cannot be a parent of any existing TagValues or it will not be
-     *                             deleted successfully.
+     * @param string $name         Required. The resource name of a TagKey to be deleted in the format
+     *                             `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
+     *                             it will not be deleted successfully.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform validations necessary for deletion, but not actually
-     *           perform the action.
+     *           Optional. Set as true to perform validations necessary for deletion, but
+     *           not actually perform the action.
      *     @type string $etag
-     *           Optional. The etag known to the client for the expected state of the TagKey. This is
-     *           to be used for optimistic concurrency.
+     *           Optional. The etag known to the client for the expected state of the
+     *           TagKey. This is to be used for optimistic concurrency.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -512,6 +513,46 @@ class TagKeysGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves a TagKey by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the key does not exist
+     * or the user does not have permission to view it.
+     *
+     * Sample code:
+     * ```
+     * $tagKeysClient = new TagKeysClient();
+     * try {
+     *     $formattedName = $tagKeysClient->tagKeyName('[TAG_KEY]');
+     *     $response = $tagKeysClient->getNamespacedTagKey($formattedName);
+     * } finally {
+     *     $tagKeysClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A namespaced tag key name in the format
+     *                             `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
+     *                             "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
+     *                             name "bar" under the project `r2-d2`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ResourceManager\V3\TagKey
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNamespacedTagKey($name, array $optionalArgs = [])
+    {
+        $request = new GetNamespacedTagKeyRequest();
+        $request->setName($name);
+        return $this->startCall('GetNamespacedTagKey', TagKey::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -769,10 +810,10 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The new definition of the TagKey. Only the `description` and `etag` fields
-     *                             can be updated by this request. If the `etag` field is not empty, it
-     *                             must match the `etag` field of the existing tag key. Otherwise,
-     *                             `FAILED_PRECONDITION` will be returned.
+     * @param TagKey $tagKey       Required. The new definition of the TagKey. Only the `description` and
+     *                             `etag` fields can be updated by this request. If the `etag` field is not
+     *                             empty, it must match the `etag` field of the existing tag key. Otherwise,
+     *                             `ABORTED` will be returned.
      * @param array  $optionalArgs {
      *     Optional.
      *

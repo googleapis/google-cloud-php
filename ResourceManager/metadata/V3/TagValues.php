@@ -25,7 +25,7 @@ class TagValues
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Î
+ß
 0google/cloud/resourcemanager/v3/tag_values.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ò
 TagValue
 name (	BàA
@@ -49,6 +49,9 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 next_page_token (	"X
 GetTagValueRequestB
 name (	B4àAúA.
+,cloudresourcemanager.googleapis.com/TagValue"b
+GetNamespacedTagValueRequestB
+name (	B4àAúA.
 ,cloudresourcemanager.googleapis.com/TagValue"v
 CreateTagValueRequestA
 	tag_value (2).google.cloud.resourcemanager.v3.TagValueBàA
@@ -64,10 +67,11 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 ,cloudresourcemanager.googleapis.com/TagValue
 validate_only (BàA
 etag (	BàA"
-DeleteTagValueMetadata2ÿ
+DeleteTagValueMetadata2¬
 	TagValuesž
 ListTagValues5.google.cloud.resourcemanager.v3.ListTagValuesRequest6.google.cloud.resourcemanager.v3.ListTagValuesResponse"‚Óä“/v3/tagValuesÚAparent”
-GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%‚Óä“/v3/{name=tagValues/*}ÚAnameº
+GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%‚Óä“/v3/{name=tagValues/*}ÚAnameª
+GetNamespacedTagValue=.google.cloud.resourcemanager.v3.GetNamespacedTagValueRequest).google.cloud.resourcemanager.v3.TagValue"\'‚Óä“/v3/tagValues/namespacedÚAnameº
 CreateTagValue6.google.cloud.resourcemanager.v3.CreateTagValueRequest.google.longrunning.Operation"Q‚Óä“"/v3/tagValues:	tag_valueÚA	tag_valueÊA"
 TagValueCreateTagValueMetadataÙ
 UpdateTagValue6.google.cloud.resourcemanager.v3.UpdateTagValueRequest.google.longrunning.Operation"p‚Óä“-2 /v3/{tag_value.name=tagValues/*}:	tag_valueÚAtag_value,update_maskÊA"

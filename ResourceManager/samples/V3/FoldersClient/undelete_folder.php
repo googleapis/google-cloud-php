@@ -31,14 +31,16 @@ use Google\Rpc\Status;
 
 /**
  * Cancels the deletion request for a folder. This method may be called on a
- * folder in any state. If the folder is in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE]
- * state the result will be a no-op success. In order to succeed, the folder's
- * parent must be in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In addition,
- * reintroducing the folder into the tree must not violate folder naming,
- * height, and fanout constraints described in the
- * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
- * The caller must have `resourcemanager.folders.undelete` permission on the
- * identified folder.
+ * folder in any state. If the folder is in the
+ * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state the
+ * result will be a no-op success. In order to succeed, the folder's parent
+ * must be in the
+ * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In
+ * addition, reintroducing the folder into the tree must not violate folder
+ * naming, height, and fanout constraints described in the
+ * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+ * documentation. The caller must have `resourcemanager.folders.undelete`
+ * permission on the identified folder.
  *
  * @param string $formattedName The resource name of the folder to undelete.
  *                              Must be of the form `folders/{folder_id}`. Please see

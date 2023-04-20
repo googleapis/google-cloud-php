@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Project extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The unique resource name of the project. It is an int64 generated number
-     * prefixed by "projects/".
+     * Output only. The unique resource name of the project. It is an int64
+     * generated number prefixed by "projects/".
      * Example: `projects/415104041262`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -77,9 +77,9 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $delete_time = null;
     /**
-     * Output only. A checksum computed by the server based on the current value of the Project
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Project resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -90,7 +90,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
      * Label values must be between 0 and 63 characters long and must conform
      * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
-     * No more than 256 labels can be associated with a given resource.
+     * No more than 64 labels can be associated with a given resource.
      * Clients should store labels in a representation such as JSON that does not
      * depend on specific characters being disallowed.
      * Example: `"myBusinessDimension" : "businessValue"`
@@ -106,8 +106,8 @@ class Project extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The unique resource name of the project. It is an int64 generated number
-     *           prefixed by "projects/".
+     *           Output only. The unique resource name of the project. It is an int64
+     *           generated number prefixed by "projects/".
      *           Example: `projects/415104041262`
      *     @type string $parent
      *           Optional. A reference to a parent Resource. eg., `organizations/123` or
@@ -133,16 +133,16 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. The time at which this resource was requested for deletion.
      *     @type string $etag
-     *           Output only. A checksum computed by the server based on the current value of the Project
-     *           resource. This may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
+     *           Output only. A checksum computed by the server based on the current value
+     *           of the Project resource. This may be sent on update and delete requests to
+     *           ensure the client has an up-to-date value before proceeding.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels associated with this project.
      *           Label keys must be between 1 and 63 characters long and must conform
      *           to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
      *           Label values must be between 0 and 63 characters long and must conform
      *           to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
-     *           No more than 256 labels can be associated with a given resource.
+     *           No more than 64 labels can be associated with a given resource.
      *           Clients should store labels in a representation such as JSON that does not
      *           depend on specific characters being disallowed.
      *           Example: `"myBusinessDimension" : "businessValue"`
@@ -154,8 +154,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique resource name of the project. It is an int64 generated number
-     * prefixed by "projects/".
+     * Output only. The unique resource name of the project. It is an int64
+     * generated number prefixed by "projects/".
      * Example: `projects/415104041262`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -167,8 +167,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique resource name of the project. It is an int64 generated number
-     * prefixed by "projects/".
+     * Output only. The unique resource name of the project. It is an int64
+     * generated number prefixed by "projects/".
      * Example: `projects/415104041262`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -414,9 +414,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the Project
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Project resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -427,9 +427,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the Project
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Project resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -449,7 +449,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
      * Label values must be between 0 and 63 characters long and must conform
      * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
-     * No more than 256 labels can be associated with a given resource.
+     * No more than 64 labels can be associated with a given resource.
      * Clients should store labels in a representation such as JSON that does not
      * depend on specific characters being disallowed.
      * Example: `"myBusinessDimension" : "businessValue"`
@@ -468,7 +468,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
      * Label values must be between 0 and 63 characters long and must conform
      * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
-     * No more than 256 labels can be associated with a given resource.
+     * No more than 64 labels can be associated with a given resource.
      * Clients should store labels in a representation such as JSON that does not
      * depend on specific characters being disallowed.
      * Example: `"myBusinessDimension" : "businessValue"`

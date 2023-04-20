@@ -32,11 +32,11 @@ use Google\Rpc\Status;
 /**
  * Creates a new TagKey. If another request with the same parameters is
  * sent while the original request is in process, the second request
- * will receive an error. A maximum of 300 TagKeys can exist under a parent at
- * any given time.
+ * will receive an error. A maximum of 1000 TagKeys can exist under a parent
+ * at any given time.
  *
- * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name should be
- *                                unique for TagKeys within the same tag namespace.
+ * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name
+ *                                should be unique for TagKeys within the same tag namespace.
  *
  *                                The short name must be 1-63 characters, beginning and ending with
  *                                an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),

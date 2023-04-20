@@ -28,7 +28,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\ProjectsClient;
 
 /**
- * Returns permissions that a caller has on the specified project.
+ * Returns permissions that a caller has on the specified project, in the
+ * format `projects/{ProjectIdOrNumber}` e.g. projects/123..
  *
  * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
  *                                   See the operation documentation for the appropriate value for this field.
