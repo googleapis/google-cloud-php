@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The full resource name of a resource for which you want to list existing
-     * TagBindings.
-     * E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     * Required. The full resource name of a resource for which you want to list
+     * existing TagBindings. E.g.
+     * "//cloudresourcemanager.googleapis.com/projects/123"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of TagBindings to return in the response. The server
-     * allows a maximum of 300 TagBindings to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagBindings to return in the response. The
+     * server allows a maximum of 300 TagBindings to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagBindings`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagBindings` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,16 +46,16 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The full resource name of a resource for which you want to list existing
-     *           TagBindings.
-     *           E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     *           Required. The full resource name of a resource for which you want to list
+     *           existing TagBindings. E.g.
+     *           "//cloudresourcemanager.googleapis.com/projects/123"
      *     @type int $page_size
-     *           Optional. The maximum number of TagBindings to return in the response. The server
-     *           allows a maximum of 300 TagBindings to return. If unspecified, the server
-     *           will use 100 as the default.
+     *           Optional. The maximum number of TagBindings to return in the response. The
+     *           server allows a maximum of 300 TagBindings to return. If unspecified, the
+     *           server will use 100 as the default.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to `ListTagBindings`
-     *           that indicates where this listing should continue from.
+     *           Optional. A pagination token returned from a previous call to
+     *           `ListTagBindings` that indicates where this listing should continue from.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,9 +64,9 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of a resource for which you want to list existing
-     * TagBindings.
-     * E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     * Required. The full resource name of a resource for which you want to list
+     * existing TagBindings. E.g.
+     * "//cloudresourcemanager.googleapis.com/projects/123"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,9 +77,9 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of a resource for which you want to list existing
-     * TagBindings.
-     * E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     * Required. The full resource name of a resource for which you want to list
+     * existing TagBindings. E.g.
+     * "//cloudresourcemanager.googleapis.com/projects/123"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -94,9 +94,9 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagBindings to return in the response. The server
-     * allows a maximum of 300 TagBindings to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagBindings to return in the response. The
+     * server allows a maximum of 300 TagBindings to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -107,9 +107,9 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagBindings to return in the response. The server
-     * allows a maximum of 300 TagBindings to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagBindings to return in the response. The
+     * server allows a maximum of 300 TagBindings to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -124,8 +124,8 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagBindings`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagBindings` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -136,8 +136,8 @@ class ListTagBindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagBindings`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagBindings` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

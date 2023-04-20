@@ -10,9 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A TagBinding represents a connection between a TagValue and a cloud
- * resource (currently project, folder, or organization). Once a TagBinding is
- * created, the TagValue is applied to all the descendants of the cloud
- * resource.
+ * resource Once a TagBinding is created, the TagValue is applied to all the
+ * descendants of the Google Cloud resource.
  *
  * Generated from protobuf message <code>google.cloud.resourcemanager.v3.TagBinding</code>
  */
@@ -40,6 +39,17 @@ class TagBinding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tag_value = 3;</code>
      */
     private $tag_value = '';
+    /**
+     * The namespaced name for the TagValue of the TagBinding.
+     * Must be in the format
+     * `{parent_id}/{tag_key_short_name}/{short_name}`.
+     * For methods that support TagValue namespaced name, only one of
+     * tag_value_namespaced_name or tag_value may be filled. Requests with both
+     * fields will be rejected.
+     *
+     * Generated from protobuf field <code>string tag_value_namespaced_name = 4;</code>
+     */
+    private $tag_value_namespaced_name = '';
 
     /**
      * Constructor.
@@ -57,6 +67,13 @@ class TagBinding extends \Google\Protobuf\Internal\Message
      *     @type string $tag_value
      *           The TagValue of the TagBinding.
      *           Must be of the form `tagValues/456`.
+     *     @type string $tag_value_namespaced_name
+     *           The namespaced name for the TagValue of the TagBinding.
+     *           Must be in the format
+     *           `{parent_id}/{tag_key_short_name}/{short_name}`.
+     *           For methods that support TagValue namespaced name, only one of
+     *           tag_value_namespaced_name or tag_value may be filled. Requests with both
+     *           fields will be rejected.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,6 +163,42 @@ class TagBinding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tag_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * The namespaced name for the TagValue of the TagBinding.
+     * Must be in the format
+     * `{parent_id}/{tag_key_short_name}/{short_name}`.
+     * For methods that support TagValue namespaced name, only one of
+     * tag_value_namespaced_name or tag_value may be filled. Requests with both
+     * fields will be rejected.
+     *
+     * Generated from protobuf field <code>string tag_value_namespaced_name = 4;</code>
+     * @return string
+     */
+    public function getTagValueNamespacedName()
+    {
+        return $this->tag_value_namespaced_name;
+    }
+
+    /**
+     * The namespaced name for the TagValue of the TagBinding.
+     * Must be in the format
+     * `{parent_id}/{tag_key_short_name}/{short_name}`.
+     * For methods that support TagValue namespaced name, only one of
+     * tag_value_namespaced_name or tag_value may be filled. Requests with both
+     * fields will be rejected.
+     *
+     * Generated from protobuf field <code>string tag_value_namespaced_name = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTagValueNamespacedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tag_value_namespaced_name = $var;
 
         return $this;
     }

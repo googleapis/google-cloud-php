@@ -31,8 +31,7 @@ use Google\Cloud\ResourceManager\V3\TagValuesClient;
 /**
  * Lists all TagValues for a specific TagKey.
  *
- * @param string $parent Resource name for TagKey, parent of the TagValues to be listed,
- *                       in the format `tagKeys/123`.
+ * @param string $parent Required.
  */
 function list_tag_values_sample(string $parent): void
 {

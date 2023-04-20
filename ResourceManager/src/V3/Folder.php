@@ -71,9 +71,9 @@ class Folder extends \Google\Protobuf\Internal\Message
      */
     private $delete_time = null;
     /**
-     * Output only. A checksum computed by the server based on the current value of the folder
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the folder resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -112,9 +112,9 @@ class Folder extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. Timestamp when the folder was requested to be deleted.
      *     @type string $etag
-     *           Output only. A checksum computed by the server based on the current value of the folder
-     *           resource. This may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
+     *           Output only. A checksum computed by the server based on the current value
+     *           of the folder resource. This may be sent on update and delete requests to
+     *           ensure the client has an up-to-date value before proceeding.
      * }
      */
     public function __construct($data = NULL) {
@@ -359,9 +359,9 @@ class Folder extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the folder
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the folder resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -372,9 +372,9 @@ class Folder extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the folder
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value
+     * of the folder resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -33,9 +33,9 @@ use Google\Rpc\Status;
  * Deletes a TagKey. The TagKey cannot be deleted if it has any child
  * TagValues.
  *
- * @param string $formattedName The resource name of a TagKey to be deleted in the format `tagKeys/123`.
- *                              The TagKey cannot be a parent of any existing TagValues or it will not be
- *                              deleted successfully. Please see
+ * @param string $formattedName The resource name of a TagKey to be deleted in the format
+ *                              `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
+ *                              it will not be deleted successfully. Please see
  *                              {@see TagKeysClient::tagKeyName()} for help formatting this field.
  */
 function delete_tag_key_sample(string $formattedName): void
