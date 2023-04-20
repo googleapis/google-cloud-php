@@ -31,8 +31,9 @@ use Google\Cloud\GkeHub\V1beta1\Membership;
 /**
  * Lists Memberships in a given project and location.
  *
- * @param string $formattedParent The parent (project and location) where the Memberships will be listed.
- *                                Specified in the format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent The parent (project and location) where the Memberships will be
+ *                                listed. Specified in the format `projects/&#42;/locations/*`.
+ *                                `projects/&#42;/locations/-` list memberships in all the regions. Please see
  *                                {@see GkeHubMembershipServiceClient::locationName()} for help formatting this field.
  */
 function list_memberships_sample(string $formattedParent): void
