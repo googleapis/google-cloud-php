@@ -21,10 +21,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Finding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The relative resource name of this finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
+     * The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -140,11 +142,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $finding_class = 0;
     /**
-     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * Represents what's commonly known as an *indicator of compromise* (IoC) in
      * computer forensics. This is an artifact observed on a network or in an
      * operating system that, with high confidence, indicates a computer
-     * intrusion.
-     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     * intrusion. For more information, see [Indicator of
+     * compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
      */
@@ -178,8 +180,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mitre_attack = null;
     /**
-     * Access details associated to the Finding, such as more information on the
-     * caller, which method was accessed, from where, etc.
+     * Access details associated with the finding, such as more information on the
+     * caller, which method was accessed, and from where.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
      */
@@ -191,10 +193,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $connections;
     /**
-     * First known as mute_annotation. Records additional information about the
-     * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc. Unlike other attributes of a finding, a finding provider
-     * shouldn't set the value of mute.
+     * Records additional information about the mute operation, for example, the
+     * [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings)
+     * that muted the finding and the user who muted the finding.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      */
@@ -241,25 +242,25 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $parent_display_name = '';
     /**
-     * Contains more detail about the finding.
+     * Contains more details about the finding.
      *
      * Generated from protobuf field <code>string description = 37;</code>
      */
     private $description = '';
     /**
-     * Represents exfiltration associated with the Finding.
+     * Represents exfiltrations associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
      */
     private $exfiltration = null;
     /**
-     * Represents IAM bindings associated with the Finding.
+     * Represents IAM bindings associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
      */
     private $iam_bindings;
     /**
-     * Next steps associate to the finding.
+     * Steps to address the finding.
      *
      * Generated from protobuf field <code>string next_steps = 40;</code>
      */
@@ -273,8 +274,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $module_name = '';
     /**
-     * Containers associated with the finding. containers provides information
-     * for both Kubernetes and non-Kubernetes containers.
+     * Containers associated with the finding. This field provides information for
+     * both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
      */
@@ -298,7 +299,20 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $files;
     /**
-     * Kernel Rootkit signature.
+     * Cloud Data Loss Prevention (Cloud DLP) inspection results that are
+     * associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpInspection cloud_dlp_inspection = 48;</code>
+     */
+    private $cloud_dlp_inspection = null;
+    /**
+     * Cloud DLP data profile that is associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile cloud_dlp_data_profile = 49;</code>
+     */
+    private $cloud_dlp_data_profile = null;
+    /**
+     * Signature of the kernel rootkit.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
      */
@@ -311,10 +325,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The relative resource name of this finding. See:
-     *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *           Example:
-     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
+     *           The [relative resource
+     *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           of the finding. Example:
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *     @type string $parent
      *           The relative resource name of the source the finding belongs to. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
@@ -374,11 +390,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Indicator $indicator
-     *           Represents what's commonly known as an Indicator of compromise (IoC) in
+     *           Represents what's commonly known as an *indicator of compromise* (IoC) in
      *           computer forensics. This is an artifact observed on a network or in an
      *           operating system that, with high confidence, indicates a computer
-     *           intrusion.
-     *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *           intrusion. For more information, see [Indicator of
+     *           compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
      *     @type \Google\Cloud\SecurityCenter\V1\Vulnerability $vulnerability
      *           Represents vulnerability-specific fields like CVE and CVSS scores.
      *           CVE stands for Common Vulnerabilities and Exposures
@@ -392,15 +408,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
      *     @type \Google\Cloud\SecurityCenter\V1\Access $access
-     *           Access details associated to the Finding, such as more information on the
-     *           caller, which method was accessed, from where, etc.
+     *           Access details associated with the finding, such as more information on the
+     *           caller, which method was accessed, and from where.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
      *           Contains information about the IP connection associated with the finding.
      *     @type string $mute_initiator
-     *           First known as mute_annotation. Records additional information about the
-     *           mute operation e.g. mute config that muted the finding, user who muted the
-     *           finding, etc. Unlike other attributes of a finding, a finding provider
-     *           shouldn't set the value of mute.
+     *           Records additional information about the mute operation, for example, the
+     *           [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings)
+     *           that muted the finding and the user who muted the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
@@ -427,28 +442,33 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Output only. The human readable display name of the finding source such as
      *           "Event Threat Detection" or "Security Health Analytics".
      *     @type string $description
-     *           Contains more detail about the finding.
+     *           Contains more details about the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
-     *           Represents exfiltration associated with the Finding.
+     *           Represents exfiltrations associated with the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $iam_bindings
-     *           Represents IAM bindings associated with the Finding.
+     *           Represents IAM bindings associated with the finding.
      *     @type string $next_steps
-     *           Next steps associate to the finding.
+     *           Steps to address the finding.
      *     @type string $module_name
      *           Unique identifier of the module which generated the finding.
      *           Example:
      *           folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
      *     @type array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $containers
-     *           Containers associated with the finding. containers provides information
-     *           for both Kubernetes and non-Kubernetes containers.
+     *           Containers associated with the finding. This field provides information for
+     *           both Kubernetes and non-Kubernetes containers.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes $kubernetes
      *           Kubernetes resources associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Database $database
      *           Database associated with the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
      *           File associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\CloudDlpInspection $cloud_dlp_inspection
+     *           Cloud Data Loss Prevention (Cloud DLP) inspection results that are
+     *           associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile $cloud_dlp_data_profile
+     *           Cloud DLP data profile that is associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\KernelRootkit $kernel_rootkit
-     *           Kernel Rootkit signature.
+     *           Signature of the kernel rootkit.
      * }
      */
     public function __construct($data = NULL) {
@@ -457,10 +477,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
+     * The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -471,10 +493,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
+     * The [relative resource
+     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     * of the finding. Example:
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -921,11 +945,11 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * Represents what's commonly known as an *indicator of compromise* (IoC) in
      * computer forensics. This is an artifact observed on a network or in an
      * operating system that, with high confidence, indicates a computer
-     * intrusion.
-     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     * intrusion. For more information, see [Indicator of
+     * compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
      * @return \Google\Cloud\SecurityCenter\V1\Indicator|null
@@ -946,11 +970,11 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * Represents what's commonly known as an *indicator of compromise* (IoC) in
      * computer forensics. This is an artifact observed on a network or in an
      * operating system that, with high confidence, indicates a computer
-     * intrusion.
-     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     * intrusion. For more information, see [Indicator of
+     * compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
      * @param \Google\Cloud\SecurityCenter\V1\Indicator $var
@@ -1107,8 +1131,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Access details associated to the Finding, such as more information on the
-     * caller, which method was accessed, from where, etc.
+     * Access details associated with the finding, such as more information on the
+     * caller, which method was accessed, and from where.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
      * @return \Google\Cloud\SecurityCenter\V1\Access|null
@@ -1129,8 +1153,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Access details associated to the Finding, such as more information on the
-     * caller, which method was accessed, from where, etc.
+     * Access details associated with the finding, such as more information on the
+     * caller, which method was accessed, and from where.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
      * @param \Google\Cloud\SecurityCenter\V1\Access $var
@@ -1171,10 +1195,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * First known as mute_annotation. Records additional information about the
-     * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc. Unlike other attributes of a finding, a finding provider
-     * shouldn't set the value of mute.
+     * Records additional information about the mute operation, for example, the
+     * [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings)
+     * that muted the finding and the user who muted the finding.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      * @return string
@@ -1185,10 +1208,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * First known as mute_annotation. Records additional information about the
-     * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc. Unlike other attributes of a finding, a finding provider
-     * shouldn't set the value of mute.
+     * Records additional information about the mute operation, for example, the
+     * [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings)
+     * that muted the finding and the user who muted the finding.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      * @param string $var
@@ -1341,7 +1363,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains more detail about the finding.
+     * Contains more details about the finding.
      *
      * Generated from protobuf field <code>string description = 37;</code>
      * @return string
@@ -1352,7 +1374,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains more detail about the finding.
+     * Contains more details about the finding.
      *
      * Generated from protobuf field <code>string description = 37;</code>
      * @param string $var
@@ -1367,7 +1389,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents exfiltration associated with the Finding.
+     * Represents exfiltrations associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
      * @return \Google\Cloud\SecurityCenter\V1\Exfiltration|null
@@ -1388,7 +1410,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents exfiltration associated with the Finding.
+     * Represents exfiltrations associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
      * @param \Google\Cloud\SecurityCenter\V1\Exfiltration $var
@@ -1403,7 +1425,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents IAM bindings associated with the Finding.
+     * Represents IAM bindings associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1414,7 +1436,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents IAM bindings associated with the Finding.
+     * Represents IAM bindings associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1429,7 +1451,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Next steps associate to the finding.
+     * Steps to address the finding.
      *
      * Generated from protobuf field <code>string next_steps = 40;</code>
      * @return string
@@ -1440,7 +1462,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Next steps associate to the finding.
+     * Steps to address the finding.
      *
      * Generated from protobuf field <code>string next_steps = 40;</code>
      * @param string $var
@@ -1485,8 +1507,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Containers associated with the finding. containers provides information
-     * for both Kubernetes and non-Kubernetes containers.
+     * Containers associated with the finding. This field provides information for
+     * both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1497,8 +1519,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Containers associated with the finding. containers provides information
-     * for both Kubernetes and non-Kubernetes containers.
+     * Containers associated with the finding. This field provides information for
+     * both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1611,7 +1633,81 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kernel Rootkit signature.
+     * Cloud Data Loss Prevention (Cloud DLP) inspection results that are
+     * associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpInspection cloud_dlp_inspection = 48;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\CloudDlpInspection|null
+     */
+    public function getCloudDlpInspection()
+    {
+        return $this->cloud_dlp_inspection;
+    }
+
+    public function hasCloudDlpInspection()
+    {
+        return isset($this->cloud_dlp_inspection);
+    }
+
+    public function clearCloudDlpInspection()
+    {
+        unset($this->cloud_dlp_inspection);
+    }
+
+    /**
+     * Cloud Data Loss Prevention (Cloud DLP) inspection results that are
+     * associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpInspection cloud_dlp_inspection = 48;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\CloudDlpInspection $var
+     * @return $this
+     */
+    public function setCloudDlpInspection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\CloudDlpInspection::class);
+        $this->cloud_dlp_inspection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cloud DLP data profile that is associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile cloud_dlp_data_profile = 49;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile|null
+     */
+    public function getCloudDlpDataProfile()
+    {
+        return $this->cloud_dlp_data_profile;
+    }
+
+    public function hasCloudDlpDataProfile()
+    {
+        return isset($this->cloud_dlp_data_profile);
+    }
+
+    public function clearCloudDlpDataProfile()
+    {
+        unset($this->cloud_dlp_data_profile);
+    }
+
+    /**
+     * Cloud DLP data profile that is associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile cloud_dlp_data_profile = 49;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile $var
+     * @return $this
+     */
+    public function setCloudDlpDataProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile::class);
+        $this->cloud_dlp_data_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * Signature of the kernel rootkit.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
      * @return \Google\Cloud\SecurityCenter\V1\KernelRootkit|null
@@ -1632,7 +1728,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kernel Rootkit signature.
+     * Signature of the kernel rootkit.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
      * @param \Google\Cloud\SecurityCenter\V1\KernelRootkit $var

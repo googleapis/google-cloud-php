@@ -31,7 +31,7 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
  * Updates the SecurityHealthAnalyticsCustomModule under the given name based
  * on the given update mask. Updating the enablement state is supported on
  * both resident and inherited modules (though resident modules cannot have an
- * enablement state of “inherited”). Updating the display name and custom
+ * enablement state of "inherited"). Updating the display name and custom
  * config of a module is supported on resident modules only.
  *
  * This sample has been automatically generated and should be regarded as a code

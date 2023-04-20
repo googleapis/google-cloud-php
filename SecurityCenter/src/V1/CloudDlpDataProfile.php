@@ -22,7 +22,7 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_profile = 1 [(.google.api.resource_reference) = {</code>
      */
-    protected $data_profile = '';
+    private $data_profile = '';
 
     /**
      * Constructor.
