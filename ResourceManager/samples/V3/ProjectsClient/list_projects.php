@@ -36,10 +36,12 @@ use Google\Cloud\ResourceManager\V3\ProjectsClient;
  * `display_name`. The caller must have `resourcemanager.projects.list`
  * permission on the identified parent.
  *
- * @param string $parent The name of the parent resource to list projects under.
+ * @param string $parent The name of the parent resource whose projects are being listed.
+ *                       Only children of this parent resource are listed; descendants are not
+ *                       listed.
  *
- *                       For example, setting this field to 'folders/1234' would list all projects
- *                       directly under that folder.
+ *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
+ *                       parent is an organization, use the value `organizations/{org_id}`.
  */
 function list_projects_sample(string $parent): void
 {

@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 
 /**
  * Requests deletion of a folder. The folder is moved into the
- * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED] state
- * immediately, and is deleted approximately 30 days later. This method may
- * only be called on an empty folder, where a folder is empty if it doesn't
- * contain any folders or projects in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state.
- * If called on a folder in [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+ * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+ * state immediately, and is deleted approximately 30 days later. This method
+ * may only be called on an empty folder, where a folder is empty if it
+ * doesn't contain any folders or projects in the
+ * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. If
+ * called on a folder in
+ * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
  * state the operation will result in a no-op success.
  * The caller must have `resourcemanager.folders.delete` permission on the
  * identified folder.

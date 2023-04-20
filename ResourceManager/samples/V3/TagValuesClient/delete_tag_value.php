@@ -33,7 +33,8 @@ use Google\Rpc\Status;
  * Deletes a TagValue. The TagValue cannot have any bindings when it is
  * deleted.
  *
- * @param string $formattedName Resource name for TagValue to be deleted in the format tagValues/456. Please see
+ * @param string $formattedName Resource name for TagValue to be deleted in the format
+ *                              tagValues/456. Please see
  *                              {@see TagValuesClient::tagValueName()} for help formatting this field.
  */
 function delete_tag_value_sample(string $formattedName): void

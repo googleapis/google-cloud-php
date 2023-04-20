@@ -74,7 +74,7 @@ class AddComponentCommandTest extends TestCase
         | phpNamespace         | Google\Cloud\SecretManager
         | displayName          | Google Cloud Secret Manager
         | componentName        | SecretManager
-        | componentPath        | %s/SecretManager
+        | componentPath        | %s
         | composerPackage      | google/cloud-secretmanager
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
@@ -102,8 +102,8 @@ class AddComponentCommandTest extends TestCase
             'google.custom.proto.package',                                  // custom value for "protoPackage"
             'Google\Cloud\CustomNamespace',                                 // custom value for "phpNamespace"
             'Google Cloud Custom Display Name',                             // custom value for "displayName"
-            'CustomInputs',                                                 // custom value for "componentName"
-            self::$tmpDir . '/CustomInput',                                 // custom value for "componentPath"
+            'CustomInput',                                                  // custom value for "componentName"
+            self::$tmpDir,                                                  // custom value for "componentPath"
             'google/custom-composer-package-name',                          // custom value for "composerPackage"
             'googleapis/google-cloud-php-custom-repo',                      // custom value for "githubRepo"
             'GPBMetadata\Google\Custommetadatanamespace',                   // custom value for "gpbMetadataNamespace"
@@ -125,8 +125,8 @@ class AddComponentCommandTest extends TestCase
         | protoPackage         | google.custom.proto.package
         | phpNamespace         | Google\Cloud\CustomNamespace
         | displayName          | Google Cloud Custom Display Name
-        | componentName        | CustomInputs
-        | componentPath        | %s/CustomInput
+        | componentName        | CustomInput
+        | componentPath        | %s
         | composerPackage      | google/custom-composer-package-name
         | githubRepo           | googleapis/google-cloud-php-custom-repo
         | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace

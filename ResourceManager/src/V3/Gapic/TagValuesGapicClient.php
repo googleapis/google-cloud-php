@@ -43,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\CreateTagValueRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagValueRequest;
+use Google\Cloud\ResourceManager\V3\GetNamespacedTagValueRequest;
 use Google\Cloud\ResourceManager\V3\GetTagValueRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesResponse;
@@ -313,7 +314,7 @@ class TagValuesGapicClient
     /**
      * Creates a TagValue as a child of the specified TagKey. If a another
      * request with the same parameters is sent while the original request is in
-     * process the second request will receive an error. A maximum of 300
+     * process the second request will receive an error. A maximum of 1000
      * TagValues can exist under a TagKey at any given time.
      *
      * Sample code:
@@ -352,14 +353,14 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The TagValue to be created. Only fields `short_name`, `description`,
-     *                               and `parent` are considered during the creation request.
+     * @param TagValue $tagValue     Required. The TagValue to be created. Only fields `short_name`,
+     *                               `description`, and `parent` are considered during the creation request.
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform the validations necessary for creating the resource,
-     *           but not actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for creating the
+     *           resource, but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -421,16 +422,17 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     * @param string $name         Required. Resource name for TagValue to be deleted in the format
+     *                             tagValues/456.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform the validations necessary for deletion, but not
-     *           actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for deletion,
+     *           but not actually perform the action.
      *     @type string $etag
-     *           Optional. The etag known to the client for the expected state of the TagValue. This
-     *           is to be used for optimistic concurrency.
+     *           Optional. The etag known to the client for the expected state of the
+     *           TagValue. This is to be used for optimistic concurrency.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -513,9 +515,53 @@ class TagValuesGapicClient
     }
 
     /**
-     * Retrieves TagValue. If the TagValue or namespaced name does not exist, or
-     * if the user does not have permission to view it, this method will return
-     * `PERMISSION_DENIED`.
+     * Retrieves a TagValue by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the value does not exist
+     * or the user does not have permission to view it.
+     *
+     * Sample code:
+     * ```
+     * $tagValuesClient = new TagValuesClient();
+     * try {
+     *     $formattedName = $tagValuesClient->tagValueName('[TAG_VALUE]');
+     *     $response = $tagValuesClient->getNamespacedTagValue($formattedName);
+     * } finally {
+     *     $tagValuesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A namespaced tag value name in the following format:
+     *
+     *                             `{parentId}/{tagKeyShort}/{tagValueShort}`
+     *
+     *                             Examples:
+     *                             - `42/foo/abc` for a value with short name "abc" under the key with short
+     *                             name "foo" under the organization with ID 42
+     *                             - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
+     *                             short name "bar" under the project with ID "r2-d2"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ResourceManager\V3\TagValue
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNamespacedTagValue($name, array $optionalArgs = [])
+    {
+        $request = new GetNamespacedTagValueRequest();
+        $request->setName($name);
+        return $this->startCall('GetNamespacedTagValue', TagValue::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
+     * value does not exist or the user does not have permission to view it.
      *
      * Sample code:
      * ```
@@ -528,7 +574,8 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     * @param string $name         Required. Resource name for TagValue to be fetched in the format
+     *                             `tagValues/456`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -579,8 +626,7 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name for TagKey, parent of the TagValues to be listed,
-     *                             in the format `tagKeys/123`.
+     * @param string $parent       Required.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -767,18 +813,18 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The new definition of the TagValue. Only fields `description` and `etag`
-     *                               fields can be updated by this request. If the `etag` field is nonempty, it
-     *                               must match the `etag` field of the existing ControlGroup. Otherwise,
-     *                               `FAILED_PRECONDITION` will be returned.
+     * @param TagValue $tagValue     Required. The new definition of the TagValue. Only fields `description` and
+     *                               `etag` fields can be updated by this request. If the `etag` field is
+     *                               nonempty, it must match the `etag` field of the existing ControlGroup.
+     *                               Otherwise, `ABORTED` will be returned.
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. Fields to be updated.
      *     @type bool $validateOnly
-     *           Optional. True to perform validations necessary for updating the resource, but not
-     *           actually perform the action.
+     *           Optional. True to perform validations necessary for updating the resource,
+     *           but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

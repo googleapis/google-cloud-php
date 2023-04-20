@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateFolderRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The folder being created, only the display name and parent will be
-     * consulted. All other fields will be ignored.
+     * Required. The folder being created, only the display name and parent will
+     * be consulted. All other fields will be ignored.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +30,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ResourceManager\V3\Folder $folder
-     *           Required. The folder being created, only the display name and parent will be
-     *           consulted. All other fields will be ignored.
+     *           Required. The folder being created, only the display name and parent will
+     *           be consulted. All other fields will be ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The folder being created, only the display name and parent will be
-     * consulted. All other fields will be ignored.
+     * Required. The folder being created, only the display name and parent will
+     * be consulted. All other fields will be ignored.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ResourceManager\V3\Folder|null
@@ -62,8 +62,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The folder being created, only the display name and parent will be
-     * consulted. All other fields will be ignored.
+     * Required. The folder being created, only the display name and parent will
+     * be consulted. All other fields will be ignored.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ResourceManager\V3\Folder $var

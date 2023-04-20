@@ -28,11 +28,11 @@ use Google\Cloud\ResourceManager\V3\TagValue;
 use Google\Cloud\ResourceManager\V3\TagValuesClient;
 
 /**
- * Retrieves TagValue. If the TagValue or namespaced name does not exist, or
- * if the user does not have permission to view it, this method will return
- * `PERMISSION_DENIED`.
+ * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
+ * value does not exist or the user does not have permission to view it.
  *
- * @param string $formattedName Resource name for TagValue to be fetched in the format `tagValues/456`. Please see
+ * @param string $formattedName Resource name for TagValue to be fetched in the format
+ *                              `tagValues/456`. Please see
  *                              {@see TagValuesClient::tagValueName()} for help formatting this field.
  */
 function get_tag_value_sample(string $formattedName): void

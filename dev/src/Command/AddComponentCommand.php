@@ -41,13 +41,13 @@ class AddComponentCommand extends Command
 {
     private const TEMPLATE_DIR = __DIR__ . '/../../templates';
     private const COPY_FILES = [
-        '.github/pull_request_template.md',
         '.gitattributes',
         'CONTRIBUTING.md',
         'LICENSE',
         'VERSION'
     ];
     private const TEMPLATE_FILES = [
+        '.github/pull_request_template.md.twig',
         '.OwlBot.yaml.twig',
         'owlbot.py.twig',
         'phpunit.xml.dist.twig',
@@ -78,7 +78,7 @@ class AddComponentCommand extends Command
     {
         $proto = $input->getArgument('proto');
         $new = NewComponent::fromProto($this->loadProtoContent($proto), $proto);
-        $new->componentPath = $this->rootPath . '/' . $new->componentName;
+        $new->componentPath = $this->rootPath;
 
         $output->writeln(''); // blank line
         $output->writeln(sprintf('Your package (%s) will have the following info:', $proto));
@@ -125,9 +125,10 @@ class AddComponentCommand extends Command
         $documentationUrl = $new->getDocumentationUrl();
 
         // Make the component dir if it doesn't exist
-        if (!is_dir($new->componentPath)) {
-            if (!mkdir($new->componentPath, 0777, true)) {
-                throw new \Exception('Unable to make Component dir: ' . $new->componentPath);
+        $componentDir = $new->componentPath . '/' . $new->componentName;
+        if (!is_dir($componentDir)) {
+            if (!mkdir($componentDir, 0777, true)) {
+                throw new \Exception('Unable to make Component dir: ' . $componentDir);
             }
         }
 
@@ -135,7 +136,7 @@ class AddComponentCommand extends Command
         $filesystem = new Filesystem();
         foreach (self::COPY_FILES as $file) {
             $output->writeln(sprintf('<info>%s</info> Creating %s by copying from template dir.', $file, $file));
-            $filesystem->copy(self::TEMPLATE_DIR . '/' . $file, $new->componentPath . '/' . $file);
+            $filesystem->copy(self::TEMPLATE_DIR . '/' . $file, $componentDir . '/' . $file);
         }
 
         // Render twig templates
@@ -144,7 +145,7 @@ class AddComponentCommand extends Command
         foreach (self::TEMPLATE_FILES as $template) {
             $file = str_replace('.twig', '', $template);
             $output->writeln(sprintf('<info>%s</info> Creating %s from twig template.', $file, $file));
-            $filesystem->dumpFile($new->componentPath . '/' . $file, $twig->render($template, [
+            $filesystem->dumpFile($componentDir . '/' . $file, $twig->render($template, [
                 'name' => $new->displayName,
                 'component' => $new->componentName,
                 'package' => $new->composerPackage,
@@ -167,12 +168,12 @@ class AddComponentCommand extends Command
             'api_shortname' => $new->shortName
         ];
         $contents = json_encode($repoMetadata, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        $filesystem->dumpFile($new->componentPath . '/.repo-metadata.json', $contents . PHP_EOL);
+        $filesystem->dumpFile($componentDir . '/.repo-metadata.json', $contents . PHP_EOL);
 
         // Write composer file
         $output->writeln('<info>Composer</info> Updating root composer.json and creating component composer.json');
         $composer = new Composer(
-            $new->componentPath,
+            $componentDir,
             $new->composerPackage,
             $new->phpNamespace,
             $new->gpbMetadataNamespace

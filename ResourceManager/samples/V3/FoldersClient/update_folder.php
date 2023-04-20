@@ -34,7 +34,9 @@ use Google\Rpc\Status;
  * Updates a folder, changing its `display_name`.
  * Changes to the folder `display_name` will be rejected if they violate
  * either the `display_name` formatting rules or the naming constraints
- * described in the [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
+ * described in the
+ * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+ * documentation.
  *
  * The folder's `display_name` must start and end with a letter or digit,
  * may contain letters, digits, spaces, hyphens and underscores and can be

@@ -23,9 +23,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,9 +48,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the new TagKey's parent.
      *           Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
      *     @type int $page_size
-     *           Optional. The maximum number of TagKeys to return in the response. The server allows
-     *           a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     *           as the default.
+     *           Optional. The maximum number of TagKeys to return in the response. The
+     *           server allows a maximum of 300 TagKeys to return. If unspecified, the
+     *           server will use 100 as the default.
      *     @type string $page_token
      *           Optional. A pagination token returned from a previous call to `ListTagKey`
      *           that indicates where this listing should continue from.
@@ -90,9 +90,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -103,9 +103,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

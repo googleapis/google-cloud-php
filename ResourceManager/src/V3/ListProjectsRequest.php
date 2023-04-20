@@ -18,17 +18,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProjectsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent resource to list projects under.
-     * For example, setting this field to 'folders/1234' would list all projects
-     * directly under that folder.
+     * Required. The name of the parent resource whose projects are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,8 +44,8 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be
-     * returned. Normally only `ACTIVE` projects are returned.
+     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should
+     * also be returned. Normally only `ACTIVE` projects are returned.
      *
      * Generated from protobuf field <code>bool show_deleted = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,20 +58,22 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent resource to list projects under.
-     *           For example, setting this field to 'folders/1234' would list all projects
-     *           directly under that folder.
+     *           Required. The name of the parent resource whose projects are being listed.
+     *           Only children of this parent resource are listed; descendants are not
+     *           listed.
+     *           If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *           parent is an organization, use the value `organizations/{org_id}`.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to [ListProjects]
-     *           [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     *           that indicates from where listing should continue.
+     *           Optional. A pagination token returned from a previous call to
+     *           [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     *           indicates from where listing should continue.
      *     @type int $page_size
      *           Optional. The maximum number of projects to return in the response.
      *           The server can return fewer projects than requested.
      *           If unspecified, server picks an appropriate default.
      *     @type bool $show_deleted
-     *           Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be
-     *           returned. Normally only `ACTIVE` projects are returned.
+     *           Optional. Indicate that projects in the `DELETE_REQUESTED` state should
+     *           also be returned. Normally only `ACTIVE` projects are returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,9 +82,11 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource to list projects under.
-     * For example, setting this field to 'folders/1234' would list all projects
-     * directly under that folder.
+     * Required. The name of the parent resource whose projects are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,9 +97,11 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource to list projects under.
-     * For example, setting this field to 'folders/1234' would list all projects
-     * directly under that folder.
+     * Required. The name of the parent resource whose projects are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -108,9 +116,9 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -121,9 +129,9 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to [ListProjects]
-     * [google.cloud.resourcemanager.v3.Projects.ListProjects]
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
+     * indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -168,8 +176,8 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be
-     * returned. Normally only `ACTIVE` projects are returned.
+     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should
+     * also be returned. Normally only `ACTIVE` projects are returned.
      *
      * Generated from protobuf field <code>bool show_deleted = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -180,8 +188,8 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be
-     * returned. Normally only `ACTIVE` projects are returned.
+     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should
+     * also be returned. Normally only `ACTIVE` projects are returned.
      *
      * Generated from protobuf field <code>bool show_deleted = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

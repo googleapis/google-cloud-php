@@ -29,15 +29,15 @@ use Google\Cloud\ResourceManager\V3\TagBinding;
 use Google\Cloud\ResourceManager\V3\TagBindingsClient;
 
 /**
- * Lists the TagBindings for the given cloud resource, as specified with
- * `parent`.
+ * Lists the TagBindings for the given Google Cloud resource, as specified
+ * with `parent`.
  *
  * NOTE: The `parent` field is expected to be a full resource name:
  * https://cloud.google.com/apis/design/resource_names#full_resource_name
  *
- * @param string $parent The full resource name of a resource for which you want to list existing
- *                       TagBindings.
- *                       E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+ * @param string $parent The full resource name of a resource for which you want to list
+ *                       existing TagBindings. E.g.
+ *                       "//cloudresourcemanager.googleapis.com/projects/123"
  */
 function list_tag_bindings_sample(string $parent): void
 {

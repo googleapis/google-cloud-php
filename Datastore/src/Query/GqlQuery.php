@@ -21,7 +21,6 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\Query\QueryTrait;
 
 /**
  * Query Google Cloud Datastore using [GQL](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
@@ -94,7 +93,6 @@ class GqlQuery implements QueryInterface
 {
     use ArrayTrait;
     use DatastoreTrait;
-    use QueryTrait;
 
     const BINDING_NAMED = 'namedBindings';
     const BINDING_POSITIONAL = 'positionalBindings';
@@ -154,7 +152,7 @@ class GqlQuery implements QueryInterface
      *
      * @return array
      */
-    private function gqlQueryObject()
+    public function queryObject()
     {
         $bindingType = $this->options['bindingType'];
 

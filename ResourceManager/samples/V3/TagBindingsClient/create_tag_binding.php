@@ -30,8 +30,7 @@ use Google\Cloud\ResourceManager\V3\TagBindingsClient;
 use Google\Rpc\Status;
 
 /**
- * Creates a TagBinding between a TagValue and a cloud resource
- * (currently project, folder, or organization).
+ * Creates a TagBinding between a TagValue and a Google Cloud resource.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
