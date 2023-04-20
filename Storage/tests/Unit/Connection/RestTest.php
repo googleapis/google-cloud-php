@@ -486,8 +486,7 @@ class RestTest extends TestCase
         $actualRequest = null;
 
         $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, $response, $maxAttempts) {
-            $attempt++;
-            if ($attempt < $maxAttempts) {
+            if ($attempt++ < $maxAttempts) {
                 throw new \Exception('Retrying');
             }
             $actualRequest = $request;
