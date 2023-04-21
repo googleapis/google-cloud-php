@@ -33,8 +33,8 @@ use Google\Cloud\GkeHub\V1beta1\GkeHubMembershipServiceClient;
  * **This method is used internally by Google-provided libraries.**
  * Most clients should not need to call this method directly.
  *
- * @param string $formattedName The Membership resource name the Agent will associate with, in the format
- *                              `projects/&#42;/locations/&#42;/memberships/*`. Please see
+ * @param string $formattedName The Membership resource name the Agent will associate with, in
+ *                              the format `projects/&#42;/locations/&#42;/memberships/*`. Please see
  *                              {@see GkeHubMembershipServiceClient::membershipName()} for help formatting this field.
  */
 function generate_connect_manifest_sample(string $formattedName): void
