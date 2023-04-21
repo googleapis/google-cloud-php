@@ -20,12 +20,13 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
+use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use ReflectionMethod;
 
 /**
  * @group firestore
@@ -66,23 +67,28 @@ class AggregateQueryTest extends TestCase
         ], ['connection', 'query', 'aggregates']);
     }
 
-    public function testAggregation()
+    public function testGetSnapshot()
     {
         $expectedProps = [
             ['count' => []]
         ];
-        $query = $this->aggregateQuery->___getProperty('query');
-        $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
-        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'aggregateQueryPrepare');
-        $finalQueryPrepare->setAccessible(true);
-        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
-            'query' => $query,
-            'aggregates' => $aggregates
-        ]);
+        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
+            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
+        }))
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new \ArrayIterator([[
+                'result' => [
+                    'aggregateFields' => [
+                        'count' => ['integerValue' => 123456]
+                    ]
+                ]
+            ]]));
+        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
 
-        $this->assertEquals($expectedProps, $aggregations['aggregations']);
-        $this->assertArrayHasKey('structuredQuery', $aggregations);
+        $response = $this->aggregateQuery->getSnapshot();
+        $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
+        $this->assertEquals(123456, $response->get('count'));
     }
 
     public function testAddAggregation()
@@ -97,17 +103,15 @@ class AggregateQueryTest extends TestCase
             Aggregate::count()
             ->alias('count_with_another_alias')
         );
-        $query = $this->aggregateQuery->___getProperty('query');
-        $aggregates = $this->aggregateQuery->___getProperty('aggregates');
 
-        $finalQueryPrepare = new ReflectionMethod($this->aggregateQuery, 'aggregateQueryPrepare');
-        $finalQueryPrepare->setAccessible(true);
-        $aggregations = $finalQueryPrepare->invoke($this->aggregateQuery, [
-            'query' => $query,
-            'aggregates' => $aggregates
-        ]);
+        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
+            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
+        }))
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new \ArrayIterator([]));
+        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+        $response = $this->aggregateQuery->getSnapshot();
 
-        $this->assertEquals($expectedProps, $aggregations['aggregations']);
-        $this->assertArrayHasKey('structuredQuery', $aggregations);
+        $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
     }
 }
