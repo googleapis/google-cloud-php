@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing descendant security health analytics custom
+ * Request message for listing descendant Security Health Analytics custom
  * modules.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListDescendantSecurityHealthAnalyticsCustomModulesRequest</code>

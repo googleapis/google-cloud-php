@@ -107,11 +107,30 @@ class AggregateQuery
         }
         $snapshot = $this->connection->runAggregationQuery([
             'parent' => $this->parentName,
-            'structuredAggregationQuery' => $this->finalQueryPrepare([
+            'structuredAggregationQuery' => $this->aggregateQueryPrepare([
                 'aggregates' => $this->aggregates
             ] + $this->query),
         ] + $options)->current();
 
         return new AggregateQuerySnapshot($snapshot);
+    }
+
+    /**
+     * Clean up the Aggregate query array before sending.
+     *
+     * @param array $query
+     * @return array The final aggregation query data.
+     */
+    private function aggregateQueryPrepare(array $query)
+    {
+        $parsedAggregates = [];
+        foreach ($query['aggregates'] as $aggregate) {
+            $parsedAggregates[] = $aggregate->getProps();
+        }
+        unset($query['aggregates']);
+        return [
+            'structuredQuery' => $this->structuredQueryPrepare($query),
+            'aggregations' => $parsedAggregates
+        ];
     }
 }

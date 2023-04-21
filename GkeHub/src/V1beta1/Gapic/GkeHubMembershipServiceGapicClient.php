@@ -67,9 +67,11 @@ use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: The GKE Hub MembershipService handles the registration of many Kubernetes
- * clusters to Google Cloud, represented with the [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
+ * clusters to Google Cloud, represented with the
+ * [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
  *
- * GKE Hub is currently only available in the global region.
+ * GKE Hub is currently available in the global region and all regions in
+ * https://cloud.google.com/compute/docs/regions-zones.
  *
  * **Membership management may be non-trivial:** it is recommended to use one
  * of the Google-provided client libraries or tools where possible when working
@@ -425,10 +427,10 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent (project and location) where the Memberships will be created.
-     *                                 Specified in the format `projects/&#42;/locations/*`.
-     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
-     *                                 1123 compliant DNS label:
+     * @param string     $parent       Required. The parent (project and location) where the Memberships will be
+     *                                 created. Specified in the format `projects/&#42;/locations/*`.
+     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a
+     *                                 valid RFC 1123 compliant DNS label:
      *
      *                                 1. At most 63 characters in length
      *                                 2. It must consist of lower case alphanumeric characters or `-`
@@ -543,6 +545,10 @@ class GkeHubMembershipServiceGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, any subresource from this Membership will also be
+     *           deleted. Otherwise, the request will only work if the Membership has no
+     *           subresource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -563,6 +569,10 @@ class GkeHubMembershipServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -587,15 +597,16 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The Membership resource name the Agent will associate with, in the format
-     *                             `projects/&#42;/locations/&#42;/memberships/*`.
+     * @param string $name         Required. The Membership resource name the Agent will associate with, in
+     *                             the format `projects/&#42;/locations/&#42;/memberships/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type ConnectAgent $connectAgent
      *           Optional. The connect agent to generate manifest for.
      *     @type string $version
-     *           Optional. The Connect agent version to use. Defaults to the most current version.
+     *           Optional. The Connect agent version to use. Defaults to the most current
+     *           version.
      *     @type bool $isUpgrade
      *           Optional. If true, generate the resources for upgrade only. Some resources
      *           generated only for installation (e.g. secrets) will be excluded.
@@ -784,8 +795,9 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) where the Memberships will be listed.
-     *                             Specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The parent (project and location) where the Memberships will be
+     *                             listed. Specified in the format `projects/&#42;/locations/*`.
+     *                             `projects/&#42;/locations/-` list memberships in all the regions.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -799,8 +811,8 @@ class GkeHubMembershipServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Lists Memberships that match the filter expression, following the syntax
-     *           outlined in https://google.aip.dev/160.
+     *           Optional. Lists Memberships that match the filter expression, following the
+     *           syntax outlined in https://google.aip.dev/160.
      *
      *           Examples:
      *
@@ -904,8 +916,8 @@ class GkeHubMembershipServiceGapicClient
      *
      * @param string     $name         Required. The membership resource name in the format:
      *                                 `projects/[project_id]/locations/global/memberships/[membership_id]`
-     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be specified in this
-     *                                 mask.
+     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be
+     *                                 specified in this mask.
      * @param Membership $resource     Required. Only fields specified in update_mask are updated.
      *                                 If you specify a field in the update_mask but don't specify its value here
      *                                 that field will be deleted.
@@ -976,16 +988,17 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent             Required. The parent (project and location) where the Memberships will be created.
-     *                                   Specified in the format `projects/&#42;/locations/*`.
-     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only does
-     *                                   validation in anticipation of a CreateMembership call with the same name.
+     * @param string $parent             Required. The parent (project and location) where the Memberships will be
+     *                                   created. Specified in the format `projects/&#42;/locations/*`.
+     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only
+     *                                   does validation in anticipation of a CreateMembership call with the same
+     *                                   name.
      * @param array  $optionalArgs       {
      *     Optional.
      *
      *     @type string $crManifest
-     *           Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     *           CR does not exist.
+     *           Optional. The YAML of the membership CR in the cluster. Empty if the
+     *           membership CR does not exist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
