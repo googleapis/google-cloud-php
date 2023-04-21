@@ -62,8 +62,6 @@ use UnexpectedValueException;
  */
 class AggregationQuery
 {
-    use QueryTrait;
-
     /**
      * @var QueryInterface|null
      */
@@ -141,7 +139,7 @@ class AggregationQuery
      * @return array
      * @throws UnexpectedValueException If the query is not supported.
      */
-    private function aggregationQueryObject()
+    public function queryObject()
     {
         if ($this->query instanceof Query) {
             return [

@@ -254,7 +254,7 @@ class Query
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $query = $this->finalQueryPrepare([
+        $query = $this->structuredQueryPrepare([
             'query' => $this->query,
             'limitToLast' => $this->limitToLast
         ]);
