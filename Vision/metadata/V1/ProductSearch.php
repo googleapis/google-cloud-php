@@ -20,7 +20,7 @@ class ProductSearch
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-„	
+‡	
 +google/cloud/vision/v1/product_search.protogoogle.cloud.vision.v1%google/cloud/vision/v1/geometry.proto3google/cloud/vision/v1/product_search_service.protogoogle/protobuf/timestamp.proto"º
 ProductSearchParams;
 bounding_poly	 (2$.google.cloud.vision.v1.BoundingPoly:
@@ -45,8 +45,8 @@ index_time (2.google.protobuf.TimestampD
 GroupedResult;
 bounding_poly (2$.google.cloud.vision.v1.BoundingPolyD
 results (23.google.cloud.vision.v1.ProductSearchResults.ResultY
-object_annotations (2=.google.cloud.vision.v1.ProductSearchResults.ObjectAnnotationBp
-com.google.cloud.vision.v1BProductSearchProtoPZ2cloud.google.com/go/vision/apiv1/visionpb;visionpbø¢GCVNbproto3'
+object_annotations (2=.google.cloud.vision.v1.ProductSearchResults.ObjectAnnotationBs
+com.google.cloud.vision.v1BProductSearchProtoPZ5cloud.google.com/go/vision/v2/apiv1/visionpb;visionpbø¢GCVNbproto3'
         , true);
 
         static::$is_initialized = true;
