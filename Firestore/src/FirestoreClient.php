@@ -75,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '1.27.3';
+    const VERSION = '1.30.0';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -287,9 +287,13 @@ class FirestoreClient
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function collections(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
@@ -395,14 +399,14 @@ class FirestoreClient
      * $query = $firestore->collectionGroup('users');
      * $querySnapshot = $query->documents();
      *
-     * echo sprintf('Found %d documents!', $querySnapshot->size());
+     * echo $querySnapshot->size() . ' documents found!';
      * ```
      *
      * @param string $id Identifies the collection to query over. Every
      *        collection or subcollection with this ID as the last segment of
      *        its path will be included. May not contain a slash.
      * @return Query
-     * @throws InvalidArgumentException If the collection ID is not well-formed.
+     * @throws \InvalidArgumentException If the collection ID is not well-formed.
      */
     public function collectionGroup($id)
     {

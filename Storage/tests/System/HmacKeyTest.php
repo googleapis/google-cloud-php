@@ -28,9 +28,9 @@ class HmacKeyTest extends StorageTestCase
 {
     private static $serviceAccountEmail;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$serviceAccountEmail = json_decode(
             file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')),

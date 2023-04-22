@@ -22,8 +22,7 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
 use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use GuzzleHttp\Client;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * The test deploys the sample app contained in the app folder to Google App
@@ -42,7 +41,6 @@ class E2ETest extends TestCase
     protected $debuggeeId;
     protected $httpClient;
 
-    use AssertStringContains;
     use AppEngineDeploymentTrait;
     use EventuallyConsistentTestTrait;
 
@@ -52,7 +50,7 @@ class E2ETest extends TestCase
         self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $url = self::$gcloudWrapper->getBaseUrl();
         $this->httpClient = new Client(['base_uri' => $url]);
@@ -66,7 +64,7 @@ class E2ETest extends TestCase
         }, 5, true);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::deleteApp();
     }

@@ -34,11 +34,19 @@ class FailureCause
      * Generated from protobuf enum <code>EXECUTION_FAILED = 2;</code>
      */
     const EXECUTION_FAILED = 2;
+    /**
+     * Cloud Build failed to fulfill Google Cloud Deploy's request. See
+     * failure_message for additional details.
+     *
+     * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 3;</code>
+     */
+    const CLOUD_BUILD_REQUEST_FAILED = 3;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
         self::CLOUD_BUILD_UNAVAILABLE => 'CLOUD_BUILD_UNAVAILABLE',
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
+        self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
     ];
 
     public static function name($value)

@@ -34,6 +34,12 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SourceEnv source_env = 6;</code>
      */
     private $source_env = null;
+    /**
+     * The indicator to show translation request initiator.
+     *
+     * Generated from protobuf field <code>string request_source = 8;</code>
+     */
+    private $request_source = '';
     protected $source_location;
     protected $target_location;
     protected $output_name_mapping;
@@ -48,14 +54,16 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *           The Cloud Storage path for a directory of files to translate in a task.
      *     @type string $gcs_target_path
      *           The Cloud Storage path to write back the corresponding input files to.
+     *     @type \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList $name_mapping_list
+     *           The mapping of objects to their desired output names in list form.
      *     @type \Google\Cloud\BigQuery\Migration\V2\Dialect $source_dialect
      *           The dialect of the input files.
      *     @type \Google\Cloud\BigQuery\Migration\V2\Dialect $target_dialect
      *           The target dialect for the engine to translate the input to.
-     *     @type \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList $name_mapping_list
-     *           The mapping of objects to their desired output names in list form.
      *     @type \Google\Cloud\BigQuery\Migration\V2\SourceEnv $source_env
      *           The default source environment values for the translation.
+     *     @type string $request_source
+     *           The indicator to show translation request initiator.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +129,37 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The mapping of objects to their desired output names in list form.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.ObjectNameMappingList name_mapping_list = 5;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList|null
+     */
+    public function getNameMappingList()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasNameMappingList()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * The mapping of objects to their desired output names in list form.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.ObjectNameMappingList name_mapping_list = 5;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList $var
+     * @return $this
+     */
+    public function setNameMappingList($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
@@ -198,37 +237,6 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mapping of objects to their desired output names in list form.
-     *
-     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.ObjectNameMappingList name_mapping_list = 5;</code>
-     * @return \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList|null
-     */
-    public function getNameMappingList()
-    {
-        return $this->readOneof(5);
-    }
-
-    public function hasNameMappingList()
-    {
-        return $this->hasOneof(5);
-    }
-
-    /**
-     * The mapping of objects to their desired output names in list form.
-     *
-     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.ObjectNameMappingList name_mapping_list = 5;</code>
-     * @param \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList $var
-     * @return $this
-     */
-    public function setNameMappingList($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\ObjectNameMappingList::class);
-        $this->writeOneof(5, $var);
-
-        return $this;
-    }
-
-    /**
      * The default source environment values for the translation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SourceEnv source_env = 6;</code>
@@ -260,6 +268,32 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\SourceEnv::class);
         $this->source_env = $var;
+
+        return $this;
+    }
+
+    /**
+     * The indicator to show translation request initiator.
+     *
+     * Generated from protobuf field <code>string request_source = 8;</code>
+     * @return string
+     */
+    public function getRequestSource()
+    {
+        return $this->request_source;
+    }
+
+    /**
+     * The indicator to show translation request initiator.
+     *
+     * Generated from protobuf field <code>string request_source = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestSource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_source = $var;
 
         return $this;
     }

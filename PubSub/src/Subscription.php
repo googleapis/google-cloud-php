@@ -683,9 +683,7 @@ class Subscription
     public function pull(array $options = [])
     {
         $messages = [];
-        $options['maxMessages'] = isset($options['maxMessages'])
-            ? $options['maxMessages']
-            : self::MAX_MESSAGES;
+        $options['maxMessages'] = $options['maxMessages'] ?? self::MAX_MESSAGES;
 
         $response = $this->connection->pull($options + [
             'subscription' => $this->name
@@ -984,7 +982,7 @@ class Subscription
         $eodEnabled = true;
         $startTime = time();
         $maxAttemptTime = 10 * 60;  // 10 minutes
-        
+
         // min delay of 1 sec, max delay of 64 secs
         // doubles on every attempt
         $delayFunc = function ($attempt) {
@@ -1042,7 +1040,7 @@ class Subscription
             // Retry only if there are retryable messages left
             return count($messages) > 0;
         };
-        
+
         // We use 15 retries as the number of retries should be high enough to have a total delay
         // of 10 minutes($maxAttemptTime)
         $backoff = new ExponentialBackoff(self::$exactlyOnceDeliveryMaxRetries, $retryFunc);

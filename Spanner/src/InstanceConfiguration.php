@@ -252,9 +252,7 @@ class InstanceConfiguration
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
         $configId = InstanceAdminClient::parseName($this->name)['instance_config'];
-        $leaderOptions = isset($baseConfig->__debugInfo()['info']['leaderOptions'])
-            ? $baseConfig->__debugInfo()['info']['leaderOptions']
-            : [];
+        $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
         $options += [
             'displayName' => $configId,
             'labels' => [],
@@ -303,7 +301,7 @@ class InstanceConfiguration
      *           response. **Defaults to** `false`.
      * }
      * @return LongRunningOperation<InstanceConfiguration>
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
     {

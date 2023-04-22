@@ -95,6 +95,11 @@
                                 "createAudience"
                             ]
                         },
+                        "CreateConnectedSiteTag": {
+                            "methods": [
+                                "createConnectedSiteTag"
+                            ]
+                        },
                         "CreateConversionEvent": {
                             "methods": [
                                 "createConversionEvent"
@@ -168,6 +173,11 @@
                         "DeleteAccount": {
                             "methods": [
                                 "deleteAccount"
+                            ]
+                        },
+                        "DeleteConnectedSiteTag": {
+                            "methods": [
+                                "deleteConnectedSiteTag"
                             ]
                         },
                         "DeleteConversionEvent": {
@@ -295,6 +305,11 @@
                                 "getDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "GetEnhancedMeasurementSettings": {
+                            "methods": [
+                                "getEnhancedMeasurementSettings"
+                            ]
+                        },
                         "GetExpandedDataSet": {
                             "methods": [
                                 "getExpandedDataSet"
@@ -353,6 +368,11 @@
                         "ListBigQueryLinks": {
                             "methods": [
                                 "listBigQueryLinks"
+                            ]
+                        },
+                        "ListConnectedSiteTags": {
+                            "methods": [
+                                "listConnectedSiteTags"
                             ]
                         },
                         "ListConversionEvents": {
@@ -483,6 +503,11 @@
                         "UpdateDisplayVideo360AdvertiserLink": {
                             "methods": [
                                 "updateDisplayVideo360AdvertiserLink"
+                            ]
+                        },
+                        "UpdateEnhancedMeasurementSettings": {
+                            "methods": [
+                                "updateEnhancedMeasurementSettings"
                             ]
                         },
                         "UpdateExpandedDataSet": {

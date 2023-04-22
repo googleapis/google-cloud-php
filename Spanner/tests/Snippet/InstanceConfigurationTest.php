@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -34,6 +35,7 @@ use Prophecy\Argument;
 class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -42,7 +44,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     private $connection;
     private $config;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

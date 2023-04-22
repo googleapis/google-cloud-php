@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\InstanceTemplate;
 use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 
 /**
- * Returns the specified instance template. Gets a list of available instance templates by making a list() request.
+ * Returns the specified instance template.
  *
  * @param string $instanceTemplate The name of the instance template.
  * @param string $project          Project ID for this request.

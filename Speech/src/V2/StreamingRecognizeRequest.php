@@ -59,6 +59,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           Recognizer.
      *     @type string $audio
      *           Inline audio bytes to be Recognized.
+     *           Maximum size for this field is 15 KB per request.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +138,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Inline audio bytes to be Recognized.
+     * Maximum size for this field is 15 KB per request.
      *
      * Generated from protobuf field <code>bytes audio = 5;</code>
      * @return string
@@ -153,6 +155,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Inline audio bytes to be Recognized.
+     * Maximum size for this field is 15 KB per request.
      *
      * Generated from protobuf field <code>bytes audio = 5;</code>
      * @param string $var

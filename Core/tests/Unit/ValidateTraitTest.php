@@ -19,19 +19,16 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\ValidateTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
 class ValidateTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $stub;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->stub = TestHelpers::impl(ValidateTrait::class);
     }

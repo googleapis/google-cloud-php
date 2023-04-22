@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedName The name of the `WorkerPool` to delete.
  *                              Format:
- *                              `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`. Please see
+ *                              `projects/{project}/locations/{location}/workerPools/{workerPool}`. Please see
  *                              {@see CloudBuildClient::workerPoolName()} for help formatting this field.
  */
 function delete_worker_pool_sample(string $formattedName): void

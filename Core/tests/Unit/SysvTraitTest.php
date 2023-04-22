@@ -19,14 +19,14 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
 class SysvTraitTest extends TestCase
 {
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(SysvTrait::class);
     }

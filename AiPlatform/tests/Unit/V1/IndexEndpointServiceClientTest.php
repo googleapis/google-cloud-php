@@ -101,6 +101,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
+        $publicEndpointEnabled = false;
+        $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -108,6 +110,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
+        $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
+        $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -472,6 +476,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
+        $publicEndpointEnabled = false;
+        $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -479,6 +485,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
+        $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
+        $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
@@ -860,6 +868,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
+        $publicEndpointEnabled = false;
+        $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -867,6 +877,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
+        $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
+        $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $indexEndpoint = new IndexEndpoint();

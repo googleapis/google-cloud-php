@@ -19,19 +19,16 @@ namespace Google\Cloud\Core\Tests\Snippet\Iam;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\PolicyBuilder;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group iam
  */
 class PolicyBuilderTest extends SnippetTestCase
 {
-    use AssertIsType;
-
     private $pb;
     private $policy;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->pb = new PolicyBuilder;
         $this->policy = ['etag' => 'foo'];

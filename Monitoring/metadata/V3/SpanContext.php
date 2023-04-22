@@ -16,11 +16,11 @@ class SpanContext
         }
         $pool->internalAddGeneratedFile(
             '
-´
+·
 \'google/monitoring/v3/span_context.protogoogle.monitoring.v3" 
 SpanContext
-	span_name (	BÈ
-com.google.monitoring.v3BSpanContextProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+	span_name (	BË
+com.google.monitoring.v3BSpanContextProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

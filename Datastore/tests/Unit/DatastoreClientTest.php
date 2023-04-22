@@ -30,14 +30,17 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -46,8 +49,8 @@ use Prophecy\Argument;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
@@ -55,7 +58,7 @@ class DatastoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [
@@ -405,7 +408,7 @@ class DatastoreClientTest extends TestCase
 
     public function testSingleMutationConflict()
     {
-        $this->expectException('DomainException');
+        $this->expectException(\DomainException::class);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
@@ -641,6 +644,39 @@ class DatastoreClientTest extends TestCase
 
         $res = iterator_to_array($this->client->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunAggregationQuery()
+    {
+        $this->connection->runAggregationQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'aggregationResults' => [
+                    [
+                        'aggregateProperties' => ['property_1' => 1]
+                    ]
+                ],
+                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([
+            'gqlQuery' => [
+                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+            ]
+        ]);
+
+        $res = $this->client->runAggregationQuery($query->reveal());
+        $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
     public function testRunQueryWithReadTime()

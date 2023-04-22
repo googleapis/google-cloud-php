@@ -14,8 +14,7 @@ use UnexpectedValueException;
 class ExactSearchableOption
 {
     /**
-     * Value used when unset. Defaults to
-     * [EXACT_SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption.EXACT_SEARCHABLE_DISABLED].
+     * Value used when unset.
      *
      * Generated from protobuf enum <code>EXACT_SEARCHABLE_OPTION_UNSPECIFIED = 0;</code>
      */

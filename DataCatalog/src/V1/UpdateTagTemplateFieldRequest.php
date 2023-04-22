@@ -29,8 +29,8 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     private $tag_template_field = null;
     /**
-     * Optional. Names of fields whose values to overwrite on an individual field of a tag
-     * template. The following fields are modifiable:
+     * Optional. Names of fields whose values to overwrite on an individual field
+     * of a tag template. The following fields are modifiable:
      * * `display_name`
      * * `type.enum_type`
      * * `is_required`
@@ -58,8 +58,8 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\TagTemplateField $tag_template_field
      *           Required. The template to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. Names of fields whose values to overwrite on an individual field of a tag
-     *           template. The following fields are modifiable:
+     *           Optional. Names of fields whose values to overwrite on an individual field
+     *           of a tag template. The following fields are modifiable:
      *           * `display_name`
      *           * `type.enum_type`
      *           * `is_required`
@@ -141,8 +141,8 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Names of fields whose values to overwrite on an individual field of a tag
-     * template. The following fields are modifiable:
+     * Optional. Names of fields whose values to overwrite on an individual field
+     * of a tag template. The following fields are modifiable:
      * * `display_name`
      * * `type.enum_type`
      * * `is_required`
@@ -174,8 +174,8 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Names of fields whose values to overwrite on an individual field of a tag
-     * template. The following fields are modifiable:
+     * Optional. Names of fields whose values to overwrite on an individual field
+     * of a tag template. The following fields are modifiable:
      * * `display_name`
      * * `type.enum_type`
      * * `is_required`

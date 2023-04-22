@@ -20,14 +20,17 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class MetricTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $formattedName;
     public $metricName = 'myMetric';
@@ -36,7 +39,7 @@ class MetricTest extends TestCase
         'description' => 'wow a description'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/metrics/$this->metricName";
         $this->connection = $this->prophesize(ConnectionInterface::class);

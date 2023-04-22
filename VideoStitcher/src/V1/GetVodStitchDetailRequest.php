@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetVodStitchDetailRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the stitch detail in the specified VOD session, in the form of
+     * Required. The name of the stitch detail in the specified VOD session, in
+     * the form of
      * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +31,8 @@ class GetVodStitchDetailRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the stitch detail in the specified VOD session, in the form of
+     *           Required. The name of the stitch detail in the specified VOD session, in
+     *           the form of
      *           `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
      * }
      */
@@ -40,7 +42,8 @@ class GetVodStitchDetailRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the stitch detail in the specified VOD session, in the form of
+     * Required. The name of the stitch detail in the specified VOD session, in
+     * the form of
      * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -52,7 +55,8 @@ class GetVodStitchDetailRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the stitch detail in the specified VOD session, in the form of
+     * Required. The name of the stitch detail in the specified VOD session, in
+     * the form of
      * `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

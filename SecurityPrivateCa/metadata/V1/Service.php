@@ -20,12 +20,13 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Security\Privateca\V1\Resources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ëp
-0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
+År
+0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
 CreateCertificateRequest7
 parent (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
@@ -74,12 +75,13 @@ request_id (	B‡A"˙
 certificate_authority_id (	B‡A\\
 certificate_authority (28.google.cloud.security.privateca.v1.CertificateAuthorityB‡A
 
-request_id (	B‡A"Ç
+request_id (	B‡A"´
 "DisableCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
-request_id (	B‡A"Å
+request_id (	B‡A\'
+ignore_dependent_resources (B‡A"Å
 !EnableCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
@@ -109,14 +111,15 @@ page_token (	B‡A
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
-request_id (	B‡A" 
+request_id (	B‡A"Û
 !DeleteCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
 request_id (	B‡A\'
 ignore_active_certificates (B‡A
-skip_grace_period (B‡A"–
+skip_grace_period (B‡A\'
+ignore_dependent_resources (B‡A"–
 !UpdateCertificateAuthorityRequest\\
 certificate_authority (28.google.cloud.security.privateca.v1.CertificateAuthorityB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
@@ -134,12 +137,13 @@ request_id (	B‡A"¶
 ca_pool (2*.google.cloud.security.privateca.v1.CaPoolB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
 
-request_id (	B‡A"e
+request_id (	B‡A"é
 DeleteCaPoolRequest5
 name (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
 
-request_id (	B‡A"h
+request_id (	B‡A\'
+ignore_dependent_resources (B‡A"h
 FetchCaCertsRequest8
 ca_pool (	B\'‡A˙A!
 privateca.googleapis.com/CaPool

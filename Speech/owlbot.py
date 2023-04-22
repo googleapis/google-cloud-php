@@ -41,11 +41,6 @@ php.owlbot_main(
         src / "*/src/V2/SpeechClient.php"
     ]
 )
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
 
 # Change the wording for the deprecation warning.
 s.replace(

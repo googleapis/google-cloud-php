@@ -32,16 +32,17 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class TableTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
@@ -77,7 +78,7 @@ class TableTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -613,7 +614,7 @@ class TableTest extends TestCase
 
     public function testInsertRowsThrowsExceptionWithoutSchema()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('A schema is required when creating a table.');
 
         $options = [
@@ -642,7 +643,7 @@ class TableTest extends TestCase
 
     public function testInsertRowsThrowsExceptionWithUnretryableTableFailure()
     {
-        $this->expectException('\Exception');
+        $this->expectException(\Exception::class);
 
         $options = [
             'autoCreate' => true,
@@ -685,7 +686,7 @@ class TableTest extends TestCase
 
     public function testInsertRowsThrowsExceptionWhenMaxRetryLimitHit()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $options = [
             'autoCreate' => true,
@@ -729,7 +730,7 @@ class TableTest extends TestCase
 
     public function testInsertRowsThrowsExceptionWithoutDataKey()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('A row must have a data key.');
 
         $table = $this->getTable($this->connection);
@@ -738,7 +739,7 @@ class TableTest extends TestCase
 
     public function testInsertRowsThrowsExceptionWithZeroRows()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Must provide at least a single row.');
 
         $table = $this->getTable($this->connection);

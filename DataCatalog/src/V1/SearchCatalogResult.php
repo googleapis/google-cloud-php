@@ -115,8 +115,8 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $modify_time
      *           The last modification timestamp of the entry in the source system.
      *     @type int $integrated_system
-     *           Output only. The source system that Data Catalog automatically integrates  with, such
-     *           as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
+     *           Output only. The source system that Data Catalog automatically integrates
+     *           with, such as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
      *     @type string $user_specified_system
      *           Custom source system that you can manually integrate Data Catalog with.
      *     @type string $fully_qualified_name
@@ -305,8 +305,8 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The source system that Data Catalog automatically integrates  with, such
-     * as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
+     * Output only. The source system that Data Catalog automatically integrates
+     * with, such as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -322,8 +322,8 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The source system that Data Catalog automatically integrates  with, such
-     * as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
+     * Output only. The source system that Data Catalog automatically integrates
+     * with, such as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

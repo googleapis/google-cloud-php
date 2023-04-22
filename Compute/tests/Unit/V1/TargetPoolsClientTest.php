@@ -525,7 +525,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $backupPool = 'backupPool1119626361';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $failoverRatio = -8.6107481E7;
+        $failoverRatio = -2221401;
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';

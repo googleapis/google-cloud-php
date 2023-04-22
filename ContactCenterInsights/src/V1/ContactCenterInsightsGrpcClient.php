@@ -48,6 +48,23 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Create a longrunning conversation upload operation. This method differs
+     * from CreateConversation by allowing audio transcription and optional DLP
+     * redaction.
+     * @param \Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UploadConversation(\Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Updates a conversation.
      * @param \Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest $argument input argument
      * @param array $metadata metadata

@@ -7,7 +7,7 @@ namespace Google\Cloud\Filestore\V1\NetworkConfig;
 use UnexpectedValueException;
 
 /**
- * Internet protocol versions supported by Cloud Filestore.
+ * Internet protocol versions supported by Filestore.
  *
  * Protobuf type <code>google.cloud.filestore.v1.NetworkConfig.AddressMode</code>
  */

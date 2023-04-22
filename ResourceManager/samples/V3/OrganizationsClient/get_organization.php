@@ -30,9 +30,9 @@ use Google\Cloud\ResourceManager\V3\OrganizationsClient;
 /**
  * Fetches an organization resource identified by the specified resource name.
  *
- * @param string $formattedName The resource name of the Organization to fetch. This is the organization's
- *                              relative path in the API, formatted as "organizations/[organizationId]".
- *                              For example, "organizations/1234". Please see
+ * @param string $formattedName The resource name of the Organization to fetch. This is the
+ *                              organization's relative path in the API, formatted as
+ *                              "organizations/[organizationId]". For example, "organizations/1234". Please see
  *                              {@see OrganizationsClient::organizationName()} for help formatting this field.
  */
 function get_organization_sample(string $formattedName): void

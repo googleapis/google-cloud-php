@@ -24,12 +24,26 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. BigQuery usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time
+     * ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $usage_within_time_range;
+    /**
+     * Common usage statistics over each of the predefined time ranges.
+     * Supported time ranges are `{"24H", "7D", "30D", "Lifetime"}`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.CommonUsageStats> common_usage_within_time_range = 3;</code>
+     */
+    private $common_usage_within_time_range;
+    /**
+     * Favorite count in the source system.
+     *
+     * Generated from protobuf field <code>optional int64 favorite_count = 4;</code>
+     */
+    private $favorite_count = null;
 
     /**
      * Constructor.
@@ -40,8 +54,14 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The end timestamp of the duration of usage statistics.
      *     @type array|\Google\Protobuf\Internal\MapField $usage_within_time_range
-     *           Output only. BigQuery usage statistics over each of the predefined time ranges.
+     *           Output only. BigQuery usage statistics over each of the predefined time
+     *           ranges.
      *           Supported time ranges are `{"24H", "7D", "30D"}`.
+     *     @type array|\Google\Protobuf\Internal\MapField $common_usage_within_time_range
+     *           Common usage statistics over each of the predefined time ranges.
+     *           Supported time ranges are `{"24H", "7D", "30D", "Lifetime"}`.
+     *     @type int|string $favorite_count
+     *           Favorite count in the source system.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +106,8 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. BigQuery usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time
+     * ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -98,7 +119,8 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. BigQuery usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time
+     * ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -109,6 +131,70 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\V1\UsageStats::class);
         $this->usage_within_time_range = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Common usage statistics over each of the predefined time ranges.
+     * Supported time ranges are `{"24H", "7D", "30D", "Lifetime"}`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.CommonUsageStats> common_usage_within_time_range = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getCommonUsageWithinTimeRange()
+    {
+        return $this->common_usage_within_time_range;
+    }
+
+    /**
+     * Common usage statistics over each of the predefined time ranges.
+     * Supported time ranges are `{"24H", "7D", "30D", "Lifetime"}`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.CommonUsageStats> common_usage_within_time_range = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setCommonUsageWithinTimeRange($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\V1\CommonUsageStats::class);
+        $this->common_usage_within_time_range = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Favorite count in the source system.
+     *
+     * Generated from protobuf field <code>optional int64 favorite_count = 4;</code>
+     * @return int|string
+     */
+    public function getFavoriteCount()
+    {
+        return isset($this->favorite_count) ? $this->favorite_count : 0;
+    }
+
+    public function hasFavoriteCount()
+    {
+        return isset($this->favorite_count);
+    }
+
+    public function clearFavoriteCount()
+    {
+        unset($this->favorite_count);
+    }
+
+    /**
+     * Favorite count in the source system.
+     *
+     * Generated from protobuf field <code>optional int64 favorite_count = 4;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFavoriteCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->favorite_count = $var;
 
         return $this;
     }

@@ -31,11 +31,6 @@ dest = Path().resolve()
 _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
 
 # fix copyright year
 s.replace(

@@ -28,10 +28,10 @@ use Google\Cloud\Compute\V1\Image;
 use Google\Cloud\Compute\V1\ImagesClient;
 
 /**
- * Returns the latest image that is part of an image family and is not deprecated.
+ * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
  *
  * @param string $family  Name of the image family to search for.
- * @param string $project Project ID for this request.
+ * @param string $project The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
  */
 function get_from_family_sample(string $family, string $project): void
 {

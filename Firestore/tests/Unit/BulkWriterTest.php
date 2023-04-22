@@ -27,11 +27,10 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -39,9 +38,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class BulkWriterTest extends TestCase
 {
-    use AssertIsType;
-    use ExpectException;
-    use ExpectExceptionMessageMatches;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -51,7 +48,7 @@ class BulkWriterTest extends TestCase
     private $connection;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(BulkWriter::class, [
@@ -66,7 +63,7 @@ class BulkWriterTest extends TestCase
 
     public function testBulkwriterOptionsInitialOpsPerSecond()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "initialOpsPerSecond" must be greater than 1/');
         new BulkWriter(
             $this->connection->reveal(),
@@ -78,7 +75,7 @@ class BulkWriterTest extends TestCase
 
     public function testBulkwriterOptionsMaxOpsPerSecond()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "maxOpsPerSecond" must be greater than 1/');
         new BulkWriter(
             $this->connection->reveal(),
@@ -90,7 +87,7 @@ class BulkWriterTest extends TestCase
 
     public function testBulkwriterOptions()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/\'maxOpsPerSecond\' cannot be less than \'initialOpsPerSecond\'/');
         new BulkWriter(
             $this->connection->reveal(),
@@ -401,7 +398,7 @@ class BulkWriterTest extends TestCase
      */
     public function testUpdateBadInput($data)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->batch->update(self::DOCUMENT, $data);
     }
@@ -608,7 +605,7 @@ class BulkWriterTest extends TestCase
 
     public function testSentinelsInArray()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->batch->set('name', [
             'foo' => [
@@ -743,7 +740,7 @@ class BulkWriterTest extends TestCase
 
     public function testSentinelCannotContainSentinel()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Document transforms cannot contain/');
         $this->batch->set('name', [
             'foo' => FieldValue::arrayRemove([FieldValue::arrayUnion([])])
@@ -755,7 +752,7 @@ class BulkWriterTest extends TestCase
      */
     public function testSetSentinelsDeleteRequiresMerge($name, $ref)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Delete cannot appear in data unless `$options[\'merge\']` is set.');
 
         $this->batch->set($ref, [
@@ -838,7 +835,7 @@ class BulkWriterTest extends TestCase
 
     public function testWriteUpdateTimePreconditionInvalidType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->batch->delete(self::DOCUMENT, [
             'precondition' => [
@@ -849,7 +846,7 @@ class BulkWriterTest extends TestCase
 
     public function testWritePreconditionMissingStuff()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->batch->delete(self::DOCUMENT, [
             'precondition' => ['foo' => 'bar'],
@@ -858,7 +855,7 @@ class BulkWriterTest extends TestCase
 
     public function testCreateAfterClosed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -870,7 +867,7 @@ class BulkWriterTest extends TestCase
 
     public function testUpdateAfterClosed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -885,7 +882,7 @@ class BulkWriterTest extends TestCase
 
     public function testSetAfterClosed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -897,7 +894,7 @@ class BulkWriterTest extends TestCase
 
     public function testDeleteAfterClosed()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -907,7 +904,7 @@ class BulkWriterTest extends TestCase
 
     public function testDuplicateCreate()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -921,7 +918,7 @@ class BulkWriterTest extends TestCase
 
     public function testDuplicateUpdate()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -941,7 +938,7 @@ class BulkWriterTest extends TestCase
 
     public function testDuplicateSet()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -955,7 +952,7 @@ class BulkWriterTest extends TestCase
 
     public function testDuplicateDelete()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
         $this->connection->batchWrite(Argument::any())
             ->shouldNotBeCalled();
@@ -965,7 +962,7 @@ class BulkWriterTest extends TestCase
 
     public function testUpdateEmptyFails()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->batch->update(self::DOCUMENT, []);
     }

@@ -23,6 +23,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'CreateSnapshot' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Filestore\V1\Snapshot',
+                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'DeleteBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -34,6 +44,16 @@ return [
                 ],
             ],
             'DeleteInstance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'DeleteSnapshot' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
@@ -73,6 +93,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'UpdateSnapshot' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Filestore\V1\Snapshot',
+                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListBackups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -91,6 +121,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getInstances',
+                ],
+            ],
+            'ListSnapshots' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSnapshots',
                 ],
             ],
         ],

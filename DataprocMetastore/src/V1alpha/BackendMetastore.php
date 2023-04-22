@@ -19,12 +19,10 @@ class BackendMetastore extends \Google\Protobuf\Internal\Message
      * The relative resource name of the metastore that is being federated.
      * The formats of the relative resource names for the currently supported
      * metastores are listed below:
-     * * Dataplex
-     *   * `projects/{project_id}/locations/{location}/lakes/{lake_id}`
      * * BigQuery
-     *   * `projects/{project_id}`
+     *     * `projects/{project_id}`
      * * Dataproc Metastore
-     *   * `projects/{project_id}/locations/{location}/services/{service_id}`
+     *     * `projects/{project_id}/locations/{location}/services/{service_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -46,12 +44,10 @@ class BackendMetastore extends \Google\Protobuf\Internal\Message
      *           The relative resource name of the metastore that is being federated.
      *           The formats of the relative resource names for the currently supported
      *           metastores are listed below:
-     *           * Dataplex
-     *             * `projects/{project_id}/locations/{location}/lakes/{lake_id}`
      *           * BigQuery
-     *             * `projects/{project_id}`
+     *               * `projects/{project_id}`
      *           * Dataproc Metastore
-     *             * `projects/{project_id}/locations/{location}/services/{service_id}`
+     *               * `projects/{project_id}/locations/{location}/services/{service_id}`
      *     @type int $metastore_type
      *           The type of the backend metastore.
      * }
@@ -65,12 +61,10 @@ class BackendMetastore extends \Google\Protobuf\Internal\Message
      * The relative resource name of the metastore that is being federated.
      * The formats of the relative resource names for the currently supported
      * metastores are listed below:
-     * * Dataplex
-     *   * `projects/{project_id}/locations/{location}/lakes/{lake_id}`
      * * BigQuery
-     *   * `projects/{project_id}`
+     *     * `projects/{project_id}`
      * * Dataproc Metastore
-     *   * `projects/{project_id}/locations/{location}/services/{service_id}`
+     *     * `projects/{project_id}/locations/{location}/services/{service_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -84,12 +78,10 @@ class BackendMetastore extends \Google\Protobuf\Internal\Message
      * The relative resource name of the metastore that is being federated.
      * The formats of the relative resource names for the currently supported
      * metastores are listed below:
-     * * Dataplex
-     *   * `projects/{project_id}/locations/{location}/lakes/{lake_id}`
      * * BigQuery
-     *   * `projects/{project_id}`
+     *     * `projects/{project_id}`
      * * Dataproc Metastore
-     *   * `projects/{project_id}/locations/{location}/services/{service_id}`
+     *     * `projects/{project_id}/locations/{location}/services/{service_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

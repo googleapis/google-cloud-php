@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Profile to update
+     * Profile to update.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 1;</code>
      */
@@ -38,7 +38,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Profiler\V2\Profile $profile
-     *           Profile to update
+     *           Profile to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Field mask used to specify the fields to be overwritten. Currently only
      *           profile_bytes and labels fields are supported by UpdateProfile, so only
@@ -52,7 +52,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profile to update
+     * Profile to update.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 1;</code>
      * @return \Google\Cloud\Profiler\V2\Profile|null
@@ -73,7 +73,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profile to update
+     * Profile to update.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 1;</code>
      * @param \Google\Cloud\Profiler\V2\Profile $var

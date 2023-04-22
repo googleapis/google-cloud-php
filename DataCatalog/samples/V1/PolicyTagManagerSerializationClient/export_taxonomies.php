@@ -35,7 +35,8 @@ use Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient;
  * This method generates `SerializedTaxonomy` protocol buffers with nested
  * policy tags that can be used as input for `ImportTaxonomies` calls.
  *
- * @param string $formattedParent            Resource name of the project that the exported taxonomies belong to. Please see
+ * @param string $formattedParent            Resource name of the project that the exported taxonomies belong
+ *                                           to. Please see
  *                                           {@see PolicyTagManagerSerializationClient::locationName()} for help formatting this field.
  * @param string $formattedTaxonomiesElement Resource names of the taxonomies to export. Please see
  *                                           {@see PolicyTagManagerSerializationClient::taxonomyName()} for help formatting this field.

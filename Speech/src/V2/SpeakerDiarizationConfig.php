@@ -18,7 +18,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Minimum number of speakers in the conversation. This range gives
      * you more flexibility by allowing the system to automatically determine the
-     * correct number of speakers. If not set, the default value is 2.
+     * correct number of speakers.
      * To fix the number of speakers detected in the audio, set
      * `min_speaker_count` = `max_speaker_count`.
      *
@@ -44,7 +44,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *     @type int $min_speaker_count
      *           Required. Minimum number of speakers in the conversation. This range gives
      *           you more flexibility by allowing the system to automatically determine the
-     *           correct number of speakers. If not set, the default value is 2.
+     *           correct number of speakers.
      *           To fix the number of speakers detected in the audio, set
      *           `min_speaker_count` = `max_speaker_count`.
      *     @type int $max_speaker_count
@@ -62,7 +62,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Minimum number of speakers in the conversation. This range gives
      * you more flexibility by allowing the system to automatically determine the
-     * correct number of speakers. If not set, the default value is 2.
+     * correct number of speakers.
      * To fix the number of speakers detected in the audio, set
      * `min_speaker_count` = `max_speaker_count`.
      *
@@ -77,7 +77,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Minimum number of speakers in the conversation. This range gives
      * you more flexibility by allowing the system to automatically determine the
-     * correct number of speakers. If not set, the default value is 2.
+     * correct number of speakers.
      * To fix the number of speakers detected in the audio, set
      * `min_speaker_count` = `max_speaker_count`.
      *

@@ -28,6 +28,9 @@ use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
+use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 
 /**
  * @group firestore
@@ -36,6 +39,7 @@ use Prophecy\Argument;
 class QueryTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
     const COLLECTION = 'a';
@@ -43,7 +47,7 @@ class QueryTest extends SnippetTestCase
 
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -82,6 +86,76 @@ class QueryTest extends SnippetTestCase
         $snippet->addLocal('query', $query);
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
+    }
+
+    public function testCount()
+    {
+        $query = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => [
+                    [
+                        'collectionId' => self::COLLECTION,
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+              [
+                  'result' => [
+                      'aggregateFields' => [
+                          'count' => ['integerValue' => 1]
+                      ]
+                  ]
+              ]
+          ]));
+
+        $query->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Query::class, 'count');
+        $snippet->addLocal('query', $query);
+        $res = $snippet->invoke('count');
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testAddAggregation()
+    {
+        $query = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => [
+                    [
+                        'collectionId' => self::COLLECTION,
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+              [
+                  'result' => [
+                      'aggregateFields' => [
+                          'count_upto_1' => ['integerValue' => 1]
+                      ]
+                  ]
+              ]
+          ]));
+
+        $query->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Query::class, 'addAggregation');
+        $snippet->addLocal('query', $query);
+        $res = $snippet->invoke('countUpto1');
+        $this->assertEquals(1, $res->returnVal());
     }
 
     public function testSelect()
@@ -142,6 +216,40 @@ class QueryTest extends SnippetTestCase
                     ]
                 ]
             ]
+        ]);
+    }
+
+    public function testWhereWithFilter()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'where', 3);
+        $this->runAndAssert($snippet, 'where', [
+                'compositeFilter' => [
+                    'op' => Operator::PBOR,
+                    'filters' => [
+                        [
+                            'fieldFilter' => [
+                                'field' => [
+                                    'fieldPath' => 'firstName'
+                                ],
+                                'op' => FieldFilterOperator::EQUAL,
+                                'value' => [
+                                    'stringValue' => 'John'
+                                ]
+                            ]
+                        ],
+                        [
+                            'fieldFilter' => [
+                                'field' => [
+                                    'fieldPath' => 'firstName'
+                                ],
+                                'op' => FieldFilterOperator::EQUAL,
+                                'value' => [
+                                    'stringValue' => 'Monica'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
         ]);
     }
 

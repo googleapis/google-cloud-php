@@ -31,12 +31,13 @@ use Google\Protobuf\Timestamp;
  * Acknowledges a pull task.
  *
  * The worker, that is, the entity that
- * [leased][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] this task must call this method
- * to indicate that the work associated with the task has finished.
+ * [leased][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] this task must
+ * call this method to indicate that the work associated with the task has
+ * finished.
  *
  * The worker must acknowledge a task within the
- * [lease_duration][google.cloud.tasks.v2beta2.LeaseTasksRequest.lease_duration] or the lease
- * will expire and the task will become available to be leased
+ * [lease_duration][google.cloud.tasks.v2beta2.LeaseTasksRequest.lease_duration]
+ * or the lease will expire and the task will become available to be leased
  * again. After the task is acknowledged, it will not be returned
  * by a later [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks],
  * [GetTask][google.cloud.tasks.v2beta2.CloudTasks.GetTask], or

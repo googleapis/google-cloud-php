@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetFederationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the metastore federation to retrieve,
-     * in the following form:
+     * Required. The relative resource name of the metastore federation to
+     * retrieve, in the following form:
      * `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,8 +31,8 @@ class GetFederationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The relative resource name of the metastore federation to retrieve,
-     *           in the following form:
+     *           Required. The relative resource name of the metastore federation to
+     *           retrieve, in the following form:
      *           `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      * }
      */
@@ -42,8 +42,8 @@ class GetFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore federation to retrieve,
-     * in the following form:
+     * Required. The relative resource name of the metastore federation to
+     * retrieve, in the following form:
      * `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -55,8 +55,8 @@ class GetFederationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore federation to retrieve,
-     * in the following form:
+     * Required. The relative resource name of the metastore federation to
+     * retrieve, in the following form:
      * `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

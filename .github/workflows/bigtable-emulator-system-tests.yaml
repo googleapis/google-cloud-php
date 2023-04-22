@@ -12,6 +12,8 @@ on:
       - '.github/workflows/bigtable-emulator-system-tests.yaml'
       - '.github/emulator/**'
 name: Run Bigtable System Tests With Emulator
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest

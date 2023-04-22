@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Metadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,7 +30,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\CloudRunMetadata $cloud_run
-     *           Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
+     *           Output only. The name of the Cloud Run Service that is associated with a
+     *           `Rollout`.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\CloudRunMetadata|null
@@ -59,7 +62,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\CloudRunMetadata $var

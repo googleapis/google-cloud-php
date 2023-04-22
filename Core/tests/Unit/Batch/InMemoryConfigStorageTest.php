@@ -21,7 +21,6 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\InMemoryConfigStorage;
 use Google\Cloud\Core\Batch\JobConfig;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -29,8 +28,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class InMemoryConfigStorageTest extends TestCase
 {
-    use ExpectException;
-
     private $items;
 
     public function testSingletonEquality()
@@ -105,7 +102,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testSerializeThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Serialization not supported');
 
         $configStorage = InMemoryConfigStorage::getInstance();
@@ -114,7 +111,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testUnserializeThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Serialization not supported');
 
         $configStorage = InMemoryConfigStorage::getInstance();

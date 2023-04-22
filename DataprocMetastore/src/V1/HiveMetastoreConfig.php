@@ -42,6 +42,19 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.metastore.v1.KerberosConfig kerberos_config = 3;</code>
      */
     private $kerberos_config = null;
+    /**
+     * A mapping of Hive metastore version to the auxiliary version
+     * configuration. When specified, a secondary Hive metastore service is
+     * created along with the primary service. All auxiliary versions must be less
+     * than the service's primary version. The key is the auxiliary service name
+     * and it must match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. This
+     * means that the first character must be a lowercase letter, and all the
+     * following characters must be hyphens, lowercase letters, or digits, except
+     * the last character, which cannot be a hyphen.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.metastore.v1.AuxiliaryVersionConfig> auxiliary_versions = 5;</code>
+     */
+    private $auxiliary_versions;
 
     /**
      * Constructor.
@@ -63,6 +76,15 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      *           method and specify this field's path
      *           (`hive_metastore_config.kerberos_config`) in the request's `update_mask`
      *           while omitting this field from the request's `service`.
+     *     @type array|\Google\Protobuf\Internal\MapField $auxiliary_versions
+     *           A mapping of Hive metastore version to the auxiliary version
+     *           configuration. When specified, a secondary Hive metastore service is
+     *           created along with the primary service. All auxiliary versions must be less
+     *           than the service's primary version. The key is the auxiliary service name
+     *           and it must match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. This
+     *           means that the first character must be a lowercase letter, and all the
+     *           following characters must be hyphens, lowercase letters, or digits, except
+     *           the last character, which cannot be a hyphen.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,6 +192,46 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1\KerberosConfig::class);
         $this->kerberos_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A mapping of Hive metastore version to the auxiliary version
+     * configuration. When specified, a secondary Hive metastore service is
+     * created along with the primary service. All auxiliary versions must be less
+     * than the service's primary version. The key is the auxiliary service name
+     * and it must match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. This
+     * means that the first character must be a lowercase letter, and all the
+     * following characters must be hyphens, lowercase letters, or digits, except
+     * the last character, which cannot be a hyphen.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.metastore.v1.AuxiliaryVersionConfig> auxiliary_versions = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAuxiliaryVersions()
+    {
+        return $this->auxiliary_versions;
+    }
+
+    /**
+     * A mapping of Hive metastore version to the auxiliary version
+     * configuration. When specified, a secondary Hive metastore service is
+     * created along with the primary service. All auxiliary versions must be less
+     * than the service's primary version. The key is the auxiliary service name
+     * and it must match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. This
+     * means that the first character must be a lowercase letter, and all the
+     * following characters must be hyphens, lowercase letters, or digits, except
+     * the last character, which cannot be a hyphen.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.metastore.v1.AuxiliaryVersionConfig> auxiliary_versions = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAuxiliaryVersions($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Metastore\V1\AuxiliaryVersionConfig::class);
+        $this->auxiliary_versions = $arr;
 
         return $this;
     }

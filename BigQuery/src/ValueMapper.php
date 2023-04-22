@@ -357,9 +357,7 @@ class ValueMapper
 
         $parts = explode('.', $value);
         $unixTimestamp = $parts[0];
-        $microSeconds = isset($parts[1])
-            ? $parts[1]
-            : 0;
+        $microSeconds = $parts[1] ?? 0;
 
         $dateTime = new \DateTime("@$unixTimestamp");
 

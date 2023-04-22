@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\Bucket;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageBucketsTest extends StorageTestCase
 {
-    use ExpectException;
-
     public function testListsBuckets()
     {
         $foundBuckets = [];

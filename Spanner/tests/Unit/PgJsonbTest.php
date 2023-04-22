@@ -20,7 +20,9 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -28,6 +30,8 @@ use PHPUnit\Framework\TestCase;
  */
 class PgJsonbTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider validValueProvider
      */
@@ -93,7 +97,7 @@ class PgJsonbTest extends TestCase
      */
     public function testInvalidValues($value)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $obj = new PgJsonb([$value]);
     }

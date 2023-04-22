@@ -34,18 +34,19 @@ use Google\Protobuf\Duration;
  *
  * This method is invoked by the worker to obtain a lease. The
  * worker must acknowledge the task via
- * [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask] after they have
- * performed the work associated with the task.
+ * [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask]
+ * after they have performed the work associated with the task.
  *
- * The [payload][google.cloud.tasks.v2beta2.PullMessage.payload] is intended to store data that
- * the worker needs to perform the work associated with the task. To
- * return the payloads in the [response][google.cloud.tasks.v2beta2.LeaseTasksResponse], set
- * [response_view][google.cloud.tasks.v2beta2.LeaseTasksRequest.response_view] to
- * [FULL][google.cloud.tasks.v2beta2.Task.View.FULL].
+ * The [payload][google.cloud.tasks.v2beta2.PullMessage.payload] is intended
+ * to store data that the worker needs to perform the work associated with the
+ * task. To return the payloads in the
+ * [response][google.cloud.tasks.v2beta2.LeaseTasksResponse], set
+ * [response_view][google.cloud.tasks.v2beta2.LeaseTasksRequest.response_view]
+ * to [FULL][google.cloud.tasks.v2beta2.Task.View.FULL].
  *
- * A maximum of 10 qps of [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks]
- * requests are allowed per
- * queue. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
+ * A maximum of 10 qps of
+ * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] requests are
+ * allowed per queue. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
  * is returned when this limit is
  * exceeded. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
  * is also returned when

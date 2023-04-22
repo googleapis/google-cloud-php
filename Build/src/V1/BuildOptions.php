@@ -38,7 +38,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -123,6 +123,12 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 14;</code>
      */
     private $volumes;
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_logs_bucket_behavior = 0;
 
     /**
      * Constructor.
@@ -141,7 +147,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           "disk free"; some of the space will be used by the operating system and
      *           build utilities. Also note that this is the minimum disk size that will be
      *           allocated for the build -- the build may run with a larger disk than
-     *           requested. At present, the maximum disk size is 1000GB; builds that request
+     *           requested. At present, the maximum disk size is 2000GB; builds that request
      *           more than the maximum are rejected with an error.
      *     @type int $substitution_option
      *           Option to specify behavior when there is an error in the substitution
@@ -185,6 +191,8 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           defined a build step.
      *           Using a global volume in a build with only one step is not valid as
      *           it is indicative of a build request with an incorrect configuration.
+     *     @type int $default_logs_bucket_behavior
+     *           Optional. Option to specify how default logs buckets are setup.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,7 +283,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -291,7 +299,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -598,6 +606,32 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Volume::class);
         $this->volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultLogsBucketBehavior()
+    {
+        return $this->default_logs_bucket_behavior;
+    }
+
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultLogsBucketBehavior($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\BuildOptions\DefaultLogsBucketBehavior::class);
+        $this->default_logs_bucket_behavior = $var;
 
         return $this;
     }

@@ -12,6 +12,8 @@ on:
       - 'Datastore/**'
       - '.github/workflows/datastore-emulator-system-tests.yaml'
       - '.github/emulator/**'
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
