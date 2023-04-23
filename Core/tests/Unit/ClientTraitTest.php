@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Exception;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -329,8 +330,11 @@ class ClientTraitTest extends TestCase
 
     public function testDetectProjectIdWithKeyfileMissingProjectId()
     {
-        $this->expectNotice();
-        $this->expectNoticeMessage('A keyfile was given');
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_USER_NOTICE);
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('A keyfile was given');
 
         $trait = TestHelpers::impl(ClientTrait::class);
 

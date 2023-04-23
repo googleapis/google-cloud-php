@@ -36,11 +36,11 @@ use Google\Rpc\Status;
  * To register other clusters, follow the instructions at
  * https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
  *
- * @param string $formattedParent The parent (project and location) where the Memberships will be created.
- *                                Specified in the format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent The parent (project and location) where the Memberships will be
+ *                                created. Specified in the format `projects/&#42;/locations/*`. Please see
  *                                {@see GkeHubMembershipServiceClient::locationName()} for help formatting this field.
- * @param string $membershipId    Client chosen ID for the membership. `membership_id` must be a valid RFC
- *                                1123 compliant DNS label:
+ * @param string $membershipId    Client chosen ID for the membership. `membership_id` must be a
+ *                                valid RFC 1123 compliant DNS label:
  *
  *                                1. At most 63 characters in length
  *                                2. It must consist of lower case alphanumeric characters or `-`
