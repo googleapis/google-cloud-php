@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Exception;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Bucket;
@@ -207,7 +208,10 @@ class StreamWrapperTest extends TestCase
      */
     public function testStatOnNonExistentFile()
     {
-        $this->expectWarning();
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_WARNING);
+        $this->expectException(Exception::class);
 
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);

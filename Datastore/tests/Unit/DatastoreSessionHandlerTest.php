@@ -120,7 +120,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testReadWithException()
     {
-        $this->expectWarning();
+        $this->expectWarningUsingErrorhandler();
 
         $this->datastore->transaction(['databaseId' => ''])
             ->shouldBeCalledTimes(1)
@@ -212,7 +212,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testWriteWithException()
     {
-        $this->expectWarning();
+        $this->expectWarningUsingErrorhandler();
 
         $data = 'sessiondata';
         $key = new Key('projectid');
@@ -403,7 +403,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testDestroyWithException()
     {
-        $this->expectWarning();
+        $this->expectWarningUsingErrorhandler();
 
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -522,7 +522,7 @@ class DatastoreSessionHandlerTest extends TestCase
 
     public function testGcWithException()
     {
-        $this->expectWarning();
+        $this->expectWarningUsingErrorhandler();
 
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
@@ -594,5 +594,13 @@ class DatastoreSessionHandlerTest extends TestCase
         $ret = $datastoreSessionHandler->gc(100);
 
         $this->assertFalse($ret);
+    }
+
+    private function expectWarningUsingErrorhandler()
+    {
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_USER_WARNING);
+        $this->expectException(Exception::class);
     }
 }
