@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Exception;
 use Google\Cloud\Core\CallTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +35,10 @@ class CallTraitTest extends TestCase
 
     public function testErr()
     {
-        $this->expectError();
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_USER_ERROR);
+        $this->expectException(Exception::class);
 
         $t = new CallTraitStub(['foo' => 'bar']);
 

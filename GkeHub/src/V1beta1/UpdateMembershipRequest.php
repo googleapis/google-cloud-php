@@ -23,8 +23,8 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Mask of fields to update. At least one field path must be specified in this
-     * mask.
+     * Required. Mask of fields to update. At least one field path must be
+     * specified in this mask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -69,8 +69,8 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           Required. The membership resource name in the format:
      *           `projects/[project_id]/locations/global/memberships/[membership_id]`
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Mask of fields to update. At least one field path must be specified in this
-     *           mask.
+     *           Required. Mask of fields to update. At least one field path must be
+     *           specified in this mask.
      *     @type \Google\Cloud\GkeHub\V1beta1\Membership $resource
      *           Required. Only fields specified in update_mask are updated.
      *           If you specify a field in the update_mask but don't specify its value here
@@ -128,8 +128,8 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update. At least one field path must be specified in this
-     * mask.
+     * Required. Mask of fields to update. At least one field path must be
+     * specified in this mask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -150,8 +150,8 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update. At least one field path must be specified in this
-     * mask.
+     * Required. Mask of fields to update. At least one field path must be
+     * specified in this mask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

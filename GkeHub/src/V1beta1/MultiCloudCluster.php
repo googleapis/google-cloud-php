@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class MultiCloudCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
-     * example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
+     * For example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -40,10 +41,11 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_link
-     *           Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
-     *           example:
+     *           Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
+     *           For example:
      *            //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *            //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     *            //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      *     @type bool $cluster_missing
      *           Output only. If cluster_missing is set then it denotes that
      *           API(gkemulticloud.googleapis.com) resource for this GKE Multi-Cloud cluster
@@ -56,10 +58,11 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
-     * example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
+     * For example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -70,10 +73,11 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
-     * example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
+     * For example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
