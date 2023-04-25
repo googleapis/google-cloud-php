@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\ApiCore\AgentHeader;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -31,7 +32,9 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
+use GuzzleHttp\Exception\RequestException;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -416,19 +419,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-                'bucket' => $bucket,
-                'object' => $object,
-                'restOptions' => [
-                    'headers' => [
-                        'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => $key,
-                        'x-goog-encryption-key-sha256' => $hash,
-                    ]
-                ]
-            ])
-            ->willReturn($stream)
-            ->shouldBeCalledTimes(1);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream)->shouldBeCalledTimes(1);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -445,18 +446,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-                'bucket' => $bucket,
-                'object' => $object,
-                'restOptions' => [
-                    'headers' => [
-                        'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => $key,
-                        'x-goog-encryption-key-sha256' => $hash,
-                    ]
-                ]
-            ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -492,11 +492,10 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-            'bucket' => $bucket,
-            'object' => $object,
-        ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object)
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -513,18 +512,17 @@ class StorageObjectTest extends TestCase
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Utils::streamFor($string = 'abcdefg');
-        $this->connection->downloadObject([
-            'bucket' => $bucket,
-            'object' => $object,
-            'restOptions' => [
-                'headers' => [
-                    'x-goog-encryption-algorithm' => 'AES256',
-                    'x-goog-encryption-key' => $key,
-                    'x-goog-encryption-key-sha256' => $hash
-                ]
-            ]
-        ])
-            ->willReturn($stream);
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', $bucket),
+            Argument::withEntry('object', $object),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withEntry('x-goog-encryption-algorithm', 'AES256'),
+                    Argument::withEntry('x-goog-encryption-key', $key),
+                    Argument::withEntry('x-goog-encryption-key-sha256', $hash)
+                ))
+            ))
+        ))->willReturn($stream);
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
@@ -570,6 +568,71 @@ class StorageObjectTest extends TestCase
 
         $this->assertInstanceOf(StreamInterface::class, $result);
         $this->assertEquals($string, $result);
+    }
+
+    /**
+     * This tests whether the $arguments passed to the callbacks for header
+     * updation is properly done when those callbacks are invoked in the
+     * ExponentialBackoff::execute() method.
+     *
+     * @dataProvider provideDownloadAsStreamRetryHeaders
+     */
+    public function testDownloadAsStreamRetryHeaders($expectedRange, $options)
+    {
+        $attempt = 0;
+        $responses = [
+            1 => new Response(200, [], 'ten-bytes-'),
+            2 => new Response(200, [], 'twenty-bytes--------'),
+        ];
+        $actualRequest = null;
+        $actualOptions = null;
+
+        $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, &$actualOptions, $responses) {
+            if (++$attempt < 3) {
+                throw RequestException::create($request, $responses[$attempt]);
+            }
+            $actualRequest = $request;
+            $actualOptions = $options;
+            return new Response(200, [], 'ok');
+        };
+
+        $rest = new Rest([
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        $object = new StorageObject($rest, 'object', 'bucket');
+        $stream = $object->downloadAsStream($options);
+
+        $this->assertIsArray($actualOptions);
+        $this->assertArrayHasKey('headers', $actualOptions);
+        $this->assertArrayHasKey('Range', $actualOptions['headers']);
+        $this->assertEquals($expectedRange, $actualOptions['headers']['Range']);
+
+        $this->assertNotNull($actualRequest);
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(AgentHeader::AGENT_HEADER_KEY));
+        $agentHeaderParts = explode(' ', $agentHeader);
+        $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
+        $this->assertEquals('gccl-attempt-count/3', $agentHeaderParts[3]);
+
+        // assert the resulting stream looks like we'd expect
+        $this->assertEquals('ten-bytes-twenty-bytes--------ok', (string) $stream);
+    }
+
+    public function provideDownloadAsStreamRetryHeaders()
+    {
+        return [
+            ['bytes=30-', []],
+            ['bytes=40-', ['restOptions' => ['headers' => ['Range' => 'bytes=10-']]]],
+            ['bytes=80-100', ['restOptions' => ['headers' => ['Range' => 'bytes=50-100']]]],
+            ['bytes=30-20', ['restOptions' => ['headers' => ['Range' => 'bytes=0-20']]]],
+        ];
     }
 
     public function testGetsInfo()

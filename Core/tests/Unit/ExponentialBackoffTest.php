@@ -160,4 +160,37 @@ class ExponentialBackoffTest extends TestCase
             [10, 60000000, 60000000]
         ];
     }
+
+    /**
+     * Tests whether `retryListener()` callback is
+     * properly invoked when exception occurs in the request being made.
+     */
+    public function testRetryListener()
+    {
+        $args = ['foo' => 'bar'];
+        $retryListener = function (
+            $ex,
+            $retryAttempt,
+            $arguments
+        ) {
+            self::assertEquals(0, $retryAttempt);
+            self::assertEquals('bar', $arguments[0]['foo']);
+        };
+
+        // Setting $retries to 0 so that retry doesn't happens after first
+        // failure.
+        $backoff = new ExponentialBackoff(0, null, $retryListener);
+        try {
+            $backoff->execute(
+                function () {
+                    throw new \Exception('Intentionally failing request');
+                },
+                [$args]
+            );
+        } catch (\Exception $err) {
+            // Do nothing.
+            // Catching the intentional failing call being made above:
+            // "Intentionally failing request"
+        }
+    }
 }
