@@ -534,7 +534,10 @@
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Grafeas\\": "Grafeas/src"
-        }
+        },
+        "files": [
+            "BigQueryStorage/metadata/descriptor_fix.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
