@@ -95,6 +95,11 @@
                                 "createAudience"
                             ]
                         },
+                        "CreateChannelGroup": {
+                            "methods": [
+                                "createChannelGroup"
+                            ]
+                        },
                         "CreateConnectedSiteTag": {
                             "methods": [
                                 "createConnectedSiteTag"
@@ -175,6 +180,11 @@
                                 "deleteAccount"
                             ]
                         },
+                        "DeleteChannelGroup": {
+                            "methods": [
+                                "deleteChannelGroup"
+                            ]
+                        },
                         "DeleteConnectedSiteTag": {
                             "methods": [
                                 "deleteConnectedSiteTag"
@@ -240,6 +250,11 @@
                                 "fetchAutomatedGa4ConfigurationOptOut"
                             ]
                         },
+                        "FetchConnectedGa4Property": {
+                            "methods": [
+                                "fetchConnectedGa4Property"
+                            ]
+                        },
                         "GetAccessBinding": {
                             "methods": [
                                 "getAccessBinding"
@@ -263,6 +278,11 @@
                         "GetBigQueryLink": {
                             "methods": [
                                 "getBigQueryLink"
+                            ]
+                        },
+                        "GetChannelGroup": {
+                            "methods": [
+                                "getChannelGroup"
                             ]
                         },
                         "GetConversionEvent": {
@@ -368,6 +388,11 @@
                         "ListBigQueryLinks": {
                             "methods": [
                                 "listBigQueryLinks"
+                            ]
+                        },
+                        "ListChannelGroups": {
+                            "methods": [
+                                "listChannelGroups"
                             ]
                         },
                         "ListConnectedSiteTags": {
@@ -478,6 +503,11 @@
                         "UpdateAudience": {
                             "methods": [
                                 "updateAudience"
+                            ]
+                        },
+                        "UpdateChannelGroup": {
+                            "methods": [
+                                "updateChannelGroup"
                             ]
                         },
                         "UpdateCustomDimension": {

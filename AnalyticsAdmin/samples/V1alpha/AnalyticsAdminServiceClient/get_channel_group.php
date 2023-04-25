@@ -22,27 +22,27 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetChannelGroup_sync]
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single ExpandedDataSet.
+ * Lookup for a single ChannelGroup.
  *
- * @param string $formattedName The name of the ExpandedDataSet to get.
- *                              Example format: properties/1234/expandedDataSets/5678
- *                              Please see {@see AnalyticsAdminServiceClient::expandedDataSetName()} for help formatting this field.
+ * @param string $formattedName The ChannelGroup to get.
+ *                              Example format: properties/1234/channelGroups/5678
+ *                              Please see {@see AnalyticsAdminServiceClient::channelGroupName()} for help formatting this field.
  */
-function get_expanded_data_set_sample(string $formattedName): void
+function get_channel_group_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var ExpandedDataSet $response */
-        $response = $analyticsAdminServiceClient->getExpandedDataSet($formattedName);
+        /** @var ChannelGroup $response */
+        $response = $analyticsAdminServiceClient->getChannelGroup($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -60,11 +60,8 @@ function get_expanded_data_set_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::expandedDataSetName(
-        '[PROPERTY]',
-        '[EXPANDED_DATA_SET]'
-    );
+    $formattedName = AnalyticsAdminServiceClient::channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
 
-    get_expanded_data_set_sample($formattedName);
+    get_channel_group_sample($formattedName);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetChannelGroup_sync]

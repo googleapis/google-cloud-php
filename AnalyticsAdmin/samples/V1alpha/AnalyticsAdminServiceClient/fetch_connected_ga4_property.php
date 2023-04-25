@@ -22,27 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_FetchConnectedGa4Property_sync]
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single ExpandedDataSet.
+ * Given a specified UA property, looks up the GA4 property connected to it.
+ * Note: this cannot be used with GA4 properties.
  *
- * @param string $formattedName The name of the ExpandedDataSet to get.
- *                              Example format: properties/1234/expandedDataSets/5678
- *                              Please see {@see AnalyticsAdminServiceClient::expandedDataSetName()} for help formatting this field.
+ * @param string $formattedProperty The UA property for which to look up the connected GA4 property.
+ *                                  Note this request uses the
+ *                                  internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+ *                                  Format: properties/{internal_web_property_id}
+ *                                  Example: properties/1234
+ *                                  Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function get_expanded_data_set_sample(string $formattedName): void
+function fetch_connected_ga4_property_sample(string $formattedProperty): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var ExpandedDataSet $response */
-        $response = $analyticsAdminServiceClient->getExpandedDataSet($formattedName);
+        /** @var FetchConnectedGa4PropertyResponse $response */
+        $response = $analyticsAdminServiceClient->fetchConnectedGa4Property($formattedProperty);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -60,11 +64,8 @@ function get_expanded_data_set_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::expandedDataSetName(
-        '[PROPERTY]',
-        '[EXPANDED_DATA_SET]'
-    );
+    $formattedProperty = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
 
-    get_expanded_data_set_sample($formattedName);
+    fetch_connected_ga4_property_sample($formattedProperty);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_FetchConnectedGa4Property_sync]

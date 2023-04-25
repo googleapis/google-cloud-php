@@ -22,28 +22,33 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListChannelGroups_sync]
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
+use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 
 /**
- * Lookup for a single ExpandedDataSet.
+ * Lists ChannelGroups on a property.
  *
- * @param string $formattedName The name of the ExpandedDataSet to get.
- *                              Example format: properties/1234/expandedDataSets/5678
- *                              Please see {@see AnalyticsAdminServiceClient::expandedDataSetName()} for help formatting this field.
+ * @param string $formattedParent The property for which to list ChannelGroups.
+ *                                Example format: properties/1234
+ *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function get_expanded_data_set_sample(string $formattedName): void
+function list_channel_groups_sample(string $formattedParent): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var ExpandedDataSet $response */
-        $response = $analyticsAdminServiceClient->getExpandedDataSet($formattedName);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var PagedListResponse $response */
+        $response = $analyticsAdminServiceClient->listChannelGroups($formattedParent);
+
+        /** @var ChannelGroup $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -60,11 +65,8 @@ function get_expanded_data_set_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::expandedDataSetName(
-        '[PROPERTY]',
-        '[EXPANDED_DATA_SET]'
-    );
+    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
 
-    get_expanded_data_set_sample($formattedName);
+    list_channel_groups_sample($formattedParent);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetExpandedDataSet_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListChannelGroups_sync]

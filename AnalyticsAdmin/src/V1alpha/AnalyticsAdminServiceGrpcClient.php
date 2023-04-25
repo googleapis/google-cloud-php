@@ -1592,6 +1592,81 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lookup for a single ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\GetChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetChannelGroup(\Google\Analytics\Admin\V1alpha\GetChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists ChannelGroups on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListChannelGroups(\Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListChannelGroups',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateChannelGroup(\Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateChannelGroup(\Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a ChannelGroup on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteChannelGroup(\Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteChannelGroup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Sets the opt out status for the automated GA4 setup process for a UA
      * property.
      * Note: this has no effect on GA4 property.
@@ -1736,6 +1811,22 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListConnectedSiteTags',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Given a specified UA property, looks up the GA4 property connected to it.
+     * Note: this cannot be used with GA4 properties.
+     * @param \Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function FetchConnectedGa4Property(\Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchConnectedGa4Property',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse', 'decode'],
         $metadata, $options);
     }
 
