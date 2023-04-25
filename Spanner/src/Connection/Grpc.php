@@ -1019,7 +1019,7 @@ class Grpc implements ConnectionInterface
                 ? PBReadOnly::class
                 : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new $readOnlyClass(),
+                new $readOnlyClass(), // @phpstan-ignore-line
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);
