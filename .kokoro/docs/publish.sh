@@ -22,7 +22,7 @@ if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
 fi
 
-find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex '[A-Z].*' -exec dirname {} \; | while read DIR
+find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex "$PROJECT_DIR/[A-Z].*" -exec dirname {} \; | while read DIR
 do
     COMPONENT=$(basename $DIR)
     VERSION=$(cat $DIR/VERSION)
