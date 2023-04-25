@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # determine staging bucket (e.g. "docs-staging-v2-dev")
 if [ "$#" -eq 1 ]; then
     STAGING_BUCKET=$1
