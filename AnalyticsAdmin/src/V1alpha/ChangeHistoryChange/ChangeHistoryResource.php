@@ -58,6 +58,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of AttributionSettings resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expanded_data_set
      *           A snapshot of an ExpandedDataSet resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ChannelGroup $channel_group
+     *           A snapshot of a ChannelGroup resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\BigQueryLink $bigquery_link
      *           A snapshot of a BigQuery link resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $enhanced_measurement_settings
@@ -565,6 +567,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ExpandedDataSet::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a ChannelGroup resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroup channel_group = 22;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ChannelGroup|null
+     */
+    public function getChannelGroup()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasChannelGroup()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * A snapshot of a ChannelGroup resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroup channel_group = 22;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ChannelGroup $var
+     * @return $this
+     */
+    public function setChannelGroup($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ChannelGroup::class);
+        $this->writeOneof(22, $var);
 
         return $this;
     }

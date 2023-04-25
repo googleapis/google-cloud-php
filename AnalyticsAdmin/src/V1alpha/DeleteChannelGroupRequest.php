@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for GetExpandedDataSet RPC.
+ * Request message for DeleteChannelGroup RPC.
  *
- * Generated from protobuf message <code>google.analytics.admin.v1alpha.GetExpandedDataSetRequest</code>
+ * Generated from protobuf message <code>google.analytics.admin.v1alpha.DeleteChannelGroupRequest</code>
  */
-class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
+class DeleteChannelGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the ExpandedDataSet to get.
-     * Example format: properties/1234/expandedDataSets/5678
+     * Required. The ChannelGroup to delete.
+     * Example format: properties/1234/channelGroups/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the ExpandedDataSet to get.
-     *           Example format: properties/1234/expandedDataSets/5678
+     *           Required. The ChannelGroup to delete.
+     *           Example format: properties/1234/channelGroups/5678
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the ExpandedDataSet to get.
-     * Example format: properties/1234/expandedDataSets/5678
+     * Required. The ChannelGroup to delete.
+     * Example format: properties/1234/channelGroups/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +52,8 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the ExpandedDataSet to get.
-     * Example format: properties/1234/expandedDataSets/5678
+     * Required. The ChannelGroup to delete.
+     * Example format: properties/1234/channelGroups/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

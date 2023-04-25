@@ -16,6 +16,7 @@ class AnalyticsAdmin
         }
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\AccessReport::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\Audience::initOnce();
+        \GPBMetadata\Google\Analytics\Admin\V1Alpha\ChannelGroup::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\ExpandedDataSet::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\Resources::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
@@ -27,8 +28,8 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©ﬁ
-4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
+˝Ô
+4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
 
@@ -466,6 +467,26 @@ page_token (	"}
 page_token (	"Ñ
 ListExpandedDataSetsResponseK
 expanded_data_sets (2/.google.analytics.admin.v1alpha.ExpandedDataSet
+next_page_token (	"©
+CreateChannelGroupRequestB
+parent (	B2‡A˙A,*analyticsadmin.googleapis.com/ChannelGroupH
+channel_group (2,.google.analytics.admin.v1alpha.ChannelGroupB‡A"õ
+UpdateChannelGroupRequestH
+channel_group (2,.google.analytics.admin.v1alpha.ChannelGroupB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"]
+DeleteChannelGroupRequest@
+name (	B2‡A˙A,
+*analyticsadmin.googleapis.com/ChannelGroup"Z
+GetChannelGroupRequest@
+name (	B2‡A˙A,
+*analyticsadmin.googleapis.com/ChannelGroup"Ö
+ListChannelGroupsRequestB
+parent (	B2‡A˙A,*analyticsadmin.googleapis.com/ChannelGroup
+	page_size (
+
+page_token (	"z
+ListChannelGroupsResponseD
+channel_groups (2,.google.analytics.admin.v1alpha.ChannelGroup
 next_page_token (	"S
 )SetAutomatedGa4ConfigurationOptOutRequest
 property (	B‡A
@@ -502,7 +523,13 @@ page_token (	"z
 ListConnectedSiteTagsRequest
 property (	"n
 ListConnectedSiteTagsResponseM
-connected_site_tags (20.google.analytics.admin.v1alpha.ConnectedSiteTag2ê¬
+connected_site_tags (20.google.analytics.admin.v1alpha.ConnectedSiteTag"d
+ FetchConnectedGa4PropertyRequest@
+property (	B.‡A˙A(
+&analyticsadmin.googleapis.com/Property"b
+!FetchConnectedGa4PropertyResponse=
+property (	B+˙A(
+&analyticsadmin.googleapis.com/Property2›À
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -602,7 +629,12 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 ListExpandedDataSets;.google.analytics.admin.v1alpha.ListExpandedDataSetsRequest<.google.analytics.admin.v1alpha.ListExpandedDataSetsResponse"@Ç”‰ì1//v1alpha/{parent=properties/*}/expandedDataSets⁄AparentÌ
 CreateExpandedDataSet<.google.analytics.admin.v1alpha.CreateExpandedDataSetRequest/.google.analytics.admin.v1alpha.ExpandedDataSet"eÇ”‰ìD"//v1alpha/{parent=properties/*}/expandedDataSets:expanded_data_set⁄Aparent,expanded_data_setÑ
 UpdateExpandedDataSet<.google.analytics.admin.v1alpha.UpdateExpandedDataSetRequest/.google.analytics.admin.v1alpha.ExpandedDataSet"|Ç”‰ìV2A/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}:expanded_data_set⁄Aexpanded_data_set,update_mask≠
-DeleteExpandedDataSet<.google.analytics.admin.v1alpha.DeleteExpandedDataSetRequest.google.protobuf.Empty">Ç”‰ì1*//v1alpha/{name=properties/*/expandedDataSets/*}⁄Aname˛
+DeleteExpandedDataSet<.google.analytics.admin.v1alpha.DeleteExpandedDataSetRequest.google.protobuf.Empty">Ç”‰ì1*//v1alpha/{name=properties/*/expandedDataSets/*}⁄Aname¥
+GetChannelGroup6.google.analytics.admin.v1alpha.GetChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup";Ç”‰ì.,/v1alpha/{name=properties/*/channelGroups/*}⁄Aname«
+ListChannelGroups8.google.analytics.admin.v1alpha.ListChannelGroupsRequest9.google.analytics.admin.v1alpha.ListChannelGroupsResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/channelGroups⁄AparentŸ
+CreateChannelGroup9.google.analytics.admin.v1alpha.CreateChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup"ZÇ”‰ì=",/v1alpha/{parent=properties/*}/channelGroups:channel_group⁄Aparent,channel_groupÏ
+UpdateChannelGroup9.google.analytics.admin.v1alpha.UpdateChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup"mÇ”‰ìK2:/v1alpha/{channel_group.name=properties/*/channelGroups/*}:channel_group⁄Achannel_group,update_mask§
+DeleteChannelGroup9.google.analytics.admin.v1alpha.DeleteChannelGroupRequest.google.protobuf.Empty";Ç”‰ì.*,/v1alpha/{name=properties/*/channelGroups/*}⁄Aname˛
 "SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
 $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*¥
 GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";Ç”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}⁄Aname«
@@ -611,7 +643,8 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 !UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏Ç”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settings⁄A)enhanced_measurement_settings,update_maskŒ
 CreateConnectedSiteTag=.google.analytics.admin.v1alpha.CreateConnectedSiteTagRequest>.google.analytics.admin.v1alpha.CreateConnectedSiteTagResponse"5Ç”‰ì/"*/v1alpha/properties:createConnectedSiteTag:*¶
 DeleteConnectedSiteTag=.google.analytics.admin.v1alpha.DeleteConnectedSiteTagRequest.google.protobuf.Empty"5Ç”‰ì/"*/v1alpha/properties:deleteConnectedSiteTag:* 
-ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*◊
+FetchConnectedGa4Property@.google.analytics.admin.v1alpha.FetchConnectedGa4PropertyRequestA.google.analytics.admin.v1alpha.FetchConnectedGa4PropertyResponse"5Ç”‰ì/-/v1alpha/properties:fetchConnectedGa4Property¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 

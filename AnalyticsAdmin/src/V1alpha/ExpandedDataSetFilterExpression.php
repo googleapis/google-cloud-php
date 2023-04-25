@@ -29,7 +29,7 @@ class ExpandedDataSetFilterExpression extends \Google\Protobuf\Internal\Message
      *           dimension_filter. This must be set for the top level
      *           ExpandedDataSetFilterExpression.
      *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression $not_expression
-     *           A filter expression to be NOT'ed (i.e., inverted, complemented). It
+     *           A filter expression to be NOT'ed (that is, inverted, complemented). It
      *           must include a dimension_filter. This cannot be set on the
      *           top level ExpandedDataSetFilterExpression.
      *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilter $filter
@@ -80,7 +80,7 @@ class ExpandedDataSetFilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It
+     * A filter expression to be NOT'ed (that is, inverted, complemented). It
      * must include a dimension_filter. This cannot be set on the
      * top level ExpandedDataSetFilterExpression.
      *
@@ -98,7 +98,7 @@ class ExpandedDataSetFilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It
+     * A filter expression to be NOT'ed (that is, inverted, complemented). It
      * must include a dimension_filter. This cannot be set on the
      * top level ExpandedDataSetFilterExpression.
      *
