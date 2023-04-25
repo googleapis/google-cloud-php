@@ -16,6 +16,17 @@ return [
                     ],
                 ],
             ],
+            'ReadRows' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{read_stream=projects/*/locations/*/sessions/*/streams/*}',
+                'placeholders' => [
+                    'read_stream' => [
+                        'getters' => [
+                            'getReadStream',
+                        ],
+                    ],
+                ],
+            ],
             'SplitReadStream' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/sessions/*/streams/*}',
