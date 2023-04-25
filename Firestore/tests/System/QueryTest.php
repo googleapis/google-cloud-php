@@ -174,6 +174,77 @@ class QueryTest extends FirestoreTestCase
         $this->assertContains($doc2->id(), $doc_ids);
     }
 
+    public function testWhereNotInArray()
+    {
+        $name = $this->query->name();
+        $doc1 = $this->insertDoc([
+            'foos' => ['foo', 'bar'],
+        ]);
+        $doc2 = $this->insertDoc([
+            'foos' => ['foo'],
+        ]);
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo'], ['foo', 'bar']])
+            ->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo', 'bar']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+            ->where(FieldPath::documentId(), 'not_in', [$doc1->id(), $doc2->id()])
+            ->documents()
+            ->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(FieldPath::documentId(), 'not_in', ['non-existent-id'])
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo'], ['foo', 'bar']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo', 'bar']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::field(FieldPath::documentId(), 'not_in', [$doc1->id(), $doc2->id()]))
+            ->documents()
+            ->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::field(FieldPath::documentId(), 'not_in', ['non-existent-id']))
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+    }
+
     public function testWhereWithCompositeFilter()
     {
         $name = $this->query->name();
