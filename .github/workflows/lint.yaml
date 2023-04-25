@@ -31,7 +31,9 @@ jobs:
       with:
         php-version: '8.1'
     - name: "Install dependencies"
-      run: composer  --no-interaction --no-ansi --no-progress update -d dev
+      run: |
+        composer --no-interaction --no-ansi --no-progress update
+        composer --no-interaction --no-ansi --no-progress update -d dev
     - name: Run Static Analysis
       run: |
         dev/sh/static-analysis
