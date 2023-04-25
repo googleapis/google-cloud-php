@@ -101,6 +101,7 @@ class Query
         'array-contains' => FieldFilterOperator::ARRAY_CONTAINS,
         'array-contains-any' => FieldFilterOperator::ARRAY_CONTAINS_ANY,
         'in' => FieldFilterOperator::IN,
+        'not_in' => FieldFilterOperator::NOT_IN,
     ];
 
     private $allowedDirections = [
@@ -1024,7 +1025,7 @@ class Query
         }
 
         if ($escapedPathString === self::DOCUMENT_ID) {
-            if ($operator === FieldFilterOperator::IN) {
+            if ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN) {
                 $value = array_map(function ($value) use ($basePath) {
                     return $this->createDocumentReference($basePath, $value);
                 }, (array) $value);
@@ -1051,7 +1052,7 @@ class Query
                 ]
             ];
         } else {
-            $encodedValue = $operator === FieldFilterOperator::IN
+            $encodedValue = ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN)
                 ? $this->valueMapper->encodeMultiValue((array)$value)
                 : $this->valueMapper->encodeValue($value);
 
