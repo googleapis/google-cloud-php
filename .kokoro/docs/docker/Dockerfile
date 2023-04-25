@@ -1,5 +1,6 @@
 FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
 ENV PHP_DIR=/opt/php80
+ENV PHP_VERSION=8.0.28
 ENV PHP_SRC_DIR=/usr/local/src/php80-build
 ENV PATH=${PATH}:/usr/local/bin:${PHP_DIR}/bin
 
@@ -38,10 +39,10 @@ RUN apt purge -y php7.0-common
 RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
     mkdir -p ${PHP_DIR} ${PHP_SRC_DIR} ${PHP_DIR}/lib/conf.d && \
     cd ${PHP_SRC_DIR} && \
-    wget http://us1.php.net/get/php-8.0.1.tar.bz2/from/this/mirror \
-         -O php-8.0.1.tar.bz2 && \
-    tar jxf php-8.0.1.tar.bz2 && \
-    cd php-8.0.1 && \
+    wget http://us1.php.net/get/php-$PHP_VERSION.tar.bz2/from/this/mirror \
+         -O php-$PHP_VERSION.tar.bz2 && \
+    tar jxf php-$PHP_VERSION.tar.bz2 && \
+    cd php-$PHP_VERSION && \
     ./configure \
         --prefix=${PHP_DIR} \
         --with-config-file-scan-dir=${PHP_DIR}/lib/conf.d \
