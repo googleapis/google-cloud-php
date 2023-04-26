@@ -1,5 +1,131 @@
 # Changelog
 
+## 0.203.0
+
+<details><summary>google/analytics-admin 0.12.0</summary>
+
+
+
+### Features
+
+* Add `ChannelGroupFilter`, `ChannelGroupFilterExpression`, `ChannelGroupFilterExpressionList`, `GroupingRule`, `ChannelGroup` types to the Admin API v1alpha ([4f4c409](https://github.com/googleapis/google-cloud-php/commit/4f4c40908ce38e1081dc26c7e8e5be0fcc4eeeca))
+* Add `FetchConnectedGa4Property` method to the Admin API v1alpha ([#6109](https://github.com/googleapis/google-cloud-php/issues/6109)) ([4f4c409](https://github.com/googleapis/google-cloud-php/commit/4f4c40908ce38e1081dc26c7e8e5be0fcc4eeeca))
+* Add `GetChannelGroup`, `ListChannelGroups`, `CreateChannelGroup`, `UpdateChannelGroup` methods to the Admin API v1alpha ([4f4c409](https://github.com/googleapis/google-cloud-php/commit/4f4c40908ce38e1081dc26c7e8e5be0fcc4eeeca))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.3.0</summary>
+
+
+
+### Features
+
+* Add default_value_expression to TableFieldSchema ([#5131](https://github.com/googleapis/google-cloud-php/issues/5131)) ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Add fields to eventually contain row level errors ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Add trace_id for Read API ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Deprecate format specific `row_count` field in Read API ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Expose additional StorageError enum values ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Update default timeout/retry information ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Update parent annotation for BatchCommitWriteStreamsRequest ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+
+
+### Bug Fixes
+
+* **BigQueryStorage:** Add internal descriptor override ([#5957](https://github.com/googleapis/google-cloud-php/issues/5957)) ([b354020](https://github.com/googleapis/google-cloud-php/commit/b3540203b6b7295cf2491912208e06e16fc3fec8))
+* Modify client lib retry policy for CreateWriteStream with longer backoff, more error code and longer overall time ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Remove bigquery.readonly auth scope ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+
+
+### Documentation
+
+* Clarify size limitations for AppendRowsRequest ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+* Improve documentation for write client ([2fb00be](https://github.com/googleapis/google-cloud-php/commit/2fb00bee1a7d419b1caeaa5b4e55ca0bb4ecdf0e))
+
+</details>
+
+<details><summary>google/cloud-container 1.12.1</summary>
+
+
+
+### Documentation
+
+* Minor formatting in docstring ([#6102](https://github.com/googleapis/google-cloud-php/issues/6102)) ([fd6d686](https://github.com/googleapis/google-cloud-php/commit/fd6d686ee4e1fdea14af67c1661ae00cc113fb8d))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.14</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.7.0 ([#6107](https://github.com/googleapis/google-cloud-php/issues/6107)) ([aff65d8](https://github.com/googleapis/google-cloud-php/commit/aff65d8f8123bab562a4fbcfd4b920ac8e3a12cd))
+
+</details>
+
+<details><summary>google/cloud-core 1.51.0</summary>
+
+
+
+### Features
+
+* **Storage:** add contextual retries ([#5637](https://github.com/googleapis/google-cloud-php/issues/5637)) ([a8211f2](https://github.com/googleapis/google-cloud-php/commit/a8211f24fcb975706e2075fd6d2367f6990543b5))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.21.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.31.0</summary>
+
+
+
+### Features
+
+* Add bloom filter related proto fields (only in the preview API surface) ([#6113](https://github.com/googleapis/google-cloud-php/issues/6113)) ([e78f568](https://github.com/googleapis/google-cloud-php/commit/e78f5688d054ae395eaa8cb794696a3a28be8cc8))
+* **Firestore:** Add query operator NOT_IN ([#6111](https://github.com/googleapis/google-cloud-php/issues/6111)) ([fa1e622](https://github.com/googleapis/google-cloud-php/commit/fa1e622313758f22ab6545f241fe8669cd017968))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.1.0</summary>
+
+
+
+### Features
+
+* Add airflow_byoid_uri field to Cloud Composer API ([#6114](https://github.com/googleapis/google-cloud-php/issues/6114)) ([fbfeeea](https://github.com/googleapis/google-cloud-php/commit/fbfeeea683785fde3b46eb2984e066ef14806192))
+
+</details>
+
+<details><summary>google/cloud-storage 1.31.0</summary>
+
+
+
+### Features
+
+* **Storage:** add contextual retries ([#5637](https://github.com/googleapis/google-cloud-php/issues/5637)) ([a8211f2](https://github.com/googleapis/google-cloud-php/commit/a8211f24fcb975706e2075fd6d2367f6990543b5))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce StorageInsights  ([#6108](https://github.com/googleapis/google-cloud-php/issues/6108)) ([c392e8c](https://github.com/googleapis/google-cloud-php/commit/c392e8c81a597ffc28be3a5205e78840ba180f48))
+
+</details>
+
+<details><summary>google/cloud-vision 1.6.7</summary>
+
+
+
+</details>
+
 ## 0.202.0
 
 <details><summary>google/cloud-access-approval 1.0.4</summary>
