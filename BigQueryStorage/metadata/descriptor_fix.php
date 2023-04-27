@@ -37,7 +37,7 @@ class DescriptorFix
           return;
         }
 
-        if (method_exists($pool, 'addMessage')) {
+        if ($pool instanceof \Google\Protobuf\Internal\DescriptorPool) {
             // add a no-op reference for "google.protobuf.DescriptorProto"
             $pool->addMessage('google.protobuf.DescriptorProto', \Google\Protobuf\Internal\Message::class)->finalizeToPool();
         }
