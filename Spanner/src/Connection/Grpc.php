@@ -1607,9 +1607,9 @@ class Grpc implements ConnectionInterface
         $directedReadOptions = [];
         if (!empty($args['includeReplicas'])) {
             $includeReplicas = [
-                'auto_failover_disabled' => !($args['includeReplicas']['failover'] ?? True)
+                'auto_failover_disabled' => !($args['includeReplicas']['failover'] ?? true)
             ];
-            unset ($args['includeReplicas']['failover']);
+            unset($args['includeReplicas']['failover']);
             $includeReplicas = $this->serializer->decodeMessage(
                 new IncludeReplicas,
                 $this->createReplicaSelections($args, 'includeReplicas')

@@ -138,13 +138,15 @@ class DatabaseTest extends TestCase
         $this->databaseWithIncludeReplicas = TestHelpers::stub(
             Database::class,
             $args,
-            $props);
+            $props
+        );
         $args[10] = ['excludeReplicas' => ['us-central1']];
         $this->databaseWithExcludeReplicas = TestHelpers::stub(
             Database::class,
             $args,
-            $props);
-        $args[10] = null;
+            $props
+        );
+        $args[10] = [];
         $args[6] = null;
         $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
