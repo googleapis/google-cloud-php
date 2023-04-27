@@ -120,6 +120,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_options = null;
     /**
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     */
+    private $directed_read_options = null;
+    /**
      * If this is for a partitioned query and this field is set to `true`, the
      * request will be executed via Spanner independent compute resources.
      * If the field is set to `true` but the request does not set
@@ -194,6 +198,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           Query optimizer configuration to use for the given query.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions $directed_read_options
      *     @type bool $data_boost_enabled
      *           If this is for a partitioned query and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
@@ -602,6 +607,38 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
         $this->request_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     * @return \Google\Cloud\Spanner\V1\DirectedReadOptions|null
+     */
+    public function getDirectedReadOptions()
+    {
+        return $this->directed_read_options;
+    }
+
+    public function hasDirectedReadOptions()
+    {
+        return isset($this->directed_read_options);
+    }
+
+    public function clearDirectedReadOptions()
+    {
+        unset($this->directed_read_options);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     * @param \Google\Cloud\Spanner\V1\DirectedReadOptions $var
+     * @return $this
+     */
+    public function setDirectedReadOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\DirectedReadOptions::class);
+        $this->directed_read_options = $var;
 
         return $this;
     }

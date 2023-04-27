@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
@@ -872,6 +873,7 @@ class SpannerGapicClient
      *           Query optimizer configuration to use for the given query.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type DirectedReadOptions $directedReadOptions
      *     @type bool $dataBoostEnabled
      *           If this is for a partitioned query and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
@@ -929,6 +931,12 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['directedReadOptions'])) {
+            $request->setDirectedReadOptions(
+                $optionalArgs['directedReadOptions']
+            );
         }
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
@@ -1043,6 +1051,7 @@ class SpannerGapicClient
      *           Query optimizer configuration to use for the given query.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type DirectedReadOptions $directedReadOptions
      *     @type bool $dataBoostEnabled
      *           If this is for a partitioned query and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
@@ -1101,6 +1110,12 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['directedReadOptions'])) {
+            $request->setDirectedReadOptions(
+                $optionalArgs['directedReadOptions']
+            );
         }
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
@@ -1554,6 +1569,7 @@ class SpannerGapicClient
      *           PartitionReadRequest message used to create this partition_token.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type DirectedReadOptions $directedReadOptions
      *     @type bool $dataBoostEnabled
      *           If this is for a partitioned read and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
@@ -1606,6 +1622,12 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['directedReadOptions'])) {
+            $request->setDirectedReadOptions(
+                $optionalArgs['directedReadOptions']
+            );
         }
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
@@ -1751,6 +1773,7 @@ class SpannerGapicClient
      *           PartitionReadRequest message used to create this partition_token.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type DirectedReadOptions $directedReadOptions
      *     @type bool $dataBoostEnabled
      *           If this is for a partitioned read and this field is set to `true`, the
      *           request will be executed via Spanner independent compute resources.
@@ -1801,6 +1824,12 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['directedReadOptions'])) {
+            $request->setDirectedReadOptions(
+                $optionalArgs['directedReadOptions']
+            );
         }
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
