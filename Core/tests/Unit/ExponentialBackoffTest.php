@@ -167,6 +167,8 @@ class ExponentialBackoffTest extends TestCase
      */
     public function testRetryListener()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Intentionally failing request');
         $args = ['foo' => 'bar'];
         $retryListener = function (
             $ex,
@@ -180,17 +182,11 @@ class ExponentialBackoffTest extends TestCase
         // Setting $retries to 0 so that retry doesn't happens after first
         // failure.
         $backoff = new ExponentialBackoff(0, null, $retryListener);
-        try {
-            $backoff->execute(
-                function () {
-                    throw new \Exception('Intentionally failing request');
-                },
-                [$args]
-            );
-        } catch (\Exception $err) {
-            // Do nothing.
-            // Catching the intentional failing call being made above:
-            // "Intentionally failing request"
-        }
+        $backoff->execute(
+            function () {
+                throw new \Exception('Intentionally failing request');
+            },
+            [$args]
+        );
     }
 }
