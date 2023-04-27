@@ -78,6 +78,18 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string issue_models = 10 [(.google.api.resource_reference) = {</code>
      */
     private $issue_models;
+    /**
+     * Whether to run the summarization annotator.
+     *
+     * Generated from protobuf field <code>bool run_summarization_annotator = 9;</code>
+     */
+    private $run_summarization_annotator = false;
+    /**
+     * Configuration for the summarization annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig summarization_config = 11;</code>
+     */
+    private $summarization_config = null;
 
     /**
      * Constructor.
@@ -112,6 +124,10 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *           inference if the issue model is deployed and if run_issue_model_annotator
      *           is set to true. If more than one issue model is provided, only the first
      *           provided issue model will be used for inference.
+     *     @type bool $run_summarization_annotator
+     *           Whether to run the summarization annotator.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig $summarization_config
+     *           Configuration for the summarization annotator.
      * }
      */
     public function __construct($data = NULL) {
@@ -367,6 +383,68 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->issue_models = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Whether to run the summarization annotator.
+     *
+     * Generated from protobuf field <code>bool run_summarization_annotator = 9;</code>
+     * @return bool
+     */
+    public function getRunSummarizationAnnotator()
+    {
+        return $this->run_summarization_annotator;
+    }
+
+    /**
+     * Whether to run the summarization annotator.
+     *
+     * Generated from protobuf field <code>bool run_summarization_annotator = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRunSummarizationAnnotator($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->run_summarization_annotator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the summarization annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig summarization_config = 11;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig|null
+     */
+    public function getSummarizationConfig()
+    {
+        return $this->summarization_config;
+    }
+
+    public function hasSummarizationConfig()
+    {
+        return isset($this->summarization_config);
+    }
+
+    public function clearSummarizationConfig()
+    {
+        unset($this->summarization_config);
+    }
+
+    /**
+     * Configuration for the summarization annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig summarization_config = 11;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig $var
+     * @return $this
+     */
+    public function setSummarizationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig::class);
+        $this->summarization_config = $var;
 
         return $this;
     }
