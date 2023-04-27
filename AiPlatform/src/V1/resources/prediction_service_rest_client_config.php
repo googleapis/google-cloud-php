@@ -19,6 +19,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:predict',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:predict',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'endpoint' => [
                         'getters' => [
@@ -31,6 +38,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:rawPredict',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:rawPredict',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'endpoint' => [
                         'getters' => [
@@ -97,6 +111,14 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -131,6 +153,16 @@ return [
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -159,6 +191,14 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
                     ],
                 ],
                 'placeholders' => [

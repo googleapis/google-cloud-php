@@ -266,9 +266,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
@@ -423,9 +423,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type bool $disable_container_logging
      *           For custom-trained Models and AutoML Tabular Models, the container of the
      *           DeployedModel instances will send `stderr` and `stdout` streams to
-     *           Stackdriver Logging by default. Please note that the logs incur cost,
+     *           Cloud Logging by default. Please note that the logs incur cost,
      *           which are subject to [Cloud Logging
-     *           pricing](https://cloud.google.com/stackdriver/pricing).
+     *           pricing](https://cloud.google.com/logging/pricing).
      *           User can disable container logging by setting this flag to true.
      * }
      */
@@ -1457,9 +1457,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
@@ -1473,9 +1473,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
-     * Stackdriver Logging by default. Please note that the logs incur cost,
+     * Cloud Logging by default. Please note that the logs incur cost,
      * which are subject to [Cloud Logging
-     * pricing](https://cloud.google.com/stackdriver/pricing).
+     * pricing](https://cloud.google.com/logging/pricing).
      * User can disable container logging by setting this flag to true.
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
