@@ -1650,7 +1650,8 @@ class Database
             return $this->operation->execute(
                 $session,
                 $sql,
-                $options + $this->directedReadOptions);
+                $options + $this->directedReadOptions
+            );
         } finally {
             $session->setExpiration();
         }
@@ -1939,7 +1940,8 @@ class Database
                 $table,
                 $keySet,
                 $columns,
-                $options + $this->directedReadOptions);
+                $options + $this->directedReadOptions
+            );
         } finally {
             $session->setExpiration();
         }

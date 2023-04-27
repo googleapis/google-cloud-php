@@ -298,4 +298,12 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('batch');
         $this->assertInstanceOf(BatchClient::class, $res->returnVal());
     }
+
+    public function testConnectWithDirectedReadOptions()
+    {
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'connect', 2);
+        $snippet->addLocal('spanner', $this->client);
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+    }
 }
