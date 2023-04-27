@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.203.1
+
+<details><summary>google/cloud-core 1.51.1</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Add retry header key in Core/Retry.php ([#6123](https://github.com/googleapis/google-cloud-php/issues/6123)) ([bd5d847](https://github.com/googleapis/google-cloud-php/commit/bd5d8479c7dfc8ce4e8d1894f4fa5abba5f0cbcb))
+
+</details>
+
+<details><summary>google/cloud-storage 1.31.1</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Add retry header key in Core/Retry.php ([#6123](https://github.com/googleapis/google-cloud-php/issues/6123)) ([bd5d847](https://github.com/googleapis/google-cloud-php/commit/bd5d8479c7dfc8ce4e8d1894f4fa5abba5f0cbcb))
+
+</details>
+
 ## 0.203.0
 
 <details><summary>google/analytics-admin 0.12.0</summary>
