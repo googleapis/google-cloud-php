@@ -406,6 +406,11 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeWithSomeCompletedRange()
     {
+        $expectedRows = (new RowSet)->setRowRanges([
+            (new RowRange)->setStartKeyOpen('rk1')->setEndKeyClosed('rk3'),
+            (new RowRange)->setStartKeyClosed('rk5')->setEndKeyClosed('rk7'),
+            (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
+        ]);
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -417,20 +422,19 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(7, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            $rowRanges = $argument['rows']->getRowRanges();
-            return $rowRanges[0]->getStartKeyOpen() === 'rk1' && $rowRanges[0]->getEndKeyClosed() === 'rk3'
-                && $rowRanges[1]->getStartKeyClosed() === 'rk5' && $rowRanges[1]->getEndKeyClosed() === 'rk7'
-                && $rowRanges[2]->getStartKeyClosed() === 'rk8' && $rowRanges[2]->getEndKeyClosed() === 'rk9';
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows) {
+            return $argument['rows']->serializeToJsonString() === $expectedRows->serializeToJsonString();
         }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            $rowRanges = $argument['rows']->getRowRanges();
-            return $rowRanges[0]->getStartKeyOpen() === 'rk6' && $rowRanges[0]->getEndKeyClosed() === 'rk7'
-                && $rowRanges[1]->getStartKeyClosed() === 'rk8' && $rowRanges[1]->getEndKeyClosed() === 'rk9';
+        $expectedRows2 = (new RowSet)->setRowRanges([
+            (new RowRange)->setStartKeyOpen('rk6')->setEndKeyClosed('rk7'),
+            (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
+        ]);
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows2) {
+            return $argument['rows']->serializeToJsonString() === $expectedRows2->serializeToJsonString();
         }))
             ->shouldBeCalled()
             ->willReturn(
