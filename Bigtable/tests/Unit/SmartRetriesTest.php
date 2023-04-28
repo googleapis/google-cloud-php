@@ -36,6 +36,7 @@ use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -209,7 +210,6 @@ class SmartRetriesTest extends TestCase
     public function testReadRowsWithRowKeys()
     {
         $args = ['rowKeys' => ['rk1', 'rk2', 'rk3', 'rk4']];
-        $expectedArgs = ['rows' => (new RowSet)->setRowKeys(['rk1', 'rk2', 'rk3', 'rk4'])] + $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -221,15 +221,16 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(3, 4)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return iterator_to_array($argument['rows']->getRowKeys()) === ['rk1', 'rk2', 'rk3', 'rk4'];
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowKeys(['rk3', 'rk4'])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return iterator_to_array($argument['rows']->getRowKeys()) === ['rk3', 'rk4'];
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -245,8 +246,6 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeStartKeyOpen()
     {
-        $expectedArgs = ['rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk5')])]
-            + $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -258,15 +257,16 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(8, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk5';
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk7')])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk7';
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -285,8 +285,6 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeStartKeyClosed()
     {
-        $expectedArgs = ['rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyClosed('rk5')])]
-            + $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -298,15 +296,16 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(7, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyClosed() === 'rk5';
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk6')])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk6';
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -325,8 +324,6 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeEndKeyOpen()
     {
-        $expectedArgs = ['rows' => (new RowSet)->setRowRanges([(new RowRange)->setEndKeyOpen('rk7')])]
-            + $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -338,15 +335,18 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(4, 6)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === ''
+                && $argument['rows']->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk3')->setEndKeyOpen('rk7')])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk3'
+                && $argument['rows']->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -365,8 +365,6 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeEndKeyClosed()
     {
-        $expectedArgs = ['rows' => (new RowSet)->setRowRanges([(new RowRange)->setEndKeyClosed('rk7')])]
-            + $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -378,15 +376,18 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(4, 7)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === ''
+                && $argument['rows']->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk3')->setEndKeyClosed('rk7')])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
+            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk3'
+                && $argument['rows']->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -405,11 +406,11 @@ class SmartRetriesTest extends TestCase
 
     public function testReadRowsRangeWithSomeCompletedRange()
     {
-        $expectedArgs = ['rows' => (new RowSet)->setRowRanges([
+        $expectedRows = (new RowSet)->setRowRanges([
             (new RowRange)->setStartKeyOpen('rk1')->setEndKeyClosed('rk3'),
             (new RowRange)->setStartKeyClosed('rk5')->setEndKeyClosed('rk7'),
             (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
-        ])] + $this->options;
+        ]);
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -421,18 +422,20 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(7, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows) {
+            return $argument['rows']->serializeToJsonString() === $expectedRows->serializeToJsonString();
+        }))
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([
-                (new RowRange)->setStartKeyOpen('rk6')->setEndKeyClosed('rk7'),
-                (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
-            ])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
+        $expectedRows2 = (new RowSet)->setRowRanges([
+            (new RowRange)->setStartKeyOpen('rk6')->setEndKeyClosed('rk7'),
+            (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
+        ]);
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows2) {
+            return $argument['rows']->serializeToJsonString() === $expectedRows2->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()

@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.203.2
+
+<details><summary>google/cloud-bigquery-storage 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **BigQueryStorage:** Failure when protobuf extension is loaded ([#6130](https://github.com/googleapis/google-cloud-php/issues/6130)) ([7c57cd4](https://github.com/googleapis/google-cloud-php/commit/7c57cd41704fb350a234c4ce97e3a56a9271e869))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.22.2</summary>
+
+
+
+### Bug Fixes
+
+* **BigQueryStorage:** Failure when protobuf extension is loaded ([#6130](https://github.com/googleapis/google-cloud-php/issues/6130)) ([7c57cd4](https://github.com/googleapis/google-cloud-php/commit/7c57cd41704fb350a234c4ce97e3a56a9271e869))
+
+</details>
+
 ## 0.203.1
 
 <details><summary>google/cloud-core 1.51.1</summary>
