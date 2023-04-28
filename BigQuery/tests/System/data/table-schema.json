@@ -3,7 +3,7 @@
     "mode": "NULLABLE",
     "name": "Name",
     "type": "STRING",
-    "default_value_expression": "'Default Title'"
+    "default_value_expression": "'Default Name'"
   },
   {
     "mode": "NULLABLE",

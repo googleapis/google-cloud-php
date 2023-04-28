@@ -161,16 +161,17 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testInsertRowToTableWithDefaultValueExpression()
     {
+        $row = $this->row;
         // unset default value expression fields so that they are populated automatically
         unset(
-            $this->row['Name'],
-            $this->row['Age'],
-            $this->row['Weight'],
-            $this->row['IsMagic'],
-            $this->row['CreatedTimestamp']
+            $row['Name'],
+            $row['Age'],
+            $row['Weight'],
+            $row['IsMagic'],
+            $row['CreatedTimestamp']
         );
         self::$expectedRows++;
-        $insertResponse = self::$table->insertRow($this->row);
+        $insertResponse = self::$table->insertRow($row);
         sleep(1);
         $rows = iterator_to_array(self::$table->rows());
 
@@ -180,6 +181,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualRow = $rows[0];
 
         $expectedRow = $this->row;
+        // default values from schema
+        $expectedRow['Name'] = 'Default Name';
+        $expectedRow['Age'] = 1;
+        $expectedRow['Weight'] = 0.5;
+        $expectedRow['IsMagic'] = false;
+
         $expectedBytes = $expectedRow['Spells'][0]['Icon'];
         $actualBytes = $actualRow['Spells'][0]['Icon'];
         unset($expectedRow['Spells'][0]['Icon'], $actualRow['Spells'][0]['Icon']);
@@ -187,30 +194,20 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualGeography = $actualRow['Location'];
         unset($expectedRow['Location'], $actualRow['Location']);
 
-        $this->assertEquals('Default Title', $actualRow['Name']);
-        $this->assertEquals(1, $actualRow['Age']);
-        $this->assertEquals(0.5, $actualRow['Weight']);
-        $this->assertEquals(false, $actualRow['IsMagic']);
-
         $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
         $actualTimestamp = $actualRow['CreatedTimestamp'];
-        $this->assertEqualsWithDelta(
-            $expectedTimestamp->get()->getTimestamp(),
-            $actualTimestamp->get()->getTimestamp(),
-            10
-        );
-        // unset default value expression fields since they are added automatically
         unset(
-            $actualRow['Name'],
-            $actualRow['Age'],
-            $actualRow['Weight'],
-            $actualRow['IsMagic'],
             $actualRow['CreatedTimestamp']
         );
 
         $this->assertEquals($expectedRow, $actualRow);
         $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
         $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
+        $this->assertEqualsWithDelta(
+            $expectedTimestamp->get()->getTimestamp(),
+            $actualTimestamp->get()->getTimestamp(),
+            10
+        );
     }
 
     /**
