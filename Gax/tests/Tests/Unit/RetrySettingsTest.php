@@ -34,12 +34,9 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class RetrySettingsTest extends TestCase
 {
-    use ExpectException;
-
     const SERVICE_NAME = 'test.interface.v1.api';
 
     private static function buildInputConfig()

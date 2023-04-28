@@ -47,13 +47,13 @@ use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class GrpcFallbackTransportTest extends TestCase
 {
     private $call;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->call = new Call(
             'Testing123',

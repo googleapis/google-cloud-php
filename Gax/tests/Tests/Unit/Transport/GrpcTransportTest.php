@@ -53,13 +53,15 @@ use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use stdClass;
 use TypeError;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GrpcTransportTest extends TestCase
 {
+    use ProphecyTrait;
     use TestTrait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requiresGrpcExtension();
     }

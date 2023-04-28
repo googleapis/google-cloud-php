@@ -40,11 +40,9 @@ use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class BidiStreamTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     public function testEmptySuccess()

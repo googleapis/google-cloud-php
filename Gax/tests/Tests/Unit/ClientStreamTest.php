@@ -37,11 +37,9 @@ use Google\ApiCore\Testing\MockClientStreamingCall;
 use Google\ApiCore\Testing\MockStatus;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class ClientStreamTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     public function testNoWritesSuccess()

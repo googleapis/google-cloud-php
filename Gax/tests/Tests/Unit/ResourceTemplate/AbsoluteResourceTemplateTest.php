@@ -34,12 +34,9 @@ namespace Google\ApiCore\Tests\Unit\ResourceTemplate;
 use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class AbsoluteResourceTemplateTest extends TestCase
 {
-    use ExpectException;
-
     /**
      * @dataProvider validPathProvider
      * @param string $path

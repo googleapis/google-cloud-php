@@ -34,12 +34,9 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PathTemplateTest extends TestCase
 {
-    use ExpectException;
-
     public function testFailInvalidToken()
     {
         $this->expectException(ValidationException::class);

@@ -56,15 +56,17 @@ use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use TypeError;
 use UnexpectedValueException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class RestTransportTest extends TestCase
 {
+    use ProphecyTrait;
     use TestTrait;
 
     private $call;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->call = new Call(
             'Testing123',

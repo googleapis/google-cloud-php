@@ -42,12 +42,10 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\BufferStream;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 
 class JsonStreamDecoderTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     /**

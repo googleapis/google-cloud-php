@@ -20,7 +20,6 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @todo (dwsupplee) serviceAddress is deprecated now in favor of
@@ -28,7 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ServiceAddressTraitTest extends TestCase
 {
-    use ExpectException;
     use ServiceAddressTrait;
 
     /**

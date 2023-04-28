@@ -425,9 +425,7 @@ trait GapicClientTrait
         } elseif (is_string($credentials) || is_array($credentials)) {
             return CredentialsWrapper::build(['keyFile' => $credentials] + $credentialsConfig);
         } elseif ($credentials instanceof FetchAuthTokenInterface) {
-            $authHttpHandler = isset($credentialsConfig['authHttpHandler'])
-                ? $credentialsConfig['authHttpHandler']
-                : null;
+            $authHttpHandler = $credentialsConfig['authHttpHandler'] ?? null;
             return new CredentialsWrapper($credentials, $authHttpHandler);
         } elseif ($credentials instanceof CredentialsWrapper) {
             return $credentials;
@@ -467,9 +465,7 @@ trait GapicClientTrait
                 implode(', ', $supportedTransports)
             ));
         }
-        $configForSpecifiedTransport = isset($transportConfig[$transport])
-            ? $transportConfig[$transport]
-            : [];
+        $configForSpecifiedTransport = $transportConfig[$transport] ?? [];
         $configForSpecifiedTransport['clientCertSource'] = $clientCertSource;
         switch ($transport) {
             case 'grpc':
@@ -706,9 +702,7 @@ trait GapicClientTrait
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
         );
 
-        $descriptor = isset($this->descriptors[$methodName]['grpcStreaming'])
-            ? $this->descriptors[$methodName]['grpcStreaming']
-            : null;
+        $descriptor = $this->descriptors[$methodName]['grpcStreaming'] ?? null;
 
         $call = new Call(
             $this->buildMethod($interfaceName, $methodName),

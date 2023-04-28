@@ -40,11 +40,9 @@ use Google\Rpc\Code;
 use InvalidArgumentException;
 use LengthException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class FixedSizeCollectionTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     private function createPage($responseSequence)

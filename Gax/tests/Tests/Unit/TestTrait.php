@@ -87,7 +87,7 @@ trait TestTrait
             ->setMethods(['takeAction'])
             ->getMock();
         $mockCall->method('takeAction')
-            ->will(call_user_func_array([$this, 'onConsecutiveCalls'], $sequence));
+            ->will($this->onConsecutiveCalls(...$sequence));
 
         return $mockCall;
     }

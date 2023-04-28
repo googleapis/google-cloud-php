@@ -34,13 +34,13 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ArrayTrait;
 use InvalidArgumentException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class ArrayTraitTest extends TestCase
 {
     private $implementation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = new ArrayTraitStub();
     }
