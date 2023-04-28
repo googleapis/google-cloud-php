@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Storage\Connection;
 
-use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
@@ -765,7 +765,7 @@ class Rest implements ConnectionInterface
         string $invocationId
     ) {
         $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
-        $headerLine = $request->getHeaderLine(AgentHeader::AGENT_HEADER_KEY);
+        $headerLine = $request->getHeaderLine(Retry::RETRY_HEADER_KEY);
 
         // An associative array to contain final header values as
         // $headerValueKey => $headerValue
@@ -785,7 +785,7 @@ class Rest implements ConnectionInterface
         }
 
         return $request->withHeader(
-            AgentHeader::AGENT_HEADER_KEY,
+            Retry::RETRY_HEADER_KEY,
             implode(' ', $headerElements)
         );
     }

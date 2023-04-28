@@ -30,7 +30,6 @@ use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Google\ApiCore\AgentHeader;
 
 /**
  * The RequestWrapper is responsible for delivering and signing requests.
@@ -290,7 +289,7 @@ class RequestWrapper
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            AgentHeader::AGENT_HEADER_KEY => sprintf(
+            Retry::RETRY_HEADER_KEY => sprintf(
                 'gl-php/%s gccl/%s',
                 PHP_VERSION,
                 $this->componentVersion
@@ -298,9 +297,9 @@ class RequestWrapper
         ];
 
         if (isset($options['retryHeaders'])) {
-            $headers[AgentHeader::AGENT_HEADER_KEY] = sprintf(
+            $headers[Retry::RETRY_HEADER_KEY] = sprintf(
                 '%s %s',
-                $headers[AgentHeader::AGENT_HEADER_KEY],
+                $headers[Retry::RETRY_HEADER_KEY],
                 implode(' ', $options['retryHeaders'])
             );
             unset($options['retryHeaders']);

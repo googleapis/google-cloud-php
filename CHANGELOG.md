@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.203.2
+
+<details><summary>google/cloud-bigquery-storage 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **BigQueryStorage:** Failure when protobuf extension is loaded ([#6130](https://github.com/googleapis/google-cloud-php/issues/6130)) ([7c57cd4](https://github.com/googleapis/google-cloud-php/commit/7c57cd41704fb350a234c4ce97e3a56a9271e869))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.22.2</summary>
+
+
+
+### Bug Fixes
+
+* **BigQueryStorage:** Failure when protobuf extension is loaded ([#6130](https://github.com/googleapis/google-cloud-php/issues/6130)) ([7c57cd4](https://github.com/googleapis/google-cloud-php/commit/7c57cd41704fb350a234c4ce97e3a56a9271e869))
+
+</details>
+
+## 0.203.1
+
+<details><summary>google/cloud-core 1.51.1</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Add retry header key in Core/Retry.php ([#6123](https://github.com/googleapis/google-cloud-php/issues/6123)) ([bd5d847](https://github.com/googleapis/google-cloud-php/commit/bd5d8479c7dfc8ce4e8d1894f4fa5abba5f0cbcb))
+
+</details>
+
+<details><summary>google/cloud-storage 1.31.1</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Add retry header key in Core/Retry.php ([#6123](https://github.com/googleapis/google-cloud-php/issues/6123)) ([bd5d847](https://github.com/googleapis/google-cloud-php/commit/bd5d8479c7dfc8ce4e8d1894f4fa5abba5f0cbcb))
+
+</details>
+
 ## 0.203.0
 
 <details><summary>google/analytics-admin 0.12.0</summary>

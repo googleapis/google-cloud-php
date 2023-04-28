@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
-use Google\ApiCore\AgentHeader;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
@@ -508,7 +508,7 @@ class RestTest extends TestCase
         $rest->listBuckets();
 
         $this->assertNotNull($actualRequest);
-        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(AgentHeader::AGENT_HEADER_KEY));
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(Retry::RETRY_HEADER_KEY));
 
         $agentHeaderParts = explode(' ', $agentHeader);
         $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
