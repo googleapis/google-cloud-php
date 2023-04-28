@@ -196,9 +196,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
         $actualTimestamp = $actualRow['CreatedTimestamp'];
-        unset(
-            $actualRow['CreatedTimestamp']
-        );
+        unset($actualRow['CreatedTimestamp']);
 
         $this->assertEquals($expectedRow, $actualRow);
         $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
