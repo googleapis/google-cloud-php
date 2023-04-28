@@ -621,7 +621,7 @@ class InstanceTest extends TestCase
         $columns = ['id', 'name'];
         $database = $this->instance->database(
             $this::DATABASE,
-            ['excludeReplicas' => ['us-central1']]
+            ['includeReplicas' => ['us-central1']]
         );
         $this->connection->createSession(Argument::any())
         ->shouldBeCalled()
@@ -630,7 +630,7 @@ class InstanceTest extends TestCase
         ]);
 
         $this->connection->streamingRead(Argument::withEntry(
-            'excludeReplicas',
+            'includeReplicas',
             ['us-central1']
         ))
         ->shouldBeCalled()
@@ -641,8 +641,7 @@ class InstanceTest extends TestCase
         $res = $database->read(
             $table,
             new KeySet(['keys' => $keys]),
-            $columns,
-            ['excludeReplicas' => ['us-central1']]
+            $columns
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
