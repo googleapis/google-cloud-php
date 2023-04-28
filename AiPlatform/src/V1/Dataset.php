@@ -89,7 +89,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if
@@ -160,7 +160,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *             title.
      *     @type array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
      *           All SavedQueries belong to the Dataset will be returned in List/Get
-     *           Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     *           Dataset response. The annotation_specs field
      *           will not be populated except for UI cases which will only use
      *           [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      *           In CreateDataset request, a SavedQuery is created together if
@@ -483,7 +483,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if
@@ -500,7 +500,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get
-     * Dataset response. The [annotation_specs][SavedQuery.annotation_specs] field
+     * Dataset response. The annotation_specs field
      * will not be populated except for UI cases which will only use
      * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
      * In CreateDataset request, a SavedQuery is created together if

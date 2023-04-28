@@ -125,6 +125,22 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_dashboard_access = false;
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $experiment = '';
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $experiment_run = '';
 
     /**
      * Constructor.
@@ -206,6 +222,14 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           [Trial.web_access_uris][google.cloud.aiplatform.v1.Trial.web_access_uris]
      *           (within
      *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]).
+     *     @type string $experiment
+     *           Optional. The Experiment associated with this job.
+     *           Format:
+     *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *     @type string $experiment_run
+     *           Optional. The Experiment Run associated with this job.
+     *           Format:
+     *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
      * }
      */
     public function __construct($data = NULL) {
@@ -575,6 +599,66 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_dashboard_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExperiment()
+    {
+        return $this->experiment;
+    }
+
+    /**
+     * Optional. The Experiment associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}`
+     *
+     * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExperiment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->experiment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExperimentRun()
+    {
+        return $this->experiment_run;
+    }
+
+    /**
+     * Optional. The Experiment Run associated with this job.
+     * Format:
+     * `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *
+     * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExperimentRun($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->experiment_run = $var;
 
         return $this;
     }

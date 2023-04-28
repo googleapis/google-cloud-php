@@ -74,6 +74,17 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
+     * Optional. TTL in days for feature values that will be stored in online
+     * serving storage. The Feature Store online storage periodically removes
+     * obsolete feature values older than `online_storage_ttl_days` since the
+     * feature generation time. Note that `online_storage_ttl_days` should be less
+     * than or equal to `offline_storage_ttl_days` for each EntityType under a
+     * featurestore. If not set, default to 4000 days
+     *
+     * Generated from protobuf field <code>int32 online_storage_ttl_days = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $online_storage_ttl_days = 0;
+    /**
      * Optional. Customer-managed encryption key spec for data storage. If set,
      * both of the online and offline data storage will be secured by this key.
      *
@@ -115,6 +126,13 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      *           an online store and cannot be used for online serving.
      *     @type int $state
      *           Output only. State of the featurestore.
+     *     @type int $online_storage_ttl_days
+     *           Optional. TTL in days for feature values that will be stored in online
+     *           serving storage. The Feature Store online storage periodically removes
+     *           obsolete feature values older than `online_storage_ttl_days` since the
+     *           feature generation time. Note that `online_storage_ttl_days` should be less
+     *           than or equal to `offline_storage_ttl_days` for each EntityType under a
+     *           featurestore. If not set, default to 4000 days
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Optional. Customer-managed encryption key spec for data storage. If set,
      *           both of the online and offline data storage will be secured by this key.
@@ -361,6 +379,42 @@ class Featurestore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Featurestore\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. TTL in days for feature values that will be stored in online
+     * serving storage. The Feature Store online storage periodically removes
+     * obsolete feature values older than `online_storage_ttl_days` since the
+     * feature generation time. Note that `online_storage_ttl_days` should be less
+     * than or equal to `offline_storage_ttl_days` for each EntityType under a
+     * featurestore. If not set, default to 4000 days
+     *
+     * Generated from protobuf field <code>int32 online_storage_ttl_days = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOnlineStorageTtlDays()
+    {
+        return $this->online_storage_ttl_days;
+    }
+
+    /**
+     * Optional. TTL in days for feature values that will be stored in online
+     * serving storage. The Feature Store online storage periodically removes
+     * obsolete feature values older than `online_storage_ttl_days` since the
+     * feature generation time. Note that `online_storage_ttl_days` should be less
+     * than or equal to `offline_storage_ttl_days` for each EntityType under a
+     * featurestore. If not set, default to 4000 days
+     *
+     * Generated from protobuf field <code>int32 online_storage_ttl_days = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOnlineStorageTtlDays($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->online_storage_ttl_days = $var;
 
         return $this;
     }
