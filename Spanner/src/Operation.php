@@ -210,7 +210,6 @@ class Operation
      *           Spanner will fallback to the default routing algorithm by selecting
      *           the nearest healthy replica.
      *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      *           eg: ['us-central1'] means Spanner will include region us-central1.
      *               ['us-central1:readOnly'] means Spanner will include the read only
      *                               replica in the us-central1 region.
@@ -219,7 +218,6 @@ class Operation
      *                               default failover value is true.
      *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
      *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @return Result
      */
@@ -391,7 +389,6 @@ class Operation
      *           Spanner will fallback to the default routing algorithm by selecting
      *           the nearest healthy replica.
      *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      *           eg: ['us-central1'] means Spanner will include region us-central1.
      *               ['us-central1:readOnly'] means Spanner will include the read only
      *                               replica in the us-central1 region.
@@ -400,7 +397,6 @@ class Operation
      *                               default failover value is true.
      *     @type array $excludeReplicas Regions/Replica to be excluded for the read query.
      *           $includeReplicas and $excludeReplicas are mutually exclusive.
-     *           This overrides the SpannerClient includeReplicas/excludeReplicas setting.
      * }
      * @return Result
      */
