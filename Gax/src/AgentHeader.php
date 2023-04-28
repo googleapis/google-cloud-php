@@ -73,26 +73,15 @@ class AgentHeader
         //      - restVersion (rest/)
         //      - protobufVersion (pb/)
 
-        $phpVersion = isset($headerInfo['phpVersion'])
-            ? $headerInfo['phpVersion']
-            : phpversion();
-        $metricsHeaders['gl-php'] = $phpVersion;
+        $metricsHeaders['gl-php'] = $headerInfo['phpVersion'] ?? phpversion();
 
         if (isset($headerInfo['libName'])) {
-            $clientVersion = isset($headerInfo['libVersion'])
-                ? $headerInfo['libVersion']
-                : self::UNKNOWN_VERSION;
-            $metricsHeaders[$headerInfo['libName']] = $clientVersion;
+            $metricsHeaders[$headerInfo['libName']] =
+                $headerInfo['libVersion'] ?? self::UNKNOWN_VERSION;
         }
 
-        $codeGenVersion = isset($headerInfo['gapicVersion'])
-            ? $headerInfo['gapicVersion']
-            : self::UNKNOWN_VERSION;
-        $metricsHeaders['gapic'] = $codeGenVersion;
-
-        $apiCoreVersion = isset($headerInfo['apiCoreVersion'])
-            ? $headerInfo['apiCoreVersion']
-            : Version::getApiCoreVersion();
+        $apiCoreVersion = $headerInfo['apiCoreVersion'] ?? Version::getApiCoreVersion();
+        $metricsHeaders['gapic'] = $headerInfo['gapicVersion'] ?? self::UNKNOWN_VERSION;
         $metricsHeaders['gax'] = $apiCoreVersion;
 
         // Context on library type identification (between gRPC+REST and REST-only):
@@ -102,22 +91,13 @@ class AgentHeader
         // either, since some clients may have the extension installed but opt to use a
         // REST-only library (e.g. GCE).
         // TODO: Should we stop sending empty gRPC headers?
-        $grpcVersion = isset($headerInfo['grpcVersion'])
-            ? $headerInfo['grpcVersion']
-            : phpversion('grpc');
-        $metricsHeaders['grpc'] = $grpcVersion;
-
-        $restVersion = isset($headerInfo['restVersion'])
-            ? $headerInfo['restVersion']
-            : $apiCoreVersion;
-        $metricsHeaders['rest'] = $restVersion;
+        $metricsHeaders['grpc'] = $headerInfo['grpcVersion'] ?? phpversion('grpc');
+        $metricsHeaders['rest'] = $headerInfo['restVersion'] ?? $apiCoreVersion;
 
         // The native version is not set by default because it is complex and costly to retrieve.
         // Users can override this default behavior if needed.
-        $protobufVersion = isset($headerInfo['protobufVersion'])
-            ? $headerInfo['protobufVersion']
-            : (phpversion('protobuf') ? phpversion('protobuf') . '+c' : '+n');
-        $metricsHeaders['pb'] = $protobufVersion;
+        $metricsHeaders['pb'] = $headerInfo['protobufVersion']
+            ?? (phpversion('protobuf') ? phpversion('protobuf') . '+c' : '+n');
 
         $metricsList = [];
         foreach ($metricsHeaders as $key => $value) {

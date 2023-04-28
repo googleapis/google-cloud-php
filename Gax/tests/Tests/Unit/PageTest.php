@@ -38,11 +38,9 @@ use Google\ApiCore\Testing\MockStatus;
 use Google\ApiCore\ValidationException;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PageTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     private function createPage($responseSequence)

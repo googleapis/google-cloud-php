@@ -34,11 +34,9 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\PageStreamingDescriptor;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PageStreamingDescriptorTest extends TestCase
 {
-    use ExpectException;
     use TestTrait;
 
     public function testMissingFields()

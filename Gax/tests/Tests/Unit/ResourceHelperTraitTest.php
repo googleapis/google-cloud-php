@@ -35,12 +35,9 @@ use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class ResourceHelperTraitTest extends TestCase
 {
-    use ExpectException;
-
     public function testRegisterPathTemplates()
     {
         $got = ResourceHelperTraitStub::testRegisterPathTemplates();

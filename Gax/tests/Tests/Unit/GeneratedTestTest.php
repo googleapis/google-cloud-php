@@ -34,7 +34,6 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\Api\Monitoring_MonitoringDestination;
 use Google\ApiCore\Testing\GeneratedTest;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit_Framework_ExpectationFailedException;
 
 class GeneratedTestTest extends GeneratedTest
 {
@@ -53,12 +52,7 @@ class GeneratedTestTest extends GeneratedTest
     {
         try {
             $this->assertProtobufEquals($expected, $actual);
-        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
-            // Support for PHPUnit versions < 8
-            // As expected the assertion failed, silently return
-            return;
         } catch (ExpectationFailedException $ex) {
-            // Support for PHPUnit versions > 8
             // As expected the assertion failed, silently return
             return;
         }

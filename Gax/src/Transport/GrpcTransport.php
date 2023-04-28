@@ -246,14 +246,10 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
     private function getCallOptions(array $options)
     {
-        $callOptions = isset($options['transportOptions']['grpcOptions'])
-            ? $options['transportOptions']['grpcOptions']
-            : [];
+        $callOptions = $options['transportOptions']['grpcOptions'] ?? [];
 
         if (isset($options['credentialsWrapper'])) {
-            $audience = isset($options['audience'])
-                ? $options['audience']
-                : null;
+            $audience = $options['audience'] ?? null;
             $credentialsWrapper = $options['credentialsWrapper'];
             $callOptions['call_credentials_callback'] = $credentialsWrapper
                 ->getAuthorizationHeaderCallback($audience);

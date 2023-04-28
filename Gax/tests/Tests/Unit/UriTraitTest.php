@@ -33,13 +33,13 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\UriTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class UriTraitTest extends TestCase
 {
     private $implementation;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->implementation = $this->getObjectForTrait(UriTrait::class);
     }

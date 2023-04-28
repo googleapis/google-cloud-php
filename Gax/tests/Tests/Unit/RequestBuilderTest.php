@@ -30,7 +30,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Psr7\Query;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -42,7 +42,7 @@ class RequestBuilderTest extends TestCase
 
     const SERVICE_NAME = 'test.interface.v1.api';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->builder = new RequestBuilder(
             'www.example.com',

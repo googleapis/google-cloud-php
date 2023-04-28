@@ -41,15 +41,12 @@ use Google\Protobuf\Value;
 use Google\Rpc\Status;
 use Google\Type\Color;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
 
 /**
  * @group core
  */
 class SerializerTest extends TestCase
 {
-    use AssertEqualsSpecializations;
-
     /**
      * @param \Google\Protobuf\Internal\Message $message A protobuf message
      * @param array $arrayStructure An array structure corresponding the expected encoding of $message

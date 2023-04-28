@@ -40,12 +40,9 @@ use Google\ApiCore\RetrySettings;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class RetryMiddlewareTest extends TestCase
 {
-    use ExpectException;
-
     public function testRetryNoRetryableCode()
     {
         $call = $this->getMockBuilder(Call::class)

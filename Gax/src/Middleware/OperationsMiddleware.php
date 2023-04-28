@@ -69,8 +69,7 @@ class OperationsMiddleware
             $options = $this->descriptor + [
                 'lastProtoResponse' => $response
             ];
-            $operationNameMethod = isset($options['operationNameMethod'])
-                ? $options['operationNameMethod'] : 'getName';
+            $operationNameMethod = $options['operationNameMethod'] ?? 'getName';
             $operationName = call_user_func([$response, $operationNameMethod]);
             return new OperationResponse($operationName, $this->operationsClient, $options);
         });

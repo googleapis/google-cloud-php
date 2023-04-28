@@ -36,12 +36,9 @@ use Google\ApiCore\ResourceTemplate\RelativeResourceTemplate;
 use Google\ApiCore\ResourceTemplate\Segment;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class ParserTest extends TestCase
 {
-    use ExpectException;
-
     private static function literalSegment($value, $separator = '/')
     {
         return new Segment(Segment::LITERAL_SEGMENT, $value, null, null, $separator);

@@ -19,13 +19,13 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class ValidationTraitTest extends TestCase
 {
     private $stub;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->stub = new ValidationTraitStub;
     }

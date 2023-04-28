@@ -20,11 +20,9 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class GrpcSupportTraitTest extends TestCase
 {
-    use ExpectException;
     use GrpcSupportTrait;
 
     private static $hasGrpc;

@@ -59,14 +59,16 @@ use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GapicClientTraitTest extends TestCase
 {
+    use ProphecyTrait;
     use TestTrait;
 
-    public function tear_down()
+    public function tearDown(): void
     {
         // Reset the static gapicVersion field between tests
         $client = new GapicClientTraitStub();
@@ -352,13 +354,13 @@ class GapicClientTraitTest extends TestCase
                 [
                     'method' => []
                 ],
-                'does not have a callType' 
+                'does not have a callType'
             ],
             [
                 [
                     'method' => ['callType' => Call::LONGRUNNING_CALL]
                 ],
-                'does not have a longRunning config' 
+                'does not have a longRunning config'
             ],
             [
                 [
@@ -561,7 +563,7 @@ class GapicClientTraitTest extends TestCase
                 [
                     'Method' => []
                 ],
-                'does not have a callType' 
+                'does not have a callType'
             ],
             [
                 [

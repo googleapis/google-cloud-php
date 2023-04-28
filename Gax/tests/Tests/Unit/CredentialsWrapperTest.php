@@ -47,9 +47,11 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class CredentialsWrapperTest extends TestCase
 {
+    use ProphecyTrait;
 
     /**
      * @dataProvider buildDataWithoutExplicitKeyFile

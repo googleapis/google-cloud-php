@@ -38,11 +38,11 @@ use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use LogicException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class OperationResponseTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
     use TestTrait;
 
     public function testBasic()
@@ -361,6 +361,12 @@ class OperationResponseTest extends TestCase
 
     private function createOperationClient($reloadCount)
     {
+        $consecutiveCalls = [];
+        for ($i = 0; $i < $reloadCount - 1; $i++) {
+            $consecutiveCalls[] = $this->returnValue(new Operation);
+        }
+        $consecutiveCalls[] = $this->returnValue(new Operation(['done' => true]));
+
         $opClient = $this->getMockBuilder(OperationsClient::class)
             ->setConstructorArgs([[
                 'apiEndpoint' => '',
@@ -369,14 +375,10 @@ class OperationResponseTest extends TestCase
             ->setMethods(['getOperation'])
             ->getMock();
 
-        for ($i = 0; $i < $reloadCount - 1; $i++) {
-            $opClient->expects($this->at($i))
-                ->method('getOperation')
-                ->willReturn(new Operation());
-        }
-        $opClient->expects($this->at($reloadCount - 1))
+        $opClient->expects($this->exactly($reloadCount))
             ->method('getOperation')
-            ->willReturn((new Operation())->setDone(true));
+            ->will($this->onConsecutiveCalls(...$consecutiveCalls));
+
         return $opClient;
     }
 }
