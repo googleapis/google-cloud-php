@@ -27,6 +27,14 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4;</code>
      */
     private $http_headers;
+    /**
+     * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to the exposed port of the container, which is
+     * the value of container.ports[0].containerPort.
+     *
+     * Generated from protobuf field <code>int32 port = 5;</code>
+     */
+    private $port = 0;
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      *           Path to access on the HTTP server. Defaults to '/'.
      *     @type array<\Google\Cloud\Run\V2\HTTPHeader>|\Google\Protobuf\Internal\RepeatedField $http_headers
      *           Custom headers to set in the request. HTTP allows repeated headers.
+     *     @type int $port
+     *           Port number to access on the container. Must be in the range 1 to 65535.
+     *           If not specified, defaults to the exposed port of the container, which is
+     *           the value of container.ports[0].containerPort.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,36 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\HTTPHeader::class);
         $this->http_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to the exposed port of the container, which is
+     * the value of container.ports[0].containerPort.
+     *
+     * Generated from protobuf field <code>int32 port = 5;</code>
+     * @return int
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to the exposed port of the container, which is
+     * the value of container.ports[0].containerPort.
+     *
+     * Generated from protobuf field <code>int32 port = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPort($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->port = $var;
 
         return $this;
     }

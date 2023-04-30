@@ -99,6 +99,7 @@ class ExecutionsClientTest extends GeneratedTest
         $cancelledCount = 1921113249;
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -115,6 +116,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setCancelledCount($cancelledCount);
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -234,6 +236,7 @@ class ExecutionsClientTest extends GeneratedTest
         $cancelledCount = 1921113249;
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -250,6 +253,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setCancelledCount($cancelledCount);
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
