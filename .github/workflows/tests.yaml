@@ -25,6 +25,19 @@ jobs:
     continue-on-error: true
     steps:
     - uses: actions/checkout@v3
+    - name: Setup cache environment
+      id: extcache
+      uses: shivammathur/cache-extensions@v1
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: ${{ matrix.extensions }}
+        key: cache-key-1 # increment to bust the cache
+    - name: Cache extensions
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.extcache.outputs.dir }}
+        key: ${{ steps.extcache.outputs.key }}
+        restore-keys: ${{ steps.extcache.outputs.key }}
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
