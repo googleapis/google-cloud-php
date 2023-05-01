@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines a aggregation that produces a single result.
+ * Defines an aggregation that produces a single result.
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredAggregationQuery.Aggregation</code>
  */
@@ -25,7 +25,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -36,7 +36,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );
@@ -69,7 +69,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *             COUNT_UP_TO(1) AS count_up_to_1,
      *             COUNT_UP_TO(2),
      *             COUNT_UP_TO(3) AS count_up_to_3,
-     *             COUNT_UP_TO(4)
+     *             COUNT(*)
      *           OVER (
      *             ...
      *           );
@@ -80,7 +80,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *             COUNT_UP_TO(1) AS count_up_to_1,
      *             COUNT_UP_TO(2) AS field_1,
      *             COUNT_UP_TO(3) AS count_up_to_3,
-     *             COUNT_UP_TO(4) AS field_2
+     *             COUNT(*) AS field_2
      *           OVER (
      *             ...
      *           );
@@ -137,7 +137,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -148,7 +148,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );
@@ -176,7 +176,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -187,7 +187,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );

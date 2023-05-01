@@ -16,10 +16,45 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableReadOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Names of the fields in the table that should be read. If empty, all
-     * fields will be read. If the specified field is a nested field, all
-     * the sub-fields in the field will be selected. The output field order is
-     * unrelated to the order of fields in selected_fields.
+     * Optional. The names of the fields in the table to be returned. If no
+     * field names are specified, then all fields in the table are returned.
+     * Nested fields -- the child elements of a STRUCT field -- can be selected
+     * individually using their fully-qualified names, and will be returned as
+     * record fields containing only the selected nested fields. If a STRUCT
+     * field is specified in the selected fields list, all of the child elements
+     * will be returned.
+     * As an example, consider a table with the following schema:
+     *   {
+     *       "name": "struct_field",
+     *       "type": "RECORD",
+     *       "mode": "NULLABLE",
+     *       "fields": [
+     *           {
+     *               "name": "string_field1",
+     *               "type": "STRING",
+     * .              "mode": "NULLABLE"
+     *           },
+     *           {
+     *               "name": "string_field2",
+     *               "type": "STRING",
+     *               "mode": "NULLABLE"
+     *           }
+     *       ]
+     *   }
+     * Specifying "struct_field" in the selected fields list will result in a
+     * read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *       string_field2
+     *   }
+     * Specifying "struct_field.string_field1" in the selected fields list will
+     * result in a read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *   }
+     * The order of the fields in the read session schema is derived from the
+     * table schema and does not correspond to the order in which the fields are
+     * specified in this list.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
      */
@@ -45,11 +80,46 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $selected_fields
-     *           Names of the fields in the table that should be read. If empty, all
-     *           fields will be read. If the specified field is a nested field, all
-     *           the sub-fields in the field will be selected. The output field order is
-     *           unrelated to the order of fields in selected_fields.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $selected_fields
+     *           Optional. The names of the fields in the table to be returned. If no
+     *           field names are specified, then all fields in the table are returned.
+     *           Nested fields -- the child elements of a STRUCT field -- can be selected
+     *           individually using their fully-qualified names, and will be returned as
+     *           record fields containing only the selected nested fields. If a STRUCT
+     *           field is specified in the selected fields list, all of the child elements
+     *           will be returned.
+     *           As an example, consider a table with the following schema:
+     *             {
+     *                 "name": "struct_field",
+     *                 "type": "RECORD",
+     *                 "mode": "NULLABLE",
+     *                 "fields": [
+     *                     {
+     *                         "name": "string_field1",
+     *                         "type": "STRING",
+     *           .              "mode": "NULLABLE"
+     *                     },
+     *                     {
+     *                         "name": "string_field2",
+     *                         "type": "STRING",
+     *                         "mode": "NULLABLE"
+     *                     }
+     *                 ]
+     *             }
+     *           Specifying "struct_field" in the selected fields list will result in a
+     *           read session schema with the following logical structure:
+     *             struct_field {
+     *                 string_field1
+     *                 string_field2
+     *             }
+     *           Specifying "struct_field.string_field1" in the selected fields list will
+     *           result in a read session schema with the following logical structure:
+     *             struct_field {
+     *                 string_field1
+     *             }
+     *           The order of the fields in the read session schema is derived from the
+     *           table schema and does not correspond to the order in which the fields are
+     *           specified in this list.
      *     @type string $row_restriction
      *           SQL text filtering statement, similar to a WHERE clause in a query.
      *           Aggregates are not supported.
@@ -61,6 +131,8 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           Restricted to a maximum length for 1 MB.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $arrow_serialization_options
      *           Optional. Options specific to the Apache Arrow output format.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions $avro_serialization_options
+     *           Optional. Options specific to the Apache Avro output format
      * }
      */
     public function __construct($data = NULL) {
@@ -69,10 +141,45 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of the fields in the table that should be read. If empty, all
-     * fields will be read. If the specified field is a nested field, all
-     * the sub-fields in the field will be selected. The output field order is
-     * unrelated to the order of fields in selected_fields.
+     * Optional. The names of the fields in the table to be returned. If no
+     * field names are specified, then all fields in the table are returned.
+     * Nested fields -- the child elements of a STRUCT field -- can be selected
+     * individually using their fully-qualified names, and will be returned as
+     * record fields containing only the selected nested fields. If a STRUCT
+     * field is specified in the selected fields list, all of the child elements
+     * will be returned.
+     * As an example, consider a table with the following schema:
+     *   {
+     *       "name": "struct_field",
+     *       "type": "RECORD",
+     *       "mode": "NULLABLE",
+     *       "fields": [
+     *           {
+     *               "name": "string_field1",
+     *               "type": "STRING",
+     * .              "mode": "NULLABLE"
+     *           },
+     *           {
+     *               "name": "string_field2",
+     *               "type": "STRING",
+     *               "mode": "NULLABLE"
+     *           }
+     *       ]
+     *   }
+     * Specifying "struct_field" in the selected fields list will result in a
+     * read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *       string_field2
+     *   }
+     * Specifying "struct_field.string_field1" in the selected fields list will
+     * result in a read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *   }
+     * The order of the fields in the read session schema is derived from the
+     * table schema and does not correspond to the order in which the fields are
+     * specified in this list.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,13 +190,48 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of the fields in the table that should be read. If empty, all
-     * fields will be read. If the specified field is a nested field, all
-     * the sub-fields in the field will be selected. The output field order is
-     * unrelated to the order of fields in selected_fields.
+     * Optional. The names of the fields in the table to be returned. If no
+     * field names are specified, then all fields in the table are returned.
+     * Nested fields -- the child elements of a STRUCT field -- can be selected
+     * individually using their fully-qualified names, and will be returned as
+     * record fields containing only the selected nested fields. If a STRUCT
+     * field is specified in the selected fields list, all of the child elements
+     * will be returned.
+     * As an example, consider a table with the following schema:
+     *   {
+     *       "name": "struct_field",
+     *       "type": "RECORD",
+     *       "mode": "NULLABLE",
+     *       "fields": [
+     *           {
+     *               "name": "string_field1",
+     *               "type": "STRING",
+     * .              "mode": "NULLABLE"
+     *           },
+     *           {
+     *               "name": "string_field2",
+     *               "type": "STRING",
+     *               "mode": "NULLABLE"
+     *           }
+     *       ]
+     *   }
+     * Specifying "struct_field" in the selected fields list will result in a
+     * read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *       string_field2
+     *   }
+     * Specifying "struct_field.string_field1" in the selected fields list will
+     * result in a read session schema with the following logical structure:
+     *   struct_field {
+     *       string_field1
+     *   }
+     * The order of the fields in the read session schema is derived from the
+     * table schema and does not correspond to the order in which the fields are
+     * specified in this list.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSelectedFields($var)
@@ -167,6 +309,37 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Options specific to the Apache Avro output format
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSerializationOptions avro_serialization_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions|null
+     */
+    public function getAvroSerializationOptions()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasAvroSerializationOptions()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. Options specific to the Apache Avro output format
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSerializationOptions avro_serialization_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions $var
+     * @return $this
+     */
+    public function setAvroSerializationOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

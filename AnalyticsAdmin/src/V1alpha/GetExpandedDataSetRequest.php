@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the Audience to get.
+     * Required. The name of the ExpandedDataSet to get.
      * Example format: properties/1234/expandedDataSets/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the Audience to get.
+     *           Required. The name of the ExpandedDataSet to get.
      *           Example format: properties/1234/expandedDataSets/5678
      * }
      */
@@ -40,7 +40,7 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Audience to get.
+     * Required. The name of the ExpandedDataSet to get.
      * Example format: properties/1234/expandedDataSets/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -52,7 +52,7 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Audience to get.
+     * Required. The name of the ExpandedDataSet to get.
      * Example format: properties/1234/expandedDataSets/5678
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

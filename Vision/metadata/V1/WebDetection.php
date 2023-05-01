@@ -16,7 +16,7 @@ class WebDetection
         }
         $pool->internalAddGeneratedFile(
             '
-”
+—
 *google/cloud/vision/v1/web_detection.protogoogle.cloud.vision.v1"Ô
 WebDetectionD
 web_entities (2..google.cloud.vision.v1.WebDetection.WebEntityK
@@ -41,8 +41,8 @@ page_title (	K
 partial_matching_images (2-.google.cloud.vision.v1.WebDetection.WebImage0
 WebLabel
 label (	
-language_code (	Bo
-com.google.cloud.vision.v1BWebDetectionProtoPZ2cloud.google.com/go/vision/apiv1/visionpb;visionpbø¢GCVNbproto3'
+language_code (	Br
+com.google.cloud.vision.v1BWebDetectionProtoPZ5cloud.google.com/go/vision/v2/apiv1/visionpb;visionpbø¢GCVNbproto3'
         , true);
 
         static::$is_initialized = true;

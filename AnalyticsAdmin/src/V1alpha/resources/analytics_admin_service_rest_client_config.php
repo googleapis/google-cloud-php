@@ -273,6 +273,18 @@ return [
                     ],
                 ],
             ],
+            'CreateChannelGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/channelGroups',
+                'body' => 'channel_group',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConnectedSiteTag' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:createConnectedSiteTag',
@@ -462,6 +474,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteChannelGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/channelGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteConnectedSiteTag' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:deleteConnectedSiteTag',
@@ -599,6 +622,10 @@ return [
                 'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
                 'body' => '*',
             ],
+            'FetchConnectedGa4Property' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/properties:fetchConnectedGa4Property',
+            ],
             'GetAccessBinding' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/accessBindings/*}',
@@ -652,6 +679,17 @@ return [
             'GetBigQueryLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetChannelGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/channelGroups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -881,6 +919,17 @@ return [
             'ListBigQueryLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListChannelGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/channelGroups',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1140,6 +1189,22 @@ return [
                     'audience.name' => [
                         'getters' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateChannelGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{channel_group.name=properties/*/channelGroups/*}',
+                'body' => 'channel_group',
+                'placeholders' => [
+                    'channel_group.name' => [
+                        'getters' => [
+                            'getChannelGroup',
                             'getName',
                         ],
                     ],

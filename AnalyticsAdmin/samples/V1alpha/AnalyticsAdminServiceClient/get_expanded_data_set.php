@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 /**
  * Lookup for a single ExpandedDataSet.
  *
- * @param string $formattedName The name of the Audience to get.
+ * @param string $formattedName The name of the ExpandedDataSet to get.
  *                              Example format: properties/1234/expandedDataSets/5678
  *                              Please see {@see AnalyticsAdminServiceClient::expandedDataSetName()} for help formatting this field.
  */

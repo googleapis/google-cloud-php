@@ -71,9 +71,6 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
      * and predictions on
      * [data_item_payload][google.cloud.aiplatform.v1.EvaluatedAnnotation.data_item_payload].
-     * Can be passed in
-     * [GetEvaluatedDataItemView's][ModelService.GetEvaluatedDataItemView][]
-     * [id][GetEvaluatedDataItemViewRequest.id].
      *
      * Generated from protobuf field <code>string evaluated_data_item_view_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -144,9 +141,6 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *           ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
      *           and predictions on
      *           [data_item_payload][google.cloud.aiplatform.v1.EvaluatedAnnotation.data_item_payload].
-     *           Can be passed in
-     *           [GetEvaluatedDataItemView's][ModelService.GetEvaluatedDataItemView][]
-     *           [id][GetEvaluatedDataItemViewRequest.id].
      *     @type array<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation>|\Google\Protobuf\Internal\RepeatedField $explanations
      *           Explanations of
      *           [predictions][google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions].
@@ -336,9 +330,6 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
      * and predictions on
      * [data_item_payload][google.cloud.aiplatform.v1.EvaluatedAnnotation.data_item_payload].
-     * Can be passed in
-     * [GetEvaluatedDataItemView's][ModelService.GetEvaluatedDataItemView][]
-     * [id][GetEvaluatedDataItemViewRequest.id].
      *
      * Generated from protobuf field <code>string evaluated_data_item_view_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -353,9 +344,6 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
      * and predictions on
      * [data_item_payload][google.cloud.aiplatform.v1.EvaluatedAnnotation.data_item_payload].
-     * Can be passed in
-     * [GetEvaluatedDataItemView's][ModelService.GetEvaluatedDataItemView][]
-     * [id][GetEvaluatedDataItemViewRequest.id].
      *
      * Generated from protobuf field <code>string evaluated_data_item_view_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

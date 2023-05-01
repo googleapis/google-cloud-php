@@ -47,11 +47,29 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.30.3';
+    const VERSION = '1.31.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
     const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+
+    /**
+     * Retry strategy to signify that we never want to retry an operation
+     * even if the error is retryable.
+     *
+     * We can set $options['retryStrategy'] to one of "always", "never" and
+     * "idempotent".
+     */
+    const RETRY_NEVER = 'never';
+    /**
+     * Retry strategy to signify that we always want to retry an operation.
+     */
+    const RETRY_ALWAYS = 'always';
+    /**
+     * This is the default. This signifies that we want to retry an operation
+     * only if it is retryable and the error is retryable.
+     */
+    const RETRY_IDEMPOTENT = 'idempotent';
 
     /**
      * @var ConnectionInterface Represents a connection to Storage.

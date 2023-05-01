@@ -167,6 +167,10 @@ class JobServiceGapicClient
 
     private static $nasTrialDetailNameTemplate;
 
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -317,6 +321,28 @@ class JobServiceGapicClient
         return self::$nasTrialDetailNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -332,6 +358,8 @@ class JobServiceGapicClient
                 'modelDeploymentMonitoringJob' => self::getModelDeploymentMonitoringJobNameTemplate(),
                 'nasJob' => self::getNasJobNameTemplate(),
                 'nasTrialDetail' => self::getNasTrialDetailNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -564,6 +592,53 @@ class JobServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -578,6 +653,8 @@ class JobServiceGapicClient
      * - modelDeploymentMonitoringJob: projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}
      * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

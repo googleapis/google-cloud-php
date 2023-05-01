@@ -103,7 +103,9 @@ abstract class AbstractUploader
         $this->requestOptions = array_intersect_key($options, [
             'restOptions' => null,
             'retries' => null,
-            'requestTimeout' => null
+            'requestTimeout' => null,
+            'restRetryFunction' => null,
+            'restRetryListener' => null
         ]);
 
         $this->contentType = $options['contentType'] ?? 'application/octet-stream';

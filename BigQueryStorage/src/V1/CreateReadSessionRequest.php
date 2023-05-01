@@ -32,14 +32,28 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      * Max initial number of streams. If unset or zero, the server will
      * provide a value of streams so as to produce reasonable throughput. Must be
      * non-negative. The number of streams may be lower than the requested number,
-     * depending on the amount parallelism that is reasonable for the table. Error
-     * will be returned if the max count is greater than the current system
-     * max limit of 1,000.
-     * Streams must be read starting from offset 0.
+     * depending on the amount parallelism that is reasonable for the table.
+     * There is a default system max limit of 1,000.
+     * This must be greater than or equal to preferred_min_stream_count.
+     * Typically, clients should either leave this unset to let the system to
+     * determine an upper bound OR set this a size for the maximum "units of work"
+     * it can gracefully handle.
      *
      * Generated from protobuf field <code>int32 max_stream_count = 3;</code>
      */
     private $max_stream_count = 0;
+    /**
+     * The minimum preferred stream count. This parameter can be used to inform
+     * the service that there is a desired lower bound on the number of streams.
+     * This is typically a target parallelism of the client (e.g. a Spark
+     * cluster with N-workers would set this to a low multiple of N to ensure
+     * good cluster utilization).
+     * The system will make a best effort to provide at least this number of
+     * streams, but in some cases might provide less.
+     *
+     * Generated from protobuf field <code>int32 preferred_min_stream_count = 4;</code>
+     */
+    private $preferred_min_stream_count = 0;
 
     /**
      * Constructor.
@@ -56,10 +70,20 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      *           Max initial number of streams. If unset or zero, the server will
      *           provide a value of streams so as to produce reasonable throughput. Must be
      *           non-negative. The number of streams may be lower than the requested number,
-     *           depending on the amount parallelism that is reasonable for the table. Error
-     *           will be returned if the max count is greater than the current system
-     *           max limit of 1,000.
-     *           Streams must be read starting from offset 0.
+     *           depending on the amount parallelism that is reasonable for the table.
+     *           There is a default system max limit of 1,000.
+     *           This must be greater than or equal to preferred_min_stream_count.
+     *           Typically, clients should either leave this unset to let the system to
+     *           determine an upper bound OR set this a size for the maximum "units of work"
+     *           it can gracefully handle.
+     *     @type int $preferred_min_stream_count
+     *           The minimum preferred stream count. This parameter can be used to inform
+     *           the service that there is a desired lower bound on the number of streams.
+     *           This is typically a target parallelism of the client (e.g. a Spark
+     *           cluster with N-workers would set this to a low multiple of N to ensure
+     *           good cluster utilization).
+     *           The system will make a best effort to provide at least this number of
+     *           streams, but in some cases might provide less.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,7 +127,7 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadSession()
     {
-        return isset($this->read_session) ? $this->read_session : null;
+        return $this->read_session;
     }
 
     public function hasReadSession()
@@ -135,10 +159,12 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      * Max initial number of streams. If unset or zero, the server will
      * provide a value of streams so as to produce reasonable throughput. Must be
      * non-negative. The number of streams may be lower than the requested number,
-     * depending on the amount parallelism that is reasonable for the table. Error
-     * will be returned if the max count is greater than the current system
-     * max limit of 1,000.
-     * Streams must be read starting from offset 0.
+     * depending on the amount parallelism that is reasonable for the table.
+     * There is a default system max limit of 1,000.
+     * This must be greater than or equal to preferred_min_stream_count.
+     * Typically, clients should either leave this unset to let the system to
+     * determine an upper bound OR set this a size for the maximum "units of work"
+     * it can gracefully handle.
      *
      * Generated from protobuf field <code>int32 max_stream_count = 3;</code>
      * @return int
@@ -152,10 +178,12 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      * Max initial number of streams. If unset or zero, the server will
      * provide a value of streams so as to produce reasonable throughput. Must be
      * non-negative. The number of streams may be lower than the requested number,
-     * depending on the amount parallelism that is reasonable for the table. Error
-     * will be returned if the max count is greater than the current system
-     * max limit of 1,000.
-     * Streams must be read starting from offset 0.
+     * depending on the amount parallelism that is reasonable for the table.
+     * There is a default system max limit of 1,000.
+     * This must be greater than or equal to preferred_min_stream_count.
+     * Typically, clients should either leave this unset to let the system to
+     * determine an upper bound OR set this a size for the maximum "units of work"
+     * it can gracefully handle.
      *
      * Generated from protobuf field <code>int32 max_stream_count = 3;</code>
      * @param int $var
@@ -165,6 +193,44 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_stream_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The minimum preferred stream count. This parameter can be used to inform
+     * the service that there is a desired lower bound on the number of streams.
+     * This is typically a target parallelism of the client (e.g. a Spark
+     * cluster with N-workers would set this to a low multiple of N to ensure
+     * good cluster utilization).
+     * The system will make a best effort to provide at least this number of
+     * streams, but in some cases might provide less.
+     *
+     * Generated from protobuf field <code>int32 preferred_min_stream_count = 4;</code>
+     * @return int
+     */
+    public function getPreferredMinStreamCount()
+    {
+        return $this->preferred_min_stream_count;
+    }
+
+    /**
+     * The minimum preferred stream count. This parameter can be used to inform
+     * the service that there is a desired lower bound on the number of streams.
+     * This is typically a target parallelism of the client (e.g. a Spark
+     * cluster with N-workers would set this to a low multiple of N to ensure
+     * good cluster utilization).
+     * The system will make a best effort to provide at least this number of
+     * streams, but in some cases might provide less.
+     *
+     * Generated from protobuf field <code>int32 preferred_min_stream_count = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPreferredMinStreamCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->preferred_min_stream_count = $var;
 
         return $this;
     }

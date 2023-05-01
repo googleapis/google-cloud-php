@@ -174,6 +174,49 @@ class ResumableUploaderTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether retry related options are properly set in the
+     * abstract uploader class. Since we already had these tests for
+     * ResumableUploader class which extends the AbstractUploader class,
+     * thus testing it here would be sufficient.
+     */
+    public function testRetryOptionsPassing()
+    {
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, [], $this->successBody);
+            },
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+        ]);
+        $options = [
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
+        ];
+        $uploader = new ResumableUploader(
+            $requestWrapper,
+            $this->stream,
+            'http://www.example.com',
+            $options
+        );
+        $uploader->upload();
+
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
+    }
+
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
         $this->expectException(GoogleException::class);

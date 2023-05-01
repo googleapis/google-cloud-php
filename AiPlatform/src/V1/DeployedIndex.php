@@ -104,11 +104,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      */
     private $dedicated_resources = null;
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -213,11 +213,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           n1-standard-16 and n1-standard-32 are still available, but we recommend
      *           e2-standard-16 and e2-highmem-16 for cost efficiency.
      *     @type bool $enable_access_logging
-     *           Optional. If true, private endpoint's access logs are sent to StackDriver
+     *           Optional. If true, private endpoint's access logs are sent to Cloud
      *           Logging.
      *           These logs are like standard server access logs, containing
      *           information like timestamp and latency for each MatchRequest.
-     *           Note that Stackdriver logs may incur a cost, especially if the deployed
+     *           Note that logs may incur a cost, especially if the deployed
      *           index receives a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
@@ -588,11 +588,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -605,11 +605,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *

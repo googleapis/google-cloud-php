@@ -99,6 +99,10 @@ class PredictionServiceGapicClient
 
     private static $endpointNameTemplate;
 
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -138,11 +142,35 @@ class PredictionServiceGapicClient
         return self::$endpointNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'endpoint' => self::getEndpointNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -169,10 +197,59 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

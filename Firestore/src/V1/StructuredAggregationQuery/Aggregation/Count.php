@@ -21,7 +21,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of documents to
      * count.
      * This provides a way to set an upper bound on the number of documents
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * High-Level Example:
      * ```
@@ -44,7 +44,7 @@ class Count extends \Google\Protobuf\Internal\Message
      *           Optional. Optional constraint on the maximum number of documents to
      *           count.
      *           This provides a way to set an upper bound on the number of documents
-     *           to scan, limiting latency and cost.
+     *           to scan, limiting latency, and cost.
      *           Unspecified is interpreted as no bound.
      *           High-Level Example:
      *           ```
@@ -63,7 +63,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of documents to
      * count.
      * This provides a way to set an upper bound on the number of documents
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * High-Level Example:
      * ```
@@ -96,7 +96,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of documents to
      * count.
      * This provides a way to set an upper bound on the number of documents
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * High-Level Example:
      * ```
@@ -117,7 +117,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of documents to
      * count.
      * This provides a way to set an upper bound on the number of documents
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * High-Level Example:
      * ```
@@ -144,7 +144,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Optional. Optional constraint on the maximum number of documents to
      * count.
      * This provides a way to set an upper bound on the number of documents
-     * to scan, limiting latency and cost.
+     * to scan, limiting latency, and cost.
      * Unspecified is interpreted as no bound.
      * High-Level Example:
      * ```

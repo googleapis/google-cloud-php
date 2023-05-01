@@ -30,8 +30,8 @@ use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
 
 /**
- * Listens to changes. This method is only available via the gRPC API (not
- * REST).
+ * Listens to changes. This method is only available via gRPC or WebChannel
+ * (not REST).
  *
  * @param string $database The database name. In the format:
  *                         `projects/{project_id}/databases/{database_id}`.

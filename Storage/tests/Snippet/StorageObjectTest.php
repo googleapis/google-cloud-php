@@ -309,17 +309,17 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStream', 1);
         $snippet->addLocal('object', $this->object);
-        $this->connection->downloadObject([
-                'restOptions' => [
-                    'headers' => [
-                        'Range' => 'bytes=0-4'
-                    ]
-                ],
-                'bucket' => 'my-bucket',
-                'object' => 'my-object'
-            ])
-            ->shouldBeCalled()
-            ->willReturn(Utils::streamFor('test'));
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', 'my-bucket'),
+            Argument::withEntry('object', 'my-object'),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withKey('Range')
+                ))
+            ))
+        ))
+        ->shouldBeCalled()
+        ->willReturn(Utils::streamFor('test'));
         $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();

@@ -13,7 +13,14 @@ jobs:
       matrix:
         platform: [ubuntu-latest, windows-latest]
         php: [ "7.4", "8.0", "8.1", "8.2" ]
-    name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
+        extensions: ["grpc"]
+        type: ["Unit Test"]
+        include:
+          - platform: "ubuntu-latest"
+            php: "7.4"
+            extensions: "protobuf,grpc"
+            type: "Unit Test + protobuf extension"
+    name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
