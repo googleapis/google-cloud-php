@@ -28,7 +28,7 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      */
-    protected $mutate_rows_rate_limit = false;
+    private $mutate_rows_rate_limit = false;
 
     /**
      * Constructor.
