@@ -21,7 +21,7 @@ class DeployArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $artifact_uri = '';
+    private $artifact_uri = '';
     /**
      * Output only. File paths of the manifests applied during the deploy
      * operation relative to the URI.
