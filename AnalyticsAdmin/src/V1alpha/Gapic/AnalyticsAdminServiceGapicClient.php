@@ -60,10 +60,12 @@ use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
+use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
@@ -86,6 +88,7 @@ use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
+use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
@@ -104,12 +107,15 @@ use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest;
+use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
 use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
+use Google\Analytics\Admin\V1alpha\GetChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
@@ -139,6 +145,8 @@ use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
+use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
@@ -182,6 +190,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
@@ -270,6 +279,8 @@ class AnalyticsAdminServiceGapicClient
     private static $audienceNameTemplate;
 
     private static $bigQueryLinkNameTemplate;
+
+    private static $channelGroupNameTemplate;
 
     private static $conversionEventNameTemplate;
 
@@ -393,6 +404,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$bigQueryLinkNameTemplate;
+    }
+
+    private static function getChannelGroupNameTemplate()
+    {
+        if (self::$channelGroupNameTemplate == null) {
+            self::$channelGroupNameTemplate = new PathTemplate('properties/{property}/channelGroups/{channel_group}');
+        }
+
+        return self::$channelGroupNameTemplate;
     }
 
     private static function getConversionEventNameTemplate()
@@ -586,6 +606,7 @@ class AnalyticsAdminServiceGapicClient
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
                 'bigQueryLink' => self::getBigQueryLinkNameTemplate(),
+                'channelGroup' => self::getChannelGroupNameTemplate(),
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
                 'customMetric' => self::getCustomMetricNameTemplate(),
@@ -738,6 +759,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getBigQueryLinkNameTemplate()->render([
             'property' => $property,
             'bigquery_link' => $bigqueryLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * channel_group resource.
+     *
+     * @param string $property
+     * @param string $channelGroup
+     *
+     * @return string The formatted channel_group resource.
+     *
+     * @experimental
+     */
+    public static function channelGroupName($property, $channelGroup)
+    {
+        return self::getChannelGroupNameTemplate()->render([
+            'property' => $property,
+            'channel_group' => $channelGroup,
         ]);
     }
 
@@ -1126,6 +1166,7 @@ class AnalyticsAdminServiceGapicClient
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
      * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
+     * - channelGroup: properties/{property}/channelGroups/{channel_group}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions/{custom_dimension}
      * - customMetric: properties/{property}/customMetrics/{custom_metric}
@@ -2088,6 +2129,51 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a ChannelGroup.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $channelGroup = new ChannelGroup();
+     *     $response = $analyticsAdminServiceClient->createChannelGroup($formattedParent, $channelGroup);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. The property for which to create a ChannelGroup.
+     *                                   Example format: properties/1234
+     * @param ChannelGroup $channelGroup Required. The ChannelGroup to create.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ChannelGroup
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createChannelGroup($parent, $channelGroup, array $optionalArgs = [])
+    {
+        $request = new CreateChannelGroupRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setChannelGroup($channelGroup);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateChannelGroup', ChannelGroup::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a connected site tag for a Universal Analytics property. You can
      * create a maximum of 20 connected site tags per property.
      * Note: This API cannot be used on GA4 properties.
@@ -2814,6 +2900,46 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a ChannelGroup on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+     *     $analyticsAdminServiceClient->deleteChannelGroup($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The ChannelGroup to delete.
+     *                             Example format: properties/1234/channelGroups/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteChannelGroup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteChannelGroupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteChannelGroup', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a connected site tag for a Universal Analytics property.
      * Note: this has no effect on GA4 properties.
      *
@@ -3358,6 +3484,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Given a specified UA property, looks up the GA4 property connected to it.
+     * Note: this cannot be used with GA4 properties.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedProperty = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->fetchConnectedGa4Property($formattedProperty);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $property     Required. The UA property for which to look up the connected GA4 property.
+     *                             Note this request uses the
+     *                             internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
+     *                             Format: properties/{internal_web_property_id}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function fetchConnectedGa4Property($property, array $optionalArgs = [])
+    {
+        $request = new FetchConnectedGa4PropertyRequest();
+        $request->setProperty($property);
+        return $this->startCall('FetchConnectedGa4Property', FetchConnectedGa4PropertyResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets information about an access binding.
      *
      * Sample code:
@@ -3571,6 +3739,48 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBigQueryLink', BigQueryLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single ChannelGroup.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+     *     $response = $analyticsAdminServiceClient->getChannelGroup($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The ChannelGroup to get.
+     *                             Example format: properties/1234/channelGroups/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ChannelGroup
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getChannelGroup($name, array $optionalArgs = [])
+    {
+        $request = new GetChannelGroupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetChannelGroup', ChannelGroup::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3974,7 +4184,7 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Audience to get.
+     * @param string $name         Required. The name of the ExpandedDataSet to get.
      *                             Example format: properties/1234/expandedDataSets/5678
      * @param array  $optionalArgs {
      *     Optional.
@@ -4610,6 +4820,77 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListBigQueryLinks', $optionalArgs, ListBigQueryLinksResponse::class, $request);
+    }
+
+    /**
+     * Lists ChannelGroups on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listChannelGroups($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listChannelGroups($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The property for which to list ChannelGroups.
+     *                             Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listChannelGroups($parent, array $optionalArgs = [])
+    {
+        $request = new ListChannelGroupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListChannelGroups', $optionalArgs, ListChannelGroupsResponse::class, $request);
     }
 
     /**
@@ -6151,6 +6432,55 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateAudience', Audience::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a ChannelGroup.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $channelGroup = new ChannelGroup();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateChannelGroup($channelGroup, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ChannelGroup $channelGroup Required. The ChannelGroup to update.
+     *                                   The resource's `name` field is used to identify the ChannelGroup to be
+     *                                   updated.
+     * @param FieldMask    $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                   case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                   replace the entire entity, use one path with the string "*" to match all
+     *                                   fields.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ChannelGroup
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateChannelGroup($channelGroup, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateChannelGroupRequest();
+        $requestParamHeaders = [];
+        $request->setChannelGroup($channelGroup);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['channel_group.name'] = $channelGroup->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateChannelGroup', ChannelGroup::class, $optionalArgs, $request)->wait();
     }
 
     /**

@@ -631,6 +631,43 @@ class RequestWrapperTest extends TestCase
 
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
     }
+
+    /**
+     * This test asserts that the retry related options and callbacks are
+     * properly mapped and set in the RequestWrapper's `$requestOptions`
+     * property.
+     */
+    public function testPassingInRetryOptions()
+    {
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
+        $options = [
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
+        ];
+        $request = new Request('GET', 'http://www.example.com');
+        $requestWrapper = new RequestWrapper([
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, []);
+            }
+        ]);
+        $requestWrapper->send($request, $options);
+
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
+    }
 }
 
 //@codingStandardsIgnoreStart

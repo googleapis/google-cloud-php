@@ -16,7 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class StructuredQuery extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The projection to return.
+     * Optional sub-set of the fields to return.
+     * This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
+     * documents returned from a query. When not set, assumes that the caller
+     * wants all fields returned.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Projection select = 1;</code>
      */
@@ -119,7 +122,10 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Projection $select
-     *           The projection to return.
+     *           Optional sub-set of the fields to return.
+     *           This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
+     *           documents returned from a query. When not set, assumes that the caller
+     *           wants all fields returned.
      *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>|\Google\Protobuf\Internal\RepeatedField $from
      *           The collections to query.
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Filter $where
@@ -190,7 +196,10 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The projection to return.
+     * Optional sub-set of the fields to return.
+     * This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
+     * documents returned from a query. When not set, assumes that the caller
+     * wants all fields returned.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Projection select = 1;</code>
      * @return \Google\Cloud\Firestore\V1\StructuredQuery\Projection|null
@@ -211,7 +220,10 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The projection to return.
+     * Optional sub-set of the fields to return.
+     * This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
+     * documents returned from a query. When not set, assumes that the caller
+     * wants all fields returned.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Projection select = 1;</code>
      * @param \Google\Cloud\Firestore\V1\StructuredQuery\Projection $var

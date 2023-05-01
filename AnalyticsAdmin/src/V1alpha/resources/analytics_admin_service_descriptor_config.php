@@ -63,6 +63,16 @@ return [
                     'resourcesGetMethod' => 'getBigqueryLinks',
                 ],
             ],
+            'ListChannelGroups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getChannelGroups',
+                ],
+            ],
             'ListConversionEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

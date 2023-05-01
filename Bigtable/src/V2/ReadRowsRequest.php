@@ -24,8 +24,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $table_name = '';
     /**
-     * This value specifies routing for replication. This API only accepts the
-     * empty value of app_profile_id.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      */
@@ -69,8 +69,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
-     *           This value specifies routing for replication. This API only accepts the
-     *           empty value of app_profile_id.
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
      *     @type \Google\Cloud\Bigtable\V2\RowSet $rows
      *           The row keys and/or ranges to read sequentially. If not specified, reads
      *           from all rows.
@@ -120,8 +120,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This value specifies routing for replication. This API only accepts the
-     * empty value of app_profile_id.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      * @return string
@@ -132,8 +132,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This value specifies routing for replication. This API only accepts the
-     * empty value of app_profile_id.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      * @param string $var

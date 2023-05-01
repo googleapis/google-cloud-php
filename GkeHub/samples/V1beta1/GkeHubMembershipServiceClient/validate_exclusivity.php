@@ -31,11 +31,12 @@ use Google\Cloud\GkeHub\V1beta1\ValidateExclusivityResponse;
  * ValidateExclusivity validates the state of exclusivity in the cluster.
  * The validation does not depend on an existing Hub membership resource.
  *
- * @param string $formattedParent    The parent (project and location) where the Memberships will be created.
- *                                   Specified in the format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedParent    The parent (project and location) where the Memberships will be
+ *                                   created. Specified in the format `projects/&#42;/locations/*`. Please see
  *                                   {@see GkeHubMembershipServiceClient::locationName()} for help formatting this field.
- * @param string $intendedMembership The intended membership name under the `parent`. This method only does
- *                                   validation in anticipation of a CreateMembership call with the same name.
+ * @param string $intendedMembership The intended membership name under the `parent`. This method only
+ *                                   does validation in anticipation of a CreateMembership call with the same
+ *                                   name.
  */
 function validate_exclusivity_sample(string $formattedParent, string $intendedMembership): void
 {

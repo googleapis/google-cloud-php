@@ -2311,7 +2311,7 @@ class FeaturestoreServiceGapicClient
      *           * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *           * `monitoring_config.numerical_threshold_config.value`
      *           * `monitoring_config.categorical_threshold_config.value`
-     *           * `offline_storage_ttl_days` (available in Preview)
+     *           * `offline_storage_ttl_days`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2474,7 +2474,7 @@ class FeaturestoreServiceGapicClient
      *           * `labels`
      *           * `online_serving_config.fixed_node_count`
      *           * `online_serving_config.scaling`
-     *           * `online_storage_ttl_days` (available in Preview)
+     *           * `online_storage_ttl_days`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -56,6 +56,12 @@ class AcceleratorType
      */
     const NVIDIA_TESLA_A100 = 8;
     /**
+     * Nvidia L4 GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_L4 = 11;</code>
+     */
+    const NVIDIA_L4 = 11;
+    /**
      * TPU v2.
      *
      * Generated from protobuf enum <code>TPU_V2 = 6;</code>
@@ -82,6 +88,7 @@ class AcceleratorType
         self::NVIDIA_TESLA_P4 => 'NVIDIA_TESLA_P4',
         self::NVIDIA_TESLA_T4 => 'NVIDIA_TESLA_T4',
         self::NVIDIA_TESLA_A100 => 'NVIDIA_TESLA_A100',
+        self::NVIDIA_L4 => 'NVIDIA_L4',
         self::TPU_V2 => 'TPU_V2',
         self::TPU_V3 => 'TPU_V3',
         self::TPU_V4_POD => 'TPU_V4_POD',

@@ -621,7 +621,10 @@ class StorageObject
     }
 
     /**
-     * Download an object as a stream.
+     * Download an object as a stream. The library will attempt to resume the download
+     * if a retry-able error is thrown. An attempt to fetch the remaining file will
+     * be made only if the user has not supplied a custom retry
+     * function of their own.
      *
      * Please note Google Cloud Storage respects the Range header as specified
      * by [RFC7233](https://tools.ietf.org/html/rfc7233#section-3.1). See below

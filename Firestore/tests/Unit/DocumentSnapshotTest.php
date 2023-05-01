@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Exception;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -208,7 +209,10 @@ class DocumentSnapshotTest extends TestCase
 
     public function testArrayAccessNonExistentIndex()
     {
-        $this->expectError();
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_USER_NOTICE);
+        $this->expectException(Exception::class);
 
         $this->snapshot['name'];
     }

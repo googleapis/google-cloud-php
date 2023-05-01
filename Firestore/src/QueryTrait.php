@@ -25,45 +25,6 @@ use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 trait QueryTrait
 {
     /**
-     * Clean up the query array before sending.
-     *
-     * Some optimizations cannot be performed ahead of time and must be done
-     * at execution.
-     *
-     * @internal Only supposed to be used internally.
-     *
-     * @access private
-     * @param array $query
-     * @return array The final query data
-     */
-    private function finalQueryPrepare(array $query)
-    {
-        if (isset($query['aggregates'])) {
-            return $this->aggregateQueryPrepare($query);
-        }
-        return $this->structuredQueryPrepare($query);
-    }
-
-    /**
-     * Clean up the Aggregate query array before sending.
-     *
-     * @param array $query
-     * @return array The final aggregation query data.
-     */
-    private function aggregateQueryPrepare(array $query)
-    {
-        $parsedAggregates = [];
-        foreach ($query['aggregates'] as $aggregate) {
-            $parsedAggregates[] = $aggregate->getProps();
-        }
-        unset($query['aggregates']);
-        return [
-            'structuredQuery' => $this->structuredQueryPrepare($query),
-            'aggregations' => $parsedAggregates
-        ];
-    }
-
-    /**
      * Clean up the Structured query array before sending.
      *
      * Some optimizations cannot be performed ahead of time and must be done

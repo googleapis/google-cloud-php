@@ -42,7 +42,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *   * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *   * `monitoring_config.numerical_threshold_config.value`
      *   * `monitoring_config.categorical_threshold_config.value`
-     *   * `offline_storage_ttl_days` (available in Preview)
+     *   * `offline_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -76,7 +76,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *             * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *             * `monitoring_config.numerical_threshold_config.value`
      *             * `monitoring_config.categorical_threshold_config.value`
-     *             * `offline_storage_ttl_days` (available in Preview)
+     *             * `offline_storage_ttl_days`
      * }
      */
     public function __construct($data = NULL) {
@@ -142,7 +142,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *   * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *   * `monitoring_config.numerical_threshold_config.value`
      *   * `monitoring_config.categorical_threshold_config.value`
-     *   * `offline_storage_ttl_days` (available in Preview)
+     *   * `offline_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -180,7 +180,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *   * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
      *   * `monitoring_config.numerical_threshold_config.value`
      *   * `monitoring_config.categorical_threshold_config.value`
-     *   * `offline_storage_ttl_days` (available in Preview)
+     *   * `offline_storage_ttl_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

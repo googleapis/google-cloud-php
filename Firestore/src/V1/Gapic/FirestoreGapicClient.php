@@ -828,8 +828,8 @@ class FirestoreGapicClient
     }
 
     /**
-     * Listens to changes. This method is only available via the gRPC API (not
-     * REST).
+     * Listens to changes. This method is only available via gRPC or WebChannel
+     * (not REST).
      *
      * Sample code:
      * ```
@@ -1269,7 +1269,7 @@ class FirestoreGapicClient
 
     /**
      * Streams batches of document updates and deletes, in order. This method is
-     * only available via the gRPC API (not REST).
+     * only available via gRPC or WebChannel (not REST).
      *
      * Sample code:
      * ```

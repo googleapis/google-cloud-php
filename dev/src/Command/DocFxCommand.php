@@ -182,7 +182,7 @@ class DocFxCommand extends Command
 
     public static function getPhpDocCommand(string $componentPath, string $outDir): Process
     {
-        return new Process([
+        $process = new Process([
             'phpdoc',
             '-d',
             sprintf('%s/src', $componentPath),
@@ -191,5 +191,10 @@ class DocFxCommand extends Command
             '--target',
             $outDir
         ]);
+
+        // The Compute component can exceed the default timeout of 60 seconds.
+        $process->setTimeout(120);
+
+        return $process;
     }
 }

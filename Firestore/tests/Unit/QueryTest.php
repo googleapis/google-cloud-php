@@ -448,6 +448,8 @@ class QueryTest extends TestCase
             ['array-contains'],
             ['in'],
             ['IN'],
+            ['not_in'],
+            ['NOT_IN'],
             ['array-contains-any'],
         ]);
     }

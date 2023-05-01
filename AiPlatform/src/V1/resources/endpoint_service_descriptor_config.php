@@ -33,6 +33,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'MutateDeployedModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\MutateDeployedModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\MutateDeployedModelOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'UndeployModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UndeployModelResponse',
