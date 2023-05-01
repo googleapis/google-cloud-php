@@ -22,7 +22,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * A list of phase match rules that are included in this group.
+     * A list of phrase match rules that are included in this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRule phrase_match_rules = 2;</code>
      */
@@ -37,7 +37,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. The type of this phrase match rule group.
      *     @type array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule>|\Google\Protobuf\Internal\RepeatedField $phrase_match_rules
-     *           A list of phase match rules that are included in this group.
+     *           A list of phrase match rules that are included in this group.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of phase match rules that are included in this group.
+     * A list of phrase match rules that are included in this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRule phrase_match_rules = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,7 +83,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of phase match rules that are included in this group.
+     * A list of phrase match rules that are included in this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRule phrase_match_rules = 2;</code>
      * @param array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule>|\Google\Protobuf\Internal\RepeatedField $var

@@ -54,13 +54,13 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * Map of string keys and values that can be used to organize and categorize
+     * Unstructured key value map that can be used to organize and categorize
      * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -75,11 +75,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
-     * namespaces, and they will be rejected. All system annotations in v1 now
-     * have a corresponding field in v2 Service.
+     * namespaces, and they will be rejected in new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Service.
      * <p>This field follows Kubernetes
-     * annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * annotations' namespacing, limits, and rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      */
@@ -146,6 +145,12 @@ class Service extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      */
@@ -229,6 +234,12 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
@@ -285,13 +296,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Please note that unlike v1, this is an int64 value. As with most Google
      *           APIs, its JSON representation will be a `string` instead of an `integer`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Map of string keys and values that can be used to organize and categorize
+     *           Unstructured key value map that can be used to organize and categorize
      *           objects.
      *           User-provided labels are shared with Google's billing system, so they can
      *           be used to filter, or break down billing charges by team, component,
      *           environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     *           https://cloud.google.com/run/docs/configuring/labels
+     *           https://cloud.google.com/run/docs/configuring/labels.
      *           <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      *           namespaces, and they will be rejected. All system labels in v1 now have a
@@ -302,11 +313,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *           when modifying objects.
      *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
-     *           namespaces, and they will be rejected. All system annotations in v1 now
-     *           have a corresponding field in v2 Service.
+     *           namespaces, and they will be rejected in new resources. All system
+     *           annotations in v1 now have a corresponding field in v2 Service.
      *           <p>This field follows Kubernetes
-     *           annotations' namespacing, limits, and rules. More info:
-     *           https://kubernetes.io/docs/user-guide/annotations
+     *           annotations' namespacing, limits, and rules.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -333,6 +343,12 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Launch Stages](https://cloud.google.com/terms/launch-stages).
      *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      *           is assumed.
+     *           Set the launch stage to a preview stage on input to allow use of preview
+     *           features in that stage. On read (or output), describes whether the resource
+     *           uses preview features.
+     *           <p>
+     *           For example, if ALPHA is provided as input, but only BETA and GA-level
+     *           features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
      *           Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
@@ -371,6 +387,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           process in Cloud Run.
      *     @type string $uri
      *           Output only. The main URI in which this Service is serving traffic.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type bool $reconciling
      *           Output only. Returns true if the Service is currently being acted upon by
      *           the system to bring it into the desired state.
@@ -526,13 +544,13 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Map of string keys and values that can be used to organize and categorize
+     * Unstructured key value map that can be used to organize and categorize
      * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -547,13 +565,13 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Map of string keys and values that can be used to organize and categorize
+     * Unstructured key value map that can be used to organize and categorize
      * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
+     * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system labels in v1 now have a
@@ -577,11 +595,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
-     * namespaces, and they will be rejected. All system annotations in v1 now
-     * have a corresponding field in v2 Service.
+     * namespaces, and they will be rejected in new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Service.
      * <p>This field follows Kubernetes
-     * annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * annotations' namespacing, limits, and rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -597,11 +614,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
-     * namespaces, and they will be rejected. All system annotations in v1 now
-     * have a corresponding field in v2 Service.
+     * namespaces, and they will be rejected in new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Service.
      * <p>This field follows Kubernetes
-     * annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * annotations' namespacing, limits, and rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -900,6 +916,12 @@ class Service extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      * @return int
@@ -914,6 +936,12 @@ class Service extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      * @param int $var
@@ -1249,6 +1277,32 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

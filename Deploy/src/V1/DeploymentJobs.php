@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeploymentJobs extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The deploy Job. This is the first job run in the phase.
+     * Output only. The deploy Job. This is the deploy job in the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job deploy_job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,7 +35,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\Job $deploy_job
-     *           Output only. The deploy Job. This is the first job run in the phase.
+     *           Output only. The deploy Job. This is the deploy job in the phase.
      *     @type \Google\Cloud\Deploy\V1\Job $verify_job
      *           Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      * }
@@ -46,7 +46,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deploy Job. This is the first job run in the phase.
+     * Output only. The deploy Job. This is the deploy job in the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job deploy_job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\Job|null
@@ -67,7 +67,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deploy Job. This is the first job run in the phase.
+     * Output only. The deploy Job. This is the deploy job in the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job deploy_job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\Job $var

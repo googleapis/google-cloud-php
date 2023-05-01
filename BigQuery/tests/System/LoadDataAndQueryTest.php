@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\ExponentialBackoff;
 use GuzzleHttp\Psr7\Utils;
 
@@ -156,6 +157,55 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
             $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
         }
+    }
+
+    public function testInsertRowToTableWithDefaultValueExpression()
+    {
+        $row = $this->row;
+        // unset default value expression fields so that they are populated automatically
+        unset(
+            $row['Name'],
+            $row['Age'],
+            $row['Weight'],
+            $row['IsMagic'],
+            $row['CreatedTimestamp']
+        );
+        self::$expectedRows++;
+        $insertResponse = self::$table->insertRow($row);
+        sleep(1);
+        $rows = iterator_to_array(self::$table->rows());
+
+        $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertCount(self::$expectedRows, $rows);
+
+        $actualRow = $rows[0];
+
+        $expectedRow = $this->row;
+        // default values from schema
+        $expectedRow['Name'] = 'Default Name';
+        $expectedRow['Age'] = 1;
+        $expectedRow['Weight'] = 0.5;
+        $expectedRow['IsMagic'] = false;
+
+        $expectedBytes = $expectedRow['Spells'][0]['Icon'];
+        $actualBytes = $actualRow['Spells'][0]['Icon'];
+        unset($expectedRow['Spells'][0]['Icon'], $actualRow['Spells'][0]['Icon']);
+
+        $actualGeography = $actualRow['Location'];
+        unset($expectedRow['Location'], $actualRow['Location']);
+
+        $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
+        $actualTimestamp = $actualRow['CreatedTimestamp'];
+        unset($actualRow['CreatedTimestamp']);
+
+        $this->assertEquals($expectedRow, $actualRow);
+        $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
+        $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
+        $this->assertEqualsWithDelta(
+            $expectedTimestamp->get()->getTimestamp(),
+            $actualTimestamp->get()->getTimestamp(),
+            10
+        );
     }
 
     /**
