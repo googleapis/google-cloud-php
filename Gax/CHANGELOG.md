@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.20.0](https://github.com/googleapis/gax-php/compare/v1.19.1...v1.20.0) (2023-05-01)
+
+
+### Features
+
+* **deps:** Support google/common-protos 4.0 ([af1db80](https://github.com/googleapis/gax-php/commit/af1db80c22307597f0dfcb9fafa86caf466588ba))
+* **deps:** Support google/grpc-gcp 0.3 ([18edc2c](https://github.com/googleapis/gax-php/commit/18edc2ce6a1a615e3ea7c00ede313c32cec4b799))
+
 ## [1.19.1](https://github.com/googleapis/gax-php/compare/v1.19.0...v1.19.1) (2023-03-16)
 
 
