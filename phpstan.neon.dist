@@ -1,0 +1,26 @@
+parameters:
+    level: 0
+    excludePaths:
+    # Ignore classes not compatible with Monolog2
+    - Core/src/Logger/*.php
+    # Ignore deprecated classes
+    - Core/src/Lock/SymfonyLockAdapter.php
+    - Core/src/PhpArray.php
+    # Ignore classes using the deprecated stackriver_debugger extension
+    - Debugger/src/Agent.php
+    - Debugger/src/Breakpoint.php
+    # Ignore Monolog3 for now, as these tests run using Monolog2
+    - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
+    - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
+    # Ignore CloudDeployGrpcClient.php because it has a method name conflict
+    - Deploy/src/V1/CloudDeployGrpcClient.php
+    ignoreErrors:
+    # Problems with legacy namespaces (I'm not sure why these are throwing errors)
+    - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9_]+ not found\.$#'
+    # Protobuf constant classes sometimes contain multiple values for one array key
+    - '#Array has \d duplicate keys with value #'
+    # Ignore this error because I don't consider it to be level 0
+    - '#Unsafe usage of new static#'
+includes:
+    - dev/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+

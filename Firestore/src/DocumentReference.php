@@ -415,7 +415,10 @@ class DocumentReference
      */
     protected function batchFactory()
     {
-        return new WriteBatch(
+        if (!class_exists(WriteBatch::class)) {
+            class_alias(BulkWriter::class, WriteBatch::class);
+        }
+        return new BulkWriter(
             $this->connection,
             $this->valueMapper,
             $this->databaseFromName($this->name)

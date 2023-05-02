@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Create a temporary bootstrap file that combines the autoloader of the project and the dev autoloader
+TMPDIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')
+echo "<?php require 'vendor/autoload.php';require 'dev/vendor/autoload.php';" > $TMPDIR/phpstan-bootstrap.php
+
+# Run phpstan
+dev/vendor/bin/phpstan analyse */src */metadata --autoload-file=$TMPDIR/phpstan-bootstrap.php

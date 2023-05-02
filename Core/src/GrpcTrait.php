@@ -238,6 +238,8 @@ trait GrpcTrait
 
                 return ['list_value' => $this->formatListForApi($value)];
         }
+
+        return [];
     }
 
     /**

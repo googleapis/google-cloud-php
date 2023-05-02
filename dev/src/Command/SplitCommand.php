@@ -41,6 +41,8 @@ class SplitCommand extends Command
     const EXEC_DIR = '.split';
     const TOKEN_ENV = 'GH_OAUTH_TOKEN';
 
+    private string $rootPath;
+
     /**
      * @param string $rootPath The path to the repository root directory.
      */

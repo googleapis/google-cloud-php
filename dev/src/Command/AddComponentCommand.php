@@ -185,6 +185,8 @@ class AddComponentCommand extends Command
         $output->writeln('');
         $output->writeln('');
         $output->writeln('Success!');
+
+        return 0;
     }
 
     private function loadProtoContent(string $proto): string

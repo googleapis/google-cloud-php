@@ -175,7 +175,10 @@ class FirestoreClient
      */
     public function batch()
     {
-        return new WriteBatch(
+        if (!class_exists(WriteBatch::class)) {
+            class_alias(BulkWriter::class, WriteBatch::class);
+        }
+        return new BulkWriter(
             $this->connection,
             $this->valueMapper,
             $this->databaseName(

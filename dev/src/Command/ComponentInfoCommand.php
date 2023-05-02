@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Command;
 
-use Google\Cloud\Dev\ComponentNamer;
+use Google\Cloud\Dev\NewComponent;
 use Google\Cloud\Dev\Component;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -79,6 +79,8 @@ class ComponentInfoCommand extends Command
             ;
             $table->render();
         }
+
+        return 0;
     }
 
     private function checkComponent(Component $component, bool $verbose): array
@@ -97,11 +99,11 @@ class ComponentInfoCommand extends Command
         }
 
         if ($verbose && $protobufPackage) {
-            $namer = new ComponentNamer($protobufPackage);
+            $namer = new NewComponent();
             // Output validation errors
-            $expectedComposerPackage = $namer->getComposerPackage();
-            $expectedGithubRepo = $namer->getGithubRepo();
-            $expectedNamespace = $namer->getPhpNamespace();
+            $expectedComposerPackage = $namer->composerPackage;
+            $expectedGithubRepo = $namer->githubRepo;
+            $expectedNamespace = $namer->phpNamespace;
             if ($expectedGithubRepo !== $githubRepo) {
                 $validationErrors[] = "Github repo name $githubRepo doesn't match expected $expectedGithubRepo";
             }
@@ -109,12 +111,12 @@ class ComponentInfoCommand extends Command
                 $validationErrors[] = "Composer package name $composerPackage doesn't match expected $expectedComposerPackage";
             }
 
-            $expectedComponentName = $namer->getComponentName();
+            $expectedComponentName = $namer->componentName;
             if (strtolower($componentName) !== strtolower($expectedComponentName)) {
                 $validationErrors[] = "Component $componentName doesn't match expected $expectedComponentName";
             }
 
-            $expectedNamespace = $namer->getPhpNamespace();
+            $expectedNamespace = $namer->phpNamespace;
             if (strtolower($expectedNamespace) !== strtolower($phpNamespace)) {
                 $validationErrors[] = "PHP namespace $phpNamespace doesn't match expected $expectedNamespace";
             }

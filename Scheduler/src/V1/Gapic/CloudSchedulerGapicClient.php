@@ -96,8 +96,9 @@ class CloudSchedulerGapicClient
     ];
 
     private static $jobNameTemplate;
-
     private static $locationNameTemplate;
+
+    private static $projectNameTemplate;
 
     private static $pathTemplateMap;
 

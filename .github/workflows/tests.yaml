@@ -67,7 +67,7 @@ jobs:
       run: |
         vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
-  test_package:
+  test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:

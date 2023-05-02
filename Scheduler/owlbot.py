@@ -42,9 +42,10 @@ s.replace(
 # Fix missing formatting method
 s.replace(
     'src/V1/Gapic/CloudSchedulerGapicClient.php',
-    r"private static \$jobNameTemplate;\n\s{4}private static \$locationNameTemplate;",
+    r"private static \$jobNameTemplate;\n\n\s{4}private static \$locationNameTemplate;",
     """private static $jobNameTemplate;
     private static $locationNameTemplate;
+
     private static $projectNameTemplate;"""
 )
 s.replace(
