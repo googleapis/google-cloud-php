@@ -199,6 +199,7 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testAckAndModAckContainFailedMsgs($client)
     {
+        self::skipIfEmulatorUsed();
         $topic = self::topic($client);
 
         // we keep a low ackDeadlineSeconds value
