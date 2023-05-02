@@ -1,0 +1,221 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.logging.v2",
+    "libraryPackage": "Google\\Cloud\\Logging\\V2",
+    "services": {
+        "LoggingServiceV2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LoggingServiceV2GapicClient",
+                    "rpcs": {
+                        "DeleteLog": {
+                            "methods": [
+                                "deleteLog"
+                            ]
+                        },
+                        "ListLogEntries": {
+                            "methods": [
+                                "listLogEntries"
+                            ]
+                        },
+                        "ListLogs": {
+                            "methods": [
+                                "listLogs"
+                            ]
+                        },
+                        "ListMonitoredResourceDescriptors": {
+                            "methods": [
+                                "listMonitoredResourceDescriptors"
+                            ]
+                        },
+                        "TailLogEntries": {
+                            "methods": [
+                                "tailLogEntries"
+                            ]
+                        },
+                        "WriteLogEntries": {
+                            "methods": [
+                                "writeLogEntries"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConfigServiceV2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConfigServiceV2GapicClient",
+                    "rpcs": {
+                        "CopyLogEntries": {
+                            "methods": [
+                                "copyLogEntries"
+                            ]
+                        },
+                        "CreateBucket": {
+                            "methods": [
+                                "createBucket"
+                            ]
+                        },
+                        "CreateExclusion": {
+                            "methods": [
+                                "createExclusion"
+                            ]
+                        },
+                        "CreateSink": {
+                            "methods": [
+                                "createSink"
+                            ]
+                        },
+                        "CreateView": {
+                            "methods": [
+                                "createView"
+                            ]
+                        },
+                        "DeleteBucket": {
+                            "methods": [
+                                "deleteBucket"
+                            ]
+                        },
+                        "DeleteExclusion": {
+                            "methods": [
+                                "deleteExclusion"
+                            ]
+                        },
+                        "DeleteSink": {
+                            "methods": [
+                                "deleteSink"
+                            ]
+                        },
+                        "DeleteView": {
+                            "methods": [
+                                "deleteView"
+                            ]
+                        },
+                        "GetBucket": {
+                            "methods": [
+                                "getBucket"
+                            ]
+                        },
+                        "GetCmekSettings": {
+                            "methods": [
+                                "getCmekSettings"
+                            ]
+                        },
+                        "GetExclusion": {
+                            "methods": [
+                                "getExclusion"
+                            ]
+                        },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
+                        "GetSink": {
+                            "methods": [
+                                "getSink"
+                            ]
+                        },
+                        "GetView": {
+                            "methods": [
+                                "getView"
+                            ]
+                        },
+                        "ListBuckets": {
+                            "methods": [
+                                "listBuckets"
+                            ]
+                        },
+                        "ListExclusions": {
+                            "methods": [
+                                "listExclusions"
+                            ]
+                        },
+                        "ListSinks": {
+                            "methods": [
+                                "listSinks"
+                            ]
+                        },
+                        "ListViews": {
+                            "methods": [
+                                "listViews"
+                            ]
+                        },
+                        "UndeleteBucket": {
+                            "methods": [
+                                "undeleteBucket"
+                            ]
+                        },
+                        "UpdateBucket": {
+                            "methods": [
+                                "updateBucket"
+                            ]
+                        },
+                        "UpdateCmekSettings": {
+                            "methods": [
+                                "updateCmekSettings"
+                            ]
+                        },
+                        "UpdateExclusion": {
+                            "methods": [
+                                "updateExclusion"
+                            ]
+                        },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
+                        "UpdateSink": {
+                            "methods": [
+                                "updateSink"
+                            ]
+                        },
+                        "UpdateView": {
+                            "methods": [
+                                "updateView"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MetricsServiceV2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MetricsServiceV2GapicClient",
+                    "rpcs": {
+                        "CreateLogMetric": {
+                            "methods": [
+                                "createLogMetric"
+                            ]
+                        },
+                        "DeleteLogMetric": {
+                            "methods": [
+                                "deleteLogMetric"
+                            ]
+                        },
+                        "GetLogMetric": {
+                            "methods": [
+                                "getLogMetric"
+                            ]
+                        },
+                        "ListLogMetrics": {
+                            "methods": [
+                                "listLogMetrics"
+                            ]
+                        },
+                        "UpdateLogMetric": {
+                            "methods": [
+                                "updateLogMetric"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
