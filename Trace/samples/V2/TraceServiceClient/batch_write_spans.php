@@ -58,7 +58,7 @@ function batch_write_spans_sample(
     // Create a client.
     $traceServiceClient = new TraceServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $spansDisplayName = new TruncatableString();
     $spansStartTime = new Timestamp();
     $spansEndTime = new Timestamp();

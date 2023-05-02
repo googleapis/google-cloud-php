@@ -42,7 +42,7 @@ function synthesize_long_audio_sample(int $audioConfigAudioEncoding): void
     // Create a client.
     $textToSpeechLongAudioSynthesizeClient = new TextToSpeechLongAudioSynthesizeClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new SynthesisInput();
     $audioConfig = (new AudioConfig())
         ->setAudioEncoding($audioConfigAudioEncoding);

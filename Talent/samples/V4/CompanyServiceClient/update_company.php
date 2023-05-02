@@ -41,7 +41,7 @@ function update_company_sample(string $companyDisplayName, string $companyExtern
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $company = (new Company())
         ->setDisplayName($companyDisplayName)
         ->setExternalId($companyExternalId);

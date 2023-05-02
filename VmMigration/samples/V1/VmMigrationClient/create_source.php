@@ -41,7 +41,7 @@ function create_source_sample(string $formattedParent, string $sourceId): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $source = new Source();
 
     // Call the API and handle any network failures.

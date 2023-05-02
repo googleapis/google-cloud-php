@@ -43,7 +43,7 @@ function create_cutover_job_sample(string $formattedParent, string $cutoverJobId
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cutoverJob = new CutoverJob();
 
     // Call the API and handle any network failures.

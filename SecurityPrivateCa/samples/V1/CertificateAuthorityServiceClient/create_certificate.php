@@ -44,7 +44,7 @@ function create_certificate_sample(string $formattedParent): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateLifetime = new Duration();
     $certificate = (new Certificate())
         ->setLifetime($certificateLifetime);

@@ -48,7 +48,7 @@ function create_product_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $product = new Product();
 
     // Call the API and handle any network failures.

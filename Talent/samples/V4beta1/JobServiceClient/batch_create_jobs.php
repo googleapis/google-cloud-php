@@ -82,7 +82,7 @@ function batch_create_jobs_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = (new Job())
         ->setCompany($formattedJobsCompany)
         ->setRequisitionId($jobsRequisitionId)

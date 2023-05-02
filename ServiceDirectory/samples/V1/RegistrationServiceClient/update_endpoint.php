@@ -42,7 +42,7 @@ function update_endpoint_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpoint = new Endpoint();
     $updateMask = new FieldMask();
 

@@ -52,7 +52,7 @@ function commit_sample(string $formattedSession): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutations = [new Mutation()];
 
     // Call the API and handle any network failures.

@@ -53,7 +53,7 @@ function import_product_sets_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new ImportProductSetsInputConfig();
 
     // Call the API and handle any network failures.
