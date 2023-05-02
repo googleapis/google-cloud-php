@@ -47,7 +47,7 @@ function update_snooze_sample(string $snoozeName, string $snoozeDisplayName): vo
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snoozeCriteria = new Criteria();
     $snoozeInterval = new TimeInterval();
     $snooze = (new Snooze())

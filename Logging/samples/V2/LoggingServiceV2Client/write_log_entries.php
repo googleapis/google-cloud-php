@@ -67,7 +67,7 @@ function write_log_entries_sample(string $entriesLogName): void
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entriesResource = new MonitoredResource();
     $logEntry = (new LogEntry())
         ->setLogName($entriesLogName)

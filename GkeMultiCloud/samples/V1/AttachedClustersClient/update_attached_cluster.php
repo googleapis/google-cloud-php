@@ -58,7 +58,7 @@ function update_attached_cluster_sample(
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attachedClusterOidcConfig = new AttachedOidcConfig();
     $attachedClusterFleet = (new Fleet())
         ->setProject($attachedClusterFleetProject);

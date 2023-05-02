@@ -48,7 +48,7 @@ function create_alert_policy_sample(string $name): void
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $alertPolicy = new AlertPolicy();
 
     // Call the API and handle any network failures.

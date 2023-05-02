@@ -42,7 +42,7 @@ function update_notification_channel_sample(): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $notificationChannel = new NotificationChannel();
 
     // Call the API and handle any network failures.

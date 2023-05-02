@@ -44,7 +44,7 @@ function create_metric_descriptor_sample(string $name): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metricDescriptor = new MetricDescriptor();
 
     // Call the API and handle any network failures.

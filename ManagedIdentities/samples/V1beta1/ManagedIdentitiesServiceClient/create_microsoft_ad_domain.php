@@ -64,7 +64,7 @@ function create_microsoft_ad_domain_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $domainLocations = [$domainLocationsElement,];
     $domain = (new Domain())
         ->setReservedIpRange($domainReservedIpRange)

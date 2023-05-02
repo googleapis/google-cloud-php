@@ -47,7 +47,7 @@ use Google\Rpc\Status;
  *                                       15 chars.
  *                                       * The last segment cannot be fully numeric.
  *                                       * Must be unique within the customer project.
- * @param string $domainInstanceName     The unique name of the domain using the form:
+ * @param string $domainName             The unique name of the domain using the form:
  *                                       `projects/{project_id}/locations/global/domains/{domain_name}`.
  * @param string $domainReservedIpRange  The CIDR range of internal addresses that are reserved for this
  *                                       domain. Reserved networks must be /24 or larger. Ranges must be
@@ -62,17 +62,17 @@ use Google\Rpc\Status;
 function create_microsoft_ad_domain_sample(
     string $formattedParent,
     string $domainName,
-    string $domainInstanceName,
+    string $domainName,
     string $domainReservedIpRange,
     string $domainLocationsElement
 ): void {
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $domainLocations = [$domainLocationsElement,];
     $domain = (new Domain())
-        ->setName($domainInstanceName)
+        ->setName($domainName)
         ->setReservedIpRange($domainReservedIpRange)
         ->setLocations($domainLocations);
 
@@ -113,14 +113,14 @@ function callSample(): void
 {
     $formattedParent = ManagedIdentitiesServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $domainName = '[DOMAIN_NAME]';
-    $domainInstanceName = '[NAME]';
+    $domainName = '[NAME]';
     $domainReservedIpRange = '[RESERVED_IP_RANGE]';
     $domainLocationsElement = '[LOCATIONS]';
 
     create_microsoft_ad_domain_sample(
         $formattedParent,
         $domainName,
-        $domainInstanceName,
+        $domainName,
         $domainReservedIpRange,
         $domainLocationsElement
     );

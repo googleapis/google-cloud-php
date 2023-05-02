@@ -52,7 +52,7 @@ function tail_log_entries_sample(string $resourceNamesElement): void
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourceNames = [$resourceNamesElement,];
     $request = (new TailLogEntriesRequest())
         ->setResourceNames($resourceNames);

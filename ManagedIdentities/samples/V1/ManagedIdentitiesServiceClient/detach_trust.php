@@ -59,7 +59,7 @@ function detach_trust_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $trustTargetDnsIpAddresses = [$trustTargetDnsIpAddressesElement,];
     $trust = (new Trust())
         ->setTargetDomainName($trustTargetDomainName)

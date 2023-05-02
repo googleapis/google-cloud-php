@@ -40,7 +40,7 @@ function batch_create_occurrences_sample(string $formattedParent): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $occurrences = [new Occurrence()];
 
     // Call the API and handle any network failures.

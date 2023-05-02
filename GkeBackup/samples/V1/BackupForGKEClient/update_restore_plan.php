@@ -53,7 +53,7 @@ function update_restore_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restorePlanRestoreConfig = new RestoreConfig();
     $restorePlan = (new RestorePlan())
         ->setBackupPlan($formattedRestorePlanBackupPlan)

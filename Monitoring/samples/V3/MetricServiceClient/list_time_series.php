@@ -54,7 +54,7 @@ function list_time_series_sample(string $formattedName, string $filter, int $vie
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $interval = new TimeInterval();
 
     // Call the API and handle any network failures.

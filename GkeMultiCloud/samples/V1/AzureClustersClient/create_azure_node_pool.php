@@ -85,7 +85,7 @@ function create_azure_node_pool_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $azureNodePoolConfigSshConfig = (new AzureSshConfig())
         ->setAuthorizedKey($azureNodePoolConfigSshConfigAuthorizedKey);
     $azureNodePoolConfig = (new AzureNodeConfig())

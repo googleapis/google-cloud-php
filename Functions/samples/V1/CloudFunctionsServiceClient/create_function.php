@@ -43,7 +43,7 @@ function create_function_sample(string $formattedLocation): void
     // Create a client.
     $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $function = new CloudFunction();
 
     // Call the API and handle any network failures.

@@ -51,7 +51,7 @@ function create_tunnel_dest_group_sample(
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tunnelDestGroup = (new TunnelDestGroup())
         ->setName($tunnelDestGroupName);
 
