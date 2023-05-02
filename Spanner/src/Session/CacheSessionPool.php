@@ -676,7 +676,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Creates sessions up to the count provided.
      *
      * @param int $count
-     * @return [ array[] $sessions, \Exception $ex = null ]
+     * @return array{0: array[], 1: \Exception|null }
      */
     private function createSessions($count)
     {
@@ -692,7 +692,7 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name(),
                     'sessionTemplate' => [
                         'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
-                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : null
+                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : ''
                     ],
                     'sessionCount' => $count - $created
                 ]);

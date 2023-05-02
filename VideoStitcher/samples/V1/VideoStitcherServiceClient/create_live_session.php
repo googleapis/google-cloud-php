@@ -30,17 +30,23 @@ use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 /**
  * Creates a new live session.
  *
- * @param string $formattedParent The project and location in which the live session should be created,
- *                                in the form of `projects/{project_number}/locations/{location}`. Please see
- *                                {@see VideoStitcherServiceClient::liveSessionName()} for help formatting this field.
+ * @param string $formattedParent                The project and location in which the live session should be
+ *                                               created, in the form of `projects/{project_number}/locations/{location}`. Please see
+ *                                               {@see VideoStitcherServiceClient::liveSessionName()} for help formatting this field.
+ * @param string $formattedLiveSessionLiveConfig The resource name of the live config for this session, in the
+ *                                               form of `projects/{project}/locations/{location}/liveConfigs/{id}`. Please see
+ *                                               {@see VideoStitcherServiceClient::liveConfigName()} for help formatting this field.
  */
-function create_live_session_sample(string $formattedParent): void
-{
+function create_live_session_sample(
+    string $formattedParent,
+    string $formattedLiveSessionLiveConfig
+): void {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $liveSession = new LiveSession();
+    $liveSession = (new LiveSession())
+        ->setLiveConfig($formattedLiveSessionLiveConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -68,7 +74,12 @@ function callSample(): void
         '[LOCATION]',
         '[LIVE_SESSION]'
     );
+    $formattedLiveSessionLiveConfig = VideoStitcherServiceClient::liveConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LIVE_CONFIG]'
+    );
 
-    create_live_session_sample($formattedParent);
+    create_live_session_sample($formattedParent, $formattedLiveSessionLiveConfig);
 }
 // [END videostitcher_v1_generated_VideoStitcherService_CreateLiveSession_sync]

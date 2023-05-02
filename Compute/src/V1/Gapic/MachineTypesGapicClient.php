@@ -271,7 +271,7 @@ class MachineTypesGapicClient
     }
 
     /**
-     * Returns the specified machine type. Gets a list of available machine types by making a list() request.
+     * Returns the specified machine type.
      *
      * Sample code:
      * ```

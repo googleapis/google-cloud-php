@@ -32,7 +32,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      */
     private $codec = '';
     /**
-     * Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000.
+     * Required. Audio bitrate in bits per second. Must be between 1 and
+     * 10,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -86,7 +87,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *           Supported audio codecs:
      *           - `aac`
      *     @type int $bitrate_bps
-     *           Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000.
+     *           Required. Audio bitrate in bits per second. Must be between 1 and
+     *           10,000,000.
      *     @type int $channel_count
      *           Number of audio channels. Must be between 1 and 6. The default is 2.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $channel_layout
@@ -172,7 +174,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000.
+     * Required. Audio bitrate in bits per second. Must be between 1 and
+     * 10,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -183,7 +186,8 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000.
+     * Required. Audio bitrate in bits per second. Must be between 1 and
+     * 10,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

@@ -496,7 +496,7 @@ class SubnetworksGapicClient
     }
 
     /**
-     * Returns the specified subnetwork. Gets a list of available subnetworks list() request.
+     * Returns the specified subnetwork.
      *
      * Sample code:
      * ```

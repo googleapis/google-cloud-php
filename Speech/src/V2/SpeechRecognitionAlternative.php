@@ -36,9 +36,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     private $confidence = 0.0;
     /**
      * A list of word-specific information for each recognized word.
-     * When
-     * [enable_speaker_diarization][google.cloud.speech.v2.SpeakerDiarizationConfig.enable_speaker_diarization]
-     * is true, you will see all the words from the beginning of the audio.
+     * When the
+     * [SpeakerDiarizationConfig][google.cloud.speech.v2.SpeakerDiarizationConfig]
+     * is set, you will see all the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.WordInfo words = 3;</code>
      */
@@ -63,9 +63,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *           value indicating `confidence` was not set.
      *     @type array<\Google\Cloud\Speech\V2\WordInfo>|\Google\Protobuf\Internal\RepeatedField $words
      *           A list of word-specific information for each recognized word.
-     *           When
-     *           [enable_speaker_diarization][google.cloud.speech.v2.SpeakerDiarizationConfig.enable_speaker_diarization]
-     *           is true, you will see all the words from the beginning of the audio.
+     *           When the
+     *           [SpeakerDiarizationConfig][google.cloud.speech.v2.SpeakerDiarizationConfig]
+     *           is set, you will see all the words from the beginning of the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,9 +141,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of word-specific information for each recognized word.
-     * When
-     * [enable_speaker_diarization][google.cloud.speech.v2.SpeakerDiarizationConfig.enable_speaker_diarization]
-     * is true, you will see all the words from the beginning of the audio.
+     * When the
+     * [SpeakerDiarizationConfig][google.cloud.speech.v2.SpeakerDiarizationConfig]
+     * is set, you will see all the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.WordInfo words = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -155,9 +155,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of word-specific information for each recognized word.
-     * When
-     * [enable_speaker_diarization][google.cloud.speech.v2.SpeakerDiarizationConfig.enable_speaker_diarization]
-     * is true, you will see all the words from the beginning of the audio.
+     * When the
+     * [SpeakerDiarizationConfig][google.cloud.speech.v2.SpeakerDiarizationConfig]
+     * is set, you will see all the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.WordInfo words = 3;</code>
      * @param array<\Google\Cloud\Speech\V2\WordInfo>|\Google\Protobuf\Internal\RepeatedField $var

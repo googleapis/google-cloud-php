@@ -54,10 +54,17 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     private $config_mask = null;
     /**
      * Audio files with file metadata for ASR.
+     * The maximum number of files allowed to be specified is 5.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      */
     private $files;
+    /**
+     * Configuration options for where to output the transcripts of each file.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionOutputConfig recognition_output_config = 6;</code>
+     */
+    private $recognition_output_config = null;
 
     /**
      * Constructor.
@@ -90,6 +97,9 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           request.
      *     @type array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $files
      *           Audio files with file metadata for ASR.
+     *           The maximum number of files allowed to be specified is 5.
+     *     @type \Google\Cloud\Speech\V2\RecognitionOutputConfig $recognition_output_config
+     *           Configuration options for where to output the transcripts of each file.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,6 +241,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Audio files with file metadata for ASR.
+     * The maximum number of files allowed to be specified is 5.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -242,6 +253,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Audio files with file metadata for ASR.
+     * The maximum number of files allowed to be specified is 5.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      * @param array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $var
@@ -251,6 +263,42 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Speech\V2\BatchRecognizeFileMetadata::class);
         $this->files = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Configuration options for where to output the transcripts of each file.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionOutputConfig recognition_output_config = 6;</code>
+     * @return \Google\Cloud\Speech\V2\RecognitionOutputConfig|null
+     */
+    public function getRecognitionOutputConfig()
+    {
+        return $this->recognition_output_config;
+    }
+
+    public function hasRecognitionOutputConfig()
+    {
+        return isset($this->recognition_output_config);
+    }
+
+    public function clearRecognitionOutputConfig()
+    {
+        unset($this->recognition_output_config);
+    }
+
+    /**
+     * Configuration options for where to output the transcripts of each file.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionOutputConfig recognition_output_config = 6;</code>
+     * @param \Google\Cloud\Speech\V2\RecognitionOutputConfig $var
+     * @return $this
+     */
+    public function setRecognitionOutputConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\RecognitionOutputConfig::class);
+        $this->recognition_output_config = $var;
 
         return $this;
     }

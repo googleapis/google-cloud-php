@@ -194,7 +194,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $router = null;
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
@@ -227,7 +227,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $type = null;
     /**
-     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
+     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4093. Only specified at creation time.
      *
      * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
      */
@@ -302,7 +302,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $router
      *           URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $stack_type
@@ -315,7 +315,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner.
      *           Check the Type enum for the list of possible values.
      *     @type int $vlan_tag8021q
-     *           The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
+     *           The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4093. Only specified at creation time.
      * }
      */
     public function __construct($data = NULL) {
@@ -1346,7 +1346,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1367,7 +1367,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1532,7 +1532,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
+     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4093. Only specified at creation time.
      *
      * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
      * @return int
@@ -1553,7 +1553,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
+     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4093. Only specified at creation time.
      *
      * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
      * @param int $var

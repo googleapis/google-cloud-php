@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a VOD session.
+ * Metadata for a VOD session. The session expires 4 hours after its creation.
  *
  * Generated from protobuf message <code>google.cloud.video.stitcher.v1.VodSession</code>
  */
@@ -61,17 +61,6 @@ class VodSession extends \Google\Protobuf\Internal\Message
      */
     private $ad_tag_macro_map;
     /**
-     * Indicates whether client side ad tracking is enabled. If client
-     * side ad tracking is enabled, then the client player is expected
-     * to trigger playback and activity events itself.
-     * If this is set to false, server side ad tracking is enabled,
-     * causing the Video Stitcher service will trigger playback events
-     * on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 8;</code>
-     */
-    private $client_ad_tracking = false;
-    /**
      * Additional options that affect the output of the manifest.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 9;</code>
@@ -83,6 +72,21 @@ class VodSession extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string asset_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $asset_id = '';
+    /**
+     * Required. Determines how the ad should be tracked. If
+     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
+     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $ad_tracking = 0;
+    /**
+     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
+     * is used for the ads.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
+     */
+    private $gam_vod_config = null;
 
     /**
      * Constructor.
@@ -111,17 +115,17 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *             Ad tag macro map: `{"geoId": "123"}`
      *             Fully qualified ad tag:
      *             `"`https://doubleclick.google.com/ad/1?geo_id=123"`
-     *     @type bool $client_ad_tracking
-     *           Indicates whether client side ad tracking is enabled. If client
-     *           side ad tracking is enabled, then the client player is expected
-     *           to trigger playback and activity events itself.
-     *           If this is set to false, server side ad tracking is enabled,
-     *           causing the Video Stitcher service will trigger playback events
-     *           on behalf of the client player.
      *     @type \Google\Cloud\Video\Stitcher\V1\ManifestOptions $manifest_options
      *           Additional options that affect the output of the manifest.
      *     @type string $asset_id
      *           Output only. The generated ID of the VodSession's source media.
+     *     @type int $ad_tracking
+     *           Required. Determines how the ad should be tracked. If
+     *           [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
+     *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *     @type \Google\Cloud\Video\Stitcher\V1\GamVodConfig $gam_vod_config
+     *           This has the Google Ad Manager (GAM) related metadata in the case where GAM
+     *           is used for the ads.
      * }
      */
     public function __construct($data = NULL) {
@@ -314,42 +318,6 @@ class VodSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether client side ad tracking is enabled. If client
-     * side ad tracking is enabled, then the client player is expected
-     * to trigger playback and activity events itself.
-     * If this is set to false, server side ad tracking is enabled,
-     * causing the Video Stitcher service will trigger playback events
-     * on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 8;</code>
-     * @return bool
-     */
-    public function getClientAdTracking()
-    {
-        return $this->client_ad_tracking;
-    }
-
-    /**
-     * Indicates whether client side ad tracking is enabled. If client
-     * side ad tracking is enabled, then the client player is expected
-     * to trigger playback and activity events itself.
-     * If this is set to false, server side ad tracking is enabled,
-     * causing the Video Stitcher service will trigger playback events
-     * on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 8;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setClientAdTracking($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->client_ad_tracking = $var;
-
-        return $this;
-    }
-
-    /**
      * Additional options that affect the output of the manifest.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 9;</code>
@@ -407,6 +375,74 @@ class VodSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->asset_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Determines how the ad should be tracked. If
+     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
+     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getAdTracking()
+    {
+        return $this->ad_tracking;
+    }
+
+    /**
+     * Required. Determines how the ad should be tracked. If
+     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
+     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAdTracking($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Stitcher\V1\AdTracking::class);
+        $this->ad_tracking = $var;
+
+        return $this;
+    }
+
+    /**
+     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
+     * is used for the ads.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\GamVodConfig|null
+     */
+    public function getGamVodConfig()
+    {
+        return $this->gam_vod_config;
+    }
+
+    public function hasGamVodConfig()
+    {
+        return isset($this->gam_vod_config);
+    }
+
+    public function clearGamVodConfig()
+    {
+        unset($this->gam_vod_config);
+    }
+
+    /**
+     * This has the Google Ad Manager (GAM) related metadata in the case where GAM
+     * is used for the ads.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 12;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\GamVodConfig $var
+     * @return $this
+     */
+    public function setGamVodConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\GamVodConfig::class);
+        $this->gam_vod_config = $var;
 
         return $this;
     }

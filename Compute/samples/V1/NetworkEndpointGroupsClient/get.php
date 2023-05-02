@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
 
 /**
- * Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
+ * Returns the specified network endpoint group.
  *
  * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
  * @param string $project              Project ID for this request.

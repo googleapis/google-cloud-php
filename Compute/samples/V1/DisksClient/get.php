@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DisksClient;
 
 /**
- * Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request.
+ * Returns the specified persistent disk.
  *
  * @param string $disk    Name of the persistent disk to return.
  * @param string $project Project ID for this request.
