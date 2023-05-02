@@ -49,7 +49,7 @@ function create_patch_deployment_sample(string $formattedParent, string $patchDe
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $patchDeploymentInstanceFilter = new PatchInstanceFilter();
     $patchDeploymentOneTimeScheduleExecuteTime = new Timestamp();
     $patchDeploymentOneTimeSchedule = (new OneTimeSchedule())

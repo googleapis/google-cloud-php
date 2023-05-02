@@ -41,7 +41,7 @@ function update_external_system_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $externalSystem = new ExternalSystem();
 
     // Call the API and handle any network failures.

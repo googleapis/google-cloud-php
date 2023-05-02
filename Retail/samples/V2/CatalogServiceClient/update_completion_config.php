@@ -38,7 +38,7 @@ function update_completion_config_sample(string $completionConfigName): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $completionConfig = (new CompletionConfig())
         ->setName($completionConfigName);
 

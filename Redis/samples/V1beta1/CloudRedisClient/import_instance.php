@@ -49,7 +49,7 @@ function import_instance_sample(string $name): void
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new InputConfig();
 
     // Call the API and handle any network failures.

@@ -52,7 +52,7 @@ function update_control_sample(string $controlDisplayName, int $controlSolutionT
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $controlSolutionTypes = [$controlSolutionTypesElement,];
     $control = (new Control())
         ->setDisplayName($controlDisplayName)

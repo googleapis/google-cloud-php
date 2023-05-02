@@ -44,7 +44,7 @@ function import_ssh_public_key_sample(): void
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sshPublicKey = new SshPublicKey();
 
     // Call the API and handle any network failures.

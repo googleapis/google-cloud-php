@@ -41,7 +41,7 @@ function create_schema_sample(string $formattedParent, string $schemaName): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $schema = (new Schema())
         ->setName($schemaName);
 

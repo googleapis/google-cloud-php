@@ -55,7 +55,7 @@ function update_connectivity_test_sample(string $resourceName): void
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();

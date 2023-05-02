@@ -54,7 +54,7 @@ function create_authorization_policy_sample(
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $authorizationPolicy = (new AuthorizationPolicy())
         ->setName($authorizationPolicyName)
         ->setAction($authorizationPolicyAction);
