@@ -41,7 +41,7 @@ function update_api_spec_sample(): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiSpec = new ApiSpec();
 
     // Call the API and handle any network failures.

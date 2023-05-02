@@ -41,7 +41,7 @@ function update_api_sample(): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $api = new Api();
 
     // Call the API and handle any network failures.

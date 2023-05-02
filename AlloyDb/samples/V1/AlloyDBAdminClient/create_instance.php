@@ -47,7 +47,7 @@ function create_instance_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = (new Instance())
         ->setInstanceType($instanceInstanceType);
 

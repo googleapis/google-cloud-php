@@ -51,7 +51,7 @@ function create_app_gateway_sample(
     // Create a client.
     $appGatewaysServiceClient = new AppGatewaysServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $appGateway = (new AppGateway())
         ->setName($appGatewayName)
         ->setType($appGatewayType)

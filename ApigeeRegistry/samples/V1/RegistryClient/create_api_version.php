@@ -46,7 +46,7 @@ function create_api_version_sample(string $formattedParent, string $apiVersionId
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiVersion = new ApiVersion();
 
     // Call the API and handle any network failures.

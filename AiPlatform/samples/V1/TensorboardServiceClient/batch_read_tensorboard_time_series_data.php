@@ -53,7 +53,7 @@ function batch_read_tensorboard_time_series_data_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedTimeSeries = [$formattedTimeSeriesElement,];
 
     // Call the API and handle any network failures.

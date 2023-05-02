@@ -61,7 +61,7 @@ function batch_create_features_sample(
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestsFeature = (new Feature())
         ->setValueType($requestsFeatureValueType);
     $createFeatureRequest = (new CreateFeatureRequest())

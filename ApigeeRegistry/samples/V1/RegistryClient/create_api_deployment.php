@@ -46,7 +46,7 @@ function create_api_deployment_sample(string $formattedParent, string $apiDeploy
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiDeployment = new ApiDeployment();
 
     // Call the API and handle any network failures.

@@ -44,7 +44,7 @@ function create_index_sample(string $formattedParent, string $indexDisplayName):
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $index = (new Index())
         ->setDisplayName($indexDisplayName);
 

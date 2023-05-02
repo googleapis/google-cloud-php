@@ -51,7 +51,7 @@ function export_data_sample(
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfigGcsDestination = (new GcsDestination())
         ->setOutputUriPrefix($outputConfigGcsDestinationOutputUriPrefix);
     $outputConfig = (new OutputConfig())

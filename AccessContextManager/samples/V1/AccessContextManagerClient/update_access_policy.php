@@ -49,7 +49,7 @@ function update_access_policy_sample(): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new AccessPolicy();
     $updateMask = new FieldMask();
 

@@ -59,7 +59,7 @@ function create_custom_metric_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customMetric = (new CustomMetric())
         ->setParameterName($customMetricParameterName)
         ->setDisplayName($customMetricDisplayName)

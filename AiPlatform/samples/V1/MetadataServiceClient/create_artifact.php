@@ -41,7 +41,7 @@ function create_artifact_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $artifact = new Artifact();
 
     // Call the API and handle any network failures.

@@ -55,7 +55,7 @@ function create_study_sample(
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metricSpec = (new MetricSpec())
         ->setMetricId($studyStudySpecMetricsMetricId)
         ->setGoal($studyStudySpecMetricsGoal);

@@ -43,7 +43,7 @@ function report_status_sample(string $formattedAppConnector, string $resourceInf
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourceInfo = (new ResourceInfo())
         ->setId($resourceInfoId);
 
