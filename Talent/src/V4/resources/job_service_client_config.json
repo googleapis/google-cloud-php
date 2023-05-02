@@ -80,9 +80,9 @@
                     "retry_params_name": "no_retry_2_params"
                 },
                 "SearchJobsForAlert": {
-                    "timeout_millis": 30000,
-                    "retry_codes_name": "no_retry_2_codes",
-                    "retry_params_name": "no_retry_2_params"
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateJob": {
                     "timeout_millis": 30000,
