@@ -82,6 +82,7 @@ class TasksClientTest extends GeneratedTest
         $retried = 1098377527;
         $encryptionKey = 'encryptionKey-1122344029';
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Task();
         $expectedResponse->setName($name2);
@@ -97,6 +98,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setRetried($retried);
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request

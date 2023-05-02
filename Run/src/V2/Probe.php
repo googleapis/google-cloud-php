@@ -21,8 +21,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * initiated.
      * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
      */
@@ -31,8 +29,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
      */
@@ -66,14 +62,10 @@ class Probe extends \Google\Protobuf\Internal\Message
      *           initiated.
      *           Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
      *           is 3600. Maximum value for startup probe is 240.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *     @type int $timeout_seconds
      *           Number of seconds after which the probe times out.
      *           Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      *           Must be smaller than period_seconds.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *     @type int $period_seconds
      *           How often (in seconds) to perform the probe.
      *           Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
@@ -103,8 +95,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * initiated.
      * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
      * @return int
@@ -119,8 +109,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * initiated.
      * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
      * @param int $var
@@ -138,8 +126,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
      * @return int
@@ -153,8 +139,6 @@ class Probe extends \Google\Protobuf\Internal\Message
      * Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
      * @param int $var
