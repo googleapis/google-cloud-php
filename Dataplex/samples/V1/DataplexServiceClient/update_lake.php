@@ -44,7 +44,7 @@ function update_lake_sample(): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $lake = new Lake();
 

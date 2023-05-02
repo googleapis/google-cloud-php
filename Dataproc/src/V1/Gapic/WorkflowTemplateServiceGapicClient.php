@@ -92,13 +92,19 @@ class WorkflowTemplateServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $clusterRegionNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $nodeGroupNameTemplate;
 
     private static $projectLocationWorkflowTemplateNameTemplate;
 
     private static $projectRegionWorkflowTemplateNameTemplate;
 
     private static $regionNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $workflowTemplateNameTemplate;
 
@@ -125,6 +131,15 @@ class WorkflowTemplateServiceGapicClient
         ];
     }
 
+    private static function getClusterRegionNameTemplate()
+    {
+        if (self::$clusterRegionNameTemplate == null) {
+            self::$clusterRegionNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}');
+        }
+
+        return self::$clusterRegionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -132,6 +147,15 @@ class WorkflowTemplateServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getNodeGroupNameTemplate()
+    {
+        if (self::$nodeGroupNameTemplate == null) {
+            self::$nodeGroupNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}');
+        }
+
+        return self::$nodeGroupNameTemplate;
     }
 
     private static function getProjectLocationWorkflowTemplateNameTemplate()
@@ -161,6 +185,15 @@ class WorkflowTemplateServiceGapicClient
         return self::$regionNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getWorkflowTemplateNameTemplate()
     {
         if (self::$workflowTemplateNameTemplate == null) {
@@ -174,15 +207,37 @@ class WorkflowTemplateServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'clusterRegion' => self::getClusterRegionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'nodeGroup' => self::getNodeGroupNameTemplate(),
                 'projectLocationWorkflowTemplate' => self::getProjectLocationWorkflowTemplateNameTemplate(),
                 'projectRegionWorkflowTemplate' => self::getProjectRegionWorkflowTemplateNameTemplate(),
                 'region' => self::getRegionNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
                 'workflowTemplate' => self::getWorkflowTemplateNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cluster_region resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     *
+     * @return string The formatted cluster_region resource.
+     */
+    public static function clusterRegionName($project, $region, $cluster)
+    {
+        return self::getClusterRegionNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+        ]);
     }
 
     /**
@@ -199,6 +254,27 @@ class WorkflowTemplateServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a node_group
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     * @param string $nodeGroup
+     *
+     * @return string The formatted node_group resource.
+     */
+    public static function nodeGroupName($project, $region, $cluster, $nodeGroup)
+    {
+        return self::getNodeGroupNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+            'node_group' => $nodeGroup,
         ]);
     }
 
@@ -258,6 +334,25 @@ class WorkflowTemplateServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * workflow_template resource.
      *
@@ -280,10 +375,13 @@ class WorkflowTemplateServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - clusterRegion: projects/{project}/regions/{region}/clusters/{cluster}
      * - location: projects/{project}/locations/{location}
+     * - nodeGroup: projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}
      * - projectLocationWorkflowTemplate: projects/{project}/locations/{location}/workflowTemplates/{workflow_template}
      * - projectRegionWorkflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}
      * - region: projects/{project}/regions/{region}
+     * - service: projects/{project}/locations/{location}/services/{service}
      * - workflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

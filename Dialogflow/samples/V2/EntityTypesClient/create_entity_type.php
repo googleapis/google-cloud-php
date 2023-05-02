@@ -49,7 +49,7 @@ function create_entity_type_sample(
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entityType = (new EntityType())
         ->setDisplayName($entityTypeDisplayName)
         ->setKind($entityTypeKind);

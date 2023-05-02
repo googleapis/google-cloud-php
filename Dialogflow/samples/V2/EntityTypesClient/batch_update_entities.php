@@ -79,7 +79,7 @@ function batch_update_entities_sample(
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitiesSynonyms = [$entitiesSynonymsElement,];
     $entity = (new Entity())
         ->setValue($entitiesValue)

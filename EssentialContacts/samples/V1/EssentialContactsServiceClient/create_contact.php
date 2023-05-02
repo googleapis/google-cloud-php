@@ -40,7 +40,7 @@ function create_contact_sample(string $formattedParent): void
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $contact = new Contact();
 
     // Call the API and handle any network failures.

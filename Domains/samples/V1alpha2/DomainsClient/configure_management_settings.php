@@ -42,7 +42,7 @@ function configure_management_settings_sample(string $formattedRegistration): vo
     // Create a client.
     $domainsClient = new DomainsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.

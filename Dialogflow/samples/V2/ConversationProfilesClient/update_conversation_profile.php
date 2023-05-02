@@ -43,7 +43,7 @@ function update_conversation_profile_sample(string $conversationProfileDisplayNa
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversationProfile = (new ConversationProfile())
         ->setDisplayName($conversationProfileDisplayName);
     $updateMask = new FieldMask();

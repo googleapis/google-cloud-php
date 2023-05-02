@@ -42,7 +42,7 @@ function update_group_sample(): void
     // Create a client.
     $errorGroupServiceClient = new ErrorGroupServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $group = new ErrorGroup();
 
     // Call the API and handle any network failures.

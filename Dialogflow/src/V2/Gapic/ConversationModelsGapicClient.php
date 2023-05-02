@@ -127,17 +127,25 @@ class ConversationModelsGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $conversationDatasetNameTemplate;
+
     private static $conversationModelNameTemplate;
 
     private static $conversationModelEvaluationNameTemplate;
+
+    private static $documentNameTemplate;
 
     private static $projectConversationModelNameTemplate;
 
     private static $projectConversationModelEvaluationNameTemplate;
 
+    private static $projectKnowledgeBaseDocumentNameTemplate;
+
     private static $projectLocationConversationModelNameTemplate;
 
     private static $projectLocationConversationModelEvaluationNameTemplate;
+
+    private static $projectLocationKnowledgeBaseDocumentNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -162,6 +170,15 @@ class ConversationModelsGapicClient
         ];
     }
 
+    private static function getConversationDatasetNameTemplate()
+    {
+        if (self::$conversationDatasetNameTemplate == null) {
+            self::$conversationDatasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationDatasets/{conversation_dataset}');
+        }
+
+        return self::$conversationDatasetNameTemplate;
+    }
+
     private static function getConversationModelNameTemplate()
     {
         if (self::$conversationModelNameTemplate == null) {
@@ -178,6 +195,15 @@ class ConversationModelsGapicClient
         }
 
         return self::$conversationModelEvaluationNameTemplate;
+    }
+
+    private static function getDocumentNameTemplate()
+    {
+        if (self::$documentNameTemplate == null) {
+            self::$documentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$documentNameTemplate;
     }
 
     private static function getProjectConversationModelNameTemplate()
@@ -198,6 +224,15 @@ class ConversationModelsGapicClient
         return self::$projectConversationModelEvaluationNameTemplate;
     }
 
+    private static function getProjectKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getProjectLocationConversationModelNameTemplate()
     {
         if (self::$projectLocationConversationModelNameTemplate == null) {
@@ -216,20 +251,52 @@ class ConversationModelsGapicClient
         return self::$projectLocationConversationModelEvaluationNameTemplate;
     }
 
+    private static function getProjectLocationKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectLocationKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'conversationDataset' => self::getConversationDatasetNameTemplate(),
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationModelEvaluation' => self::getConversationModelEvaluationNameTemplate(),
+                'document' => self::getDocumentNameTemplate(),
                 'projectConversationModel' => self::getProjectConversationModelNameTemplate(),
                 'projectConversationModelEvaluation' => self::getProjectConversationModelEvaluationNameTemplate(),
+                'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
                 'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationModelEvaluation' => self::getProjectLocationConversationModelEvaluationNameTemplate(),
+                'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversation_dataset resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationDataset
+     *
+     * @return string The formatted conversation_dataset resource.
+     */
+    public static function conversationDatasetName($project, $location, $conversationDataset)
+    {
+        return self::getConversationDatasetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_dataset' => $conversationDataset,
+        ]);
     }
 
     /**
@@ -271,6 +338,25 @@ class ConversationModelsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName($project, $knowledgeBase, $document)
+    {
+        return self::getDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_conversation_model resource.
      *
@@ -303,6 +389,25 @@ class ConversationModelsGapicClient
             'project' => $project,
             'conversation_model' => $conversationModel,
             'evaluation' => $evaluation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_knowledge_base_document resource.
+     */
+    public static function projectKnowledgeBaseDocumentName($project, $knowledgeBase, $document)
+    {
+        return self::getProjectKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
         ]);
     }
 
@@ -347,15 +452,40 @@ class ConversationModelsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_location_knowledge_base_document resource.
+     */
+    public static function projectLocationKnowledgeBaseDocumentName($project, $location, $knowledgeBase, $document)
+    {
+        return self::getProjectLocationKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - conversationDataset: projects/{project}/locations/{location}/conversationDatasets/{conversation_dataset}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
      * - projectConversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationModelEvaluation: projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

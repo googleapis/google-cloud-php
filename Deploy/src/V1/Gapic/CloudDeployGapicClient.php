@@ -138,6 +138,8 @@ class CloudDeployGapicClient
 
     private static $buildNameTemplate;
 
+    private static $clusterNameTemplate;
+
     private static $configNameTemplate;
 
     private static $deliveryPipelineNameTemplate;
@@ -146,11 +148,17 @@ class CloudDeployGapicClient
 
     private static $locationNameTemplate;
 
+    private static $membershipNameTemplate;
+
     private static $releaseNameTemplate;
 
     private static $rolloutNameTemplate;
 
+    private static $serviceNameTemplate;
+
     private static $targetNameTemplate;
+
+    private static $workerPoolNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -190,6 +198,17 @@ class CloudDeployGapicClient
         }
 
         return self::$buildNameTemplate;
+    }
+
+    private static function getClusterNameTemplate()
+    {
+        if (self::$clusterNameTemplate == null) {
+            self::$clusterNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/clusters/{cluster}'
+            );
+        }
+
+        return self::$clusterNameTemplate;
     }
 
     private static function getConfigNameTemplate()
@@ -236,6 +255,17 @@ class CloudDeployGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getMembershipNameTemplate()
+    {
+        if (self::$membershipNameTemplate == null) {
+            self::$membershipNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/memberships/{membership}'
+            );
+        }
+
+        return self::$membershipNameTemplate;
+    }
+
     private static function getReleaseNameTemplate()
     {
         if (self::$releaseNameTemplate == null) {
@@ -258,6 +288,17 @@ class CloudDeployGapicClient
         return self::$rolloutNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getTargetNameTemplate()
     {
         if (self::$targetNameTemplate == null) {
@@ -269,18 +310,33 @@ class CloudDeployGapicClient
         return self::$targetNameTemplate;
     }
 
+    private static function getWorkerPoolNameTemplate()
+    {
+        if (self::$workerPoolNameTemplate == null) {
+            self::$workerPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workerPools/{worker_pool}'
+            );
+        }
+
+        return self::$workerPoolNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'build' => self::getBuildNameTemplate(),
+                'cluster' => self::getClusterNameTemplate(),
                 'config' => self::getConfigNameTemplate(),
                 'deliveryPipeline' => self::getDeliveryPipelineNameTemplate(),
                 'jobRun' => self::getJobRunNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'membership' => self::getMembershipNameTemplate(),
                 'release' => self::getReleaseNameTemplate(),
                 'rollout' => self::getRolloutNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
                 'target' => self::getTargetNameTemplate(),
+                'workerPool' => self::getWorkerPoolNameTemplate(),
             ];
         }
 
@@ -303,6 +359,25 @@ class CloudDeployGapicClient
             'project' => $project,
             'location' => $location,
             'build' => $build,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cluster
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     *
+     * @return string The formatted cluster resource.
+     */
+    public static function clusterName($project, $location, $cluster)
+    {
+        return self::getClusterNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
         ]);
     }
 
@@ -394,6 +469,25 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a membership
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $membership
+     *
+     * @return string The formatted membership resource.
+     */
+    public static function membershipName($project, $location, $membership)
+    {
+        return self::getMembershipNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'membership' => $membership,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a release
      * resource.
      *
@@ -447,6 +541,25 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a target
      * resource.
      *
@@ -466,17 +579,40 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a worker_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted worker_pool resource.
+     */
+    public static function workerPoolName($project, $location, $workerPool)
+    {
+        return self::getWorkerPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - build: projects/{project}/locations/{location}/builds/{build}
+     * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - config: projects/{project}/locations/{location}/config
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
+     * - membership: projects/{project}/locations/{location}/memberships/{membership}
      * - release: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}
      * - rollout: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}
+     * - service: projects/{project}/locations/{location}/services/{service}
      * - target: projects/{project}/locations/{location}/targets/{target}
+     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -69,7 +69,7 @@ function detect_intent_sample(string $formattedSession): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queryInput = new QueryInput();
 
     // Call the API and handle any network failures.

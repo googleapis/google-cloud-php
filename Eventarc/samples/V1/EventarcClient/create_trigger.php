@@ -59,7 +59,7 @@ function create_trigger_sample(
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $eventFilter = (new EventFilter())
         ->setAttribute($triggerEventFiltersAttribute)
         ->setValue($triggerEventFiltersValue);

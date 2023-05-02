@@ -43,7 +43,7 @@ function create_environment_sample(string $formattedParent, string $environmentI
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = new Environment();
 
     // Call the API and handle any network failures.

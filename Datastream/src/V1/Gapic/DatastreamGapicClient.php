@@ -159,6 +159,8 @@ class DatastreamGapicClient
 
     private static $locationNameTemplate;
 
+    private static $networksNameTemplate;
+
     private static $privateConnectionNameTemplate;
 
     private static $routeNameTemplate;
@@ -218,6 +220,17 @@ class DatastreamGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getNetworksNameTemplate()
+    {
+        if (self::$networksNameTemplate == null) {
+            self::$networksNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networksNameTemplate;
+    }
+
     private static function getPrivateConnectionNameTemplate()
     {
         if (self::$privateConnectionNameTemplate == null) {
@@ -268,6 +281,7 @@ class DatastreamGapicClient
             self::$pathTemplateMap = [
                 'connectionProfile' => self::getConnectionProfileNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'networks' => self::getNetworksNameTemplate(),
                 'privateConnection' => self::getPrivateConnectionNameTemplate(),
                 'route' => self::getRouteNameTemplate(),
                 'stream' => self::getStreamNameTemplate(),
@@ -314,6 +328,23 @@ class DatastreamGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a networks
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted networks resource.
+     */
+    public static function networksName($project, $network)
+    {
+        return self::getNetworksNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
         ]);
     }
 
@@ -414,6 +445,7 @@ class DatastreamGapicClient
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - location: projects/{project}/locations/{location}
+     * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
      * - route: projects/{project}/locations/{location}/privateConnections/{private_connection}/routes/{route}
      * - stream: projects/{project}/locations/{location}/streams/{stream}

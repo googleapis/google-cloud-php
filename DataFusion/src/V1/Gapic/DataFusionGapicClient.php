@@ -118,6 +118,8 @@ class DataFusionGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $cryptoKeyNameTemplate;
+
     private static $instanceNameTemplate;
 
     private static $locationNameTemplate;
@@ -151,6 +153,17 @@ class DataFusionGapicClient
         ];
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -177,12 +190,38 @@ class DataFusionGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -225,6 +264,7 @@ class DataFusionGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      *
