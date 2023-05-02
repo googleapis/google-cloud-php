@@ -152,6 +152,7 @@ class AddComponentCommand extends Command
                 'repo' => $new->githubRepo,
                 'proto_path' => $new->protoPath,
                 'version' => $new->version,
+                'github_repo' => $new->githubRepo,
                 'documentation' => $documentationUrl,
                 'product_homepage' => $productHomepage,
                 'product_documentation' => $productDocumentation,

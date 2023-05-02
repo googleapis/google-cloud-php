@@ -527,7 +527,8 @@ class Operation
                 $remainingLimit = $remainingLimit['value'];
             }
             if (!is_null($remainingLimit)) {
-                $remainingLimit -= count($res['batch']['entityResults']);
+                // entityResults is not present in REST mode for empty query results
+                $remainingLimit -= count($res['batch']['entityResults'] ?? []);
             }
 
             return $res;
