@@ -42,7 +42,7 @@ function add_trial_measurement_sample(string $formattedTrialName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $measurement = new Measurement();
 
     // Call the API and handle any network failures.

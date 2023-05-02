@@ -45,7 +45,7 @@ function update_dataset_sample(string $datasetDisplayName, string $datasetMetada
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $datasetMetadata = new Value();
     $dataset = (new Dataset())
         ->setDisplayName($datasetDisplayName)

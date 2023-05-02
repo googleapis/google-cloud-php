@@ -40,7 +40,7 @@ function update_model_sample(string $modelDisplayName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = (new Model())
         ->setDisplayName($modelDisplayName);
     $updateMask = new FieldMask();

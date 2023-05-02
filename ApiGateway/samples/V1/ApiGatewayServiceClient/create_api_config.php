@@ -43,7 +43,7 @@ function create_api_config_sample(string $formattedParent, string $apiConfigId):
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiConfig = new ApiConfig();
 
     // Call the API and handle any network failures.

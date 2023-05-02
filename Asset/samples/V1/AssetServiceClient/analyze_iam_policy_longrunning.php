@@ -61,7 +61,7 @@ function analyze_iam_policy_longrunning_sample(string $analysisQueryScope): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $analysisQuery = (new IamPolicyAnalysisQuery())
         ->setScope($analysisQueryScope);
     $outputConfig = new IamPolicyAnalysisOutputConfig();

@@ -49,7 +49,7 @@ function write_feature_values_sample(string $formattedEntityType, string $payloa
     // Create a client.
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $payloadsFeatureValues = [];
     $writeFeatureValuesPayload = (new WriteFeatureValuesPayload())
         ->setEntityId($payloadsEntityId)

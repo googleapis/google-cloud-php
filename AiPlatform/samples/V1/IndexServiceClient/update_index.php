@@ -41,7 +41,7 @@ function update_index_sample(string $indexDisplayName): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $index = (new Index())
         ->setDisplayName($indexDisplayName);
 

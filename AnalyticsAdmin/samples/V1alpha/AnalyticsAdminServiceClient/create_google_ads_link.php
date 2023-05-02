@@ -38,7 +38,7 @@ function create_google_ads_link_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $googleAdsLink = new GoogleAdsLink();
 
     // Call the API and handle any network failures.

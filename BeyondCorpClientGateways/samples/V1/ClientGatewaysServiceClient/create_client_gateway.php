@@ -41,7 +41,7 @@ function create_client_gateway_sample(string $formattedParent, string $clientGat
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $clientGateway = (new ClientGateway())
         ->setName($clientGatewayName);
 

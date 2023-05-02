@@ -52,7 +52,7 @@ function create_feed_sample(string $parent, string $feedId, string $feedName): v
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $feedFeedOutputConfig = new FeedOutputConfig();
     $feed = (new Feed())
         ->setName($feedName)

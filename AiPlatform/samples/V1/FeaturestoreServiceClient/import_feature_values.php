@@ -64,7 +64,7 @@ function import_feature_values_sample(string $formattedEntityType, string $featu
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $featureSpec = (new FeatureSpec())
         ->setId($featureSpecsId);
     $featureSpecs = [$featureSpec,];

@@ -41,7 +41,7 @@ function update_column_spec_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $columnSpec = new ColumnSpec();
 
     // Call the API and handle any network failures.

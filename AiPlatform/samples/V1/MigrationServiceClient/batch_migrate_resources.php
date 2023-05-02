@@ -43,7 +43,7 @@ function batch_migrate_resources_sample(string $formattedParent): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $migrateResourceRequests = [new MigrateResourceRequest()];
 
     // Call the API and handle any network failures.

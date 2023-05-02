@@ -47,7 +47,7 @@ function import_data_sample(string $formattedName, string $importConfigsImportSc
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $importDataConfig = (new ImportDataConfig())
         ->setImportSchemaUri($importConfigsImportSchemaUri);
     $importConfigs = [$importDataConfig,];

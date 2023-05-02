@@ -41,7 +41,7 @@ function update_entity_type_sample(): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entityType = new EntityType();
 
     // Call the API and handle any network failures.

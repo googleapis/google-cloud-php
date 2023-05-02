@@ -58,7 +58,7 @@ function read_feature_values_sample(
     // Create a client.
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
     $featureSelectorIdMatcher = (new IdMatcher())
         ->setIds($featureSelectorIdMatcherIds);

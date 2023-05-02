@@ -64,7 +64,7 @@ function create_gcp_user_access_binding_sample(
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedGcpUserAccessBindingAccessLevels = [
         $formattedGcpUserAccessBindingAccessLevelsElement,
     ];

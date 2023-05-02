@@ -39,7 +39,7 @@ function create_pipeline_job_sample(string $formattedParent): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $pipelineJob = new PipelineJob();
 
     // Call the API and handle any network failures.

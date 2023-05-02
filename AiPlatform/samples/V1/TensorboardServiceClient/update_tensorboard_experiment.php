@@ -42,7 +42,7 @@ function update_tensorboard_experiment_sample(): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $tensorboardExperiment = new TensorboardExperiment();
 

@@ -43,7 +43,7 @@ function create_nas_job_sample(string $formattedParent, string $nasJobDisplayNam
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nasJobNasJobSpec = new NasJobSpec();
     $nasJob = (new NasJob())
         ->setDisplayName($nasJobDisplayName)

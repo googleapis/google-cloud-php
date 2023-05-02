@@ -53,7 +53,7 @@ function create_batch_prediction_job_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $batchPredictionJobInputConfig = (new InputConfig())
         ->setInstancesFormat($batchPredictionJobInputConfigInstancesFormat);
     $batchPredictionJobOutputConfig = (new OutputConfig())

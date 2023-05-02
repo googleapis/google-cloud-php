@@ -45,7 +45,7 @@ function update_feed_sample(string $feedName): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $feedFeedOutputConfig = new FeedOutputConfig();
     $feed = (new Feed())
         ->setName($feedName)

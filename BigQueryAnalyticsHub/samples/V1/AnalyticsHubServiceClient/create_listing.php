@@ -53,7 +53,7 @@ function create_listing_sample(
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $listingBigqueryDataset = new BigQueryDatasetSource();
     $listing = (new Listing())
         ->setBigqueryDataset($listingBigqueryDataset)

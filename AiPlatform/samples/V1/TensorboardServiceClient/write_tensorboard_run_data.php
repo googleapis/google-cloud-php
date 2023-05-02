@@ -51,7 +51,7 @@ function write_tensorboard_run_data_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $timeSeriesDataValues = [new TimeSeriesDataPoint()];
     $timeSeriesData = (new TimeSeriesData())
         ->setTensorboardTimeSeriesId($timeSeriesDataTensorboardTimeSeriesId)

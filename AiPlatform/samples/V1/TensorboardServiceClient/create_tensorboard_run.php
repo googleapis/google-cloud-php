@@ -51,7 +51,7 @@ function create_tensorboard_run_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tensorboardRun = (new TensorboardRun())
         ->setDisplayName($tensorboardRunDisplayName);
 
