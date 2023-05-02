@@ -28,7 +28,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: grpc-1.49.0
+          extensions: grpc
 
       - name: Install dependencies
         run: |
