@@ -41,7 +41,7 @@ function update_issue_sample(): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $issue = new Issue();
 
     // Call the API and handle any network failures.

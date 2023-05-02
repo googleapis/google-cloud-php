@@ -57,7 +57,7 @@ function create_customer_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerOrgPostalAddress = new PostalAddress();
     $customer = (new Customer())
         ->setOrgDisplayName($customerOrgDisplayName)

@@ -145,7 +145,11 @@ class CloudBuildGapicClient
 
     private static $buildTriggerNameTemplate;
 
+    private static $cryptoKeyNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $networkNameTemplate;
 
     private static $projectNameTemplate;
 
@@ -157,7 +161,13 @@ class CloudBuildGapicClient
 
     private static $projectTriggerNameTemplate;
 
+    private static $secretVersionNameTemplate;
+
     private static $serviceAccountNameTemplate;
+
+    private static $subscriptionNameTemplate;
+
+    private static $topicNameTemplate;
 
     private static $workerPoolNameTemplate;
 
@@ -202,6 +212,15 @@ class CloudBuildGapicClient
         return self::$buildTriggerNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}');
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -209,6 +228,15 @@ class CloudBuildGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getNetworkNameTemplate()
+    {
+        if (self::$networkNameTemplate == null) {
+            self::$networkNameTemplate = new PathTemplate('projects/{project}/global/networks/{network}');
+        }
+
+        return self::$networkNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -256,6 +284,15 @@ class CloudBuildGapicClient
         return self::$projectTriggerNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate('projects/{project}/secrets/{secret}/versions/{version}');
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getServiceAccountNameTemplate()
     {
         if (self::$serviceAccountNameTemplate == null) {
@@ -263,6 +300,24 @@ class CloudBuildGapicClient
         }
 
         return self::$serviceAccountNameTemplate;
+    }
+
+    private static function getSubscriptionNameTemplate()
+    {
+        if (self::$subscriptionNameTemplate == null) {
+            self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
+        }
+
+        return self::$subscriptionNameTemplate;
+    }
+
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
     }
 
     private static function getWorkerPoolNameTemplate()
@@ -280,13 +335,18 @@ class CloudBuildGapicClient
             self::$pathTemplateMap = [
                 'build' => self::getBuildNameTemplate(),
                 'buildTrigger' => self::getBuildTriggerNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'network' => self::getNetworkNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectBuild' => self::getProjectBuildNameTemplate(),
                 'projectLocationBuild' => self::getProjectLocationBuildNameTemplate(),
                 'projectLocationTrigger' => self::getProjectLocationTriggerNameTemplate(),
                 'projectTrigger' => self::getProjectTriggerNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
+                'subscription' => self::getSubscriptionNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
                 'workerPool' => self::getWorkerPoolNameTemplate(),
             ];
         }
@@ -329,6 +389,27 @@ class CloudBuildGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyring
+     * @param string $key
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName($project, $location, $keyring, $key)
+    {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'keyring' => $keyring,
+            'key' => $key,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -342,6 +423,23 @@ class CloudBuildGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName($project, $network)
+    {
+        return self::getNetworkNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
         ]);
     }
 
@@ -434,6 +532,25 @@ class CloudBuildGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_account resource.
      *
      * @param string $project
@@ -446,6 +563,40 @@ class CloudBuildGapicClient
         return self::getServiceAccountNameTemplate()->render([
             'project' => $project,
             'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a subscription
+     * resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     */
+    public static function subscriptionName($project, $subscription)
+    {
+        return self::getSubscriptionNameTemplate()->render([
+            'project' => $project,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
         ]);
     }
 
@@ -474,13 +625,18 @@ class CloudBuildGapicClient
      * Template: Pattern
      * - build: projects/{project}/builds/{build}
      * - buildTrigger: projects/{project}/triggers/{trigger}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{network}
      * - project: projects/{project}
      * - projectBuild: projects/{project}/builds/{build}
      * - projectLocationBuild: projects/{project}/locations/{location}/builds/{build}
      * - projectLocationTrigger: projects/{project}/locations/{location}/triggers/{trigger}
      * - projectTrigger: projects/{project}/triggers/{trigger}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
+     * - subscription: projects/{project}/subscriptions/{subscription}
+     * - topic: projects/{project}/topics/{topic}
      * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

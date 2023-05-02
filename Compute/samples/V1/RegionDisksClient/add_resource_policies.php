@@ -41,7 +41,7 @@ function add_resource_policies_sample(string $disk, string $project, string $reg
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
 
     // Call the API and handle any network failures.

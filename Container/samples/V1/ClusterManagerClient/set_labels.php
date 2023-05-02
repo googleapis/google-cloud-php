@@ -42,7 +42,7 @@ function set_labels_sample(string $labelFingerprint): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourceLabels = [];
 
     // Call the API and handle any network failures.

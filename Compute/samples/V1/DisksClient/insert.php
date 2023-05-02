@@ -40,7 +40,7 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $diskResource = new Disk();
 
     // Call the API and handle any network failures.

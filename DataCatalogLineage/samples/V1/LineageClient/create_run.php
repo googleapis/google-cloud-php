@@ -41,7 +41,7 @@ function create_run_sample(string $formattedParent, int $runState): void
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $runStartTime = new Timestamp();
     $run = (new Run())
         ->setStartTime($runStartTime)

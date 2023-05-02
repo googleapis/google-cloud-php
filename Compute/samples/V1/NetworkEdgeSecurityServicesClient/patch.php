@@ -41,7 +41,7 @@ function patch_sample(string $networkEdgeSecurityService, string $project, strin
     // Create a client.
     $networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
 
     // Call the API and handle any network failures.

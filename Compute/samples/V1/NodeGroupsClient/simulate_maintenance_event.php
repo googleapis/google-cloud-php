@@ -41,7 +41,7 @@ function simulate_maintenance_event_sample(string $nodeGroup, string $project, s
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupsSimulateMaintenanceEventRequestResource = new NodeGroupsSimulateMaintenanceEventRequest();
 
     // Call the API and handle any network failures.

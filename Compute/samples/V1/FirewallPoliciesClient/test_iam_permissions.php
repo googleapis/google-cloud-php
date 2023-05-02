@@ -38,7 +38,7 @@ function test_iam_permissions_sample(string $resource): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testPermissionsRequestResource = new TestPermissionsRequest();
 
     // Call the API and handle any network failures.

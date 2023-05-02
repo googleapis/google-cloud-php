@@ -64,7 +64,7 @@ function change_parameters_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $parameters = [new Parameter()];
 
     // Call the API and handle any network failures.

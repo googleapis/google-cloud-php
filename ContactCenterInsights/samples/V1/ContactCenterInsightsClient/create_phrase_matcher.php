@@ -43,7 +43,7 @@ function create_phrase_matcher_sample(string $formattedParent, int $phraseMatche
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseMatcher = (new PhraseMatcher())
         ->setType($phraseMatcherType);
 

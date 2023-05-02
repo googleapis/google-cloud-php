@@ -41,7 +41,7 @@ function add_association_sample(string $firewallPolicy, string $project, string 
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
 
     // Call the API and handle any network failures.

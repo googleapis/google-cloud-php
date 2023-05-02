@@ -39,7 +39,7 @@ function create_migration_workflow_sample(string $formattedParent): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $migrationWorkflow = new MigrationWorkflow();
 
     // Call the API and handle any network failures.

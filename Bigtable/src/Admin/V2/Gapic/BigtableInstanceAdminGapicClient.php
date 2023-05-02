@@ -129,6 +129,8 @@ class BigtableInstanceAdminGapicClient
 
     private static $clusterNameTemplate;
 
+    private static $cryptoKeyNameTemplate;
+
     private static $instanceNameTemplate;
 
     private static $locationNameTemplate;
@@ -176,6 +178,15 @@ class BigtableInstanceAdminGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -209,6 +220,7 @@ class BigtableInstanceAdminGapicClient
             self::$pathTemplateMap = [
                 'appProfile' => self::getAppProfileNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -253,6 +265,27 @@ class BigtableInstanceAdminGapicClient
             'project' => $project,
             'instance' => $instance,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
+    {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -311,6 +344,7 @@ class BigtableInstanceAdminGapicClient
      * Template: Pattern
      * - appProfile: projects/{project}/instances/{instance}/appProfiles/{app_profile}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}

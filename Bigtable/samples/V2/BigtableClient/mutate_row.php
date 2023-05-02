@@ -43,7 +43,7 @@ function mutate_row_sample(string $formattedTableName, string $rowKey): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutations = [new Mutation()];
 
     // Call the API and handle any network failures.
