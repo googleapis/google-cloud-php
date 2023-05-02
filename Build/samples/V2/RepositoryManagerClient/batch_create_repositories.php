@@ -58,7 +58,7 @@ function batch_create_repositories_sample(
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestsRepository = (new Repository())
         ->setRemoteUri($requestsRepositoryRemoteUri);
     $createRepositoryRequest = (new CreateRepositoryRequest())

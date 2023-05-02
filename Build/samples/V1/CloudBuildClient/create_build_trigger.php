@@ -39,7 +39,7 @@ function create_build_trigger_sample(string $projectId): void
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $trigger = new BuildTrigger();
 
     // Call the API and handle any network failures.

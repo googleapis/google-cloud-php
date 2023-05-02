@@ -46,7 +46,7 @@ function update_budget_sample(): void
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $budgetAmount = new BudgetAmount();
     $budget = (new Budget())
         ->setAmount($budgetAmount);

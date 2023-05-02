@@ -43,7 +43,7 @@ function set_maintenance_policy_sample(string $projectId, string $zone, string $
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $maintenancePolicy = new MaintenancePolicy();
 
     // Call the API and handle any network failures.

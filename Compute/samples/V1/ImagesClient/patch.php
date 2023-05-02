@@ -40,7 +40,7 @@ function patch_sample(string $image, string $project): void
     // Create a client.
     $imagesClient = new ImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $imageResource = new Image();
 
     // Call the API and handle any network failures.

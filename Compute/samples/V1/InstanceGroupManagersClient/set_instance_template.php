@@ -44,7 +44,7 @@ function set_instance_template_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersSetInstanceTemplateRequestResource = new InstanceGroupManagersSetInstanceTemplateRequest();
 
     // Call the API and handle any network failures.

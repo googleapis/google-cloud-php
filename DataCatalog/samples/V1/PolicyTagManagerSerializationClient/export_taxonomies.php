@@ -48,7 +48,7 @@ function export_taxonomies_sample(
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedTaxonomies = [$formattedTaxonomiesElement,];
 
     // Call the API and handle any network failures.

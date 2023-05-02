@@ -46,7 +46,7 @@ function update_entry_sample(): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entry = new Entry();
 
     // Call the API and handle any network failures.

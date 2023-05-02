@@ -41,7 +41,7 @@ function verify_attestation_sample(string $formattedChallenge): void
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tpmAttestation = new TpmAttestation();
 
     // Call the API and handle any network failures.

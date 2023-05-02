@@ -139,6 +139,10 @@ class RepositoryManagerGapicClient
 
     private static $repositoryNameTemplate;
 
+    private static $secretVersionNameTemplate;
+
+    private static $serviceNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -189,6 +193,24 @@ class RepositoryManagerGapicClient
         return self::$repositoryNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate('projects/{project}/secrets/{secret}/versions/{version}');
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -196,6 +218,8 @@ class RepositoryManagerGapicClient
                 'connection' => self::getConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
@@ -260,12 +284,54 @@ class RepositoryManagerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $namespace, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

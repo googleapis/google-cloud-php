@@ -40,7 +40,7 @@ function set_proxy_header_sample(string $project, string $targetSslProxy): void
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
 
     // Call the API and handle any network failures.

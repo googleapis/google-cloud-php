@@ -41,7 +41,7 @@ function set_labels_sample(string $project, string $region, string $resource): v
     // Create a client.
     $vpnTunnelsClient = new VpnTunnelsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
 
     // Call the API and handle any network failures.

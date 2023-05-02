@@ -46,7 +46,7 @@ function set_locations_sample(string $locationsElement): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $locations = [$locationsElement,];
 
     // Call the API and handle any network failures.

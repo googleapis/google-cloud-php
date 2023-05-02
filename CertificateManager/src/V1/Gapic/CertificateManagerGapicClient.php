@@ -171,6 +171,8 @@ class CertificateManagerGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $caPoolNameTemplate;
+
     private static $certificateNameTemplate;
 
     private static $certificateIssuanceConfigNameTemplate;
@@ -212,6 +214,17 @@ class CertificateManagerGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getCaPoolNameTemplate()
+    {
+        if (self::$caPoolNameTemplate == null) {
+            self::$caPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/caPools/{ca_pool}'
+            );
+        }
+
+        return self::$caPoolNameTemplate;
     }
 
     private static function getCertificateNameTemplate()
@@ -284,6 +297,7 @@ class CertificateManagerGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'caPool' => self::getCaPoolNameTemplate(),
                 'certificate' => self::getCertificateNameTemplate(),
                 'certificateIssuanceConfig' => self::getCertificateIssuanceConfigNameTemplate(),
                 'certificateMap' => self::getCertificateMapNameTemplate(),
@@ -294,6 +308,25 @@ class CertificateManagerGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName($project, $location, $caPool)
+    {
+        return self::getCaPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
     }
 
     /**
@@ -427,6 +460,7 @@ class CertificateManagerGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
      * - certificateIssuanceConfig: projects/{project}/locations/{location}/certificateIssuanceConfigs/{certificate_issuance_config}
      * - certificateMap: projects/{project}/locations/{location}/certificateMaps/{certificate_map}

@@ -41,7 +41,7 @@ function set_labels_sample(string $instance, string $project, string $zone): voi
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
 
     // Call the API and handle any network failures.

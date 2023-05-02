@@ -40,7 +40,7 @@ function patch_sample(string $project, string $targetHttpProxy): void
     // Create a client.
     $targetHttpProxiesClient = new TargetHttpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetHttpProxyResource = new TargetHttpProxy();
 
     // Call the API and handle any network failures.

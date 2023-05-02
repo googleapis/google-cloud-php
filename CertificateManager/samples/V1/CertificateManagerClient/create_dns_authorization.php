@@ -49,7 +49,7 @@ function create_dns_authorization_sample(
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dnsAuthorization = (new DnsAuthorization())
         ->setDomain($dnsAuthorizationDomain);
 

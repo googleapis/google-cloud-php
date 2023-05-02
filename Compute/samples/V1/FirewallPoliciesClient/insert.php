@@ -39,7 +39,7 @@ function insert_sample(string $parentId): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicyResource = new FirewallPolicy();
 
     // Call the API and handle any network failures.

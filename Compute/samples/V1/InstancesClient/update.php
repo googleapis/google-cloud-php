@@ -41,7 +41,7 @@ function update_sample(string $instance, string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceResource = new Instance();
 
     // Call the API and handle any network failures.

@@ -39,7 +39,7 @@ function insert_sample(string $project): void
     // Create a client.
     $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $externalVpnGatewayResource = new ExternalVpnGateway();
 
     // Call the API and handle any network failures.
