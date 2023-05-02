@@ -21,4 +21,6 @@ parameters:
     - '#Array has \d duplicate keys with value #'
     # Ignore this error because I don't consider it to be level 0
     - '#Unsafe usage of new static#'
+includes:
+    - dev/vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
