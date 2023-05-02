@@ -115,7 +115,7 @@ class Composer
 
         $composer['require']['php'] = self::REQUIRE_PHP;
         foreach ($this->defaultDeps as $dep) {
-            $composer['require'][$dep] = $this->getLatestVersion($dep);
+            $composer['require'][$dep] = self::getLatestVersion($dep);
         }
 
         foreach ($this->defaultDevDeps as $dep => $ver) {
@@ -132,7 +132,7 @@ class Composer
         );
     }
 
-    private function getLatestVersion($dep)
+    public static function getLatestVersion($dep)
     {
         $client = new Client();
         $uri = 'https://packagist.org/packages/'. $dep .'.json';

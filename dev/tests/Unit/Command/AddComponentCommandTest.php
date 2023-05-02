@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
+use Google\Cloud\Dev\Composer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -37,7 +38,6 @@ class AddComponentCommandTest extends TestCase
         'LICENSE',
         'README.md',
         'VERSION',
-        'composer.json',
         'owlbot.py',
         'phpunit.xml.dist',
     ];
@@ -93,6 +93,8 @@ class AddComponentCommandTest extends TestCase
                 self::$tmpDir . '/SecretManager/' . $file
             );
         }
+
+        $this->assertComposerJson('SecretManager');
     }
 
     public function testAddComponentWithCustomOptions()
@@ -145,5 +147,21 @@ class AddComponentCommandTest extends TestCase
                 self::$tmpDir . '/CustomInput/' . $file
             );
         }
+
+        $this->assertComposerJson('CustomInput');
+    }
+
+    private function assertComposerJson(string $componentName)
+    {
+        $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);
+        $this->assertFileExists($composerPath);
+        $this->assertEquals(
+            file_get_contents(sprintf('%s/%s/composer.json', self::$tmpDir, $componentName)),
+            str_replace(
+                'GAX_VERSION',
+                Composer::getLatestVersion('google/gax'),
+                file_get_contents($composerPath)
+            )
+        );
     }
 }
