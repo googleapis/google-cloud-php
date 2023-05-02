@@ -45,7 +45,7 @@ function update_job_sample(): void
     // Create a client.
     $jobsClient = new JobsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTemplateTemplate = new TaskTemplate();
     $jobTemplate = (new ExecutionTemplate())
         ->setTemplate($jobTemplateTemplate);

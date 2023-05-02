@@ -39,7 +39,7 @@ function execute_patch_job_sample(string $formattedParent): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceFilter = new PatchInstanceFilter();
 
     // Call the API and handle any network failures.

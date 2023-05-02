@@ -42,7 +42,7 @@ function update_recommender_config_sample(): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $recommenderConfig = new RecommenderConfig();
 
     // Call the API and handle any network failures.

@@ -44,7 +44,7 @@ function create_big_query_export_sample(string $formattedParent, string $bigQuer
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $bigQueryExport = new BigQueryExport();
 
     // Call the API and handle any network failures.

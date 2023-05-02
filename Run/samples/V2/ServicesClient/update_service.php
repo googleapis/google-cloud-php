@@ -44,7 +44,7 @@ function update_service_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceTemplate = new RevisionTemplate();
     $service = (new Service())
         ->setTemplate($serviceTemplate);

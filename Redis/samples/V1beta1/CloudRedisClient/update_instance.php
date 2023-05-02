@@ -58,7 +58,7 @@ function update_instance_sample(
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $instance = (new Instance())
         ->setName($instanceName)

@@ -51,7 +51,7 @@ function import_products_sample(string $formattedParent): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new ProductInputConfig();
 
     // Call the API and handle any network failures.
