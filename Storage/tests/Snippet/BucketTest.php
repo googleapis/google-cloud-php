@@ -39,15 +39,15 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class BucketTest extends SnippetTestCase
 {
-    use AssertStringContains;
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const BUCKET = 'my-bucket';
     const PROJECT_ID = 'my-project';
@@ -73,7 +73,7 @@ class BucketTest extends SnippetTestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()

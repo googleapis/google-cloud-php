@@ -210,8 +210,10 @@ class LanguageServiceGapicClient
     }
 
     /**
-     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
-     * sentiment associated with each entity and its mentions.
+     * Finds entities, similar to
+     * [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities]
+     * in the text and analyzes sentiment associated with each entity and its
+     * mentions.
      *
      * Sample code:
      * ```

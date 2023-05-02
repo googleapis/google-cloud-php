@@ -38,9 +38,12 @@ use Google\Rpc\Status;
  * Upon success, the `Operation.response` field will be populated with the
  * moved project.
  *
- * The caller must have `resourcemanager.projects.update` permission on the
- * project and have `resourcemanager.projects.move` permission on the
- * project's current and proposed new parent.
+ * The caller must have `resourcemanager.projects.move` permission on the
+ * project, on the project's current and proposed new parent.
+ *
+ * If project has no current parent, or it currently does not have an
+ * associated organization resource, you will also need the
+ * `resourcemanager.projects.setIamPolicy` permission in the project.
  *
  *
  *

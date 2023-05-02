@@ -141,6 +141,30 @@ return [
                     'config_id',
                 ],
             ],
+            'CreateSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules',
+                'body' => 'security_health_analytics_custom_module',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules',
+                        'body' => 'security_health_analytics_custom_module',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules',
+                        'body' => 'security_health_analytics_custom_module',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSource' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/sources',
@@ -216,6 +240,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBigQueryExport' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/bigQueryExports/*}',
@@ -227,6 +272,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/bigQueryExports/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEffectiveSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -294,6 +360,27 @@ return [
             'GetOrganizationSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/organizationSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -403,6 +490,48 @@ return [
                     ],
                 ],
             ],
+            'ListDescendantSecurityHealthAnalyticsCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:listDescendant',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:listDescendant',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:listDescendant',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEffectiveSecurityHealthAnalyticsCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/effectiveCustomModules',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/securityHealthAnalyticsSettings}/effectiveCustomModules',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/effectiveCustomModules',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -456,6 +585,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSecurityHealthAnalyticsCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules',
                     ],
                 ],
                 'placeholders' => [
@@ -704,6 +854,31 @@ return [
                     'organization_settings.name' => [
                         'getters' => [
                             'getOrganizationSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSecurityHealthAnalyticsCustomModule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{security_health_analytics_custom_module.name=organizations/*/securityHealthAnalyticsSettings/customModules/*}',
+                'body' => 'security_health_analytics_custom_module',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_health_analytics_custom_module.name=folders/*/securityHealthAnalyticsSettings/customModules/*}',
+                        'body' => 'security_health_analytics_custom_module',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_health_analytics_custom_module.name=projects/*/securityHealthAnalyticsSettings/customModules/*}',
+                        'body' => 'security_health_analytics_custom_module',
+                    ],
+                ],
+                'placeholders' => [
+                    'security_health_analytics_custom_module.name' => [
+                        'getters' => [
+                            'getSecurityHealthAnalyticsCustomModule',
                             'getName',
                         ],
                     ],

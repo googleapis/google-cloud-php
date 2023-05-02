@@ -20,7 +20,7 @@ namespace Google\Cloud\Container\Tests\System;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\Cloud\Container\V1\ListOperationsResponse;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group container
@@ -36,7 +36,7 @@ class ClusterManagerClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$restClient],
@@ -44,7 +44,7 @@ class ClusterManagerClientTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

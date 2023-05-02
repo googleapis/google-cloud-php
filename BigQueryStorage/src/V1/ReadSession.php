@@ -23,15 +23,17 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Time at which the session becomes invalid. After this time, subsequent
-     * requests to read this Session will return errors. The expire_time is
-     * automatically assigned and currently cannot be specified or updated.
+     * Output only. Time at which the session becomes invalid. After this time,
+     * subsequent requests to read this Session will return errors. The
+     * expire_time is automatically assigned and currently cannot be specified or
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $expire_time = null;
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -44,7 +46,8 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $table = '';
     /**
-     * Optional. Any modifiers which are applied when reading from the specified table.
+     * Optional. Any modifiers which are applied when reading from the specified
+     * table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,6 +68,32 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.ReadStream streams = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $streams;
+    /**
+     * Output only. An estimate on the number of bytes this session will scan when
+     * all streams are completely consumed. This estimate is based on
+     * metadata from the table which might be incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_bytes_scanned = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $estimated_total_bytes_scanned = 0;
+    /**
+     * Output only. An estimate on the number of rows present in this session's
+     * streams. This estimate is based on metadata from the table which might be
+     * incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_row_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $estimated_row_count = 0;
+    /**
+     * Optional. ID set by client to annotate a session identity.  This does not
+     * need to be strictly unique, but instead the same ID should be used to group
+     * logically connected sessions (e.g. All using the same ID for all sessions
+     * needed to complete a Spark SQL query is reasonable).
+     * Maximum length is 256 bytes.
+     *
+     * Generated from protobuf field <code>string trace_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $trace_id = '';
     protected $schema;
 
     /**
@@ -77,11 +106,13 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           Output only. Unique identifier for the session, in the form
      *           `projects/{project_id}/locations/{location}/sessions/{session_id}`.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Output only. Time at which the session becomes invalid. After this time, subsequent
-     *           requests to read this Session will return errors. The expire_time is
-     *           automatically assigned and currently cannot be specified or updated.
+     *           Output only. Time at which the session becomes invalid. After this time,
+     *           subsequent requests to read this Session will return errors. The
+     *           expire_time is automatically assigned and currently cannot be specified or
+     *           updated.
      *     @type int $data_format
-     *           Immutable. Data format of the output data.
+     *           Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not
+     *           supported.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AvroSchema $avro_schema
      *           Output only. Avro schema.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSchema $arrow_schema
@@ -90,15 +121,30 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           Immutable. Table that this ReadSession is reading from, in the form
      *           `projects/{project_id}/datasets/{dataset_id}/tables/{table_id}`
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers $table_modifiers
-     *           Optional. Any modifiers which are applied when reading from the specified table.
+     *           Optional. Any modifiers which are applied when reading from the specified
+     *           table.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions $read_options
      *           Optional. Read options for this session (e.g. column selection, filters).
-     *     @type \Google\Cloud\BigQuery\Storage\V1\ReadStream[]|\Google\Protobuf\Internal\RepeatedField $streams
+     *     @type array<\Google\Cloud\BigQuery\Storage\V1\ReadStream>|\Google\Protobuf\Internal\RepeatedField $streams
      *           Output only. A list of streams created with the session.
      *           At least one stream is created with the session. In the future, larger
      *           request_stream_count values *may* result in this list being unpopulated,
      *           in that case, the user will need to use a List method to get the streams
      *           instead, which is not yet available.
+     *     @type int|string $estimated_total_bytes_scanned
+     *           Output only. An estimate on the number of bytes this session will scan when
+     *           all streams are completely consumed. This estimate is based on
+     *           metadata from the table which might be incomplete or stale.
+     *     @type int|string $estimated_row_count
+     *           Output only. An estimate on the number of rows present in this session's
+     *           streams. This estimate is based on metadata from the table which might be
+     *           incomplete or stale.
+     *     @type string $trace_id
+     *           Optional. ID set by client to annotate a session identity.  This does not
+     *           need to be strictly unique, but instead the same ID should be used to group
+     *           logically connected sessions (e.g. All using the same ID for all sessions
+     *           needed to complete a Spark SQL query is reasonable).
+     *           Maximum length is 256 bytes.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,16 +181,17 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time at which the session becomes invalid. After this time, subsequent
-     * requests to read this Session will return errors. The expire_time is
-     * automatically assigned and currently cannot be specified or updated.
+     * Output only. Time at which the session becomes invalid. After this time,
+     * subsequent requests to read this Session will return errors. The
+     * expire_time is automatically assigned and currently cannot be specified or
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -158,9 +205,10 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time at which the session becomes invalid. After this time, subsequent
-     * requests to read this Session will return errors. The expire_time is
-     * automatically assigned and currently cannot be specified or updated.
+     * Output only. Time at which the session becomes invalid. After this time,
+     * subsequent requests to read this Session will return errors. The
+     * expire_time is automatically assigned and currently cannot be specified or
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -175,7 +223,8 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -186,7 +235,8 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -291,14 +341,15 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Any modifiers which are applied when reading from the specified table.
+     * Optional. Any modifiers which are applied when reading from the specified
+     * table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers|null
      */
     public function getTableModifiers()
     {
-        return isset($this->table_modifiers) ? $this->table_modifiers : null;
+        return $this->table_modifiers;
     }
 
     public function hasTableModifiers()
@@ -312,7 +363,8 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Any modifiers which are applied when reading from the specified table.
+     * Optional. Any modifiers which are applied when reading from the specified
+     * table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers $var
@@ -334,7 +386,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function getReadOptions()
     {
-        return isset($this->read_options) ? $this->read_options : null;
+        return $this->read_options;
     }
 
     public function hasReadOptions()
@@ -385,13 +437,107 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * instead, which is not yet available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.ReadStream streams = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\BigQuery\Storage\V1\ReadStream[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Storage\V1\ReadStream>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStreams($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Storage\V1\ReadStream::class);
         $this->streams = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An estimate on the number of bytes this session will scan when
+     * all streams are completely consumed. This estimate is based on
+     * metadata from the table which might be incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_bytes_scanned = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getEstimatedTotalBytesScanned()
+    {
+        return $this->estimated_total_bytes_scanned;
+    }
+
+    /**
+     * Output only. An estimate on the number of bytes this session will scan when
+     * all streams are completely consumed. This estimate is based on
+     * metadata from the table which might be incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_bytes_scanned = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEstimatedTotalBytesScanned($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->estimated_total_bytes_scanned = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An estimate on the number of rows present in this session's
+     * streams. This estimate is based on metadata from the table which might be
+     * incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_row_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getEstimatedRowCount()
+    {
+        return $this->estimated_row_count;
+    }
+
+    /**
+     * Output only. An estimate on the number of rows present in this session's
+     * streams. This estimate is based on metadata from the table which might be
+     * incomplete or stale.
+     *
+     * Generated from protobuf field <code>int64 estimated_row_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEstimatedRowCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->estimated_row_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. ID set by client to annotate a session identity.  This does not
+     * need to be strictly unique, but instead the same ID should be used to group
+     * logically connected sessions (e.g. All using the same ID for all sessions
+     * needed to complete a Spark SQL query is reasonable).
+     * Maximum length is 256 bytes.
+     *
+     * Generated from protobuf field <code>string trace_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTraceId()
+    {
+        return $this->trace_id;
+    }
+
+    /**
+     * Optional. ID set by client to annotate a session identity.  This does not
+     * need to be strictly unique, but instead the same ID should be used to group
+     * logically connected sessions (e.g. All using the same ID for all sessions
+     * needed to complete a Spark SQL query is reasonable).
+     * Maximum length is 256 bytes.
+     *
+     * Generated from protobuf field <code>string trace_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTraceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->trace_id = $var;
 
         return $this;
     }

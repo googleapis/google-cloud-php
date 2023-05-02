@@ -123,9 +123,7 @@ class TranslateClient
             ? $config['key']
             : null;
 
-        $this->targetLanguage = isset($config['target'])
-            ? $config['target']
-            : self::ENGLISH_LANGUAGE_CODE;
+        $this->targetLanguage = $config['target'] ?? self::ENGLISH_LANGUAGE_CODE;
 
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -258,9 +256,7 @@ class TranslateClient
 
         if (isset($response['data']['translations'])) {
             foreach ($response['data']['translations'] as $key => $translation) {
-                $source = isset($translation['detectedSourceLanguage'])
-                    ? $translation['detectedSourceLanguage']
-                    : $options['source'];
+                $source = $translation['detectedSourceLanguage'] ?? $options['source'];
 
                 $model = (isset($translation['model']))
                     ? $translation['model']

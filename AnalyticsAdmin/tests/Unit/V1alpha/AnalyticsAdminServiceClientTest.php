@@ -43,6 +43,7 @@ use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
+use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
@@ -60,6 +61,7 @@ use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
@@ -69,6 +71,7 @@ use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
 use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse;
@@ -1210,6 +1213,84 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createChannelGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $systemDefined = false;
+        $expectedResponse = new ChannelGroup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemDefined($systemDefined);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $channelGroup = new ChannelGroup();
+        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
+        $channelGroup->setDisplayName($channelGroupDisplayName);
+        $channelGroupGroupingRule = [];
+        $channelGroup->setGroupingRule($channelGroupGroupingRule);
+        $response = $gapicClient->createChannelGroup($formattedParent, $channelGroup);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateChannelGroup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getChannelGroup();
+        $this->assertProtobufEquals($channelGroup, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createChannelGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $channelGroup = new ChannelGroup();
+        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
+        $channelGroup->setDisplayName($channelGroupDisplayName);
+        $channelGroupGroupingRule = [];
+        $channelGroup->setGroupingRule($channelGroupGroupingRule);
+        try {
+            $gapicClient->createChannelGroup($formattedParent, $channelGroup);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createConnectedSiteTagTest()
     {
         $transport = $this->createTransport();
@@ -2330,6 +2411,63 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteChannelGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+        $gapicClient->deleteChannelGroup($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteChannelGroup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteChannelGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+        try {
+            $gapicClient->deleteChannelGroup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteConnectedSiteTagTest()
     {
         $transport = $this->createTransport();
@@ -3081,6 +3219,66 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function fetchConnectedGa4PropertyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $property2 = 'property2-926037944';
+        $expectedResponse = new FetchConnectedGa4PropertyResponse();
+        $expectedResponse->setProperty($property2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $response = $gapicClient->fetchConnectedGa4Property($formattedProperty);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchConnectedGa4Property', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($formattedProperty, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchConnectedGa4PropertyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        try {
+            $gapicClient->fetchConnectedGa4Property($formattedProperty);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAccessBindingTest()
     {
         $transport = $this->createTransport();
@@ -3395,6 +3593,72 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
         try {
             $gapicClient->getBigQueryLink($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getChannelGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $systemDefined = false;
+        $expectedResponse = new ChannelGroup();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemDefined($systemDefined);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+        $response = $gapicClient->getChannelGroup($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetChannelGroup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getChannelGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
+        try {
+            $gapicClient->getChannelGroup($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4773,6 +5037,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
             $gapicClient->listBigQueryLinks($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listChannelGroupsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $channelGroupsElement = new ChannelGroup();
+        $channelGroups = [
+            $channelGroupsElement,
+        ];
+        $expectedResponse = new ListChannelGroupsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setChannelGroups($channelGroups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $response = $gapicClient->listChannelGroups($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getChannelGroups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListChannelGroups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listChannelGroupsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        try {
+            $gapicClient->listChannelGroups($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6243,6 +6575,84 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateAudience($audience, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateChannelGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $systemDefined = false;
+        $expectedResponse = new ChannelGroup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemDefined($systemDefined);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $channelGroup = new ChannelGroup();
+        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
+        $channelGroup->setDisplayName($channelGroupDisplayName);
+        $channelGroupGroupingRule = [];
+        $channelGroup->setGroupingRule($channelGroupGroupingRule);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateChannelGroup($channelGroup, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateChannelGroup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getChannelGroup();
+        $this->assertProtobufEquals($channelGroup, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateChannelGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $channelGroup = new ChannelGroup();
+        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
+        $channelGroup->setDisplayName($channelGroupDisplayName);
+        $channelGroupGroupingRule = [];
+        $channelGroup->setGroupingRule($channelGroupGroupingRule);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateChannelGroup($channelGroup, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

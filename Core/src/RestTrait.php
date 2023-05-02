@@ -90,8 +90,10 @@ trait RestTrait
         $requestOptions = $this->pluckArray([
             'restOptions',
             'retries',
+            'retryHeaders',
             'requestTimeout',
-            'restRetryFunction'
+            'restRetryFunction',
+            'restRetryListener',
         ], $options);
 
         try {
@@ -120,9 +122,7 @@ trait RestTrait
      */
     private function getApiEndpoint($default, array $config)
     {
-        $res = isset($config['apiEndpoint'])
-            ? $config['apiEndpoint']
-            : $default;
+        $res = $config['apiEndpoint'] ?? $default;
 
         if (substr($res, -1) !== '/') {
             $res = $res . '/';

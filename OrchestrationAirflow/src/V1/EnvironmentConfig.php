@@ -130,6 +130,16 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $airflow_uri = '';
     /**
+     * Output only. The 'bring your own identity' variant of the URI of the Apache
+     * Airflow Web UI hosted within this environment, to be accessed with external
+     * identities using workforce identity federation (see [Access environments
+     * with workforce identity
+     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     *
+     * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $airflow_byoid_uri = '';
+    /**
      * Optional. The configuration options for GKE cluster master authorized
      * networks. By default master authorized networks feature is:
      * - in case of private environment: enabled with no external networks
@@ -212,6 +222,12 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The URI of the Apache Airflow Web UI hosted within this
      *           environment (see [Airflow web
      *           interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
+     *     @type string $airflow_byoid_uri
+     *           Output only. The 'bring your own identity' variant of the URI of the Apache
+     *           Airflow Web UI hosted within this environment, to be accessed with external
+     *           identities using workforce identity federation (see [Access environments
+     *           with workforce identity
+     *           federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
      *           Optional. The configuration options for GKE cluster master authorized
      *           networks. By default master authorized networks feature is:
@@ -739,6 +755,40 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->airflow_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The 'bring your own identity' variant of the URI of the Apache
+     * Airflow Web UI hosted within this environment, to be accessed with external
+     * identities using workforce identity federation (see [Access environments
+     * with workforce identity
+     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     *
+     * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAirflowByoidUri()
+    {
+        return $this->airflow_byoid_uri;
+    }
+
+    /**
+     * Output only. The 'bring your own identity' variant of the URI of the Apache
+     * Airflow Web UI hosted within this environment, to be accessed with external
+     * identities using workforce identity federation (see [Access environments
+     * with workforce identity
+     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     *
+     * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAirflowByoidUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->airflow_byoid_uri = $var;
 
         return $this;
     }

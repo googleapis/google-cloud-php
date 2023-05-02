@@ -397,9 +397,7 @@ class Result implements \IteratorAggregate
                 continue;
             }
 
-            $resultValues = isset($result['values'])
-                ? $result['values']
-                : [];
+            $resultValues = $result['values'] ?? [];
 
             $values = $shouldMergeValues
                 ? $this->mergeValues($values, $resultValues)
@@ -434,9 +432,7 @@ class Result implements \IteratorAggregate
      */
     private function setResultData(array $result, $format)
     {
-        $this->stats = isset($result['stats'])
-            ? $result['stats']
-            : null;
+        $this->stats = $result['stats'] ?? null;
 
         if ($this->isSetAndTrue($result, 'resumeToken')) {
             $this->resumeToken = $result['resumeToken'];

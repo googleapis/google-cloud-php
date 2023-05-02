@@ -22,11 +22,12 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Prophecy\Argument;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -34,13 +35,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ResumableUploaderTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $stream;
     private $successBody;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = Utils::streamFor('abcd');
@@ -92,7 +93,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testUploadsDataWithInvalidCallback()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $callback = 'foo';
 
@@ -173,9 +174,52 @@ class ResumableUploaderTest extends TestCase
         );
     }
 
+    /**
+     * This tests whether retry related options are properly set in the
+     * abstract uploader class. Since we already had these tests for
+     * ResumableUploader class which extends the AbstractUploader class,
+     * thus testing it here would be sufficient.
+     */
+    public function testRetryOptionsPassing()
+    {
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, [], $this->successBody);
+            },
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+        ]);
+        $options = [
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
+        ];
+        $uploader = new ResumableUploader(
+            $requestWrapper,
+            $this->stream,
+            'http://www.example.com',
+            $options
+        );
+        $uploader->upload();
+
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
+    }
+
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new ResumableUploader(
@@ -189,7 +233,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testThrowsExceptionWhenResumingNonSeekableStream()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $stream = $this->prophesize(StreamInterface::class);
         $stream->isSeekable()->willReturn(false);
@@ -206,7 +250,7 @@ class ResumableUploaderTest extends TestCase
 
     public function testThrowsExceptionWithFailedUpload()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 

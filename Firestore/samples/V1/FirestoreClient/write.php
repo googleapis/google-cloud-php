@@ -31,7 +31,7 @@ use Google\Cloud\Firestore\V1\WriteResponse;
 
 /**
  * Streams batches of document updates and deletes, in order. This method is
- * only available via the gRPC API (not REST).
+ * only available via gRPC or WebChannel (not REST).
  *
  * @param string $database The database name. In the format:
  *                         `projects/{project_id}/databases/{database_id}`.

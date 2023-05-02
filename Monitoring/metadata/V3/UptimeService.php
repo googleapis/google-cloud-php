@@ -23,7 +23,7 @@ class UptimeService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-…
+ˆ
 )google/monitoring/v3/uptime_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto!google/monitoring/v3/uptime.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‹
 ListUptimeCheckConfigsRequestC
 parent (	B3àAúA-+monitoring.googleapis.com/UptimeCheckConfig
@@ -61,8 +61,8 @@ page_token (	"t
 CreateUptimeCheckConfig4.google.monitoring.v3.CreateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"d‚Óä“A"*/v3/{parent=projects/*}/uptimeCheckConfigs:uptime_check_configÚAparent,uptime_check_configë
 UpdateUptimeCheckConfig4.google.monitoring.v3.UpdateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"q‚Óä“U2>/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}:uptime_check_configÚAuptime_check_config¢
 DeleteUptimeCheckConfig4.google.monitoring.v3.DeleteUptimeCheckConfigRequest.google.protobuf.Empty"9‚Óä“,**/v3/{name=projects/*/uptimeCheckConfigs/*}ÚAname“
-ListUptimeCheckIps/.google.monitoring.v3.ListUptimeCheckIpsRequest0.google.monitoring.v3.ListUptimeCheckIpsResponse"‚Óä“/v3/uptimeCheckIps©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÊ
-com.google.monitoring.v3BUptimeServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+ListUptimeCheckIps/.google.monitoring.v3.ListUptimeCheckIpsRequest0.google.monitoring.v3.ListUptimeCheckIpsResponse"‚Óä“/v3/uptimeCheckIps©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÍ
+com.google.monitoring.v3BUptimeServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

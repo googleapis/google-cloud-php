@@ -29,20 +29,23 @@ use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class SpeechClientExtensionTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var SpeechClient */
     private $client;
     /** @var TransportInterface */
     private $transport;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new SpeechClient([

@@ -27,7 +27,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * SystemTestCase can be extended to implement system tests

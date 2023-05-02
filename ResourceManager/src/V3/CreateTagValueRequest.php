@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The TagValue to be created. Only fields `short_name`, `description`,
-     * and `parent` are considered during the creation request.
+     * Required. The TagValue to be created. Only fields `short_name`,
+     * `description`, and `parent` are considered during the creation request.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tag_value = null;
     /**
-     * Optional. Set as true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set as true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,11 +37,11 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ResourceManager\V3\TagValue $tag_value
-     *           Required. The TagValue to be created. Only fields `short_name`, `description`,
-     *           and `parent` are considered during the creation request.
+     *           Required. The TagValue to be created. Only fields `short_name`,
+     *           `description`, and `parent` are considered during the creation request.
      *     @type bool $validate_only
-     *           Optional. Set as true to perform the validations necessary for creating the resource,
-     *           but not actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for creating the
+     *           resource, but not actually perform the action.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +50,8 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The TagValue to be created. Only fields `short_name`, `description`,
-     * and `parent` are considered during the creation request.
+     * Required. The TagValue to be created. Only fields `short_name`,
+     * `description`, and `parent` are considered during the creation request.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ResourceManager\V3\TagValue|null
@@ -72,8 +72,8 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The TagValue to be created. Only fields `short_name`, `description`,
-     * and `parent` are considered during the creation request.
+     * Required. The TagValue to be created. Only fields `short_name`,
+     * `description`, and `parent` are considered during the creation request.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ResourceManager\V3\TagValue $var
@@ -88,8 +88,8 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set as true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set as true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -100,8 +100,8 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set as true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set as true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

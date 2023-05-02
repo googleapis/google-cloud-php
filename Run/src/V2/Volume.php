@@ -33,7 +33,6 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Required. Volume's name.
      *     @type \Google\Cloud\Run\V2\SecretVolumeSource $secret
      *           Secret represents a secret that should populate this volume.
-     *           More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
      *     @type \Google\Cloud\Run\V2\CloudSqlInstance $cloud_sql_instance
      *           For Cloud SQL volumes, contains the specific instances that should be
      *           mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for
@@ -73,7 +72,6 @@ class Volume extends \Google\Protobuf\Internal\Message
 
     /**
      * Secret represents a secret that should populate this volume.
-     * More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SecretVolumeSource secret = 2;</code>
      * @return \Google\Cloud\Run\V2\SecretVolumeSource|null
@@ -90,7 +88,6 @@ class Volume extends \Google\Protobuf\Internal\Message
 
     /**
      * Secret represents a secret that should populate this volume.
-     * More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SecretVolumeSource secret = 2;</code>
      * @param \Google\Cloud\Run\V2\SecretVolumeSource $var

@@ -163,7 +163,7 @@ class Report
         sort($input);
         $i = floor($pct * count($input));
 
-        $val = isset($input[$i]) ? $input[$i] : 0;
+        $val = $input[$i] ?? 0;
 
         return $val * 1000;
     }

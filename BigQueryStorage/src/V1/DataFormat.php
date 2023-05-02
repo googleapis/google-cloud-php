@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class DataFormat
 {
     /**
+     * Data format is unspecified.
+     *
      * Generated from protobuf enum <code>DATA_FORMAT_UNSPECIFIED = 0;</code>
      */
     const DATA_FORMAT_UNSPECIFIED = 0;

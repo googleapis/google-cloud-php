@@ -48,7 +48,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -57,8 +57,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     private $ad_tracking = 0;
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>
@@ -77,14 +77,6 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.PrefetchConfig prefetch_config = 10;</code>
      */
     private $prefetch_config = null;
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     */
-    private $default_ad_break_duration = null;
 
     /**
      * Constructor.
@@ -105,23 +97,19 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the live config.
      *     @type int $ad_tracking
-     *           Required. Determines how the ads should be tracked. If
+     *           Required. Determines how the ads are tracked. If
      *           [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *     @type string $default_slate
      *           This must refer to a slate in the same
-     *           project. In case Google Ad Manager (GAM) is being used for ads this will be
-     *           used to set the appropriate value of slateCreativeId in
+     *           project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     *           value of `slateCreativeId` in
      *           https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *     @type int $stitching_policy
      *           Defines the stitcher behavior in case an ad does not align exactly with
      *           the ad break boundaries. If not specified, the default is `CUT_CURRENT`.
      *     @type \Google\Cloud\Video\Stitcher\V1\PrefetchConfig $prefetch_config
      *           The configuration for prefetching ads.
-     *     @type \Google\Protobuf\Duration $default_ad_break_duration
-     *           The default ad pod duration in seconds that will be requested when a
-     *           cue-out does not specify a duration.
-     *           The default value of this field is 30s.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,7 +262,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -287,7 +275,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads should be tracked. If
+     * Required. Determines how the ads are tracked. If
      * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
      * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
      *
@@ -305,8 +293,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>
@@ -319,8 +307,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This must refer to a slate in the same
-     * project. In case Google Ad Manager (GAM) is being used for ads this will be
-     * used to set the appropriate value of slateCreativeId in
+     * project. If Google Ad Manager (GAM) is used for ads, this string sets the
+     * value of `slateCreativeId` in
      * https://developers.google.com/ad-manager/api/reference/v202211/LiveStreamEventService.LiveStreamEvent#slateCreativeId
      *
      * Generated from protobuf field <code>string default_slate = 7 [(.google.api.resource_reference) = {</code>
@@ -395,46 +383,6 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\PrefetchConfig::class);
         $this->prefetch_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     * @return \Google\Protobuf\Duration|null
-     */
-    public function getDefaultAdBreakDuration()
-    {
-        return $this->default_ad_break_duration;
-    }
-
-    public function hasDefaultAdBreakDuration()
-    {
-        return isset($this->default_ad_break_duration);
-    }
-
-    public function clearDefaultAdBreakDuration()
-    {
-        unset($this->default_ad_break_duration);
-    }
-
-    /**
-     * The default ad pod duration in seconds that will be requested when a
-     * cue-out does not specify a duration.
-     * The default value of this field is 30s.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Duration default_ad_break_duration = 11;</code>
-     * @param \Google\Protobuf\Duration $var
-     * @return $this
-     */
-    public function setDefaultAdBreakDuration($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
-        $this->default_ad_break_duration = $var;
 
         return $this;
     }

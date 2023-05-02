@@ -28,7 +28,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\ResourceManager\V3\ProjectsClient;
 
 /**
- * Returns the IAM access control policy for the specified project.
+ * Returns the IAM access control policy for the specified project, in the
+ * format `projects/{ProjectIdOrNumber}` e.g. projects/123.
  * Permission is denied if the policy or the resource do not exist.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being requested.

@@ -26,8 +26,6 @@ class Method
      */
     const LOGIN = 1;
     /**
-     * Deprecated, no longer accepted by IAP APIs.
-     *
      * Generated from protobuf enum <code>PASSWORD = 2 [deprecated = true];</code>
      */
     const PASSWORD = 2;

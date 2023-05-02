@@ -32,8 +32,8 @@ use Google\Rpc\Status;
 /**
  * Updates the attributes of the TagKey resource.
  *
- * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name should be
- *                                unique for TagKeys within the same tag namespace.
+ * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name
+ *                                should be unique for TagKeys within the same tag namespace.
  *
  *                                The short name must be 1-63 characters, beginning and ending with
  *                                an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),

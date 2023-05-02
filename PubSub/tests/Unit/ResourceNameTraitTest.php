@@ -19,19 +19,17 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\ResourceNameTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
 class ResourceNameTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $trait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->trait = TestHelpers::impl(ResourceNameTrait::class);
     }
@@ -68,7 +66,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testPluckNameInvalidFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('pluckName', ['lame', 'bar']);
     }
@@ -96,7 +94,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testFormatNameInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('formatName', ['lame', 'foo']);
     }
@@ -142,7 +140,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function testIsFullyQualifiedNameInvalidType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->trait->call('isFullyQualifiedName', ['lame', 'foo']);
     }

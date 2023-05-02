@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
  * @group bigquery
@@ -25,8 +25,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class RegionalizationTest extends BigQueryTestCase
 {
-    use ExpectException;
-
     const LOCATION_ASIA = 'asia-northeast1';
     const LOCATION_US = 'US';
     const QUERY_TEMPLATE = 'SELECT 1 FROM `%s.%s`';
@@ -35,9 +33,9 @@ class RegionalizationTest extends BigQueryTestCase
     private static $tableAsia;
     private static $bucketAsia;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$datasetAsia = self::createDataset(
             self::$client,
             uniqid(self::TESTING_PREFIX),
@@ -74,7 +72,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testCopyJobThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $targetTable = self::$datasetAsia
             ->table(uniqid(self::TESTING_PREFIX));
@@ -100,7 +98,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testExtractJobThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $object = self::$bucketAsia->object(uniqid(self::TESTING_PREFIX));
         $extractConfig = self::$tableAsia->extract($object)
@@ -127,7 +125,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testLoadJobThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $loadConfig = self::$tableAsia->load(
             file_get_contents(__DIR__ . '/data/table-data.json')
@@ -158,7 +156,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testRunQueryThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $queryConfig = self::$client->query(
             sprintf(
@@ -191,7 +189,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testGetJobThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $queryConfig = self::$client->query(
             sprintf(
@@ -227,7 +225,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testCancelJobThrowsNotFoundExceptionInUS()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $queryConfig = self::$client->query(
             sprintf(

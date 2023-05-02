@@ -173,6 +173,11 @@ class RequestWrapper
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restRetryListener Runs after the restRetryFunction.
+     *           This might be used to simply consume the exception and
+     *           $arguments b/w retries. This returns the new $arguments thus
+     *           allowing modification on demand for $arguments. For ex:
+     *           changing the headers in b/w retries.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -189,7 +194,8 @@ class RequestWrapper
         $retryOptions = $this->getRetryOptions($options);
         $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
-            $retryOptions['retryFunction']
+            $retryOptions['retryFunction'],
+            $retryOptions['retryListener'],
         );
 
         if ($retryOptions['delayFunction']) {
@@ -202,7 +208,7 @@ class RequestWrapper
 
         try {
             return $backoff->execute($this->httpHandler, [
-                $this->applyHeaders($request),
+                $this->applyHeaders($request, $options),
                 $this->getRequestOptions($options)
             ]);
         } catch (\Exception $ex) {
@@ -252,7 +258,7 @@ class RequestWrapper
             }
 
             return $asyncHttpHandler(
-                $this->applyHeaders($request),
+                $this->applyHeaders($request, $options),
                 $this->getRequestOptions($options)
             )->then(null, function (\Exception $ex) use ($fn, $retryAttempt, $retryOptions) {
                 $shouldRetry = $retryOptions['retryFunction']($ex, $retryAttempt);
@@ -276,14 +282,28 @@ class RequestWrapper
      * Applies headers to the request.
      *
      * @param RequestInterface $request A PSR-7 request.
+     * @param array $options
      * @return RequestInterface
      */
-    private function applyHeaders(RequestInterface $request)
+    private function applyHeaders(RequestInterface $request, array $options = [])
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            'x-goog-api-client' => 'gl-php/' . PHP_VERSION . ' gccl/' . $this->componentVersion,
+            Retry::RETRY_HEADER_KEY => sprintf(
+                'gl-php/%s gccl/%s',
+                PHP_VERSION,
+                $this->componentVersion
+            ),
         ];
+
+        if (isset($options['retryHeaders'])) {
+            $headers[Retry::RETRY_HEADER_KEY] = sprintf(
+                '%s %s',
+                $headers[Retry::RETRY_HEADER_KEY],
+                implode(' ', $options['retryHeaders'])
+            );
+            unset($options['retryHeaders']);
+        }
 
         if ($this->shouldSignRequest) {
             $quotaProject = $this->quotaProject;
@@ -402,12 +422,8 @@ class RequestWrapper
      */
     private function getRequestOptions(array $options)
     {
-        $restOptions = isset($options['restOptions'])
-            ? $options['restOptions']
-            : $this->restOptions;
-        $timeout = isset($options['requestTimeout'])
-            ? $options['requestTimeout']
-            : $this->requestTimeout;
+        $restOptions = $options['restOptions'] ?? $this->restOptions;
+        $timeout = $options['requestTimeout'] ?? $this->requestTimeout;
 
         if ($timeout && !array_key_exists('timeout', $restOptions)) {
             $restOptions['timeout'] = $timeout;
@@ -431,6 +447,9 @@ class RequestWrapper
             'retryFunction' => isset($options['restRetryFunction'])
                 ? $options['restRetryFunction']
                 : $this->retryFunction,
+            'retryListener' => isset($options['restRetryListener'])
+                ? $options['restRetryListener']
+                : null,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']
                 : $this->delayFunction,

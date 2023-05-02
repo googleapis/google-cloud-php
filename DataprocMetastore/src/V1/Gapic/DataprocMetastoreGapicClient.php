@@ -25,6 +25,7 @@
 namespace Google\Cloud\Metastore\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -35,6 +36,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
@@ -510,8 +521,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the service in which to create a backup
-     *                             of the following form:
+     * @param string $parent       Required. The relative resource name of the service in which to create a
+     *                             backup of the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
@@ -520,16 +531,16 @@ class DataprocMetastoreGapicClient
      *                             This value must be between 1 and 64 characters long, begin with a letter,
      *                             end with a letter or number, and consist of alpha-numeric ASCII characters
      *                             or hyphens.
-     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the created
-     *                             backup must be provided in the request's `backup_id` field.
+     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the
+     *                             created backup must be provided in the request's `backup_id` field.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -606,27 +617,27 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string         $parent           Required. The relative resource name of the service in which to create a metastore
-     *                                         import, in the following form:
+     * @param string         $parent           Required. The relative resource name of the service in which to create a
+     *                                         metastore import, in the following form:
      *
      *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`.
-     * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final component of the
-     *                                         metadata import's name.
+     * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final
+     *                                         component of the metadata import's name.
      *
      *                                         This value must be between 1 and 64 characters long, begin with a letter,
      *                                         end with a letter or number, and consist of alpha-numeric ASCII characters
      *                                         or hyphens.
-     * @param MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The ID of the
-     *                                         created metadata import must be provided in the request's
+     * @param MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The
+     *                                         ID of the created metadata import must be provided in the request's
      *                                         `metadata_import_id` field.
      * @param array          $optionalArgs     {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -703,8 +714,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The relative resource name of the location in which to create a metastore
-     *                              service, in the following form:
+     * @param string  $parent       Required. The relative resource name of the location in which to create a
+     *                              metastore service, in the following form:
      *
      *                              `projects/{project_number}/locations/{location_id}`.
      * @param string  $serviceId    Required. The ID of the metastore service, which is used as the final
@@ -720,10 +731,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -804,10 +815,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -878,18 +889,18 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore service to delete, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metastore service to delete, in
+     *                             the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -962,8 +973,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $service      Required. The relative resource name of the metastore service to run export, in the
-     *                             following form:
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             export, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
@@ -974,10 +985,10 @@ class DataprocMetastoreGapicClient
      *           `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
      *           `<export_folder>` containing exported files will be created below it.
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -987,7 +998,8 @@ class DataprocMetastoreGapicClient
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     @type int $databaseDumpType
-     *           Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     *           Optional. The type of the database dump. If unspecified, defaults to
+     *           `MYSQL`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1\DatabaseDumpSpec\Type}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1078,8 +1090,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metadata import to retrieve, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metadata import to retrieve, in
+     *                             the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`.
      * @param array  $optionalArgs {
@@ -1120,8 +1132,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore service to retrieve, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metastore service to retrieve,
+     *                             in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
@@ -1259,8 +1271,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the service whose metadata imports to
-     *                             list, in the following form:
+     * @param string $parent       Required. The relative resource name of the service whose metadata imports
+     *                             to list, in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports`.
      * @param array  $optionalArgs {
@@ -1344,8 +1356,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the location of metastore services to
-     *                             list, in the following form:
+     * @param string $parent       Required. The relative resource name of the location of metastore services
+     *                             to list, in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}`.
      * @param array  $optionalArgs {
@@ -1443,12 +1455,12 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $service      Required. The relative resource name of the metastore service to run restore, in the
-     *                             following form:
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             restore, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     * @param string $backup       Required. The relative resource name of the metastore service backup to restore
-     *                             from, in the following form:
+     * @param string $backup       Required. The relative resource name of the metastore service backup to
+     *                             restore from, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      * @param array  $optionalArgs {
@@ -1458,10 +1470,10 @@ class DataprocMetastoreGapicClient
      *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1\Restore\RestoreType}
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1554,10 +1566,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1645,10 +1657,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1681,5 +1693,284 @@ class DataprocMetastoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateService', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $response = $dataprocMetastoreClient->getLocation();
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataprocMetastoreClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataprocMetastoreClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $dataprocMetastoreClient->getIamPolicy($resource);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataprocMetastoreClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataprocMetastoreClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
     }
 }

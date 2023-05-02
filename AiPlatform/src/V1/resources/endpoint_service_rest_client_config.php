@@ -60,6 +60,18 @@ return [
                     ],
                 ],
             ],
+            'MutateDeployedModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:mutateDeployedModel',
+                'body' => '*',
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
             'UndeployModel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:undeployModel',
@@ -142,6 +154,18 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -171,6 +195,21 @@ return [
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -195,6 +234,18 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/models/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/endpoints/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
                     ],
                 ],
                 'placeholders' => [
@@ -278,6 +329,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/modelMonitors/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -527,6 +582,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/modelMonitors/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -783,6 +842,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/modelMonitors/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/migratableResources/*/operations/*}',
                     ],
                     [
@@ -1032,6 +1095,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/modelMonitors/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/migratableResources/*}/operations',
                     ],
                     [
@@ -1278,6 +1345,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/modelMonitors/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',

@@ -30,9 +30,9 @@ class GetAllDocumentsTest extends FirestoreTestCase
     private static $refsExist = [];
     private static $refsNonExist = [];
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         $c = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($c);

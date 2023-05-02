@@ -22,6 +22,11 @@ use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\AnonymousCredentials;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Exception\RequestException;
@@ -29,16 +34,17 @@ use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Prophecy\Argument;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
  */
 class RequestWrapperTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const VERSION = 'v0.1';
 
@@ -138,7 +144,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsExceptionWhenRequestFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $requestWrapper = new RequestWrapper([
             'accessToken' => 'abc',
@@ -152,7 +158,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsExceptionWithInvalidCredentialsFetcher()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $credentialsFetcher = new \stdClass();
 
@@ -163,7 +169,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsExceptionWithInvalidCache()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $cache = new \stdClass();
 
@@ -303,7 +309,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsExceptionWhenFetchingCredentialsFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $requestWrapper = new RequestWrapper([
             'authHttpHandler' => function ($request, $options = []) {
@@ -345,7 +351,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsBadRequestException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
@@ -360,7 +366,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsNotFoundException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
@@ -375,7 +381,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsConflictException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ConflictException');
+        $this->expectException(ConflictException::class);
 
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
@@ -390,7 +396,7 @@ class RequestWrapperTest extends TestCase
 
     public function testThrowsServerException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ServerException');
+        $this->expectException(ServerException::class);
 
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
@@ -624,6 +630,43 @@ class RequestWrapperTest extends TestCase
         ]);
 
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    /**
+     * This test asserts that the retry related options and callbacks are
+     * properly mapped and set in the RequestWrapper's `$requestOptions`
+     * property.
+     */
+    public function testPassingInRetryOptions()
+    {
+        $attempt = 0;
+        $retryFunctionCalled = false;
+        $retryListenerCalled = false;
+        $options = [
+            'restRetryFunction' => function () use (&$retryFunctionCalled) {
+                $retryFunctionCalled = true;
+                return true;
+            },
+            'restRetryListener' => function () use (&$retryListenerCalled) {
+                $retryListenerCalled = true;
+            },
+        ];
+        $request = new Request('GET', 'http://www.example.com');
+        $requestWrapper = new RequestWrapper([
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            'httpHandler' => function () use (&$attempt) {
+                if ($attempt++ < 1) {
+                    throw new \Exception('retry!');
+                }
+                return new Response(200, []);
+            }
+        ]);
+        $requestWrapper->send($request, $options);
+
+        $this->assertTrue($retryFunctionCalled);
+        $this->assertTrue($retryListenerCalled);
     }
 }
 

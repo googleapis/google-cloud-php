@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\Filter;
 
 /**
  * @group firestore
@@ -27,7 +29,7 @@ class QueryTest extends FirestoreTestCase
 {
     private $query;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->query = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($this->query);
@@ -70,6 +72,11 @@ class QueryTest extends FirestoreTestCase
 
         $res = $this->getQueryRow($this->query->where('foo', '=', $randomVal));
         $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::field('foo', '=', $randomVal)
+        ));
+        $this->assertEquals($res->name(), $doc->name());
     }
 
     public function testWhereNull()
@@ -80,6 +87,11 @@ class QueryTest extends FirestoreTestCase
 
         $res = $this->getQueryRow($this->query->where('foo', '=', null));
         $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::field('foo', '=', null)
+        ));
+        $this->assertEquals($res->name(), $doc->name());
     }
 
     public function testWhereNan()
@@ -89,6 +101,11 @@ class QueryTest extends FirestoreTestCase
         ]);
 
         $res = $this->getQueryRow($this->query->where('foo', '=', NAN));
+        $this->assertEquals($res->name(), $doc->name());
+
+        $res = $this->getQueryRow($this->query->where(
+            Filter::field('foo', '=', NAN)
+        ));
         $this->assertEquals($res->name(), $doc->name());
     }
 
@@ -126,6 +143,138 @@ class QueryTest extends FirestoreTestCase
         }, $docs);
         $this->assertContains($doc1->id(), $doc_ids);
         $this->assertContains($doc2->id(), $doc_ids);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'in', [['foo']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'in', [['bar']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'in', [['foo', 'bar']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'in', [['bar', 'foo']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::field(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()]))
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+    }
+
+    public function testWhereNotInArray()
+    {
+        $name = $this->query->name();
+        $doc1 = $this->insertDoc([
+            'foos' => ['foo', 'bar'],
+        ]);
+        $doc2 = $this->insertDoc([
+            'foos' => ['foo'],
+        ]);
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo'], ['foo', 'bar']])
+            ->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)->where('foos', 'not_in', [['foo', 'bar']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+            ->where(FieldPath::documentId(), 'not_in', [$doc1->id(), $doc2->id()])
+            ->documents()
+            ->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(FieldPath::documentId(), 'not_in', ['non-existent-id'])
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo'], ['foo', 'bar']]))->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+        ->where(Filter::field('foos', 'not_in', [['foo', 'bar']]))->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::field(FieldPath::documentId(), 'not_in', [$doc1->id(), $doc2->id()]))
+            ->documents()
+            ->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(Filter::field(FieldPath::documentId(), 'not_in', ['non-existent-id']))
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
+    }
+
+    public function testWhereWithCompositeFilter()
+    {
+        $name = $this->query->name();
+        $randomVal1 = base64_encode(random_bytes(10));
+        $randomVal2 = base64_encode(random_bytes(10));
+        $this->insertDoc([
+            'foo' => $randomVal1
+        ]);
+        $this->insertDoc([
+            'foo' => $randomVal2
+        ]);
+        $docs = self::$client->collection($name)->where(
+            Filter::or(
+                [
+                    Filter::field('foo', '=', $randomVal1),
+                    Filter::field('foo', '=', $randomVal2)
+                ]
+            )
+        )->documents()->rows();
+        $this->assertCount(2, $docs);
+
+        $docs = self::$client->collection($name)->where(
+            Filter::and(
+                [
+                    Filter::field('foo', '=', $randomVal1),
+                    Filter::field('foo', '=', $randomVal2)
+                ]
+            )
+        )->documents()->rows();
+        $this->assertCount(0, $docs);
     }
 
     public function testSnapshotCursors()
@@ -195,6 +344,24 @@ class QueryTest extends FirestoreTestCase
         });
 
         $this->assertEquals([2, 3, 4], $res);
+    }
+
+    public function testDocumentsWithReadTime()
+    {
+        $randomVal = base64_encode(random_bytes(10));
+        $this->insertDoc(['foo' => $randomVal]);
+        // without sleep, emulator system test may fail intermittently
+        sleep(1);
+
+        // Creating a current timestamp and then inserting another document
+        $readTime = new Timestamp(new \DateTimeImmutable());
+        $this->insertDoc(['foo' => $randomVal]);
+
+        $resultCount = $this->query
+            ->where('foo', '=', $randomVal)
+            ->documents(['readTime' => $readTime])
+            ->size();
+        $this->assertEquals(1, $resultCount);
     }
 
     private function insertDoc(array $fields)

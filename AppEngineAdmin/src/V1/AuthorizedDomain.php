@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A domain that a user has been authorized to administer. To authorize use
  * of a domain, verify ownership via
- * [Webmaster Central](https://www.google.com/webmasters/verification/home).
+ * [Search Console](https://search.google.com/search-console/welcome).
  *
  * Generated from protobuf message <code>google.appengine.v1.AuthorizedDomain</code>
  */

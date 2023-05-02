@@ -37,12 +37,26 @@ class ModelSourceType
      * Generated from protobuf enum <code>BQML = 3;</code>
      */
     const BQML = 3;
+    /**
+     * The Model is saved or tuned from Model Garden.
+     *
+     * Generated from protobuf enum <code>MODEL_GARDEN = 4;</code>
+     */
+    const MODEL_GARDEN = 4;
+    /**
+     * The Model is saved or tuned from Genie.
+     *
+     * Generated from protobuf enum <code>GENIE = 5;</code>
+     */
+    const GENIE = 5;
 
     private static $valueToName = [
         self::MODEL_SOURCE_TYPE_UNSPECIFIED => 'MODEL_SOURCE_TYPE_UNSPECIFIED',
         self::AUTOML => 'AUTOML',
         self::CUSTOM => 'CUSTOM',
         self::BQML => 'BQML',
+        self::MODEL_GARDEN => 'MODEL_GARDEN',
+        self::GENIE => 'GENIE',
     ];
 
     public static function name($value)

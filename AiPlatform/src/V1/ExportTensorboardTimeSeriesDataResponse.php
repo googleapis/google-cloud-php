@@ -24,8 +24,9 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
     private $time_series_data_points;
     /**
      * A token, which can be sent as
-     * [ExportTensorboardTimeSeriesRequest.page_token][] to retrieve the next
-     * page. If this field is omitted, there are no subsequent pages.
+     * [page_token][google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -41,8 +42,9 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
      *           The returned time series data points.
      *     @type string $next_page_token
      *           A token, which can be sent as
-     *           [ExportTensorboardTimeSeriesRequest.page_token][] to retrieve the next
-     *           page. If this field is omitted, there are no subsequent pages.
+     *           [page_token][google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequest.page_token]
+     *           to retrieve the next page. If this field is omitted, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +80,9 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
 
     /**
      * A token, which can be sent as
-     * [ExportTensorboardTimeSeriesRequest.page_token][] to retrieve the next
-     * page. If this field is omitted, there are no subsequent pages.
+     * [page_token][google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -91,8 +94,9 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
 
     /**
      * A token, which can be sent as
-     * [ExportTensorboardTimeSeriesRequest.page_token][] to retrieve the next
-     * page. If this field is omitted, there are no subsequent pages.
+     * [page_token][google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequest.page_token]
+     * to retrieve the next page. If this field is omitted, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

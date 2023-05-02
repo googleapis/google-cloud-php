@@ -1038,7 +1038,7 @@ class CloudBuildGapicClient
      *
      * @param string $name         Required. The name of the `WorkerPool` to delete.
      *                             Format:
-     *                             `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+     *                             `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1344,7 +1344,7 @@ class CloudBuildGapicClient
      *
      *     @type string $parent
      *           The parent of the collection of `Builds`.
-     *           Format: `projects/{project}/locations/location`
+     *           Format: `projects/{project}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if

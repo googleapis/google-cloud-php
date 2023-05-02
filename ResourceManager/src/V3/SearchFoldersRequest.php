@@ -16,15 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous call to `SearchFolders`
-     * that indicates from where search should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchFolders` that indicates from where search should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -68,11 +69,12 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $page_size
-     *           Optional. The maximum number of folders to return in the response.
-     *           If unspecified, server picks an appropriate default.
+     *           Optional. The maximum number of folders to return in the response. The
+     *           server can return fewer folders than requested. If unspecified, server
+     *           picks an appropriate default.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to `SearchFolders`
-     *           that indicates from where search should continue.
+     *           Optional. A pagination token returned from a previous call to
+     *           `SearchFolders` that indicates from where search should continue.
      *     @type string $query
      *           Optional. Search criteria used to select the folders to return.
      *           If no search criteria is specified then all accessible folders will be
@@ -108,8 +110,9 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -120,8 +123,9 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -136,8 +140,8 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `SearchFolders`
-     * that indicates from where search should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchFolders` that indicates from where search should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -148,8 +152,8 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `SearchFolders`
-     * that indicates from where search should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchFolders` that indicates from where search should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

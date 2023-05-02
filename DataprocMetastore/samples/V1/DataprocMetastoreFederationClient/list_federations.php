@@ -31,8 +31,8 @@ use Google\Cloud\Metastore\V1\Federation;
 /**
  * Lists federations in a project and location.
  *
- * @param string $formattedParent The relative resource name of the location of metastore federations
- *                                to list, in the following form:
+ * @param string $formattedParent The relative resource name of the location of metastore
+ *                                federations to list, in the following form:
  *                                `projects/{project_number}/locations/{location_id}`. Please see
  *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
  */

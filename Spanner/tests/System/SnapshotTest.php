@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Timestamp;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -27,15 +26,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SnapshotTest extends SpannerTestCase
 {
-    use ExpectException;
-
     const TABLE_NAME = 'Snapshots';
 
     private static $tableName;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TABLE_NAME);
 
@@ -214,7 +211,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public function testSnapshotMinReadTimestampFails()
     {
-        $this->expectException('\BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $db = self::$database;
 
@@ -228,7 +225,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public function testSnapshotMaxStalenessFails()
     {
-        $this->expectException('\BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $db = self::$database;
 

@@ -21,8 +21,9 @@ use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\ErrorReporting\Bootstrap;
 use Google\Cloud\ErrorReporting\MockValues;
 use Google\Cloud\Logging\PsrLogger;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 //@codingStandardsIgnoreStart
 require_once __DIR__ . '/fakeGlobalFunctions.php';
@@ -33,11 +34,13 @@ require_once __DIR__ . '/fakeGlobalFunctions.php';
  */
 class BootstrapTest extends TestCase
 {
+    use ProphecyTrait;
+
 
     private $psrBatchLogger;
     private $metadataProvider;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->psrBatchLogger = $this->prophesize(PsrLogger::class);
     }

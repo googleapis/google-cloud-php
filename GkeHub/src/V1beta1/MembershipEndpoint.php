@@ -23,8 +23,8 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $kubernetes_metadata = null;
     /**
-     * Optional. The in-cluster Kubernetes Resources that should be applied for a correctly
-     * registered cluster, in the steady state. These resources:
+     * Optional. The in-cluster Kubernetes Resources that should be applied for a
+     * correctly registered cluster, in the steady state. These resources:
      *   * Ensure that the cluster is exclusively registered to one and only one
      *     Hub Membership.
      *   * Propagate Workload Pool Information available in the Membership
@@ -45,9 +45,9 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeHub\V1beta1\GkeCluster $gke_cluster
      *           Optional. Specific information for a GKE-on-GCP cluster.
      *     @type \Google\Cloud\GkeHub\V1beta1\OnPremCluster $on_prem_cluster
-     *           Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
-     *           who has no resourceLink is not allowed to use this field, it should have
-     *           a nil "type" instead.
+     *           Optional. Specific information for a GKE On-Prem cluster. An onprem
+     *           user-cluster who has no resourceLink is not allowed to use this field, it
+     *           should have a nil "type" instead.
      *     @type \Google\Cloud\GkeHub\V1beta1\MultiCloudCluster $multi_cloud_cluster
      *           Optional. Specific information for a GKE Multi-Cloud cluster.
      *     @type \Google\Cloud\GkeHub\V1beta1\EdgeCluster $edge_cluster
@@ -57,8 +57,8 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeHub\V1beta1\KubernetesMetadata $kubernetes_metadata
      *           Output only. Useful Kubernetes-specific metadata.
      *     @type \Google\Cloud\GkeHub\V1beta1\KubernetesResource $kubernetes_resource
-     *           Optional. The in-cluster Kubernetes Resources that should be applied for a correctly
-     *           registered cluster, in the steady state. These resources:
+     *           Optional. The in-cluster Kubernetes Resources that should be applied for a
+     *           correctly registered cluster, in the steady state. These resources:
      *             * Ensure that the cluster is exclusively registered to one and only one
      *               Hub Membership.
      *             * Propagate Workload Pool Information available in the Membership
@@ -103,9 +103,9 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
-     * who has no resourceLink is not allowed to use this field, it should have
-     * a nil "type" instead.
+     * Optional. Specific information for a GKE On-Prem cluster. An onprem
+     * user-cluster who has no resourceLink is not allowed to use this field, it
+     * should have a nil "type" instead.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster on_prem_cluster = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeHub\V1beta1\OnPremCluster|null
@@ -121,9 +121,9 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
-     * who has no resourceLink is not allowed to use this field, it should have
-     * a nil "type" instead.
+     * Optional. Specific information for a GKE On-Prem cluster. An onprem
+     * user-cluster who has no resourceLink is not allowed to use this field, it
+     * should have a nil "type" instead.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster on_prem_cluster = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeHub\V1beta1\OnPremCluster $var
@@ -267,8 +267,8 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The in-cluster Kubernetes Resources that should be applied for a correctly
-     * registered cluster, in the steady state. These resources:
+     * Optional. The in-cluster Kubernetes Resources that should be applied for a
+     * correctly registered cluster, in the steady state. These resources:
      *   * Ensure that the cluster is exclusively registered to one and only one
      *     Hub Membership.
      *   * Propagate Workload Pool Information available in the Membership
@@ -294,8 +294,8 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The in-cluster Kubernetes Resources that should be applied for a correctly
-     * registered cluster, in the steady state. These resources:
+     * Optional. The in-cluster Kubernetes Resources that should be applied for a
+     * correctly registered cluster, in the steady state. These resources:
      *   * Ensure that the cluster is exclusively registered to one and only one
      *     Hub Membership.
      *   * Propagate Workload Pool Information available in the Membership

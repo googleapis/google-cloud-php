@@ -29,13 +29,15 @@ class Results extends \Google\Protobuf\Internal\Message
      */
     private $build_step_images;
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud
+     * Storage. Only populated when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>string artifact_manifest = 4;</code>
      */
     private $artifact_manifest = '';
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated
+     * when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>int64 num_artifacts = 5;</code>
      */
@@ -51,7 +53,7 @@ class Results extends \Google\Protobuf\Internal\Message
      */
     private $build_step_outputs;
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.TimeSpan artifact_timing = 7;</code>
      */
@@ -68,6 +70,12 @@ class Results extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedMavenArtifact maven_artifacts = 9;</code>
      */
     private $maven_artifacts;
+    /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedNpmPackage npm_packages = 12;</code>
+     */
+    private $npm_packages;
 
     /**
      * Constructor.
@@ -81,9 +89,11 @@ class Results extends \Google\Protobuf\Internal\Message
      *           List of build step digests, in the order corresponding to build step
      *           indices.
      *     @type string $artifact_manifest
-     *           Path to the artifact manifest. Only populated when artifacts are uploaded.
+     *           Path to the artifact manifest for non-container artifacts uploaded to Cloud
+     *           Storage. Only populated when artifacts are uploaded to Cloud Storage.
      *     @type int|string $num_artifacts
-     *           Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     *           Number of non-container artifacts uploaded to Cloud Storage. Only populated
+     *           when artifacts are uploaded to Cloud Storage.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $build_step_outputs
      *           List of build step outputs, produced by builder images, in the order
      *           corresponding to build step indices.
@@ -91,11 +101,13 @@ class Results extends \Google\Protobuf\Internal\Message
      *           can produce this output by writing to `$BUILDER_OUTPUT/output`.
      *           Only the first 4KB of data is stored.
      *     @type \Google\Cloud\Build\V1\TimeSpan $artifact_timing
-     *           Time to push all non-container artifacts.
+     *           Time to push all non-container artifacts to Cloud Storage.
      *     @type array<\Google\Cloud\Build\V1\UploadedPythonPackage>|\Google\Protobuf\Internal\RepeatedField $python_packages
      *           Python artifacts uploaded to Artifact Registry at the end of the build.
      *     @type array<\Google\Cloud\Build\V1\UploadedMavenArtifact>|\Google\Protobuf\Internal\RepeatedField $maven_artifacts
      *           Maven artifacts uploaded to Artifact Registry at the end of the build.
+     *     @type array<\Google\Cloud\Build\V1\UploadedNpmPackage>|\Google\Protobuf\Internal\RepeatedField $npm_packages
+     *           Npm packages uploaded to Artifact Registry at the end of the build.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,7 +170,8 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud
+     * Storage. Only populated when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>string artifact_manifest = 4;</code>
      * @return string
@@ -169,7 +182,8 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud
+     * Storage. Only populated when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>string artifact_manifest = 4;</code>
      * @param string $var
@@ -184,7 +198,8 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated
+     * when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>int64 num_artifacts = 5;</code>
      * @return int|string
@@ -195,7 +210,8 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated
+     * when artifacts are uploaded to Cloud Storage.
      *
      * Generated from protobuf field <code>int64 num_artifacts = 5;</code>
      * @param int|string $var
@@ -244,7 +260,7 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.TimeSpan artifact_timing = 7;</code>
      * @return \Google\Cloud\Build\V1\TimeSpan|null
@@ -265,7 +281,7 @@ class Results extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.TimeSpan artifact_timing = 7;</code>
      * @param \Google\Cloud\Build\V1\TimeSpan $var
@@ -327,6 +343,32 @@ class Results extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\UploadedMavenArtifact::class);
         $this->maven_artifacts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedNpmPackage npm_packages = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNpmPackages()
+    {
+        return $this->npm_packages;
+    }
+
+    /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.UploadedNpmPackage npm_packages = 12;</code>
+     * @param array<\Google\Cloud\Build\V1\UploadedNpmPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNpmPackages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\UploadedNpmPackage::class);
+        $this->npm_packages = $arr;
 
         return $this;
     }

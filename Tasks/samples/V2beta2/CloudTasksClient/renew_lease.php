@@ -34,7 +34,8 @@ use Google\Protobuf\Timestamp;
  *
  * The worker can use this method to extend the lease by a new
  * duration, starting from now. The new task lease will be
- * returned in the task's [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+ * returned in the task's
+ * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
  *
  * @param string $formattedName The task name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`

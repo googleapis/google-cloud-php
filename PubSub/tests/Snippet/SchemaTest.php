@@ -23,6 +23,7 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -30,13 +31,15 @@ use Prophecy\Argument;
  */
 class SchemaTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'project';
     const SCHEMA = 'my-schema';
 
     private $connection;
     private $schema;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->schema = TestHelpers::stub(Schema::class, [

@@ -22,6 +22,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
@@ -48,6 +49,7 @@ class Query
 {
     use DebugInfoTrait;
     use SnapshotTrait;
+    use QueryTrait;
 
     /**
      * @deprecated
@@ -99,6 +101,7 @@ class Query
         'array-contains' => FieldFilterOperator::ARRAY_CONTAINS,
         'array-contains-any' => FieldFilterOperator::ARRAY_CONTAINS_ANY,
         'in' => FieldFilterOperator::IN,
+        'not_in' => FieldFilterOperator::NOT_IN,
     ];
 
     private $allowedDirections = [
@@ -167,6 +170,60 @@ class Query
     }
 
     /**
+     * Gets the count of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $count = $query->count();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return int
+     */
+    public function count(array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('count');
+    }
+
+    /**
+     * Returns an aggregate query provided an aggregation with existing query filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Aggregate;
+     *
+     * $aggregation = Aggregate::count()->alias('count_upto_1');
+     * $aggregateQuery = $query->limit(1)->addAggregation($aggregation);
+     * $aggregateQuerySnapshot = $aggregateQuery->getSnapshot();
+     * $countUpto1 = $aggregateQuerySnapshot->get('count_upto_1');
+     * ```
+     *
+     * @param Aggregate $aggregate Aggregate properties to be applied over query.
+     * @return AggregateQuery
+     */
+    public function addAggregation($aggregate)
+    {
+        $aggregateQuery = new AggregateQuery(
+            $this->connection,
+            $this->parentName,
+            [
+                'query' => $this->query,
+                'limitToLast' => $this->limitToLast
+            ],
+            $aggregate
+        );
+
+        return $aggregateQuery;
+    }
+
+    /**
      * Get all documents matching the provided query filters.
      *
      * Example:
@@ -184,17 +241,24 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      * @throws \RuntimeException If limit-to-last is enabled but no order-by has
-     *       been specified.
+     *     been specified.
      */
     public function documents(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $maxRetries = $this->pluck('maxRetries', $options, false);
         $maxRetries = $maxRetries === null
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $query = $this->finalQueryPrepare($this->query);
+        $query = $this->structuredQueryPrepare([
+            'query' => $this->query,
+            'limitToLast' => $this->limitToLast
+        ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
@@ -301,6 +365,8 @@ class Query
      * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
      * the `array-contains`, `IN` and `array-contains-any` operators are also
      * available.
+     * This method also supports usage of Filters (see {@see Google\Cloud\Firestore\Filter}).
+     * The Filter class helps to create complex queries using AND and OR operators.
      *
      * Example:
      * ```
@@ -317,94 +383,36 @@ class Query
      * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
      * ```
      *
-     * @param string|FieldPath $fieldPath The field to filter by.
+     * ```
+     * use Google\Cloud\Firestore\Filter;
+     *
+     * // Filtering with Filter::or
+     * $query = $query->where(Filter::or([
+     *     Filter::field('firstName', '=', 'John'),
+     *     Filter::field('firstName', '=', 'Monica')
+     * ]));
+     * ```
+     *
+     * @param string|array|FieldPath $fieldPath The field to filter by, or array of Filters.
+     *     If filter array is provided, other params will be ignored.
      * @param string|int $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid operator or value is encountered.
      */
-    public function where($fieldPath, $operator, $value)
+    public function where($fieldPath, $operator = null, $value = null)
     {
-        $basePath = $this->basePath();
-
-        if ($value instanceof FieldValueInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'Value cannot be a `%s` value.',
-                FieldValue::class
-            ));
-        }
-
-        if (!($fieldPath instanceof FieldPath)) {
-            $fieldPath = FieldPath::fromString($fieldPath);
-        }
-
-        $escapedPathString = $fieldPath->pathString();
-
-        // alias for friendlier error message below.
-        $originalOperator = $operator;
-        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
-            ? $this->shortOperators[strtolower($operator)]
-            : $operator;
-
-        try {
-            FieldFilterOperator::name($operator);
-        } catch (\UnexpectedValueException $e) {
-            throw new \InvalidArgumentException(sprintf(
-                'Operator %s is not a valid operator',
-                $originalOperator
-            ));
-        }
-
-        if ($escapedPathString === self::DOCUMENT_ID) {
-            if ($operator === FieldFilterOperator::IN) {
-                $value = array_map(function ($value) use ($basePath) {
-                    return $this->createDocumentReference($basePath, $value);
-                }, (array) $value);
-            } else {
-                $value = $this->createDocumentReference($basePath, $value);
-            }
-        }
-
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
-            if ($operator !== FieldFilterOperator::EQUAL) {
-                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
-            }
-
-            $unaryOperator = is_nan($value)
-                ? self::OP_NAN
-                : self::OP_NULL;
-
-            $filter = [
-                'unaryFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString
-                    ],
-                    'op' => $unaryOperator
-                ]
-            ];
+        if (is_array($fieldPath)) {
+            $filters = $this->createCompositeFilter($fieldPath);
         } else {
-            $encodedValue = $operator === FieldFilterOperator::IN
-                ? $this->valueMapper->encodeMultiValue((array)$value)
-                : $this->valueMapper->encodeValue($value);
-
-            $filter = [
-                'fieldFilter' => [
-                    'field' => [
-                        'fieldPath' => $escapedPathString,
-                    ],
-                    'op' => $operator,
-                    'value' => $encodedValue
-                ]
-            ];
+            $filters = $this->createFieldFilter($fieldPath, $operator, $value);
         }
 
         $query = [
             'where' => [
                 'compositeFilter' => [
                     'op' => Operator::PBAND,
-                    'filters' => [
-                        $filter
-                    ]
+                    'filters' => [$filters]
                 ]
             ]
         ];
@@ -763,6 +771,27 @@ class Query
     }
 
     /**
+     * Find fieldFilters in a composite filter.
+     *
+     * @param array $filter The composite filter.
+     * @return array array of field filters.
+     */
+    private function flattenFilter($filter)
+    {
+        $ret = [];
+        $filters = $filter['compositeFilter']['filters'];
+        foreach ($filters as $fltr) {
+            $type = array_keys($fltr)[0];
+            if ($type === 'compositeFilter') {
+                $ret = array_merge($ret, $this->flattenFilter($fltr));
+            } else {
+                $ret[] = $fltr;
+            }
+        }
+        return $ret;
+    }
+
+    /**
      * Build cursors for document snapshots.
      *
      * @param DocumentSnapshot $snapshot The document snapshot
@@ -783,7 +812,8 @@ class Query
             // If there is inequality filter (anything other than equals),
             // append orderBy(the last inequality filter’s path, ascending).
             if (!$orderBy && $this->queryHas('where')) {
-                $filters = $this->query['where']['compositeFilter']['filters'];
+                // Flatten the filters array if compositeFilters are present
+                $filters = $this->flattenFilter($this->query['where']);
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
                     return !in_array($filter[$type]['op'], [
@@ -890,67 +920,6 @@ class Query
     }
 
     /**
-     * Clean up the query array before sending.
-     *
-     * Some optimizations cannot be performed ahead of time and must be done
-     * at execution.
-     *
-     * @param array $query The incoming query
-     * @return array The final query data
-     */
-    private function finalQueryPrepare(array $query)
-    {
-        if ($this->limitToLast) {
-            if (!isset($query['orderBy']) || !$query['orderBy']) {
-                throw new \RuntimeException(
-                    'Limit-to-last queries require specifying at least one orderBy clause.'
-                );
-            }
-
-            // reverse the direction of orderBy clauses.
-            foreach (array_keys($query['orderBy']) as $i) {
-                $query['orderBy'][$i]['direction'] = $query['orderBy'][$i]['direction'] === Direction::ASCENDING
-                    ? Direction::DESCENDING
-                    : Direction::ASCENDING;
-            }
-
-            // Swap the cursors to match the now-flipped query ordering.
-            // endAt becomes startAt and vice versa, and `before` is switched.
-            $q = $query;
-
-            // unset the values on the final query object so we start fresh.
-            unset($query['startAt'], $query['endAt']);
-
-            if (isset($q['startAt'])) {
-                // first, copy the old startAt value to endAt.
-                $query['endAt'] = $q['startAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['endAt']['before'] = isset($query['endAt']['before'])
-                    ? !$query['endAt']['before']
-                    : true;
-            }
-
-            if (isset($q['endAt'])) {
-                // first, copy the old endAt value to startAt.
-                $query['startAt'] = $q['endAt'];
-
-                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
-                $query['startAt']['before'] = isset($query['startAt']['before'])
-                    ? !$query['startAt']['before']
-                    : true;
-            }
-        }
-
-        if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
-            $filter = $query['where']['compositeFilter']['filters'][0];
-            $query['where'] = $filter;
-        }
-
-        return $query;
-    }
-
-    /**
      * Creates a document reference from a string, relative to a given base.
      *
      * Returns `false` if the path is not a valid document.
@@ -958,7 +927,7 @@ class Query
      * @param string $basePath The relative base of the document reference.
      * @param mixed $document The document.
      * @return DocumentReference
-     * @throws InvalidArgumentException If $document is not a valid document.
+     * @throws \InvalidArgumentException If $document is not a valid document.
      */
     private function createDocumentReference($basePath, $document)
     {
@@ -1013,5 +982,145 @@ class Query
         return $this->allDescendants()
             ? $this->parentName
             : $this->childPath($this->parentName, $this->query['from'][0]['collectionId']);
+    }
+
+    /**
+     * Create a field/unary Filter.
+     *
+     * @param string|array|FieldPath $fieldPath A field to filter by.
+     * @param string|int $operator An operator to filter by.
+     * @param mixed $value A value to compare to.
+     * @return array A field/unary Filter array.
+     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
+     */
+    private function createFieldFilter($fieldPath, $operator, $value)
+    {
+        $basePath = $this->basePath();
+        if ($value instanceof FieldValueInterface) {
+            throw new \InvalidArgumentException(sprintf(
+                'Value cannot be a `%s` value.',
+                FieldValue::class
+            ));
+        }
+
+        if (!($fieldPath instanceof FieldPath)) {
+            $fieldPath = FieldPath::fromString($fieldPath);
+        }
+
+        $escapedPathString = $fieldPath->pathString();
+
+        // alias for friendlier error message below.
+        $originalOperator = $operator;
+        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
+            ? $this->shortOperators[strtolower($operator)]
+            : $operator;
+
+        try {
+            FieldFilterOperator::name($operator);
+        } catch (\UnexpectedValueException $e) {
+            throw new \InvalidArgumentException(sprintf(
+                'Operator %s is not a valid operator',
+                $originalOperator
+            ));
+        }
+
+        if ($escapedPathString === self::DOCUMENT_ID) {
+            if ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN) {
+                $value = array_map(function ($value) use ($basePath) {
+                    return $this->createDocumentReference($basePath, $value);
+                }, (array) $value);
+            } else {
+                $value = $this->createDocumentReference($basePath, $value);
+            }
+        }
+
+        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+            if ($operator !== FieldFilterOperator::EQUAL) {
+                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
+            }
+
+            $unaryOperator = is_nan($value)
+                ? self::OP_NAN
+                : self::OP_NULL;
+
+            $filter = [
+                'unaryFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString
+                    ],
+                    'op' => $unaryOperator
+                ]
+            ];
+        } else {
+            $encodedValue = ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN)
+                ? $this->valueMapper->encodeMultiValue((array)$value)
+                : $this->valueMapper->encodeValue($value);
+
+            $filter = [
+                'fieldFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedPathString,
+                    ],
+                    'op' => $operator,
+                    'value' => $encodedValue
+                ]
+            ];
+        }
+
+        return $filter;
+    }
+
+    /**
+     * Find the filter type to either Field or Unary.
+     *
+     * @param array $filter A field/unary filter array.
+     * @return array A field/unary Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function findFilterType($filter)
+    {
+        $fieldFilter = $this->createFieldFilter(
+            $filter['fieldFilter']['field'],
+            $filter['fieldFilter']['op'],
+            $filter['fieldFilter']['value']
+        );
+
+        return $fieldFilter;
+    }
+
+    /**
+     * Create a composite filter from a filter array.
+     *
+     * @param array $filters A non sanitized composite filter array.
+     * @return array A sanitized composite Filter array.
+     * @throws \InvalidArgumentException If an invalid filter is encountered.
+     */
+    private function createCompositeFilter($filters)
+    {
+        foreach ($filters as $key => $filter) {
+            if ($key === 'fieldFilter') {
+                $fieldFilter = $this->findFilterType($filters);
+                if (isset($fieldFilter['unaryFilter'])) {
+                    unset($filters['fieldFilter']);
+                    $filters['unaryFilter'] = $fieldFilter['unaryFilter'];
+                } else {
+                    $filters['fieldFilter'] = $fieldFilter['fieldFilter'];
+                }
+            } elseif (isset($filter['fieldFilter'])) {
+                $filters[$key] = $this->findFilterType($filter);
+            } elseif ($key === 'compositeFilter' && isset($filter['filters'])) {
+                $filters[$key]['filters'] = $this->createCompositeFilter($filter['filters']);
+            } elseif (isset($filter['compositeFilter']) &&
+                isset($filter['compositeFilter']['filters'])) {
+                $filters[$key]['compositeFilter']['filters'] =
+                    $this->createCompositeFilter($filter['compositeFilter']['filters']);
+            } else {
+                throw new \InvalidArgumentException(
+                    'The filter is not set correctly.'
+                );
+            }
+        }
+
+        return $filters;
     }
 }

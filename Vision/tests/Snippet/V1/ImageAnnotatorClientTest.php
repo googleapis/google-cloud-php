@@ -26,6 +26,7 @@ use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
@@ -36,7 +37,7 @@ class ImageAnnotatorClientTest extends SnippetTestCase
     private $client;
     private $transport;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([

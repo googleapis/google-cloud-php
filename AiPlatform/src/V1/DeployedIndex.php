@@ -104,11 +104,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      */
     private $dedicated_resources = null;
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -127,7 +127,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *
@@ -213,11 +213,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           n1-standard-16 and n1-standard-32 are still available, but we recommend
      *           e2-standard-16 and e2-highmem-16 for cost efficiency.
      *     @type bool $enable_access_logging
-     *           Optional. If true, private endpoint's access logs are sent to StackDriver
+     *           Optional. If true, private endpoint's access logs are sent to Cloud
      *           Logging.
      *           These logs are like standard server access logs, containing
      *           information like timestamp and latency for each MatchRequest.
-     *           Note that Stackdriver logs may incur a cost, especially if the deployed
+     *           Note that logs may incur a cost, especially if the deployed
      *           index receives a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
@@ -228,7 +228,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           If set, we will deploy the index within the provided ip ranges. Otherwise,
      *           the index might be deployed to any ip ranges under the provided VPC
      *           network.
-     *           The value sohuld be the name of the address
+     *           The value should be the name of the address
      *           (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      *           Example: 'vertex-ai-ip-range'.
      *     @type string $deployment_group
@@ -588,11 +588,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -605,11 +605,11 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, private endpoint's access logs are sent to StackDriver
+     * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
      * These logs are like standard server access logs, containing
      * information like timestamp and latency for each MatchRequest.
-     * Note that Stackdriver logs may incur a cost, especially if the deployed
+     * Note that logs may incur a cost, especially if the deployed
      * index receives a high queries per second rate (QPS).
      * Estimate your costs before enabling this option.
      *
@@ -667,7 +667,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *
@@ -685,7 +685,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * If set, we will deploy the index within the provided ip ranges. Otherwise,
      * the index might be deployed to any ip ranges under the provided VPC
      * network.
-     * The value sohuld be the name of the address
+     * The value should be the name of the address
      * (https://cloud.google.com/compute/docs/reference/rest/v1/addresses)
      * Example: 'vertex-ai-ip-range'.
      *

@@ -24,7 +24,6 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
@@ -41,9 +40,11 @@ use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
+use InvalidArgumentException;
 use Google\Rpc\Status;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -51,7 +52,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class TableTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
@@ -66,7 +67,7 @@ class TableTest extends TestCase
     private $options;
     private $serverStream;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
@@ -96,7 +97,7 @@ class TableTest extends TestCase
 
     public function testMutateRowsThrowsExceptionWhenRowMutationsIsList()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected rowMutations to be of type associative array, instead got list.');
 
         $this->table->mutateRows([1,2,3,4]);
@@ -186,7 +187,7 @@ class TableTest extends TestCase
 
     public function testMutateRowsApiExceptionInMutateRows()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('unauthenticated');
 
         $apiException =  new ApiException('unauthenticated', Code::UNAUTHENTICATED, 'unauthenticated');
@@ -235,14 +236,14 @@ class TableTest extends TestCase
                     $apiExceptionMetadata
                 )
             );
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $this->fail('Expected Exception of type BigtableDataOperationException.');
         }
     }
 
     public function testMutateRowsApiExceptionInReadAll()
     {
-        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('unauthenticated');
 
         $apiException =  new ApiException('unauthenticated', Code::UNAUTHENTICATED, 'unauthenticated');
@@ -378,7 +379,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -401,7 +404,10 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString()
+                && $argument['filter']->serializeToJsonString() === $expectedArgs['filter']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -425,7 +431,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -451,7 +459,10 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString()
+                && $argument['rowsLimit'] === $expectedArgs['rowsLimit'];
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -480,7 +491,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -513,7 +526,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -546,7 +561,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -579,7 +596,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -617,7 +636,9 @@ class TableTest extends TestCase
             ->willReturn(
                 $this->arrayAsGenerator([])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedArgs) {
+            return $argument['rows']->serializeToJsonString() === $expectedArgs['rows']->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -827,7 +848,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenNoTrueOrFalseMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('checkAndMutateRow must have either trueMutations or falseMutations.');
 
         $this->table->checkAndMutateRow('rk1');
@@ -835,7 +856,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenPredicateFilterIsNotFilter()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('FilterInterface');
 
         $this->table->checkAndMutateRow('rk1', ['predicateFilter' => new \stdClass()]);
@@ -843,7 +864,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenTrueMutationsNotMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Mutations');
 
         $this->table->checkAndMutateRow('rk1', ['trueMutations' => new \stdClass()]);
@@ -851,7 +872,7 @@ class TableTest extends TestCase
 
     public function testCheckAndMutateRowShouldThrowWhenFalseMutationsNotMutations()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Mutations');
 
         $this->table->checkAndMutateRow('rk1', ['falseMutations' => new \stdClass()]);

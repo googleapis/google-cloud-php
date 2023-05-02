@@ -18,8 +18,11 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
@@ -39,6 +42,7 @@ class Operation
 {
     use DatastoreTrait;
     use ValidateTrait;
+    use TimestampTrait;
 
     /**
      * @var ConnectionInterface
@@ -222,7 +226,7 @@ class Operation
      *           datastore indexes.
      * }
      * @return EntityInterface
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function entity($key = null, array $entity = [], array $options = [])
     {
@@ -266,13 +270,12 @@ class Operation
     public function beginTransaction($transactionOptions, array $options = [])
     {
         // Read Only option might not be present or empty
-        // Parse only when Read Time is valid
         if (isset($transactionOptions['readOnly']) &&
-            is_array($transactionOptions['readOnly']) &&
-            isset($transactionOptions['readOnly']['readTime'])
+            is_array($transactionOptions['readOnly'])
         ) {
-            $readTime = $transactionOptions['readOnly']['readTime'];
-            $transactionOptions['readOnly']['readTime'] = $this->parseCoreTimestamp($readTime);
+            $transactionOptions['readOnly'] = $this->formatReadTimeOption(
+                $transactionOptions['readOnly']
+            );
         }
         $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
@@ -296,7 +299,7 @@ class Operation
      * @param Key[] $keys The incomplete keys.
      * @param array $options [optional] Configuration Options.
      * @return Key[]
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function allocateIds(array $keys, array $options = [])
     {
@@ -367,7 +370,7 @@ class Operation
      *         Members of `found` will be instance of
      *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function lookup(array $keys, array $options = [])
     {
@@ -543,6 +546,46 @@ class Operation
     }
 
     /**
+     * Run an aggregation query and return aggregated results.
+     *
+     * @param AggregationQuery $query The Aggregation Query object.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $transaction The transaction ID, if the query should be
+     *           run in a transaction.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregationQueryResult
+     */
+    public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = [])
+    {
+        $options += [
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
+        ];
+
+        $args = [
+            'query' => [],
+        ];
+        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+        $request = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+        ] + $requestQueryArr + $this->readOptions($options) + $options;
+
+        $res = $this->connection->runAggregationQuery($request);
+        return new AggregationQueryResult($res);
+    }
+
+    /**
      * Commit all mutations
      *
      * Calling this method will end the operation (and close the transaction,
@@ -624,7 +667,7 @@ class Operation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
      * @return array [Mutation](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit#Mutation).
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function mutation(
         $operation,
@@ -676,7 +719,7 @@ class Operation
      * @param EntityInterface[] $entities the entities to be updated or upserted.
      * @param bool $allowOverwrite If `true`, entities may be overwritten.
      *        **Defaults to** `false`.
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function checkOverwrite(array $entities, $allowOverwrite = false)
@@ -788,9 +831,7 @@ class Operation
             'readTime' => null
         ];
 
-        if (isset($options['readTime'])) {
-            $options['readTime'] = $this->parseCoreTimestamp($options['readTime']);
-        }
+        $options = $this->formatReadTimeOption($options);
 
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
@@ -801,23 +842,6 @@ class Operation
         return array_filter([
             'readOptions' => $readOptions,
         ]);
-    }
-
-    /**
-     * Format the timestamp.
-     *
-     * @param Timestamp $time
-     * @return array
-     */
-    private function parseCoreTimestamp($time)
-    {
-        if (!$time instanceof Timestamp) {
-            throw new \InvalidArgumentException(
-                'Read Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
-            );
-        }
-
-        return $time->formatForApi();
     }
 
     /**

@@ -143,9 +143,8 @@ class PsrLogger implements LoggerInterface, \Serializable
         $this->logName = $logger->name();
         $this->logMessageProcessor = LogMessageProcessorFactory::build();
         $this->messageKey = $messageKey ?: 'message';
-        $this->metadataProvider = isset($options['metadataProvider'])
-            ? $options['metadataProvider']
-            : MetadataProviderUtils::autoSelect($_SERVER);
+        $this->metadataProvider = $options['metadataProvider']
+            ?? MetadataProviderUtils::autoSelect($_SERVER);
 
         if (isset($options['batchEnabled']) && $options['batchEnabled'] === true) {
             $this->batchEnabled = true;
@@ -370,7 +369,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           precision.
      * }
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function log($level, $message, array $context = [])
     {
@@ -517,7 +516,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *
      * @param string|int $level The severity of the log entry.
      * @return bool
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function validateLogLevel($level)
     {

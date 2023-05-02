@@ -39,7 +39,7 @@ class ServiceBuilderTest extends SnippetTestCase
 {
     private $cloud;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->cloud = new ServiceBuilder;
     }

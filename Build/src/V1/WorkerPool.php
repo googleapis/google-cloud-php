@@ -124,7 +124,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. `WorkerPool` state.
      *     @type \Google\Cloud\Build\V1\PrivatePoolV1Config $private_pool_v1_config
-     *           Private Pool using a v1 configuration.
+     *           Legacy Private Pool configuration.
      *     @type string $etag
      *           Output only. Checksum computed by the server. May be sent on update and
      *           delete requests to ensure that the client has an up-to-date value before
@@ -393,7 +393,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Private Pool using a v1 configuration.
+     * Legacy Private Pool configuration.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.PrivatePoolV1Config private_pool_v1_config = 12;</code>
      * @return \Google\Cloud\Build\V1\PrivatePoolV1Config|null
@@ -409,7 +409,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Private Pool using a v1 configuration.
+     * Legacy Private Pool configuration.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.PrivatePoolV1Config private_pool_v1_config = 12;</code>
      * @param \Google\Cloud\Build\V1\PrivatePoolV1Config $var

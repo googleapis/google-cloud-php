@@ -527,6 +527,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $uri = 'uri116076';
         $referrerUri = 'referrerUri-2093856436';
         $pageViewId = 'pageViewId948896581';
+        $entity = 'entity-1298275357';
         $expectedResponse = new UserEvent();
         $expectedResponse->setEventType($eventType);
         $expectedResponse->setVisitorId($visitorId);
@@ -540,6 +541,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $expectedResponse->setUri($uri);
         $expectedResponse->setReferrerUri($referrerUri);
         $expectedResponse->setPageViewId($pageViewId);
+        $expectedResponse->setEntity($entity);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';

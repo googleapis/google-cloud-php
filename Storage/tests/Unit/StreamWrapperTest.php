@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Exception;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Bucket;
@@ -24,10 +25,9 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\BufferStream;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -35,14 +35,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class StreamWrapperTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
+    use ProphecyTrait;
 
     private $originalDefaultContext;
 
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = $this->prophesize(StorageClient::class);
         $this->bucket = $this->prophesize(Bucket::class);
@@ -51,7 +50,7 @@ class StreamWrapperTest extends TestCase
         StreamWrapper::register($this->client->reveal());
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         StreamWrapper::unregister();
     }
@@ -209,7 +208,10 @@ class StreamWrapperTest extends TestCase
      */
     public function testStatOnNonExistentFile()
     {
-        $this->expectWarning();
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new Exception($errstr, $errno);
+        }, E_WARNING);
+        $this->expectException(Exception::class);
 
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);

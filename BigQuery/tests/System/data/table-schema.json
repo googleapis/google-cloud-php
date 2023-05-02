@@ -2,22 +2,32 @@
   {
     "mode": "NULLABLE",
     "name": "Name",
-    "type": "STRING"
+    "type": "STRING",
+    "default_value_expression": "'Default Name'"
   },
   {
     "mode": "NULLABLE",
     "name": "Age",
-    "type": "INTEGER"
+    "type": "INTEGER",
+    "default_value_expression": "1"
   },
   {
     "mode": "NULLABLE",
     "name": "Weight",
-    "type": "FLOAT"
+    "type": "FLOAT",
+    "default_value_expression": "0.5"
   },
   {
     "mode": "NULLABLE",
     "name": "IsMagic",
-    "type": "BOOLEAN"
+    "type": "BOOLEAN",
+    "default_value_expression": "false"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "CreatedTimestamp",
+    "type": "TIMESTAMP",
+    "default_value_expression": "CURRENT_TIMESTAMP"
   },
   {
     "fields": [

@@ -32,11 +32,11 @@ use Google\Rpc\Status;
 /**
  * Creates a TagValue as a child of the specified TagKey. If a another
  * request with the same parameters is sent while the original request is in
- * process the second request will receive an error. A maximum of 300
+ * process the second request will receive an error. A maximum of 1000
  * TagValues can exist under a TagKey at any given time.
  *
- * @param string $tagValueShortName Immutable. User-assigned short name for TagValue. The short name should be
- *                                  unique for TagValues within the same parent TagKey.
+ * @param string $tagValueShortName Immutable. User-assigned short name for TagValue. The short name
+ *                                  should be unique for TagValues within the same parent TagKey.
  *
  *                                  The short name must be 63 characters or less, beginning and ending with
  *                                  an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),

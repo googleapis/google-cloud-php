@@ -18,7 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\Perf;
 
 use Google\Cloud\BigQuery\BigQueryClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
@@ -29,7 +29,7 @@ class BigQueryTest extends TestCase
 
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $this->client = new BigQueryClient([

@@ -44,16 +44,16 @@ use Google\Rpc\Status;
  * `FolderOperation` message as an aid to stateless clients.
  * Folder moves will be rejected if they violate either the naming, height,
  * or fanout constraints described in the
- * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
- * The caller must have `resourcemanager.folders.move` permission on the
- * folder's current and proposed new parent.
+ * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+ * documentation. The caller must have `resourcemanager.folders.move`
+ * permission on the folder's current and proposed new parent.
  *
  * @param string $formattedName     The resource name of the Folder to move.
  *                                  Must be of the form folders/{folder_id}
  *                                  Please see {@see FoldersClient::folderName()} for help formatting this field.
- * @param string $destinationParent The resource name of the folder or organization which should be the
- *                                  folder's new parent.
- *                                  Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+ * @param string $destinationParent The resource name of the folder or organization which should be
+ *                                  the folder's new parent. Must be of the form `folders/{folder_id}` or
+ *                                  `organizations/{org_id}`.
  */
 function move_folder_sample(string $formattedName, string $destinationParent): void
 {
