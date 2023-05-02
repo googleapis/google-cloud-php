@@ -54,7 +54,7 @@ function update_network_policy_sample(string $networkPolicyEdgeServicesCidr): vo
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkPolicy = (new NetworkPolicy())
         ->setEdgeServicesCidr($networkPolicyEdgeServicesCidr);
     $updateMask = new FieldMask();

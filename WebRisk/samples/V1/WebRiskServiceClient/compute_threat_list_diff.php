@@ -46,7 +46,7 @@ function compute_threat_list_diff_sample(int $threatType): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $constraints = new Constraints();
 
     // Call the API and handle any network failures.

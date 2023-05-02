@@ -43,7 +43,7 @@ function search_uris_sample(string $uri, int $threatTypesElement): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $threatTypes = [$threatTypesElement,];
 
     // Call the API and handle any network failures.
