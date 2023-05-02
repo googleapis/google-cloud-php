@@ -40,7 +40,7 @@ function update_instance_sample(int $instanceType): void
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = (new Instance())
         ->setType($instanceType);
 

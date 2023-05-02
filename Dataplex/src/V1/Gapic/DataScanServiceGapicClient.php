@@ -137,6 +137,8 @@ class DataScanServiceGapicClient
 
     private static $dataScanJobNameTemplate;
 
+    private static $entityNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $pathTemplateMap;
@@ -191,6 +193,17 @@ class DataScanServiceGapicClient
         return self::$dataScanJobNameTemplate;
     }
 
+    private static function getEntityNameTemplate()
+    {
+        if (self::$entityNameTemplate == null) {
+            self::$entityNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}'
+            );
+        }
+
+        return self::$entityNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -208,6 +221,7 @@ class DataScanServiceGapicClient
             self::$pathTemplateMap = [
                 'dataScan' => self::getDataScanNameTemplate(),
                 'dataScanJob' => self::getDataScanJobNameTemplate(),
+                'entity' => self::getEntityNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
@@ -256,6 +270,34 @@ class DataScanServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entity
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $lake
+     * @param string $zone
+     * @param string $entity
+     *
+     * @return string The formatted entity resource.
+     */
+    public static function entityName(
+        $project,
+        $location,
+        $lake,
+        $zone,
+        $entity
+    ) {
+        return self::getEntityNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'lake' => $lake,
+            'zone' => $zone,
+            'entity' => $entity,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -278,6 +320,7 @@ class DataScanServiceGapicClient
      * Template: Pattern
      * - dataScan: projects/{project}/locations/{location}/dataScans/{dataScan}
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
+     * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

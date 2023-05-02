@@ -77,7 +77,7 @@ function update_session_entity_type_sample(
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sessionEntityTypeEntitiesSynonyms = [$sessionEntityTypeEntitiesSynonymsElement,];
     $entity = (new Entity())
         ->setValue($sessionEntityTypeEntitiesValue)

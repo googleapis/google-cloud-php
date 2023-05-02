@@ -44,7 +44,7 @@ function update_delivery_pipeline_sample(): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $deliveryPipeline = new DeliveryPipeline();
 

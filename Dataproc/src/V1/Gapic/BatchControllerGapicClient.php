@@ -116,6 +116,8 @@ class BatchControllerGapicClient
 
     private static $locationNameTemplate;
 
+    private static $serviceNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -157,12 +159,22 @@ class BatchControllerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'batch' => self::getBatchNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
@@ -206,11 +218,31 @@ class BatchControllerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - batch: projects/{project}/locations/{location}/batches/{batch}
      * - location: projects/{project}/locations/{location}
+     * - service: projects/{project}/locations/{location}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

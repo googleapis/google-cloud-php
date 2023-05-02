@@ -56,7 +56,7 @@ function create_conversation_model_sample(
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputDataset = (new InputDataset())
         ->setDataset($formattedConversationModelDatasetsDataset);
     $conversationModelDatasets = [$inputDataset,];

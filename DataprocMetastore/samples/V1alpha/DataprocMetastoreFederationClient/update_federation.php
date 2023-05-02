@@ -44,7 +44,7 @@ function update_federation_sample(): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $federation = new Federation();
 

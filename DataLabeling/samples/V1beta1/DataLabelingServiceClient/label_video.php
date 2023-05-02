@@ -53,7 +53,7 @@ function label_video_sample(
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $basicConfig = (new HumanAnnotationConfig())
         ->setInstruction($basicConfigInstruction)
         ->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);

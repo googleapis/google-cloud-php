@@ -49,7 +49,7 @@ function create_backup_sample(string $formattedParent, string $backupId): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backup = new Backup();
 
     // Call the API and handle any network failures.

@@ -43,7 +43,7 @@ function pull_git_commits_sample(
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $author = (new CommitAuthor())
         ->setName($authorName)
         ->setEmailAddress($authorEmailAddress);

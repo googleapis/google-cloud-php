@@ -53,7 +53,7 @@ function update_environment_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = new Environment();
     $updateMask = new FieldMask();
 

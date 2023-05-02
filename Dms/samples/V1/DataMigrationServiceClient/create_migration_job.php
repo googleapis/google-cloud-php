@@ -50,7 +50,7 @@ function create_migration_job_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $migrationJob = (new MigrationJob())
         ->setType($migrationJobType)
         ->setSource($migrationJobSource)

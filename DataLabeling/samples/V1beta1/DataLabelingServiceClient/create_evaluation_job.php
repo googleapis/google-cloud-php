@@ -39,7 +39,7 @@ function create_evaluation_job_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new EvaluationJob();
 
     // Call the API and handle any network failures.

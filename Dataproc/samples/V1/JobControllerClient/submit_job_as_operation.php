@@ -46,7 +46,7 @@ function submit_job_as_operation_sample(
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobPlacement = (new JobPlacement())
         ->setClusterName($jobPlacementClusterName);
     $job = (new Job())
