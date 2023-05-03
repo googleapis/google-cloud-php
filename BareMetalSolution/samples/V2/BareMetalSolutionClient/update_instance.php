@@ -43,7 +43,7 @@ function update_instance_sample(): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = new Instance();
 
     // Call the API and handle any network failures.

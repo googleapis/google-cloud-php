@@ -44,7 +44,7 @@ function create_app_connector_sample(string $formattedParent, string $appConnect
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $appConnectorPrincipalInfo = new PrincipalInfo();
     $appConnector = (new AppConnector())
         ->setName($appConnectorName)

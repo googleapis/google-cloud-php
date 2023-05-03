@@ -40,7 +40,7 @@ function update_endpoint_sample(string $endpointDisplayName): void
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpoint = (new Endpoint())
         ->setDisplayName($endpointDisplayName);
     $updateMask = new FieldMask();

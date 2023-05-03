@@ -55,7 +55,7 @@ function deploy_index_sample(
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployedIndex = (new DeployedIndex())
         ->setId($deployedIndexId)
         ->setIndex($formattedDeployedIndexIndex);

@@ -53,7 +53,7 @@ function create_app_connection_sample(
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $appConnectionApplicationEndpoint = (new ApplicationEndpoint())
         ->setHost($appConnectionApplicationEndpointHost)
         ->setPort($appConnectionApplicationEndpointPort);

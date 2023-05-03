@@ -53,7 +53,7 @@ function merge_version_aliases_sample(string $formattedName, string $versionAlia
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $versionAliases = [$versionAliasesElement,];
 
     // Call the API and handle any network failures.

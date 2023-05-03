@@ -144,6 +144,8 @@ class AlloyDBAdminGapicClient
 
     private static $clusterNameTemplate;
 
+    private static $cryptoKeyVersionNameTemplate;
+
     private static $instanceNameTemplate;
 
     private static $locationNameTemplate;
@@ -201,6 +203,17 @@ class AlloyDBAdminGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyVersionNameTemplate()
+    {
+        if (self::$cryptoKeyVersionNameTemplate == null) {
+            self::$cryptoKeyVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}'
+            );
+        }
+
+        return self::$cryptoKeyVersionNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -240,6 +253,7 @@ class AlloyDBAdminGapicClient
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
@@ -284,6 +298,34 @@ class AlloyDBAdminGapicClient
             'project' => $project,
             'location' => $location,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey,
+        $cryptoKeyVersion
+    ) {
+        return self::getCryptoKeyVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
         ]);
     }
 
@@ -352,6 +394,7 @@ class AlloyDBAdminGapicClient
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backups/{backup}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - instance: projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}

@@ -38,7 +38,7 @@ function update_feature_sample(int $featureValueType): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $feature = (new Feature())
         ->setValueType($featureValueType);
 

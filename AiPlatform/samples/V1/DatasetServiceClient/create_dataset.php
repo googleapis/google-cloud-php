@@ -52,7 +52,7 @@ function create_dataset_sample(
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $datasetMetadata = new Value();
     $dataset = (new Dataset())
         ->setDisplayName($datasetDisplayName)

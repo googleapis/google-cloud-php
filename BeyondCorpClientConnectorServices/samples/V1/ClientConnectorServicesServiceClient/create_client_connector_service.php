@@ -45,7 +45,7 @@ function create_client_connector_service_sample(
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $clientConnectorServiceIngress = new Ingress();
     $clientConnectorServiceEgress = new Egress();
     $clientConnectorService = (new ClientConnectorService())

@@ -52,7 +52,7 @@ function batch_get_effective_iam_policies_sample(string $scope, string $namesEle
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $names = [$namesElement,];
 
     // Call the API and handle any network failures.

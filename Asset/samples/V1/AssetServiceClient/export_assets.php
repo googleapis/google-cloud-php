@@ -53,7 +53,7 @@ function export_assets_sample(string $parent): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfig = new OutputConfig();
 
     // Call the API and handle any network failures.

@@ -42,7 +42,7 @@ function update_model_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = new Model();
     $updateMask = new FieldMask();
 

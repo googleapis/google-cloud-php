@@ -121,6 +121,8 @@ class ModelServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $endpointNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $modelNameTemplate;
@@ -128,6 +130,10 @@ class ModelServiceGapicClient
     private static $modelEvaluationNameTemplate;
 
     private static $modelEvaluationSliceNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $trainingPipelineNameTemplate;
 
@@ -158,6 +164,17 @@ class ModelServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getEndpointNameTemplate()
+    {
+        if (self::$endpointNameTemplate == null) {
+            self::$endpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$endpointNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -204,6 +221,28 @@ class ModelServiceGapicClient
         return self::$modelEvaluationSliceNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getTrainingPipelineNameTemplate()
     {
         if (self::$trainingPipelineNameTemplate == null) {
@@ -219,15 +258,37 @@ class ModelServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'endpoint' => self::getEndpointNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
                 'modelEvaluation' => self::getModelEvaluationNameTemplate(),
                 'modelEvaluationSlice' => self::getModelEvaluationSliceNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a endpoint
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted endpoint resource.
+     */
+    public static function endpointName($project, $location, $endpoint)
+    {
+        return self::getEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
     }
 
     /**
@@ -321,6 +382,53 @@ class ModelServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * training_pipeline resource.
      *
      * @param string $project
@@ -345,10 +453,13 @@ class ModelServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}
      * - modelEvaluationSlice: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

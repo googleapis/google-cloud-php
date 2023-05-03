@@ -58,7 +58,7 @@ function create_custom_dimension_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customDimension = (new CustomDimension())
         ->setParameterName($customDimensionParameterName)
         ->setDisplayName($customDimensionDisplayName)

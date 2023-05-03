@@ -54,7 +54,7 @@ function deploy_model_sample(string $formattedEndpoint, string $formattedDeploye
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployedModel = (new DeployedModel())
         ->setModel($formattedDeployedModelModel);
 
