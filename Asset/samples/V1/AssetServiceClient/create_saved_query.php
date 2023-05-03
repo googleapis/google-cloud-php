@@ -51,7 +51,7 @@ function create_saved_query_sample(string $formattedParent, string $savedQueryId
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $savedQuery = new SavedQuery();
 
     // Call the API and handle any network failures.

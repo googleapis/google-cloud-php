@@ -51,7 +51,7 @@ function update_access_level_sample(): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessLevel = new AccessLevel();
     $updateMask = new FieldMask();
 

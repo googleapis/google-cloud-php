@@ -43,7 +43,7 @@ function update_input_sample(): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new Input();
 
     // Call the API and handle any network failures.

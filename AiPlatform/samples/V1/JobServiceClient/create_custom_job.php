@@ -45,7 +45,7 @@ function create_custom_job_sample(string $formattedParent, string $customJobDisp
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customJobJobSpecWorkerPoolSpecs = [new WorkerPoolSpec()];
     $customJobJobSpec = (new CustomJobSpec())
         ->setWorkerPoolSpecs($customJobJobSpecWorkerPoolSpecs);

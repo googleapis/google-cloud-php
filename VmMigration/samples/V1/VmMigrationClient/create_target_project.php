@@ -44,7 +44,7 @@ function create_target_project_sample(string $formattedParent, string $targetPro
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetProject = new TargetProject();
 
     // Call the API and handle any network failures.

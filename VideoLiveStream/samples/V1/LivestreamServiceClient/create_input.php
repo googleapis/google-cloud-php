@@ -44,7 +44,7 @@ function create_input_sample(string $formattedParent, string $inputId): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new Input();
 
     // Call the API and handle any network failures.

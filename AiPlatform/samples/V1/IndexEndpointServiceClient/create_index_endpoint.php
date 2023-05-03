@@ -46,7 +46,7 @@ function create_index_endpoint_sample(
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $indexEndpoint = (new IndexEndpoint())
         ->setDisplayName($indexEndpointDisplayName);
 

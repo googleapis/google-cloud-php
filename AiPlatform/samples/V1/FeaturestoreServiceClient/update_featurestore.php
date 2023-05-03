@@ -43,7 +43,7 @@ function update_featurestore_sample(): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $featurestore = new Featurestore();
 
     // Call the API and handle any network failures.

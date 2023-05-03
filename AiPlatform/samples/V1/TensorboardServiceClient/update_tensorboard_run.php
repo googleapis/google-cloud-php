@@ -40,7 +40,7 @@ function update_tensorboard_run_sample(string $tensorboardRunDisplayName): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $tensorboardRun = (new TensorboardRun())
         ->setDisplayName($tensorboardRunDisplayName);

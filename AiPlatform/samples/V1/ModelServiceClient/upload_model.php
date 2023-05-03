@@ -45,7 +45,7 @@ function upload_model_sample(string $formattedParent, string $modelDisplayName):
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = (new Model())
         ->setDisplayName($modelDisplayName);
 

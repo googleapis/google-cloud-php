@@ -41,7 +41,7 @@ function update_phrase_set_sample(): void
     // Create a client.
     $adaptationClient = new AdaptationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseSet = new PhraseSet();
 
     // Call the API and handle any network failures.

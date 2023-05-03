@@ -46,7 +46,7 @@ function update_transfer_job_sample(string $jobName, string $projectId): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transferJob = new TransferJob();
 
     // Call the API and handle any network failures.

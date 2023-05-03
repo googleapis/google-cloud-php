@@ -42,7 +42,7 @@ function create_metadata_store_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metadataStore = new MetadataStore();
 
     // Call the API and handle any network failures.

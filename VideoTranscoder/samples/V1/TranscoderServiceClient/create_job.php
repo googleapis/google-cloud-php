@@ -39,7 +39,7 @@ function create_job_sample(string $formattedParent): void
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new Job();
 
     // Call the API and handle any network failures.

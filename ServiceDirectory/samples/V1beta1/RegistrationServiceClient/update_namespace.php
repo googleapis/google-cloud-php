@@ -42,7 +42,7 @@ function update_namespace_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $namespace = new PBNamespace();
     $updateMask = new FieldMask();
 

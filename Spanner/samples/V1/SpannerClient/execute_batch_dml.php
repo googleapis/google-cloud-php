@@ -62,7 +62,7 @@ function execute_batch_dml_sample(
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transaction = new TransactionSelector();
     $statement = (new Statement())
         ->setSql($statementsSql);

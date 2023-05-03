@@ -41,7 +41,7 @@ function update_config_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $config = new Config();
 
     // Call the API and handle any network failures.

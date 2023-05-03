@@ -41,7 +41,7 @@ function update_access_binding_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessBinding = new AccessBinding();
 
     // Call the API and handle any network failures.

@@ -43,7 +43,7 @@ function update_migrating_vm_sample(): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $migratingVm = new MigratingVm();
 
     // Call the API and handle any network failures.

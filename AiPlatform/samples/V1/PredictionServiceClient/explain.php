@@ -52,7 +52,7 @@ function explain_sample(string $formattedEndpoint): void
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instances = [new Value()];
 
     // Call the API and handle any network failures.

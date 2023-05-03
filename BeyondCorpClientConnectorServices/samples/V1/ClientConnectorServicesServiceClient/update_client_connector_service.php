@@ -42,7 +42,7 @@ function update_client_connector_service_sample(string $clientConnectorServiceNa
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $clientConnectorServiceIngress = new Ingress();
     $clientConnectorServiceEgress = new Egress();

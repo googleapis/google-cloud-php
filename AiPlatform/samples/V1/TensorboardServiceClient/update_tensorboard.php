@@ -40,7 +40,7 @@ function update_tensorboard_sample(string $tensorboardDisplayName): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $tensorboard = (new Tensorboard())
         ->setDisplayName($tensorboardDisplayName);

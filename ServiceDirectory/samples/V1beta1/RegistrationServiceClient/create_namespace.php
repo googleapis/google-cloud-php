@@ -46,7 +46,7 @@ function create_namespace_sample(string $formattedParent, string $namespaceId): 
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $namespace = new PBNamespace();
 
     // Call the API and handle any network failures.

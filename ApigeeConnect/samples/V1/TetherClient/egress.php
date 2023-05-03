@@ -49,7 +49,7 @@ function egress_sample(): void
     // Create a client.
     $tetherClient = new TetherClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new EgressResponse();
 
     // Call the API and handle any network failures.

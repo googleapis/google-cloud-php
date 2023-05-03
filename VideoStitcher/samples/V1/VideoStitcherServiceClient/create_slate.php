@@ -45,7 +45,7 @@ function create_slate_sample(string $formattedParent, string $slateId): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $slate = new Slate();
 
     // Call the API and handle any network failures.

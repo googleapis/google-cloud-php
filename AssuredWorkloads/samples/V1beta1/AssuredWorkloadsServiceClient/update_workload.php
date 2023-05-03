@@ -48,7 +48,7 @@ function update_workload_sample(string $workloadDisplayName, int $workloadCompli
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $workload = (new Workload())
         ->setDisplayName($workloadDisplayName)
         ->setComplianceRegime($workloadComplianceRegime);

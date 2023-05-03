@@ -49,7 +49,7 @@ function create_specialist_pool_sample(
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $specialistPool = (new SpecialistPool())
         ->setName($specialistPoolName)
         ->setDisplayName($specialistPoolDisplayName);

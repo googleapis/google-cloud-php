@@ -51,7 +51,7 @@ function translate_document_sample(string $parent, string $targetLanguageCode): 
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $documentInputConfig = new DocumentInputConfig();
 
     // Call the API and handle any network failures.

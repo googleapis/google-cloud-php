@@ -42,7 +42,7 @@ function create_tensorboard_sample(string $formattedParent, string $tensorboardD
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tensorboard = (new Tensorboard())
         ->setDisplayName($tensorboardDisplayName);
 

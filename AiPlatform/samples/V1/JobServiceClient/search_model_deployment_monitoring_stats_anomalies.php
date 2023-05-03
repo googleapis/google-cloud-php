@@ -46,7 +46,7 @@ function search_model_deployment_monitoring_stats_anomalies_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $objectives = [new StatsAnomaliesObjective()];
 
     // Call the API and handle any network failures.

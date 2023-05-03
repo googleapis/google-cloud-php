@@ -42,7 +42,7 @@ function update_report_config_sample(): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $reportConfig = new ReportConfig();
 

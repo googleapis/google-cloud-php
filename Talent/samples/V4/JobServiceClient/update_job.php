@@ -72,7 +72,7 @@ function update_job_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = (new Job())
         ->setCompany($formattedJobCompany)
         ->setRequisitionId($jobRequisitionId)

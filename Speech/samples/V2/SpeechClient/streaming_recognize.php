@@ -46,7 +46,7 @@ function streaming_recognize_sample(string $formattedRecognizer): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new StreamingRecognizeRequest())
         ->setRecognizer($formattedRecognizer);
 
