@@ -43,7 +43,7 @@ function create_function_sample(string $formattedParent): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $function = new PBFunction();
 
     // Call the API and handle any network failures.

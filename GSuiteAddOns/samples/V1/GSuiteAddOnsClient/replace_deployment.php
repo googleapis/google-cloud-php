@@ -41,7 +41,7 @@ function replace_deployment_sample(): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployment = new Deployment();
 
     // Call the API and handle any network failures.

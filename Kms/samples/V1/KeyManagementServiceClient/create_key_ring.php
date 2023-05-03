@@ -43,7 +43,7 @@ function create_key_ring_sample(string $formattedParent, string $keyRingId): voi
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $keyRing = new KeyRing();
 
     // Call the API and handle any network failures.

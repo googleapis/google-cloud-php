@@ -43,7 +43,7 @@ function update_ekm_config_sample(): void
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $ekmConfig = new EkmConfig();
     $updateMask = new FieldMask();
 

@@ -48,7 +48,7 @@ function update_domain_sample(string $domainReservedIpRange, string $domainLocat
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $domainLocations = [$domainLocationsElement,];
     $domain = (new Domain())

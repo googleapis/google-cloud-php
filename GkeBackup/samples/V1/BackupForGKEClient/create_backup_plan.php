@@ -59,7 +59,7 @@ function create_backup_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backupPlan = (new BackupPlan())
         ->setCluster($formattedBackupPlanCluster);
 

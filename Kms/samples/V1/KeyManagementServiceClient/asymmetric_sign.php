@@ -45,7 +45,7 @@ function asymmetric_sign_sample(string $formattedName): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $digest = new Digest();
 
     // Call the API and handle any network failures.

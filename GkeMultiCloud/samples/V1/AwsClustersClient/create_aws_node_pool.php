@@ -89,7 +89,7 @@ function create_aws_node_pool_sample(
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $awsNodePoolConfigConfigEncryption = (new AwsConfigEncryption())
         ->setKmsKeyArn($awsNodePoolConfigConfigEncryptionKmsKeyArn);
     $awsNodePoolConfig = (new AwsNodeConfig())

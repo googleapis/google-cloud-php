@@ -48,7 +48,7 @@ function reconfigure_trust_sample(
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetDnsIpAddresses = [$targetDnsIpAddressesElement,];
 
     // Call the API and handle any network failures.

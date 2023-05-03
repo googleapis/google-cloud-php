@@ -54,7 +54,7 @@ function create_membership_sample(string $formattedParent, string $membershipId)
     // Create a client.
     $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resource = new Membership();
 
     // Call the API and handle any network failures.

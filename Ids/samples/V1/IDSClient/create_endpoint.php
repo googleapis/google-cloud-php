@@ -54,7 +54,7 @@ function create_endpoint_sample(
     // Create a client.
     $iDSClient = new IDSClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpoint = (new Endpoint())
         ->setNetwork($endpointNetwork)
         ->setSeverity($endpointSeverity);

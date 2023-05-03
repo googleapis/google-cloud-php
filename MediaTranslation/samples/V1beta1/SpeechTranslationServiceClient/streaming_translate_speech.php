@@ -44,7 +44,7 @@ function streaming_translate_speech_sample(): void
     // Create a client.
     $speechTranslationServiceClient = new SpeechTranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new StreamingTranslateSpeechRequest();
 
     // Call the API and handle any network failures.

@@ -45,7 +45,7 @@ function create_crypto_key_version_sample(string $formattedParent): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cryptoKeyVersion = new CryptoKeyVersion();
 
     // Call the API and handle any network failures.
