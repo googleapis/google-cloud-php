@@ -19,7 +19,6 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
-use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -466,10 +465,7 @@ class RequestWrapper
      */
     private function buildDefaultAsyncHandler()
     {
-        $isGuzzleHandler = $this->httpHandler instanceof Guzzle6HttpHandler
-            || $this->httpHandler instanceof Guzzle5HttpHandler;
-
-        return $isGuzzleHandler
+        return $this->httpHandler instanceof Guzzle6HttpHandler
             ? [$this->httpHandler, 'async']
             : [HttpHandlerFactory::build(), 'async'];
     }
