@@ -199,6 +199,7 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testAckAndModAckContainFailedMsgs($client)
     {
+        self::skipIfEmulatorUsed();
         $topic = self::topic($client);
 
         // we keep a low ackDeadlineSeconds value
@@ -206,7 +207,7 @@ class PublishAndPullTest extends PubSubTestCase
         $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
         $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
 
-        $topic->publish(['data'=>'test']);
+        $topic->publish(['data' => 'test']);
         $messages = $eodSubscription->pull();
 
         sleep($eodExpiry + 1);
@@ -223,6 +224,13 @@ class PublishAndPullTest extends PubSubTestCase
         // Now we test the modifyAckDeadline messages.
         // Testing in the same methods helps in creation/deletion of less resources and
         // we only have to call `sleep` once
+        // We do publish a msg again due to a bug in the emulator where
+        // acking a set of msgs after expiry was causing the msgs to be removed
+
+        $topic->publish(['data' => 'test']);
+        $messages = $eodSubscription->pull();
+
+        sleep($eodExpiry + 1);
 
         $failedMsgs = $eodSubscription->modifyAckDeadlineBatch($messages, 10, ['returnFailures' => true]);
         // Since modifyAckDeadlineBatch was called after the expiry and with the `returnFailures` flag,
