@@ -41,7 +41,7 @@ function publish_sample(string $formattedTopic): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $messages = [new PubsubMessage()];
 
     // Call the API and handle any network failures.

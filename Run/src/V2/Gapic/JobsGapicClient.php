@@ -122,9 +122,19 @@ class JobsGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $connectorNameTemplate;
+
+    private static $cryptoKeyNameTemplate;
+
+    private static $executionNameTemplate;
+
     private static $jobNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $secretNameTemplate;
+
+    private static $secretVersionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -153,6 +163,39 @@ class JobsGapicClient
         ];
     }
 
+    private static function getConnectorNameTemplate()
+    {
+        if (self::$connectorNameTemplate == null) {
+            self::$connectorNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connectors/{connector}'
+            );
+        }
+
+        return self::$connectorNameTemplate;
+    }
+
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
+    private static function getExecutionNameTemplate()
+    {
+        if (self::$executionNameTemplate == null) {
+            self::$executionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/jobs/{job}/executions/{execution}'
+            );
+        }
+
+        return self::$executionNameTemplate;
+    }
+
     private static function getJobNameTemplate()
     {
         if (self::$jobNameTemplate == null) {
@@ -175,16 +218,108 @@ class JobsGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getSecretNameTemplate()
+    {
+        if (self::$secretNameTemplate == null) {
+            self::$secretNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}'
+            );
+        }
+
+        return self::$secretNameTemplate;
+    }
+
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}/versions/{version}'
+            );
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'connector' => self::getConnectorNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'execution' => self::getExecutionNameTemplate(),
                 'job' => self::getJobNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'secret' => self::getSecretNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connector
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connector
+     *
+     * @return string The formatted connector resource.
+     */
+    public static function connectorName($project, $location, $connector)
+    {
+        return self::getConnectorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connector' => $connector,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName($project, $location, $job, $execution)
+    {
+        return self::getExecutionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
+            'execution' => $execution,
+        ]);
     }
 
     /**
@@ -224,11 +359,52 @@ class JobsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a secret
+     * resource.
+     *
+     * @param string $project
+     * @param string $secret
+     *
+     * @return string The formatted secret resource.
+     */
+    public static function secretName($project, $secret)
+    {
+        return self::getSecretNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - connector: projects/{project}/locations/{location}/connectors/{connector}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - execution: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - secret: projects/{project}/secrets/{secret}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

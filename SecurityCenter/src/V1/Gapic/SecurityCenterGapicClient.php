@@ -180,6 +180,8 @@ class SecurityCenterGapicClient
 
     private static $bigQueryExportNameTemplate;
 
+    private static $dlpJobNameTemplate;
+
     private static $effectiveSecurityHealthAnalyticsCustomModuleNameTemplate;
 
     private static $externalSystemNameTemplate;
@@ -246,9 +248,15 @@ class SecurityCenterGapicClient
 
     private static $projectCustomModuleNameTemplate;
 
+    private static $projectDlpJobNameTemplate;
+
     private static $projectEffectiveCustomModuleNameTemplate;
 
     private static $projectExportNameTemplate;
+
+    private static $projectLocationDlpJobNameTemplate;
+
+    private static $projectLocationTableProfileNameTemplate;
 
     private static $projectMuteConfigNameTemplate;
 
@@ -264,6 +272,8 @@ class SecurityCenterGapicClient
 
     private static $projectSourceFindingSecurityMarksNameTemplate;
 
+    private static $projectTableProfileNameTemplate;
+
     private static $securityHealthAnalyticsCustomModuleNameTemplate;
 
     private static $securityHealthAnalyticsSettingsNameTemplate;
@@ -271,6 +281,8 @@ class SecurityCenterGapicClient
     private static $securityMarksNameTemplate;
 
     private static $sourceNameTemplate;
+
+    private static $tableDataProfileNameTemplate;
 
     private static $topicNameTemplate;
 
@@ -304,6 +316,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$bigQueryExportNameTemplate;
+    }
+
+    private static function getDlpJobNameTemplate()
+    {
+        if (self::$dlpJobNameTemplate == null) {
+            self::$dlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
+        }
+
+        return self::$dlpJobNameTemplate;
     }
 
     private static function getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate()
@@ -603,6 +624,15 @@ class SecurityCenterGapicClient
         return self::$projectCustomModuleNameTemplate;
     }
 
+    private static function getProjectDlpJobNameTemplate()
+    {
+        if (self::$projectDlpJobNameTemplate == null) {
+            self::$projectDlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
+        }
+
+        return self::$projectDlpJobNameTemplate;
+    }
+
     private static function getProjectEffectiveCustomModuleNameTemplate()
     {
         if (self::$projectEffectiveCustomModuleNameTemplate == null) {
@@ -619,6 +649,24 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectExportNameTemplate;
+    }
+
+    private static function getProjectLocationDlpJobNameTemplate()
+    {
+        if (self::$projectLocationDlpJobNameTemplate == null) {
+            self::$projectLocationDlpJobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dlpJobs/{dlp_job}');
+        }
+
+        return self::$projectLocationDlpJobNameTemplate;
+    }
+
+    private static function getProjectLocationTableProfileNameTemplate()
+    {
+        if (self::$projectLocationTableProfileNameTemplate == null) {
+            self::$projectLocationTableProfileNameTemplate = new PathTemplate('projects/{project}/locations/{location}/tableProfiles/{table_profile}');
+        }
+
+        return self::$projectLocationTableProfileNameTemplate;
     }
 
     private static function getProjectMuteConfigNameTemplate()
@@ -684,6 +732,15 @@ class SecurityCenterGapicClient
         return self::$projectSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getProjectTableProfileNameTemplate()
+    {
+        if (self::$projectTableProfileNameTemplate == null) {
+            self::$projectTableProfileNameTemplate = new PathTemplate('projects/{project}/tableProfiles/{table_profile}');
+        }
+
+        return self::$projectTableProfileNameTemplate;
+    }
+
     private static function getSecurityHealthAnalyticsCustomModuleNameTemplate()
     {
         if (self::$securityHealthAnalyticsCustomModuleNameTemplate == null) {
@@ -720,6 +777,15 @@ class SecurityCenterGapicClient
         return self::$sourceNameTemplate;
     }
 
+    private static function getTableDataProfileNameTemplate()
+    {
+        if (self::$tableDataProfileNameTemplate == null) {
+            self::$tableDataProfileNameTemplate = new PathTemplate('projects/{project}/tableProfiles/{table_profile}');
+        }
+
+        return self::$tableDataProfileNameTemplate;
+    }
+
     private static function getTopicNameTemplate()
     {
         if (self::$topicNameTemplate == null) {
@@ -734,6 +800,7 @@ class SecurityCenterGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'bigQueryExport' => self::getBigQueryExportNameTemplate(),
+                'dlpJob' => self::getDlpJobNameTemplate(),
                 'effectiveSecurityHealthAnalyticsCustomModule' => self::getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate(),
                 'externalSystem' => self::getExternalSystemNameTemplate(),
                 'finding' => self::getFindingNameTemplate(),
@@ -767,8 +834,11 @@ class SecurityCenterGapicClient
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
                 'projectCustomModule' => self::getProjectCustomModuleNameTemplate(),
+                'projectDlpJob' => self::getProjectDlpJobNameTemplate(),
                 'projectEffectiveCustomModule' => self::getProjectEffectiveCustomModuleNameTemplate(),
                 'projectExport' => self::getProjectExportNameTemplate(),
+                'projectLocationDlpJob' => self::getProjectLocationDlpJobNameTemplate(),
+                'projectLocationTableProfile' => self::getProjectLocationTableProfileNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
                 'projectNotificationConfig' => self::getProjectNotificationConfigNameTemplate(),
                 'projectSecurityHealthAnalyticsSettings' => self::getProjectSecurityHealthAnalyticsSettingsNameTemplate(),
@@ -776,10 +846,12 @@ class SecurityCenterGapicClient
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
                 'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
                 'projectSourceFindingSecurityMarks' => self::getProjectSourceFindingSecurityMarksNameTemplate(),
+                'projectTableProfile' => self::getProjectTableProfileNameTemplate(),
                 'securityHealthAnalyticsCustomModule' => self::getSecurityHealthAnalyticsCustomModuleNameTemplate(),
                 'securityHealthAnalyticsSettings' => self::getSecurityHealthAnalyticsSettingsNameTemplate(),
                 'securityMarks' => self::getSecurityMarksNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
+                'tableDataProfile' => self::getTableDataProfileNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
             ];
         }
@@ -801,6 +873,23 @@ class SecurityCenterGapicClient
         return self::getBigQueryExportNameTemplate()->render([
             'organization' => $organization,
             'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dlp_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $dlpJob
+     *
+     * @return string The formatted dlp_job resource.
+     */
+    public static function dlpJobName($project, $dlpJob)
+    {
+        return self::getDlpJobNameTemplate()->render([
+            'project' => $project,
+            'dlp_job' => $dlpJob,
         ]);
     }
 
@@ -1377,6 +1466,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_dlp_job resource.
+     *
+     * @param string $project
+     * @param string $dlpJob
+     *
+     * @return string The formatted project_dlp_job resource.
+     */
+    public static function projectDlpJobName($project, $dlpJob)
+    {
+        return self::getProjectDlpJobNameTemplate()->render([
+            'project' => $project,
+            'dlp_job' => $dlpJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_effective_custom_module resource.
      *
      * @param string $project
@@ -1406,6 +1512,44 @@ class SecurityCenterGapicClient
         return self::getProjectExportNameTemplate()->render([
             'project' => $project,
             'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_dlp_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dlpJob
+     *
+     * @return string The formatted project_location_dlp_job resource.
+     */
+    public static function projectLocationDlpJobName($project, $location, $dlpJob)
+    {
+        return self::getProjectLocationDlpJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dlp_job' => $dlpJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_table_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tableProfile
+     *
+     * @return string The formatted project_location_table_profile resource.
+     */
+    public static function projectLocationTableProfileName($project, $location, $tableProfile)
+    {
+        return self::getProjectLocationTableProfileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'table_profile' => $tableProfile,
         ]);
     }
 
@@ -1536,6 +1680,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_table_profile resource.
+     *
+     * @param string $project
+     * @param string $tableProfile
+     *
+     * @return string The formatted project_table_profile resource.
+     */
+    public static function projectTableProfileName($project, $tableProfile)
+    {
+        return self::getProjectTableProfileNameTemplate()->render([
+            'project' => $project,
+            'table_profile' => $tableProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * security_health_analytics_custom_module resource.
      *
      * @param string $organization
@@ -1601,6 +1762,23 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * table_data_profile resource.
+     *
+     * @param string $project
+     * @param string $tableProfile
+     *
+     * @return string The formatted table_data_profile resource.
+     */
+    public static function tableDataProfileName($project, $tableProfile)
+    {
+        return self::getTableDataProfileNameTemplate()->render([
+            'project' => $project,
+            'table_profile' => $tableProfile,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a topic
      * resource.
      *
@@ -1622,6 +1800,7 @@ class SecurityCenterGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - bigQueryExport: organizations/{organization}/bigQueryExports/{export}
+     * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - effectiveSecurityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - externalSystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
@@ -1655,8 +1834,11 @@ class SecurityCenterGapicClient
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
      * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
+     * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - projectExport: projects/{project}/bigQueryExports/{export}
+     * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
+     * - projectLocationTableProfile: projects/{project}/locations/{location}/tableProfiles/{table_profile}
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
      * - projectNotificationConfig: projects/{project}/notificationConfigs/{notification_config}
      * - projectSecurityHealthAnalyticsSettings: projects/{project}/securityHealthAnalyticsSettings
@@ -1664,10 +1846,12 @@ class SecurityCenterGapicClient
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
      * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - projectSourceFindingSecurityMarks: projects/{project}/sources/{source}/findings/{finding}/securityMarks
+     * - projectTableProfile: projects/{project}/tableProfiles/{table_profile}
      * - securityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - securityHealthAnalyticsSettings: organizations/{organization}/securityHealthAnalyticsSettings
      * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - source: organizations/{organization}/sources/{source}
+     * - tableDataProfile: projects/{project}/tableProfiles/{table_profile}
      * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

@@ -72,7 +72,7 @@ function create_model_sample(
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = (new Model())
         ->setName($modelName)
         ->setDisplayName($modelDisplayName)

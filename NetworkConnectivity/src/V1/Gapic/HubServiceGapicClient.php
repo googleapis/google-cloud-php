@@ -125,9 +125,17 @@ class HubServiceGapicClient
 
     private static $hubNameTemplate;
 
+    private static $instanceNameTemplate;
+
+    private static $interconnectAttachmentNameTemplate;
+
     private static $locationNameTemplate;
 
+    private static $networkNameTemplate;
+
     private static $spokeNameTemplate;
+
+    private static $vpnTunnelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -169,6 +177,28 @@ class HubServiceGapicClient
         return self::$hubNameTemplate;
     }
 
+    private static function getInstanceNameTemplate()
+    {
+        if (self::$instanceNameTemplate == null) {
+            self::$instanceNameTemplate = new PathTemplate(
+                'projects/{project}/zones/{zone}/instances/{instance}'
+            );
+        }
+
+        return self::$instanceNameTemplate;
+    }
+
+    private static function getInterconnectAttachmentNameTemplate()
+    {
+        if (self::$interconnectAttachmentNameTemplate == null) {
+            self::$interconnectAttachmentNameTemplate = new PathTemplate(
+                'projects/{project}/regions/{region}/interconnectAttachments/{resource_id}'
+            );
+        }
+
+        return self::$interconnectAttachmentNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -178,6 +208,17 @@ class HubServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getNetworkNameTemplate()
+    {
+        if (self::$networkNameTemplate == null) {
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{resource_id}'
+            );
+        }
+
+        return self::$networkNameTemplate;
     }
 
     private static function getSpokeNameTemplate()
@@ -191,13 +232,28 @@ class HubServiceGapicClient
         return self::$spokeNameTemplate;
     }
 
+    private static function getVpnTunnelNameTemplate()
+    {
+        if (self::$vpnTunnelNameTemplate == null) {
+            self::$vpnTunnelNameTemplate = new PathTemplate(
+                'projects/{project}/regions/{region}/vpnTunnels/{resource_id}'
+            );
+        }
+
+        return self::$vpnTunnelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'hub' => self::getHubNameTemplate(),
+                'instance' => self::getInstanceNameTemplate(),
+                'interconnectAttachment' => self::getInterconnectAttachmentNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'network' => self::getNetworkNameTemplate(),
                 'spoke' => self::getSpokeNameTemplate(),
+                'vpnTunnel' => self::getVpnTunnelNameTemplate(),
             ];
         }
 
@@ -222,6 +278,47 @@ class HubServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName($project, $zone, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'zone' => $zone,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * interconnect_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $resourceId
+     *
+     * @return string The formatted interconnect_attachment resource.
+     */
+    public static function interconnectAttachmentName(
+        $project,
+        $region,
+        $resourceId
+    ) {
+        return self::getInterconnectAttachmentNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'resource_id' => $resourceId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -235,6 +332,23 @@ class HubServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $resourceId
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName($project, $resourceId)
+    {
+        return self::getNetworkNameTemplate()->render([
+            'project' => $project,
+            'resource_id' => $resourceId,
         ]);
     }
 
@@ -258,12 +372,35 @@ class HubServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a vpn_tunnel
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $resourceId
+     *
+     * @return string The formatted vpn_tunnel resource.
+     */
+    public static function vpnTunnelName($project, $region, $resourceId)
+    {
+        return self::getVpnTunnelNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'resource_id' => $resourceId,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - hub: projects/{project}/locations/global/hubs/{hub}
+     * - instance: projects/{project}/zones/{zone}/instances/{instance}
+     * - interconnectAttachment: projects/{project}/regions/{region}/interconnectAttachments/{resource_id}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{resource_id}
      * - spoke: projects/{project}/locations/{location}/spokes/{spoke}
+     * - vpnTunnel: projects/{project}/regions/{region}/vpnTunnels/{resource_id}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

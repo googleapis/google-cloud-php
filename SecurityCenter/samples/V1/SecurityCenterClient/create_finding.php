@@ -43,7 +43,7 @@ function create_finding_sample(string $formattedParent, string $findingId): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $finding = new Finding();
 
     // Call the API and handle any network failures.

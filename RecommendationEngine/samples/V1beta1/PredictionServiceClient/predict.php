@@ -100,7 +100,7 @@ function predict_sample(
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $userEventUserInfo = (new UserInfo())
         ->setVisitorId($userEventUserInfoVisitorId);
     $userEvent = (new UserEvent())

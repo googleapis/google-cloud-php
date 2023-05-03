@@ -58,7 +58,7 @@ function update_folder_sample(string $folderParent): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $folder = (new Folder())
         ->setParent($folderParent);
     $updateMask = new FieldMask();

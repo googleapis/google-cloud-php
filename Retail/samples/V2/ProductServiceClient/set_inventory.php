@@ -95,7 +95,7 @@ function set_inventory_sample(string $inventoryTitle): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inventory = (new Product())
         ->setTitle($inventoryTitle);
 
