@@ -42,7 +42,7 @@ function analyze_sentiment_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
 
     // Call the API and handle any network failures.

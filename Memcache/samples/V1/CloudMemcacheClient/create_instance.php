@@ -70,7 +70,7 @@ function create_instance_sample(
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceNodeConfig = (new NodeConfig())
         ->setCpuCount($instanceNodeConfigCpuCount)
         ->setMemorySizeMb($instanceNodeConfigMemorySizeMb);

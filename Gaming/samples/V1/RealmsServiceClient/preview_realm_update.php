@@ -41,7 +41,7 @@ function preview_realm_update_sample(string $realmTimeZone): void
     // Create a client.
     $realmsServiceClient = new RealmsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $realm = (new Realm())
         ->setTimeZone($realmTimeZone);
     $updateMask = new FieldMask();

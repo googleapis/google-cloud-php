@@ -45,7 +45,7 @@ function update_parameters_sample(string $formattedName): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.

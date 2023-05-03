@@ -44,7 +44,7 @@ function update_uptime_check_config_sample(): void
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $uptimeCheckConfig = new UptimeCheckConfig();
 
     // Call the API and handle any network failures.

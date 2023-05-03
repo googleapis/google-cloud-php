@@ -78,7 +78,7 @@ function create_instance_sample(
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = (new Instance())
         ->setName($instanceName)
         ->setTier($instanceTier)

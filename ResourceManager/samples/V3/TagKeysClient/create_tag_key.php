@@ -47,7 +47,7 @@ function create_tag_key_sample(string $tagKeyShortName): void
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagKey = (new TagKey())
         ->setShortName($tagKeyShortName);
 

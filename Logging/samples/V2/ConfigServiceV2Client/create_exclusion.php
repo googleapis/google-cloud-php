@@ -67,7 +67,7 @@ function create_exclusion_sample(
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $exclusion = (new LogExclusion())
         ->setName($exclusionName)
         ->setFilter($exclusionFilter);

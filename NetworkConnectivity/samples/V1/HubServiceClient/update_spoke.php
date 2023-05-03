@@ -43,7 +43,7 @@ function update_spoke_sample(): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $spoke = new Spoke();
 
     // Call the API and handle any network failures.

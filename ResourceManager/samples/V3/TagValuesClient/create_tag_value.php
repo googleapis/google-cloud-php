@@ -47,7 +47,7 @@ function create_tag_value_sample(string $tagValueShortName): void
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagValue = (new TagValue())
         ->setShortName($tagValueShortName);
 

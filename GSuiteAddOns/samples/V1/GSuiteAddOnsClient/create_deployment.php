@@ -42,7 +42,7 @@ function create_deployment_sample(string $formattedParent, string $deploymentId)
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployment = new Deployment();
 
     // Call the API and handle any network failures.

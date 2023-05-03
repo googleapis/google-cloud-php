@@ -46,7 +46,7 @@ function update_serving_config_sample(
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $servingConfigSolutionTypes = [$servingConfigSolutionTypesElement,];
     $servingConfig = (new ServingConfig())
         ->setDisplayName($servingConfigDisplayName)

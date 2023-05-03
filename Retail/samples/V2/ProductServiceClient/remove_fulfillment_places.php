@@ -107,7 +107,7 @@ function remove_fulfillment_places_sample(
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $placeIds = [$placeIdsElement,];
 
     // Call the API and handle any network failures.

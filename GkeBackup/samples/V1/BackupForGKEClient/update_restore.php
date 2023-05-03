@@ -43,7 +43,7 @@ function update_restore_sample(string $formattedRestoreBackup): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restore = (new Restore())
         ->setBackup($formattedRestoreBackup);
 

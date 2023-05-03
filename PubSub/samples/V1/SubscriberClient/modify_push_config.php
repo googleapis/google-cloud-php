@@ -44,7 +44,7 @@ function modify_push_config_sample(string $formattedSubscription): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $pushConfig = new PushConfig();
 
     // Call the API and handle any network failures.

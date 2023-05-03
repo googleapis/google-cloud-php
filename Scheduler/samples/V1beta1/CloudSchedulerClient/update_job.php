@@ -50,7 +50,7 @@ function update_job_sample(): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new Job();
 
     // Call the API and handle any network failures.

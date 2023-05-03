@@ -50,7 +50,7 @@ function update_subscription_sample(
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subscription = (new Subscription())
         ->setName($subscriptionName)
         ->setTopic($formattedSubscriptionTopic);

@@ -97,7 +97,7 @@ function update_aws_cluster_sample(
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $awsClusterNetworkingPodAddressCidrBlocks = [$awsClusterNetworkingPodAddressCidrBlocksElement,];
     $awsClusterNetworkingServiceAddressCidrBlocks = [
         $awsClusterNetworkingServiceAddressCidrBlocksElement,

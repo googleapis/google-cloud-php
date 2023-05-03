@@ -53,7 +53,7 @@ function update_crypto_key_version_sample(): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cryptoKeyVersion = new CryptoKeyVersion();
     $updateMask = new FieldMask();
 

@@ -58,7 +58,7 @@ function add_catalog_attribute_sample(
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $catalogAttribute = (new CatalogAttribute())
         ->setKey($catalogAttributeKey);
 
