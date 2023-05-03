@@ -56,7 +56,7 @@ function batch_delete_entities_sample(string $formattedParent, string $entityVal
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entityValues = [$entityValuesElement,];
 
     // Call the API and handle any network failures.

@@ -42,7 +42,7 @@ function write_sample(string $database): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new WriteRequest())
         ->setDatabase($database);
 

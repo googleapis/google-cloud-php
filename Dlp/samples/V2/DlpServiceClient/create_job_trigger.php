@@ -57,7 +57,7 @@ function create_job_trigger_sample(string $formattedParent, int $jobTriggerStatu
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTrigger = (new JobTrigger())
         ->setStatus($jobTriggerStatus);
 

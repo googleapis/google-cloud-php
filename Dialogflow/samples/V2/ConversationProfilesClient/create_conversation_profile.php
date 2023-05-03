@@ -47,7 +47,7 @@ function create_conversation_profile_sample(
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversationProfile = (new ConversationProfile())
         ->setDisplayName($conversationProfileDisplayName);
 

@@ -44,7 +44,7 @@ function update_backup_sample(): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backup = new Backup();
     $updateMask = new FieldMask();
 

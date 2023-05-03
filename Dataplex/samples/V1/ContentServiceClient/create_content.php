@@ -46,7 +46,7 @@ function create_content_sample(
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $content = (new Content())
         ->setPath($contentPath)
         ->setDataText($contentDataText);

@@ -41,7 +41,7 @@ function create_instruction_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instruction = new Instruction();
 
     // Call the API and handle any network failures.

@@ -55,7 +55,7 @@ function batch_delete_intents_sample(string $formattedParent, string $intentsDis
     // Create a client.
     $intentsClient = new IntentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $intent = (new Intent())
         ->setDisplayName($intentsDisplayName);
     $intents = [$intent,];

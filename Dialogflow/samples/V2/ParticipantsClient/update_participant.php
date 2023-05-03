@@ -42,7 +42,7 @@ function update_participant_sample(): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $participant = new Participant();
     $updateMask = new FieldMask();
 

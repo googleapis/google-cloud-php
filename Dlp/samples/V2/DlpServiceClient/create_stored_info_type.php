@@ -60,7 +60,7 @@ function create_stored_info_type_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $config = new StoredInfoTypeConfig();
 
     // Call the API and handle any network failures.

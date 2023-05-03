@@ -49,7 +49,7 @@ function create_federation_sample(string $formattedParent, string $federationId)
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $federation = new Federation();
 
     // Call the API and handle any network failures.

@@ -43,7 +43,7 @@ function create_release_sample(string $formattedParent, string $releaseId): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $release = new Release();
 
     // Call the API and handle any network failures.

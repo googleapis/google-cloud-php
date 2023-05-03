@@ -23,6 +23,18 @@ return [
                     'resourcesGetMethod' => 'getPartitions',
                 ],
             ],
+            'GetIamPolicy' => [
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'SetIamPolicy' => [
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'TestIamPermissions' => [
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'GetLocation' => [
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -32,6 +44,7 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
             ],
         ],
     ],

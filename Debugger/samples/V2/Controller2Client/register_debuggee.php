@@ -51,7 +51,7 @@ function register_debuggee_sample(): void
     // Create a client.
     $controller2Client = new Controller2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $debuggee = new Debuggee();
 
     // Call the API and handle any network failures.

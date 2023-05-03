@@ -44,7 +44,7 @@ function create_intent_sample(string $formattedParent, string $intentDisplayName
     // Create a client.
     $intentsClient = new IntentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $intent = (new Intent())
         ->setDisplayName($intentDisplayName);
 

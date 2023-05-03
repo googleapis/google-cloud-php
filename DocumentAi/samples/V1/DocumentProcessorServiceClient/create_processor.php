@@ -40,7 +40,7 @@ function create_processor_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $processor = new Processor();
 
     // Call the API and handle any network failures.
