@@ -436,7 +436,7 @@ class ServiceBuilder
 
         if (!isset($config['asyncHttpHandler'])) {
             $isGuzzleHandler = $config['httpHandler'] instanceof Guzzle6HttpHandler
-                || $config['httpHandler'] instanceof Guzzle5HttpHandler;
+                || $config['httpHandler'] instanceof Guzzle5HttpHandler; // @phpstan-ignore-line
             $config['asyncHttpHandler'] = $isGuzzleHandler
                 ? [$config['httpHandler'], 'async']
                 : [HttpHandlerFactory::build(), 'async'];

@@ -467,7 +467,7 @@ class RequestWrapper
     private function buildDefaultAsyncHandler()
     {
         $isGuzzleHandler = $this->httpHandler instanceof Guzzle6HttpHandler
-            || $this->httpHandler instanceof Guzzle5HttpHandler;
+            || $this->httpHandler instanceof Guzzle5HttpHandler; // @phpstan-ignore-line
 
         return $isGuzzleHandler
             ? [$this->httpHandler, 'async']
