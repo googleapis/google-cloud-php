@@ -137,6 +137,8 @@ class DataScanServiceGapicClient
 
     private static $dataScanJobNameTemplate;
 
+    private static $entityNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $pathTemplateMap;
@@ -191,6 +193,17 @@ class DataScanServiceGapicClient
         return self::$dataScanJobNameTemplate;
     }
 
+    private static function getEntityNameTemplate()
+    {
+        if (self::$entityNameTemplate == null) {
+            self::$entityNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}'
+            );
+        }
+
+        return self::$entityNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -208,6 +221,7 @@ class DataScanServiceGapicClient
             self::$pathTemplateMap = [
                 'dataScan' => self::getDataScanNameTemplate(),
                 'dataScanJob' => self::getDataScanJobNameTemplate(),
+                'entity' => self::getEntityNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
@@ -256,6 +270,34 @@ class DataScanServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entity
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $lake
+     * @param string $zone
+     * @param string $entity
+     *
+     * @return string The formatted entity resource.
+     */
+    public static function entityName(
+        $project,
+        $location,
+        $lake,
+        $zone,
+        $entity
+    ) {
+        return self::getEntityNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'lake' => $lake,
+            'zone' => $zone,
+            'entity' => $entity,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -278,6 +320,7 @@ class DataScanServiceGapicClient
      * Template: Pattern
      * - dataScan: projects/{project}/locations/{location}/dataScans/{dataScan}
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
+     * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -471,6 +514,9 @@ class DataScanServiceGapicClient
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type bool $validateOnly
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -493,6 +539,10 @@ class DataScanServiceGapicClient
         $request->setDataScan($dataScan);
         $request->setDataScanId($dataScanId);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -654,7 +704,7 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the DataScanJob:
-     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}`
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
@@ -970,6 +1020,9 @@ class DataScanServiceGapicClient
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type bool $validateOnly
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -990,6 +1043,10 @@ class DataScanServiceGapicClient
         $request->setDataScan($dataScan);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['data_scan.name'] = $dataScan->getName();
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

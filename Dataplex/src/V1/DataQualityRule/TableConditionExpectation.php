@@ -19,6 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableConditionExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The SQL expression.
+     *
      * Generated from protobuf field <code>string sql_expression = 1;</code>
      */
     private $sql_expression = '';
@@ -30,6 +32,7 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sql_expression
+     *           The SQL expression.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,6 +41,8 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The SQL expression.
+     *
      * Generated from protobuf field <code>string sql_expression = 1;</code>
      * @return string
      */
@@ -47,6 +52,8 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The SQL expression.
+     *
      * Generated from protobuf field <code>string sql_expression = 1;</code>
      * @param string $var
      * @return $this

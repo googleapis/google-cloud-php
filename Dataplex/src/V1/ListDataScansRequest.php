@@ -26,7 +26,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -68,7 +68,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      *           `location_id` refers to a GCP region.
      *     @type int $page_size
      *           Optional. Maximum number of dataScans to return. The service may return
-     *           fewer than this value. If unspecified, at most 10 scans will be returned.
+     *           fewer than this value. If unspecified, at most 500 scans will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListDataScans` call. Provide
@@ -121,7 +121,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -134,7 +134,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

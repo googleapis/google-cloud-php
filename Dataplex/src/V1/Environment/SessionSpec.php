@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Configuration for sessions created for this environment.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Environment.SessionSpec</code>
  */
 class SessionSpec extends \Google\Protobuf\Internal\Message

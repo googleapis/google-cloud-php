@@ -9,29 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * StringFieldInfo defines output info for any string type field.
+ * The profile information for a string type field.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo</code>
  */
 class StringFieldInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The minimum length of the string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Minimum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 min_length = 1;</code>
      */
     private $min_length = 0;
     /**
-     * The maximum length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Maximum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 max_length = 2;</code>
      */
     private $max_length = 0;
     /**
-     * The average length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Average length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>double average_length = 3;</code>
      */
@@ -44,14 +41,11 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $min_length
-     *           The minimum length of the string field in the sampled data.
-     *           Optional if zero non-null rows.
+     *           Minimum length of non-null values in the scanned data.
      *     @type int|string $max_length
-     *           The maximum length of a string field in the sampled data.
-     *           Optional if zero non-null rows.
+     *           Maximum length of non-null values in the scanned data.
      *     @type float $average_length
-     *           The average length of a string field in the sampled data.
-     *           Optional if zero non-null rows.
+     *           Average length of non-null values in the scanned data.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,8 +54,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum length of the string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Minimum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 min_length = 1;</code>
      * @return int|string
@@ -72,8 +65,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum length of the string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Minimum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 min_length = 1;</code>
      * @param int|string $var
@@ -88,8 +80,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Maximum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 max_length = 2;</code>
      * @return int|string
@@ -100,8 +91,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Maximum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 max_length = 2;</code>
      * @param int|string $var
@@ -116,8 +106,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The average length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Average length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>double average_length = 3;</code>
      * @return float
@@ -128,8 +117,7 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The average length of a string field in the sampled data.
-     * Optional if zero non-null rows.
+     * Average length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>double average_length = 3;</code>
      * @param float $var

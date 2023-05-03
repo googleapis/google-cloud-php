@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegexExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * A regular expression the column value is expected to match.
+     *
      * Generated from protobuf field <code>string regex = 1;</code>
      */
     private $regex = '';
@@ -27,6 +29,7 @@ class RegexExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $regex
+     *           A regular expression the column value is expected to match.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,6 +38,8 @@ class RegexExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A regular expression the column value is expected to match.
+     *
      * Generated from protobuf field <code>string regex = 1;</code>
      * @return string
      */
@@ -44,6 +49,8 @@ class RegexExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A regular expression the column value is expected to match.
+     *
      * Generated from protobuf field <code>string regex = 1;</code>
      * @param string $var
      * @return $this

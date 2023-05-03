@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * DataQualityDimensionResult provides a more detailed, per-dimension level view
- * of the results.
+ * DataQualityDimensionResult provides a more detailed, per-dimension view of
+ * the results.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataQualityDimensionResult</code>
  */

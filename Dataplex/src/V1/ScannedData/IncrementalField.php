@@ -17,19 +17,19 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
 {
     /**
      * The field that contains values which monotonically increases over time
-     * (e.g. timestamp).
+     * (e.g. a timestamp column).
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
     private $field = '';
     /**
-     * Value that marks the start of the range
+     * Value that marks the start of the range.
      *
      * Generated from protobuf field <code>string start = 2;</code>
      */
     private $start = '';
     /**
-     * Value that marks the end of the range
+     * Value that marks the end of the range.
      *
      * Generated from protobuf field <code>string end = 3;</code>
      */
@@ -43,11 +43,11 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
      *
      *     @type string $field
      *           The field that contains values which monotonically increases over time
-     *           (e.g. timestamp).
+     *           (e.g. a timestamp column).
      *     @type string $start
-     *           Value that marks the start of the range
+     *           Value that marks the start of the range.
      *     @type string $end
-     *           Value that marks the end of the range
+     *           Value that marks the end of the range.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +57,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
 
     /**
      * The field that contains values which monotonically increases over time
-     * (e.g. timestamp).
+     * (e.g. a timestamp column).
      *
      * Generated from protobuf field <code>string field = 1;</code>
      * @return string
@@ -69,7 +69,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
 
     /**
      * The field that contains values which monotonically increases over time
-     * (e.g. timestamp).
+     * (e.g. a timestamp column).
      *
      * Generated from protobuf field <code>string field = 1;</code>
      * @param string $var
@@ -84,7 +84,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value that marks the start of the range
+     * Value that marks the start of the range.
      *
      * Generated from protobuf field <code>string start = 2;</code>
      * @return string
@@ -95,7 +95,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value that marks the start of the range
+     * Value that marks the start of the range.
      *
      * Generated from protobuf field <code>string start = 2;</code>
      * @param string $var
@@ -110,7 +110,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value that marks the end of the range
+     * Value that marks the end of the range.
      *
      * Generated from protobuf field <code>string end = 3;</code>
      * @return string
@@ -121,7 +121,7 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value that marks the end of the range
+     * Value that marks the end of the range.
      *
      * Generated from protobuf field <code>string end = 3;</code>
      * @param string $var

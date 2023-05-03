@@ -22,25 +22,26 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      */
     private $column = '';
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless
-     * ignore_null is true. In that case, such null rows are trivially considered
-     * passing. Only applicable to ColumnMap rules.
+     * Optional. Rows with `null` values will automatically fail a rule, unless
+     * `ignore_null` is `true`. In that case, such `null` rows are trivially
+     * considered passing.
+     * Only applicable to ColumnMap rules.
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ignore_null = false;
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension-level. Supported dimensions are ["COMPLETENESS", "ACCURACY",
-     * "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]
+     * the dimension level. Supported dimensions are **["COMPLETENESS",
+     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dimension = '';
     /**
-     * Optional. The minimum ratio of passing_rows / total_rows required to pass
-     * this rule, with a range of [0.0, 1.0]
-     * 0 indicates default value (i.e. 1.0)
+     * Optional. The minimum ratio of **passing_rows / total_rows** required to
+     * pass this rule, with a range of [0.0, 1.0].
+     * 0 indicates default value (i.e. 1.0).
      *
      * Generated from protobuf field <code>double threshold = 503 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,17 +78,18 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
-     *           Optional. Rows with null values will automatically fail a rule, unless
-     *           ignore_null is true. In that case, such null rows are trivially considered
-     *           passing. Only applicable to ColumnMap rules.
+     *           Optional. Rows with `null` values will automatically fail a rule, unless
+     *           `ignore_null` is `true`. In that case, such `null` rows are trivially
+     *           considered passing.
+     *           Only applicable to ColumnMap rules.
      *     @type string $dimension
      *           Required. The dimension a rule belongs to. Results are also aggregated at
-     *           the dimension-level. Supported dimensions are ["COMPLETENESS", "ACCURACY",
-     *           "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]
+     *           the dimension level. Supported dimensions are **["COMPLETENESS",
+     *           "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
      *     @type float $threshold
-     *           Optional. The minimum ratio of passing_rows / total_rows required to pass
-     *           this rule, with a range of [0.0, 1.0]
-     *           0 indicates default value (i.e. 1.0)
+     *           Optional. The minimum ratio of **passing_rows / total_rows** required to
+     *           pass this rule, with a range of [0.0, 1.0].
+     *           0 indicates default value (i.e. 1.0).
      * }
      */
     public function __construct($data = NULL) {
@@ -380,9 +382,10 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless
-     * ignore_null is true. In that case, such null rows are trivially considered
-     * passing. Only applicable to ColumnMap rules.
+     * Optional. Rows with `null` values will automatically fail a rule, unless
+     * `ignore_null` is `true`. In that case, such `null` rows are trivially
+     * considered passing.
+     * Only applicable to ColumnMap rules.
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -393,9 +396,10 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless
-     * ignore_null is true. In that case, such null rows are trivially considered
-     * passing. Only applicable to ColumnMap rules.
+     * Optional. Rows with `null` values will automatically fail a rule, unless
+     * `ignore_null` is `true`. In that case, such `null` rows are trivially
+     * considered passing.
+     * Only applicable to ColumnMap rules.
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -411,8 +415,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension-level. Supported dimensions are ["COMPLETENESS", "ACCURACY",
-     * "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]
+     * the dimension level. Supported dimensions are **["COMPLETENESS",
+     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -424,8 +428,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension-level. Supported dimensions are ["COMPLETENESS", "ACCURACY",
-     * "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]
+     * the dimension level. Supported dimensions are **["COMPLETENESS",
+     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -440,9 +444,9 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum ratio of passing_rows / total_rows required to pass
-     * this rule, with a range of [0.0, 1.0]
-     * 0 indicates default value (i.e. 1.0)
+     * Optional. The minimum ratio of **passing_rows / total_rows** required to
+     * pass this rule, with a range of [0.0, 1.0].
+     * 0 indicates default value (i.e. 1.0).
      *
      * Generated from protobuf field <code>double threshold = 503 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -453,9 +457,9 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum ratio of passing_rows / total_rows required to pass
-     * this rule, with a range of [0.0, 1.0]
-     * 0 indicates default value (i.e. 1.0)
+     * Optional. The minimum ratio of **passing_rows / total_rows** required to
+     * pass this rule, with a range of [0.0, 1.0].
+     * 0 indicates default value (i.e. 1.0).
      *
      * Generated from protobuf field <code>double threshold = 503 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
