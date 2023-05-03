@@ -42,6 +42,7 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
             ],
         ],
     ],
