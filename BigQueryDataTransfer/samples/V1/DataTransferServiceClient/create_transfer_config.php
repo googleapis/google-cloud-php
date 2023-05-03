@@ -42,7 +42,7 @@ function create_transfer_config_sample(string $formattedParent): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transferConfig = new TransferConfig();
 
     // Call the API and handle any network failures.

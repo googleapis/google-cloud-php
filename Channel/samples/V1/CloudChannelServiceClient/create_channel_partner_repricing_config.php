@@ -89,7 +89,7 @@ function create_channel_partner_repricing_config_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelPartnerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $channelPartnerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $channelPartnerRepricingConfigRepricingConfig = (new RepricingConfig())

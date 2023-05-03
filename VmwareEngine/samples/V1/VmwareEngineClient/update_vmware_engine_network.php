@@ -43,7 +43,7 @@ function update_vmware_engine_network_sample(int $vmwareEngineNetworkType): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $vmwareEngineNetwork = (new VmwareEngineNetwork())
         ->setType($vmwareEngineNetworkType);
     $updateMask = new FieldMask();

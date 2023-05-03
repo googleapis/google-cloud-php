@@ -169,6 +169,8 @@ class VmwareEngineGapicClient
 
     private static $locationNameTemplate;
 
+    private static $networkNameTemplate;
+
     private static $networkPolicyNameTemplate;
 
     private static $nodeTypeNameTemplate;
@@ -239,6 +241,17 @@ class VmwareEngineGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getNetworkNameTemplate()
+    {
+        if (self::$networkNameTemplate == null) {
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networkNameTemplate;
+    }
+
     private static function getNetworkPolicyNameTemplate()
     {
         if (self::$networkPolicyNameTemplate == null) {
@@ -290,6 +303,7 @@ class VmwareEngineGapicClient
                 'cluster' => self::getClusterNameTemplate(),
                 'hcxActivationKey' => self::getHcxActivationKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'network' => self::getNetworkNameTemplate(),
                 'networkPolicy' => self::getNetworkPolicyNameTemplate(),
                 'nodeType' => self::getNodeTypeNameTemplate(),
                 'privateCloud' => self::getPrivateCloudNameTemplate(),
@@ -364,6 +378,23 @@ class VmwareEngineGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName($project, $network)
+    {
+        return self::getNetworkNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
         ]);
     }
 
@@ -456,6 +487,7 @@ class VmwareEngineGapicClient
      * - cluster: projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}
      * - hcxActivationKey: projects/{project}/locations/{location}/privateClouds/{private_cloud}/hcxActivationKeys/{hcx_activation_key}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{network}
      * - networkPolicy: projects/{project}/locations/{location}/networkPolicies/{network_policy}
      * - nodeType: projects/{project}/locations/{location}/nodeTypes/{node_type}
      * - privateCloud: projects/{project}/locations/{location}/privateClouds/{private_cloud}

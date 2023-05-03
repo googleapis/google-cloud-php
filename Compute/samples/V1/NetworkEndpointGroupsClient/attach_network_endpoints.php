@@ -44,7 +44,7 @@ function attach_network_endpoints_sample(
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupsAttachEndpointsRequestResource = new NetworkEndpointGroupsAttachEndpointsRequest();
 
     // Call the API and handle any network failures.

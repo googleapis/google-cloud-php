@@ -40,7 +40,7 @@ function set_edge_security_policy_sample(string $backendBucket, string $project)
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyReferenceResource = new SecurityPolicyReference();
 
     // Call the API and handle any network failures.

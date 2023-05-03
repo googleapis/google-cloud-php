@@ -90,7 +90,7 @@ function create_customer_repricing_config_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $customerRepricingConfigRepricingConfig = (new RepricingConfig())

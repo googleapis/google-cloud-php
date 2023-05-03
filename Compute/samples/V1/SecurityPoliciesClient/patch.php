@@ -40,7 +40,7 @@ function patch_sample(string $project, string $securityPolicy): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyResource = new SecurityPolicy();
 
     // Call the API and handle any network failures.

@@ -39,7 +39,7 @@ function insert_sample(string $project): void
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupResource = new NetworkEndpointGroup();
 
     // Call the API and handle any network failures.

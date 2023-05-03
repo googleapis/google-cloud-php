@@ -122,6 +122,8 @@ class AnalyticsHubServiceGapicClient
 
     private static $dataExchangeNameTemplate;
 
+    private static $datasetNameTemplate;
+
     private static $listingNameTemplate;
 
     private static $locationNameTemplate;
@@ -167,6 +169,17 @@ class AnalyticsHubServiceGapicClient
         return self::$dataExchangeNameTemplate;
     }
 
+    private static function getDatasetNameTemplate()
+    {
+        if (self::$datasetNameTemplate == null) {
+            self::$datasetNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}'
+            );
+        }
+
+        return self::$datasetNameTemplate;
+    }
+
     private static function getListingNameTemplate()
     {
         if (self::$listingNameTemplate == null) {
@@ -194,6 +207,7 @@ class AnalyticsHubServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'dataExchange' => self::getDataExchangeNameTemplate(),
+                'dataset' => self::getDatasetNameTemplate(),
                 'listing' => self::getListingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
@@ -220,6 +234,25 @@ class AnalyticsHubServiceGapicClient
             'project' => $project,
             'location' => $location,
             'data_exchange' => $dataExchange,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     *
+     * @experimental
+     */
+    public static function datasetName($project, $dataset)
+    {
+        return self::getDatasetNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
         ]);
     }
 
@@ -274,6 +307,7 @@ class AnalyticsHubServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - dataExchange: projects/{project}/locations/{location}/dataExchanges/{data_exchange}
+     * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      *

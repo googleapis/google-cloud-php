@@ -41,7 +41,7 @@ function patch_sample(string $project, string $region, string $subnetwork): void
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subnetworkResource = new Subnetwork();
 
     // Call the API and handle any network failures.

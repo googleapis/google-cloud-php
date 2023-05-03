@@ -47,7 +47,7 @@ function create_attestor_sample(
     // Create a client.
     $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attestor = (new Attestor())
         ->setName($attestorName);
 
