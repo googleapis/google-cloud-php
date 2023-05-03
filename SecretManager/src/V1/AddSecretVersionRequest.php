@@ -30,6 +30,23 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
     private $payload = null;
 
     /**
+     * @param string                                       $parent  Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`. Please see
+     *                                                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+     * @param \Google\Cloud\SecretManager\V1\SecretPayload $payload Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * @return \Google\Cloud\SecretManager\V1\AddSecretVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\SecretManager\V1\SecretPayload $payload): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPayload($payload);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
