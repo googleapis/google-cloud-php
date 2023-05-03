@@ -41,7 +41,7 @@ function patch_sample(string $project, string $region, string $serviceAttachment
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceAttachmentResource = new ServiceAttachment();
 
     // Call the API and handle any network failures.

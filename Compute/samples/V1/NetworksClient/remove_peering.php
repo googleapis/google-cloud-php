@@ -40,7 +40,7 @@ function remove_peering_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networksRemovePeeringRequestResource = new NetworksRemovePeeringRequest();
 
     // Call the API and handle any network failures.

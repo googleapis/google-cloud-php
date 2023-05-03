@@ -40,7 +40,7 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $reservationResource = new Reservation();
 
     // Call the API and handle any network failures.

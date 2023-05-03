@@ -74,7 +74,7 @@ function transfer_entitlements_to_google_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitlement = (new Entitlement())
         ->setOffer($formattedEntitlementsOffer);
     $entitlements = [$entitlement,];

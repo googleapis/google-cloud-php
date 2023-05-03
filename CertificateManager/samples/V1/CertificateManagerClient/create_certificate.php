@@ -42,7 +42,7 @@ function create_certificate_sample(string $formattedParent, string $certificateI
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificate = new Certificate();
 
     // Call the API and handle any network failures.

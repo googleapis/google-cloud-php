@@ -53,7 +53,7 @@ function create_certificate_issuance_config_sample(
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateIssuanceConfigCertificateAuthorityConfig = new CertificateAuthorityConfig();
     $certificateIssuanceConfigLifetime = new Duration();
     $certificateIssuanceConfig = (new CertificateIssuanceConfig())

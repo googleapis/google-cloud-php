@@ -40,7 +40,7 @@ function set_target_sample(string $forwardingRule, string $project): void
     // Create a client.
     $globalForwardingRulesClient = new GlobalForwardingRulesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetReferenceResource = new TargetReference();
 
     // Call the API and handle any network failures.

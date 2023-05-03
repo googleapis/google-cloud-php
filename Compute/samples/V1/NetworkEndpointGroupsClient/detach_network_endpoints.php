@@ -44,7 +44,7 @@ function detach_network_endpoints_sample(
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupsDetachEndpointsRequestResource = new NetworkEndpointGroupsDetachEndpointsRequest();
 
     // Call the API and handle any network failures.

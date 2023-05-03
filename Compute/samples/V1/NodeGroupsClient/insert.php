@@ -41,7 +41,7 @@ function insert_sample(int $initialNodeCount, string $project, string $zone): vo
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupResource = new NodeGroup();
 
     // Call the API and handle any network failures.

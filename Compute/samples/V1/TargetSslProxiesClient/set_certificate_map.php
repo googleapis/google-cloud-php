@@ -40,7 +40,7 @@ function set_certificate_map_sample(string $project, string $targetSslProxy): vo
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetSslProxiesSetCertificateMapRequestResource = new TargetSslProxiesSetCertificateMapRequest();
 
     // Call the API and handle any network failures.

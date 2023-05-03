@@ -93,9 +93,13 @@ class ConnectionServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $clusterNameTemplate;
+
     private static $connectionNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -125,6 +129,17 @@ class ConnectionServiceGapicClient
         ];
     }
 
+    private static function getClusterNameTemplate()
+    {
+        if (self::$clusterNameTemplate == null) {
+            self::$clusterNameTemplate = new PathTemplate(
+                'projects/{project}/regions/{region}/clusters/{cluster}'
+            );
+        }
+
+        return self::$clusterNameTemplate;
+    }
+
     private static function getConnectionNameTemplate()
     {
         if (self::$connectionNameTemplate == null) {
@@ -147,16 +162,48 @@ class ConnectionServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'cluster' => self::getClusterNameTemplate(),
                 'connection' => self::getConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cluster
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     *
+     * @return string The formatted cluster resource.
+     */
+    public static function clusterName($project, $region, $cluster)
+    {
+        return self::getClusterNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+        ]);
     }
 
     /**
@@ -196,11 +243,32 @@ class ConnectionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cluster: projects/{project}/regions/{region}/clusters/{cluster}
      * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - location: projects/{project}/locations/{location}
+     * - service: projects/{project}/locations/{location}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

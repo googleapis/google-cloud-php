@@ -171,13 +171,21 @@ class ContactCenterInsightsGapicClient
 
     private static $conversationNameTemplate;
 
+    private static $conversationProfileNameTemplate;
+
     private static $issueNameTemplate;
 
     private static $issueModelNameTemplate;
 
     private static $locationNameTemplate;
 
+    private static $participantNameTemplate;
+
     private static $phraseMatcherNameTemplate;
+
+    private static $projectConversationParticipantNameTemplate;
+
+    private static $projectLocationConversationParticipantNameTemplate;
 
     private static $settingsNameTemplate;
 
@@ -237,6 +245,17 @@ class ContactCenterInsightsGapicClient
         return self::$conversationNameTemplate;
     }
 
+    private static function getConversationProfileNameTemplate()
+    {
+        if (self::$conversationProfileNameTemplate == null) {
+            self::$conversationProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}'
+            );
+        }
+
+        return self::$conversationProfileNameTemplate;
+    }
+
     private static function getIssueNameTemplate()
     {
         if (self::$issueNameTemplate == null) {
@@ -270,6 +289,17 @@ class ContactCenterInsightsGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getParticipantNameTemplate()
+    {
+        if (self::$participantNameTemplate == null) {
+            self::$participantNameTemplate = new PathTemplate(
+                'projects/{project}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$participantNameTemplate;
+    }
+
     private static function getPhraseMatcherNameTemplate()
     {
         if (self::$phraseMatcherNameTemplate == null) {
@@ -279,6 +309,28 @@ class ContactCenterInsightsGapicClient
         }
 
         return self::$phraseMatcherNameTemplate;
+    }
+
+    private static function getProjectConversationParticipantNameTemplate()
+    {
+        if (self::$projectConversationParticipantNameTemplate == null) {
+            self::$projectConversationParticipantNameTemplate = new PathTemplate(
+                'projects/{project}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$projectConversationParticipantNameTemplate;
+    }
+
+    private static function getProjectLocationConversationParticipantNameTemplate()
+    {
+        if (self::$projectLocationConversationParticipantNameTemplate == null) {
+            self::$projectLocationConversationParticipantNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}'
+            );
+        }
+
+        return self::$projectLocationConversationParticipantNameTemplate;
     }
 
     private static function getSettingsNameTemplate()
@@ -309,10 +361,14 @@ class ContactCenterInsightsGapicClient
             self::$pathTemplateMap = [
                 'analysis' => self::getAnalysisNameTemplate(),
                 'conversation' => self::getConversationNameTemplate(),
+                'conversationProfile' => self::getConversationProfileNameTemplate(),
                 'issue' => self::getIssueNameTemplate(),
                 'issueModel' => self::getIssueModelNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'participant' => self::getParticipantNameTemplate(),
                 'phraseMatcher' => self::getPhraseMatcherNameTemplate(),
+                'projectConversationParticipant' => self::getProjectConversationParticipantNameTemplate(),
+                'projectLocationConversationParticipant' => self::getProjectLocationConversationParticipantNameTemplate(),
                 'settings' => self::getSettingsNameTemplate(),
                 'view' => self::getViewNameTemplate(),
             ];
@@ -362,6 +418,28 @@ class ContactCenterInsightsGapicClient
             'project' => $project,
             'location' => $location,
             'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversation_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationProfile
+     *
+     * @return string The formatted conversation_profile resource.
+     */
+    public static function conversationProfileName(
+        $project,
+        $location,
+        $conversationProfile
+    ) {
+        return self::getConversationProfileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_profile' => $conversationProfile,
         ]);
     }
 
@@ -423,6 +501,28 @@ class ContactCenterInsightsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a participant
+     * resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted participant resource.
+     */
+    public static function participantName(
+        $project,
+        $conversation,
+        $participant
+    ) {
+        return self::getParticipantNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'participant' => $participant,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * phrase_matcher resource.
      *
@@ -442,6 +542,55 @@ class ContactCenterInsightsGapicClient
             'location' => $location,
             'phrase_matcher' => $phraseMatcher,
         ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_conversation_participant resource.
+     *
+     * @param string $project
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted project_conversation_participant resource.
+     */
+    public static function projectConversationParticipantName(
+        $project,
+        $conversation,
+        $participant
+    ) {
+        return self::getProjectConversationParticipantNameTemplate()->render([
+            'project' => $project,
+            'conversation' => $conversation,
+            'participant' => $participant,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_participant resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $participant
+     *
+     * @return string The formatted project_location_conversation_participant resource.
+     */
+    public static function projectLocationConversationParticipantName(
+        $project,
+        $location,
+        $conversation,
+        $participant
+    ) {
+        return self::getProjectLocationConversationParticipantNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'conversation' => $conversation,
+                'participant' => $participant,
+            ]
+        );
     }
 
     /**
@@ -486,10 +635,14 @@ class ContactCenterInsightsGapicClient
      * Template: Pattern
      * - analysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - conversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
      * - issue: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      * - issueModel: projects/{project}/locations/{location}/issueModels/{issue_model}
      * - location: projects/{project}/locations/{location}
+     * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
+     * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
      * - settings: projects/{project}/locations/{location}/settings
      * - view: projects/{project}/locations/{location}/views/{view}
      *

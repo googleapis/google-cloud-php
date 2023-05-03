@@ -41,7 +41,7 @@ function remove_instance_sample(string $project, string $region, string $targetP
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
 
     // Call the API and handle any network failures.

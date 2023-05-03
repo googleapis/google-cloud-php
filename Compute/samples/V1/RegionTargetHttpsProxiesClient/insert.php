@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetHttpsProxyResource = new TargetHttpsProxy();
 
     // Call the API and handle any network failures.

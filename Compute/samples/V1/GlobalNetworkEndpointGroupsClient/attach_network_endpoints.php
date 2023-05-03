@@ -40,7 +40,7 @@ function attach_network_endpoints_sample(string $networkEndpointGroup, string $p
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalNetworkEndpointGroupsAttachEndpointsRequestResource = new GlobalNetworkEndpointGroupsAttachEndpointsRequest();
 
     // Call the API and handle any network failures.

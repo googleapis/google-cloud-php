@@ -42,7 +42,7 @@ function modify_entry_contacts_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $contacts = new Contacts();
 
     // Call the API and handle any network failures.
