@@ -46,7 +46,7 @@ function create_submission_sample(string $formattedParent, string $submissionUri
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $submission = (new Submission())
         ->setUri($submissionUri);
 

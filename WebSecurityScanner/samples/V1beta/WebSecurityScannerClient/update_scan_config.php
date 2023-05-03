@@ -41,7 +41,7 @@ function update_scan_config_sample(
     // Create a client.
     $webSecurityScannerClient = new WebSecurityScannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $scanConfigStartingUrls = [$scanConfigStartingUrlsElement,];
     $scanConfig = (new ScanConfig())
         ->setDisplayName($scanConfigDisplayName)
