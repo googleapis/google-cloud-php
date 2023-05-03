@@ -300,6 +300,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_node_pool_logging_config = null;
     /**
+     * The desired fleet configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet desired_fleet = 117;</code>
+     */
+    private $desired_fleet = null;
+    /**
      * The desired stack type of the cluster.
      * If a stack type is provided and does not match the current stack type of
      * the cluster, update will attempt to change the stack type to the new type.
@@ -455,6 +461,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           update will be blocked and an ABORTED error will be returned.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
      *           The desired node pool logging configuration defaults for the cluster.
+     *     @type \Google\Cloud\Container\V1\Fleet $desired_fleet
+     *           The desired fleet configuration for the cluster.
      *     @type int $desired_stack_type
      *           The desired stack type of the cluster.
      *           If a stack type is provided and does not match the current stack type of
@@ -1869,6 +1877,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
         $this->desired_node_pool_logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired fleet configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet desired_fleet = 117;</code>
+     * @return \Google\Cloud\Container\V1\Fleet|null
+     */
+    public function getDesiredFleet()
+    {
+        return $this->desired_fleet;
+    }
+
+    public function hasDesiredFleet()
+    {
+        return isset($this->desired_fleet);
+    }
+
+    public function clearDesiredFleet()
+    {
+        unset($this->desired_fleet);
+    }
+
+    /**
+     * The desired fleet configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet desired_fleet = 117;</code>
+     * @param \Google\Cloud\Container\V1\Fleet $var
+     * @return $this
+     */
+    public function setDesiredFleet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\Fleet::class);
+        $this->desired_fleet = $var;
 
         return $this;
     }
