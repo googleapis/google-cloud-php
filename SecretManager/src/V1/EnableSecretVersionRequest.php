@@ -32,6 +32,21 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
+     *                     `projects/&#42;/secrets/&#42;/versions/*`. Please see
+     *                     {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecretManager\V1\EnableSecretVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

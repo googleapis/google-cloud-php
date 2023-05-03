@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START secretmanager_v1_generated_SecretManagerService_ListSecrets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\ListSecretsRequest;
 use Google\Cloud\SecretManager\V1\Secret;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 
 /**
  * Lists [Secrets][google.cloud.secretmanager.v1.Secret].
@@ -40,10 +41,14 @@ function list_secrets_sample(string $formattedParent): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSecretsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $secretManagerServiceClient->listSecrets($formattedParent);
+        $response = $secretManagerServiceClient->listSecrets($request);
 
         /** @var Secret $element */
         foreach ($response as $element) {

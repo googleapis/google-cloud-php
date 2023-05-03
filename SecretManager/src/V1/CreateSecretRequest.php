@@ -39,6 +39,29 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     private $secret = null;
 
     /**
+     * @param string                                $parent   Required. The resource name of the project to associate with the
+     *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
+     *                                                        {@see SecretManagerServiceClient::projectName()} for help formatting this field.
+     * @param string                                $secretId Required. This must be unique within the project.
+     *
+     *                                                        A secret ID is a string with a maximum length of 255 characters and can
+     *                                                        contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     *                                                        underscore (`_`) characters.
+     * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     *
+     * @return \Google\Cloud\SecretManager\V1\CreateSecretRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $secretId, \Google\Cloud\SecretManager\V1\Secret $secret): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSecretId($secretId)
+            ->setSecret($secret);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
