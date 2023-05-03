@@ -54,7 +54,7 @@ function read_sample(string $formattedSession, string $table, string $columnsEle
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $columns = [$columnsElement,];
     $keySet = new KeySet();
 

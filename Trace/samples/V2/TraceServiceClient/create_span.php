@@ -51,7 +51,7 @@ function create_span_sample(string $name, string $spanId): void
     // Create a client.
     $traceServiceClient = new TraceServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $displayName = new TruncatableString();
     $startTime = new Timestamp();
     $endTime = new Timestamp();

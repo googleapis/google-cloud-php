@@ -45,7 +45,7 @@ function update_certificate_revocation_list_sample(): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateRevocationList = new CertificateRevocationList();
     $updateMask = new FieldMask();
 

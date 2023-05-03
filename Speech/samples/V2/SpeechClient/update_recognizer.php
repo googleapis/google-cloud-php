@@ -98,7 +98,7 @@ function update_recognizer_sample(
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $recognizerLanguageCodes = [$recognizerLanguageCodesElement,];
     $recognizer = (new Recognizer())
         ->setModel($recognizerModel)

@@ -41,7 +41,7 @@ function update_custom_class_sample(): void
     // Create a client.
     $adaptationClient = new AdaptationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customClass = new CustomClass();
 
     // Call the API and handle any network failures.

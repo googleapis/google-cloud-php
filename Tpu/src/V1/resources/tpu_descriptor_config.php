@@ -83,6 +83,9 @@ return [
                     'resourcesGetMethod' => 'getTensorflowVersions',
                 ],
             ],
+            'GetLocation' => [
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -92,6 +95,7 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
             ],
         ],
     ],

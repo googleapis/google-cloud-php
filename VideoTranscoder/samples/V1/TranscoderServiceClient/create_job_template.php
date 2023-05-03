@@ -44,7 +44,7 @@ function create_job_template_sample(string $formattedParent, string $jobTemplate
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTemplate = new JobTemplate();
 
     // Call the API and handle any network failures.

@@ -44,7 +44,7 @@ function streaming_recognize_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new StreamingRecognizeRequest();
 
     // Call the API and handle any network failures.

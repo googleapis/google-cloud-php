@@ -43,7 +43,7 @@ function create_event_sample(string $formattedParent, string $eventId): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $eventInputSwitch = new InputSwitchTask();
     $event = (new Event())
         ->setInputSwitch($eventInputSwitch);

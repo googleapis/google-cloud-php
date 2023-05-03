@@ -42,7 +42,7 @@ function batch_annotate_images_sample(): void
     // Create a client.
     $imageAnnotatorClient = new ImageAnnotatorClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requests = [new AnnotateImageRequest()];
 
     // Call the API and handle any network failures.

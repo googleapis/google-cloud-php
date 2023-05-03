@@ -45,7 +45,7 @@ function create_product_set_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $productSet = new ProductSet();
 
     // Call the API and handle any network failures.

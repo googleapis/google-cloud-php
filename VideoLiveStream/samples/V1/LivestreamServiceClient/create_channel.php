@@ -46,7 +46,7 @@ function create_channel_sample(string $formattedParent, string $channelId): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelOutput = new Output();
     $channel = (new Channel())
         ->setOutput($channelOutput);

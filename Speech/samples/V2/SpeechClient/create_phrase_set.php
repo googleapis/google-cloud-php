@@ -41,7 +41,7 @@ function create_phrase_set_sample(string $formattedParent): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseSet = new PhraseSet();
 
     // Call the API and handle any network failures.
