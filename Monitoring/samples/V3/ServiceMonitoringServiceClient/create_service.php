@@ -40,7 +40,7 @@ function create_service_sample(string $parent): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $service = new Service();
 
     // Call the API and handle any network failures.

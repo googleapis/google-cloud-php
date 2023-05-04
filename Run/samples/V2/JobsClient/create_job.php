@@ -46,7 +46,7 @@ function create_job_sample(string $formattedParent, string $jobId): void
     // Create a client.
     $jobsClient = new JobsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $jobTemplateTemplate = new TaskTemplate();
     $jobTemplate = (new ExecutionTemplate())
         ->setTemplate($jobTemplateTemplate);

@@ -44,7 +44,7 @@ function update_product_sample(string $productTitle): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $product = (new Product())
         ->setTitle($productTitle);
 

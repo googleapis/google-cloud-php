@@ -39,7 +39,7 @@ function create_prediction_api_key_registration_sample(string $formattedParent):
     // Create a client.
     $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
 
     // Call the API and handle any network failures.

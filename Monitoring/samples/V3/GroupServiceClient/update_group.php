@@ -42,7 +42,7 @@ function update_group_sample(): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $group = new Group();
 
     // Call the API and handle any network failures.

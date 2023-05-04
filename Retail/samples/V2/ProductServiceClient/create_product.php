@@ -65,7 +65,7 @@ function create_product_sample(
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $product = (new Product())
         ->setTitle($productTitle);
 

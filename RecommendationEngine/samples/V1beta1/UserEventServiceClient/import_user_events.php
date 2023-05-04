@@ -48,7 +48,7 @@ function import_user_events_sample(string $formattedParent): void
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $inputConfig = new InputConfig();
 
     // Call the API and handle any network failures.

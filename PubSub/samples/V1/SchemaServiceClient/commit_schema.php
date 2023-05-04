@@ -41,7 +41,7 @@ function commit_schema_sample(string $formattedName, string $schemaName): void
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $schema = (new Schema())
         ->setName($schemaName);
 

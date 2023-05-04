@@ -41,7 +41,7 @@ function update_security_marks_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityMarks = new SecurityMarks();
 
     // Call the API and handle any network failures.

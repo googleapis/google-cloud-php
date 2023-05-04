@@ -67,7 +67,7 @@ function create_folder_sample(string $folderParent): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $folder = (new Folder())
         ->setParent($folderParent);
 

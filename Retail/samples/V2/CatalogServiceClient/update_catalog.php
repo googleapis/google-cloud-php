@@ -42,7 +42,7 @@ function update_catalog_sample(string $catalogName, string $catalogDisplayName):
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $catalogProductLevelConfig = new ProductLevelConfig();
     $catalog = (new Catalog())
         ->setName($catalogName)
