@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.spanner.v1",
+    "libraryPackage": "Google\\Cloud\\Spanner\\V1",
+    "services": {
+        "Spanner": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SpannerGapicClient",
+                    "rpcs": {
+                        "BatchCreateSessions": {
+                            "methods": [
+                                "batchCreateSessions"
+                            ]
+                        },
+                        "BeginTransaction": {
+                            "methods": [
+                                "beginTransaction"
+                            ]
+                        },
+                        "Commit": {
+                            "methods": [
+                                "commit"
+                            ]
+                        },
+                        "CreateSession": {
+                            "methods": [
+                                "createSession"
+                            ]
+                        },
+                        "DeleteSession": {
+                            "methods": [
+                                "deleteSession"
+                            ]
+                        },
+                        "ExecuteBatchDml": {
+                            "methods": [
+                                "executeBatchDml"
+                            ]
+                        },
+                        "ExecuteSql": {
+                            "methods": [
+                                "executeSql"
+                            ]
+                        },
+                        "ExecuteStreamingSql": {
+                            "methods": [
+                                "executeStreamingSql"
+                            ]
+                        },
+                        "GetSession": {
+                            "methods": [
+                                "getSession"
+                            ]
+                        },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
+                        "PartitionQuery": {
+                            "methods": [
+                                "partitionQuery"
+                            ]
+                        },
+                        "PartitionRead": {
+                            "methods": [
+                                "partitionRead"
+                            ]
+                        },
+                        "Read": {
+                            "methods": [
+                                "read"
+                            ]
+                        },
+                        "Rollback": {
+                            "methods": [
+                                "rollback"
+                            ]
+                        },
+                        "StreamingRead": {
+                            "methods": [
+                                "streamingRead"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
