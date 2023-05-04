@@ -32,7 +32,7 @@ class BitSequence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes bitmap = 1;</code>
      */
-    protected $bitmap = '';
+    private $bitmap = '';
     /**
      * The number of bits of the last byte in `bitmap` to ignore as "padding".
      * If the length of `bitmap` is zero, then this value must be `0`.
@@ -40,7 +40,7 @@ class BitSequence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 padding = 2;</code>
      */
-    protected $padding = 0;
+    private $padding = 0;
 
     /**
      * Constructor.

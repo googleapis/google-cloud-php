@@ -39,7 +39,7 @@ function commit_sample(string $database): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $writes = [new Write()];
 
     // Call the API and handle any network failures.

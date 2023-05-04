@@ -44,7 +44,7 @@ function create_document_sample(string $parent, string $collectionId, string $do
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $document = new Document();
 
     // Call the API and handle any network failures.

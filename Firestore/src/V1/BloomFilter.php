@@ -28,13 +28,13 @@ class BloomFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.BitSequence bits = 1;</code>
      */
-    protected $bits = null;
+    private $bits = null;
     /**
      * The number of hashes used by the algorithm.
      *
      * Generated from protobuf field <code>int32 hash_count = 2;</code>
      */
-    protected $hash_count = 0;
+    private $hash_count = 0;
 
     /**
      * Constructor.

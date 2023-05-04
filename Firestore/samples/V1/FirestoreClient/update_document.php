@@ -42,7 +42,7 @@ function update_document_sample(): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $document = new Document();
     $updateMask = new DocumentMask();
 
