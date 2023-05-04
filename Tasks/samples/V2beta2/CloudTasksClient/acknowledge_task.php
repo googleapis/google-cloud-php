@@ -52,7 +52,7 @@ function acknowledge_task_sample(string $formattedName): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $scheduleTime = new Timestamp();
 
     // Call the API and handle any network failures.

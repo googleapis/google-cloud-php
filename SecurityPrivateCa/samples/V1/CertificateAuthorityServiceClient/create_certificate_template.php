@@ -48,7 +48,7 @@ function create_certificate_template_sample(
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateTemplate = new CertificateTemplate();
 
     // Call the API and handle any network failures.

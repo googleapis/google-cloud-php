@@ -53,7 +53,7 @@ function async_batch_annotate_images_sample(): void
     // Create a client.
     $imageAnnotatorClient = new ImageAnnotatorClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $requests = [new AnnotateImageRequest()];
     $outputConfig = new OutputConfig();
 

@@ -45,7 +45,7 @@ function update_cdn_key_sample(): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cdnKey = new CdnKey();
     $updateMask = new FieldMask();
 

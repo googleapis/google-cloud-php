@@ -48,7 +48,7 @@ function create_utilization_report_sample(
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $utilizationReport = new UtilizationReport();
 
     // Call the API and handle any network failures.
