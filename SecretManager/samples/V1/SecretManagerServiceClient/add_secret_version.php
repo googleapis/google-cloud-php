@@ -24,8 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_AddSecretVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\AddSecretVersionRequest;
-use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
@@ -42,16 +41,13 @@ function add_secret_version_sample(string $formattedParent): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $payload = new SecretPayload();
-    $request = (new AddSecretVersionRequest())
-        ->setParent($formattedParent)
-        ->setPayload($payload);
 
     // Call the API and handle any network failures.
     try {
         /** @var SecretVersion $response */
-        $response = $secretManagerServiceClient->addSecretVersion($request);
+        $response = $secretManagerServiceClient->addSecretVersion($formattedParent, $payload);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
