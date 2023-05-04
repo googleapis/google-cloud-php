@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,8 +46,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the new TagKey's parent.
-     *           Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     *           Required. The resource name of the TagKey's parent.
+     *           Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *           `projects/{project_number}`
      *     @type int $page_size
      *           Optional. The maximum number of TagKeys to return in the response. The
      *           server allows a maximum of 300 TagKeys to return. If unspecified, the
@@ -62,8 +64,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +77,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
