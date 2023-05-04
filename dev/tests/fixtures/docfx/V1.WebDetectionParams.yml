@@ -5,9 +5,9 @@ items:
     name: WebDetectionParams
     friendlyApiName: 'Cloud Vision V1 Client'
     id: WebDetectionParams
-    summary: |
+    summary: |-
       Parameters for web detection request.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.WebDetectionParams</code>
     type: class
     langs:

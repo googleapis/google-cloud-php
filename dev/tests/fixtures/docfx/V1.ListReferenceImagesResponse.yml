@@ -5,9 +5,9 @@ items:
     name: ListReferenceImagesResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ListReferenceImagesResponse
-    summary: |
+    summary: |-
       Response message for the `ListReferenceImages` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ListReferenceImagesResponse</code>
     type: class
     langs:

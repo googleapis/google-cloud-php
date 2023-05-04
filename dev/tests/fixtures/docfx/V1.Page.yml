@@ -5,9 +5,9 @@ items:
     name: Page
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Page
-    summary: |
+    summary: |-
       Detected page from OCR.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Page</code>
     type: class
     langs:
@@ -112,7 +112,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::getWidth()'
     name: getWidth
     id: getWidth
-    summary: |
+    summary: |-
       Page width. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
     parent: \Google\Cloud\Vision\V1\Page
@@ -127,7 +127,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::setWidth()'
     name: setWidth
     id: setWidth
-    summary: |
+    summary: |-
       Page width. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
     parent: \Google\Cloud\Vision\V1\Page
@@ -147,7 +147,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::getHeight()'
     name: getHeight
     id: getHeight
-    summary: |
+    summary: |-
       Page height. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
     parent: \Google\Cloud\Vision\V1\Page
@@ -162,7 +162,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Page::setHeight()'
     name: setHeight
     id: setHeight
-    summary: |
+    summary: |-
       Page height. For PDFs the unit is points. For images (including
       TIFFs) the unit is pixels.
     parent: \Google\Cloud\Vision\V1\Page

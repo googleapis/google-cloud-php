@@ -5,9 +5,9 @@ items:
     name: LatLongRect
     friendlyApiName: 'Cloud Vision V1 Client'
     id: LatLongRect
-    summary: |
+    summary: |-
       Rectangle determined by min and max `LatLng` pairs.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.LatLongRect</code>
     type: class
     langs:

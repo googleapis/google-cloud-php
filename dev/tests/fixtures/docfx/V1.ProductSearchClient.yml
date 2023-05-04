@@ -5,25 +5,25 @@ items:
     name: ProductSearchClient
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSearchClient
-    summary: |
+    summary: |-
       Service Description: Manages Products and ProductSets of reference images for use in product
       search. It uses the following resource model:
-      
+
       - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> resources, named
       `projects/*/locations/*/productSets/*`, which acts as a way to put different
       products into groups to limit identification.
-      
+
       In parallel,
-      
+
       - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref> resources, named
       `projects/*/locations/*/products/*`
-      
+
       - Each <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref> has a collection of <xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref> resources, named
       `projects/*/locations/*/products/*/referenceImages/*`
-      
+
       This class provides the ability to make remote calls to the backing service through method
       calls that map to API methods. Sample code to get started:
-      
+
       ```php
       $productSearchClient = new ProductSearchClient();
       try {
@@ -34,7 +34,7 @@ items:
           $productSearchClient->close();
       }
       ```
-      
+
       Many parameters require resource names to be formatted in a particular way. To
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
@@ -78,7 +78,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::locationName()'
     name: locationName
     id: locationName
-    summary: |
+    summary: |-
       Formats a string containing the fully-qualified path to represent a location
       resource.
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -103,7 +103,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
     name: productName
     id: productName
-    summary: |
+    summary: |-
       Formats a string containing the fully-qualified path to represent a product
       resource.
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -132,7 +132,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
     name: productSetName
     id: productSetName
-    summary: |
+    summary: |-
       Formats a string containing the fully-qualified path to represent a product_set
       resource.
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -161,7 +161,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
     name: referenceImageName
     id: referenceImageName
-    summary: |
+    summary: |-
       Formats a string containing the fully-qualified path to represent a
       reference_image resource.
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
@@ -194,16 +194,16 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
     name: parseName
     id: parseName
-    summary: |
+    summary: |-
       Parses a formatted name string and returns an associative array of the components in the name.
-      
+
       The following name formats are supported:
       Template: Pattern
       - location: projects/{project}/locations/{location}
       - product: projects/{project}/locations/{location}/products/{product}
       - productSet: projects/{project}/locations/{location}/productSets/{product_set}
       - referenceImage: projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}
-      
+
       The optional $template argument can be supplied to specify a particular pattern,
       and must match one of the templates listed above. If no $template argument is
       provided, or if the $template argument does not match one of the templates
@@ -244,7 +244,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
     name: resumeOperation
     id: resumeOperation
-    summary: |
+    summary: |-
       Resume an existing long running operation that was previously started by a long
       running API method. If $methodName is not provided, or does not match a long
       running API method, then the operation can still be resumed, but the
@@ -317,27 +317,26 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::addProductToProductSet()'
     name: addProductToProductSet
     id: addProductToProductSet
-    summary: |
+    summary: |+
       Adds a Product to the specified ProductSet. If the Product is already
       present, no change is made.
-      
+
       One Product can be added to at most 100 ProductSets.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName    The resource name for the ProductSet to modify.
          *
@@ -354,7 +353,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
@@ -363,7 +362,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -375,7 +374,7 @@ items:
         {
             $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
             $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-        
+
             add_product_to_product_set_sample($formattedName, $formattedProduct);
         }
         ```
@@ -384,17 +383,17 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. The resource name for the ProductSet to modify.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: product
           var_type: string
-          description: |
+          description: |-
             Required. The resource name for the Product to be added to this ProductSet.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
@@ -409,28 +408,27 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::createProduct()'
     name: createProduct
     id: createProduct
-    summary: |
+    summary: |+
       Creates and returns a new product resource.
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
       characters.
       * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is missing or invalid.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\Product;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedParent The project in which the Product should be created.
          *
@@ -442,10 +440,10 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $product = new Product();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var Product $response */
@@ -455,7 +453,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -466,7 +464,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             create_product_sample($formattedParent);
         }
         ```
@@ -475,9 +473,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project in which the Product should be created.
-            
+
             Format is
             `projects/PROJECT_ID/locations/LOC_ID`.
         -
@@ -503,26 +501,25 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::createProductSet()'
     name: createProductSet
     id: createProductSet
-    summary: |
+    summary: |+
       Creates and returns a new ProductSet resource.
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
       4096 characters.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ProductSet;
-        
+
         /**
          * @param string $formattedParent The project in which the ProductSet should be created.
          *
@@ -533,10 +530,10 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $productSet = new ProductSet();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var ProductSet $response */
@@ -546,7 +543,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -557,7 +554,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             create_product_set_sample($formattedParent);
         }
         ```
@@ -566,9 +563,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project in which the ProductSet should be created.
-            
+
             Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: productSet
@@ -593,39 +590,38 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::createReferenceImage()'
     name: createReferenceImage
     id: createReferenceImage
-    summary: |
+    summary: |+
       Creates and returns a new ReferenceImage resource.
-      
+
       The `bounding_poly` field is optional. If `bounding_poly` is not specified,
       the system will try to detect regions of interest in the image that are
       compatible with the product_category on the parent product. If it is
       specified, detection is ALWAYS skipped. The system converts polygons into
       non-rotated rectangles.
-      
+
       Note that the pipeline will resize the image if the image resolution is too
       large to process (above 50MP).
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
       characters.
       * Returns INVALID_ARGUMENT if the product does not exist.
       * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
       compatible with the parent product's product_category is detected.
       * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ReferenceImage;
-        
+
         /**
          * @param string $formattedParent   Resource name of the product in which to create the reference image.
          *
@@ -640,11 +636,11 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $referenceImage = (new ReferenceImage())
                 ->setUri($referenceImageUri);
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var ReferenceImage $response */
@@ -654,7 +650,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -666,7 +662,7 @@ items:
         {
             $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
             $referenceImageUri = '[URI]';
-        
+
             create_reference_image_sample($formattedParent, $referenceImageUri);
         }
         ```
@@ -675,15 +671,15 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of the product in which to create the reference image.
-            
+
             Format is
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
         -
           id: referenceImage
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
-          description: |
+          description: |-
             Required. The reference image to create.
             If an image ID is specified, it is ignored.
         -
@@ -705,24 +701,23 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::deleteProduct()'
     name: deleteProduct
     id: deleteProduct
-    summary: |
+    summary: |+
       Permanently deletes a product and its reference images.
-      
+
       Metadata of the product and all its images will be deleted right away, but
       search queries against ProductSets containing the product may still work
       until all related caches are refreshed.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName Resource name of product to delete.
          *
@@ -734,7 +729,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 $productSearchClient->deleteProduct($formattedName);
@@ -743,7 +738,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -754,7 +749,7 @@ items:
         function callSample(): void
         {
             $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-        
+
             delete_product_sample($formattedName);
         }
         ```
@@ -763,9 +758,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of product to delete.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
@@ -780,23 +775,22 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::deleteProductSet()'
     name: deleteProductSet
     id: deleteProductSet
-    summary: |
+    summary: |+
       Permanently deletes a ProductSet. Products and ReferenceImages in the
       ProductSet are not deleted.
-      
+
       The actual image files are not deleted from Google Cloud Storage.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName Resource name of the ProductSet to delete.
          *
@@ -808,7 +802,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 $productSearchClient->deleteProductSet($formattedName);
@@ -817,7 +811,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -828,7 +822,7 @@ items:
         function callSample(): void
         {
             $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        
+
             delete_product_set_sample($formattedName);
         }
         ```
@@ -837,9 +831,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of the ProductSet to delete.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
@@ -854,26 +848,25 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::deleteReferenceImage()'
     name: deleteReferenceImage
     id: deleteReferenceImage
-    summary: |
+    summary: |+
       Permanently deletes a reference image.
-      
+
       The image metadata will be deleted right away, but search queries
       against ProductSets containing the image may still work until all related
       caches are refreshed.
-      
+
       The actual image files are not deleted from Google Cloud Storage.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName The resource name of the reference image to delete.
          *
@@ -885,7 +878,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 $productSearchClient->deleteReferenceImage($formattedName);
@@ -894,7 +887,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -910,7 +903,7 @@ items:
                 '[PRODUCT]',
                 '[REFERENCE_IMAGE]'
             );
-        
+
             delete_reference_image_sample($formattedName);
         }
         ```
@@ -919,9 +912,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. The resource name of the reference image to delete.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
         -
@@ -936,25 +929,24 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getProduct()'
     name: getProduct
     id: getProduct
-    summary: |
+    summary: |+
       Gets information associated with a Product.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the Product does not exist.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\Product;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName Resource name of the Product to get.
          *
@@ -966,7 +958,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var Product $response */
@@ -976,7 +968,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -987,7 +979,7 @@ items:
         function callSample(): void
         {
             $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-        
+
             get_product_sample($formattedName);
         }
         ```
@@ -996,9 +988,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of the Product to get.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
@@ -1016,25 +1008,24 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getProductSet()'
     name: getProductSet
     id: getProductSet
-    summary: |
+    summary: |+
       Gets information associated with a ProductSet.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the ProductSet does not exist.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ProductSet;
-        
+
         /**
          * @param string $formattedName Resource name of the ProductSet to get.
          *
@@ -1046,7 +1037,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var ProductSet $response */
@@ -1056,7 +1047,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1067,7 +1058,7 @@ items:
         function callSample(): void
         {
             $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        
+
             get_product_set_sample($formattedName);
         }
         ```
@@ -1076,9 +1067,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of the ProductSet to get.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
@@ -1096,25 +1087,24 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getReferenceImage()'
     name: getReferenceImage
     id: getReferenceImage
-    summary: |
+    summary: |+
       Gets information associated with a ReferenceImage.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the specified image does not exist.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ReferenceImage;
-        
+
         /**
          * @param string $formattedName The resource name of the ReferenceImage to get.
          *
@@ -1126,7 +1116,7 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var ReferenceImage $response */
@@ -1136,7 +1126,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1152,7 +1142,7 @@ items:
                 '[PRODUCT]',
                 '[REFERENCE_IMAGE]'
             );
-        
+
             get_reference_image_sample($formattedName);
         }
         ```
@@ -1161,9 +1151,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. The resource name of the ReferenceImage to get.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
         -
@@ -1181,26 +1171,25 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::importProductSets()'
     name: importProductSets
     id: importProductSets
-    summary: |
+    summary: |+
       Asynchronous API that imports a list of reference images to specified
       product sets based on a list of image information.
-      
+
       The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
       `Operation.response` contains `ImportProductSetsResponse`. (results)
-      
+
       The input source of this method is a csv file on Google Cloud Storage.
       For the format of the csv file please see
       <xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::getCsvFileUri()">ImportProductSetsGcsSource.csv_file_uri</xref>.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\OperationResponse;
@@ -1208,7 +1197,7 @@ items:
         use Google\Cloud\Vision\V1\ImportProductSetsResponse;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Rpc\Status;
-        
+
         /**
          * @param string $formattedParent The project in which the ProductSets should be imported.
          *
@@ -1219,16 +1208,16 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $inputConfig = new ImportProductSetsInputConfig();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var OperationResponse $response */
                 $response = $productSearchClient->importProductSets($formattedParent, $inputConfig);
                 $response->pollUntilComplete();
-        
+
                 if ($response->operationSucceeded()) {
                     /** @var ImportProductSetsResponse $result */
                     $result = $response->getResult();
@@ -1242,7 +1231,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1253,7 +1242,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             import_product_sets_sample($formattedParent);
         }
         ```
@@ -1262,9 +1251,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project in which the ProductSets should be imported.
-            
+
             Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: inputConfig
@@ -1285,27 +1274,26 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProductSets()'
     name: listProductSets
     id: listProductSets
-    summary: |
+    summary: |+
       Lists ProductSets in an unspecified order.
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
       than 1.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\PagedListResponse;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ProductSet;
-        
+
         /**
          * @param string $formattedParent The project from which ProductSets should be listed.
          *
@@ -1316,12 +1304,12 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var PagedListResponse $response */
                 $response = $productSearchClient->listProductSets($formattedParent);
-        
+
                 /** @var ProductSet $element */
                 foreach ($response as $element) {
                     printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -1330,7 +1318,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1341,7 +1329,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             list_product_sets_sample($formattedParent);
         }
         ```
@@ -1350,9 +1338,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project from which ProductSets should be listed.
-            
+
             Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: optionalArgs
@@ -1377,26 +1365,25 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProducts()'
     name: listProducts
     id: listProducts
-    summary: |
+    summary: |+
       Lists products in an unspecified order.
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\PagedListResponse;
         use Google\Cloud\Vision\V1\Product;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedParent The project OR ProductSet from which Products should be listed.
          *
@@ -1408,12 +1395,12 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var PagedListResponse $response */
                 $response = $productSearchClient->listProducts($formattedParent);
-        
+
                 /** @var Product $element */
                 foreach ($response as $element) {
                     printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -1422,7 +1409,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1433,7 +1420,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             list_products_sample($formattedParent);
         }
         ```
@@ -1442,9 +1429,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project OR ProductSet from which Products should be listed.
-            
+
             Format:
             `projects/PROJECT_ID/locations/LOC_ID`
         -
@@ -1470,28 +1457,27 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProductsInProductSet()'
     name: listProductsInProductSet
     id: listProductsInProductSet
-    summary: |
+    summary: |+
       Lists the Products in a ProductSet, in an unspecified order. If the
       ProductSet does not exist, the products field of the response will be
       empty.
-      
+
       Possible errors:
-      
+
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\PagedListResponse;
         use Google\Cloud\Vision\V1\Product;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName The ProductSet resource for which to retrieve Products.
          *
@@ -1503,12 +1489,12 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var PagedListResponse $response */
                 $response = $productSearchClient->listProductsInProductSet($formattedName);
-        
+
                 /** @var Product $element */
                 foreach ($response as $element) {
                     printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -1517,7 +1503,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1528,7 +1514,7 @@ items:
         function callSample(): void
         {
             $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        
+
             list_products_in_product_set_sample($formattedName);
         }
         ```
@@ -1537,9 +1523,9 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. The ProductSet resource for which to retrieve Products.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
@@ -1565,28 +1551,27 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listReferenceImages()'
     name: listReferenceImages
     id: listReferenceImages
-    summary: |
+    summary: |+
       Lists reference images.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the parent product does not exist.
       * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
       than 1.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\PagedListResponse;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ReferenceImage;
-        
+
         /**
          * @param string $formattedParent Resource name of the product containing the reference images.
          *
@@ -1598,12 +1583,12 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var PagedListResponse $response */
                 $response = $productSearchClient->listReferenceImages($formattedParent);
-        
+
                 /** @var ReferenceImage $element */
                 foreach ($response as $element) {
                     printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -1612,7 +1597,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1623,7 +1608,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-        
+
             list_reference_images_sample($formattedParent);
         }
         ```
@@ -1632,9 +1617,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. Resource name of the product containing the reference images.
-            
+
             Format is
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
         -
@@ -1660,45 +1645,44 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::purgeProducts()'
     name: purgeProducts
     id: purgeProducts
-    summary: |
+    summary: |+
       Asynchronous API to delete all Products in a ProductSet or all Products
       that are in no ProductSet.
-      
+
       If a Product is a member of the specified ProductSet in addition to other
       ProductSets, the Product will still be deleted.
-      
+
       It is recommended to not delete the specified ProductSet until after this
       operation has completed. It is also recommended to not add any of the
       Products involved in the batch delete to a new ProductSet while this
       operation is running because those Products may still end up deleted.
-      
+
       It's not possible to undo the PurgeProducts operation. Therefore, it is
       recommended to keep the csv files used in ImportProductSets (if that was
       how you originally built the Product Set) before starting PurgeProducts, in
       case you need to re-import the data after deletion.
-      
+
       If the plan is to purge all of the Products from a ProductSet and then
       re-use the empty ProductSet to re-import new Products into the empty
       ProductSet, you must wait until the PurgeProducts operation has finished
       for that ProductSet.
-      
+
       The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\ApiCore\OperationResponse;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Rpc\Status;
-        
+
         /**
          * @param string $formattedParent The project and location in which the Products should be deleted.
          *
@@ -1709,13 +1693,13 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var OperationResponse $response */
                 $response = $productSearchClient->purgeProducts($formattedParent);
                 $response->pollUntilComplete();
-        
+
                 if ($response->operationSucceeded()) {
                     printf('Operation completed successfully.' . PHP_EOL);
                 } else {
@@ -1727,7 +1711,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1738,7 +1722,7 @@ items:
         function callSample(): void
         {
             $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-        
+
             purge_products_sample($formattedParent);
         }
         ```
@@ -1747,9 +1731,9 @@ items:
         -
           id: parent
           var_type: string
-          description: |
+          description: |-
             Required. The project and location in which the Products should be deleted.
-            
+
             Format is `projects/PROJECT_ID/locations/LOC_ID`.
         -
           id: optionalArgs
@@ -1778,20 +1762,19 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::removeProductFromProductSet()'
     name: removeProductFromProductSet
     id: removeProductFromProductSet
-    summary: |
+    summary: |+
       Removes a Product from the specified ProductSet.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * @param string $formattedName    The resource name for the ProductSet to modify.
          *
@@ -1810,7 +1793,7 @@ items:
         ): void {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Call the API and handle any network failures.
             try {
                 $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
@@ -1819,7 +1802,7 @@ items:
                 printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
             }
         }
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1831,7 +1814,7 @@ items:
         {
             $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
             $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-        
+
             remove_product_from_product_set_sample($formattedName, $formattedProduct);
         }
         ```
@@ -1840,17 +1823,17 @@ items:
         -
           id: name
           var_type: string
-          description: |
+          description: |-
             Required. The resource name for the ProductSet to modify.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
         -
           id: product
           var_type: string
-          description: |
+          description: |-
             Required. The resource name for the Product to be removed from this ProductSet.
-            
+
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
         -
@@ -1865,36 +1848,35 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::updateProduct()'
     name: updateProduct
     id: updateProduct
-    summary: |
+    summary: |+
       Makes changes to a Product resource.
-      
+
       Only the `display_name`, `description`, and `labels` fields can be updated
       right now.
-      
+
       If labels are updated, the change will not be reflected in queries until
       the next index time.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the Product does not exist.
       * Returns INVALID_ARGUMENT if display_name is present in update_mask but is
       missing from the request or longer than 4096 characters.
       * Returns INVALID_ARGUMENT if description is present in update_mask but is
       longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is present in update_mask.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\Product;
         use Google\Cloud\Vision\V1\ProductSearchClient;
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1906,10 +1888,10 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $product = new Product();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var Product $response */
@@ -1925,7 +1907,7 @@ items:
         -
           id: product
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
-          description: |
+          description: |-
             Required. The Product resource which replaces the one on the server.
             product.name is immutable.
         -
@@ -1947,29 +1929,28 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::updateProductSet()'
     name: updateProductSet
     id: updateProductSet
-    summary: |
+    summary: |+
       Makes changes to a ProductSet resource.
-      
+
       Only display_name can be updated currently.
-      
+
       Possible errors:
-      
+
       * Returns NOT_FOUND if the ProductSet does not exist.
       * Returns INVALID_ARGUMENT if display_name is present in update_mask but
       missing from the request or longer than 4096 characters.
-      
-      
+
     parent: \Google\Cloud\Vision\V1\ProductSearchClient
     type: method
     langs:
       - php
     example:
-      - |
+      - |-
         ```php
         use Google\ApiCore\ApiException;
         use Google\Cloud\Vision\V1\ProductSearchClient;
         use Google\Cloud\Vision\V1\ProductSet;
-        
+
         /**
          * This sample has been automatically generated and should be regarded as a code
          * template only. It will require modifications to work:
@@ -1981,10 +1962,10 @@ items:
         {
             // Create a client.
             $productSearchClient = new ProductSearchClient();
-        
+
             // Prepare any non-scalar elements to be passed along with the request.
             $productSet = new ProductSet();
-        
+
             // Call the API and handle any network failures.
             try {
                 /** @var ProductSet $response */
@@ -2026,7 +2007,7 @@ items:
     langs:
       - php
     syntax:
-      content: 'Value: ''google.cloud.vision.v1.ProductSearch'''
+      content: "Value: 'google.cloud.vision.v1.ProductSearch'"
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::SERVICE_ADDRESS'
     name: SERVICE_ADDRESS
@@ -2037,7 +2018,7 @@ items:
     langs:
       - php
     syntax:
-      content: 'Value: ''vision.googleapis.com'''
+      content: "Value: 'vision.googleapis.com'"
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::DEFAULT_SERVICE_PORT'
     name: DEFAULT_SERVICE_PORT
@@ -2059,4 +2040,4 @@ items:
     langs:
       - php
     syntax:
-      content: 'Value: ''gapic'''
+      content: "Value: 'gapic'"

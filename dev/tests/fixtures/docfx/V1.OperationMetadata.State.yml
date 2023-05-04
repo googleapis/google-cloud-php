@@ -5,9 +5,9 @@ items:
     name: State
     friendlyApiName: 'Cloud Vision V1 Client'
     id: State
-    summary: |
+    summary: |-
       Batch operation states.
-      
+
       Protobuf type <code>google.cloud.vision.v1.OperationMetadata.State</code>
     type: class
     langs:
@@ -52,9 +52,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::STATE_UNSPECIFIED'
     name: STATE_UNSPECIFIED
     id: STATE_UNSPECIFIED
-    summary: |
+    summary: |-
       Invalid.
-      
+
       Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: const
@@ -66,9 +66,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::CREATED'
     name: CREATED
     id: CREATED
-    summary: |
+    summary: |-
       Request is received.
-      
+
       Generated from protobuf enum <code>CREATED = 1;</code>
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: const
@@ -80,9 +80,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::RUNNING'
     name: RUNNING
     id: RUNNING
-    summary: |
+    summary: |-
       Request is actively being processed.
-      
+
       Generated from protobuf enum <code>RUNNING = 2;</code>
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: const
@@ -94,9 +94,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::DONE'
     name: DONE
     id: DONE
-    summary: |
+    summary: |-
       The batch processing is done.
-      
+
       Generated from protobuf enum <code>DONE = 3;</code>
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: const
@@ -108,9 +108,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::CANCELLED'
     name: CANCELLED
     id: CANCELLED
-    summary: |
+    summary: |-
       The batch processing was cancelled.
-      
+
       Generated from protobuf enum <code>CANCELLED = 4;</code>
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: const

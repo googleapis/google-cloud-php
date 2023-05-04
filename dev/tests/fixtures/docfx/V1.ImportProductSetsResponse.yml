@@ -5,13 +5,13 @@ items:
     name: ImportProductSetsResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImportProductSetsResponse
-    summary: |
+    summary: |-
       Response message for the `ImportProductSets` method.
-      
+
       This message is returned by the
       <xref uid="\Google\Longrunning\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref> method in the returned
       <xref uid="\Google\Longrunning\Operation::getResponse()">google.longrunning.Operation.response</xref> field.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsResponse</code>
     type: class
     langs:
@@ -80,10 +80,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getStatuses()'
     name: getStatuses
     id: getStatuses
-    summary: |
+    summary: |-
       The rpc status for each ImportProductSet request, including both successes
       and errors.
-      
+
       The number of statuses here matches the number of lines in the csv file,
       and statuses[i] stores the success or failure status of processing the i-th
       line of the csv, starting from line 0.
@@ -99,10 +99,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setStatuses()'
     name: setStatuses
     id: setStatuses
-    summary: |
+    summary: |-
       The rpc status for each ImportProductSet request, including both successes
       and errors.
-      
+
       The number of statuses here matches the number of lines in the csv file,
       and statuses[i] stores the success or failure status of processing the i-th
       line of the csv, starting from line 0.

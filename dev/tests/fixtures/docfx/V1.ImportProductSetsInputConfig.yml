@@ -5,9 +5,9 @@ items:
     name: ImportProductSetsInputConfig
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImportProductSetsInputConfig
-    summary: |
+    summary: |-
       The input content for the `ImportProductSets` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsInputConfig</code>
     type: class
     langs:
@@ -41,7 +41,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getGcsSource()'
     name: getGcsSource
     id: getGcsSource
-    summary: |
+    summary: |-
       The Google Cloud Storage location for a csv file which preserves a list
       of ImportProductSetRequests in each line.
     parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
@@ -64,7 +64,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::setGcsSource()'
     name: setGcsSource
     id: setGcsSource
-    summary: |
+    summary: |-
       The Google Cloud Storage location for a csv file which preserves a list
       of ImportProductSetRequests in each line.
     parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig

@@ -5,9 +5,9 @@ items:
     name: BatchAnnotateImagesResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchAnnotateImagesResponse
-    summary: |
+    summary: |-
       Response to a batch image annotation request.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.BatchAnnotateImagesResponse</code>
     type: class
     langs:

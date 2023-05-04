@@ -5,9 +5,9 @@ items:
     name: LocalizedObjectAnnotation
     friendlyApiName: 'Cloud Vision V1 Client'
     id: LocalizedObjectAnnotation
-    summary: |
+    summary: |-
       Set of detected objects with bounding boxes.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.LocalizedObjectAnnotation</code>
     type: class
     langs:
@@ -96,7 +96,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getLanguageCode()'
     name: getLanguageCode
     id: getLanguageCode
-    summary: |
+    summary: |-
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
@@ -112,7 +112,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setLanguageCode()'
     name: setLanguageCode
     id: setLanguageCode
-    summary: |
+    summary: |-
       The BCP-47 language code, such as "en-US" or "sr-Latn". For more
       information, see
       http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.

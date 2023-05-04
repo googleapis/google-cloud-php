@@ -5,9 +5,9 @@ items:
     name: InputConfig
     friendlyApiName: 'Cloud Vision V1 Client'
     id: InputConfig
-    summary: |
+    summary: |-
       The desired input location and metadata.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.InputConfig</code>
     type: class
     langs:
@@ -100,9 +100,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::getContent()'
     name: getContent
     id: getContent
-    summary: |
+    summary: |-
       File content, represented as a stream of bytes.
-      
+
       Note: As with all `bytes` fields, protobuffers use a pure binary
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateFiles requests. It does
@@ -119,9 +119,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::setContent()'
     name: setContent
     id: setContent
-    summary: |
+    summary: |-
       File content, represented as a stream of bytes.
-      
+
       Note: As with all `bytes` fields, protobuffers use a pure binary
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateFiles requests. It does
@@ -143,7 +143,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::getMimeType()'
     name: getMimeType
     id: getMimeType
-    summary: |
+    summary: |-
       The type of the file. Currently only "application/pdf", "image/tiff" and
       "image/gif" are supported. Wildcards are not supported.
     parent: \Google\Cloud\Vision\V1\InputConfig
@@ -158,7 +158,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\InputConfig::setMimeType()'
     name: setMimeType
     id: setMimeType
-    summary: |
+    summary: |-
       The type of the file. Currently only "application/pdf", "image/tiff" and
       "image/gif" are supported. Wildcards are not supported.
     parent: \Google\Cloud\Vision\V1\InputConfig

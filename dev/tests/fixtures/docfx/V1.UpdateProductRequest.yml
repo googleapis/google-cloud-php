@@ -5,9 +5,9 @@ items:
     name: UpdateProductRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: UpdateProductRequest
-    summary: |
+    summary: |-
       Request message for the `UpdateProduct` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.UpdateProductRequest</code>
     type: class
     langs:
@@ -49,9 +49,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::getProduct()'
     name: getProduct
     id: getProduct
-    summary: |
+    summary: |-
       Required. The Product resource which replaces the one on the server.
-      
+
       product.name is immutable.
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
@@ -81,9 +81,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::setProduct()'
     name: setProduct
     id: setProduct
-    summary: |
+    summary: |-
       Required. The Product resource which replaces the one on the server.
-      
+
       product.name is immutable.
     parent: \Google\Cloud\Vision\V1\UpdateProductRequest
     type: method
@@ -102,10 +102,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::getUpdateMask()'
     name: getUpdateMask
     id: getUpdateMask
-    summary: |
+    summary: |-
       The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields
       to update.
-      
+
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.
@@ -137,10 +137,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::setUpdateMask()'
     name: setUpdateMask
     id: setUpdateMask
-    summary: |
+    summary: |-
       The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields
       to update.
-      
+
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask paths include `product_labels`, `display_name`, and
       `description`.

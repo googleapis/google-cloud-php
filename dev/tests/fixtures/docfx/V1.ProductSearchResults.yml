@@ -5,9 +5,9 @@ items:
     name: ProductSearchResults
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSearchResults
-    summary: |
+    summary: |-
       Results for a product search request.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults</code>
     type: class
     langs:
@@ -53,7 +53,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getIndexTime()'
     name: getIndexTime
     id: getIndexTime
-    summary: |
+    summary: |-
       Timestamp of the index which provided these results. Products added to the
       product set and products removed from the product set after this time are
       not reflected in the current results.
@@ -85,7 +85,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setIndexTime()'
     name: setIndexTime
     id: setIndexTime
-    summary: |
+    summary: |-
       Timestamp of the index which provided these results. Products added to the
       product set and products removed from the product set after this time are
       not reflected in the current results.
@@ -137,7 +137,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getProductGroupedResults()'
     name: getProductGroupedResults
     id: getProductGroupedResults
-    summary: |
+    summary: |-
       List of results grouped by products detected in the query image. Each entry
       corresponds to one bounding polygon in the query image, and contains the
       matching products specific to that region. There may be duplicate product
@@ -154,7 +154,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setProductGroupedResults()'
     name: setProductGroupedResults
     id: setProductGroupedResults
-    summary: |
+    summary: |-
       List of results grouped by products detected in the query image. Each entry
       corresponds to one bounding polygon in the query image, and contains the
       matching products specific to that region. There may be duplicate product

@@ -5,9 +5,9 @@ items:
     name: AnnotateImageResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AnnotateImageResponse
-    summary: |
+    summary: |-
       Response to an image annotation request.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AnnotateImageResponse</code>
     type: class
     langs:
@@ -257,9 +257,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLocalizedObjectAnnotations()'
     name: getLocalizedObjectAnnotations
     id: getLocalizedObjectAnnotations
-    summary: |
+    summary: |-
       If present, localized object detection has completed successfully.
-      
+
       This will be sorted descending by confidence score.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
@@ -273,9 +273,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLocalizedObjectAnnotations()'
     name: setLocalizedObjectAnnotations
     id: setLocalizedObjectAnnotations
-    summary: |
+    summary: |-
       If present, localized object detection has completed successfully.
-      
+
       This will be sorted descending by confidence score.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
     type: method
@@ -325,10 +325,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getFullTextAnnotation()'
     name: getFullTextAnnotation
     id: getFullTextAnnotation
-    summary: |
+    summary: |-
       If present, text (OCR) detection or document (OCR) text detection has
       completed successfully.
-      
+
       This annotation provides the structural hierarchy for the OCR detected
       text.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
@@ -359,10 +359,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setFullTextAnnotation()'
     name: setFullTextAnnotation
     id: setFullTextAnnotation
-    summary: |
+    summary: |-
       If present, text (OCR) detection or document (OCR) text detection has
       completed successfully.
-      
+
       This annotation provides the structural hierarchy for the OCR detected
       text.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
@@ -617,9 +617,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getError()'
     name: getError
     id: getError
-    summary: |
+    summary: |-
       If set, represents the error message for the operation.
-      
+
       Note that filled-in image annotations are guaranteed to be
       correct, even when `error` is set.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
@@ -650,9 +650,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setError()'
     name: setError
     id: setError
-    summary: |
+    summary: |-
       If set, represents the error message for the operation.
-      
+
       Note that filled-in image annotations are guaranteed to be
       correct, even when `error` is set.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
@@ -672,7 +672,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getContext()'
     name: getContext
     id: getContext
-    summary: |
+    summary: |-
       If present, contextual information is needed to understand where this image
       comes from.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse
@@ -703,7 +703,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setContext()'
     name: setContext
     id: setContext
-    summary: |
+    summary: |-
       If present, contextual information is needed to understand where this image
       comes from.
     parent: \Google\Cloud\Vision\V1\AnnotateImageResponse

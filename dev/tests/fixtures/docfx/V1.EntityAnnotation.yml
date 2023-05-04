@@ -5,9 +5,9 @@ items:
     name: EntityAnnotation
     friendlyApiName: 'Cloud Vision V1 Client'
     id: EntityAnnotation
-    summary: |
+    summary: |-
       Set of detected entity features.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.EntityAnnotation</code>
     type: class
     langs:
@@ -89,7 +89,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getMid()'
     name: getMid
     id: getMid
-    summary: |
+    summary: |-
       Opaque entity ID. Some IDs may be available in
       [Google Knowledge Graph Search
       API](https://developers.google.com/knowledge-graph/).
@@ -105,7 +105,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setMid()'
     name: setMid
     id: setMid
-    summary: |
+    summary: |-
       Opaque entity ID. Some IDs may be available in
       [Google Knowledge Graph Search
       API](https://developers.google.com/knowledge-graph/).
@@ -126,7 +126,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getLocale()'
     name: getLocale
     id: getLocale
-    summary: |
+    summary: |-
       The language code for the locale in which the entity textual
       `description` is expressed.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
@@ -141,7 +141,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setLocale()'
     name: setLocale
     id: setLocale
-    summary: |
+    summary: |-
       The language code for the locale in which the entity textual
       `description` is expressed.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
@@ -223,10 +223,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getConfidence()'
     name: getConfidence
     id: getConfidence
-    summary: |
+    summary: |-
       **Deprecated. Use `score` instead.**
       The accuracy of the entity detection in an image.
-      
+
       For example, for an image in which the "Eiffel Tower" entity is detected,
       this field represents the confidence that there is a tower in the query
       image. Range [0, 1].
@@ -242,10 +242,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setConfidence()'
     name: setConfidence
     id: setConfidence
-    summary: |
+    summary: |-
       **Deprecated. Use `score` instead.**
       The accuracy of the entity detection in an image.
-      
+
       For example, for an image in which the "Eiffel Tower" entity is detected,
       this field represents the confidence that there is a tower in the query
       image. Range [0, 1].
@@ -266,7 +266,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getTopicality()'
     name: getTopicality
     id: getTopicality
-    summary: |
+    summary: |-
       The relevancy of the ICA (Image Content Annotation) label to the
       image. For example, the relevancy of "tower" is likely higher to an image
       containing the detected "Eiffel Tower" than to an image containing a
@@ -284,7 +284,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setTopicality()'
     name: setTopicality
     id: setTopicality
-    summary: |
+    summary: |-
       The relevancy of the ICA (Image Content Annotation) label to the
       image. For example, the relevancy of "tower" is likely higher to an image
       containing the detected "Eiffel Tower" than to an image containing a
@@ -307,7 +307,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getBoundingPoly()'
     name: getBoundingPoly
     id: getBoundingPoly
-    summary: |
+    summary: |-
       Image region to which this entity belongs. Not produced
       for `LABEL_DETECTION` features.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
@@ -338,7 +338,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setBoundingPoly()'
     name: setBoundingPoly
     id: setBoundingPoly
-    summary: |
+    summary: |-
       Image region to which this entity belongs. Not produced
       for `LABEL_DETECTION` features.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
@@ -358,12 +358,12 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getLocations()'
     name: getLocations
     id: getLocations
-    summary: |
+    summary: |-
       The location information for the detected entity. Multiple
       `LocationInfo` elements can be present because one location may
       indicate the location of the scene in the image, and another location
       may indicate the location of the place where the image was taken.
-      
+
       Location information is usually present for landmarks.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
     type: method
@@ -377,12 +377,12 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setLocations()'
     name: setLocations
     id: setLocations
-    summary: |
+    summary: |-
       The location information for the detected entity. Multiple
       `LocationInfo` elements can be present because one location may
       indicate the location of the scene in the image, and another location
       may indicate the location of the place where the image was taken.
-      
+
       Location information is usually present for landmarks.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
     type: method
@@ -401,7 +401,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getProperties()'
     name: getProperties
     id: getProperties
-    summary: |
+    summary: |-
       Some entities may have optional user-supplied `Property` (name/value)
       fields, such a score or string that qualifies the entity.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation
@@ -416,7 +416,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setProperties()'
     name: setProperties
     id: setProperties
-    summary: |
+    summary: |-
       Some entities may have optional user-supplied `Property` (name/value)
       fields, such a score or string that qualifies the entity.
     parent: \Google\Cloud\Vision\V1\EntityAnnotation

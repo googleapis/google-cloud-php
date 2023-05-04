@@ -5,9 +5,9 @@ items:
     name: Image
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Image
-    summary: |
+    summary: |-
       Client image to perform Google Cloud Vision API tasks over.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Image</code>
     type: class
     langs:
@@ -47,9 +47,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Image::getContent()'
     name: getContent
     id: getContent
-    summary: |
+    summary: |-
       Image content, represented as a stream of bytes.
-      
+
       Note: As with all `bytes` fields, protobuffers use a pure binary
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateImages requests. It does
@@ -66,9 +66,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Image::setContent()'
     name: setContent
     id: setContent
-    summary: |
+    summary: |-
       Image content, represented as a stream of bytes.
-      
+
       Note: As with all `bytes` fields, protobuffers use a pure binary
       representation, whereas JSON representations use base64.
       Currently, this field only works for BatchAnnotateImages requests. It does
@@ -90,7 +90,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Image::getSource()'
     name: getSource
     id: getSource
-    summary: |
+    summary: |-
       Google Cloud Storage image location, or publicly-accessible image
       URL. If both `content` and `source` are provided for an image, `content`
       takes precedence and is used to perform the image annotation request.
@@ -122,7 +122,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Image::setSource()'
     name: setSource
     id: setSource
-    summary: |
+    summary: |-
       Google Cloud Storage image location, or publicly-accessible image
       URL. If both `content` and `source` are provided for an image, `content`
       takes precedence and is used to perform the image annotation request.

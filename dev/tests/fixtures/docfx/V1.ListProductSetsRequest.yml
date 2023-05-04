@@ -5,9 +5,9 @@ items:
     name: ListProductSetsRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ListProductSetsRequest
-    summary: |
+    summary: |-
       Request message for the `ListProductSets` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ListProductSetsRequest</code>
     type: class
     langs:
@@ -51,9 +51,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductSetsRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. The project from which ProductSets should be listed.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\ListProductSetsRequest
     type: method
@@ -67,9 +67,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductSetsRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. The project from which ProductSets should be listed.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\ListProductSetsRequest
     type: method

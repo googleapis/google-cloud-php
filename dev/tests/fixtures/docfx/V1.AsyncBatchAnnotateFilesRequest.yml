@@ -5,10 +5,10 @@ items:
     name: AsyncBatchAnnotateFilesRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncBatchAnnotateFilesRequest
-    summary: |
+    summary: |-
       Multiple async file annotation requests are batched into a single service
       call.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateFilesRequest</code>
     type: class
     langs:
@@ -77,9 +77,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:
@@ -99,9 +99,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:

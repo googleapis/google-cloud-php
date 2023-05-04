@@ -80,7 +80,7 @@ class Component
         return $this->path;
     }
 
-    public function getProtoPackage(string $googleapisDir): string
+    public function getProtoPackage(): string
     {
         $gapicClients = $this->getGapicClients();
         $regex = '#\* GENERATED CODE WARNING
@@ -91,22 +91,11 @@ class Component
         foreach ($gapicClients as $gapicClient) {
             $gapicClientContent = file_get_contents($gapicClient);
             if (preg_match($regex, $gapicClientContent, $matches)) {
-                $proto = realpath($googleapisDir . '/' . $matches[1]);
-                if (!file_exists($proto)) {
-                    $exception = new \Exception('Could not find protobuf file '. $matches[1]);
-                    continue;
-                }
-                if (!preg_match('/^package ([\.\w]+);$/m', file_get_contents($proto), $matches)) {
-                    $exception = new \Exception('Could not find proto package in file ' . $proto);
-                    continue;
-                }
-                $packageParts = explode('.', $matches[1]);
-                $packageVersion = array_pop($packageParts);
-                return implode('.', $packageParts);
+                return $matches[1];
             }
         }
 
-        throw $exception ? $exception : new \Exception('No GAPIC Clients found in ' . $this->name);
+        return '';
     }
 
     public function getRepoName(): string

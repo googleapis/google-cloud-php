@@ -5,9 +5,9 @@ items:
     name: AnnotateFileRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AnnotateFileRequest
-    summary: |
+    summary: |-
       A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AnnotateFileRequest</code>
     type: class
     langs:
@@ -186,9 +186,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getPages()'
     name: getPages
     id: getPages
-    summary: |
+    summary: |-
       Pages of the file to perform image annotation.
-      
+
       Pages starts from 1, we assume the first page of the file is page 1.
       At most 5 pages are supported per request. Pages can be negative.
       Page 1 means the first page.
@@ -210,9 +210,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
     name: setPages
     id: setPages
-    summary: |
+    summary: |-
       Pages of the file to perform image annotation.
-      
+
       Pages starts from 1, we assume the first page of the file is page 1.
       At most 5 pages are supported per request. Pages can be negative.
       Page 1 means the first page.

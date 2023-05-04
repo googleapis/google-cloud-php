@@ -5,9 +5,9 @@ items:
     name: FaceAnnotation
     friendlyApiName: 'Cloud Vision V1 Client'
     id: FaceAnnotation
-    summary: |
+    summary: |-
       A face annotation object contains the results of face detection.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.FaceAnnotation</code>
     type: class
     langs:
@@ -86,7 +86,7 @@ items:
         -
           id: '↳ tilt_angle'
           var_type: float
-          description: 'Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image''s horizontal plane. Range [-180,180].'
+          description: "Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180]."
         -
           id: '↳ detection_confidence'
           var_type: float
@@ -127,10 +127,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getBoundingPoly()'
     name: getBoundingPoly
     id: getBoundingPoly
-    summary: |
+    summary: |-
       The bounding polygon around the face. The coordinates of the bounding box
       are in the original image's scale.
-      
+
       The bounding box is computed to "frame" the face in accordance with human
       expectations. It is based on the landmarker results.
       Note that one or more x and/or y coordinates may not be generated in the
@@ -164,10 +164,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setBoundingPoly()'
     name: setBoundingPoly
     id: setBoundingPoly
-    summary: |
+    summary: |-
       The bounding polygon around the face. The coordinates of the bounding box
       are in the original image's scale.
-      
+
       The bounding box is computed to "frame" the face in accordance with human
       expectations. It is based on the landmarker results.
       Note that one or more x and/or y coordinates may not be generated in the
@@ -190,7 +190,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getFdBoundingPoly()'
     name: getFdBoundingPoly
     id: getFdBoundingPoly
-    summary: |
+    summary: |-
       The `fd_bounding_poly` bounding polygon is tighter than the
       `boundingPoly`, and encloses only the skin part of the face. Typically, it
       is used to eliminate the face from any image analysis that detects the
@@ -225,7 +225,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setFdBoundingPoly()'
     name: setFdBoundingPoly
     id: setFdBoundingPoly
-    summary: |
+    summary: |-
       The `fd_bounding_poly` bounding polygon is tighter than the
       `boundingPoly`, and encloses only the skin part of the face. Typically, it
       is used to eliminate the face from any image analysis that detects the
@@ -280,7 +280,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getRollAngle()'
     name: getRollAngle
     id: getRollAngle
-    summary: |
+    summary: |-
       Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
       of the face relative to the image vertical about the axis perpendicular to
       the face. Range [-180,180].
@@ -296,7 +296,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setRollAngle()'
     name: setRollAngle
     id: setRollAngle
-    summary: |
+    summary: |-
       Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
       of the face relative to the image vertical about the axis perpendicular to
       the face. Range [-180,180].
@@ -317,7 +317,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getPanAngle()'
     name: getPanAngle
     id: getPanAngle
-    summary: |
+    summary: |-
       Yaw angle, which indicates the leftward/rightward angle that the face is
       pointing relative to the vertical plane perpendicular to the image. Range
       [-180,180].
@@ -333,7 +333,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setPanAngle()'
     name: setPanAngle
     id: setPanAngle
-    summary: |
+    summary: |-
       Yaw angle, which indicates the leftward/rightward angle that the face is
       pointing relative to the vertical plane perpendicular to the image. Range
       [-180,180].
@@ -354,7 +354,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getTiltAngle()'
     name: getTiltAngle
     id: getTiltAngle
-    summary: |
+    summary: |-
       Pitch angle, which indicates the upwards/downwards angle that the face is
       pointing relative to the image's horizontal plane. Range [-180,180].
     parent: \Google\Cloud\Vision\V1\FaceAnnotation
@@ -369,7 +369,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setTiltAngle()'
     name: setTiltAngle
     id: setTiltAngle
-    summary: |
+    summary: |-
       Pitch angle, which indicates the upwards/downwards angle that the face is
       pointing relative to the image's horizontal plane. Range [-180,180].
     parent: \Google\Cloud\Vision\V1\FaceAnnotation

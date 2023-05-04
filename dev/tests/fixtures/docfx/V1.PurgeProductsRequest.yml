@@ -5,9 +5,9 @@ items:
     name: PurgeProductsRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: PurgeProductsRequest
-    summary: |
+    summary: |-
       Request message for the `PurgeProducts` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.PurgeProductsRequest</code>
     type: class
     langs:
@@ -99,7 +99,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getDeleteOrphanProducts()'
     name: getDeleteOrphanProducts
     id: getDeleteOrphanProducts
-    summary: |
+    summary: |-
       If delete_orphan_products is true, all Products that are not in any
       ProductSet will be deleted.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
@@ -122,7 +122,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setDeleteOrphanProducts()'
     name: setDeleteOrphanProducts
     id: setDeleteOrphanProducts
-    summary: |
+    summary: |-
       If delete_orphan_products is true, all Products that are not in any
       ProductSet will be deleted.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
@@ -142,9 +142,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. The project and location in which the Products should be deleted.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
@@ -158,9 +158,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. The project and location in which the Products should be deleted.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
     type: method
@@ -179,7 +179,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getForce()'
     name: getForce
     id: getForce
-    summary: |
+    summary: |-
       The default value is false. Override this value to true to actually perform
       the purge.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
@@ -194,7 +194,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setForce()'
     name: setForce
     id: setForce
-    summary: |
+    summary: |-
       The default value is false. Override this value to true to actually perform
       the purge.
     parent: \Google\Cloud\Vision\V1\PurgeProductsRequest

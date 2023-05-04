@@ -5,10 +5,10 @@ items:
     name: ImageAnnotationContext
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageAnnotationContext
-    summary: |
+    summary: |-
       If an image was produced from a file (e.g. a PDF), this message gives
       information about the source of that image.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImageAnnotationContext</code>
     type: class
     langs:
@@ -77,7 +77,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::getPageNumber()'
     name: getPageNumber
     id: getPageNumber
-    summary: |
+    summary: |-
       If the file was a PDF or TIFF, this field gives the page number within
       the file used to produce the image.
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
@@ -92,7 +92,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setPageNumber()'
     name: setPageNumber
     id: setPageNumber
-    summary: |
+    summary: |-
       If the file was a PDF or TIFF, this field gives the page number within
       the file used to produce the image.
     parent: \Google\Cloud\Vision\V1\ImageAnnotationContext

@@ -5,9 +5,9 @@ items:
     name: KeyValue
     friendlyApiName: 'Cloud Vision V1 Client'
     id: KeyValue
-    summary: |
+    summary: |-
       A product label represented as a key-value pair.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Product.KeyValue</code>
     type: class
     langs:
@@ -45,7 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Product\KeyValue::getKey()'
     name: getKey
     id: getKey
-    summary: |
+    summary: |-
       The key of the label attached to the product. Cannot be empty and cannot
       exceed 128 bytes.
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
@@ -60,7 +60,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Product\KeyValue::setKey()'
     name: setKey
     id: setKey
-    summary: |
+    summary: |-
       The key of the label attached to the product. Cannot be empty and cannot
       exceed 128 bytes.
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
@@ -80,7 +80,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Product\KeyValue::getValue()'
     name: getValue
     id: getValue
-    summary: |
+    summary: |-
       The value of the label attached to the product. Cannot be empty and
       cannot exceed 128 bytes.
     parent: \Google\Cloud\Vision\V1\Product\KeyValue
@@ -95,7 +95,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Product\KeyValue::setValue()'
     name: setValue
     id: setValue
-    summary: |
+    summary: |-
       The value of the label attached to the product. Cannot be empty and
       cannot exceed 128 bytes.
     parent: \Google\Cloud\Vision\V1\Product\KeyValue

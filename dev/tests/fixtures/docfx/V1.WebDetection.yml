@@ -5,9 +5,9 @@ items:
     name: WebDetection
     friendlyApiName: 'Cloud Vision V1 Client'
     id: WebDetection
-    summary: |
+    summary: |-
       Relevant information for the image from the Internet.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.WebDetection</code>
     type: class
     langs:
@@ -64,7 +64,7 @@ items:
         -
           id: '↳ best_guess_labels'
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">Google\Cloud\Vision\V1\WebDetection\WebLabel</xref>&gt;'
-          description: 'The service''s best guess as to the topic of the request image. Inferred from similar images on the open web.'
+          description: "The service's best guess as to the topic of the request image. Inferred from similar images on the open web."
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getWebEntities()'
     name: getWebEntities
@@ -100,9 +100,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getFullMatchingImages()'
     name: getFullMatchingImages
     id: getFullMatchingImages
-    summary: |
+    summary: |-
       Fully matching images from the Internet.
-      
+
       Can include resized copies of the query image.
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
@@ -116,9 +116,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::setFullMatchingImages()'
     name: setFullMatchingImages
     id: setFullMatchingImages
-    summary: |
+    summary: |-
       Fully matching images from the Internet.
-      
+
       Can include resized copies of the query image.
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
@@ -137,9 +137,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getPartialMatchingImages()'
     name: getPartialMatchingImages
     id: getPartialMatchingImages
-    summary: |
+    summary: |-
       Partial matching images from the Internet.
-      
+
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its crops.
     parent: \Google\Cloud\Vision\V1\WebDetection
@@ -154,9 +154,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPartialMatchingImages()'
     name: setPartialMatchingImages
     id: setPartialMatchingImages
-    summary: |
+    summary: |-
       Partial matching images from the Internet.
-      
+
       Those images are similar enough to share some key-point features. For
       example an original image will likely have partial matching for its crops.
     parent: \Google\Cloud\Vision\V1\WebDetection
@@ -238,9 +238,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::getBestGuessLabels()'
     name: getBestGuessLabels
     id: getBestGuessLabels
-    summary: |
+    summary: |-
       The service's best guess as to the topic of the request image.
-      
+
       Inferred from similar images on the open web.
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method
@@ -254,9 +254,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection::setBestGuessLabels()'
     name: setBestGuessLabels
     id: setBestGuessLabels
-    summary: |
+    summary: |-
       The service's best guess as to the topic of the request image.
-      
+
       Inferred from similar images on the open web.
     parent: \Google\Cloud\Vision\V1\WebDetection
     type: method

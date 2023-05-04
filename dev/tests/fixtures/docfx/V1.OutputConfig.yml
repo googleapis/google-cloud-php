@@ -5,9 +5,9 @@ items:
     name: OutputConfig
     friendlyApiName: 'Cloud Vision V1 Client'
     id: OutputConfig
-    summary: |
+    summary: |-
       The desired output location and metadata.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.OutputConfig</code>
     type: class
     langs:
@@ -94,10 +94,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\OutputConfig::getBatchSize()'
     name: getBatchSize
     id: getBatchSize
-    summary: |
+    summary: |-
       The max number of response protos to put into each output JSON file on
       Google Cloud Storage.
-      
+
       The valid range is [1, 100]. If not specified, the default value is 20.
       For example, for one pdf file with 100 pages, 100 response protos will
       be generated. If `batch_size` = 20, then 5 json files each
@@ -117,10 +117,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\OutputConfig::setBatchSize()'
     name: setBatchSize
     id: setBatchSize
-    summary: |
+    summary: |-
       The max number of response protos to put into each output JSON file on
       Google Cloud Storage.
-      
+
       The valid range is [1, 100]. If not specified, the default value is 20.
       For example, for one pdf file with 100 pages, 100 response protos will
       be generated. If `batch_size` = 20, then 5 json files each

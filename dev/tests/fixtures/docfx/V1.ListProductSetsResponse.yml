@@ -5,9 +5,9 @@ items:
     name: ListProductSetsResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ListProductSetsResponse
-    summary: |
+    summary: |-
       Response message for the `ListProductSets` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ListProductSetsResponse</code>
     type: class
     langs:
@@ -76,7 +76,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::getNextPageToken()'
     name: getNextPageToken
     id: getNextPageToken
-    summary: |
+    summary: |-
       Token to retrieve the next page of results, or empty if there are no more
       results in the list.
     parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
@@ -91,7 +91,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::setNextPageToken()'
     name: setNextPageToken
     id: setNextPageToken
-    summary: |
+    summary: |-
       Token to retrieve the next page of results, or empty if there are no more
       results in the list.
     parent: \Google\Cloud\Vision\V1\ListProductSetsResponse

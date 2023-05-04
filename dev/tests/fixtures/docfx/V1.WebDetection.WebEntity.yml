@@ -5,9 +5,9 @@ items:
     name: WebEntity
     friendlyApiName: 'Cloud Vision V1 Client'
     id: WebEntity
-    summary: |
+    summary: |-
       Entity deduced from similar images on the Internet.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebEntity</code>
     type: class
     langs:
@@ -82,9 +82,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getScore()'
     name: getScore
     id: getScore
-    summary: |
+    summary: |-
       Overall relevancy score for the entity.
-      
+
       Not normalized and not comparable across different image queries.
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method
@@ -98,9 +98,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setScore()'
     name: setScore
     id: setScore
-    summary: |
+    summary: |-
       Overall relevancy score for the entity.
-      
+
       Not normalized and not comparable across different image queries.
     parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
     type: method

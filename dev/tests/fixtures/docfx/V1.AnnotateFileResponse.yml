@@ -5,10 +5,10 @@ items:
     name: AnnotateFileResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AnnotateFileResponse
-    summary: |
+    summary: |-
       Response to a single file annotation request. A file may contain one or more
       images, which individually have their own responses.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AnnotateFileResponse</code>
     type: class
     langs:
@@ -109,7 +109,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getResponses()'
     name: getResponses
     id: getResponses
-    summary: |
+    summary: |-
       Individual responses to images found within the file. This field will be
       empty if the `error` field is set.
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
@@ -124,7 +124,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setResponses()'
     name: setResponses
     id: setResponses
-    summary: |
+    summary: |-
       Individual responses to images found within the file. This field will be
       empty if the `error` field is set.
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
@@ -175,7 +175,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getError()'
     name: getError
     id: getError
-    summary: |
+    summary: |-
       If set, represents the error message for the failed request. The
       `responses` field will not be set in this case.
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
@@ -206,7 +206,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setError()'
     name: setError
     id: setError
-    summary: |
+    summary: |-
       If set, represents the error message for the failed request. The
       `responses` field will not be set in this case.
     parent: \Google\Cloud\Vision\V1\AnnotateFileResponse
