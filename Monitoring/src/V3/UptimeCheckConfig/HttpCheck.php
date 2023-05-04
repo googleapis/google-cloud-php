@@ -92,6 +92,17 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     private $content_type = 0;
     /**
+     * A user provided content type header to use for the check. The invalid
+     * configurations outlined in the `content_type` field apply to
+     * `custom_content_type`, as well as the following:
+     * 1. `content_type` is `URL_ENCODED` and `custom_content_type` is set.
+     * 2. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
+     * set.
+     *
+     * Generated from protobuf field <code>string custom_content_type = 13;</code>
+     */
+    private $custom_content_type = '';
+    /**
      * Boolean specifying whether to include SSL certificate validation as a
      * part of the Uptime check. Only applies to checks where
      * `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
@@ -105,14 +116,28 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * is `URL_ENCODED`, the body passed in must be URL-encoded. Users can
      * provide a `Content-Length` header via the `headers` field or the API will
      * do so. If the `request_method` is `GET` and `body` is not empty, the API
-     * will return an error. The maximum byte size is 1 megabyte. Note: As with
-     * all `bytes` fields, JSON representations are base64 encoded. e.g.:
-     * "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is
-     * "Zm9vJTI1M0RiYXI=".
+     * will return an error. The maximum byte size is 1 megabyte.
+     * Note: If client libraries aren't used (which performs the conversion
+     * automatically) base64 encode your `body` data since the field is of
+     * `bytes` type.
      *
      * Generated from protobuf field <code>bytes body = 10;</code>
      */
     private $body = '';
+    /**
+     * If present, the check will only pass if the HTTP response status code is
+     * in this set of status codes. If empty, the HTTP status code will only
+     * pass if the HTTP status code is 200-299.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode accepted_response_status_codes = 11;</code>
+     */
+    private $accepted_response_status_codes;
+    /**
+     * Contains information needed to add pings to an HTTP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 12;</code>
+     */
+    private $ping_config = null;
 
     /**
      * Constructor.
@@ -164,6 +189,13 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           3. Request method is `POST` and `content_type` is `TYPE_UNSPECIFIED`.
      *           4. Request method is `POST` and a "Content-Type" header is provided via
      *           `headers` field. The `content_type` field should be used instead.
+     *     @type string $custom_content_type
+     *           A user provided content type header to use for the check. The invalid
+     *           configurations outlined in the `content_type` field apply to
+     *           `custom_content_type`, as well as the following:
+     *           1. `content_type` is `URL_ENCODED` and `custom_content_type` is set.
+     *           2. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
+     *           set.
      *     @type bool $validate_ssl
      *           Boolean specifying whether to include SSL certificate validation as a
      *           part of the Uptime check. Only applies to checks where
@@ -174,10 +206,16 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           is `URL_ENCODED`, the body passed in must be URL-encoded. Users can
      *           provide a `Content-Length` header via the `headers` field or the API will
      *           do so. If the `request_method` is `GET` and `body` is not empty, the API
-     *           will return an error. The maximum byte size is 1 megabyte. Note: As with
-     *           all `bytes` fields, JSON representations are base64 encoded. e.g.:
-     *           "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is
-     *           "Zm9vJTI1M0RiYXI=".
+     *           will return an error. The maximum byte size is 1 megabyte.
+     *           Note: If client libraries aren't used (which performs the conversion
+     *           automatically) base64 encode your `body` data since the field is of
+     *           `bytes` type.
+     *     @type array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode>|\Google\Protobuf\Internal\RepeatedField $accepted_response_status_codes
+     *           If present, the check will only pass if the HTTP response status code is
+     *           in this set of status codes. If empty, the HTTP status code will only
+     *           pass if the HTTP status code is 200-299.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig $ping_config
+     *           Contains information needed to add pings to an HTTP check.
      * }
      */
     public function __construct($data = NULL) {
@@ -460,6 +498,42 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A user provided content type header to use for the check. The invalid
+     * configurations outlined in the `content_type` field apply to
+     * `custom_content_type`, as well as the following:
+     * 1. `content_type` is `URL_ENCODED` and `custom_content_type` is set.
+     * 2. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
+     * set.
+     *
+     * Generated from protobuf field <code>string custom_content_type = 13;</code>
+     * @return string
+     */
+    public function getCustomContentType()
+    {
+        return $this->custom_content_type;
+    }
+
+    /**
+     * A user provided content type header to use for the check. The invalid
+     * configurations outlined in the `content_type` field apply to
+     * `custom_content_type`, as well as the following:
+     * 1. `content_type` is `URL_ENCODED` and `custom_content_type` is set.
+     * 2. `content_type` is `USER_PROVIDED` and `custom_content_type` is not
+     * set.
+     *
+     * Generated from protobuf field <code>string custom_content_type = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomContentType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_content_type = $var;
+
+        return $this;
+    }
+
+    /**
      * Boolean specifying whether to include SSL certificate validation as a
      * part of the Uptime check. Only applies to checks where
      * `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
@@ -496,10 +570,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * is `URL_ENCODED`, the body passed in must be URL-encoded. Users can
      * provide a `Content-Length` header via the `headers` field or the API will
      * do so. If the `request_method` is `GET` and `body` is not empty, the API
-     * will return an error. The maximum byte size is 1 megabyte. Note: As with
-     * all `bytes` fields, JSON representations are base64 encoded. e.g.:
-     * "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is
-     * "Zm9vJTI1M0RiYXI=".
+     * will return an error. The maximum byte size is 1 megabyte.
+     * Note: If client libraries aren't used (which performs the conversion
+     * automatically) base64 encode your `body` data since the field is of
+     * `bytes` type.
      *
      * Generated from protobuf field <code>bytes body = 10;</code>
      * @return string
@@ -514,10 +588,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * is `URL_ENCODED`, the body passed in must be URL-encoded. Users can
      * provide a `Content-Length` header via the `headers` field or the API will
      * do so. If the `request_method` is `GET` and `body` is not empty, the API
-     * will return an error. The maximum byte size is 1 megabyte. Note: As with
-     * all `bytes` fields, JSON representations are base64 encoded. e.g.:
-     * "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is
-     * "Zm9vJTI1M0RiYXI=".
+     * will return an error. The maximum byte size is 1 megabyte.
+     * Note: If client libraries aren't used (which performs the conversion
+     * automatically) base64 encode your `body` data since the field is of
+     * `bytes` type.
      *
      * Generated from protobuf field <code>bytes body = 10;</code>
      * @param string $var
@@ -527,6 +601,72 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->body = $var;
+
+        return $this;
+    }
+
+    /**
+     * If present, the check will only pass if the HTTP response status code is
+     * in this set of status codes. If empty, the HTTP status code will only
+     * pass if the HTTP status code is 200-299.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode accepted_response_status_codes = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAcceptedResponseStatusCodes()
+    {
+        return $this->accepted_response_status_codes;
+    }
+
+    /**
+     * If present, the check will only pass if the HTTP response status code is
+     * in this set of status codes. If empty, the HTTP status code will only
+     * pass if the HTTP status code is 200-299.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode accepted_response_status_codes = 11;</code>
+     * @param array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAcceptedResponseStatusCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode::class);
+        $this->accepted_response_status_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Contains information needed to add pings to an HTTP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 12;</code>
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig|null
+     */
+    public function getPingConfig()
+    {
+        return $this->ping_config;
+    }
+
+    public function hasPingConfig()
+    {
+        return isset($this->ping_config);
+    }
+
+    public function clearPingConfig()
+    {
+        unset($this->ping_config);
+    }
+
+    /**
+     * Contains information needed to add pings to an HTTP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 12;</code>
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig $var
+     * @return $this
+     */
+    public function setPingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig::class);
+        $this->ping_config = $var;
 
         return $this;
     }

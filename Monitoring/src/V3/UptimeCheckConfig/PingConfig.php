@@ -22,7 +22,7 @@ class PingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 pings_count = 1;</code>
      */
-    protected $pings_count = 0;
+    private $pings_count = 0;
 
     /**
      * Constructor.

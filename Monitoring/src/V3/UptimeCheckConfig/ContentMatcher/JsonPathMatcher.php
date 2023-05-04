@@ -23,14 +23,14 @@ class JsonPathMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string json_path = 1;</code>
      */
-    protected $json_path = '';
+    private $json_path = '';
     /**
      * The type of JSONPath match that will be applied to the JSON output
      * (`ContentMatcher.content`)
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.JsonPathMatcher.JsonPathMatcherOption json_matcher = 2;</code>
      */
-    protected $json_matcher = 0;
+    private $json_matcher = 0;
 
     /**
      * Constructor.
