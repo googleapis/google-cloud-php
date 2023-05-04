@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.networkconnectivity.v1",
+    "libraryPackage": "Google\\Cloud\\NetworkConnectivity\\V1",
+    "services": {
+        "HubService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HubServiceGapicClient",
+                    "rpcs": {
+                        "CreateHub": {
+                            "methods": [
+                                "createHub"
+                            ]
+                        },
+                        "CreateSpoke": {
+                            "methods": [
+                                "createSpoke"
+                            ]
+                        },
+                        "DeleteHub": {
+                            "methods": [
+                                "deleteHub"
+                            ]
+                        },
+                        "DeleteSpoke": {
+                            "methods": [
+                                "deleteSpoke"
+                            ]
+                        },
+                        "GetHub": {
+                            "methods": [
+                                "getHub"
+                            ]
+                        },
+                        "GetSpoke": {
+                            "methods": [
+                                "getSpoke"
+                            ]
+                        },
+                        "ListHubs": {
+                            "methods": [
+                                "listHubs"
+                            ]
+                        },
+                        "ListSpokes": {
+                            "methods": [
+                                "listSpokes"
+                            ]
+                        },
+                        "UpdateHub": {
+                            "methods": [
+                                "updateHub"
+                            ]
+                        },
+                        "UpdateSpoke": {
+                            "methods": [
+                                "updateSpoke"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
