@@ -47,7 +47,7 @@ function update_workflow_sample(): void
     // Create a client.
     $workflowsClient = new WorkflowsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $workflow = new Workflow();
 
     // Call the API and handle any network failures.

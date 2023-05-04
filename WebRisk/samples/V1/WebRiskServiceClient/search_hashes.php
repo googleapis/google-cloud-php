@@ -42,7 +42,7 @@ function search_hashes_sample(int $threatTypesElement): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $threatTypes = [$threatTypesElement,];
 
     // Call the API and handle any network failures.

@@ -51,7 +51,7 @@ function update_cluster_sample(): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $clusterNodeTypeConfigs = [];
     $cluster = (new Cluster())

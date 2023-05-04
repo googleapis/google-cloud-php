@@ -51,7 +51,7 @@ function create_workflow_sample(string $formattedParent, string $workflowId): vo
     // Create a client.
     $workflowsClient = new WorkflowsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $workflow = new Workflow();
 
     // Call the API and handle any network failures.
