@@ -41,7 +41,7 @@ function update_content_sample(string $contentPath, string $contentDataText): vo
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $content = (new Content())
         ->setPath($contentPath)

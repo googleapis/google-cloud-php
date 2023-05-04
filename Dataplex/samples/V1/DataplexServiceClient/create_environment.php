@@ -53,7 +53,7 @@ function create_environment_sample(
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $environmentInfrastructureSpecOsImage = (new OsImageRuntime())
         ->setImageVersion($environmentInfrastructureSpecOsImageImageVersion);
     $environmentInfrastructureSpec = (new InfrastructureSpec())

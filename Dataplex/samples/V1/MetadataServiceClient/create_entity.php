@@ -96,7 +96,7 @@ function create_entity_sample(
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $entityFormat = (new StorageFormat())
         ->setMimeType($entityFormatMimeType);
     $entitySchema = (new Schema())

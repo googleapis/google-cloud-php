@@ -45,7 +45,7 @@ function update_zone_sample(int $zoneType, int $zoneResourceSpecLocationType): v
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $zoneResourceSpec = (new ResourceSpec())
         ->setLocationType($zoneResourceSpecLocationType);

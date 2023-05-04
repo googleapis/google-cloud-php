@@ -55,7 +55,7 @@ function create_asset_sample(
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $assetResourceSpec = (new ResourceSpec())
         ->setType($assetResourceSpecType);
     $asset = (new Asset())

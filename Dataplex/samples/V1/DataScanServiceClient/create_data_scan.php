@@ -51,7 +51,7 @@ function create_data_scan_sample(string $formattedParent, string $dataScanId): v
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $dataScanData = new DataSource();
     $dataScan = (new DataScan())
         ->setData($dataScanData);
