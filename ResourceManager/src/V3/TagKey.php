@@ -24,8 +24,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -105,8 +108,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
      *           `tagKeys/{tag_key_id}`, where `tag_key_id` is the generated numeric id for
      *           the TagKey.
      *     @type string $parent
-     *           Immutable. The resource name of the new TagKey's parent.
-     *           Must be of the form `organizations/{org_id}`.
+     *           Immutable. The resource name of the TagKey's parent. A TagKey can be
+     *           parented by an Organization or a Project. For a TagKey parented by an
+     *           Organization, its parent must be in the form `organizations/{org_id}`. For
+     *           a TagKey parented by a Project, its parent can be in the form
+     *           `projects/{project_id}` or `projects/{project_number}`.
      *     @type string $short_name
      *           Required. Immutable. The user friendly name for a TagKey. The short name
      *           should be unique for TagKeys within the same tag namespace.
@@ -176,8 +182,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -188,8 +197,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

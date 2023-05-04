@@ -40,10 +40,10 @@ class TagValue extends \Google\Protobuf\Internal\Message
      */
     private $short_name = '';
     /**
-     * Output only. Namespaced name of the TagValue. Now only supported in the
-     * format
-     * `{organization_id}/{tag_key_short_name}/{short_name}`. Other
-     * formats will be supported when we add non-org parented tags.
+     * Output only. The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -95,10 +95,10 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *           an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
      *           dots (.), and alphanumerics between.
      *     @type string $namespaced_name
-     *           Output only. Namespaced name of the TagValue. Now only supported in the
-     *           format
-     *           `{organization_id}/{tag_key_short_name}/{short_name}`. Other
-     *           formats will be supported when we add non-org parented tags.
+     *           Output only. The namespaced name of the TagValue. Can be in the form
+     *           `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     *           `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     *           `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *     @type string $description
      *           Optional. User-assigned description of the TagValue.
      *           Must not exceed 256 characters.
@@ -207,10 +207,10 @@ class TagValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Namespaced name of the TagValue. Now only supported in the
-     * format
-     * `{organization_id}/{tag_key_short_name}/{short_name}`. Other
-     * formats will be supported when we add non-org parented tags.
+     * Output only. The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -221,10 +221,10 @@ class TagValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Namespaced name of the TagValue. Now only supported in the
-     * format
-     * `{organization_id}/{tag_key_short_name}/{short_name}`. Other
-     * formats will be supported when we add non-org parented tags.
+     * Output only. The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

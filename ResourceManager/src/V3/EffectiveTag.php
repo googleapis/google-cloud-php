@@ -26,9 +26,10 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      */
     private $tag_value = '';
     /**
-     * Namespaced name of the TagValue. Now only supported in the format
-     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}`.
-     * Other formats will be supported when we add non-org parented tags.
+     * The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 2;</code>
      */
@@ -41,16 +42,18 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      */
     private $tag_key = '';
     /**
-     * The namespaced_name of the TagKey. Now only supported in the format of
-     * `{organization_id}/{tag_key_short_name}`. Other formats will be
-     * supported when we add non-org parented tags.
+     * The namespaced name of the TagKey. Can be in the form
+     * `{organization_id}/{tag_key_short_name}` or
+     * `{project_id}/{tag_key_short_name}` or
+     * `{project_number}/{tag_key_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_key = 4;</code>
      */
     private $namespaced_tag_key = '';
     /**
      * The parent name of the tag key.
-     * Must be in the format `organizations/{organization_id}`.
+     * Must be in the format `organizations/{organization_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string tag_key_parent_name = 6;</code>
      */
@@ -74,19 +77,22 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *     @type string $tag_value
      *           Resource name for TagValue in the format `tagValues/456`.
      *     @type string $namespaced_tag_value
-     *           Namespaced name of the TagValue. Now only supported in the format
-     *           `{organization_id}/{tag_key_short_name}/{tag_value_short_name}`.
-     *           Other formats will be supported when we add non-org parented tags.
+     *           The namespaced name of the TagValue. Can be in the form
+     *           `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     *           `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     *           `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *     @type string $tag_key
      *           The name of the TagKey, in the format `tagKeys/{id}`, such as
      *           `tagKeys/123`.
      *     @type string $namespaced_tag_key
-     *           The namespaced_name of the TagKey. Now only supported in the format of
-     *           `{organization_id}/{tag_key_short_name}`. Other formats will be
-     *           supported when we add non-org parented tags.
+     *           The namespaced name of the TagKey. Can be in the form
+     *           `{organization_id}/{tag_key_short_name}` or
+     *           `{project_id}/{tag_key_short_name}` or
+     *           `{project_number}/{tag_key_short_name}`.
      *     @type string $tag_key_parent_name
      *           The parent name of the tag key.
-     *           Must be in the format `organizations/{organization_id}`.
+     *           Must be in the format `organizations/{organization_id}` or
+     *           `projects/{project_number}`
      *     @type bool $inherited
      *           Indicates the inheritance status of a tag value
      *           attached to the given resource. If the tag value is inherited from one of
@@ -126,9 +132,10 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespaced name of the TagValue. Now only supported in the format
-     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}`.
-     * Other formats will be supported when we add non-org parented tags.
+     * The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 2;</code>
      * @return string
@@ -139,9 +146,10 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespaced name of the TagValue. Now only supported in the format
-     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}`.
-     * Other formats will be supported when we add non-org parented tags.
+     * The namespaced name of the TagValue. Can be in the form
+     * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_id}/{tag_key_short_name}/{tag_value_short_name}` or
+     * `{project_number}/{tag_key_short_name}/{tag_value_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 2;</code>
      * @param string $var
@@ -184,9 +192,10 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The namespaced_name of the TagKey. Now only supported in the format of
-     * `{organization_id}/{tag_key_short_name}`. Other formats will be
-     * supported when we add non-org parented tags.
+     * The namespaced name of the TagKey. Can be in the form
+     * `{organization_id}/{tag_key_short_name}` or
+     * `{project_id}/{tag_key_short_name}` or
+     * `{project_number}/{tag_key_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_key = 4;</code>
      * @return string
@@ -197,9 +206,10 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The namespaced_name of the TagKey. Now only supported in the format of
-     * `{organization_id}/{tag_key_short_name}`. Other formats will be
-     * supported when we add non-org parented tags.
+     * The namespaced name of the TagKey. Can be in the form
+     * `{organization_id}/{tag_key_short_name}` or
+     * `{project_id}/{tag_key_short_name}` or
+     * `{project_number}/{tag_key_short_name}`.
      *
      * Generated from protobuf field <code>string namespaced_tag_key = 4;</code>
      * @param string $var
@@ -215,7 +225,8 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent name of the tag key.
-     * Must be in the format `organizations/{organization_id}`.
+     * Must be in the format `organizations/{organization_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string tag_key_parent_name = 6;</code>
      * @return string
@@ -227,7 +238,8 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent name of the tag key.
-     * Must be in the format `organizations/{organization_id}`.
+     * Must be in the format `organizations/{organization_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string tag_key_parent_name = 6;</code>
      * @param string $var
