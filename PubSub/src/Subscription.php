@@ -93,11 +93,6 @@ class Subscription
     const MAX_MESSAGES = 1000;
 
     /**
-     * The Gapic Client that Topic interacts with
-     */
-    private $gapicClient;
-
-    /**
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
@@ -180,8 +175,7 @@ class Subscription
         $encode,
         array $info = []
     ) {
-        $this->gapicClient = new SubscriberGapicClient();
-        $this->reqHandler = new RequestHandler();
+        $this->reqHandler = new RequestHandler([], [SubscriberGapicClient::class]);
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -406,7 +400,7 @@ class Subscription
         }
 
         $this->info = $this->reqHandler->sendReq(
-            $this->gapicClient,
+            SubscriberGapicClient::class,
             'createSubscription',
             [$this->name,$this->topicName],
             $this->formatDeadLetterPolicyForApi($options));
@@ -689,7 +683,7 @@ class Subscription
     public function reload(array $options = [])
     {
         return $this->info = $this->reqHandler->sendReq(
-            $this->gapicClient,
+            SubscriberGapicClient::class,
             'getSubscription',
             [$this->name],
             $options

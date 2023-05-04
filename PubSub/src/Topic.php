@@ -58,11 +58,6 @@ class Topic
     use GrpcTrait;
 
     /**
-     * The Gapic Client that Topic interacts with
-     */
-    private $gapicClient;
-
-    /**
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
@@ -129,8 +124,7 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapicClient = new PublisherGapicClient($clientConfig);
-        $this->reqHandler = new RequestHandler($clientConfig);
+        $this->reqHandler = new RequestHandler($clientConfig, [PublisherGapicClient::class]);
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -201,7 +195,12 @@ class Topic
      */
     public function create(array $options = [])
     {
-        $this->info = $this->reqHandler->sendReq($this->gapicClient, 'createTopic', [$this->name], $options);
+        $this->info = $this->reqHandler->sendReq(
+            PublisherGapicClient::class,
+            'createTopic',
+            [$this->name],
+            $options
+        );
 
         return $this->info;
     }
@@ -332,7 +331,7 @@ class Topic
         );
 
         $this->info = $this->reqHandler->sendReq(
-            $this->gapicClient,
+            PublisherGapicClient::class,
             'updateTopic',
             [$proto, $fieldMask],
             $options
@@ -357,7 +356,7 @@ class Topic
     public function delete(array $options = [])
     {
         $this->reqHandler->sendReq(
-            $this->gapicClient,
+            PublisherGapicClient::class,
             'deleteTopic',
             [$this->name],
             $options
@@ -453,7 +452,12 @@ class Topic
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->reqHandler->sendReq($this->gapicClient, 'getTopic', [$this->name], $options);
+        $this->info = $this->reqHandler->sendReq(
+            PublisherGapicClient::class,
+            'getTopic',
+            [$this->name],
+            $options
+        );
         return $this->info;
     }
 
@@ -531,7 +535,7 @@ class Topic
         }
 
         return $this->reqHandler->sendReq(
-            $this->gapicClient,
+            PublisherGapicClient::class,
             'publish',
             [$this->name, $messages],
             $options
@@ -679,7 +683,7 @@ class Topic
                 },
                 function($options) {
                     return $this->reqHandler->sendReq(
-                        $this->gapicClient,
+                        PublisherGapicClient::class,
                         'listTopicSubscriptions',
                         [$this->name],
                         $options

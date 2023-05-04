@@ -28,6 +28,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
+use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -93,9 +94,10 @@ class PubSubClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
-     * @var Connection\ConnectionInterface
+     * The request handler that is responsible for sending a req and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private $reqHandler;
 
     /**
      * @var bool
@@ -158,6 +160,10 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
+        $this->reqHandler = new RequestHandler($config, [
+            PublisherGapicClient::class,
+            SubscriberGapicClient::class,
+        ]);
     }
 
     /**
@@ -241,8 +247,6 @@ class PubSubClient
     public function topics(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $reqHandler = new RequestHandler($options);
-        $gapicClient = new PublisherGapicClient($options);
         $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
@@ -250,8 +254,13 @@ class PubSubClient
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                function($options) use ($reqHandler, $gapicClient, $projectId) {
-                    return $reqHandler->sendReq($gapicClient, 'listTopics', [$projectId], $options);
+                function($options) use ($projectId) {
+                    return $this->reqHandler->sendReq(
+                        PublisherGapicClient::class,
+                        'listTopics',
+                        [$projectId],
+                        $options
+                    );
                 },
                 $options,
                 [
