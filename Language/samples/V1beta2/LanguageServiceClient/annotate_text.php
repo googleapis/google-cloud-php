@@ -44,7 +44,7 @@ function annotate_text_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $document = new Document();
     $features = new Features();
 

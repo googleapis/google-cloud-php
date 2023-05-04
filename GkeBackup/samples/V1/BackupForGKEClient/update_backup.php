@@ -43,7 +43,7 @@ function update_backup_sample(): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $backup = new Backup();
 
     // Call the API and handle any network failures.

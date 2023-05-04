@@ -55,7 +55,7 @@ function update_instance_sample(
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $instanceNodeConfig = (new NodeConfig())
         ->setCpuCount($instanceNodeConfigCpuCount)

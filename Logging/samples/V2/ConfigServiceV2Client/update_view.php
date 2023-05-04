@@ -47,7 +47,7 @@ function update_view_sample(string $name): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $view = new LogView();
 
     // Call the API and handle any network failures.

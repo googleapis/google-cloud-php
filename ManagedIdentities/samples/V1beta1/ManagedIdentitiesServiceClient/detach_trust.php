@@ -42,7 +42,7 @@ function detach_trust_sample(string $formattedName): void
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $trust = new Trust();
 
     // Call the API and handle any network failures.

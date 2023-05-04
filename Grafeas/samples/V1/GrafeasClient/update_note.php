@@ -39,7 +39,7 @@ function update_note_sample(string $formattedName): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $note = new Note();
 
     // Call the API and handle any network failures.

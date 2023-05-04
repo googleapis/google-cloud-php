@@ -41,7 +41,7 @@ function listen_sample(string $database): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $request = (new ListenRequest())
         ->setDatabase($database);
 

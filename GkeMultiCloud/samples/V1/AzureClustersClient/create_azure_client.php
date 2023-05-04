@@ -71,7 +71,7 @@ function create_azure_client_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $azureClient = (new AzureClient())
         ->setTenantId($azureClientTenantId)
         ->setApplicationId($azureClientApplicationId);

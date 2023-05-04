@@ -60,7 +60,7 @@ function run_pipeline_sample(): void
     // Create a client.
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $pipeline = new Pipeline();
 
     // Call the API and handle any network failures.

@@ -57,7 +57,7 @@ function list_log_entries_sample(string $formattedResourceNamesElement): void
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $formattedResourceNames = [$formattedResourceNamesElement,];
 
     // Call the API and handle any network failures.

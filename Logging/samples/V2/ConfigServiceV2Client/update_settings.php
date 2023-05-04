@@ -62,7 +62,7 @@ function update_settings_sample(string $name): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $settings = new Settings();
 
     // Call the API and handle any network failures.
