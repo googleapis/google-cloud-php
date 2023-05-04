@@ -39,7 +39,7 @@ function update_run_sample(int $runState): void
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $runStartTime = new Timestamp();
     $run = (new Run())
         ->setStartTime($runStartTime)

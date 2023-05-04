@@ -45,7 +45,7 @@ function update_active_breakpoint_sample(string $debuggeeId): void
     // Create a client.
     $controller2Client = new Controller2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $breakpoint = new Breakpoint();
 
     // Call the API and handle any network failures.

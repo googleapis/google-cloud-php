@@ -60,7 +60,7 @@ function import_documents_sample(
     // Create a client.
     $documentsClient = new DocumentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $documentTemplateKnowledgeTypes = [$documentTemplateKnowledgeTypesElement,];
     $documentTemplate = (new ImportDocumentTemplate())
         ->setMimeType($documentTemplateMimeType)

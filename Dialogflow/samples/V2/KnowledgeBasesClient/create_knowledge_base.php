@@ -43,7 +43,7 @@ function create_knowledge_base_sample(
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $knowledgeBase = (new KnowledgeBase())
         ->setDisplayName($knowledgeBaseDisplayName);
 

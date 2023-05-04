@@ -60,7 +60,7 @@ function create_deidentify_template_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $deidentifyTemplate = new DeidentifyTemplate();
 
     // Call the API and handle any network failures.

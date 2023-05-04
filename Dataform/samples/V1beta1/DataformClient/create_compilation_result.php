@@ -39,7 +39,7 @@ function create_compilation_result_sample(string $formattedParent): void
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $compilationResult = new CompilationResult();
 
     // Call the API and handle any network failures.

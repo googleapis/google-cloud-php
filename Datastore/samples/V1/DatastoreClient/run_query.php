@@ -38,7 +38,7 @@ function run_query_sample(string $projectId): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $partitionId = new PartitionId();
 
     // Call the API and handle any network failures.

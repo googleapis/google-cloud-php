@@ -43,7 +43,7 @@ function update_answer_record_sample(): void
     // Create a client.
     $answerRecordsClient = new AnswerRecordsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $answerRecordAnswerFeedback = new AnswerFeedback();
     $answerRecord = (new AnswerRecord())
         ->setAnswerFeedback($answerRecordAnswerFeedback);

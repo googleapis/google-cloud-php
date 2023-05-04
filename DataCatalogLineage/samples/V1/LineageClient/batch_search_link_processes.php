@@ -59,7 +59,7 @@ function batch_search_link_processes_sample(string $formattedParent, string $lin
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $links = [$linksElement,];
 
     // Call the API and handle any network failures.

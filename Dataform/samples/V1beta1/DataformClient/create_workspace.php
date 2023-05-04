@@ -41,7 +41,7 @@ function create_workspace_sample(string $formattedParent, string $workspaceId): 
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $workspace = new Workspace();
 
     // Call the API and handle any network failures.

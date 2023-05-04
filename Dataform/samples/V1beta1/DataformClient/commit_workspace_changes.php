@@ -43,7 +43,7 @@ function commit_workspace_changes_sample(
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $author = (new CommitAuthor())
         ->setName($authorName)
         ->setEmailAddress($authorEmailAddress);

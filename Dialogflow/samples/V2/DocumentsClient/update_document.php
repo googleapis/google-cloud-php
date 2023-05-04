@@ -54,7 +54,7 @@ function update_document_sample(
     // Create a client.
     $documentsClient = new DocumentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $documentKnowledgeTypes = [$documentKnowledgeTypesElement,];
     $document = (new Document())
         ->setDisplayName($documentDisplayName)

@@ -40,7 +40,7 @@ function create_participant_sample(string $formattedParent): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $participant = new Participant();
 
     // Call the API and handle any network failures.
