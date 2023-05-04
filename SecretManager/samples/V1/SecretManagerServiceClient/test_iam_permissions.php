@@ -24,9 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 
 /**
  * Returns permissions that a caller has for the specified secret.
@@ -49,16 +48,13 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $permissions = [$permissionsElement,];
-    $request = (new TestIamPermissionsRequest())
-        ->setResource($resource)
-        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $secretManagerServiceClient->testIamPermissions($request);
+        $response = $secretManagerServiceClient->testIamPermissions($resource, $permissions);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
