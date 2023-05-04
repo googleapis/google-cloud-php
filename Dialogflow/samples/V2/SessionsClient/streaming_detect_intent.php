@@ -70,7 +70,7 @@ function streaming_detect_intent_sample(string $formattedSession): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $queryInput = new QueryInput();
     $request = (new StreamingDetectIntentRequest())
         ->setSession($formattedSession)

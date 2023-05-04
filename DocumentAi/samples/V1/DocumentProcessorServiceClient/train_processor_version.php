@@ -45,7 +45,7 @@ function train_processor_version_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $processorVersion = new ProcessorVersion();
 
     // Call the API and handle any network failures.

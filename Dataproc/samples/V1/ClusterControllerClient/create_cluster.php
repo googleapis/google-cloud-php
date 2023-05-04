@@ -52,7 +52,7 @@ function create_cluster_sample(
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cluster = (new Cluster())
         ->setProjectId($clusterProjectId)
         ->setClusterName($clusterClusterName);

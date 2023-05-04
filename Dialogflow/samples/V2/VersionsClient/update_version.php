@@ -46,7 +46,7 @@ function update_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $version = new Version();
     $updateMask = new FieldMask();
 

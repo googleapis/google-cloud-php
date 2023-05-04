@@ -39,7 +39,7 @@ function update_connection_profile_sample(string $connectionProfileDisplayName):
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $connectionProfile = (new ConnectionProfile())
         ->setDisplayName($connectionProfileDisplayName);
 

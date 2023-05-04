@@ -46,7 +46,7 @@ function create_snapshot_sample(string $formattedParent, string $snapshotId): vo
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $snapshot = new Snapshot();
 
     // Call the API and handle any network failures.

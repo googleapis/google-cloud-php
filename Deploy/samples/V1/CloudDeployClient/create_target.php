@@ -43,7 +43,7 @@ function create_target_sample(string $formattedParent, string $targetId): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $target = new Target();
 
     // Call the API and handle any network failures.

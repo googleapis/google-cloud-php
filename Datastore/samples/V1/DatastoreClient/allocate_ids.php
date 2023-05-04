@@ -39,7 +39,7 @@ function allocate_ids_sample(string $projectId): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $keys = [new Key()];
 
     // Call the API and handle any network failures.

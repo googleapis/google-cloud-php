@@ -53,7 +53,7 @@ function label_text_sample(
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $basicConfig = (new HumanAnnotationConfig())
         ->setInstruction($basicConfigInstruction)
         ->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);

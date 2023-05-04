@@ -55,7 +55,7 @@ function replace_taxonomy_sample(
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $serializedTaxonomy = (new SerializedTaxonomy())
         ->setDisplayName($serializedTaxonomyDisplayName);
 

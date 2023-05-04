@@ -44,7 +44,7 @@ function create_version_sample(string $formattedParent): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $version = new Version();
 
     // Call the API and handle any network failures.

@@ -44,7 +44,7 @@ function update_service_sample(): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $service = new Service();
 

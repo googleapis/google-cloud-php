@@ -44,7 +44,7 @@ function update_target_sample(): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $target = new Target();
 
