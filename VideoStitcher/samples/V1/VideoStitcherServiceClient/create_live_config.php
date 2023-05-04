@@ -52,7 +52,7 @@ function create_live_config_sample(
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $liveConfig = (new LiveConfig())
         ->setSourceUri($liveConfigSourceUri)
         ->setAdTracking($liveConfigAdTracking);

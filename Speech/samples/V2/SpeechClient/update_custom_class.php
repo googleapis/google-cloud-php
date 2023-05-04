@@ -43,7 +43,7 @@ function update_custom_class_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $customClass = new CustomClass();
 
     // Call the API and handle any network failures.

@@ -41,7 +41,7 @@ function create_transfer_job_sample(): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $transferJob = new TransferJob();
 
     // Call the API and handle any network failures.

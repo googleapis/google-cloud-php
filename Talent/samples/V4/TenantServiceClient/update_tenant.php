@@ -40,7 +40,7 @@ function update_tenant_sample(string $tenantExternalId): void
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tenant = (new Tenant())
         ->setExternalId($tenantExternalId);
 

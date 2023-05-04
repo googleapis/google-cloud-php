@@ -50,7 +50,7 @@ function streaming_read_sample(
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $columns = [$columnsElement,];
     $keySet = new KeySet();
 

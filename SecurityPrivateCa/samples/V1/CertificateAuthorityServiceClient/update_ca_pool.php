@@ -43,7 +43,7 @@ function update_ca_pool_sample(int $caPoolTier): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $caPool = (new CaPool())
         ->setTier($caPoolTier);
     $updateMask = new FieldMask();

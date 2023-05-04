@@ -51,7 +51,7 @@ function long_running_recognize_sample(string $configLanguageCode): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $config = (new RecognitionConfig())
         ->setLanguageCode($configLanguageCode);
     $audio = new RecognitionAudio();

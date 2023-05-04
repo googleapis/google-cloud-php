@@ -46,7 +46,7 @@ function create_service_config_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $serviceConfig = new Service();
 
     // Call the API and handle any network failures.

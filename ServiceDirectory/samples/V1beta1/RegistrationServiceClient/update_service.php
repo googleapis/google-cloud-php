@@ -42,7 +42,7 @@ function update_service_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $service = new Service();
     $updateMask = new FieldMask();
 

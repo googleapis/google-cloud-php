@@ -38,7 +38,7 @@ function create_report_config_sample(string $formattedParent): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $reportConfig = new ReportConfig();
 
     // Call the API and handle any network failures.

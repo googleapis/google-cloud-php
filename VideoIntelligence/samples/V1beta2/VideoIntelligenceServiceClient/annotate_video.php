@@ -43,7 +43,7 @@ function annotate_video_sample(int $featuresElement): void
     // Create a client.
     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $features = [$featuresElement,];
 
     // Call the API and handle any network failures.

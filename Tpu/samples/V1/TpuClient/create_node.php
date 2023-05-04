@@ -45,7 +45,7 @@ function create_node_sample(
     // Create a client.
     $tpuClient = new TpuClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $node = (new Node())
         ->setAcceleratorType($nodeAcceleratorType)
         ->setTensorflowVersion($nodeTensorflowVersion);

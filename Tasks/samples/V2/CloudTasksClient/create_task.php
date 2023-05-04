@@ -45,7 +45,7 @@ function create_task_sample(string $formattedParent): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $task = new Task();
 
     // Call the API and handle any network failures.

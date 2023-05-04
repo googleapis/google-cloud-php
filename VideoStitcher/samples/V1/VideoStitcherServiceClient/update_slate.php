@@ -44,7 +44,7 @@ function update_slate_sample(): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $slate = new Slate();
     $updateMask = new FieldMask();
 
