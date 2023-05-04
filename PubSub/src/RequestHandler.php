@@ -29,8 +29,6 @@ class RequestHandler
     use EmulatorTrait;
     use GrpcTrait;
 
-    const BASE_URI = 'https://pubsub.googleapis.com/';
-
     /**
      * @var array
      */
@@ -115,29 +113,6 @@ class RequestHandler
         $obj = $this->getGapicObj($gapicClass);
 
         return $this->send([$obj, $method], $allArgs);
-    }
-
-    private function transformDuration($v)
-    {
-        if (is_string($v)) {
-            $d = explode('.', trim($v, 's'));
-            if (count($d) < 2) {
-                $seconds = $d[0];
-                $nanos = 0;
-            } else {
-                $seconds = (int) $d[0];
-                $nanos = $this->convertFractionToNanoSeconds($d[1]);
-            }
-        } elseif ($v instanceof CoreDuration) {
-            $d = $v->get();
-            $seconds = $d['seconds'];
-            $nanos = $d['nanos'];
-        }
-
-        return [
-            'seconds' => $seconds,
-            'nanos' => $nanos
-        ];
     }
 
     /**
