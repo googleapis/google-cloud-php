@@ -46,7 +46,7 @@ function import_catalog_items_sample(string $formattedParent): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $inputConfig = new InputConfig();
 
     // Call the API and handle any network failures.

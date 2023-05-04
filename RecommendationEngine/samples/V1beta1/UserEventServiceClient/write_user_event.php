@@ -68,7 +68,7 @@ function write_user_event_sample(
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $userEventUserInfo = (new UserInfo())
         ->setVisitorId($userEventUserInfoVisitorId);
     $userEvent = (new UserEvent())

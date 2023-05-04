@@ -59,7 +59,7 @@ function import_completion_data_sample(
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $inputConfigBigQuerySource = (new BigQuerySource())
         ->setDatasetId($inputConfigBigQuerySourceDatasetId)
         ->setTableId($inputConfigBigQuerySourceTableId);

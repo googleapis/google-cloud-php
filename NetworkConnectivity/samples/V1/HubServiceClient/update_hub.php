@@ -44,7 +44,7 @@ function update_hub_sample(): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $hub = new Hub();
 
     // Call the API and handle any network failures.

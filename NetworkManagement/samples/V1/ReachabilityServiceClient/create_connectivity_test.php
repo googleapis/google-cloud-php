@@ -66,7 +66,7 @@ function create_connectivity_test_sample(
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();
     $resource = (new ConnectivityTest())

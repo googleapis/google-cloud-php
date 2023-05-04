@@ -57,7 +57,7 @@ function create_catalog_item_sample(
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $catalogItemCategoryHierarchiesCategories = [$catalogItemCategoryHierarchiesCategoriesElement,];
     $categoryHierarchy = (new CategoryHierarchy())
         ->setCategories($catalogItemCategoryHierarchiesCategories);

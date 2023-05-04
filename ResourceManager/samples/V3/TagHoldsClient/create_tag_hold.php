@@ -45,7 +45,7 @@ function create_tag_hold_sample(string $formattedParent, string $tagHoldHolder):
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tagHold = (new TagHold())
         ->setHolder($tagHoldHolder);
 

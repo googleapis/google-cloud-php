@@ -48,7 +48,7 @@ function create_policy_sample(string $formattedParent): void
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policy = new Policy();
 
     // Call the API and handle any network failures.

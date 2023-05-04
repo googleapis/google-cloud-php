@@ -42,7 +42,7 @@ function update_insight_type_config_sample(): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $insightTypeConfig = new InsightTypeConfig();
 
     // Call the API and handle any network failures.
