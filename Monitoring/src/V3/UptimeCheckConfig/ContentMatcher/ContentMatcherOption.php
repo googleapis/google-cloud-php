@@ -38,7 +38,7 @@ class ContentMatcherOption
      */
     const NOT_CONTAINS_STRING = 2;
     /**
-     * Selects regular-expression matching. The match succeeds of the output
+     * Selects regular-expression matching. The match succeeds if the output
      * matches the regular expression specified in the `content` string.
      * Regex matching is only supported for HTTP/HTTPS checks.
      *
@@ -54,6 +54,22 @@ class ContentMatcherOption
      * Generated from protobuf enum <code>NOT_MATCHES_REGEX = 4;</code>
      */
     const NOT_MATCHES_REGEX = 4;
+    /**
+     * Selects JSONPath matching. See `JsonPathMatcher` for details on when
+     * the match succeeds. JSONPath matching is only supported for HTTP/HTTPS
+     * checks.
+     *
+     * Generated from protobuf enum <code>MATCHES_JSON_PATH = 5;</code>
+     */
+    const MATCHES_JSON_PATH = 5;
+    /**
+     * Selects JSONPath matching. See `JsonPathMatcher` for details on when
+     * the match succeeds. Succeeds when output does _NOT_ match as specified.
+     * JSONPath is only supported for HTTP/HTTPS checks.
+     *
+     * Generated from protobuf enum <code>NOT_MATCHES_JSON_PATH = 6;</code>
+     */
+    const NOT_MATCHES_JSON_PATH = 6;
 
     private static $valueToName = [
         self::CONTENT_MATCHER_OPTION_UNSPECIFIED => 'CONTENT_MATCHER_OPTION_UNSPECIFIED',
@@ -61,6 +77,8 @@ class ContentMatcherOption
         self::NOT_CONTAINS_STRING => 'NOT_CONTAINS_STRING',
         self::MATCHES_REGEX => 'MATCHES_REGEX',
         self::NOT_MATCHES_REGEX => 'NOT_MATCHES_REGEX',
+        self::MATCHES_JSON_PATH => 'MATCHES_JSON_PATH',
+        self::NOT_MATCHES_JSON_PATH => 'NOT_MATCHES_JSON_PATH',
     ];
 
     public static function name($value)

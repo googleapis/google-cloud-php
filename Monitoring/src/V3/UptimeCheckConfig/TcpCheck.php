@@ -23,6 +23,12 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
     private $port = 0;
+    /**
+     * Contains information needed to add pings to a TCP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 2;</code>
+     */
+    private $ping_config = null;
 
     /**
      * Constructor.
@@ -34,6 +40,8 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
      *           The TCP port on the server against which to run the check. Will be
      *           combined with host (specified within the `monitored_resource`) to
      *           construct the full URL. Required.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig $ping_config
+     *           Contains information needed to add pings to a TCP check.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +75,42 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->port = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains information needed to add pings to a TCP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 2;</code>
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig|null
+     */
+    public function getPingConfig()
+    {
+        return $this->ping_config;
+    }
+
+    public function hasPingConfig()
+    {
+        return isset($this->ping_config);
+    }
+
+    public function clearPingConfig()
+    {
+        unset($this->ping_config);
+    }
+
+    /**
+     * Contains information needed to add pings to a TCP check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 2;</code>
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig $var
+     * @return $this
+     */
+    public function setPingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig::class);
+        $this->ping_config = $var;
 
         return $this;
     }
