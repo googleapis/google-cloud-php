@@ -40,7 +40,7 @@ function set_ssl_certificates_sample(string $project, string $targetSslProxy): v
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
 
     // Call the API and handle any network failures.

@@ -41,7 +41,7 @@ function patch_sample(string $project, string $region, string $urlMap): void
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $urlMapResource = new UrlMap();
 
     // Call the API and handle any network failures.

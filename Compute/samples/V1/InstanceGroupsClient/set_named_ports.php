@@ -41,7 +41,7 @@ function set_named_ports_sample(string $instanceGroup, string $project, string $
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceGroupsSetNamedPortsRequestResource = new InstanceGroupsSetNamedPortsRequest();
 
     // Call the API and handle any network failures.

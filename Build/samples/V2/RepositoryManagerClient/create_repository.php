@@ -50,7 +50,7 @@ function create_repository_sample(
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $repository = (new Repository())
         ->setRemoteUri($repositoryRemoteUri);
 

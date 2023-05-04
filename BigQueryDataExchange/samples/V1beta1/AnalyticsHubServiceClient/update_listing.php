@@ -43,7 +43,7 @@ function update_listing_sample(string $listingDisplayName): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $listingBigqueryDataset = new BigQueryDatasetSource();
     $listing = (new Listing())

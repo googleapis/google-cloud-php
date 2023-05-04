@@ -40,7 +40,7 @@ function set_labels_sample(string $project, string $resource): void
     // Create a client.
     $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
 
     // Call the API and handle any network failures.

@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceTemplateResource = new InstanceTemplate();
 
     // Call the API and handle any network failures.

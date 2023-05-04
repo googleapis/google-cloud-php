@@ -41,7 +41,7 @@ function update_connection_sample(string $formattedName): void
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $connection = new Connection();
     $updateMask = new FieldMask();
 

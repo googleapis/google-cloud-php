@@ -41,7 +41,7 @@ function add_instances_sample(string $instanceGroup, string $project, string $zo
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceGroupsAddInstancesRequestResource = new InstanceGroupsAddInstancesRequest();
 
     // Call the API and handle any network failures.

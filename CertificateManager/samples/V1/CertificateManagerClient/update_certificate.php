@@ -44,7 +44,7 @@ function update_certificate_sample(): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificate = new Certificate();
     $updateMask = new FieldMask();
 

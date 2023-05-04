@@ -41,7 +41,7 @@ function set_node_template_sample(string $nodeGroup, string $project, string $zo
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeGroupsSetNodeTemplateRequestResource = new NodeGroupsSetNodeTemplateRequest();
 
     // Call the API and handle any network failures.

@@ -40,7 +40,7 @@ function invalidate_cache_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cacheInvalidationRuleResource = new CacheInvalidationRule();
 
     // Call the API and handle any network failures.

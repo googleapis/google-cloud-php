@@ -46,7 +46,7 @@ function update_network_interface_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $networkInterfaceResource = new NetworkInterface();
 
     // Call the API and handle any network failures.

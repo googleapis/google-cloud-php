@@ -43,7 +43,7 @@ function update_billing_account_sample(string $formattedName): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $account = new BillingAccount();
 
     // Call the API and handle any network failures.

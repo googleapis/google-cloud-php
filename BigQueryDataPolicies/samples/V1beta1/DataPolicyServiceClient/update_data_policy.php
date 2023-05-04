@@ -42,7 +42,7 @@ function update_data_policy_sample(): void
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $dataPolicy = new DataPolicy();
 
     // Call the API and handle any network failures.

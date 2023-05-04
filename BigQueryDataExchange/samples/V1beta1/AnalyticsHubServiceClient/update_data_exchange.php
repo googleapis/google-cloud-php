@@ -42,7 +42,7 @@ function update_data_exchange_sample(string $dataExchangeDisplayName): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $dataExchange = (new DataExchange())
         ->setDisplayName($dataExchangeDisplayName);

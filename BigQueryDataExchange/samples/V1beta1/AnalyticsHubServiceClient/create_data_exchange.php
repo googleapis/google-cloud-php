@@ -52,7 +52,7 @@ function create_data_exchange_sample(
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $dataExchange = (new DataExchange())
         ->setDisplayName($dataExchangeDisplayName);
 

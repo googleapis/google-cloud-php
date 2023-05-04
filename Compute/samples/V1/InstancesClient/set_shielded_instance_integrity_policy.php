@@ -44,7 +44,7 @@ function set_shielded_instance_integrity_policy_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
 
     // Call the API and handle any network failures.

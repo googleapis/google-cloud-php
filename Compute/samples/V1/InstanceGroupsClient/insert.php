@@ -40,7 +40,7 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceGroupResource = new InstanceGroup();
 
     // Call the API and handle any network failures.
