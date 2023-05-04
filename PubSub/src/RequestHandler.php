@@ -22,10 +22,7 @@ use Google\Cloud\Core\Duration as CoreDuration;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\PubSub\V1\PubsubMessage;
-use Google\Cloud\PubSub\V1\PushConfig;
 
 class RequestHandler
 {
@@ -33,11 +30,6 @@ class RequestHandler
     use GrpcTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
 
     /**
      * @var array
@@ -52,27 +44,14 @@ class RequestHandler
     /**
      * @param array $config
      */
-    public function __construct(array $config = [], array $gapicClasses = [])
-    {
-        // TODO: We should be passing this serializer from the callers.
-        // This can be a singleton for every product, ex: PubSubSerializer extends Serializer
-        // Why singleton? we can use the same class from Topic/Subscription/PubsubClient etc
-        // without reinitializing them.
+    public function __construct(
+        array $config = [],
+        Serializer $serializer,
+        array $gapicClasses = []
+    ) {
         //@codeCoverageIgnoreStart
-        $this->serializer = new Serializer([
-            'publish_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'expiration_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [], [
-            'google.protobuf.Duration' => function ($v) {
-                return $this->transformDuration($v);
-            }
-        ]);
 
-        $config['serializer'] = $this->serializer;
+        $config['serializer'] = $serializer;
         // TODO: We should be able to swap out the use of
         // GrpcRequestWrapper with either something in gax, or
         // have the functionality in this file itself.
@@ -164,6 +143,9 @@ class RequestHandler
     /**
      * Fetches the GAPIC class object that has been previously instantiated
      * given the GAPIC class.
+     * 
+     * TODO: Check if we can store the same in a map and access that using the class name.
+     * That way we won't need this func.
      */
     private function getGapicObj($cls) {
         foreach($this->gapics as $gapicObj) {

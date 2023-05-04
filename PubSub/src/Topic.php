@@ -124,7 +124,11 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->reqHandler = new RequestHandler($clientConfig, [PublisherGapicClient::class]);
+        $this->reqHandler = new RequestHandler(
+            $clientConfig,
+            new PubSubSerializer(),
+            [PublisherGapicClient::class]
+        );
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;

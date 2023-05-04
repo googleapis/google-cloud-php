@@ -160,10 +160,13 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
-        $this->reqHandler = new RequestHandler($config, [
-            PublisherGapicClient::class,
-            SubscriberGapicClient::class,
-        ]);
+        $this->reqHandler = new RequestHandler(
+            $config,
+            new PubSubSerializer(),
+            [
+                PublisherGapicClient::class,
+                SubscriberGapicClient::class,
+            ]);
     }
 
     /**

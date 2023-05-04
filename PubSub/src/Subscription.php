@@ -175,7 +175,11 @@ class Subscription
         $encode,
         array $info = []
     ) {
-        $this->reqHandler = new RequestHandler([], [SubscriberGapicClient::class]);
+        $this->reqHandler = new RequestHandler(
+            [],
+            new PubSubSerializer(),
+            [SubscriberGapicClient::class]
+        );
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
