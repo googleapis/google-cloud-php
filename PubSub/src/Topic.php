@@ -24,10 +24,16 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
 use Google\Cloud\PubSub\V1\Encoding;
+use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use InvalidArgumentException;
+use Google\Cloud\Core\GrpcTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\PubSub\V1\SchemaSettings;
+use Google\Protobuf\FieldMask;
+use Google\Cloud\PubSub\V1\Topic as TopicProto;
+use Google\Cloud\PubSub\V1\PubsubMessage;
 
 /**
  * A named resource to which messages are sent by publishers.
@@ -49,11 +55,18 @@ class Topic
 {
     use ArrayTrait;
     use ResourceNameTrait;
+    use GrpcTrait;
 
     /**
-     * @var ConnectionInterface A connection to the Google Cloud Platform API
+     * The Gapic Client that Topic interacts with
      */
-    protected $connection;
+    private $gapicClient;
+
+    /**
+     * The request handler that is responsible for sending a req and
+     * serializing responses into relevant classes.
+     */
+    private $reqHandler;
 
     /**
      * @var string The project ID
@@ -88,8 +101,6 @@ class Topic
     /**
      * Create a PubSub topic.
      *
-     * @param ConnectionInterface $connection A connection to the Google Cloud
-     *        Platform service
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
@@ -112,14 +123,14 @@ class Topic
      *        associated with this instance.
      */
     public function __construct(
-        ConnectionInterface $connection,
         $projectId,
         $name,
         $encode,
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = new PublisherGapicClient($clientConfig);
+        $this->reqHandler = new RequestHandler($clientConfig);
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -190,13 +201,7 @@ class Topic
      */
     public function create(array $options = [])
     {
-        if (isset($options['schemaSettings']['schema']) && $options['schemaSettings']['schema'] instanceof Schema) {
-            $options['schemaSettings']['schema'] = $options['schemaSettings']['schema']->name();
-        }
-
-        $this->info = $this->connection->createTopic([
-            'name' => $this->name
-        ] + $options);
+        $this->info = $this->reqHandler->sendReq($this->gapicClient, 'createTopic', [$this->name], $options);
 
         return $this->info;
     }
@@ -269,6 +274,7 @@ class Topic
     {
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
 
+        // TODO: please check if this update mask iteration can be simplified/abstracted
         if (!$updateMaskPaths) {
             $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
             foreach ($iterator as $leafValue) {
@@ -289,19 +295,50 @@ class Topic
             }
         }
 
+        $maskPaths = [];
+        foreach ($updateMaskPaths as $path) {
+            $maskPaths[] = Serializer::toSnakeCase($path);
+        }
+
+        $fieldMask = new FieldMask([
+            'paths' => $maskPaths
+        ]);
+
+        // TODO: verify if we can simplify or exctract this modification
+        // perhaps we can use the fieldtransformers inside Serializer from ApiCore
         if (isset($topic['schemaSettings']['schema'])) {
             if ($topic['schemaSettings']['schema'] instanceof Schema) {
                 $topic['schemaSettings']['schema'] = $topic['schemaSettings']['schema']->name();
             }
         }
 
-        return $this->info = $this->connection->updateTopic([
-            'name' => $this->name,
-            'topic' => [
-                'name' => $this->name,
-            ] + $topic,
-            'updateMask' => implode(',', $updateMaskPaths)
-        ] + $options);
+        if (isset($topic['schemaSettings'])) {
+            $enc = $topic['schemaSettings']['encoding'] ?? Encoding::ENCODING_UNSPECIFIED;
+
+            if (is_string($enc)) {
+                $topic['schemaSettings']['encoding'] = Encoding::value($enc);
+            }
+
+            $topic['schemaSettings'] = (new Serializer())->decodeMessage(
+                new SchemaSettings(),
+                $topic['schemaSettings']
+            );
+        }
+
+        // convert the data passed to the proto object
+        $proto = (new Serializer())->decodeMessage(
+            new TopicProto,
+            $topic + ['name' => $this->name]
+        );
+
+        $this->info = $this->reqHandler->sendReq(
+            $this->gapicClient,
+            'updateTopic',
+            [$proto, $fieldMask],
+            $options
+        );
+
+        return $this->info;
     }
 
     /**
@@ -319,9 +356,12 @@ class Topic
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteTopic($options + [
-            'topic' => $this->name
-        ]);
+        $this->reqHandler->sendReq(
+            $this->gapicClient,
+            'deleteTopic',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -413,9 +453,8 @@ class Topic
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getTopic($options + [
-            'topic' => $this->name
-        ]);
+        $this->info = $this->reqHandler->sendReq($this->gapicClient, 'getTopic', [$this->name], $options);
+        return $this->info;
     }
 
     /**
@@ -488,12 +527,15 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
+            $message = (new Serializer())->decodeMessage(new PubsubMessage(), $message);
         }
 
-        return $this->connection->publishMessage($options + [
-            'topic' => $this->name,
-            'messages' => $messages
-        ]);
+        return $this->reqHandler->sendReq(
+            $this->gapicClient,
+            'publish',
+            [$this->name, $messages],
+            $options
+        );
     }
 
     /**
@@ -635,8 +677,15 @@ class Topic
                 function ($subscription) {
                     return $this->subscriptionFactory($subscription);
                 },
-                [$this->connection, 'listSubscriptionsByTopic'],
-                $options + ['topic' => $this->name],
+                function($options) {
+                    return $this->reqHandler->sendReq(
+                        $this->gapicClient,
+                        'listTopicSubscriptions',
+                        [$this->name],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'subscriptions',
                     'resultLimit' => $resultLimit
@@ -731,7 +780,6 @@ class Topic
     private function subscriptionFactory($name, array $info = [])
     {
         return new Subscription(
-            $this->connection,
             $this->projectId,
             $name,
             $this->name,

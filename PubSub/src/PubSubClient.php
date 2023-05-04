@@ -27,6 +27,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -147,8 +148,6 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
-        $this->clientConfig = $config;
-        $connectionType = $this->getConnectionType($config);
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -156,14 +155,9 @@ class PubSubClient
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost
         ];
-
-        if ($connectionType === 'grpc') {
-            $this->connection = new Grpc($this->configureAuthentication($config));
-            $this->encode = false;
-        } else {
-            $this->connection = new Rest($this->configureAuthentication($config));
-            $this->encode = true;
-        }
+        // TODO: remove this in favour of something from gax
+        $config = $this->configureAuthentication($config);
+        $this->clientConfig = $config;
     }
 
     /**
@@ -247,14 +241,19 @@ class PubSubClient
     public function topics(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $reqHandler = new RequestHandler($options);
+        $gapicClient = new PublisherGapicClient($options);
+        $projectId = $this->formatName('project', $this->projectId);
 
         return new ItemIterator(
             new PageIterator(
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                [$this->connection, 'listTopics'],
-                $options + ['project' => $this->formatName('project', $this->projectId)],
+                function($options) use ($reqHandler, $gapicClient, $projectId) {
+                    return $reqHandler->sendReq($gapicClient, 'listTopics', [$projectId], $options);
+                },
+                $options,
                 [
                     'itemsKey' => 'topics',
                     'resultLimit' => $resultLimit
@@ -740,7 +739,6 @@ class PubSubClient
     private function topicFactory($name, array $info = [])
     {
         return new Topic(
-            $this->connection,
             $this->projectId,
             $name,
             $this->encode,

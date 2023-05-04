@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -26,9 +27,12 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
+use Google\Cloud\PubSub\V1\DeadLetterPolicy;
+use Google\Cloud\PubSub\V1\ExpirationPolicy;
+use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
+use Google\Cloud\PubSub\V1\RetryPolicy;
 use InvalidArgumentException;
 
 /**
@@ -89,9 +93,15 @@ class Subscription
     const MAX_MESSAGES = 1000;
 
     /**
-     * @var ConnectionInterface
+     * The Gapic Client that Topic interacts with
      */
-    protected $connection;
+    private $gapicClient;
+
+    /**
+     * The request handler that is responsible for sending a req and
+     * serializing responses into relevant classes.
+     */
+    private $reqHandler;
 
     /**
      * @var string
@@ -157,7 +167,6 @@ class Subscription
      * The idiomatic way to use this class is through the PubSubClient or Topic,
      * but you can instantiate it directly as well.
      *
-     * @param ConnectionInterface $connection The service connection object
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to
@@ -165,14 +174,14 @@ class Subscription
      * @param array $info [optional] Subscription info. Used to pre-populate the object.
      */
     public function __construct(
-        ConnectionInterface $connection,
         $projectId,
         $name,
         $topicName,
         $encode,
         array $info = []
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = new SubscriberGapicClient();
+        $this->reqHandler = new RequestHandler();
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -368,10 +377,39 @@ class Subscription
 
         $options = $this->formatSubscriptionDurations($options);
 
-        $this->info = $this->connection->createSubscription([
-            'name' => $this->name,
-            'topic' => $this->topicName
-        ] + $this->formatDeadLetterPolicyForApi($options));
+        // convert optional args to protos
+        if (isset($options['expirationPolicy'])) {
+            $options['expirationPolicy'] = (new Serializer())->decodeMessage(
+                new ExpirationPolicy(),
+                $options['expirationPolicy']
+            );
+        }
+
+        if (isset($options['messageRetentionDuration'])) {
+            $options['messageRetentionDuration'] = new Duration(
+                $this->transformDuration($options['messageRetentionDuration'])
+            );
+        }
+
+        if (isset($options['retryPolicy'])) {
+            $options['retryPolicy'] = (new Serializer())->decodeMessage(
+                new RetryPolicy(),
+                $options['retryPolicy']
+            );
+        }
+
+        if (isset($options['deadLetterPolicy'])) {
+            $options['deadLetterPolicy'] = (new Serializer())->decodeMessage(
+                new DeadLetterPolicy(),
+                $options['deadLetterPolicy']
+            );
+        }
+
+        $this->info = $this->reqHandler->sendReq(
+            $this->gapicClient,
+            'createSubscription',
+            [$this->name,$this->topicName],
+            $this->formatDeadLetterPolicyForApi($options));
 
         return $this->info;
     }
@@ -650,9 +688,12 @@ class Subscription
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getSubscription($options + [
-            'subscription' => $this->name
-        ]);
+        return $this->info = $this->reqHandler->sendReq(
+            $this->gapicClient,
+            'getSubscription',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -1358,5 +1399,28 @@ class Subscription
     public static function getMaxRetries()
     {
         return self::$exactlyOnceDeliveryMaxRetries;
+    }
+
+    private function transformDuration($v)
+    {
+        if (is_string($v)) {
+            $d = explode('.', trim($v, 's'));
+            if (count($d) < 2) {
+                $seconds = $d[0];
+                $nanos = 0;
+            } else {
+                $seconds = (int) $d[0];
+                $nanos = $this->convertFractionToNanoSeconds($d[1]);
+            }
+        } elseif ($v instanceof CoreDuration) {
+            $d = $v->get();
+            $seconds = $d['seconds'];
+            $nanos = $d['nanos'];
+        }
+
+        return [
+            'seconds' => $seconds,
+            'nanos' => $nanos
+        ];
     }
 }
