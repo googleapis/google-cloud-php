@@ -40,7 +40,7 @@ function set_iam_policy_sample(string $project, string $region, string $resource
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
 
     // Call the API and handle any network failures.

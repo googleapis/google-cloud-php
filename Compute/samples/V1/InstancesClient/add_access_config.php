@@ -46,7 +46,7 @@ function add_access_config_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $accessConfigResource = new AccessConfig();
 
     // Call the API and handle any network failures.

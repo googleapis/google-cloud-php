@@ -43,7 +43,7 @@ function update_dns_authorization_sample(string $dnsAuthorizationDomain): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $dnsAuthorization = (new DnsAuthorization())
         ->setDomain($dnsAuthorizationDomain);
     $updateMask = new FieldMask();

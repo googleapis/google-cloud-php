@@ -52,7 +52,7 @@ function update_customer_sample(string $customerOrgDisplayName, string $customer
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $customerOrgPostalAddress = new PostalAddress();
     $customer = (new Customer())
         ->setOrgDisplayName($customerOrgDisplayName)

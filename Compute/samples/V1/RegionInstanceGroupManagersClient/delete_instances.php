@@ -44,7 +44,7 @@ function delete_instances_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
 
     // Call the API and handle any network failures.

@@ -44,7 +44,7 @@ function patch_per_instance_configs_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
 
     // Call the API and handle any network failures.

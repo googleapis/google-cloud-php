@@ -40,7 +40,7 @@ function set_backend_service_sample(string $project, string $targetSslProxy): vo
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
 
     // Call the API and handle any network failures.

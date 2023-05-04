@@ -39,7 +39,7 @@ function disable_xpn_resource_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
 
     // Call the API and handle any network failures.

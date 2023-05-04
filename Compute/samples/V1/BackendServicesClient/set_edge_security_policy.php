@@ -40,7 +40,7 @@ function set_edge_security_policy_sample(string $backendService, string $project
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityPolicyReferenceResource = new SecurityPolicyReference();
 
     // Call the API and handle any network failures.

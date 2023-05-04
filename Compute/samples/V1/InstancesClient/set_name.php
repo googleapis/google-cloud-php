@@ -41,7 +41,7 @@ function set_name_sample(string $instance, string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instancesSetNameRequestResource = new InstancesSetNameRequest();
 
     // Call the API and handle any network failures.

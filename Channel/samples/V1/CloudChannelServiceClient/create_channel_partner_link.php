@@ -67,7 +67,7 @@ function create_channel_partner_link_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $channelPartnerLink = (new ChannelPartnerLink())
         ->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId)
         ->setLinkState($channelPartnerLinkLinkState);

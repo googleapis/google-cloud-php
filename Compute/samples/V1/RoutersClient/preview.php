@@ -40,7 +40,7 @@ function preview_sample(string $project, string $region, string $router): void
     // Create a client.
     $routersClient = new RoutersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $routerResource = new Router();
 
     // Call the API and handle any network failures.

@@ -41,7 +41,7 @@ function set_url_map_sample(string $project, string $region, string $targetHttpP
     // Create a client.
     $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $urlMapReferenceResource = new UrlMapReference();
 
     // Call the API and handle any network failures.

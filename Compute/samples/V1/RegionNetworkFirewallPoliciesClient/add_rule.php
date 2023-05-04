@@ -41,7 +41,7 @@ function add_rule_sample(string $firewallPolicy, string $project, string $region
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $firewallPolicyRuleResource = new FirewallPolicyRule();
 
     // Call the API and handle any network failures.

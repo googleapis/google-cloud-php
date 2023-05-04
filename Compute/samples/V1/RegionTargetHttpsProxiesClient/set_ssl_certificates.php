@@ -44,7 +44,7 @@ function set_ssl_certificates_sample(
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionTargetHttpsProxiesSetSslCertificatesRequestResource = new RegionTargetHttpsProxiesSetSslCertificatesRequest();
 
     // Call the API and handle any network failures.

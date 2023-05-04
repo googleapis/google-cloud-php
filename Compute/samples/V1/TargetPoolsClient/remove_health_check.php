@@ -41,7 +41,7 @@ function remove_health_check_sample(string $project, string $region, string $tar
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
 
     // Call the API and handle any network failures.

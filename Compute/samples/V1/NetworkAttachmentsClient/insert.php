@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $networkAttachmentResource = new NetworkAttachment();
 
     // Call the API and handle any network failures.

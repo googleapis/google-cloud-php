@@ -42,7 +42,7 @@ function create_certificate_map_sample(string $formattedParent, string $certific
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateMap = new CertificateMap();
 
     // Call the API and handle any network failures.

@@ -41,7 +41,7 @@ function set_metadata_sample(string $instance, string $project, string $zone): v
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $metadataResource = new Metadata();
 
     // Call the API and handle any network failures.

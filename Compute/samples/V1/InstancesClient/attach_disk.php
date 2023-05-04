@@ -41,7 +41,7 @@ function attach_disk_sample(string $instance, string $project, string $zone): vo
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $attachedDiskResource = new AttachedDisk();
 
     // Call the API and handle any network failures.

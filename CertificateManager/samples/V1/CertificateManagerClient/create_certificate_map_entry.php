@@ -44,7 +44,7 @@ function create_certificate_map_entry_sample(
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateMapEntry = new CertificateMapEntry();
 
     // Call the API and handle any network failures.
