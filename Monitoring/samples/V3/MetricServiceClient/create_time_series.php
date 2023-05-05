@@ -44,7 +44,7 @@ function create_time_series_sample(string $formattedName): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $timeSeries = [new TimeSeries()];
 
     // Call the API and handle any network failures.

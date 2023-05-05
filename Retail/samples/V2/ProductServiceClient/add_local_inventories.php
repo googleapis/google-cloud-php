@@ -74,7 +74,7 @@ function add_local_inventories_sample(string $formattedProduct): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $localInventories = [new LocalInventory()];
 
     // Call the API and handle any network failures.

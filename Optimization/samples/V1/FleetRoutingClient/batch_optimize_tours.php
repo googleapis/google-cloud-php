@@ -55,7 +55,7 @@ function batch_optimize_tours_sample(string $parent): void
     // Create a client.
     $fleetRoutingClient = new FleetRoutingClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $modelConfigsInputConfig = new InputConfig();
     $modelConfigsOutputConfig = new OutputConfig();
     $asyncModelConfig = (new AsyncModelConfig())

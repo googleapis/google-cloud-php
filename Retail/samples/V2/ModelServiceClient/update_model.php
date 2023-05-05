@@ -66,7 +66,7 @@ function update_model_sample(string $modelName, string $modelDisplayName, string
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $model = (new Model())
         ->setName($modelName)
         ->setDisplayName($modelDisplayName)

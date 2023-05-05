@@ -46,7 +46,7 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $serviceTemplate = new RevisionTemplate();
     $service = (new Service())
         ->setTemplate($serviceTemplate);

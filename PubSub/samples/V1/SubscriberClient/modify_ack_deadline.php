@@ -54,7 +54,7 @@ function modify_ack_deadline_sample(
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $ackIds = [$ackIdsElement,];
 
     // Call the API and handle any network failures.

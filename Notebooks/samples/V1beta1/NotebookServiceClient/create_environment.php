@@ -43,7 +43,7 @@ function create_environment_sample(string $parent, string $environmentId): void
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $environment = new Environment();
 
     // Call the API and handle any network failures.

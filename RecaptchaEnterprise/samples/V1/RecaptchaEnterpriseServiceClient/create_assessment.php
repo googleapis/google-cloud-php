@@ -39,7 +39,7 @@ function create_assessment_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $assessment = new Assessment();
 
     // Call the API and handle any network failures.

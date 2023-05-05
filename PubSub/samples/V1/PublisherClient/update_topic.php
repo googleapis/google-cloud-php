@@ -44,7 +44,7 @@ function update_topic_sample(string $topicName): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $topic = (new Topic())
         ->setName($topicName);
     $updateMask = new FieldMask();

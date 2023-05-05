@@ -62,7 +62,7 @@ function create_control_sample(
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $controlSolutionTypes = [$controlSolutionTypesElement,];
     $control = (new Control())
         ->setDisplayName($controlDisplayName)
