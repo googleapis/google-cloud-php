@@ -9,15 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Profile information describing the structure and layout of the data
- * and contains the profile info.
+ * Contains name, type, mode and field type specific profile information.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataProfileResult.Profile</code>
  */
 class Profile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The sequence of fields describing data in table entities.
+     * List of fields with structural and profile information for each field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
      */
@@ -30,7 +29,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $fields
-     *           The sequence of fields describing data in table entities.
+     *           List of fields with structural and profile information for each field.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +38,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sequence of fields describing data in table entities.
+     * List of fields with structural and profile information for each field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -50,7 +49,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sequence of fields describing data in table entities.
+     * List of fields with structural and profile information for each field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $var

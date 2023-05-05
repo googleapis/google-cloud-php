@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,29 +22,27 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dataplex_v1_generated_DataScanService_GetDataScanJob_sync]
+// [START dataplex_v1_generated_DataplexService_RunTask_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\DataScanJob;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\RunTaskResponse;
 
 /**
- * Gets a DataScanJob resource.
+ * Run an on demand execution of a Task.
  *
- * @param string $formattedName The resource name of the DataScanJob:
- *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
- *                              where `project` refers to a *project_id* or *project_number* and
- *                              `location_id` refers to a GCP region. Please see
- *                              {@see DataScanServiceClient::dataScanJobName()} for help formatting this field.
+ * @param string $formattedName The resource name of the task:
+ *                              `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`. Please see
+ *                              {@see DataplexServiceClient::taskName()} for help formatting this field.
  */
-function get_data_scan_job_sample(string $formattedName): void
+function run_task_sample(string $formattedName): void
 {
     // Create a client.
-    $dataScanServiceClient = new DataScanServiceClient();
+    $dataplexServiceClient = new DataplexServiceClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var DataScanJob $response */
-        $response = $dataScanServiceClient->getDataScanJob($formattedName);
+        /** @var RunTaskResponse $response */
+        $response = $dataplexServiceClient->runTask($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -62,13 +60,8 @@ function get_data_scan_job_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = DataScanServiceClient::dataScanJobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATASCAN]',
-        '[JOB]'
-    );
+    $formattedName = DataplexServiceClient::taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
 
-    get_data_scan_job_sample($formattedName);
+    run_task_sample($formattedName);
 }
-// [END dataplex_v1_generated_DataScanService_GetDataScanJob_sync]
+// [END dataplex_v1_generated_DataplexService_RunTask_sync]

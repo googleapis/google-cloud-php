@@ -24,7 +24,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataplex\V1\Trigger\OnDemand $on_demand
-     *           The scan runs one-time shortly after DataScan Creation.
+     *           The scan runs once via `RunDataScan` API.
      *     @type \Google\Cloud\Dataplex\V1\Trigger\Schedule $schedule
      *           The scan is scheduled to run periodically.
      * }
@@ -35,7 +35,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The scan runs one-time shortly after DataScan Creation.
+     * The scan runs once via `RunDataScan` API.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger.OnDemand on_demand = 100;</code>
      * @return \Google\Cloud\Dataplex\V1\Trigger\OnDemand|null
@@ -51,7 +51,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The scan runs one-time shortly after DataScan Creation.
+     * The scan runs once via `RunDataScan` API.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger.OnDemand on_demand = 100;</code>
      * @param \Google\Cloud\Dataplex\V1\Trigger\OnDemand $var

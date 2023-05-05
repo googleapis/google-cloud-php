@@ -514,6 +514,9 @@ class DataScanServiceGapicClient
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type bool $validateOnly
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -536,6 +539,10 @@ class DataScanServiceGapicClient
         $request->setDataScan($dataScan);
         $request->setDataScanId($dataScanId);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -697,7 +704,7 @@ class DataScanServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the DataScanJob:
-     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}`
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      *                             where `project` refers to a *project_id* or *project_number* and
      *                             `location_id` refers to a GCP region.
      * @param array  $optionalArgs {
@@ -1013,6 +1020,9 @@ class DataScanServiceGapicClient
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type bool $validateOnly
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1033,6 +1043,10 @@ class DataScanServiceGapicClient
         $request->setDataScan($dataScan);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['data_scan.name'] = $dataScan->getName();
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

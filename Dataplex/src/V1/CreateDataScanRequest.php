@@ -41,6 +41,13 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $data_scan_id = '';
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $validate_only = false;
 
     /**
      * Constructor.
@@ -62,6 +69,9 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      *           * Must end with a number or a letter.
      *           * Must be between 1-63 characters.
      *           * Must be unique within the customer project / location.
+     *     @type bool $validate_only
+     *           Optional. Only validate the request, but do not perform mutations.
+     *           The default is `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +179,34 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_scan_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. Only validate the request, but do not perform mutations.
+     * The default is `false`.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }
