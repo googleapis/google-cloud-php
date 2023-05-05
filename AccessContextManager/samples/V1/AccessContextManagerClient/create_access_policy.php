@@ -25,8 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_CreateAccessPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessPolicy;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Rpc\Status;
 
 /**
@@ -47,10 +47,13 @@ function create_access_policy_sample(): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = new AccessPolicy();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->createAccessPolicy();
+        $response = $accessContextManagerClient->createAccessPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

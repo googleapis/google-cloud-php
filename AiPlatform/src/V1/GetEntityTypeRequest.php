@@ -26,6 +26,22 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the EntityType resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

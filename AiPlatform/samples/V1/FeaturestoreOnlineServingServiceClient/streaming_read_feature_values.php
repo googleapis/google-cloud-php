@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreOnlineServingService_StreamingReadFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreOnlineServingServiceClient;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
-use Google\Cloud\AIPlatform\V1\FeaturestoreOnlineServingServiceClient;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\StreamingReadFeatureValuesRequest;
 
 /**
  * Reads Feature values for multiple entities. Depending on their size, data
@@ -67,15 +68,15 @@ function streaming_read_feature_values_sample(
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())
         ->setIdMatcher($featureSelectorIdMatcher);
+    $request = (new StreamingReadFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setEntityIds($entityIds)
+        ->setFeatureSelector($featureSelector);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $featurestoreOnlineServingServiceClient->streamingReadFeatureValues(
-            $formattedEntityType,
-            $entityIds,
-            $featureSelector
-        );
+        $stream = $featurestoreOnlineServingServiceClient->streamingReadFeatureValues($request);
 
         /** @var ReadFeatureValuesResponse $element */
         foreach ($stream->readAll() as $element) {

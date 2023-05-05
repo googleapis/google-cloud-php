@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListModelDeploymentMonitoringJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListModelDeploymentMonitoringJobsRequest;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
 
 /**
@@ -40,10 +41,14 @@ function list_model_deployment_monitoring_jobs_sample(string $formattedParent): 
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListModelDeploymentMonitoringJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listModelDeploymentMonitoringJobs($formattedParent);
+        $response = $jobServiceClient->listModelDeploymentMonitoringJobs($request);
 
         /** @var ModelDeploymentMonitoringJob $element */
         foreach ($response as $element) {

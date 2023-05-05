@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_ListAccessLevels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\ListAccessLevelsRequest;
 
 /**
  * Lists all [access levels]
@@ -45,10 +46,14 @@ function list_access_levels_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListAccessLevelsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $accessContextManagerClient->listAccessLevels($formattedParent);
+        $response = $accessContextManagerClient->listAccessLevels($request);
 
         /** @var AccessLevel $element */
         foreach ($response as $element) {

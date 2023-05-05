@@ -33,6 +33,21 @@ class DeleteSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The resource name of the SpecialistPool to delete. Format:
+     *                     `projects/{project}/locations/{location}/specialistPools/{specialist_pool}`
+     *                     Please see {@see SpecialistPoolServiceClient::specialistPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteSpecialistPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,6 +31,23 @@ class CreateSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
     private $specialist_pool = null;
 
     /**
+     * @param string                                     $parent         Required. The parent Project name for the new SpecialistPool.
+     *                                                                   The form is `projects/{project}/locations/{location}`. Please see
+     *                                                                   {@see SpecialistPoolServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool Required. The SpecialistPool to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateSpecialistPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSpecialistPool($specialistPool);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

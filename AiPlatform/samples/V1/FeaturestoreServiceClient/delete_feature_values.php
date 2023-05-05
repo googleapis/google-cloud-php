@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_DeleteFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesResponse;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function delete_feature_values_sample(string $formattedEntityType): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFeatureValuesRequest())
+        ->setEntityType($formattedEntityType);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->deleteFeatureValues($formattedEntityType);
+        $response = $featurestoreServiceClient->deleteFeatureValues($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

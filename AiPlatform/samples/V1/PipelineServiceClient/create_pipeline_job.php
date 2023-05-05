@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PipelineService_CreatePipelineJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest;
 use Google\Cloud\AIPlatform\V1\PipelineJob;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
 
 /**
  * Creates a PipelineJob. A PipelineJob will run immediately when created.
@@ -41,11 +42,14 @@ function create_pipeline_job_sample(string $formattedParent): void
 
     // Prepare the request message.
     $pipelineJob = new PipelineJob();
+    $request = (new CreatePipelineJobRequest())
+        ->setParent($formattedParent)
+        ->setPipelineJob($pipelineJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var PipelineJob $response */
-        $response = $pipelineServiceClient->createPipelineJob($formattedParent, $pipelineJob);
+        $response = $pipelineServiceClient->createPipelineJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

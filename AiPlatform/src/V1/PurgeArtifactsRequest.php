@@ -41,6 +41,22 @@ class PurgeArtifactsRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $parent Required. The metadata store to purge Artifacts from.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\PurgeArtifactsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

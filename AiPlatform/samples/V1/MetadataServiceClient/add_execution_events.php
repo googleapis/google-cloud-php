@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_AddExecutionEvents_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\AddExecutionEventsRequest;
 use Google\Cloud\AIPlatform\V1\AddExecutionEventsResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 
 /**
  * Adds Events to the specified Execution. An Event indicates whether an
@@ -44,10 +45,14 @@ function add_execution_events_sample(string $formattedExecution): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new AddExecutionEventsRequest())
+        ->setExecution($formattedExecution);
+
     // Call the API and handle any network failures.
     try {
         /** @var AddExecutionEventsResponse $response */
-        $response = $metadataServiceClient->addExecutionEvents($formattedExecution);
+        $response = $metadataServiceClient->addExecutionEvents($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

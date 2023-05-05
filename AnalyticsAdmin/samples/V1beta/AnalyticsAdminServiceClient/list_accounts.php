@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ListAccounts_sync]
 use Google\Analytics\Admin\V1beta\Account;
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\ListAccountsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -46,10 +47,13 @@ function list_accounts_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = new ListAccountsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listAccounts();
+        $response = $analyticsAdminServiceClient->listAccounts($request);
 
         /** @var Account $element */
         foreach ($response as $element) {

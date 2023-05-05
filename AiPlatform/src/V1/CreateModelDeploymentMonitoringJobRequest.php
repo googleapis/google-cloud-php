@@ -31,6 +31,23 @@ class CreateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     private $model_deployment_monitoring_job = null;
 
     /**
+     * @param string                                                   $parent                       Required. The parent of the ModelDeploymentMonitoringJob.
+     *                                                                                               Format: `projects/{project}/locations/{location}`
+     *                                                                                               Please see {@see JobServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The ModelDeploymentMonitoringJob to create
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateModelDeploymentMonitoringJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

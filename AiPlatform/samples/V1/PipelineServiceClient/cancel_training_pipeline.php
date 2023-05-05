@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PipelineService_CancelTrainingPipeline_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelTrainingPipelineRequest;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
 
 /**
  * Cancels a TrainingPipeline.
@@ -52,9 +53,13 @@ function cancel_training_pipeline_sample(string $formattedName): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelTrainingPipelineRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $pipelineServiceClient->cancelTrainingPipeline($formattedName);
+        $pipelineServiceClient->cancelTrainingPipeline($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

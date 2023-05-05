@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1beta_generated_BetaAnalyticsData_RunPivotReport_sync]
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\RunPivotReportRequest;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
 use Google\ApiCore\ApiException;
 
@@ -45,10 +46,13 @@ function run_pivot_report_sample(): void
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = new RunPivotReportRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var RunPivotReportResponse $response */
-        $response = $betaAnalyticsDataClient->runPivotReport();
+        $response = $betaAnalyticsDataClient->runPivotReport($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

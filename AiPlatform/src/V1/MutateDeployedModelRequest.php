@@ -49,6 +49,38 @@ class MutateDeployedModelRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                                    $endpoint      Required. The name of the Endpoint resource into which to mutate a
+     *                                                                 DeployedModel. Format:
+     *                                                                 `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                                 Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel Required. The DeployedModel to be mutated within the Endpoint. Only the
+     *                                                                 following fields can be mutated:
+     *
+     *                                                                 * `min_replica_count` in either
+     *                                                                 [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                                                 [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                                                 * `max_replica_count` in either
+     *                                                                 [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                                                 [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                                                 * [autoscaling_metric_specs][google.cloud.aiplatform.v1.DedicatedResources.autoscaling_metric_specs]
+     *                                                                 * `disable_container_logging` (v1 only)
+     *                                                                 * `enable_container_logging` (v1beta1 only)
+     * @param \Google\Protobuf\FieldMask                $updateMask    Required. The update mask applies to the resource. See
+     *                                                                 [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setDeployedModel($deployedModel)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

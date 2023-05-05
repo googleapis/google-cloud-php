@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_EndpointService_CreateEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateEndpointRequest;
 use Google\Cloud\AIPlatform\V1\Endpoint;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +48,14 @@ function create_endpoint_sample(string $formattedParent, string $endpointDisplay
     // Prepare the request message.
     $endpoint = (new Endpoint())
         ->setDisplayName($endpointDisplayName);
+    $request = (new CreateEndpointRequest())
+        ->setParent($formattedParent)
+        ->setEndpoint($endpoint);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $endpointServiceClient->createEndpoint($formattedParent, $endpoint);
+        $response = $endpointServiceClient->createEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

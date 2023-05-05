@@ -44,6 +44,32 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
     private $traffic_split;
 
     /**
+     * @param string $endpoint        Required. The name of the Endpoint resource from which to undeploy a Model.
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
+     * @param string $deployedModelId Required. The ID of the DeployedModel to be undeployed from the Endpoint.
+     * @param array  $trafficSplit    If this field is provided, then the Endpoint's
+     *                                [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *                                overwritten with it. If last DeployedModel is being undeployed from the
+     *                                Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     *                                call returns. A DeployedModel will be successfully undeployed only if it
+     *                                doesn't have any traffic assigned to it when this method executes, or if
+     *                                this field unassigns any traffic to it.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UndeployModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, string $deployedModelId, array $trafficSplit): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setDeployedModelId($deployedModelId)
+            ->setTrafficSplit($trafficSplit);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

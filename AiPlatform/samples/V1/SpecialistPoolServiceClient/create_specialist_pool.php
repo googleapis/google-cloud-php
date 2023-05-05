@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_SpecialistPoolService_CreateSpecialistPool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateSpecialistPoolRequest;
 use Google\Cloud\AIPlatform\V1\SpecialistPool;
-use Google\Cloud\AIPlatform\V1\SpecialistPoolServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,11 +54,14 @@ function create_specialist_pool_sample(
     $specialistPool = (new SpecialistPool())
         ->setName($specialistPoolName)
         ->setDisplayName($specialistPoolDisplayName);
+    $request = (new CreateSpecialistPoolRequest())
+        ->setParent($formattedParent)
+        ->setSpecialistPool($specialistPool);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $specialistPoolServiceClient->createSpecialistPool($formattedParent, $specialistPool);
+        $response = $specialistPoolServiceClient->createSpecialistPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

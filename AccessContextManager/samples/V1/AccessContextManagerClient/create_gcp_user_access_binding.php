@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_CreateGcpUserAccessBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\CreateGcpUserAccessBindingRequest;
 use Google\Identity\AccessContextManager\V1\GcpUserAccessBinding;
 use Google\Rpc\Status;
 
@@ -71,14 +72,14 @@ function create_gcp_user_access_binding_sample(
     $gcpUserAccessBinding = (new GcpUserAccessBinding())
         ->setGroupKey($gcpUserAccessBindingGroupKey)
         ->setAccessLevels($formattedGcpUserAccessBindingAccessLevels);
+    $request = (new CreateGcpUserAccessBindingRequest())
+        ->setParent($formattedParent)
+        ->setGcpUserAccessBinding($gcpUserAccessBinding);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->createGcpUserAccessBinding(
-            $formattedParent,
-            $gcpUserAccessBinding
-        );
+        $response = $accessContextManagerClient->createGcpUserAccessBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -59,6 +59,23 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     private $service_account = '';
 
     /**
+     * @param string                            $parent Required. The resource name of the Location into which to upload the Model.
+     *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see ModelServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Model $model  Required. The Model to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UploadModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Model $model): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModel($model);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

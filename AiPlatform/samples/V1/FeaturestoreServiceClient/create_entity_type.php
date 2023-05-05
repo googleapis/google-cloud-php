@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_CreateEntityType_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\EntityType;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -49,10 +50,15 @@ function create_entity_type_sample(string $formattedParent, string $entityTypeId
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new CreateEntityTypeRequest())
+        ->setParent($formattedParent)
+        ->setEntityTypeId($entityTypeId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->createEntityType($formattedParent, $entityTypeId);
+        $response = $featurestoreServiceClient->createEntityType($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

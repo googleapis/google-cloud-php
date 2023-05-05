@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_SpecialistPoolService_GetLocation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $specialistPoolServiceClient->getLocation();
+        $response = $specialistPoolServiceClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -41,6 +41,26 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
     protected $destination_model;
 
     /**
+     * @param string $parent      Required. The resource name of the Location into which to copy the Model.
+     *                            Format: `projects/{project}/locations/{location}`
+     *                            Please see {@see ModelServiceClient::locationName()} for help formatting this field.
+     * @param string $sourceModel Required. The resource name of the Model to copy. That Model must be in the
+     *                            same Project. Format:
+     *                            `projects/{project}/locations/{location}/models/{model}`
+     *                            Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CopyModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $sourceModel): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSourceModel($sourceModel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

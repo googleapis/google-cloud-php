@@ -32,6 +32,22 @@ class GetAnnotationSpecRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $name Required. The name of the AnnotationSpec resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}`
+     *                     Please see {@see DatasetServiceClient::annotationSpecName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

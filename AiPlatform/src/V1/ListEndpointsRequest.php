@@ -79,6 +79,21 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the Location from which to list the
+     *                       Endpoints. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListEndpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_UpdateExecution_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 use Google\Cloud\AIPlatform\V1\Execution;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateExecutionRequest;
 
 /**
  * Updates a stored Execution.
@@ -43,11 +44,13 @@ function update_execution_sample(): void
 
     // Prepare the request message.
     $execution = new Execution();
+    $request = (new UpdateExecutionRequest())
+        ->setExecution($execution);
 
     // Call the API and handle any network failures.
     try {
         /** @var Execution $response */
-        $response = $metadataServiceClient->updateExecution($execution);
+        $response = $metadataServiceClient->updateExecution($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_BatchCreateInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\BatchCreateInstancesRequest;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesResponse;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequests;
 use Google\Cloud\AlloyDb\V1\Instance;
@@ -72,11 +73,14 @@ function batch_create_instances_sample(
     $requestsCreateInstanceRequests = [$createInstanceRequest,];
     $requests = (new CreateInstanceRequests())
         ->setCreateInstanceRequests($requestsCreateInstanceRequests);
+    $request = (new BatchCreateInstancesRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->batchCreateInstances($formattedParent, $requests);
+        $response = $alloyDBAdminClient->batchCreateInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateGoogleAdsLink_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
 use Google\ApiCore\ApiException;
 
@@ -40,11 +41,14 @@ function create_google_ads_link_sample(string $formattedParent): void
 
     // Prepare the request message.
     $googleAdsLink = new GoogleAdsLink();
+    $request = (new CreateGoogleAdsLinkRequest())
+        ->setParent($formattedParent)
+        ->setGoogleAdsLink($googleAdsLink);
 
     // Call the API and handle any network failures.
     try {
         /** @var GoogleAdsLink $response */
-        $response = $analyticsAdminServiceClient->createGoogleAdsLink($formattedParent, $googleAdsLink);
+        $response = $analyticsAdminServiceClient->createGoogleAdsLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

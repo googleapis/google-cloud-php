@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_ListEntityTypes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\EntityType;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\ListEntityTypesRequest;
 
 /**
  * Lists EntityTypes in a given Featurestore.
@@ -41,10 +42,14 @@ function list_entity_types_sample(string $formattedParent): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEntityTypesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $featurestoreServiceClient->listEntityTypes($formattedParent);
+        $response = $featurestoreServiceClient->listEntityTypes($request);
 
         /** @var EntityType $element */
         foreach ($response as $element) {

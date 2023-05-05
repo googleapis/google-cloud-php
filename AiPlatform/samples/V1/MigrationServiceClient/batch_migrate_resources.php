@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MigrationService_BatchMigrateResources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\BatchMigrateResourcesRequest;
 use Google\Cloud\AIPlatform\V1\BatchMigrateResourcesResponse;
+use Google\Cloud\AIPlatform\V1\Client\MigrationServiceClient;
 use Google\Cloud\AIPlatform\V1\MigrateResourceRequest;
-use Google\Cloud\AIPlatform\V1\MigrationServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,14 +46,14 @@ function batch_migrate_resources_sample(string $formattedParent): void
 
     // Prepare the request message.
     $migrateResourceRequests = [new MigrateResourceRequest()];
+    $request = (new BatchMigrateResourcesRequest())
+        ->setParent($formattedParent)
+        ->setMigrateResourceRequests($migrateResourceRequests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $migrationServiceClient->batchMigrateResources(
-            $formattedParent,
-            $migrateResourceRequests
-        );
+        $response = $migrationServiceClient->batchMigrateResources($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

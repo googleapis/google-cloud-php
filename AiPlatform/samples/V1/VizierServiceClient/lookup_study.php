@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_LookupStudy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\LookupStudyRequest;
 use Google\Cloud\AIPlatform\V1\Study;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Looks a study up using the user-defined display_name field instead of the
@@ -41,10 +42,15 @@ function lookup_study_sample(string $formattedParent, string $displayName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new LookupStudyRequest())
+        ->setParent($formattedParent)
+        ->setDisplayName($displayName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Study $response */
-        $response = $vizierServiceClient->lookupStudy($formattedParent, $displayName);
+        $response = $vizierServiceClient->lookupStudy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

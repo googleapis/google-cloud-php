@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_DeleteAccessPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\DeleteAccessPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function delete_access_policy_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAccessPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->deleteAccessPolicy($formattedName);
+        $response = $accessContextManagerClient->deleteAccessPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

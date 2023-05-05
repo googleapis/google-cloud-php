@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_CreateTrial_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateTrialRequest;
 use Google\Cloud\AIPlatform\V1\Trial;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Adds a user provided Trial to a Study.
@@ -41,11 +42,14 @@ function create_trial_sample(string $formattedParent): void
 
     // Prepare the request message.
     $trial = new Trial();
+    $request = (new CreateTrialRequest())
+        ->setParent($formattedParent)
+        ->setTrial($trial);
 
     // Call the API and handle any network failures.
     try {
         /** @var Trial $response */
-        $response = $vizierServiceClient->createTrial($formattedParent, $trial);
+        $response = $vizierServiceClient->createTrial($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

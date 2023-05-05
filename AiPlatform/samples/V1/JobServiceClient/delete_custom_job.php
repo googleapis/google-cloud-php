@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_DeleteCustomJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteCustomJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_custom_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCustomJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobServiceClient->deleteCustomJob($formattedName);
+        $response = $jobServiceClient->deleteCustomJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

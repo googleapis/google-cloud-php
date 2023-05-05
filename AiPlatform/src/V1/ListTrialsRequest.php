@@ -39,6 +39,21 @@ class ListTrialsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The resource name of the Study to list the Trial from.
+     *                       Format: `projects/{project}/locations/{location}/studies/{study}`
+     *                       Please see {@see VizierServiceClient::studyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListTrialsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_ExportData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\ExportDataConfig;
+use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataResponse;
 use Google\Rpc\Status;
 
@@ -45,11 +46,14 @@ function export_data_sample(string $formattedName): void
 
     // Prepare the request message.
     $exportConfig = new ExportDataConfig();
+    $request = (new ExportDataRequest())
+        ->setName($formattedName)
+        ->setExportConfig($exportConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datasetServiceClient->exportData($formattedName, $exportConfig);
+        $response = $datasetServiceClient->exportData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

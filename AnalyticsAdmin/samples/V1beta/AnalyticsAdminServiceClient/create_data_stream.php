@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateDataStream_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1beta\DataStream;
 use Google\Analytics\Admin\V1beta\DataStream\DataStreamType;
 use Google\ApiCore\ApiException;
@@ -43,11 +44,14 @@ function create_data_stream_sample(string $formattedParent, int $dataStreamType)
     // Prepare the request message.
     $dataStream = (new DataStream())
         ->setType($dataStreamType);
+    $request = (new CreateDataStreamRequest())
+        ->setParent($formattedParent)
+        ->setDataStream($dataStream);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataStream $response */
-        $response = $analyticsAdminServiceClient->createDataStream($formattedParent, $dataStream);
+        $response = $analyticsAdminServiceClient->createDataStream($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

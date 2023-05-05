@@ -42,7 +42,7 @@ function create_expanded_data_set_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $expandedDataSet = (new ExpandedDataSet())
         ->setDisplayName($expandedDataSetDisplayName);
 

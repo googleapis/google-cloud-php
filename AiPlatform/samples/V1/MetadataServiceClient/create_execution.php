@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_CreateExecution_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateExecutionRequest;
 use Google\Cloud\AIPlatform\V1\Execution;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
 
 /**
  * Creates an Execution associated with a MetadataStore.
@@ -43,11 +44,14 @@ function create_execution_sample(string $formattedParent): void
 
     // Prepare the request message.
     $execution = new Execution();
+    $request = (new CreateExecutionRequest())
+        ->setParent($formattedParent)
+        ->setExecution($execution);
 
     // Call the API and handle any network failures.
     try {
         /** @var Execution $response */
-        $response = $metadataServiceClient->createExecution($formattedParent, $execution);
+        $response = $metadataServiceClient->createExecution($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

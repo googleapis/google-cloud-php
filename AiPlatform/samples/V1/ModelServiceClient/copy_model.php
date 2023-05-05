@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_CopyModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\CopyModelRequest;
 use Google\Cloud\AIPlatform\V1\CopyModelResponse;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,15 @@ function copy_model_sample(string $formattedParent, string $formattedSourceModel
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new CopyModelRequest())
+        ->setParent($formattedParent)
+        ->setSourceModel($formattedSourceModel);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+        $response = $modelServiceClient->copyModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

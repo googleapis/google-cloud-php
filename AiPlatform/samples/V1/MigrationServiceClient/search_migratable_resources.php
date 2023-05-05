@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MigrationService_SearchMigratableResources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\MigrationServiceClient;
 use Google\Cloud\AIPlatform\V1\MigratableResource;
-use Google\Cloud\AIPlatform\V1\MigrationServiceClient;
+use Google\Cloud\AIPlatform\V1\SearchMigratableResourcesRequest;
 
 /**
  * Searches all of the resources in automl.googleapis.com,
@@ -44,10 +45,14 @@ function search_migratable_resources_sample(string $formattedParent): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchMigratableResourcesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $migrationServiceClient->searchMigratableResources($formattedParent);
+        $response = $migrationServiceClient->searchMigratableResources($request);
 
         /** @var MigratableResource $element */
         foreach ($response as $element) {

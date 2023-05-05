@@ -33,6 +33,25 @@ class AddExecutionEventsRequest extends \Google\Protobuf\Internal\Message
     private $events;
 
     /**
+     * @param string                              $execution Required. The resource name of the Execution that the Events connect
+     *                                                       Artifacts with.
+     *                                                       Format:
+     *                                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                                                       Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Event[] $events    The Events to create and add.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\AddExecutionEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $execution, array $events): self
+    {
+        return (new self())
+            ->setExecution($execution)
+            ->setEvents($events);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

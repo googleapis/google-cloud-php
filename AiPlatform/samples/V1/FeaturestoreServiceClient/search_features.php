@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_SearchFeatures_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\SearchFeaturesRequest;
 
 /**
  * Searches Features matching a query in a given project.
@@ -41,10 +42,14 @@ function search_features_sample(string $formattedLocation): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchFeaturesRequest())
+        ->setLocation($formattedLocation);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $featurestoreServiceClient->searchFeatures($formattedLocation);
+        $response = $featurestoreServiceClient->searchFeatures($request);
 
         /** @var Feature $element */
         foreach ($response as $element) {

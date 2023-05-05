@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_DatasetService_UpdateDataset_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\Dataset;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Value;
 
@@ -52,11 +53,14 @@ function update_dataset_sample(string $datasetDisplayName, string $datasetMetada
         ->setMetadataSchemaUri($datasetMetadataSchemaUri)
         ->setMetadata($datasetMetadata);
     $updateMask = new FieldMask();
+    $request = (new UpdateDatasetRequest())
+        ->setDataset($dataset)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $datasetServiceClient->updateDataset($dataset, $updateMask);
+        $response = $datasetServiceClient->updateDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

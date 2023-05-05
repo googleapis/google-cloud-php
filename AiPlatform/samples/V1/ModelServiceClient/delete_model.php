@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_DeleteModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,10 +48,14 @@ function delete_model_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $modelServiceClient->deleteModel($formattedName);
+        $response = $modelServiceClient->deleteModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

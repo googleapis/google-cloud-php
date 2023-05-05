@@ -40,6 +40,22 @@ class ReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\Mes
     private $filter = '';
 
     /**
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to read data from.
+     *                                      Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     *                                      Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

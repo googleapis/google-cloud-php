@@ -43,6 +43,33 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
     private $executions;
 
     /**
+     * @param string   $context    Required. The resource name of the Context that the Artifacts and
+     *                             Executions belong to. Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *                             Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
+     * @param string[] $artifacts  The resource names of the Artifacts to attribute to the Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param string[] $executions The resource names of the Executions to associate with the
+     *                             Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $context, array $artifacts, array $executions): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setArtifacts($artifacts)
+            ->setExecutions($executions);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

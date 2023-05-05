@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_PipelineService_DeleteTrainingPipeline_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteTrainingPipelineRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_training_pipeline_sample(string $formattedName): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTrainingPipelineRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $pipelineServiceClient->deleteTrainingPipeline($formattedName);
+        $response = $pipelineServiceClient->deleteTrainingPipeline($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

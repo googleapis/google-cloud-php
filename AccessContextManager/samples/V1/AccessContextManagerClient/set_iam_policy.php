@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 
 /**
  * Sets the IAM policy for the specified Access Context Manager
@@ -45,11 +46,14 @@ function set_iam_policy_sample(string $resource): void
 
     // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $accessContextManagerClient->setIamPolicy($resource, $policy);
+        $response = $accessContextManagerClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

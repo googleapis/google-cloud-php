@@ -41,7 +41,7 @@ function update_backup_sample(string $formattedBackupClusterName): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $backup = (new Backup())
         ->setClusterName($formattedBackupClusterName);
 

@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_DeleteMeasurementProtocolSecret_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\DeleteMeasurementProtocolSecretRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -39,9 +40,13 @@ function delete_measurement_protocol_secret_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMeasurementProtocolSecretRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->deleteMeasurementProtocolSecret($formattedName);
+        $analyticsAdminServiceClient->deleteMeasurementProtocolSecret($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

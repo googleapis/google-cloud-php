@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_ListBackups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Backup;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\ListBackupsRequest;
 
 /**
  * Lists Backups in a given project and location.
@@ -39,10 +40,14 @@ function list_backups_sample(string $formattedParent): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
+    // Prepare the request message.
+    $request = (new ListBackupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alloyDBAdminClient->listBackups($formattedParent);
+        $response = $alloyDBAdminClient->listBackups($request);
 
         /** @var Backup $element */
         foreach ($response as $element) {

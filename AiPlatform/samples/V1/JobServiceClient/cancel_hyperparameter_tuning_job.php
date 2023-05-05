@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CancelHyperparameterTuningJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelHyperparameterTuningJobRequest;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 
 /**
  * Cancels a HyperparameterTuningJob.
@@ -52,9 +53,13 @@ function cancel_hyperparameter_tuning_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelHyperparameterTuningJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->cancelHyperparameterTuningJob($formattedName);
+        $jobServiceClient->cancelHyperparameterTuningJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

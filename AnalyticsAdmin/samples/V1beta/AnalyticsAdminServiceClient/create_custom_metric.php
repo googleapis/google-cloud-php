@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateCustomMetric_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\CreateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\CustomMetric;
 use Google\Analytics\Admin\V1beta\CustomMetric\MeasurementUnit;
 use Google\Analytics\Admin\V1beta\CustomMetric\MetricScope;
@@ -65,11 +66,14 @@ function create_custom_metric_sample(
         ->setDisplayName($customMetricDisplayName)
         ->setMeasurementUnit($customMetricMeasurementUnit)
         ->setScope($customMetricScope);
+    $request = (new CreateCustomMetricRequest())
+        ->setParent($formattedParent)
+        ->setCustomMetric($customMetric);
 
     // Call the API and handle any network failures.
     try {
         /** @var CustomMetric $response */
-        $response = $analyticsAdminServiceClient->createCustomMetric($formattedParent, $customMetric);
+        $response = $analyticsAdminServiceClient->createCustomMetric($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -50,6 +50,24 @@ class ListAccessLevelsRequest extends \Google\Protobuf\Internal\Message
     private $access_level_format = 0;
 
     /**
+     * @param string $parent Required. Resource name for the access policy to list [Access Levels]
+     *                       [google.identity.accesscontextmanager.v1.AccessLevel] from.
+     *
+     *                       Format:
+     *                       `accessPolicies/{policy_id}`
+     *                       Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\ListAccessLevelsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

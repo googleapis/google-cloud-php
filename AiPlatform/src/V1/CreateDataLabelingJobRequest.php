@@ -31,6 +31,23 @@ class CreateDataLabelingJobRequest extends \Google\Protobuf\Internal\Message
     private $data_labeling_job = null;
 
     /**
+     * @param string                                      $parent          Required. The parent of the DataLabelingJob.
+     *                                                                     Format: `projects/{project}/locations/{location}`
+     *                                                                     Please see {@see JobServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\DataLabelingJob $dataLabelingJob Required. The DataLabelingJob to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateDataLabelingJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\DataLabelingJob $dataLabelingJob): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataLabelingJob($dataLabelingJob);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

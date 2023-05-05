@@ -43,7 +43,7 @@ function batch_update_user_links_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $requestsUserLink = new UserLink();
     $updateUserLinkRequest = (new UpdateUserLinkRequest())
         ->setUserLink($requestsUserLink);

@@ -26,6 +26,22 @@ class GetTrialRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Trial resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
+     *                     Please see {@see VizierServiceClient::trialName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetTrialRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

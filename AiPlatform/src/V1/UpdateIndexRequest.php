@@ -32,6 +32,23 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\Index $index      Required. The Index which updates the resource on the server.
+     * @param \Google\Protobuf\FieldMask        $updateMask The update mask applies to the resource.
+     *                                                      For the `FieldMask` definition, see
+     *                                                      [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Index $index, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIndex($index)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
