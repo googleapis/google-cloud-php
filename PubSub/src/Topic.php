@@ -322,17 +322,11 @@ class Topic
                 $topic['schemaSettings']['encoding'] = Encoding::value($enc);
             }
 
-            $topic['schemaSettings'] = (new Serializer())->decodeMessage(
-                new SchemaSettings(),
-                $topic['schemaSettings']
-            );
+            $topic['schemaSettings'] = new SchemaSettings($topic['schemaSettings']);
         }
 
         // convert the data passed to the proto object
-        $proto = (new Serializer())->decodeMessage(
-            new TopicProto,
-            $topic + ['name' => $this->name]
-        );
+        $proto = new TopicProto($topic + ['name' => $this->name]);
 
         $this->info = $this->reqHandler->sendReq(
             PublisherGapicClient::class,
@@ -535,7 +529,7 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
-            $message = (new Serializer())->decodeMessage(new PubsubMessage(), $message);
+            $message = new PubsubMessage($message);
         }
 
         return $this->reqHandler->sendReq(

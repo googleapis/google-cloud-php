@@ -377,10 +377,7 @@ class Subscription
 
         // convert optional args to protos
         if (isset($options['expirationPolicy'])) {
-            $options['expirationPolicy'] = (new Serializer())->decodeMessage(
-                new ExpirationPolicy(),
-                $options['expirationPolicy']
-            );
+            $options['expirationPolicy'] = new ExpirationPolicy($options['expirationPolicy']);
         }
 
         if (isset($options['messageRetentionDuration'])) {
@@ -390,17 +387,11 @@ class Subscription
         }
 
         if (isset($options['retryPolicy'])) {
-            $options['retryPolicy'] = (new Serializer())->decodeMessage(
-                new RetryPolicy(),
-                $options['retryPolicy']
-            );
+            $options['retryPolicy'] = new RetryPolicy($options['retryPolicy']);
         }
 
         if (isset($options['deadLetterPolicy'])) {
-            $options['deadLetterPolicy'] = (new Serializer())->decodeMessage(
-                new DeadLetterPolicy(),
-                $options['deadLetterPolicy']
-            );
+            $options['deadLetterPolicy'] = new DeadLetterPolicy($options['deadLetterPolicy']);
         }
 
         $this->info = $this->reqHandler->sendReq(
