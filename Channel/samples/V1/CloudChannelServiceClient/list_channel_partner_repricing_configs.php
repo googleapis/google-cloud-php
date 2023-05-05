@@ -47,7 +47,8 @@ use Google\Cloud\Channel\V1\CloudChannelServiceClient;
  * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
  * resources. The data for each resource is displayed in the ascending order
  * of:
- * * channel partner ID
+ *
+ * * Channel Partner ID
  * * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
  * * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
  *
