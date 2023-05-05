@@ -42,7 +42,7 @@ function update_app_connector_sample(string $appConnectorName): void
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $appConnectorPrincipalInfo = new PrincipalInfo();
     $appConnector = (new AppConnector())

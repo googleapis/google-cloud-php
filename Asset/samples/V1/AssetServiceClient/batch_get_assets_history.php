@@ -48,7 +48,7 @@ function batch_get_assets_history_sample(string $parent, int $contentType): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $readTimeWindow = new TimeWindow();
 
     // Call the API and handle any network failures.

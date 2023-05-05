@@ -41,7 +41,7 @@ function create_job_sample(string $formattedParent): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $jobTaskGroupsTaskSpec = new TaskSpec();
     $taskGroup = (new TaskGroup())
         ->setTaskSpec($jobTaskGroupsTaskSpec);

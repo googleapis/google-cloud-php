@@ -74,7 +74,7 @@ function predict_sample(string $formattedName): void
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $payload = new ExamplePayload();
 
     // Call the API and handle any network failures.
