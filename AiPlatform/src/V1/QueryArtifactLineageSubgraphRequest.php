@@ -63,6 +63,26 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
     private $filter = '';
 
     /**
+     * @param string $artifact Required. The resource name of the Artifact whose Lineage needs to be
+     *                         retrieved as a LineageSubgraph. Format:
+     *                         `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *
+     *                         The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                         the number of Executions, or the number of Events that would be returned
+     *                         for the Context exceeds 1000. Please see
+     *                         {@see MetadataServiceClient::artifactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest
+     *
+     * @experimental
+     */
+    public static function build(string $artifact): self
+    {
+        return (new self())
+            ->setArtifact($artifact);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

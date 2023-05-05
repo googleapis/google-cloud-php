@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_DeleteAccessLevel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\DeleteAccessLevelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,10 +49,14 @@ function delete_access_level_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAccessLevelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->deleteAccessLevel($formattedName);
+        $response = $accessContextManagerClient->deleteAccessLevel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

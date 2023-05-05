@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_AddContextArtifactsAndExecutions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsRequest;
 use Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 
 /**
  * Adds a set of Artifacts and Executions to a Context. If any of the
@@ -42,10 +43,14 @@ function add_context_artifacts_and_executions_sample(string $formattedContext): 
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new AddContextArtifactsAndExecutionsRequest())
+        ->setContext($formattedContext);
+
     // Call the API and handle any network failures.
     try {
         /** @var AddContextArtifactsAndExecutionsResponse $response */
-        $response = $metadataServiceClient->addContextArtifactsAndExecutions($formattedContext);
+        $response = $metadataServiceClient->addContextArtifactsAndExecutions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

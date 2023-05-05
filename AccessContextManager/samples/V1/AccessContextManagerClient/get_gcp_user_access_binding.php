@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accesscontextmanager_v1_generated_AccessContextManager_GetGcpUserAccessBinding_sync]
 use Google\ApiCore\ApiException;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\GcpUserAccessBinding;
+use Google\Identity\AccessContextManager\V1\GetGcpUserAccessBindingRequest;
 
 /**
  * Gets the [GcpUserAccessBinding]
@@ -40,10 +41,14 @@ function get_gcp_user_access_binding_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetGcpUserAccessBindingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var GcpUserAccessBinding $response */
-        $response = $accessContextManagerClient->getGcpUserAccessBinding($formattedName);
+        $response = $accessContextManagerClient->getGcpUserAccessBinding($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

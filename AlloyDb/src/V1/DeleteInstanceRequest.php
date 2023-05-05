@@ -55,6 +55,21 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
+     * @param string $name Required. The name of the resource. For the required format, see the
+     *                     comment on the Instance.name field. Please see
+     *                     {@see AlloyDBAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\DeleteInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

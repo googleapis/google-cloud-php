@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_CreateMetadataStore_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateMetadataStoreRequest;
 use Google\Cloud\AIPlatform\V1\MetadataStore;
 use Google\Rpc\Status;
 
@@ -44,11 +45,14 @@ function create_metadata_store_sample(string $formattedParent): void
 
     // Prepare the request message.
     $metadataStore = new MetadataStore();
+    $request = (new CreateMetadataStoreRequest())
+        ->setParent($formattedParent)
+        ->setMetadataStore($metadataStore);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $metadataServiceClient->createMetadataStore($formattedParent, $metadataStore);
+        $response = $metadataServiceClient->createMetadataStore($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

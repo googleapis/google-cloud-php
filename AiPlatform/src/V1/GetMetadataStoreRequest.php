@@ -26,6 +26,22 @@ class GetMetadataStoreRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the MetadataStore to retrieve.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetMetadataStoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

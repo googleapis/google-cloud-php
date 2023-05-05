@@ -24,6 +24,20 @@ class CreatePropertyRequest extends \Google\Protobuf\Internal\Message
     private $property = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1beta\Property $property Required. The property to create.
+     *                                                          Note: the supplied property must specify its parent.
+     *
+     * @return \Google\Analytics\Admin\V1beta\CreatePropertyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1beta\Property $property): self
+    {
+        return (new self())
+            ->setProperty($property);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

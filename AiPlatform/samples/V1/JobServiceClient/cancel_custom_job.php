@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CancelCustomJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelCustomJobRequest;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 
 /**
  * Cancels a CustomJob.
@@ -51,9 +52,13 @@ function cancel_custom_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelCustomJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->cancelCustomJob($formattedName);
+        $jobServiceClient->cancelCustomJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

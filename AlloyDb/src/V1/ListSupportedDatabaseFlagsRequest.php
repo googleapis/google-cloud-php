@@ -41,6 +41,26 @@ class ListSupportedDatabaseFlagsRequest extends \Google\Protobuf\Internal\Messag
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the parent resource. The required format is:
+     *                       * projects/{project}/locations/{location}
+     *
+     *                       Regardless of the parent specified here, as long it is contains a valid
+     *                       project and location, the service will return a static list of supported
+     *                       flags resources. Note that we do not yet support region-specific
+     *                       flags. Please see
+     *                       {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\ListSupportedDatabaseFlagsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

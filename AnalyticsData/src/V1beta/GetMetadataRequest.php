@@ -31,6 +31,30 @@ class GetMetadataRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the metadata to retrieve. This name field is
+     *                     specified in the URL path and not URL parameters. Property is a numeric
+     *                     Google Analytics GA4 Property identifier. To learn more, see [where to find
+     *                     your Property
+     *                     ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+     *
+     *                     Example: properties/1234/metadata
+     *
+     *                     Set the Property ID to 0 for dimensions and metrics common to all
+     *                     properties. In this special mode, this method will not return custom
+     *                     dimensions and metrics. Please see
+     *                     {@see BetaAnalyticsDataClient::metadataName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Data\V1beta\GetMetadataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -42,7 +42,7 @@ function update_enhanced_measurement_settings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $enhancedMeasurementSettings = (new EnhancedMeasurementSettings())
         ->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
     $updateMask = new FieldMask();

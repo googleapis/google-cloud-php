@@ -32,6 +32,24 @@ class DeployIndexRequest extends \Google\Protobuf\Internal\Message
     private $deployed_index = null;
 
     /**
+     * @param string                                    $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
+     *                                                                 Index. Format:
+     *                                                                 `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     *                                                                 Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\DeployedIndex $deployedIndex Required. The DeployedIndex to be created within the IndexEndpoint.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeployIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $indexEndpoint, \Google\Cloud\AIPlatform\V1\DeployedIndex $deployedIndex): self
+    {
+        return (new self())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setDeployedIndex($deployedIndex);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

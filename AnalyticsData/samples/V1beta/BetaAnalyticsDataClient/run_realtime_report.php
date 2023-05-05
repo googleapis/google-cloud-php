@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1beta_generated_BetaAnalyticsData_RunRealtimeReport_sync]
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\RunRealtimeReportRequest;
 use Google\Analytics\Data\V1beta\RunRealtimeReportResponse;
 use Google\ApiCore\ApiException;
 
@@ -49,10 +50,13 @@ function run_realtime_report_sample(): void
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
+    // Prepare the request message.
+    $request = new RunRealtimeReportRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var RunRealtimeReportResponse $response */
-        $response = $betaAnalyticsDataClient->runRealtimeReport();
+        $response = $betaAnalyticsDataClient->runRealtimeReport($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

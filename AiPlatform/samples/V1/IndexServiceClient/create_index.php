@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexService_CreateIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateIndexRequest;
 use Google\Cloud\AIPlatform\V1\Index;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +48,14 @@ function create_index_sample(string $formattedParent, string $indexDisplayName):
     // Prepare the request message.
     $index = (new Index())
         ->setDisplayName($indexDisplayName);
+    $request = (new CreateIndexRequest())
+        ->setParent($formattedParent)
+        ->setIndex($index);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexServiceClient->createIndex($formattedParent, $index);
+        $response = $indexServiceClient->createIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

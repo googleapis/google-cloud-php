@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_ListDataItems_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\DataItem;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\ListDataItemsRequest;
 
 /**
  * Lists DataItems in a Dataset.
@@ -41,10 +42,14 @@ function list_data_items_sample(string $formattedParent): void
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataItemsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datasetServiceClient->listDataItems($formattedParent);
+        $response = $datasetServiceClient->listDataItems($request);
 
         /** @var DataItem $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_EndpointService_UpdateEndpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\Endpoint;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -44,11 +45,14 @@ function update_endpoint_sample(string $endpointDisplayName): void
     $endpoint = (new Endpoint())
         ->setDisplayName($endpointDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateEndpointRequest())
+        ->setEndpoint($endpoint)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Endpoint $response */
-        $response = $endpointServiceClient->updateEndpoint($endpoint, $updateMask);
+        $response = $endpointServiceClient->updateEndpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -35,6 +35,22 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
+     * @param string $name Required. A name of the notification to retrieve.
+     *                     Format:
+     *                     organizations/{organization}/locations/{location}/notifications/{notification}. Please see
+     *                     {@see AdvisoryNotificationsServiceClient::notificationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

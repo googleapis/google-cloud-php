@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_CreateServicePerimeter_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\CreateServicePerimeterRequest;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 use Google\Rpc\Status;
 
@@ -52,14 +53,14 @@ function create_service_perimeter_sample(string $formattedParent): void
 
     // Prepare the request message.
     $servicePerimeter = new ServicePerimeter();
+    $request = (new CreateServicePerimeterRequest())
+        ->setParent($formattedParent)
+        ->setServicePerimeter($servicePerimeter);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->createServicePerimeter(
-            $formattedParent,
-            $servicePerimeter
-        );
+        $response = $accessContextManagerClient->createServicePerimeter($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

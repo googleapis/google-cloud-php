@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_FeaturestoreService_GetFeaturestore_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Featurestore;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\GetFeaturestoreRequest;
 
 /**
  * Gets details of a single Featurestore.
@@ -38,10 +39,14 @@ function get_featurestore_sample(string $formattedName): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetFeaturestoreRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Featurestore $response */
-        $response = $featurestoreServiceClient->getFeaturestore($formattedName);
+        $response = $featurestoreServiceClient->getFeaturestore($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

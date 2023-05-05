@@ -29,6 +29,21 @@ class UpdateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1beta\MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
+     * @param \Google\Protobuf\FieldMask                               $updateMask                The list of fields to be updated. Omitted fields will not be updated.
+     *
+     * @return \Google\Analytics\Admin\V1beta\UpdateMeasurementProtocolSecretRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1beta\MeasurementProtocolSecret $measurementProtocolSecret, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMeasurementProtocolSecret($measurementProtocolSecret)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

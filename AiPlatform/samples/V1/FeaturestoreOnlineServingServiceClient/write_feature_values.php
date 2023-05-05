@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_FeaturestoreOnlineServingService_WriteFeatureValues_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\FeaturestoreOnlineServingServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreOnlineServingServiceClient;
 use Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload;
+use Google\Cloud\AIPlatform\V1\WriteFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\WriteFeatureValuesResponse;
 
 /**
@@ -55,14 +56,14 @@ function write_feature_values_sample(string $formattedEntityType, string $payloa
         ->setEntityId($payloadsEntityId)
         ->setFeatureValues($payloadsFeatureValues);
     $payloads = [$writeFeatureValuesPayload,];
+    $request = (new WriteFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setPayloads($payloads);
 
     // Call the API and handle any network failures.
     try {
         /** @var WriteFeatureValuesResponse $response */
-        $response = $featurestoreOnlineServingServiceClient->writeFeatureValues(
-            $formattedEntityType,
-            $payloads
-        );
+        $response = $featurestoreOnlineServingServiceClient->writeFeatureValues($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

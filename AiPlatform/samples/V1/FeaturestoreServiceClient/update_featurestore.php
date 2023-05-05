@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_UpdateFeaturestore_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\Featurestore;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateFeaturestoreRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,11 +46,13 @@ function update_featurestore_sample(): void
 
     // Prepare the request message.
     $featurestore = new Featurestore();
+    $request = (new UpdateFeaturestoreRequest())
+        ->setFeaturestore($featurestore);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->updateFeaturestore($featurestore);
+        $response = $featurestoreServiceClient->updateFeaturestore($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

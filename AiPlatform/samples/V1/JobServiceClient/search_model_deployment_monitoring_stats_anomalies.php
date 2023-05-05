@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_SearchModelDeploymentMonitoringStatsAnomalies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies;
+use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest;
 use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective;
 
 /**
@@ -48,15 +49,15 @@ function search_model_deployment_monitoring_stats_anomalies_sample(
 
     // Prepare the request message.
     $objectives = [new StatsAnomaliesObjective()];
+    $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
+        ->setModelDeploymentMonitoringJob($formattedModelDeploymentMonitoringJob)
+        ->setDeployedModelId($deployedModelId)
+        ->setObjectives($objectives);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies(
-            $formattedModelDeploymentMonitoringJob,
-            $deployedModelId,
-            $objectives
-        );
+        $response = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies($request);
 
         /** @var ModelMonitoringStatsAnomalies $element */
         foreach ($response as $element) {

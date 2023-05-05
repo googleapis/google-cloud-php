@@ -31,6 +31,23 @@ class CreateStudyRequest extends \Google\Protobuf\Internal\Message
     private $study = null;
 
     /**
+     * @param string                            $parent Required. The resource name of the Location to create the CustomJob in.
+     *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see VizierServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Study $study  Required. The Study configuration used to create the Study.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateStudyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Study $study): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setStudy($study);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

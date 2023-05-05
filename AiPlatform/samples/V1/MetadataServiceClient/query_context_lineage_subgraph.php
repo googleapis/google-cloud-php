@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_QueryContextLineageSubgraph_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 use Google\Cloud\AIPlatform\V1\LineageSubgraph;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest;
 
 /**
  * Retrieves Artifacts and Executions within the specified Context, connected
@@ -46,10 +47,14 @@ function query_context_lineage_subgraph_sample(string $formattedContext): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new QueryContextLineageSubgraphRequest())
+        ->setContext($formattedContext);
+
     // Call the API and handle any network failures.
     try {
         /** @var LineageSubgraph $response */
-        $response = $metadataServiceClient->queryContextLineageSubgraph($formattedContext);
+        $response = $metadataServiceClient->queryContextLineageSubgraph($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

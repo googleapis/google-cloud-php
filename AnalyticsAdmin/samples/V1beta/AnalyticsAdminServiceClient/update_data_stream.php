@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateDataStream_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\DataStream;
+use Google\Analytics\Admin\V1beta\UpdateDataStreamRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -44,11 +45,13 @@ function update_data_stream_sample(): void
 
     // Prepare the request message.
     $updateMask = new FieldMask();
+    $request = (new UpdateDataStreamRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataStream $response */
-        $response = $analyticsAdminServiceClient->updateDataStream($updateMask);
+        $response = $analyticsAdminServiceClient->updateDataStream($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

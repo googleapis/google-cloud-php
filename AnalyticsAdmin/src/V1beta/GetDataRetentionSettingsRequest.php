@@ -26,6 +26,23 @@ class GetDataRetentionSettingsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the settings to lookup.
+     *                     Format:
+     *                     properties/{property}/dataRetentionSettings
+     *                     Example: "properties/1000/dataRetentionSettings"
+     *                     Please see {@see AnalyticsAdminServiceClient::dataRetentionSettingsName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1beta\GetDataRetentionSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

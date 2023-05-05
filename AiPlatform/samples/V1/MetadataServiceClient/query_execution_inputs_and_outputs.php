@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_QueryExecutionInputsAndOutputs_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 use Google\Cloud\AIPlatform\V1\LineageSubgraph;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest;
 
 /**
  * Obtains the set of input and output Artifacts for this Execution, in the
@@ -42,10 +43,14 @@ function query_execution_inputs_and_outputs_sample(string $formattedExecution): 
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new QueryExecutionInputsAndOutputsRequest())
+        ->setExecution($formattedExecution);
+
     // Call the API and handle any network failures.
     try {
         /** @var LineageSubgraph $response */
-        $response = $metadataServiceClient->queryExecutionInputsAndOutputs($formattedExecution);
+        $response = $metadataServiceClient->queryExecutionInputsAndOutputs($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

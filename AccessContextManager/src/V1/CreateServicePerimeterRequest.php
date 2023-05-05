@@ -35,6 +35,29 @@ class CreateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
     private $service_perimeter = null;
 
     /**
+     * @param string                                                    $parent           Required. Resource name for the access policy which owns this [Service
+     *                                                                                    Perimeter] [google.identity.accesscontextmanager.v1.ServicePerimeter].
+     *
+     *                                                                                    Format: `accessPolicies/{policy_id}`
+     *                                                                                    Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter $servicePerimeter Required. The [Service Perimeter]
+     *                                                                                    [google.identity.accesscontextmanager.v1.ServicePerimeter] to create.
+     *                                                                                    Syntactic correctness of the [Service Perimeter]
+     *                                                                                    [google.identity.accesscontextmanager.v1.ServicePerimeter] is a
+     *                                                                                    precondition for creation.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\CreateServicePerimeterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Identity\AccessContextManager\V1\ServicePerimeter $servicePerimeter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setServicePerimeter($servicePerimeter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

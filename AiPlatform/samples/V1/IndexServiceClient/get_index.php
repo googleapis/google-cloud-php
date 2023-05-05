@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_IndexService_GetIndex_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\GetIndexRequest;
 use Google\Cloud\AIPlatform\V1\Index;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
 
 /**
  * Gets an Index.
@@ -40,10 +41,14 @@ function get_index_sample(string $formattedName): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIndexRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Index $response */
-        $response = $indexServiceClient->getIndex($formattedName);
+        $response = $indexServiceClient->getIndex($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

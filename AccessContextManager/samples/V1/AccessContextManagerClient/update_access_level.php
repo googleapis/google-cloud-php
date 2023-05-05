@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_UpdateAccessLevel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -54,11 +55,14 @@ function update_access_level_sample(): void
     // Prepare the request message.
     $accessLevel = new AccessLevel();
     $updateMask = new FieldMask();
+    $request = (new UpdateAccessLevelRequest())
+        ->setAccessLevel($accessLevel)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->updateAccessLevel($accessLevel, $updateMask);
+        $response = $accessContextManagerClient->updateAccessLevel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

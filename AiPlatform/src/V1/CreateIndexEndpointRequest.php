@@ -31,6 +31,23 @@ class CreateIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     private $index_endpoint = null;
 
     /**
+     * @param string                                    $parent        Required. The resource name of the Location to create the IndexEndpoint in.
+     *                                                                 Format: `projects/{project}/locations/{location}`
+     *                                                                 Please see {@see IndexEndpointServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\IndexEndpoint $indexEndpoint Required. The IndexEndpoint to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateIndexEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\IndexEndpoint $indexEndpoint): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIndexEndpoint($indexEndpoint);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

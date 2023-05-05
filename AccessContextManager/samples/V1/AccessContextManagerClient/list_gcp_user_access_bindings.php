@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_ListGcpUserAccessBindings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\GcpUserAccessBinding;
+use Google\Identity\AccessContextManager\V1\ListGcpUserAccessBindingsRequest;
 
 /**
  * Lists all [GcpUserAccessBindings]
@@ -41,10 +42,14 @@ function list_gcp_user_access_bindings_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListGcpUserAccessBindingsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $accessContextManagerClient->listGcpUserAccessBindings($formattedParent);
+        $response = $accessContextManagerClient->listGcpUserAccessBindings($request);
 
         /** @var GcpUserAccessBinding $element */
         foreach ($response as $element) {

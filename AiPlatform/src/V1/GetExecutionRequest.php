@@ -26,6 +26,22 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the Execution to retrieve.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                     Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

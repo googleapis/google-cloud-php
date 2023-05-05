@@ -48,6 +48,21 @@ class ListSpecialistPoolsRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The name of the SpecialistPool's parent resource.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see SpecialistPoolServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListSpecialistPoolsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

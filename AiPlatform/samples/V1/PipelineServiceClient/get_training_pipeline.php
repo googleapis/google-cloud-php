@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PipelineService_GetTrainingPipeline_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\GetTrainingPipelineRequest;
 use Google\Cloud\AIPlatform\V1\TrainingPipeline;
 
 /**
@@ -40,10 +41,14 @@ function get_training_pipeline_sample(string $formattedName): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetTrainingPipelineRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TrainingPipeline $response */
-        $response = $pipelineServiceClient->getTrainingPipeline($formattedName);
+        $response = $pipelineServiceClient->getTrainingPipeline($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

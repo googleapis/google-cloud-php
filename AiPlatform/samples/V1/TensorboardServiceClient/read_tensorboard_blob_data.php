@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_ReadTensorboardBlobData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Gets bytes of TensorboardBlobs.
@@ -44,10 +45,14 @@ function read_tensorboard_blob_data_sample(string $formattedTimeSeries): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ReadTensorboardBlobDataRequest())
+        ->setTimeSeries($formattedTimeSeries);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $tensorboardServiceClient->readTensorboardBlobData($formattedTimeSeries);
+        $stream = $tensorboardServiceClient->readTensorboardBlobData($request);
 
         /** @var ReadTensorboardBlobDataResponse $element */
         foreach ($stream->readAll() as $element) {

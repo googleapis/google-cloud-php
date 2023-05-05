@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_ListSavedQueries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
 use Google\Cloud\AIPlatform\V1\SavedQuery;
 
 /**
@@ -41,10 +42,14 @@ function list_saved_queries_sample(string $formattedParent): void
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSavedQueriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datasetServiceClient->listSavedQueries($formattedParent);
+        $response = $datasetServiceClient->listSavedQueries($request);
 
         /** @var SavedQuery $element */
         foreach ($response as $element) {

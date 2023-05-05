@@ -56,6 +56,23 @@ class SearchMigratableResourcesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The location that the migratable resources should be searched
+     *                       from. It's the Vertex AI location that the resources can be migrated to,
+     *                       not the resources' original location. Format:
+     *                       `projects/{project}/locations/{location}`
+     *                       Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\SearchMigratableResourcesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

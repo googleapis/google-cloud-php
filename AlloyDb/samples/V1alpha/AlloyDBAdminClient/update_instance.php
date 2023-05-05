@@ -40,7 +40,7 @@ function update_instance_sample(int $instanceInstanceType): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instance = (new Instance())
         ->setInstanceType($instanceInstanceType);
 

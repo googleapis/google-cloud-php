@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_RemoveContextChildren_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenRequest;
 use Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse;
 
 /**
@@ -43,10 +44,14 @@ function remove_context_children_sample(string $formattedContext): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new RemoveContextChildrenRequest())
+        ->setContext($formattedContext);
+
     // Call the API and handle any network failures.
     try {
         /** @var RemoveContextChildrenResponse $response */
-        $response = $metadataServiceClient->removeContextChildren($formattedContext);
+        $response = $metadataServiceClient->removeContextChildren($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

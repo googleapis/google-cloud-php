@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_BatchImportEvaluatedAnnotations_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\EvaluatedAnnotation;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Imports a list of externally generated EvaluatedAnnotations.
@@ -43,14 +44,14 @@ function batch_import_evaluated_annotations_sample(string $formattedParent): voi
 
     // Prepare the request message.
     $evaluatedAnnotations = [new EvaluatedAnnotation()];
+    $request = (new BatchImportEvaluatedAnnotationsRequest())
+        ->setParent($formattedParent)
+        ->setEvaluatedAnnotations($evaluatedAnnotations);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchImportEvaluatedAnnotationsResponse $response */
-        $response = $modelServiceClient->batchImportEvaluatedAnnotations(
-            $formattedParent,
-            $evaluatedAnnotations
-        );
+        $response = $modelServiceClient->batchImportEvaluatedAnnotations($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

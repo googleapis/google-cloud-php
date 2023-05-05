@@ -60,6 +60,25 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
+     * @param string                            $parent     Required. The name of the parent resource. For the required format, see the
+     *                                                      comment on the Instance.name field. Please see
+     *                                                      {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+     * @param \Google\Cloud\AlloyDb\V1\Instance $instance   Required. The resource being created
+     * @param string                            $instanceId Required. ID of the requesting object.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AlloyDb\V1\Instance $instance, string $instanceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstance($instance)
+            ->setInstanceId($instanceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

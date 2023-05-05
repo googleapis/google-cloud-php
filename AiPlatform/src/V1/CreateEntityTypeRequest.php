@@ -42,6 +42,50 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $entity_type_id = '';
 
     /**
+     * @param string                                 $parent     Required. The resource name of the Featurestore to create EntityTypes.
+     *                                                           Format:
+     *                                                           `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *                                                           Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\EntityType $entityType The EntityType to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\EntityType $entityType): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityType($entityType);
+    }
+
+    /**
+     * @param string                                 $parent       Required. The resource name of the Featurestore to create EntityTypes.
+     *                                                             Format:
+     *                                                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *                                                             Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\EntityType $entityType   The EntityType to create.
+     * @param string                                 $entityTypeId Required. The ID to use for the EntityType, which will become the final
+     *                                                             component of the EntityType's resource name.
+     *
+     *                                                             This value may be up to 60 characters, and valid characters are
+     *                                                             `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                                             The value must be unique within a featurestore.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentEntityTypeEntityTypeId(string $parent, \Google\Cloud\AIPlatform\V1\EntityType $entityType, string $entityTypeId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityType($entityType)
+            ->setEntityTypeId($entityTypeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

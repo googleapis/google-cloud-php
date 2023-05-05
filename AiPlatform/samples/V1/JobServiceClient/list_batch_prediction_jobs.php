@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListBatchPredictionJobsRequest;
 
 /**
  * Lists BatchPredictionJobs in a Location.
@@ -40,10 +41,14 @@ function list_batch_prediction_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListBatchPredictionJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listBatchPredictionJobs($formattedParent);
+        $response = $jobServiceClient->listBatchPredictionJobs($request);
 
         /** @var BatchPredictionJob $element */
         foreach ($response as $element) {

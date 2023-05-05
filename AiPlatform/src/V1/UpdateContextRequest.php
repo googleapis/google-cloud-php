@@ -41,6 +41,25 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\Context $context    Required. The Context containing updates.
+     *                                                        The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
+     *                                                        is used to identify the Context to be updated. Format:
+     *                                                        `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param \Google\Protobuf\FieldMask          $updateMask Optional. A FieldMask indicating which fields should be updated.
+     *                                                        Functionality of this field is not yet supported.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateContextRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Context $context, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

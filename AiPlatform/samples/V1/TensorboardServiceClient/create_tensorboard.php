@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_CreateTensorboard_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateTensorboardRequest;
 use Google\Cloud\AIPlatform\V1\Tensorboard;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,11 +46,14 @@ function create_tensorboard_sample(string $formattedParent, string $tensorboardD
     // Prepare the request message.
     $tensorboard = (new Tensorboard())
         ->setDisplayName($tensorboardDisplayName);
+    $request = (new CreateTensorboardRequest())
+        ->setParent($formattedParent)
+        ->setTensorboard($tensorboard);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tensorboardServiceClient->createTensorboard($formattedParent, $tensorboard);
+        $response = $tensorboardServiceClient->createTensorboard($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

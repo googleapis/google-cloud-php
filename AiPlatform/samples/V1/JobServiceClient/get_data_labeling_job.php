@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_GetDataLabelingJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\DataLabelingJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\GetDataLabelingJobRequest;
 
 /**
  * Gets a DataLabelingJob.
@@ -40,10 +41,14 @@ function get_data_labeling_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDataLabelingJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataLabelingJob $response */
-        $response = $jobServiceClient->getDataLabelingJob($formattedName);
+        $response = $jobServiceClient->getDataLabelingJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

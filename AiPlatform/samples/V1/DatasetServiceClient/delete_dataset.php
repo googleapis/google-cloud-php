@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_DeleteDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_dataset_sample(string $formattedName): void
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDatasetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datasetServiceClient->deleteDataset($formattedName);
+        $response = $datasetServiceClient->deleteDataset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

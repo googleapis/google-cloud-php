@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_ListTensorboardTimeSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
 
 /**
@@ -41,10 +42,14 @@ function list_tensorboard_time_series_sample(string $formattedParent): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTensorboardTimeSeriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tensorboardServiceClient->listTensorboardTimeSeries($formattedParent);
+        $response = $tensorboardServiceClient->listTensorboardTimeSeries($request);
 
         /** @var TensorboardTimeSeries $element */
         foreach ($response as $element) {

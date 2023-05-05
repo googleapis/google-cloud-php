@@ -44,6 +44,25 @@ class StreamingReadFeatureValuesRequest extends \Google\Protobuf\Internal\Messag
     private $feature_selector = null;
 
     /**
+     * @param string $entityType Required. The resource name of the entities' type.
+     *                           Value format:
+     *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
+     *                           For example,
+     *                           for a machine learning model predicting user clicks on a website, an
+     *                           EntityType ID could be `user`. Please see
+     *                           {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\StreamingReadFeatureValuesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $entityType): self
+    {
+        return (new self())
+            ->setEntityType($entityType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

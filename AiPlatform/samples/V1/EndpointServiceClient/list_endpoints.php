@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_EndpointService_ListEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\Endpoint;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
 
 /**
  * Lists Endpoints in a Location.
@@ -40,10 +41,14 @@ function list_endpoints_sample(string $formattedParent): void
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEndpointsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $endpointServiceClient->listEndpoints($formattedParent);
+        $response = $endpointServiceClient->listEndpoints($request);
 
         /** @var Endpoint $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accesscontextmanager_v1_generated_AccessContextManager_GetAccessPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessPolicy;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\GetAccessPolicyRequest;
 
 /**
  * Returns an [access policy]
@@ -41,10 +42,14 @@ function get_access_policy_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetAccessPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AccessPolicy $response */
-        $response = $accessContextManagerClient->getAccessPolicy($formattedName);
+        $response = $accessContextManagerClient->getAccessPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

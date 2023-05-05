@@ -32,6 +32,41 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The name of the EntityType to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
+     * @param string $name  Required. The name of the EntityType to be deleted.
+     *                      Format:
+     *                      `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                      Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     * @param bool   $force If set to true, any Features for this EntityType will also be deleted.
+     *                      (Otherwise, the request will only work if the EntityType has no Features.)
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameForce(string $name, bool $force): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setForce($force);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

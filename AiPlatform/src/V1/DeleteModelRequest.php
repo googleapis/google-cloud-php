@@ -25,6 +25,21 @@ class DeleteModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Model resource to be deleted.
+     *                     Format: `projects/{project}/locations/{location}/models/{model}`
+     *                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

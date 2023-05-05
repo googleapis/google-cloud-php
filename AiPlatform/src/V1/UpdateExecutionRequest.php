@@ -42,6 +42,25 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\Execution $execution  Required. The Execution containing updates.
+     *                                                          The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *                                                          field is used to identify the Execution to be updated. Format:
+     *                                                          `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param \Google\Protobuf\FieldMask            $updateMask Optional. A FieldMask indicating which fields should be updated.
+     *                                                          Functionality of this field is not yet supported.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Execution $execution, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setExecution($execution)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

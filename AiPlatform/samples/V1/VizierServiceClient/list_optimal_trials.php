@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_ListOptimalTrials_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\ListOptimalTrialsRequest;
 use Google\Cloud\AIPlatform\V1\ListOptimalTrialsResponse;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Lists the pareto-optimal Trials for multi-objective Study or the
@@ -41,10 +42,14 @@ function list_optimal_trials_sample(string $formattedParent): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListOptimalTrialsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListOptimalTrialsResponse $response */
-        $response = $vizierServiceClient->listOptimalTrials($formattedParent);
+        $response = $vizierServiceClient->listOptimalTrials($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

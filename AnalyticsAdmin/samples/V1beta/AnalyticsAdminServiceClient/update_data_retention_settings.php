@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateDataRetentionSettings_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\DataRetentionSettings;
+use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -45,14 +46,14 @@ function update_data_retention_settings_sample(): void
     // Prepare the request message.
     $dataRetentionSettings = new DataRetentionSettings();
     $updateMask = new FieldMask();
+    $request = (new UpdateDataRetentionSettingsRequest())
+        ->setDataRetentionSettings($dataRetentionSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataRetentionSettings $response */
-        $response = $analyticsAdminServiceClient->updateDataRetentionSettings(
-            $dataRetentionSettings,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateDataRetentionSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

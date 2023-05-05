@@ -42,7 +42,7 @@ function update_search_ads360_link_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.

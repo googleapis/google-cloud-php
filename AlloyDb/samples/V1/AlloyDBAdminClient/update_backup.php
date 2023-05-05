@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_UpdateBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Backup;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\UpdateBackupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,11 +45,13 @@ function update_backup_sample(string $formattedBackupClusterName): void
     // Prepare the request message.
     $backup = (new Backup())
         ->setClusterName($formattedBackupClusterName);
+    $request = (new UpdateBackupRequest())
+        ->setBackup($backup);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->updateBackup($backup);
+        $response = $alloyDBAdminClient->updateBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_UpdateModel_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\Model;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -44,11 +45,14 @@ function update_model_sample(string $modelDisplayName): void
     $model = (new Model())
         ->setDisplayName($modelDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateModelRequest())
+        ->setModel($model)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Model $response */
-        $response = $modelServiceClient->updateModel($model, $updateMask);
+        $response = $modelServiceClient->updateModel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

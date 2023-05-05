@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_UpdateTensorboardExperiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateTensorboardExperimentRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -45,14 +46,14 @@ function update_tensorboard_experiment_sample(): void
     // Prepare the request message.
     $updateMask = new FieldMask();
     $tensorboardExperiment = new TensorboardExperiment();
+    $request = (new UpdateTensorboardExperimentRequest())
+        ->setUpdateMask($updateMask)
+        ->setTensorboardExperiment($tensorboardExperiment);
 
     // Call the API and handle any network failures.
     try {
         /** @var TensorboardExperiment $response */
-        $response = $tensorboardServiceClient->updateTensorboardExperiment(
-            $updateMask,
-            $tensorboardExperiment
-        );
+        $response = $tensorboardServiceClient->updateTensorboardExperiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

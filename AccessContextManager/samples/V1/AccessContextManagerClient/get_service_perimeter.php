@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accesscontextmanager_v1_generated_AccessContextManager_GetServicePerimeter_sync]
 use Google\ApiCore\ApiException;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\GetServicePerimeterRequest;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 
 /**
@@ -44,10 +45,14 @@ function get_service_perimeter_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetServicePerimeterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServicePerimeter $response */
-        $response = $accessContextManagerClient->getServicePerimeter($formattedName);
+        $response = $accessContextManagerClient->getServicePerimeter($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

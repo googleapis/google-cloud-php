@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_GetAnnotationSpec_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\AnnotationSpec;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 
 /**
  * Gets an AnnotationSpec.
@@ -40,10 +41,14 @@ function get_annotation_spec_sample(string $formattedName): void
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetAnnotationSpecRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AnnotationSpec $response */
-        $response = $datasetServiceClient->getAnnotationSpec($formattedName);
+        $response = $datasetServiceClient->getAnnotationSpec($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

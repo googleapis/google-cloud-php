@@ -59,6 +59,22 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
     private $order_by = '';
 
     /**
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data
+     *                                      from. Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     *                                      Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExportTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

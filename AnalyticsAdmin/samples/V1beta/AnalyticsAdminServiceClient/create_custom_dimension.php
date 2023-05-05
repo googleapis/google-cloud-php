@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateCustomDimension_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\CreateCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\CustomDimension;
 use Google\Analytics\Admin\V1beta\CustomDimension\DimensionScope;
 use Google\ApiCore\ApiException;
@@ -63,11 +64,14 @@ function create_custom_dimension_sample(
         ->setParameterName($customDimensionParameterName)
         ->setDisplayName($customDimensionDisplayName)
         ->setScope($customDimensionScope);
+    $request = (new CreateCustomDimensionRequest())
+        ->setParent($formattedParent)
+        ->setCustomDimension($customDimension);
 
     // Call the API and handle any network failures.
     try {
         /** @var CustomDimension $response */
-        $response = $analyticsAdminServiceClient->createCustomDimension($formattedParent, $customDimension);
+        $response = $analyticsAdminServiceClient->createCustomDimension($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -38,7 +38,7 @@ function create_display_video360_advertiser_link_proposal_sample(string $formatt
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $displayVideo360AdvertiserLinkProposal = new DisplayVideo360AdvertiserLinkProposal();
 
     // Call the API and handle any network failures.
