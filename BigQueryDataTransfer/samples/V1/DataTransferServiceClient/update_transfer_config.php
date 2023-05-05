@@ -43,7 +43,7 @@ function update_transfer_config_sample(): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $transferConfig = new TransferConfig();
     $updateMask = new FieldMask();
 

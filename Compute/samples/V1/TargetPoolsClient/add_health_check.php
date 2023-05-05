@@ -41,7 +41,7 @@ function add_health_check_sample(string $project, string $region, string $target
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
 
     // Call the API and handle any network failures.

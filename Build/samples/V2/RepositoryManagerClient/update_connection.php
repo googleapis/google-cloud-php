@@ -43,7 +43,7 @@ function update_connection_sample(): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $connection = new Connection();
 
     // Call the API and handle any network failures.

@@ -81,7 +81,7 @@ function append_rows_sample(string $formattedWriteStream): void
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $request = (new AppendRowsRequest())
         ->setWriteStream($formattedWriteStream);
 

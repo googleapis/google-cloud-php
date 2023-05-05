@@ -41,7 +41,7 @@ function add_resource_policies_sample(string $disk, string $project, string $zon
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $disksAddResourcePoliciesRequestResource = new DisksAddResourcePoliciesRequest();
 
     // Call the API and handle any network failures.

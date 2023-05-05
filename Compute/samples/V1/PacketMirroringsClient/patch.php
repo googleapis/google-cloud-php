@@ -41,7 +41,7 @@ function patch_sample(string $packetMirroring, string $project, string $region):
     // Create a client.
     $packetMirroringsClient = new PacketMirroringsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $packetMirroringResource = new PacketMirroring();
 
     // Call the API and handle any network failures.

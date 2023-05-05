@@ -40,7 +40,7 @@ function set_backend_service_sample(string $project, string $targetTcpProxy): vo
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetTcpProxiesSetBackendServiceRequestResource = new TargetTcpProxiesSetBackendServiceRequest();
 
     // Call the API and handle any network failures.

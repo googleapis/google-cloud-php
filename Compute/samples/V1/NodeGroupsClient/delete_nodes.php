@@ -41,7 +41,7 @@ function delete_nodes_sample(string $nodeGroup, string $project, string $zone): 
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeGroupsDeleteNodesRequestResource = new NodeGroupsDeleteNodesRequest();
 
     // Call the API and handle any network failures.

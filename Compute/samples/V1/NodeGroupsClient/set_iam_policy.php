@@ -40,7 +40,7 @@ function set_iam_policy_sample(string $project, string $resource, string $zone):
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
 
     // Call the API and handle any network failures.

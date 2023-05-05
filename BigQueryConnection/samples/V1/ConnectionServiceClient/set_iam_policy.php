@@ -41,7 +41,7 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policy = new Policy();
 
     // Call the API and handle any network failures.

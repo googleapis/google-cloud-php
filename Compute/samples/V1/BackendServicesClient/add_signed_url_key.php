@@ -40,7 +40,7 @@ function add_signed_url_key_sample(string $backendService, string $project): voi
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $signedUrlKeyResource = new SignedUrlKey();
 
     // Call the API and handle any network failures.

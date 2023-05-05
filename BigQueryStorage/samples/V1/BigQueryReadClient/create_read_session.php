@@ -57,7 +57,7 @@ function create_read_session_sample(string $formattedParent): void
     // Create a client.
     $bigQueryReadClient = new BigQueryReadClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $readSession = new ReadSession();
 
     // Call the API and handle any network failures.
