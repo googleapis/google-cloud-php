@@ -32,6 +32,21 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     *                     `projects/&#42;/secrets/*`. Please see
+     *                     {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecretManager\V1\DeleteSecretRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
