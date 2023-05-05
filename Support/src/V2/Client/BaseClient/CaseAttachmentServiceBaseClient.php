@@ -22,154 +22,78 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Support\V2\Gapic;
+namespace Google\Cloud\Support\V2\Client\BaseClient;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Support\V2\ListAttachmentsRequest;
-use Google\Cloud\Support\V2\ListAttachmentsResponse;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: A service to manage file attachment for Google Cloud support cases.
  *
  * This class provides the ability to make remote calls to the backing service through method
- * calls that map to API methods. Sample code to get started:
- *
- * ```
- * $caseAttachmentServiceClient = new CaseAttachmentServiceClient();
- * try {
- *     $formattedParent = $caseAttachmentServiceClient->caseName('[ORGANIZATION]', '[CASE]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $caseAttachmentServiceClient->listAttachments($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *     // Alternatively:
- *     // Iterate through all elements
- *     $pagedResponse = $caseAttachmentServiceClient->listAttachments($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- * } finally {
- *     $caseAttachmentServiceClient->close();
- * }
- * ```
+ * calls that map to API methods.
  *
  * Many parameters require resource names to be formatted in a particular way. To
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This class is currently experimental and may be subject to changes.
+ *
+ * @experimental
+ *
+ * @internal
+ *
+ * @method PromiseInterface listAttachmentsAsync(ListAttachmentsRequest $request, array $optionalArgs = [])
  */
-class CaseAttachmentServiceGapicClient
+abstract class CaseAttachmentServiceBaseClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
-    const SERVICE_NAME = 'google.cloud.support.v2.CaseAttachmentService';
+    private const SERVICE_NAME = 'google.cloud.support.v2.CaseAttachmentService';
 
     /** The default address of the service. */
-    const SERVICE_ADDRESS = 'cloudsupport.googleapis.com';
+    private const SERVICE_ADDRESS = 'cloudsupport.googleapis.com';
 
     /** The default port of the service. */
-    const DEFAULT_SERVICE_PORT = 443;
+    private const DEFAULT_SERVICE_PORT = 443;
 
     /** The name of the code generator, to be included in the agent header. */
-    const CODEGEN_NAME = 'gapic';
+    private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private static $caseNameTemplate;
-
-    private static $organizationCaseNameTemplate;
-
-    private static $projectCaseNameTemplate;
-
-    private static $pathTemplateMap;
-
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ .
-                '/../resources/case_attachment_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/case_attachment_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ .
-                '/../resources/case_attachment_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../../resources/case_attachment_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../../resources/case_attachment_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../../resources/case_attachment_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/case_attachment_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../../resources/case_attachment_service_rest_client_config.php',
                 ],
             ],
         ];
-    }
-
-    private static function getCaseNameTemplate()
-    {
-        if (self::$caseNameTemplate == null) {
-            self::$caseNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}'
-            );
-        }
-
-        return self::$caseNameTemplate;
-    }
-
-    private static function getOrganizationCaseNameTemplate()
-    {
-        if (self::$organizationCaseNameTemplate == null) {
-            self::$organizationCaseNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}'
-            );
-        }
-
-        return self::$organizationCaseNameTemplate;
-    }
-
-    private static function getProjectCaseNameTemplate()
-    {
-        if (self::$projectCaseNameTemplate == null) {
-            self::$projectCaseNameTemplate = new PathTemplate(
-                'projects/{project}/cases/{case}'
-            );
-        }
-
-        return self::$projectCaseNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (self::$pathTemplateMap == null) {
-            self::$pathTemplateMap = [
-                'case' => self::getCaseNameTemplate(),
-                'organizationCase' => self::getOrganizationCaseNameTemplate(),
-                'projectCase' => self::getProjectCaseNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
     }
 
     /**
@@ -181,9 +105,9 @@ class CaseAttachmentServiceGapicClient
      *
      * @return string The formatted case resource.
      */
-    public static function caseName($organization, $case)
+    public static function caseName(string $organization, string $case): string
     {
-        return self::getCaseNameTemplate()->render([
+        return self::getPathTemplate('case')->render([
             'organization' => $organization,
             'case' => $case,
         ]);
@@ -198,9 +122,9 @@ class CaseAttachmentServiceGapicClient
      *
      * @return string The formatted organization_case resource.
      */
-    public static function organizationCaseName($organization, $case)
+    public static function organizationCaseName(string $organization, string $case): string
     {
-        return self::getOrganizationCaseNameTemplate()->render([
+        return self::getPathTemplate('organizationCase')->render([
             'organization' => $organization,
             'case' => $case,
         ]);
@@ -215,9 +139,9 @@ class CaseAttachmentServiceGapicClient
      *
      * @return string The formatted project_case resource.
      */
-    public static function projectCaseName($project, $case)
+    public static function projectCaseName(string $project, string $case): string
     {
-        return self::getProjectCaseNameTemplate()->render([
+        return self::getPathTemplate('projectCase')->render([
             'project' => $project,
             'case' => $case,
         ]);
@@ -244,30 +168,9 @@ class CaseAttachmentServiceGapicClient
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName($formattedName, $template = null)
+    public static function parseName(string $formattedName, string $template = null): array
     {
-        $templateMap = self::getPathTemplateMap();
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**
@@ -330,81 +233,38 @@ class CaseAttachmentServiceGapicClient
         $this->setClientOptions($clientOptions);
     }
 
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
     /**
      * Retrieve all attachments associated with a support case.
      *
-     * Sample code:
-     * ```
-     * $caseAttachmentServiceClient = new CaseAttachmentServiceClient();
-     * try {
-     *     $formattedParent = $caseAttachmentServiceClient->caseName('[ORGANIZATION]', '[CASE]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $caseAttachmentServiceClient->listAttachments($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $caseAttachmentServiceClient->listAttachments($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $caseAttachmentServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see self::listAttachmentsAsync()} .
      *
-     * @param string $parent       Required. The resource name of Case object for which attachments should be
-     *                             listed.
-     * @param array  $optionalArgs {
+     * @param ListAttachmentsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
      *     Optional.
      *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\PagedListResponse
+     * @return PagedListResponse
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function listAttachments($parent, array $optionalArgs = [])
+    public function listAttachments(ListAttachmentsRequest $request, array $callOptions = []): PagedListResponse
     {
-        $request = new ListAttachmentsRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListAttachments',
-            $optionalArgs,
-            ListAttachmentsResponse::class,
-            $request
-        );
+        return $this->startApiCall('ListAttachments', $request, $callOptions);
     }
 }

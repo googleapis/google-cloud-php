@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudsupport_v2_generated_CaseService_UpdateCase_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
 use Google\Cloud\Support\V2\PBCase;
+use Google\Cloud\Support\V2\UpdateCaseRequest;
 
 /**
  * Update the specified case. Only a subset of fields can be updated.
@@ -41,13 +42,15 @@ function update_case_sample(): void
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $case = new PBCase();
+    $request = (new UpdateCaseRequest())
+        ->setCase($case);
 
     // Call the API and handle any network failures.
     try {
         /** @var PBCase $response */
-        $response = $caseServiceClient->updateCase($case);
+        $response = $caseServiceClient->updateCase($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

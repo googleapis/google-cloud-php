@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Support\V2\Attachment;
-use Google\Cloud\Support\V2\CaseAttachmentServiceClient;
+use Google\Cloud\Support\V2\Client\CaseAttachmentServiceClient;
+use Google\Cloud\Support\V2\ListAttachmentsRequest;
 
 /**
  * Retrieve all attachments associated with a support case.
@@ -40,10 +41,14 @@ function list_attachments_sample(string $formattedParent): void
     // Create a client.
     $caseAttachmentServiceClient = new CaseAttachmentServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAttachmentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $caseAttachmentServiceClient->listAttachments($formattedParent);
+        $response = $caseAttachmentServiceClient->listAttachments($request);
 
         /** @var Attachment $element */
         foreach ($response as $element) {

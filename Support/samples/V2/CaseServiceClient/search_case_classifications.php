@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Support\V2\CaseClassification;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
+use Google\Cloud\Support\V2\SearchCaseClassificationsRequest;
 
 /**
  * Retrieve valid classifications to be used when creating a support case.
@@ -45,10 +46,13 @@ function search_case_classifications_sample(): void
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
+    // Prepare the request message.
+    $request = new SearchCaseClassificationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $caseServiceClient->searchCaseClassifications();
+        $response = $caseServiceClient->searchCaseClassifications($request);
 
         /** @var CaseClassification $element */
         foreach ($response as $element) {

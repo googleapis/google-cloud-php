@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudsupport_v2_generated_CaseService_ListCases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
+use Google\Cloud\Support\V2\ListCasesRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
@@ -44,10 +45,14 @@ function list_cases_sample(string $formattedParent): void
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCasesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $caseServiceClient->listCases($formattedParent);
+        $response = $caseServiceClient->listCases($request);
 
         /** @var PBCase $element */
         foreach ($response as $element) {

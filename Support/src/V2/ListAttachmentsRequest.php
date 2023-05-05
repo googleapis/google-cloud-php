@@ -39,6 +39,21 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of Case object for which attachments should be
+     *                       listed. Please see
+     *                       {@see CaseAttachmentServiceClient::caseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Support\V2\ListAttachmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

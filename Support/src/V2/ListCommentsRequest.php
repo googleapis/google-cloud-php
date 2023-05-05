@@ -37,6 +37,21 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of Case object for which comments should be
+     *                       listed. Please see
+     *                       {@see CommentServiceClient::caseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Support\V2\ListCommentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

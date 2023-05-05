@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudsupport_v2_generated_CaseService_CreateCase_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
+use Google\Cloud\Support\V2\CreateCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
@@ -41,13 +42,16 @@ function create_case_sample(string $formattedParent): void
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $case = new PBCase();
+    $request = (new CreateCaseRequest())
+        ->setParent($formattedParent)
+        ->setCase($case);
 
     // Call the API and handle any network failures.
     try {
         /** @var PBCase $response */
-        $response = $caseServiceClient->createCase($formattedParent, $case);
+        $response = $caseServiceClient->createCase($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -20,14 +20,15 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Support\Tests\Unit\V2;
+namespace Google\Cloud\Support\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Support\V2\Attachment;
-use Google\Cloud\Support\V2\CaseAttachmentServiceClient;
+use Google\Cloud\Support\V2\Client\CaseAttachmentServiceClient;
+use Google\Cloud\Support\V2\ListAttachmentsRequest;
 use Google\Cloud\Support\V2\ListAttachmentsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -80,7 +81,9 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $response = $gapicClient->listAttachments($formattedParent);
+        $request = (new ListAttachmentsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAttachments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -115,8 +118,10 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new ListAttachmentsRequest())
+            ->setParent($formattedParent);
         try {
-            $gapicClient->listAttachments($formattedParent);
+            $gapicClient->listAttachments($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -125,6 +130,43 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAttachmentsAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $attachmentsElement = new Attachment();
+        $attachments = [
+            $attachmentsElement,
+        ];
+        $expectedResponse = new ListAttachmentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAttachments($attachments);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new ListAttachmentsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAttachmentsAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAttachments()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.support.v2.CaseAttachmentService/ListAttachments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

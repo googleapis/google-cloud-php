@@ -36,6 +36,29 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Support\V2\PBCase $case       Required. The case object to update.
+     * @param \Google\Protobuf\FieldMask      $updateMask A list of attributes of the case object that should be updated
+     *                                                    as part of this request. Supported values are `priority`, `display_name`,
+     *                                                    and `subscriber_email_addresses`. If no fields are specified, all supported
+     *                                                    fields are updated.
+     *
+     *                                                    WARNING: If you do not provide a field mask, then you might accidentally
+     *                                                    clear some fields. For example, if you leave the field mask empty and do
+     *                                                    not provide a value for `subscriber_email_addresses`, then
+     *                                                    `subscriber_email_addresses` is updated to empty.
+     *
+     * @return \Google\Cloud\Support\V2\UpdateCaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Support\V2\PBCase $case, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCase($case)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

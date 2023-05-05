@@ -23,6 +23,20 @@ class GetCaseRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The fully qualified name of a case to be retrieved. Please see
+     *                     {@see CaseServiceClient::caseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Support\V2\GetCaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

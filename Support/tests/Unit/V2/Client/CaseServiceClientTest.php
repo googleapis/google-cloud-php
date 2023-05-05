@@ -20,18 +20,26 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Support\Tests\Unit\V2;
+namespace Google\Cloud\Support\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Support\V2\CaseClassification;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
+use Google\Cloud\Support\V2\CloseCaseRequest;
+use Google\Cloud\Support\V2\CreateCaseRequest;
+use Google\Cloud\Support\V2\EscalateCaseRequest;
+use Google\Cloud\Support\V2\GetCaseRequest;
+use Google\Cloud\Support\V2\ListCasesRequest;
 use Google\Cloud\Support\V2\ListCasesResponse;
 use Google\Cloud\Support\V2\PBCase;
+use Google\Cloud\Support\V2\SearchCaseClassificationsRequest;
 use Google\Cloud\Support\V2\SearchCaseClassificationsResponse;
+use Google\Cloud\Support\V2\SearchCasesRequest;
 use Google\Cloud\Support\V2\SearchCasesResponse;
+use Google\Cloud\Support\V2\UpdateCaseRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -92,7 +100,9 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $response = $gapicClient->closeCase($formattedName);
+        $request = (new CloseCaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->closeCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -124,8 +134,10 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new CloseCaseRequest())
+            ->setName($formattedName);
         try {
-            $gapicClient->closeCase($formattedName);
+            $gapicClient->closeCase($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -167,7 +179,10 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $case = new PBCase();
-        $response = $gapicClient->createCase($formattedParent, $case);
+        $request = (new CreateCaseRequest())
+            ->setParent($formattedParent)
+            ->setCase($case);
+        $response = $gapicClient->createCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -202,8 +217,11 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $case = new PBCase();
+        $request = (new CreateCaseRequest())
+            ->setParent($formattedParent)
+            ->setCase($case);
         try {
-            $gapicClient->createCase($formattedParent, $case);
+            $gapicClient->createCase($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -244,7 +262,9 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $response = $gapicClient->escalateCase($formattedName);
+        $request = (new EscalateCaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->escalateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -276,8 +296,10 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new EscalateCaseRequest())
+            ->setName($formattedName);
         try {
-            $gapicClient->escalateCase($formattedName);
+            $gapicClient->escalateCase($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -318,7 +340,9 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $response = $gapicClient->getCase($formattedName);
+        $request = (new GetCaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -350,8 +374,10 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new GetCaseRequest())
+            ->setName($formattedName);
         try {
-            $gapicClient->getCase($formattedName);
+            $gapicClient->getCase($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -383,7 +409,9 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listCases($formattedParent);
+        $request = (new ListCasesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listCases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -418,8 +446,10 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListCasesRequest())
+            ->setParent($formattedParent);
         try {
-            $gapicClient->listCases($formattedParent);
+            $gapicClient->listCases($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -449,7 +479,8 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCaseClassifications($caseClassifications);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->searchCaseClassifications();
+        $request = new SearchCaseClassificationsRequest();
+        $response = $gapicClient->searchCaseClassifications($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -480,8 +511,9 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        $request = new SearchCaseClassificationsRequest();
         try {
-            $gapicClient->searchCaseClassifications();
+            $gapicClient->searchCaseClassifications($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -511,7 +543,8 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCases($cases);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->searchCases();
+        $request = new SearchCasesRequest();
+        $response = $gapicClient->searchCases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -542,8 +575,9 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        $request = new SearchCasesRequest();
         try {
-            $gapicClient->searchCases();
+            $gapicClient->searchCases($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -584,7 +618,9 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $case = new PBCase();
-        $response = $gapicClient->updateCase($case);
+        $request = (new UpdateCaseRequest())
+            ->setCase($case);
+        $response = $gapicClient->updateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -616,8 +652,10 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $case = new PBCase();
+        $request = (new UpdateCaseRequest())
+            ->setCase($case);
         try {
-            $gapicClient->updateCase($case);
+            $gapicClient->updateCase($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -626,6 +664,49 @@ class CaseServiceClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function closeCaseAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $timeZone = 'timeZone36848094';
+        $contactEmail = 'contactEmail947010237';
+        $escalated = true;
+        $testCase = false;
+        $languageCode = 'languageCode-412800396';
+        $expectedResponse = new PBCase();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setContactEmail($contactEmail);
+        $expectedResponse->setEscalated($escalated);
+        $expectedResponse->setTestCase($testCase);
+        $expectedResponse->setLanguageCode($languageCode);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
+        $request = (new CloseCaseRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->closeCaseAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.support.v2.CaseService/CloseCase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

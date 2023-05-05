@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudsupport_v2_generated_CommentService_ListComments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Support\V2\Client\CommentServiceClient;
 use Google\Cloud\Support\V2\Comment;
-use Google\Cloud\Support\V2\CommentServiceClient;
+use Google\Cloud\Support\V2\ListCommentsRequest;
 
 /**
  * Retrieve all Comments associated with the Case object.
@@ -40,10 +41,14 @@ function list_comments_sample(string $formattedParent): void
     // Create a client.
     $commentServiceClient = new CommentServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCommentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $commentServiceClient->listComments($formattedParent);
+        $response = $commentServiceClient->listComments($request);
 
         /** @var Comment $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudsupport_v2_generated_CommentService_CreateComment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Support\V2\Client\CommentServiceClient;
 use Google\Cloud\Support\V2\Comment;
-use Google\Cloud\Support\V2\CommentServiceClient;
+use Google\Cloud\Support\V2\CreateCommentRequest;
 
 /**
  * Add a new comment to the specified Case.
@@ -39,13 +40,16 @@ function create_comment_sample(string $formattedParent): void
     // Create a client.
     $commentServiceClient = new CommentServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $comment = new Comment();
+    $request = (new CreateCommentRequest())
+        ->setParent($formattedParent)
+        ->setComment($comment);
 
     // Call the API and handle any network failures.
     try {
         /** @var Comment $response */
-        $response = $commentServiceClient->createComment($formattedParent, $comment);
+        $response = $commentServiceClient->createComment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

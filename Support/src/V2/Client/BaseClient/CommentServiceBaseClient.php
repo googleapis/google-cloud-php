@@ -22,13 +22,13 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Support\V2\Gapic;
+namespace Google\Cloud\Support\V2\Client\BaseClient;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -36,170 +36,67 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Support\V2\Comment;
 use Google\Cloud\Support\V2\CreateCommentRequest;
 use Google\Cloud\Support\V2\ListCommentsRequest;
-use Google\Cloud\Support\V2\ListCommentsResponse;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: A service to manage comments on cases.
  *
  * This class provides the ability to make remote calls to the backing service through method
- * calls that map to API methods. Sample code to get started:
- *
- * ```
- * $commentServiceClient = new CommentServiceClient();
- * try {
- *     $formattedParent = $commentServiceClient->caseName('[ORGANIZATION]', '[CASE]');
- *     $comment = new Comment();
- *     $response = $commentServiceClient->createComment($formattedParent, $comment);
- * } finally {
- *     $commentServiceClient->close();
- * }
- * ```
+ * calls that map to API methods.
  *
  * Many parameters require resource names to be formatted in a particular way. To
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This class is currently experimental and may be subject to changes.
+ *
+ * @experimental
+ *
+ * @internal
+ *
+ * @method PromiseInterface createCommentAsync(CreateCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listCommentsAsync(ListCommentsRequest $request, array $optionalArgs = [])
  */
-class CommentServiceGapicClient
+abstract class CommentServiceBaseClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
-    const SERVICE_NAME = 'google.cloud.support.v2.CommentService';
+    private const SERVICE_NAME = 'google.cloud.support.v2.CommentService';
 
     /** The default address of the service. */
-    const SERVICE_ADDRESS = 'cloudsupport.googleapis.com';
+    private const SERVICE_ADDRESS = 'cloudsupport.googleapis.com';
 
     /** The default port of the service. */
-    const DEFAULT_SERVICE_PORT = 443;
+    private const DEFAULT_SERVICE_PORT = 443;
 
     /** The name of the code generator, to be included in the agent header. */
-    const CODEGEN_NAME = 'gapic';
+    private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private static $caseNameTemplate;
-
-    private static $commentNameTemplate;
-
-    private static $organizationCaseNameTemplate;
-
-    private static $organizationCaseCommentNameTemplate;
-
-    private static $projectCaseNameTemplate;
-
-    private static $projectCaseCommentNameTemplate;
-
-    private static $pathTemplateMap;
-
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/comment_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/comment_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/comment_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../../resources/comment_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../../resources/comment_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../../resources/comment_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/comment_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../../resources/comment_service_rest_client_config.php',
                 ],
             ],
         ];
-    }
-
-    private static function getCaseNameTemplate()
-    {
-        if (self::$caseNameTemplate == null) {
-            self::$caseNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}'
-            );
-        }
-
-        return self::$caseNameTemplate;
-    }
-
-    private static function getCommentNameTemplate()
-    {
-        if (self::$commentNameTemplate == null) {
-            self::$commentNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}/comments/{comment}'
-            );
-        }
-
-        return self::$commentNameTemplate;
-    }
-
-    private static function getOrganizationCaseNameTemplate()
-    {
-        if (self::$organizationCaseNameTemplate == null) {
-            self::$organizationCaseNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}'
-            );
-        }
-
-        return self::$organizationCaseNameTemplate;
-    }
-
-    private static function getOrganizationCaseCommentNameTemplate()
-    {
-        if (self::$organizationCaseCommentNameTemplate == null) {
-            self::$organizationCaseCommentNameTemplate = new PathTemplate(
-                'organizations/{organization}/cases/{case}/comments/{comment}'
-            );
-        }
-
-        return self::$organizationCaseCommentNameTemplate;
-    }
-
-    private static function getProjectCaseNameTemplate()
-    {
-        if (self::$projectCaseNameTemplate == null) {
-            self::$projectCaseNameTemplate = new PathTemplate(
-                'projects/{project}/cases/{case}'
-            );
-        }
-
-        return self::$projectCaseNameTemplate;
-    }
-
-    private static function getProjectCaseCommentNameTemplate()
-    {
-        if (self::$projectCaseCommentNameTemplate == null) {
-            self::$projectCaseCommentNameTemplate = new PathTemplate(
-                'projects/{project}/cases/{case}/comments/{comment}'
-            );
-        }
-
-        return self::$projectCaseCommentNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (self::$pathTemplateMap == null) {
-            self::$pathTemplateMap = [
-                'case' => self::getCaseNameTemplate(),
-                'comment' => self::getCommentNameTemplate(),
-                'organizationCase' => self::getOrganizationCaseNameTemplate(),
-                'organizationCaseComment' => self::getOrganizationCaseCommentNameTemplate(),
-                'projectCase' => self::getProjectCaseNameTemplate(),
-                'projectCaseComment' => self::getProjectCaseCommentNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
     }
 
     /**
@@ -211,9 +108,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted case resource.
      */
-    public static function caseName($organization, $case)
+    public static function caseName(string $organization, string $case): string
     {
-        return self::getCaseNameTemplate()->render([
+        return self::getPathTemplate('case')->render([
             'organization' => $organization,
             'case' => $case,
         ]);
@@ -229,9 +126,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted comment resource.
      */
-    public static function commentName($organization, $case, $comment)
+    public static function commentName(string $organization, string $case, string $comment): string
     {
-        return self::getCommentNameTemplate()->render([
+        return self::getPathTemplate('comment')->render([
             'organization' => $organization,
             'case' => $case,
             'comment' => $comment,
@@ -247,9 +144,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted organization_case resource.
      */
-    public static function organizationCaseName($organization, $case)
+    public static function organizationCaseName(string $organization, string $case): string
     {
-        return self::getOrganizationCaseNameTemplate()->render([
+        return self::getPathTemplate('organizationCase')->render([
             'organization' => $organization,
             'case' => $case,
         ]);
@@ -265,12 +162,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted organization_case_comment resource.
      */
-    public static function organizationCaseCommentName(
-        $organization,
-        $case,
-        $comment
-    ) {
-        return self::getOrganizationCaseCommentNameTemplate()->render([
+    public static function organizationCaseCommentName(string $organization, string $case, string $comment): string
+    {
+        return self::getPathTemplate('organizationCaseComment')->render([
             'organization' => $organization,
             'case' => $case,
             'comment' => $comment,
@@ -286,9 +180,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted project_case resource.
      */
-    public static function projectCaseName($project, $case)
+    public static function projectCaseName(string $project, string $case): string
     {
-        return self::getProjectCaseNameTemplate()->render([
+        return self::getPathTemplate('projectCase')->render([
             'project' => $project,
             'case' => $case,
         ]);
@@ -304,9 +198,9 @@ class CommentServiceGapicClient
      *
      * @return string The formatted project_case_comment resource.
      */
-    public static function projectCaseCommentName($project, $case, $comment)
+    public static function projectCaseCommentName(string $project, string $case, string $comment): string
     {
-        return self::getProjectCaseCommentNameTemplate()->render([
+        return self::getPathTemplate('projectCaseComment')->render([
             'project' => $project,
             'case' => $case,
             'comment' => $comment,
@@ -337,30 +231,9 @@ class CommentServiceGapicClient
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName($formattedName, $template = null)
+    public static function parseName(string $formattedName, string $template = null): array
     {
-        $templateMap = self::getPathTemplateMap();
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**
@@ -423,25 +296,25 @@ class CommentServiceGapicClient
         $this->setClientOptions($clientOptions);
     }
 
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
     /**
      * Add a new comment to the specified Case.
      * The comment object must have the following fields set: body.
      *
-     * Sample code:
-     * ```
-     * $commentServiceClient = new CommentServiceClient();
-     * try {
-     *     $formattedParent = $commentServiceClient->caseName('[ORGANIZATION]', '[CASE]');
-     *     $comment = new Comment();
-     *     $response = $commentServiceClient->createComment($formattedParent, $comment);
-     * } finally {
-     *     $commentServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see self::createCommentAsync()} .
      *
-     * @param string  $parent       Required. The resource name of Case to which this comment should be added.
-     * @param Comment $comment      Required. The Comment object to be added to this Case.
-     * @param array   $optionalArgs {
+     * @param CreateCommentRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -450,106 +323,36 @@ class CommentServiceGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Support\V2\Comment
+     * @return Comment
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function createComment($parent, $comment, array $optionalArgs = [])
+    public function createComment(CreateCommentRequest $request, array $callOptions = []): Comment
     {
-        $request = new CreateCommentRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setComment($comment);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CreateComment',
-            Comment::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startApiCall('CreateComment', $request, $callOptions)->wait();
     }
 
     /**
      * Retrieve all Comments associated with the Case object.
      *
-     * Sample code:
-     * ```
-     * $commentServiceClient = new CommentServiceClient();
-     * try {
-     *     $formattedParent = $commentServiceClient->caseName('[ORGANIZATION]', '[CASE]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $commentServiceClient->listComments($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $commentServiceClient->listComments($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $commentServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see self::listCommentsAsync()} .
      *
-     * @param string $parent       Required. The resource name of Case object for which comments should be
-     *                             listed.
-     * @param array  $optionalArgs {
+     * @param ListCommentsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\PagedListResponse
+     * @return PagedListResponse
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function listComments($parent, array $optionalArgs = [])
+    public function listComments(ListCommentsRequest $request, array $callOptions = []): PagedListResponse
     {
-        $request = new ListCommentsRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListComments',
-            $optionalArgs,
-            ListCommentsResponse::class,
-            $request
-        );
+        return $this->startApiCall('ListComments', $request, $callOptions);
     }
 }

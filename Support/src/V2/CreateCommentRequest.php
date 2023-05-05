@@ -29,6 +29,22 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
     protected $comment = null;
 
     /**
+     * @param string                           $parent  Required. The resource name of Case to which this comment should be added. Please see
+     *                                                  {@see CommentServiceClient::caseName()} for help formatting this field.
+     * @param \Google\Cloud\Support\V2\Comment $comment Required. The Comment object to be added to this Case.
+     *
+     * @return \Google\Cloud\Support\V2\CreateCommentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Support\V2\Comment $comment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setComment($comment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudsupport_v2_generated_CaseService_SearchCases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Support\V2\CaseServiceClient;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
 use Google\Cloud\Support\V2\PBCase;
+use Google\Cloud\Support\V2\SearchCasesRequest;
 
 /**
  * Search cases using the specified query.
@@ -42,10 +43,13 @@ function search_cases_sample(): void
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
+    // Prepare the request message.
+    $request = new SearchCasesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $caseServiceClient->searchCases();
+        $response = $caseServiceClient->searchCases($request);
 
         /** @var PBCase $element */
         foreach ($response as $element) {
