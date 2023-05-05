@@ -90,7 +90,7 @@ function instantiate_inline_workflow_template_sample(
     // Create a client.
     $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $templatePlacement = new WorkflowTemplatePlacement();
     $orderedJob = (new OrderedJob())
         ->setStepId($templateJobsStepId);

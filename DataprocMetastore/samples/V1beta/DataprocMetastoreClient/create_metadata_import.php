@@ -49,7 +49,7 @@ function create_metadata_import_sample(string $formattedParent, string $metadata
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $metadataImport = new MetadataImport();
 
     // Call the API and handle any network failures.

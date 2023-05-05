@@ -53,7 +53,7 @@ function send_test_message_sample(
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $formattedContacts = [$formattedContactsElement,];
 
     // Call the API and handle any network failures.

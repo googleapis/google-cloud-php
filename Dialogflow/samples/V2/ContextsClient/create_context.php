@@ -62,7 +62,7 @@ function create_context_sample(string $formattedParent, string $contextName): vo
     // Create a client.
     $contextsClient = new ContextsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $context = (new Context())
         ->setName($contextName);
 

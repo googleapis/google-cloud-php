@@ -56,7 +56,7 @@ function create_entry_sample(string $formattedParent, string $entryId): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $entry = new Entry();
 
     // Call the API and handle any network failures.

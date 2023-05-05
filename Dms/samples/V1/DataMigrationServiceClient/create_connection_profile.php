@@ -43,7 +43,7 @@ function create_connection_profile_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $connectionProfile = new ConnectionProfile();
 
     // Call the API and handle any network failures.

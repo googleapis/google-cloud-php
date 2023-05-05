@@ -53,7 +53,7 @@ function update_context_sample(string $contextName): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $context = (new Context())
         ->setName($contextName);
 

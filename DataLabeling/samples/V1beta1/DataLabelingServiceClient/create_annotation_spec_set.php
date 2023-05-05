@@ -39,7 +39,7 @@ function create_annotation_spec_set_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $annotationSpecSet = new AnnotationSpecSet();
 
     // Call the API and handle any network failures.

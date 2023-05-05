@@ -48,7 +48,7 @@ function export_data_sample(string $formattedName, string $formattedAnnotatedDat
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $outputConfig = new OutputConfig();
 
     // Call the API and handle any network failures.

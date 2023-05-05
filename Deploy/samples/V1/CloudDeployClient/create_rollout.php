@@ -47,7 +47,7 @@ function create_rollout_sample(
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $rollout = (new Rollout())
         ->setTargetId($rolloutTargetId);
 

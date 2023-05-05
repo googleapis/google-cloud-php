@@ -47,7 +47,7 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instance = new Instance();
 
     // Call the API and handle any network failures.

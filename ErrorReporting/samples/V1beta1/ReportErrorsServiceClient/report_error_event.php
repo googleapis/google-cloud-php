@@ -82,7 +82,7 @@ function report_error_event_sample(string $formattedProjectName, string $eventMe
     // Create a client.
     $reportErrorsServiceClient = new ReportErrorsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $eventServiceContext = new ServiceContext();
     $event = (new ReportedErrorEvent())
         ->setServiceContext($eventServiceContext)
