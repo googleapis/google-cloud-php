@@ -40,7 +40,7 @@ function create_external_account_key_sample(string $formattedParent): void
     // Create a client.
     $publicCertificateAuthorityServiceClient = new PublicCertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $externalAccountKey = new ExternalAccountKey();
 
     // Call the API and handle any network failures.

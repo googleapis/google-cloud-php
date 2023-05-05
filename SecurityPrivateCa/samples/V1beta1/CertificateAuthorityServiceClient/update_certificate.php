@@ -44,7 +44,7 @@ function update_certificate_sample(): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateLifetime = new Duration();
     $certificate = (new Certificate())
         ->setLifetime($certificateLifetime);

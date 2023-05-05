@@ -53,7 +53,7 @@ function create_service_sample(): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $service = new ManagedService();
 
     // Call the API and handle any network failures.

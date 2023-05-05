@@ -43,7 +43,7 @@ function create_glossary_sample(string $formattedParent, string $glossaryName): 
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $glossary = (new Glossary())
         ->setName($glossaryName);
 

@@ -41,7 +41,7 @@ function create_clone_job_sample(string $formattedParent, string $cloneJobId): v
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cloneJob = new CloneJob();
 
     // Call the API and handle any network failures.

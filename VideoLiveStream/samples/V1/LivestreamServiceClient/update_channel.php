@@ -44,7 +44,7 @@ function update_channel_sample(): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $channelOutput = new Output();
     $channel = (new Channel())
         ->setOutput($channelOutput);

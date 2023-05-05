@@ -55,7 +55,7 @@ function search_jobs_for_alert_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $requestMetadata = new RequestMetadata();
 
     // Call the API and handle any network failures.

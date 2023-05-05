@@ -55,7 +55,7 @@ function update_queue_sample(): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $queue = new Queue();
 
     // Call the API and handle any network failures.

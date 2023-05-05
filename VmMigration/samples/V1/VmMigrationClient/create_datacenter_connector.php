@@ -46,7 +46,7 @@ function create_datacenter_connector_sample(
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $datacenterConnector = new DatacenterConnector();
 
     // Call the API and handle any network failures.
