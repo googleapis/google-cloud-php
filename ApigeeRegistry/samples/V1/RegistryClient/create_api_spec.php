@@ -46,7 +46,7 @@ function create_api_spec_sample(string $formattedParent, string $apiSpecId): voi
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $apiSpec = new ApiSpec();
 
     // Call the API and handle any network failures.

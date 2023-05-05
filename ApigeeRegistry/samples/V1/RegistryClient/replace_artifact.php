@@ -41,7 +41,7 @@ function replace_artifact_sample(): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $artifact = new Artifact();
 
     // Call the API and handle any network failures.

@@ -43,7 +43,7 @@ function update_network_sample(): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $network = new Network();
 
     // Call the API and handle any network failures.
