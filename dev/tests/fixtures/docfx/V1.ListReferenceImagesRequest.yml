@@ -5,9 +5,9 @@ items:
     name: ListReferenceImagesRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ListReferenceImagesRequest
-    summary: |
+    summary: |-
       Request message for the `ListReferenceImages` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ListReferenceImagesRequest</code>
     type: class
     langs:
@@ -51,9 +51,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. Resource name of the product containing the reference images.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
@@ -68,9 +68,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. Resource name of the product containing the reference images.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
@@ -121,10 +121,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageToken()'
     name: getPageToken
     id: getPageToken
-    summary: |
+    summary: |-
       A token identifying a page of results to be returned. This is the value
       of `nextPageToken` returned in a previous reference image list request.
-      
+
       Defaults to the first page if not specified.
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method
@@ -138,10 +138,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageToken()'
     name: setPageToken
     id: setPageToken
-    summary: |
+    summary: |-
       A token identifying a page of results to be returned. This is the value
       of `nextPageToken` returned in a previous reference image list request.
-      
+
       Defaults to the first page if not specified.
     parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     type: method

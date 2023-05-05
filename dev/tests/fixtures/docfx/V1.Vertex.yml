@@ -5,11 +5,11 @@ items:
     name: Vertex
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Vertex
-    summary: |
+    summary: |-
       A vertex represents a 2D point in the image.
-      
+
       NOTE: the vertex coordinates are in the same scale as the original image.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Vertex</code>
     type: class
     langs:

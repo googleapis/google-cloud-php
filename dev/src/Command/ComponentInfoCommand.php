@@ -32,12 +32,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ComponentInfoCommand extends Command
 {
-    private $googleapisDir = __DIR__ . '/../../../../../googleapis';
     protected function configure()
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addArgument('name', InputArgument::OPTIONAL, 'Component to check compliance for.')
+            ->addArgument('name', InputArgument::OPTIONAL, 'Component to check compliance for.', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
         ;
     }
@@ -45,22 +44,11 @@ class ComponentInfoCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $components = [];
-        $components[] = [
-            'Component',
-            'Composer package',
-            'GitHub repo',
-            'PHP namespace',
-            'Protobuf package',
-        ];
-        $verbose = $input->getOption('verbose');
-        if ($verbose) {
-            $components[0][] = 'Validation errors';
-        }
         if ($componentName = rtrim($input->getArgument('name'), '/')) {
-            $components[] = $this->checkComponent(new Component($componentName), $verbose);
+            $components[] = $this->getComponentDetails(new Component($componentName), true);
         } else {
             foreach (Component::getComponents() as $component) {
-                $components[] = $this->checkComponent($component, $verbose);
+                $components[] = $this->getComponentDetails($component, $input->getOption('verbose'));
             }
         }
 
@@ -74,63 +62,33 @@ class ComponentInfoCommand extends Command
         } else {
             $table = new Table($output);
             $table
-                ->setHeaders(array_shift($components))
+                ->setHeaders(array_keys($components[0]))
                 ->setRows($components)
             ;
+            if ($componentName) {
+                $table->setVertical();
+            }
             $table->render();
         }
 
         return 0;
     }
 
-    private function checkComponent(Component $component, bool $verbose): array
+    private function getComponentDetails(Component $component, bool $verbose): array
     {
-        $protobufPackage = '';
-        $githubRepo = $component->getRepoName();
-        $composerPackage = $component->getPackageName();
-        $phpNamespace = $component->getNamespaces()[0];
-        $componentName = $component->getName();
-        $validationErrors = [];
-        $expectedNamespace = '';
-        try {
-            $protobufPackage = $component->getProtoPackage($this->googleapisDir);
-        } catch (\Exception $e) {
-            $validationErrors[] = $e->getMessage();
-        }
-
-        if ($verbose && $protobufPackage) {
-            $namer = new NewComponent();
-            // Output validation errors
-            $expectedComposerPackage = $namer->composerPackage;
-            $expectedGithubRepo = $namer->githubRepo;
-            $expectedNamespace = $namer->phpNamespace;
-            if ($expectedGithubRepo !== $githubRepo) {
-                $validationErrors[] = "Github repo name $githubRepo doesn't match expected $expectedGithubRepo";
-            }
-            if ($expectedComposerPackage !== $composerPackage) {
-                $validationErrors[] = "Composer package name $composerPackage doesn't match expected $expectedComposerPackage";
-            }
-
-            $expectedComponentName = $namer->componentName;
-            if (strtolower($componentName) !== strtolower($expectedComponentName)) {
-                $validationErrors[] = "Component $componentName doesn't match expected $expectedComponentName";
-            }
-
-            $expectedNamespace = $namer->phpNamespace;
-            if (strtolower($expectedNamespace) !== strtolower($phpNamespace)) {
-                $validationErrors[] = "PHP namespace $phpNamespace doesn't match expected $expectedNamespace";
-            }
-        }
-
         $info = [
-            $componentName,
-            $composerPackage,
-            $githubRepo,
-            $phpNamespace,
-            $protobufPackage,
+            'Component Name' => $component->getName(),
+            'Package Name' => $component->getPackageName(),
+            'Package Version' => $component->getLocalVersion(),
         ];
+
         if ($verbose) {
-            $info[] = implode("\n", $validationErrors);
+            $info['Release Level'] = $component->getReleaseLevel();
+            $info['Php Namespace(s)'] = implode("\n", $component->getNamespaces());
+            $info['Github Repo'] = $component->getRepoName();
+            $info['Protobuf Package'] = $component->getProtoPackage();
+            $info['Service Address'] = $component->getServiceAddress();
+            $info['Description'] = $component->getDescription();
         }
         return $info;
     }

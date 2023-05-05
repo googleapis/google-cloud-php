@@ -5,9 +5,9 @@ items:
     name: GcsDestination
     friendlyApiName: 'Cloud Vision V1 Client'
     id: GcsDestination
-    summary: |
+    summary: |-
       The Google Cloud Storage location where the output will be written to.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.GcsDestination</code>
     type: class
     langs:
@@ -39,10 +39,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\GcsDestination::getUri()'
     name: getUri
     id: getUri
-    summary: |
+    summary: |-
       Google Cloud Storage URI prefix where the results will be stored. Results
       will be in JSON format and preceded by its corresponding input URI prefix.
-      
+
       This field can either represent a gcs file prefix or gcs directory. In
       either case, the uri should be unique because in order to get all of the
       output files, you will need to do a wildcard gcs search on the uri prefix
@@ -71,10 +71,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\GcsDestination::setUri()'
     name: setUri
     id: setUri
-    summary: |
+    summary: |-
       Google Cloud Storage URI prefix where the results will be stored. Results
       will be in JSON format and preceded by its corresponding input URI prefix.
-      
+
       This field can either represent a gcs file prefix or gcs directory. In
       either case, the uri should be unique because in order to get all of the
       output files, you will need to do a wildcard gcs search on the uri prefix

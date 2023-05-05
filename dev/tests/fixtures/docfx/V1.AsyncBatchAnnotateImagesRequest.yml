@@ -5,9 +5,9 @@ items:
     name: AsyncBatchAnnotateImagesRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncBatchAnnotateImagesRequest
-    summary: |
+    summary: |-
       Request for async image annotation for a list of images.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateImagesRequest</code>
     type: class
     langs:
@@ -131,9 +131,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:
@@ -153,9 +153,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:

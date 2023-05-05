@@ -5,9 +5,9 @@ items:
     name: BatchAnnotateFilesRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchAnnotateFilesRequest
-    summary: |
+    summary: |-
       A list of requests to annotate files using the BatchAnnotateFiles API.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.BatchAnnotateFilesRequest</code>
     type: class
     langs:
@@ -45,7 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getRequests()'
     name: getRequests
     id: getRequests
-    summary: |
+    summary: |-
       Required. The list of file annotation requests. Right now we support only one
       AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
@@ -60,7 +60,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setRequests()'
     name: setRequests
     id: setRequests
-    summary: |
+    summary: |-
       Required. The list of file annotation requests. Right now we support only one
       AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
@@ -80,9 +80,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:
@@ -102,9 +102,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Optional. Target project and location to make a call.
-      
+
       Format: `projects/{project-id}/locations/{location-id}`.
       If no parent is specified, a region will be chosen automatically.
       Supported location-ids:

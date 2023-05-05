@@ -5,9 +5,9 @@ items:
     name: ListProductsInProductSetRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ListProductsInProductSetRequest
-    summary: |
+    summary: |-
       Request message for the `ListProductsInProductSet` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ListProductsInProductSetRequest</code>
     type: class
     langs:
@@ -51,9 +51,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getName()'
     name: getName
     id: getName
-    summary: |
+    summary: |-
       Required. The ProductSet resource for which to retrieve Products.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
@@ -68,9 +68,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setName()'
     name: setName
     id: setName
-    summary: |
+    summary: |-
       Required. The ProductSet resource for which to retrieve Products.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
     parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest

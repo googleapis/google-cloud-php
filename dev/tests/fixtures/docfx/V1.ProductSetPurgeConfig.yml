@@ -5,9 +5,9 @@ items:
     name: ProductSetPurgeConfig
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSetPurgeConfig
-    summary: |
+    summary: |-
       Config to control which ProductSet contains the Products to be deleted.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ProductSetPurgeConfig</code>
     type: class
     langs:
@@ -39,7 +39,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::getProductSetId()'
     name: getProductSetId
     id: getProductSetId
-    summary: |
+    summary: |-
       The ProductSet that contains the Products to delete. If a Product is a
       member of product_set_id in addition to other ProductSets, the Product will
       still be deleted.
@@ -55,7 +55,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::setProductSetId()'
     name: setProductSetId
     id: setProductSetId
-    summary: |
+    summary: |-
       The ProductSet that contains the Products to delete. If a Product is a
       member of product_set_id in addition to other ProductSets, the Product will
       still be deleted.

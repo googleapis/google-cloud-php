@@ -5,9 +5,9 @@ items:
     name: Type
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Type
-    summary: |
+    summary: |-
       Type of Google Cloud Vision API feature to be extracted.
-      
+
       Protobuf type <code>google.cloud.vision.v1.Feature.Type</code>
     type: class
     langs:
@@ -60,9 +60,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::TYPE_UNSPECIFIED'
     name: TYPE_UNSPECIFIED
     id: TYPE_UNSPECIFIED
-    summary: |
+    summary: |-
       Unspecified feature type.
-      
+
       Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -74,9 +74,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::FACE_DETECTION'
     name: FACE_DETECTION
     id: FACE_DETECTION
-    summary: |
+    summary: |-
       Run face detection.
-      
+
       Generated from protobuf enum <code>FACE_DETECTION = 1;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -88,9 +88,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::LANDMARK_DETECTION'
     name: LANDMARK_DETECTION
     id: LANDMARK_DETECTION
-    summary: |
+    summary: |-
       Run landmark detection.
-      
+
       Generated from protobuf enum <code>LANDMARK_DETECTION = 2;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -102,9 +102,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::LOGO_DETECTION'
     name: LOGO_DETECTION
     id: LOGO_DETECTION
-    summary: |
+    summary: |-
       Run logo detection.
-      
+
       Generated from protobuf enum <code>LOGO_DETECTION = 3;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -116,9 +116,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::LABEL_DETECTION'
     name: LABEL_DETECTION
     id: LABEL_DETECTION
-    summary: |
+    summary: |-
       Run label detection.
-      
+
       Generated from protobuf enum <code>LABEL_DETECTION = 4;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -130,11 +130,11 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::TEXT_DETECTION'
     name: TEXT_DETECTION
     id: TEXT_DETECTION
-    summary: |
+    summary: |-
       Run text detection / optical character recognition (OCR). Text detection
       is optimized for areas of text within a larger image; if the image is
       a document, use `DOCUMENT_TEXT_DETECTION` instead.
-      
+
       Generated from protobuf enum <code>TEXT_DETECTION = 5;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -146,10 +146,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::DOCUMENT_TEXT_DETECTION'
     name: DOCUMENT_TEXT_DETECTION
     id: DOCUMENT_TEXT_DETECTION
-    summary: |
+    summary: |-
       Run dense text document OCR. Takes precedence when both
       `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` are present.
-      
+
       Generated from protobuf enum <code>DOCUMENT_TEXT_DETECTION = 11;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -161,10 +161,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::SAFE_SEARCH_DETECTION'
     name: SAFE_SEARCH_DETECTION
     id: SAFE_SEARCH_DETECTION
-    summary: |
+    summary: |-
       Run Safe Search to detect potentially unsafe
       or undesirable content.
-      
+
       Generated from protobuf enum <code>SAFE_SEARCH_DETECTION = 6;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -176,10 +176,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::IMAGE_PROPERTIES'
     name: IMAGE_PROPERTIES
     id: IMAGE_PROPERTIES
-    summary: |
+    summary: |-
       Compute a set of image properties, such as the
       image's dominant colors.
-      
+
       Generated from protobuf enum <code>IMAGE_PROPERTIES = 7;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -191,9 +191,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::CROP_HINTS'
     name: CROP_HINTS
     id: CROP_HINTS
-    summary: |
+    summary: |-
       Run crop hints.
-      
+
       Generated from protobuf enum <code>CROP_HINTS = 9;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -205,9 +205,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::WEB_DETECTION'
     name: WEB_DETECTION
     id: WEB_DETECTION
-    summary: |
+    summary: |-
       Run web detection.
-      
+
       Generated from protobuf enum <code>WEB_DETECTION = 10;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -219,9 +219,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::PRODUCT_SEARCH'
     name: PRODUCT_SEARCH
     id: PRODUCT_SEARCH
-    summary: |
+    summary: |-
       Run Product Search.
-      
+
       Generated from protobuf enum <code>PRODUCT_SEARCH = 12;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const
@@ -233,9 +233,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature\Type::OBJECT_LOCALIZATION'
     name: OBJECT_LOCALIZATION
     id: OBJECT_LOCALIZATION
-    summary: |
+    summary: |-
       Run localizer for object detection.
-      
+
       Generated from protobuf enum <code>OBJECT_LOCALIZATION = 19;</code>
     parent: \Google\Cloud\Vision\V1\Feature\Type
     type: const

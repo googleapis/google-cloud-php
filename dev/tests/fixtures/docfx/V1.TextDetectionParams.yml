@@ -5,10 +5,10 @@ items:
     name: TextDetectionParams
     friendlyApiName: 'Cloud Vision V1 Client'
     id: TextDetectionParams
-    summary: |
+    summary: |-
       Parameters for text detections. This is used to control TEXT_DETECTION and
       DOCUMENT_TEXT_DETECTION features.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.TextDetectionParams</code>
     type: class
     langs:
@@ -46,7 +46,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getEnableTextDetectionConfidenceScore()'
     name: getEnableTextDetectionConfidenceScore
     id: getEnableTextDetectionConfidenceScore
-    summary: |
+    summary: |-
       By default, Cloud Vision API only includes confidence score for
       DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
       score for TEXT_DETECTION as well.
@@ -62,7 +62,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setEnableTextDetectionConfidenceScore()'
     name: setEnableTextDetectionConfidenceScore
     id: setEnableTextDetectionConfidenceScore
-    summary: |
+    summary: |-
       By default, Cloud Vision API only includes confidence score for
       DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
       score for TEXT_DETECTION as well.

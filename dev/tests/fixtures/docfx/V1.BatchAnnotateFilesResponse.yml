@@ -5,9 +5,9 @@ items:
     name: BatchAnnotateFilesResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchAnnotateFilesResponse
-    summary: |
+    summary: |-
       A list of file annotation responses.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.BatchAnnotateFilesResponse</code>
     type: class
     langs:
@@ -39,7 +39,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse::getResponses()'
     name: getResponses
     id: getResponses
-    summary: |
+    summary: |-
       The list of file annotation responses, each response corresponding to each
       AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
@@ -54,7 +54,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse::setResponses()'
     name: setResponses
     id: setResponses
-    summary: |
+    summary: |-
       The list of file annotation responses, each response corresponding to each
       AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse

@@ -5,11 +5,11 @@ items:
     name: Feature
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Feature
-    summary: |
+    summary: |-
       The type of Google Cloud Vision API detection to perform, and the maximum
       number of results to return for that type. Multiple `Feature` objects can
       be specified in the `features` list.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Feature</code>
     type: class
     langs:
@@ -84,7 +84,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature::getMaxResults()'
     name: getMaxResults
     id: getMaxResults
-    summary: |
+    summary: |-
       Maximum number of results of this type. Does not apply to
       `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
     parent: \Google\Cloud\Vision\V1\Feature
@@ -99,7 +99,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature::setMaxResults()'
     name: setMaxResults
     id: setMaxResults
-    summary: |
+    summary: |-
       Maximum number of results of this type. Does not apply to
       `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
     parent: \Google\Cloud\Vision\V1\Feature
@@ -119,9 +119,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature::getModel()'
     name: getModel
     id: getModel
-    summary: |
+    summary: |-
       Model to use for the feature.
-      
+
       Supported values: "builtin/stable" (the default if unset) and
       "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also
       support "builtin/weekly" for the bleeding edge release updated weekly.
@@ -137,9 +137,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Feature::setModel()'
     name: setModel
     id: setModel
-    summary: |
+    summary: |-
       Model to use for the feature.
-      
+
       Supported values: "builtin/stable" (the default if unset) and
       "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also
       support "builtin/weekly" for the bleeding edge release updated weekly.

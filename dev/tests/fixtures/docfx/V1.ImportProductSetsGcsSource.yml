@@ -5,10 +5,10 @@ items:
     name: ImportProductSetsGcsSource
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImportProductSetsGcsSource
-    summary: |
+    summary: |-
       The Google Cloud Storage location for a csv file which preserves a list of
       ImportProductSetRequests in each line.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsGcsSource</code>
     type: class
     langs:
@@ -40,9 +40,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::getCsvFileUri()'
     name: getCsvFileUri
     id: getCsvFileUri
-    summary: |
+    summary: |-
       The Google Cloud Storage URI of the input csv file.
-      
+
       The URI must start with `gs://`.
       The format of the input csv file should be one image per line.
       In each line, there are 8 columns.
@@ -101,9 +101,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::setCsvFileUri()'
     name: setCsvFileUri
     id: setCsvFileUri
-    summary: |
+    summary: |-
       The Google Cloud Storage URI of the input csv file.
-      
+
       The URI must start with `gs://`.
       The format of the input csv file should be one image per line.
       In each line, there are 8 columns.

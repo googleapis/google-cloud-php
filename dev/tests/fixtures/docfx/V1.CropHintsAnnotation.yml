@@ -5,9 +5,9 @@ items:
     name: CropHintsAnnotation
     friendlyApiName: 'Cloud Vision V1 Client'
     id: CropHintsAnnotation
-    summary: |
+    summary: |-
       Set of crop hints that are used to generate new crops when serving images.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.CropHintsAnnotation</code>
     type: class
     langs:

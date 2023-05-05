@@ -5,9 +5,9 @@ items:
     name: OperationMetadata
     friendlyApiName: 'Cloud Vision V1 Client'
     id: OperationMetadata
-    summary: |
+    summary: |-
       Contains metadata for the BatchAnnotateImages operation.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.OperationMetadata</code>
     type: class
     langs:

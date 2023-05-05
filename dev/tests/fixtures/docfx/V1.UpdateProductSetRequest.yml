@@ -5,9 +5,9 @@ items:
     name: UpdateProductSetRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: UpdateProductSetRequest
-    summary: |
+    summary: |-
       Request message for the `UpdateProductSet` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.UpdateProductSetRequest</code>
     type: class
     langs:
@@ -96,10 +96,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductSetRequest::getUpdateMask()'
     name: getUpdateMask
     id: getUpdateMask
-    summary: |
+    summary: |-
       The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to
       update.
-      
+
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask path is `display_name`.
     parent: \Google\Cloud\Vision\V1\UpdateProductSetRequest
@@ -130,10 +130,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\UpdateProductSetRequest::setUpdateMask()'
     name: setUpdateMask
     id: setUpdateMask
-    summary: |
+    summary: |-
       The <a href="https://protobuf.dev/reference/php/api-docs/FieldMask">FieldMask</a> that specifies which fields to
       update.
-      
+
       If update_mask isn't specified, all mutable fields are to be updated.
       Valid mask path is `display_name`.
     parent: \Google\Cloud\Vision\V1\UpdateProductSetRequest

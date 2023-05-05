@@ -5,9 +5,9 @@ items:
     name: AddProductToProductSetRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AddProductToProductSetRequest
-    summary: |
+    summary: |-
       Request message for the `AddProductToProductSet` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AddProductToProductSetRequest</code>
     type: class
     langs:
@@ -45,9 +45,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getName()'
     name: getName
     id: getName
-    summary: |
+    summary: |-
       Required. The resource name for the ProductSet to modify.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
     parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
@@ -62,9 +62,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setName()'
     name: setName
     id: setName
-    summary: |
+    summary: |-
       Required. The resource name for the ProductSet to modify.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
     parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
@@ -84,9 +84,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getProduct()'
     name: getProduct
     id: getProduct
-    summary: |
+    summary: |-
       Required. The resource name for the Product to be added to this ProductSet.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
     parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
@@ -101,9 +101,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setProduct()'
     name: setProduct
     id: setProduct
-    summary: |
+    summary: |-
       Required. The resource name for the Product to be added to this ProductSet.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
     parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest

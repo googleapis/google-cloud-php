@@ -5,12 +5,12 @@ items:
     name: BatchOperationMetadata
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchOperationMetadata
-    summary: |
+    summary: |-
       Metadata for the batch operations such as the current state.
-      
+
       This is included in the `metadata` field of the `Operation` returned by the
       `GetOperation` call of the `google::longrunning::Operations` service.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.BatchOperationMetadata</code>
     type: class
     langs:
@@ -136,7 +136,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getEndTime()'
     name: getEndTime
     id: getEndTime
-    summary: |
+    summary: |-
       The time when the batch request is finished and
       <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
@@ -167,7 +167,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setEndTime()'
     name: setEndTime
     id: setEndTime
-    summary: |
+    summary: |-
       The time when the batch request is finished and
       <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata

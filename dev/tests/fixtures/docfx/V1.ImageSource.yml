@@ -5,9 +5,9 @@ items:
     name: ImageSource
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageSource
-    summary: |
+    summary: |-
       External image source (Google Cloud Storage or web URL image location).
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImageSource</code>
     type: class
     langs:
@@ -45,7 +45,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageSource::getGcsImageUri()'
     name: getGcsImageUri
     id: getGcsImageUri
-    summary: |
+    summary: |-
       **Use `image_uri` instead.**
       The Google Cloud Storage  URI of the form
       `gs://bucket_name/object_name`. Object versioning is not supported. See
@@ -63,7 +63,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageSource::setGcsImageUri()'
     name: setGcsImageUri
     id: setGcsImageUri
-    summary: |
+    summary: |-
       **Use `image_uri` instead.**
       The Google Cloud Storage  URI of the form
       `gs://bucket_name/object_name`. Object versioning is not supported. See
@@ -86,14 +86,14 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageSource::getImageUri()'
     name: getImageUri
     id: getImageUri
-    summary: |
+    summary: |-
       The URI of the source image. Can be either:
       1. A Google Cloud Storage URI of the form
          `gs://bucket_name/object_name`. Object versioning is not supported. See
          [Google Cloud Storage Request
          URIs](https://cloud.google.com/storage/docs/reference-uris) for more
          info.
-      
+
       2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from
          HTTP/HTTPS URLs, Google cannot guarantee that the request will be
          completed. Your request may fail if the specified host denies the
@@ -114,14 +114,14 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageSource::setImageUri()'
     name: setImageUri
     id: setImageUri
-    summary: |
+    summary: |-
       The URI of the source image. Can be either:
       1. A Google Cloud Storage URI of the form
          `gs://bucket_name/object_name`. Object versioning is not supported. See
          [Google Cloud Storage Request
          URIs](https://cloud.google.com/storage/docs/reference-uris) for more
          info.
-      
+
       2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from
          HTTP/HTTPS URLs, Google cannot guarantee that the request will be
          completed. Your request may fail if the specified host denies the

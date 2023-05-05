@@ -5,9 +5,9 @@ items:
     name: AsyncAnnotateFileResponse
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncAnnotateFileResponse
-    summary: |
+    summary: |-
       The response for a single offline file annotation request.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AsyncAnnotateFileResponse</code>
     type: class
     langs:

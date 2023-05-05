@@ -5,9 +5,9 @@ items:
     name: BlockType
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BlockType
-    summary: |
+    summary: |-
       Type of a block (text, image etc) as identified by OCR.
-      
+
       Protobuf type <code>google.cloud.vision.v1.Block.BlockType</code>
     type: class
     langs:
@@ -53,9 +53,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::UNKNOWN'
     name: UNKNOWN
     id: UNKNOWN
-    summary: |
+    summary: |-
       Unknown block type.
-      
+
       Generated from protobuf enum <code>UNKNOWN = 0;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const
@@ -67,9 +67,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::TEXT'
     name: TEXT
     id: TEXT
-    summary: |
+    summary: |-
       Regular text block.
-      
+
       Generated from protobuf enum <code>TEXT = 1;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const
@@ -81,9 +81,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::TABLE'
     name: TABLE
     id: TABLE
-    summary: |
+    summary: |-
       Table block.
-      
+
       Generated from protobuf enum <code>TABLE = 2;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const
@@ -95,9 +95,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::PICTURE'
     name: PICTURE
     id: PICTURE
-    summary: |
+    summary: |-
       Image block.
-      
+
       Generated from protobuf enum <code>PICTURE = 3;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const
@@ -109,9 +109,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::RULER'
     name: RULER
     id: RULER
-    summary: |
+    summary: |-
       Horizontal/vertical line box.
-      
+
       Generated from protobuf enum <code>RULER = 4;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const
@@ -123,9 +123,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Block\BlockType::BARCODE'
     name: BARCODE
     id: BARCODE
-    summary: |
+    summary: |-
       Barcode block.
-      
+
       Generated from protobuf enum <code>BARCODE = 5;</code>
     parent: \Google\Cloud\Vision\V1\Block\BlockType
     type: const

@@ -5,10 +5,10 @@ items:
     name: ColorInfo
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ColorInfo
-    summary: |
+    summary: |-
       Color information consists of RGB channels, score, and the fraction of
       the image that the color occupies in the image.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ColorInfo</code>
     type: class
     langs:
@@ -132,9 +132,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::getPixelFraction()'
     name: getPixelFraction
     id: getPixelFraction
-    summary: |
+    summary: |-
       The fraction of pixels the color occupies in the image.
-      
+
       Value in range [0, 1].
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method
@@ -148,9 +148,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ColorInfo::setPixelFraction()'
     name: setPixelFraction
     id: setPixelFraction
-    summary: |
+    summary: |-
       The fraction of pixels the color occupies in the image.
-      
+
       Value in range [0, 1].
     parent: \Google\Cloud\Vision\V1\ColorInfo
     type: method

@@ -5,9 +5,9 @@ items:
     name: Result
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Result
-    summary: |
+    summary: |-
       Information about a product.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults.Result</code>
     type: class
     langs:
@@ -100,7 +100,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getScore()'
     name: getScore
     id: getScore
-    summary: |
+    summary: |-
       A confidence level on the match, ranging from 0 (no confidence) to
       1 (full confidence).
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
@@ -115,7 +115,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setScore()'
     name: setScore
     id: setScore
-    summary: |
+    summary: |-
       A confidence level on the match, ranging from 0 (no confidence) to
       1 (full confidence).
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
@@ -135,7 +135,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getImage()'
     name: getImage
     id: getImage
-    summary: |
+    summary: |-
       The resource name of the image from the product that is the closest match
       to the query.
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
@@ -150,7 +150,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setImage()'
     name: setImage
     id: setImage
-    summary: |
+    summary: |-
       The resource name of the image from the product that is the closest match
       to the query.
     parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result

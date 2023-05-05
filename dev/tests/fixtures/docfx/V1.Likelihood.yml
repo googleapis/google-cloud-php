@@ -5,10 +5,10 @@ items:
     name: Likelihood
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Likelihood
-    summary: |
+    summary: |-
       A bucketized representation of likelihood, which is intended to give clients
       highly stable results across model upgrades.
-      
+
       Protobuf type <code>google.cloud.vision.v1.Likelihood</code>
     type: class
     langs:
@@ -54,9 +54,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::UNKNOWN'
     name: UNKNOWN
     id: UNKNOWN
-    summary: |
+    summary: |-
       Unknown likelihood.
-      
+
       Generated from protobuf enum <code>UNKNOWN = 0;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const
@@ -68,9 +68,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::VERY_UNLIKELY'
     name: VERY_UNLIKELY
     id: VERY_UNLIKELY
-    summary: |
+    summary: |-
       It is very unlikely.
-      
+
       Generated from protobuf enum <code>VERY_UNLIKELY = 1;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const
@@ -82,9 +82,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::UNLIKELY'
     name: UNLIKELY
     id: UNLIKELY
-    summary: |
+    summary: |-
       It is unlikely.
-      
+
       Generated from protobuf enum <code>UNLIKELY = 2;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const
@@ -96,9 +96,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::POSSIBLE'
     name: POSSIBLE
     id: POSSIBLE
-    summary: |
+    summary: |-
       It is possible.
-      
+
       Generated from protobuf enum <code>POSSIBLE = 3;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const
@@ -110,9 +110,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::LIKELY'
     name: LIKELY
     id: LIKELY
-    summary: |
+    summary: |-
       It is likely.
-      
+
       Generated from protobuf enum <code>LIKELY = 4;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const
@@ -124,9 +124,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\Likelihood::VERY_LIKELY'
     name: VERY_LIKELY
     id: VERY_LIKELY
-    summary: |
+    summary: |-
       It is very likely.
-      
+
       Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: const

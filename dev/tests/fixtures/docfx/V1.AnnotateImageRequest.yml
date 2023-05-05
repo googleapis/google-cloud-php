@@ -5,10 +5,10 @@ items:
     name: AnnotateImageRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: AnnotateImageRequest
-    summary: |
+    summary: |-
       Request for performing Google Cloud Vision API tasks over a user-provided
       image, with user-requested features, and with context information.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.AnnotateImageRequest</code>
     type: class
     langs:

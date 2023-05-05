@@ -5,9 +5,9 @@ items:
     name: CreateProductSetRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: CreateProductSetRequest
-    summary: |
+    summary: |-
       Request message for the `CreateProductSet` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.CreateProductSetRequest</code>
     type: class
     langs:
@@ -53,9 +53,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. The project in which the ProductSet should be created.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
     type: method
@@ -69,9 +69,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. The project in which the ProductSet should be created.
-      
+
       Format is `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
     type: method
@@ -137,7 +137,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSetId()'
     name: getProductSetId
     id: getProductSetId
-    summary: |
+    summary: |-
       A user-supplied resource id for this ProductSet. If set, the server will
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters
@@ -154,7 +154,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSetId()'
     name: setProductSetId
     id: setProductSetId
-    summary: |
+    summary: |-
       A user-supplied resource id for this ProductSet. If set, the server will
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters

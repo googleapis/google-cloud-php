@@ -5,9 +5,9 @@ items:
     name: CreateReferenceImageRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: CreateReferenceImageRequest
-    summary: |
+    summary: |-
       Request message for the `CreateReferenceImage` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.CreateReferenceImageRequest</code>
     type: class
     langs:
@@ -53,9 +53,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. Resource name of the product in which to create the reference image.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
@@ -70,9 +70,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. Resource name of the product in which to create the reference image.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
@@ -92,9 +92,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImage()'
     name: getReferenceImage
     id: getReferenceImage
-    summary: |
+    summary: |-
       Required. The reference image to create.
-      
+
       If an image ID is specified, it is ignored.
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
@@ -124,9 +124,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImage()'
     name: setReferenceImage
     id: setReferenceImage
-    summary: |
+    summary: |-
       Required. The reference image to create.
-      
+
       If an image ID is specified, it is ignored.
     parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
     type: method
@@ -145,7 +145,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImageId()'
     name: getReferenceImageId
     id: getReferenceImageId
-    summary: |
+    summary: |-
       A user-supplied resource id for the ReferenceImage to be added. If set,
       the server will attempt to use this value as the resource id. If it is
       already in use, an error is returned with code ALREADY_EXISTS. Must be at
@@ -162,7 +162,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImageId()'
     name: setReferenceImageId
     id: setReferenceImageId
-    summary: |
+    summary: |-
       A user-supplied resource id for the ReferenceImage to be added. If set,
       the server will attempt to use this value as the resource id. If it is
       already in use, an error is returned with code ALREADY_EXISTS. Must be at

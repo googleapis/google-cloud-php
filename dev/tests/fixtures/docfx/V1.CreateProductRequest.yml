@@ -5,9 +5,9 @@ items:
     name: CreateProductRequest
     friendlyApiName: 'Cloud Vision V1 Client'
     id: CreateProductRequest
-    summary: |
+    summary: |-
       Request message for the `CreateProduct` method.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.CreateProductRequest</code>
     type: class
     langs:
@@ -53,9 +53,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getParent()'
     name: getParent
     id: getParent
-    summary: |
+    summary: |-
       Required. The project in which the Product should be created.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
@@ -70,9 +70,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setParent()'
     name: setParent
     id: setParent
-    summary: |
+    summary: |-
       Required. The project in which the Product should be created.
-      
+
       Format is
       `projects/PROJECT_ID/locations/LOC_ID`.
     parent: \Google\Cloud\Vision\V1\CreateProductRequest
@@ -139,7 +139,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getProductId()'
     name: getProductId
     id: getProductId
-    summary: |
+    summary: |-
       A user-supplied resource id for this Product. If set, the server will
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters
@@ -156,7 +156,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setProductId()'
     name: setProductId
     id: setProductId
-    summary: |
+    summary: |-
       A user-supplied resource id for this Product. If set, the server will
       attempt to use this value as the resource id. If it is already in use, an
       error is returned with code ALREADY_EXISTS. Must be at most 128 characters

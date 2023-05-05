@@ -5,10 +5,10 @@ items:
     name: ReferenceImage
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ReferenceImage
-    summary: |
+    summary: |-
       A `ReferenceImage` represents a product image and its associated metadata,
       such as bounding boxes.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ReferenceImage</code>
     type: class
     langs:
@@ -52,9 +52,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::getName()'
     name: getName
     id: getName
-    summary: |
+    summary: |-
       The resource name of the reference image.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
       This field is ignored when creating a reference image.
@@ -70,9 +70,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setName()'
     name: setName
     id: setName
-    summary: |
+    summary: |-
       The resource name of the reference image.
-      
+
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
       This field is ignored when creating a reference image.
@@ -93,9 +93,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::getUri()'
     name: getUri
     id: getUri
-    summary: |
+    summary: |-
       Required. The Google Cloud Storage URI of the reference image.
-      
+
       The URI must start with `gs://`.
     parent: \Google\Cloud\Vision\V1\ReferenceImage
     type: method
@@ -109,9 +109,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setUri()'
     name: setUri
     id: setUri
-    summary: |
+    summary: |-
       Required. The Google Cloud Storage URI of the reference image.
-      
+
       The URI must start with `gs://`.
     parent: \Google\Cloud\Vision\V1\ReferenceImage
     type: method
@@ -130,9 +130,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::getBoundingPolys()'
     name: getBoundingPolys
     id: getBoundingPolys
-    summary: |
+    summary: |-
       Optional. Bounding polygons around the areas of interest in the reference image.
-      
+
       If this field is empty, the system will try to detect regions of
       interest. At most 10 bounding polygons will be used.
       The provided shape is converted into a non-rotated rectangle. Once
@@ -151,9 +151,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setBoundingPolys()'
     name: setBoundingPolys
     id: setBoundingPolys
-    summary: |
+    summary: |-
       Optional. Bounding polygons around the areas of interest in the reference image.
-      
+
       If this field is empty, the system will try to detect regions of
       interest. At most 10 bounding polygons will be used.
       The provided shape is converted into a non-rotated rectangle. Once

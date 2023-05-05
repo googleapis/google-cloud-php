@@ -5,9 +5,9 @@ items:
     name: BreakType
     friendlyApiName: 'Cloud Vision V1 Client'
     id: BreakType
-    summary: |
+    summary: |-
       Enum to denote the type of break found. New line, space etc.
-      
+
       Protobuf type <code>google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType</code>
     type: class
     langs:
@@ -53,9 +53,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::UNKNOWN'
     name: UNKNOWN
     id: UNKNOWN
-    summary: |
+    summary: |-
       Unknown break label type.
-      
+
       Generated from protobuf enum <code>UNKNOWN = 0;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const
@@ -67,9 +67,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SPACE'
     name: SPACE
     id: SPACE
-    summary: |
+    summary: |-
       Regular space.
-      
+
       Generated from protobuf enum <code>SPACE = 1;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const
@@ -81,9 +81,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SURE_SPACE'
     name: SURE_SPACE
     id: SURE_SPACE
-    summary: |
+    summary: |-
       Sure space (very wide).
-      
+
       Generated from protobuf enum <code>SURE_SPACE = 2;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const
@@ -95,9 +95,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::EOL_SURE_SPACE'
     name: EOL_SURE_SPACE
     id: EOL_SURE_SPACE
-    summary: |
+    summary: |-
       Line-wrapping break.
-      
+
       Generated from protobuf enum <code>EOL_SURE_SPACE = 3;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const
@@ -109,10 +109,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::HYPHEN'
     name: HYPHEN
     id: HYPHEN
-    summary: |
+    summary: |-
       End-line hyphen that is not present in text; does not co-occur with
       `SPACE`, `LEADER_SPACE`, or `LINE_BREAK`.
-      
+
       Generated from protobuf enum <code>HYPHEN = 4;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const
@@ -124,9 +124,9 @@ items:
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::LINE_BREAK'
     name: LINE_BREAK
     id: LINE_BREAK
-    summary: |
+    summary: |-
       Line break that ends a paragraph.
-      
+
       Generated from protobuf enum <code>LINE_BREAK = 5;</code>
     parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
     type: const

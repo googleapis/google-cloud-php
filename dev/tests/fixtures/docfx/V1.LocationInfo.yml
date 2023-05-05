@@ -5,9 +5,9 @@ items:
     name: LocationInfo
     friendlyApiName: 'Cloud Vision V1 Client'
     id: LocationInfo
-    summary: |
+    summary: |-
       Detected entity location information.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.LocationInfo</code>
     type: class
     langs:

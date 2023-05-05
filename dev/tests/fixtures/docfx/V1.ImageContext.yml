@@ -5,9 +5,9 @@ items:
     name: ImageContext
     friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageContext
-    summary: |
+    summary: |-
       Image context and/or feature-specific parameters.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.ImageContext</code>
     type: class
     langs:
@@ -126,7 +126,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::getLanguageHints()'
     name: getLanguageHints
     id: getLanguageHints
-    summary: |
+    summary: |-
       List of languages to use for TEXT_DETECTION. In most cases, an empty value
       yields the best results since it enables automatic language detection. For
       languages based on the Latin alphabet, setting `language_hints` is not
@@ -147,7 +147,7 @@ items:
     uid: '\Google\Cloud\Vision\V1\ImageContext::setLanguageHints()'
     name: setLanguageHints
     id: setLanguageHints
-    summary: |
+    summary: |-
       List of languages to use for TEXT_DETECTION. In most cases, an empty value
       yields the best results since it enables automatic language detection. For
       languages based on the Latin alphabet, setting `language_hints` is not

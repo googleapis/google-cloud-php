@@ -5,9 +5,9 @@ items:
     name: Landmark
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Landmark
-    summary: |
+    summary: |-
       A face-specific landmark (for example, a face feature).
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.FaceAnnotation.Landmark</code>
     type: class
     langs:

@@ -5,9 +5,9 @@ items:
     name: Property
     friendlyApiName: 'Cloud Vision V1 Client'
     id: Property
-    summary: |
+    summary: |-
       A `Property` consists of a user-supplied name/value pair.
-      
+
       Generated from protobuf message <code>google.cloud.vision.v1.Property</code>
     type: class
     langs:
