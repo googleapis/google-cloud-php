@@ -60,7 +60,7 @@ function update_private_cloud_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $privateCloudNetworkConfig = (new NetworkConfig())
         ->setManagementCidr($privateCloudNetworkConfigManagementCidr);
     $privateCloudManagementClusterNodeTypeConfigs = [];

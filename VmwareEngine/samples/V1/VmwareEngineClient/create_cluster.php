@@ -58,7 +58,7 @@ function create_cluster_sample(string $formattedParent, string $clusterId): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $clusterNodeTypeConfigs = [];
     $cluster = (new Cluster())
         ->setNodeTypeConfigs($clusterNodeTypeConfigs);
