@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_ListMetadataSchemas_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\ListMetadataSchemasRequest;
 use Google\Cloud\AIPlatform\V1\MetadataSchema;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
 
 /**
  * Lists MetadataSchemas.
@@ -41,10 +42,14 @@ function list_metadata_schemas_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMetadataSchemasRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listMetadataSchemas($formattedParent);
+        $response = $metadataServiceClient->listMetadataSchemas($request);
 
         /** @var MetadataSchema $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_SpecialistPoolService_DeleteSpecialistPool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteSpecialistPoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_specialist_pool_sample(string $formattedName): void
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSpecialistPoolRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $specialistPoolServiceClient->deleteSpecialistPool($formattedName);
+        $response = $specialistPoolServiceClient->deleteSpecialistPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

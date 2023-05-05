@@ -32,6 +32,25 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
     private $child_contexts;
 
     /**
+     * @param string   $context       Required. The resource name of the parent Context.
+     *
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *                                Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
+     * @param string[] $childContexts The resource names of the child Contexts.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\AddContextChildrenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $context, array $childContexts): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setChildContexts($childContexts);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

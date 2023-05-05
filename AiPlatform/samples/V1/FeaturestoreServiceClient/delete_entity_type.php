@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_DeleteEntityType_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_entity_type_sample(string $formattedName): void
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEntityTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->deleteEntityType($formattedName);
+        $response = $featurestoreServiceClient->deleteEntityType($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

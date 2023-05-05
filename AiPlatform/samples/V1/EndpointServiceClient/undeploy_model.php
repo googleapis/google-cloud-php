@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_EndpointService_UndeployModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
 use Google\Cloud\AIPlatform\V1\UndeployModelResponse;
 use Google\Rpc\Status;
 
@@ -44,10 +45,15 @@ function undeploy_model_sample(string $formattedEndpoint, string $deployedModelI
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
+    // Prepare the request message.
+    $request = (new UndeployModelRequest())
+        ->setEndpoint($formattedEndpoint)
+        ->setDeployedModelId($deployedModelId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $endpointServiceClient->undeployModel($formattedEndpoint, $deployedModelId);
+        $response = $endpointServiceClient->undeployModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

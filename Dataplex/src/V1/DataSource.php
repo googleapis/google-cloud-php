@@ -24,9 +24,14 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $entity
-     *           Immutable. The dataplex entity that contains the data for DataScan, of
-     *           the form:
+     *           Immutable. The Dataplex entity that represents the data source (e.g.
+     *           BigQuery table) for DataScan, of the form:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
+     *     @type string $resource
+     *           Immutable. The service-qualified full resource name of the cloud resource
+     *           for a DataScan job to scan against. The field could be: BigQuery table of
+     *           type "TABLE" for DataProfileScan/DataQualityScan Format:
+     *           //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      * }
      */
     public function __construct($data = NULL) {
@@ -35,8 +40,8 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The dataplex entity that contains the data for DataScan, of
-     * the form:
+     * Immutable. The Dataplex entity that represents the data source (e.g.
+     * BigQuery table) for DataScan, of the form:
      * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *
      * Generated from protobuf field <code>string entity = 100 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -53,8 +58,8 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The dataplex entity that contains the data for DataScan, of
-     * the form:
+     * Immutable. The Dataplex entity that represents the data source (e.g.
+     * BigQuery table) for DataScan, of the form:
      * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *
      * Generated from protobuf field <code>string entity = 100 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -65,6 +70,43 @@ class DataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The service-qualified full resource name of the cloud resource
+     * for a DataScan job to scan against. The field could be: BigQuery table of
+     * type "TABLE" for DataProfileScan/DataQualityScan Format:
+     * //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     *
+     * Generated from protobuf field <code>string resource = 101 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getResource()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasResource()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Immutable. The service-qualified full resource name of the cloud resource
+     * for a DataScan job to scan against. The field could be: BigQuery table of
+     * type "TABLE" for DataProfileScan/DataQualityScan Format:
+     * //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     *
+     * Generated from protobuf field <code>string resource = 101 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(101, $var);
 
         return $this;
     }

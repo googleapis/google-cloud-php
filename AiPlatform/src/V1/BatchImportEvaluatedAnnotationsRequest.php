@@ -32,6 +32,24 @@ class BatchImportEvaluatedAnnotationsRequest extends \Google\Protobuf\Internal\M
     private $evaluated_annotations;
 
     /**
+     * @param string                                            $parent               Required. The name of the parent ModelEvaluationSlice resource.
+     *                                                                                Format:
+     *                                                                                `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     *                                                                                Please see {@see ModelServiceClient::modelEvaluationSliceName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\EvaluatedAnnotation[] $evaluatedAnnotations Required. Evaluated annotations resource to be imported.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $evaluatedAnnotations): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEvaluatedAnnotations($evaluatedAnnotations);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

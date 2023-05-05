@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_UploadModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\Model;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\UploadModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelResponse;
 use Google\Rpc\Status;
 
@@ -45,14 +46,17 @@ function upload_model_sample(string $formattedParent, string $modelDisplayName):
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = (new Model())
         ->setDisplayName($modelDisplayName);
+    $request = (new UploadModelRequest())
+        ->setParent($formattedParent)
+        ->setModel($model);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $modelServiceClient->uploadModel($formattedParent, $model);
+        $response = $modelServiceClient->uploadModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

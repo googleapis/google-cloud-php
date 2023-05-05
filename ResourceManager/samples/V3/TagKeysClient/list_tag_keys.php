@@ -31,8 +31,9 @@ use Google\Cloud\ResourceManager\V3\TagKeysClient;
 /**
  * Lists all TagKeys for a parent resource.
  *
- * @param string $parent The resource name of the new TagKey's parent.
- *                       Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+ * @param string $parent The resource name of the TagKey's parent.
+ *                       Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+ *                       `projects/{project_number}`
  */
 function list_tag_keys_sample(string $parent): void
 {

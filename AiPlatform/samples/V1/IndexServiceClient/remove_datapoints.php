@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_IndexService_RemoveDatapoints_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\RemoveDatapointsRequest;
 use Google\Cloud\AIPlatform\V1\RemoveDatapointsResponse;
 
 /**
@@ -40,10 +41,14 @@ function remove_datapoints_sample(string $formattedIndex): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
+    // Prepare the request message.
+    $request = (new RemoveDatapointsRequest())
+        ->setIndex($formattedIndex);
+
     // Call the API and handle any network failures.
     try {
         /** @var RemoveDatapointsResponse $response */
-        $response = $indexServiceClient->removeDatapoints($formattedIndex);
+        $response = $indexServiceClient->removeDatapoints($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START advisorynotifications_v1_generated_AdvisoryNotificationsService_GetNotification_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AdvisoryNotifications\V1\AdvisoryNotificationsServiceClient;
+use Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient;
+use Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
 use Google\Cloud\AdvisoryNotifications\V1\Notification;
 
 /**
@@ -40,10 +41,14 @@ function get_notification_sample(string $formattedName): void
     // Create a client.
     $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetNotificationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Notification $response */
-        $response = $advisoryNotificationsServiceClient->getNotification($formattedName);
+        $response = $advisoryNotificationsServiceClient->getNotification($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

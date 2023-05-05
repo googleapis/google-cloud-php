@@ -25,11 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_UpdateModelDeploymentMonitoringJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig;
 use Google\Cloud\AIPlatform\V1\SamplingStrategy;
+use Google\Cloud\AIPlatform\V1\UpdateModelDeploymentMonitoringJobRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
@@ -52,7 +53,7 @@ function update_model_deployment_monitoring_job_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [
         new ModelDeploymentMonitoringObjectiveConfig()
     ];
@@ -73,14 +74,14 @@ function update_model_deployment_monitoring_job_sample(
         )
         ->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
     $updateMask = new FieldMask();
+    $request = (new UpdateModelDeploymentMonitoringJobRequest())
+        ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobServiceClient->updateModelDeploymentMonitoringJob(
-            $modelDeploymentMonitoringJob,
-            $updateMask
-        );
+        $response = $jobServiceClient->updateModelDeploymentMonitoringJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

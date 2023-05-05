@@ -24,12 +24,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_CreateStudy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateStudyRequest;
 use Google\Cloud\AIPlatform\V1\Study;
 use Google\Cloud\AIPlatform\V1\StudySpec;
 use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec;
 use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\GoalType;
 use Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Creates a Study. A resource name will be generated after creation of the
@@ -55,7 +56,7 @@ function create_study_sample(
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metricSpec = (new MetricSpec())
         ->setMetricId($studyStudySpecMetricsMetricId)
         ->setGoal($studyStudySpecMetricsGoal);
@@ -69,11 +70,14 @@ function create_study_sample(
     $study = (new Study())
         ->setDisplayName($studyDisplayName)
         ->setStudySpec($studyStudySpec);
+    $request = (new CreateStudyRequest())
+        ->setParent($formattedParent)
+        ->setStudy($study);
 
     // Call the API and handle any network failures.
     try {
         /** @var Study $response */
-        $response = $vizierServiceClient->createStudy($formattedParent, $study);
+        $response = $vizierServiceClient->createStudy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

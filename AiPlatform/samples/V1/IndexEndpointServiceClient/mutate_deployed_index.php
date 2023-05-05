@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexEndpointService_MutateDeployedIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\DeployedIndex;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\MutateDeployedIndexRequest;
 use Google\Cloud\AIPlatform\V1\MutateDeployedIndexResponse;
 use Google\Rpc\Status;
 
@@ -53,18 +54,18 @@ function mutate_deployed_index_sample(
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployedIndex = (new DeployedIndex())
         ->setId($deployedIndexId)
         ->setIndex($formattedDeployedIndexIndex);
+    $request = (new MutateDeployedIndexRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint)
+        ->setDeployedIndex($deployedIndex);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexEndpointServiceClient->mutateDeployedIndex(
-            $formattedIndexEndpoint,
-            $deployedIndex
-        );
+        $response = $indexEndpointServiceClient->mutateDeployedIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

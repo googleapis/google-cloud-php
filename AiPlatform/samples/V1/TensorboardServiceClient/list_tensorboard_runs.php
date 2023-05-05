@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_ListTensorboardRuns_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\ListTensorboardRunsRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Lists TensorboardRuns in a Location.
@@ -41,10 +42,14 @@ function list_tensorboard_runs_sample(string $formattedParent): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTensorboardRunsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tensorboardServiceClient->listTensorboardRuns($formattedParent);
+        $response = $tensorboardServiceClient->listTensorboardRuns($request);
 
         /** @var TensorboardRun $element */
         foreach ($response as $element) {

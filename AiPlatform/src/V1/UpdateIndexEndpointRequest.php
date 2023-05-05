@@ -31,6 +31,22 @@ class UpdateIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\IndexEndpoint $indexEndpoint Required. The IndexEndpoint which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask                $updateMask    Required. The update mask applies to the resource. See
+     *                                                                 [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateIndexEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\IndexEndpoint $indexEndpoint, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

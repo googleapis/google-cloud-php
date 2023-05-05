@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_CreateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,14 +52,18 @@ function create_cluster_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
+    $request = (new CreateClusterRequest())
+        ->setParent($formattedParent)
+        ->setClusterId($clusterId)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->createCluster($formattedParent, $clusterId, $cluster);
+        $response = $alloyDBAdminClient->createCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

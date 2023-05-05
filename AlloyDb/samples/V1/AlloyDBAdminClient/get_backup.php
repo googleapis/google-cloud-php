@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START alloydb_v1_generated_AlloyDBAdmin_GetBackup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Backup;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 
 /**
  * Gets details of a single Backup.
@@ -38,10 +39,14 @@ function get_backup_sample(string $formattedName): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
+    // Prepare the request message.
+    $request = (new GetBackupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Backup $response */
-        $response = $alloyDBAdminClient->getBackup($formattedName);
+        $response = $alloyDBAdminClient->getBackup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

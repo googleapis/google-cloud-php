@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ListGoogleAdsLinks_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
+use Google\Analytics\Admin\V1beta\ListGoogleAdsLinksRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -39,10 +40,14 @@ function list_google_ads_links_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGoogleAdsLinksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listGoogleAdsLinks($formattedParent);
+        $response = $analyticsAdminServiceClient->listGoogleAdsLinks($request);
 
         /** @var GoogleAdsLink $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_ListTensorboardExperiments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Lists TensorboardExperiments in a Location.
@@ -41,10 +42,14 @@ function list_tensorboard_experiments_sample(string $formattedParent): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTensorboardExperimentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tensorboardServiceClient->listTensorboardExperiments($formattedParent);
+        $response = $tensorboardServiceClient->listTensorboardExperiments($request);
 
         /** @var TensorboardExperiment $element */
         foreach ($response as $element) {

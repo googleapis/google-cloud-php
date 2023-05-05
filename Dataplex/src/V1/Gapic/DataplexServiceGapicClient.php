@@ -75,6 +75,8 @@ use Google\Cloud\Dataplex\V1\ListTasksResponse;
 use Google\Cloud\Dataplex\V1\ListZoneActionsRequest;
 use Google\Cloud\Dataplex\V1\ListZonesRequest;
 use Google\Cloud\Dataplex\V1\ListZonesResponse;
+use Google\Cloud\Dataplex\V1\RunTaskRequest;
+use Google\Cloud\Dataplex\V1\RunTaskResponse;
 use Google\Cloud\Dataplex\V1\Task;
 use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
 use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
@@ -2616,6 +2618,55 @@ class DataplexServiceGapicClient
             ListZonesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Run an on demand execution of a Task.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $formattedName = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+     *     $response = $dataplexServiceClient->runTask($formattedName);
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the task:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataplex\V1\RunTaskResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function runTask($name, array $optionalArgs = [])
+    {
+        $request = new RunTaskRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RunTask',
+            RunTaskResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

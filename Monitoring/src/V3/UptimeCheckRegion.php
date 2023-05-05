@@ -46,6 +46,27 @@ class UptimeCheckRegion
      * Generated from protobuf enum <code>ASIA_PACIFIC = 4;</code>
      */
     const ASIA_PACIFIC = 4;
+    /**
+     * Allows checks to run from locations within the western United States of
+     * America
+     *
+     * Generated from protobuf enum <code>USA_OREGON = 5;</code>
+     */
+    const USA_OREGON = 5;
+    /**
+     * Allows checks to run from locations within the central United States of
+     * America
+     *
+     * Generated from protobuf enum <code>USA_IOWA = 6;</code>
+     */
+    const USA_IOWA = 6;
+    /**
+     * Allows checks to run from locations within the eastern United States of
+     * America
+     *
+     * Generated from protobuf enum <code>USA_VIRGINIA = 7;</code>
+     */
+    const USA_VIRGINIA = 7;
 
     private static $valueToName = [
         self::REGION_UNSPECIFIED => 'REGION_UNSPECIFIED',
@@ -53,6 +74,9 @@ class UptimeCheckRegion
         self::EUROPE => 'EUROPE',
         self::SOUTH_AMERICA => 'SOUTH_AMERICA',
         self::ASIA_PACIFIC => 'ASIA_PACIFIC',
+        self::USA_OREGON => 'USA_OREGON',
+        self::USA_IOWA => 'USA_IOWA',
+        self::USA_VIRGINIA => 'USA_VIRGINIA',
     ];
 
     public static function name($value)

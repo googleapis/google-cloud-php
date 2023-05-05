@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_ListModels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ListModelsRequest;
 use Google\Cloud\AIPlatform\V1\Model;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Lists Models in a Location.
@@ -40,10 +41,14 @@ function list_models_sample(string $formattedParent): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListModelsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $modelServiceClient->listModels($formattedParent);
+        $response = $modelServiceClient->listModels($request);
 
         /** @var Model $element */
         foreach ($response as $element) {

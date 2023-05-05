@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PipelineService_GetPipelineJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\GetPipelineJobRequest;
 use Google\Cloud\AIPlatform\V1\PipelineJob;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
 
 /**
  * Gets a PipelineJob.
@@ -40,10 +41,14 @@ function get_pipeline_job_sample(string $formattedName): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetPipelineJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PipelineJob $response */
-        $response = $pipelineServiceClient->getPipelineJob($formattedName);
+        $response = $pipelineServiceClient->getPipelineJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

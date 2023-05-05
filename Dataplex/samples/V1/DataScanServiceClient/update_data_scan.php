@@ -45,7 +45,7 @@ function update_data_scan_sample(): void
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataScanData = new DataSource();
     $dataScan = (new DataScan())
         ->setData($dataScanData);

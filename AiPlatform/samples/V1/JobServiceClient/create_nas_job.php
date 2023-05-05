@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CreateNasJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateNasJobRequest;
 use Google\Cloud\AIPlatform\V1\NasJob;
 use Google\Cloud\AIPlatform\V1\NasJobSpec;
 
@@ -43,16 +44,19 @@ function create_nas_job_sample(string $formattedParent, string $nasJobDisplayNam
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nasJobNasJobSpec = new NasJobSpec();
     $nasJob = (new NasJob())
         ->setDisplayName($nasJobDisplayName)
         ->setNasJobSpec($nasJobNasJobSpec);
+    $request = (new CreateNasJobRequest())
+        ->setParent($formattedParent)
+        ->setNasJob($nasJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var NasJob $response */
-        $response = $jobServiceClient->createNasJob($formattedParent, $nasJob);
+        $response = $jobServiceClient->createNasJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_ReplaceServicePerimeters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\ReplaceServicePerimetersRequest;
 use Google\Identity\AccessContextManager\V1\ReplaceServicePerimetersResponse;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 use Google\Rpc\Status;
@@ -57,16 +58,16 @@ function replace_service_perimeters_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $servicePerimeters = [new ServicePerimeter()];
+    $request = (new ReplaceServicePerimetersRequest())
+        ->setParent($formattedParent)
+        ->setServicePerimeters($servicePerimeters);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->replaceServicePerimeters(
-            $formattedParent,
-            $servicePerimeters
-        );
+        $response = $accessContextManagerClient->replaceServicePerimeters($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

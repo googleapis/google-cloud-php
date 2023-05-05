@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START advisorynotifications_v1_generated_AdvisoryNotificationsService_ListNotifications_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AdvisoryNotifications\V1\AdvisoryNotificationsServiceClient;
+use Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient;
+use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\Notification;
 
 /**
@@ -40,10 +41,14 @@ function list_notifications_sample(string $formattedParent): void
     // Create a client.
     $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListNotificationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $advisoryNotificationsServiceClient->listNotifications($formattedParent);
+        $response = $advisoryNotificationsServiceClient->listNotifications($request);
 
         /** @var Notification $element */
         foreach ($response as $element) {

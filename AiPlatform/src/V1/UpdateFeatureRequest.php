@@ -43,6 +43,36 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\Feature $feature    Required. The Feature's `name` field is used to identify the Feature to be
+     *                                                        updated.
+     *                                                        Format:
+     *                                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * @param \Google\Protobuf\FieldMask          $updateMask Field mask is used to specify the fields to be overwritten in the
+     *                                                        Features resource by the update.
+     *                                                        The fields specified in the update_mask are relative to the resource, not
+     *                                                        the full request. A field will be overwritten if it is in the mask. If the
+     *                                                        user does not provide a mask then only the non-empty fields present in the
+     *                                                        request will be overwritten. Set the update_mask to `*` to override all
+     *                                                        fields.
+     *
+     *                                                        Updatable fields:
+     *
+     *                                                        * `description`
+     *                                                        * `labels`
+     *                                                        * `disable_monitoring`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Feature $feature, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFeature($feature)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

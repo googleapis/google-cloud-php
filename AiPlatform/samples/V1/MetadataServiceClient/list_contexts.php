@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_ListContexts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 use Google\Cloud\AIPlatform\V1\Context;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\ListContextsRequest;
 
 /**
  * Lists Contexts on the MetadataStore.
@@ -41,10 +42,14 @@ function list_contexts_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListContextsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listContexts($formattedParent);
+        $response = $metadataServiceClient->listContexts($request);
 
         /** @var Context $element */
         foreach ($response as $element) {

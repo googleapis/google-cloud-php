@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_ReplaceAccessLevels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\ReplaceAccessLevelsRequest;
 use Google\Identity\AccessContextManager\V1\ReplaceAccessLevelsResponse;
 use Google\Rpc\Status;
 
@@ -61,13 +62,16 @@ function replace_access_levels_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessLevels = [new AccessLevel()];
+    $request = (new ReplaceAccessLevelsRequest())
+        ->setParent($formattedParent)
+        ->setAccessLevels($accessLevels);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->replaceAccessLevels($formattedParent, $accessLevels);
+        $response = $accessContextManagerClient->replaceAccessLevels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

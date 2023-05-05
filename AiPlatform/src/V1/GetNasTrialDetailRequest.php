@@ -26,6 +26,22 @@ class GetNasTrialDetailRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the NasTrialDetail resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}`
+     *                     Please see {@see JobServiceClient::nasTrialDetailName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetNasTrialDetailRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

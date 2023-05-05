@@ -43,6 +43,22 @@ class ListNasTrialDetailsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the NasJob resource.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/nasJobs/{nas_job}`
+     *                       Please see {@see JobServiceClient::nasJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

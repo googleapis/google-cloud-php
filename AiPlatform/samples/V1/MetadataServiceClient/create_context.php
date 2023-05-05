@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_MetadataService_CreateContext_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
 use Google\Cloud\AIPlatform\V1\Context;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateContextRequest;
 
 /**
  * Creates a Context associated with a MetadataStore.
@@ -40,13 +41,16 @@ function create_context_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $context = new Context();
+    $request = (new CreateContextRequest())
+        ->setParent($formattedParent)
+        ->setContext($context);
 
     // Call the API and handle any network failures.
     try {
         /** @var Context $response */
-        $response = $metadataServiceClient->createContext($formattedParent, $context);
+        $response = $metadataServiceClient->createContext($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

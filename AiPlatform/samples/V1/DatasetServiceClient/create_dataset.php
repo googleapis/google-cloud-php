@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_CreateDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
 use Google\Protobuf\Value;
 use Google\Rpc\Status;
 
@@ -52,17 +53,20 @@ function create_dataset_sample(
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $datasetMetadata = new Value();
     $dataset = (new Dataset())
         ->setDisplayName($datasetDisplayName)
         ->setMetadataSchemaUri($datasetMetadataSchemaUri)
         ->setMetadata($datasetMetadata);
+    $request = (new CreateDatasetRequest())
+        ->setParent($formattedParent)
+        ->setDataset($dataset);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datasetServiceClient->createDataset($formattedParent, $dataset);
+        $response = $datasetServiceClient->createDataset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

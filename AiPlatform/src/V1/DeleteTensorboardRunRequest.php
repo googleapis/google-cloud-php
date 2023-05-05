@@ -26,6 +26,22 @@ class DeleteTensorboardRunRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the TensorboardRun to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteTensorboardRunRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

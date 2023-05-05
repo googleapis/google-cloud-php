@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_BatchReadTensorboardTimeSeriesData_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataResponse;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 
 /**
  * Reads multiple TensorboardTimeSeries' data. The data point number limit is
@@ -53,16 +54,16 @@ function batch_read_tensorboard_time_series_data_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedTimeSeries = [$formattedTimeSeriesElement,];
+    $request = (new BatchReadTensorboardTimeSeriesDataRequest())
+        ->setTensorboard($formattedTensorboard)
+        ->setTimeSeries($formattedTimeSeries);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchReadTensorboardTimeSeriesDataResponse $response */
-        $response = $tensorboardServiceClient->batchReadTensorboardTimeSeriesData(
-            $formattedTensorboard,
-            $formattedTimeSeries
-        );
+        $response = $tensorboardServiceClient->batchReadTensorboardTimeSeriesData($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -42,6 +42,50 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     private $featurestore_id = '';
 
     /**
+     * @param string                                   $parent       Required. The resource name of the Location to create Featurestores.
+     *                                                               Format:
+     *                                                               `projects/{project}/locations/{location}'`
+     *                                                               Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore Required. The Featurestore to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Featurestore $featurestore): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFeaturestore($featurestore);
+    }
+
+    /**
+     * @param string                                   $parent         Required. The resource name of the Location to create Featurestores.
+     *                                                                 Format:
+     *                                                                 `projects/{project}/locations/{location}'`
+     *                                                                 Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore   Required. The Featurestore to create.
+     * @param string                                   $featurestoreId Required. The ID to use for this Featurestore, which will become the final
+     *                                                                 component of the Featurestore's resource name.
+     *
+     *                                                                 This value may be up to 60 characters, and valid characters are
+     *                                                                 `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                                                 The value must be unique within the project and location.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentFeaturestoreFeaturestoreId(string $parent, \Google\Cloud\AIPlatform\V1\Featurestore $featurestore, string $featurestoreId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFeaturestore($featurestore)
+            ->setFeaturestoreId($featurestoreId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

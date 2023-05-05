@@ -22,7 +22,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      */
     private $passed = false;
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      */
@@ -55,7 +55,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *     @type bool $passed
      *           Overall data quality result -- `true` if all rules passed.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
-     *           A list of results at the dimension-level.
+     *           A list of results at the dimension level.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of all the rules in a job, and their results.
      *     @type int|string $row_count
@@ -96,7 +96,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +107,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var

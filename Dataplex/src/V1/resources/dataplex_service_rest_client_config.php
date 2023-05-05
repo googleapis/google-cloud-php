@@ -321,6 +321,18 @@ return [
                     ],
                 ],
             ],
+            'RunTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/tasks/*}:run',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAsset' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{asset.name=projects/*/locations/*/lakes/*/zones/*/assets/*}',

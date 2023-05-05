@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_RestoreCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\RestoreClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -53,14 +54,18 @@ function restore_cluster_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
+    $request = (new RestoreClusterRequest())
+        ->setParent($formattedParent)
+        ->setClusterId($clusterId)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->restoreCluster($formattedParent, $clusterId, $cluster);
+        $response = $alloyDBAdminClient->restoreCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

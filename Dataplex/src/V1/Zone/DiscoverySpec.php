@@ -84,9 +84,8 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      *           discovery every 60 minutes. To explicitly set a timezone to the cron
      *           tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      *           TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
-     *           from IANA time zone database. For example,
-     *           `CRON_TZ=America/New_York 1 * * * *`,
-     *           or `TZ=America/New_York 1 * * * *`.
+     *           from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     *           * * * *`, or `TZ=America/New_York 1 * * * *`.
      * }
      */
     public function __construct($data = NULL) {
@@ -265,9 +264,8 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      * discovery every 60 minutes. To explicitly set a timezone to the cron
      * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      * TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
-     * from IANA time zone database. For example,
-     * `CRON_TZ=America/New_York 1 * * * *`,
-     * or `TZ=America/New_York 1 * * * *`.
+     * from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     * * * * *`, or `TZ=America/New_York 1 * * * *`.
      *
      * Generated from protobuf field <code>string schedule = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -289,9 +287,8 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      * discovery every 60 minutes. To explicitly set a timezone to the cron
      * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
      * TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
-     * from IANA time zone database. For example,
-     * `CRON_TZ=America/New_York 1 * * * *`,
-     * or `TZ=America/New_York 1 * * * *`.
+     * from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     * * * * *`, or `TZ=America/New_York 1 * * * *`.
      *
      * Generated from protobuf field <code>string schedule = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

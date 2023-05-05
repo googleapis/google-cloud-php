@@ -103,6 +103,8 @@ class CloudSchedulerGapicClient
 
     private static $locationNameTemplate;
 
+    private static $topicNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -142,12 +144,22 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'job' => self::getJobNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
@@ -195,11 +207,31 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     *
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

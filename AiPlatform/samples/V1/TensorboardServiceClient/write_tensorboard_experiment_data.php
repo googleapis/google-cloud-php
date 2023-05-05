@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_WriteTensorboardExperimentData_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\ValueType;
 use Google\Cloud\AIPlatform\V1\TimeSeriesData;
 use Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint;
+use Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataRequest;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataResponse;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest;
 
@@ -57,7 +58,7 @@ function write_tensorboard_experiment_data_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $writeRunDataRequestsTimeSeriesDataValues = [new TimeSeriesDataPoint()];
     $timeSeriesData = (new TimeSeriesData())
         ->setTensorboardTimeSeriesId($writeRunDataRequestsTimeSeriesDataTensorboardTimeSeriesId)
@@ -68,14 +69,14 @@ function write_tensorboard_experiment_data_sample(
         ->setTensorboardRun($formattedWriteRunDataRequestsTensorboardRun)
         ->setTimeSeriesData($writeRunDataRequestsTimeSeriesData);
     $writeRunDataRequests = [$writeTensorboardRunDataRequest,];
+    $request = (new WriteTensorboardExperimentDataRequest())
+        ->setTensorboardExperiment($formattedTensorboardExperiment)
+        ->setWriteRunDataRequests($writeRunDataRequests);
 
     // Call the API and handle any network failures.
     try {
         /** @var WriteTensorboardExperimentDataResponse $response */
-        $response = $tensorboardServiceClient->writeTensorboardExperimentData(
-            $formattedTensorboardExperiment,
-            $writeRunDataRequests
-        );
+        $response = $tensorboardServiceClient->writeTensorboardExperimentData($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

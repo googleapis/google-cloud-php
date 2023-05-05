@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_VizierService_SuggestTrials_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\SuggestTrialsRequest;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsResponse;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -54,10 +55,16 @@ function suggest_trials_sample(
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new SuggestTrialsRequest())
+        ->setParent($formattedParent)
+        ->setSuggestionCount($suggestionCount)
+        ->setClientId($clientId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vizierServiceClient->suggestTrials($formattedParent, $suggestionCount, $clientId);
+        $response = $vizierServiceClient->suggestTrials($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

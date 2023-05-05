@@ -26,6 +26,22 @@ class DeleteTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the TensorboardExperiment to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                     Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteTensorboardExperimentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

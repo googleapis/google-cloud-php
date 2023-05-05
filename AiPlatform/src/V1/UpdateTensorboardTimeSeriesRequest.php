@@ -38,6 +38,29 @@ class UpdateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
     private $tensorboard_time_series = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries' `name` field is used to identify the
+     *                                                                                 TensorboardTimeSeries to be updated.
+     *                                                                                 Format:
+     *                                                                                 `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param \Google\Protobuf\FieldMask                        $updateMask            Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                                                 TensorboardTimeSeries resource by the update.
+     *                                                                                 The fields specified in the update_mask are relative to the resource, not
+     *                                                                                 the full request. A field is overwritten if it's in the mask. If the
+     *                                                                                 user does not provide a mask then all fields are overwritten if new
+     *                                                                                 values are specified.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateTensorboardTimeSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTensorboardTimeSeries($tensorboardTimeSeries)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

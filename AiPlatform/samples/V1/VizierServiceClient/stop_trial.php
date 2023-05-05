@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_StopTrial_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\StopTrialRequest;
 use Google\Cloud\AIPlatform\V1\Trial;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Stops a Trial.
@@ -40,10 +41,14 @@ function stop_trial_sample(string $formattedName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new StopTrialRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Trial $response */
-        $response = $vizierServiceClient->stopTrial($formattedName);
+        $response = $vizierServiceClient->stopTrial($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListHyperparameterTuningJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\HyperparameterTuningJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListHyperparameterTuningJobsRequest;
 
 /**
  * Lists HyperparameterTuningJobs in a Location.
@@ -41,10 +42,14 @@ function list_hyperparameter_tuning_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListHyperparameterTuningJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listHyperparameterTuningJobs($formattedParent);
+        $response = $jobServiceClient->listHyperparameterTuningJobs($request);
 
         /** @var HyperparameterTuningJob $element */
         foreach ($response as $element) {

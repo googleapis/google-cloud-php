@@ -90,6 +90,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $dataPath = 'dataPath-363501670';
         $dataPathPattern = 'dataPathPattern-594427925';
         $catalogEntry = 'catalogEntry-1234004788';
+        $uid = 'uid115792';
         $expectedResponse = new Entity();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -100,6 +101,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setDataPath($dataPath);
         $expectedResponse->setDataPathPattern($dataPathPattern);
         $expectedResponse->setCatalogEntry($catalogEntry);
+        $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
@@ -400,6 +402,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $dataPath = 'dataPath-363501670';
         $dataPathPattern = 'dataPathPattern-594427925';
         $catalogEntry = 'catalogEntry-1234004788';
+        $uid = 'uid115792';
         $expectedResponse = new Entity();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -410,6 +413,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setDataPath($dataPath);
         $expectedResponse->setDataPathPattern($dataPathPattern);
         $expectedResponse->setCatalogEntry($catalogEntry);
+        $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
@@ -680,6 +684,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $dataPath = 'dataPath-363501670';
         $dataPathPattern = 'dataPathPattern-594427925';
         $catalogEntry = 'catalogEntry-1234004788';
+        $uid = 'uid115792';
         $expectedResponse = new Entity();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -690,6 +695,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setDataPath($dataPath);
         $expectedResponse->setDataPathPattern($dataPathPattern);
         $expectedResponse->setCatalogEntry($catalogEntry);
+        $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
         $entity = new Entity();

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_PipelineService_ListTrainingPipelines_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\ListTrainingPipelinesRequest;
 use Google\Cloud\AIPlatform\V1\TrainingPipeline;
 
 /**
@@ -40,10 +41,14 @@ function list_training_pipelines_sample(string $formattedParent): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTrainingPipelinesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $pipelineServiceClient->listTrainingPipelines($formattedParent);
+        $response = $pipelineServiceClient->listTrainingPipelines($request);
 
         /** @var TrainingPipeline $element */
         foreach ($response as $element) {

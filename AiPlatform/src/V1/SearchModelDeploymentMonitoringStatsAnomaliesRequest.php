@@ -76,6 +76,25 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
     private $end_time = null;
 
     /**
+     * @param string $modelDeploymentMonitoringJob Required. ModelDeploymentMonitoring Job resource name.
+     *                                             Format:
+     *                                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+     *                                             Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
+     * @param string $deployedModelId              Required. The DeployedModel ID of the
+     *                                             [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $modelDeploymentMonitoringJob, string $deployedModelId): self
+    {
+        return (new self())
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
+            ->setDeployedModelId($deployedModelId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -71,6 +71,42 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
     private $deployed_model_id = '';
 
     /**
+     * @param string                   $endpoint        Required. The name of the Endpoint requested to serve the explanation.
+     *                                                  Format:
+     *                                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                  Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Protobuf\Value[] $instances       Required. The instances that are the input to the explanation call.
+     *                                                  A DeployedModel may have an upper limit on the number of instances it
+     *                                                  supports per request, and when it is exceeded the explanation call errors
+     *                                                  in case of AutoML Models, or, in case of customer created Models, the
+     *                                                  behaviour is as documented by that Model.
+     *                                                  The schema of any single instance may be specified via Endpoint's
+     *                                                  DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                                  [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                                  [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
+     * @param \Google\Protobuf\Value   $parameters      The parameters that govern the prediction. The schema of the parameters may
+     *                                                  be specified via Endpoint's DeployedModels' [Model's
+     *                                                  ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                                  [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                                  [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
+     * @param string                   $deployedModelId If specified, this ExplainRequest will be served by the chosen
+     *                                                  DeployedModel, overriding
+     *                                                  [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExplainRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, array $instances, \Google\Protobuf\Value $parameters, string $deployedModelId): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setInstances($instances)
+            ->setParameters($parameters)
+            ->setDeployedModelId($deployedModelId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

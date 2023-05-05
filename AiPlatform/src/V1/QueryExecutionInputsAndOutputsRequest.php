@@ -26,6 +26,22 @@ class QueryExecutionInputsAndOutputsRequest extends \Google\Protobuf\Internal\Me
     private $execution = '';
 
     /**
+     * @param string $execution Required. The resource name of the Execution whose input and output
+     *                          Artifacts should be retrieved as a LineageSubgraph. Format:
+     *                          `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                          Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $execution): self
+    {
+        return (new self())
+            ->setExecution($execution);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

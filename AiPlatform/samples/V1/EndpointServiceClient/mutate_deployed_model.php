@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_EndpointService_MutateDeployedModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\DeployedModel;
-use Google\Cloud\AIPlatform\V1\EndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
 use Google\Cloud\AIPlatform\V1\MutateDeployedModelResponse;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
@@ -60,19 +61,19 @@ function mutate_deployed_model_sample(
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployedModel = (new DeployedModel())
         ->setModel($formattedDeployedModelModel);
     $updateMask = new FieldMask();
+    $request = (new MutateDeployedModelRequest())
+        ->setEndpoint($formattedEndpoint)
+        ->setDeployedModel($deployedModel)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $endpointServiceClient->mutateDeployedModel(
-            $formattedEndpoint,
-            $deployedModel,
-            $updateMask
-        );
+        $response = $endpointServiceClient->mutateDeployedModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

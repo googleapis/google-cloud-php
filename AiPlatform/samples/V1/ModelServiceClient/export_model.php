@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_ExportModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\ExportModelResponse;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,13 +47,16 @@ function export_model_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfig = new OutputConfig();
+    $request = (new ExportModelRequest())
+        ->setName($formattedName)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $modelServiceClient->exportModel($formattedName, $outputConfig);
+        $response = $modelServiceClient->exportModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

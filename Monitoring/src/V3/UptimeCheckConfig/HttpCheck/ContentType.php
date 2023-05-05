@@ -26,10 +26,19 @@ class ContentType
      * Generated from protobuf enum <code>URL_ENCODED = 1;</code>
      */
     const URL_ENCODED = 1;
+    /**
+     * `body` is in `custom_content_type` form. Equivalent to setting the
+     * `Content-Type` to the contents of `custom_content_type` in the HTTP
+     * request.
+     *
+     * Generated from protobuf enum <code>USER_PROVIDED = 2;</code>
+     */
+    const USER_PROVIDED = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::URL_ENCODED => 'URL_ENCODED',
+        self::USER_PROVIDED => 'USER_PROVIDED',
     ];
 
     public static function name($value)

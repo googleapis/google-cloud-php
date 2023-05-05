@@ -26,6 +26,22 @@ class PauseModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Internal
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the ModelDeploymentMonitoringJob to pause.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+     *                     Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

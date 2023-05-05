@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ProvisionAccountTicket_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1beta\ProvisionAccountTicketResponse;
 use Google\ApiCore\ApiException;
 
@@ -41,10 +42,13 @@ function provision_account_ticket_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = new ProvisionAccountTicketRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ProvisionAccountTicketResponse $response */
-        $response = $analyticsAdminServiceClient->provisionAccountTicket();
+        $response = $analyticsAdminServiceClient->provisionAccountTicket($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

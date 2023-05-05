@@ -26,6 +26,24 @@ class GetServicePerimeterRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name for the [Service Perimeter]
+     *                     [google.identity.accesscontextmanager.v1.ServicePerimeter].
+     *
+     *                     Format:
+     *                     `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     *                     Please see {@see AccessContextManagerClient::servicePerimeterName()} for help formatting this field.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\GetServicePerimeterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

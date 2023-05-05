@@ -26,6 +26,22 @@ class CancelCustomJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the CustomJob to cancel.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/customJobs/{custom_job}`
+     *                     Please see {@see JobServiceClient::customJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CancelCustomJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

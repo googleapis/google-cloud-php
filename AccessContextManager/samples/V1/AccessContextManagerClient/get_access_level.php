@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accesscontextmanager_v1_generated_AccessContextManager_GetAccessLevel_sync]
 use Google\ApiCore\ApiException;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\GetAccessLevelRequest;
 
 /**
  * Gets an [access level]
@@ -44,10 +45,14 @@ function get_access_level_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetAccessLevelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AccessLevel $response */
-        $response = $accessContextManagerClient->getAccessLevel($formattedName);
+        $response = $accessContextManagerClient->getAccessLevel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

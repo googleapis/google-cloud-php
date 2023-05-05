@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexService_UpdateIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
 use Google\Cloud\AIPlatform\V1\Index;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateIndexRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,14 +42,16 @@ function update_index_sample(string $indexDisplayName): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $index = (new Index())
         ->setDisplayName($indexDisplayName);
+    $request = (new UpdateIndexRequest())
+        ->setIndex($index);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexServiceClient->updateIndex($index);
+        $response = $indexServiceClient->updateIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_ExportFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\ExportFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
 use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Rpc\Status;
 
@@ -53,22 +54,22 @@ function export_feature_values_sample(
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $destination = new FeatureValueDestination();
     $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
     $featureSelectorIdMatcher = (new IdMatcher())
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())
         ->setIdMatcher($featureSelectorIdMatcher);
+    $request = (new ExportFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setDestination($destination)
+        ->setFeatureSelector($featureSelector);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->exportFeatureValues(
-            $formattedEntityType,
-            $destination,
-            $featureSelector
-        );
+        $response = $featurestoreServiceClient->exportFeatureValues($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START alloydb_v1_generated_AlloyDBAdmin_GetCluster_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\GetClusterRequest;
 
 /**
  * Gets details of a single Cluster.
@@ -39,10 +40,14 @@ function get_cluster_sample(string $formattedName): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
+    // Prepare the request message.
+    $request = (new GetClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Cluster $response */
-        $response = $alloyDBAdminClient->getCluster($formattedName);
+        $response = $alloyDBAdminClient->getCluster($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

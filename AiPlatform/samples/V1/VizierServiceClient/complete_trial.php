@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_VizierService_CompleteTrial_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\CompleteTrialRequest;
 use Google\Cloud\AIPlatform\V1\Trial;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Marks a Trial as complete.
@@ -40,10 +41,14 @@ function complete_trial_sample(string $formattedName): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new CompleteTrialRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Trial $response */
-        $response = $vizierServiceClient->completeTrial($formattedName);
+        $response = $vizierServiceClient->completeTrial($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

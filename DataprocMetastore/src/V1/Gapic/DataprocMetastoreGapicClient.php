@@ -167,6 +167,8 @@ class DataprocMetastoreGapicClient
 
     private static $serviceNameTemplate;
 
+    private static $subnetworkNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -235,6 +237,15 @@ class DataprocMetastoreGapicClient
         return self::$serviceNameTemplate;
     }
 
+    private static function getSubnetworkNameTemplate()
+    {
+        if (self::$subnetworkNameTemplate == null) {
+            self::$subnetworkNameTemplate = new PathTemplate('projects/{project}/regions/{region}/subnetworks/{subnetwork}');
+        }
+
+        return self::$subnetworkNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -244,6 +255,7 @@ class DataprocMetastoreGapicClient
                 'metadataImport' => self::getMetadataImportNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
+                'subnetwork' => self::getSubnetworkNameTemplate(),
             ];
         }
 
@@ -346,6 +358,25 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     */
+    public static function subnetworkName($project, $region, $subnetwork)
+    {
+        return self::getSubnetworkNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -354,6 +385,7 @@ class DataprocMetastoreGapicClient
      * - metadataImport: projects/{project}/locations/{location}/services/{service}/metadataImports/{metadata_import}
      * - network: projects/{project}/global/networks/{network}
      * - service: projects/{project}/locations/{location}/services/{service}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

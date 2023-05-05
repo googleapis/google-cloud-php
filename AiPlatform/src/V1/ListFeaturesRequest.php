@@ -97,6 +97,22 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     private $latest_stats_count = 0;
 
     /**
+     * @param string $parent Required. The resource name of the Location to list Features.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                       Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListFeaturesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

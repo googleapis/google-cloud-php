@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_IndexEndpointService_GetIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\GetIndexEndpointRequest;
 use Google\Cloud\AIPlatform\V1\IndexEndpoint;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
 
 /**
  * Gets an IndexEndpoint.
@@ -40,10 +41,14 @@ function get_index_endpoint_sample(string $formattedName): void
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIndexEndpointRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var IndexEndpoint $response */
-        $response = $indexEndpointServiceClient->getIndexEndpoint($formattedName);
+        $response = $indexEndpointServiceClient->getIndexEndpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
