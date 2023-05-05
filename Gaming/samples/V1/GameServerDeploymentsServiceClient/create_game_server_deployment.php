@@ -42,7 +42,7 @@ function create_game_server_deployment_sample(string $formattedParent, string $d
     // Create a client.
     $gameServerDeploymentsServiceClient = new GameServerDeploymentsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gameServerDeployment = new GameServerDeployment();
 
     // Call the API and handle any network failures.

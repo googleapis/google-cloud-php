@@ -39,7 +39,7 @@ function batch_create_notes_sample(string $formattedParent): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $notes = [];
 
     // Call the API and handle any network failures.

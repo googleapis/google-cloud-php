@@ -102,7 +102,7 @@ function update_azure_cluster_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $azureClusterNetworkingPodAddressCidrBlocks = [
         $azureClusterNetworkingPodAddressCidrBlocksElement,
     ];

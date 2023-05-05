@@ -42,7 +42,7 @@ function update_membership_sample(string $formattedName): void
     // Create a client.
     $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $resource = new Membership();
 

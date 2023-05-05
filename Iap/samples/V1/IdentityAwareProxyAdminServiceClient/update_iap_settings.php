@@ -38,7 +38,7 @@ function update_iap_settings_sample(string $iapSettingsName): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $iapSettings = (new IapSettings())
         ->setName($iapSettingsName);
 

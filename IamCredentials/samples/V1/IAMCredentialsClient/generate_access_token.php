@@ -45,7 +45,7 @@ function generate_access_token_sample(string $formattedName, string $scopeElemen
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $scope = [$scopeElement,];
 
     // Call the API and handle any network failures.

@@ -42,7 +42,7 @@ function create_identity_aware_proxy_client_sample(string $parent): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $identityAwareProxyClient = new IdentityAwareProxyClient();
 
     // Call the API and handle any network failures.

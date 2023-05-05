@@ -67,7 +67,7 @@ function update_log_metric_sample(
     // Create a client.
     $metricsServiceV2Client = new MetricsServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $metric = (new LogMetric())
         ->setName($metricName)
         ->setFilter($metricFilter);

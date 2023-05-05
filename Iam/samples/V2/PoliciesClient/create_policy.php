@@ -49,7 +49,7 @@ function create_policy_sample(string $parent): void
     // Create a client.
     $policiesClient = new PoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policy = new Policy();
 
     // Call the API and handle any network failures.
