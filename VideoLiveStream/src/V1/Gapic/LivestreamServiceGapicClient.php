@@ -147,6 +147,8 @@ class LivestreamServiceGapicClient
 
     private static $locationNameTemplate;
 
+    private static $secretVersionNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -221,6 +223,17 @@ class LivestreamServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}/versions/{version}'
+            );
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -229,6 +242,7 @@ class LivestreamServiceGapicClient
                 'event' => self::getEventNameTemplate(),
                 'input' => self::getInputNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
             ];
         }
 
@@ -312,6 +326,25 @@ class LivestreamServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -319,6 +352,7 @@ class LivestreamServiceGapicClient
      * - event: projects/{project}/locations/{location}/channels/{channel}/events/{event}
      * - input: projects/{project}/locations/{location}/inputs/{input}
      * - location: projects/{project}/locations/{location}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

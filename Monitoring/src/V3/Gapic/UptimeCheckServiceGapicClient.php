@@ -47,13 +47,13 @@ use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
- * Uptime check configurations in the Stackdriver Monitoring product. An Uptime
+ * Uptime check configurations in the Cloud Monitoring product. An Uptime
  * check is a piece of configuration that determines which resources and
  * services to monitor for availability. These configurations can also be
- * configured interactively by navigating to the [Cloud Console]
- * (http://console.cloud.google.com), selecting the appropriate project,
- * clicking on "Monitoring" on the left-hand side to navigate to Stackdriver,
- * and then clicking on "Uptime".
+ * configured interactively by navigating to the [Cloud console]
+ * (https://console.cloud.google.com), selecting the appropriate project,
+ * clicking on "Monitoring" on the left-hand side to navigate to Cloud
+ * Monitoring, and then clicking on "Uptime".
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -511,6 +511,12 @@ class UptimeCheckServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           If provided, this field specifies the criteria that must be met by
+     *           uptime checks to be included in the response.
+     *
+     *           For more details, see [Filtering
+     *           syntax](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -536,6 +542,10 @@ class UptimeCheckServiceGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -631,7 +641,7 @@ class UptimeCheckServiceGapicClient
      *                                             the values for the set of fields mentioned in the `updateMask`. If an
      *                                             `updateMask` has not been given, this Uptime check configuration replaces
      *                                             the current configuration. If a field is mentioned in `updateMask` but
-     *                                             the corresonding field is omitted in this partial Uptime check
+     *                                             the corresponding field is omitted in this partial Uptime check
      *                                             configuration, it has the effect of deleting/clearing the field from the
      *                                             configuration on the server.
      *

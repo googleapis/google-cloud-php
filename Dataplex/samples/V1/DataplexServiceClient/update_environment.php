@@ -42,7 +42,7 @@ function update_environment_sample(string $environmentInfrastructureSpecOsImageI
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $environmentInfrastructureSpecOsImage = (new OsImageRuntime())
         ->setImageVersion($environmentInfrastructureSpecOsImageImageVersion);

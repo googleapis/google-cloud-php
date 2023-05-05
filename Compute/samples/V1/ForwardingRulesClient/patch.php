@@ -41,7 +41,7 @@ function patch_sample(string $forwardingRule, string $project, string $region): 
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $forwardingRuleResource = new ForwardingRule();
 
     // Call the API and handle any network failures.

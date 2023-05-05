@@ -40,7 +40,7 @@ function patch_sample(string $healthCheck, string $project): void
     // Create a client.
     $healthChecksClient = new HealthChecksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $healthCheckResource = new HealthCheck();
 
     // Call the API and handle any network failures.

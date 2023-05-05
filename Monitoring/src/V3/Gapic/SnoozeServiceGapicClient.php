@@ -88,7 +88,15 @@ class SnoozeServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
     ];
 
+    private static $alertPolicyNameTemplate;
+
+    private static $folderAlertPolicyNameTemplate;
+
+    private static $organizationAlertPolicyNameTemplate;
+
     private static $projectNameTemplate;
+
+    private static $projectAlertPolicyNameTemplate;
 
     private static $snoozeNameTemplate;
 
@@ -115,6 +123,33 @@ class SnoozeServiceGapicClient
         ];
     }
 
+    private static function getAlertPolicyNameTemplate()
+    {
+        if (self::$alertPolicyNameTemplate == null) {
+            self::$alertPolicyNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}');
+        }
+
+        return self::$alertPolicyNameTemplate;
+    }
+
+    private static function getFolderAlertPolicyNameTemplate()
+    {
+        if (self::$folderAlertPolicyNameTemplate == null) {
+            self::$folderAlertPolicyNameTemplate = new PathTemplate('folders/{folder}/alertPolicies/{alert_policy}');
+        }
+
+        return self::$folderAlertPolicyNameTemplate;
+    }
+
+    private static function getOrganizationAlertPolicyNameTemplate()
+    {
+        if (self::$organizationAlertPolicyNameTemplate == null) {
+            self::$organizationAlertPolicyNameTemplate = new PathTemplate('organizations/{organization}/alertPolicies/{alert_policy}');
+        }
+
+        return self::$organizationAlertPolicyNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -122,6 +157,15 @@ class SnoozeServiceGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getProjectAlertPolicyNameTemplate()
+    {
+        if (self::$projectAlertPolicyNameTemplate == null) {
+            self::$projectAlertPolicyNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}');
+        }
+
+        return self::$projectAlertPolicyNameTemplate;
     }
 
     private static function getSnoozeNameTemplate()
@@ -146,13 +190,68 @@ class SnoozeServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'alertPolicy' => self::getAlertPolicyNameTemplate(),
+                'folderAlertPolicy' => self::getFolderAlertPolicyNameTemplate(),
+                'organizationAlertPolicy' => self::getOrganizationAlertPolicyNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectAlertPolicy' => self::getProjectAlertPolicyNameTemplate(),
                 'snooze' => self::getSnoozeNameTemplate(),
                 'workspace' => self::getWorkspaceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a alert_policy
+     * resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     *
+     * @return string The formatted alert_policy resource.
+     */
+    public static function alertPolicyName($project, $alertPolicy)
+    {
+        return self::getAlertPolicyNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_alert_policy resource.
+     *
+     * @param string $folder
+     * @param string $alertPolicy
+     *
+     * @return string The formatted folder_alert_policy resource.
+     */
+    public static function folderAlertPolicyName($folder, $alertPolicy)
+    {
+        return self::getFolderAlertPolicyNameTemplate()->render([
+            'folder' => $folder,
+            'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_alert_policy resource.
+     *
+     * @param string $organization
+     * @param string $alertPolicy
+     *
+     * @return string The formatted organization_alert_policy resource.
+     */
+    public static function organizationAlertPolicyName($organization, $alertPolicy)
+    {
+        return self::getOrganizationAlertPolicyNameTemplate()->render([
+            'organization' => $organization,
+            'alert_policy' => $alertPolicy,
+        ]);
     }
 
     /**
@@ -167,6 +266,23 @@ class SnoozeServiceGapicClient
     {
         return self::getProjectNameTemplate()->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_alert_policy resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     *
+     * @return string The formatted project_alert_policy resource.
+     */
+    public static function projectAlertPolicyName($project, $alertPolicy)
+    {
+        return self::getProjectAlertPolicyNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
         ]);
     }
 
@@ -206,7 +322,11 @@ class SnoozeServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - folderAlertPolicy: folders/{folder}/alertPolicies/{alert_policy}
+     * - organizationAlertPolicy: organizations/{organization}/alertPolicies/{alert_policy}
      * - project: projects/{project}
+     * - projectAlertPolicy: projects/{project}/alertPolicies/{alert_policy}
      * - snooze: projects/{project}/snoozes/{snooze}
      * - workspace: projects/{project}
      *

@@ -41,7 +41,7 @@ function remove_instances_sample(string $instanceGroup, string $project, string 
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupsRemoveInstancesRequestResource = new InstanceGroupsRemoveInstancesRequest();
 
     // Call the API and handle any network failures.

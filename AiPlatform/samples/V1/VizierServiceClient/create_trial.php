@@ -39,7 +39,7 @@ function create_trial_sample(string $formattedParent): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $trial = new Trial();
 
     // Call the API and handle any network failures.

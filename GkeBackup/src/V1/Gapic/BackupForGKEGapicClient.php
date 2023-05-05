@@ -148,6 +148,8 @@ class BackupForGKEGapicClient
 
     private static $clusterNameTemplate;
 
+    private static $cryptoKeyNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $restoreNameTemplate;
@@ -220,6 +222,17 @@ class BackupForGKEGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -282,6 +295,7 @@ class BackupForGKEGapicClient
                 'backup' => self::getBackupNameTemplate(),
                 'backupPlan' => self::getBackupPlanNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'restore' => self::getRestoreNameTemplate(),
                 'restorePlan' => self::getRestorePlanNameTemplate(),
@@ -349,6 +363,31 @@ class BackupForGKEGapicClient
             'project' => $project,
             'location' => $location,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -476,6 +515,7 @@ class BackupForGKEGapicClient
      * - backup: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}
      * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - restore: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}
      * - restorePlan: projects/{project}/locations/{location}/restorePlans/{restore_plan}

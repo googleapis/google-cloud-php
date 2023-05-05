@@ -41,7 +41,7 @@ function update_sample(string $commitment, string $project, string $region): voi
     // Create a client.
     $regionCommitmentsClient = new RegionCommitmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $commitmentResource = new Commitment();
 
     // Call the API and handle any network failures.

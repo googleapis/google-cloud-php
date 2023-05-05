@@ -48,7 +48,7 @@ function update_audience_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $audienceFilterClause = (new AudienceFilterClause())
         ->setClauseType($audienceFilterClausesClauseType);
     $audienceFilterClauses = [$audienceFilterClause,];

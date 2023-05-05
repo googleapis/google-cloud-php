@@ -42,7 +42,7 @@ function set_network_policy_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkPolicy = new NetworkPolicy();
 
     // Call the API and handle any network failures.

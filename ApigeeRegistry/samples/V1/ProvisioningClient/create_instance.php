@@ -50,7 +50,7 @@ function create_instance_sample(
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceConfig = (new Config())
         ->setCmekKeyName($instanceConfigCmekKeyName);
     $instance = (new Instance())

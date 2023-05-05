@@ -40,7 +40,7 @@ function patch_sample(string $project, string $publicDelegatedPrefix): void
     // Create a client.
     $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
 
     // Call the API and handle any network failures.

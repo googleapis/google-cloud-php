@@ -43,7 +43,7 @@ function create_api_sample(string $formattedParent, string $apiId): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $api = new Api();
 
     // Call the API and handle any network failures.

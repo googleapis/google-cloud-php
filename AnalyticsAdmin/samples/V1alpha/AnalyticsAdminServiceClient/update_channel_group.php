@@ -44,7 +44,7 @@ function update_channel_group_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelGroupGroupingRuleExpression = new ChannelGroupFilterExpression();
     $groupingRule = (new GroupingRule())
         ->setDisplayName($channelGroupGroupingRuleDisplayName)

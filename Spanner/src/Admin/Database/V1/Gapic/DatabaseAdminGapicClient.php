@@ -160,6 +160,8 @@ class DatabaseAdminGapicClient
 
     private static $cryptoKeyNameTemplate;
 
+    private static $cryptoKeyVersionNameTemplate;
+
     private static $databaseNameTemplate;
 
     private static $instanceNameTemplate;
@@ -215,6 +217,17 @@ class DatabaseAdminGapicClient
         return self::$cryptoKeyNameTemplate;
     }
 
+    private static function getCryptoKeyVersionNameTemplate()
+    {
+        if (self::$cryptoKeyVersionNameTemplate == null) {
+            self::$cryptoKeyVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}'
+            );
+        }
+
+        return self::$cryptoKeyVersionNameTemplate;
+    }
+
     private static function getDatabaseNameTemplate()
     {
         if (self::$databaseNameTemplate == null) {
@@ -243,6 +256,7 @@ class DatabaseAdminGapicClient
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
             ];
@@ -296,6 +310,34 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey,
+        $cryptoKeyVersion
+    ) {
+        return self::getCryptoKeyVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a database
      * resource.
      *
@@ -337,6 +379,7 @@ class DatabaseAdminGapicClient
      * Template: Pattern
      * - backup: projects/{project}/instances/{instance}/backups/{backup}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
      * - instance: projects/{project}/instances/{instance}
      *

@@ -39,7 +39,7 @@ function insert_sample(string $project): void
     // Create a client.
     $snapshotsClient = new SnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snapshotResource = new Snapshot();
 
     // Call the API and handle any network failures.

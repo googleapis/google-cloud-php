@@ -41,7 +41,7 @@ function batch_import_model_evaluation_slices_sample(string $formattedParent): v
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $modelEvaluationSlices = [new ModelEvaluationSlice()];
 
     // Call the API and handle any network failures.

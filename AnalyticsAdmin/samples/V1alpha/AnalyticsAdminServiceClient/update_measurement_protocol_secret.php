@@ -38,7 +38,7 @@ function update_measurement_protocol_secret_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $measurementProtocolSecret = (new MeasurementProtocolSecret())
         ->setDisplayName($measurementProtocolSecretDisplayName);
 

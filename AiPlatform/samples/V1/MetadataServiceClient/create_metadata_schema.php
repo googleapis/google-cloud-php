@@ -49,7 +49,7 @@ function create_metadata_schema_sample(
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metadataSchema = (new MetadataSchema())
         ->setSchema($metadataSchemaSchema);
 

@@ -47,7 +47,7 @@ function create_partition_sample(
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $partitionValues = [$partitionValuesElement,];
     $partition = (new Partition())
         ->setValues($partitionValues)

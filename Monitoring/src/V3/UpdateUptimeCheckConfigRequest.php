@@ -29,7 +29,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * the values for the set of fields mentioned in the `updateMask`. If an
      * `updateMask` has not been given, this Uptime check configuration replaces
      * the current configuration. If a field is mentioned in `updateMask` but
-     * the corresonding field is omitted in this partial Uptime check
+     * the corresponding field is omitted in this partial Uptime check
      * configuration, it has the effect of deleting/clearing the field from the
      * configuration on the server.
      * The following fields can be updated: `display_name`,
@@ -56,7 +56,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *           the values for the set of fields mentioned in the `updateMask`. If an
      *           `updateMask` has not been given, this Uptime check configuration replaces
      *           the current configuration. If a field is mentioned in `updateMask` but
-     *           the corresonding field is omitted in this partial Uptime check
+     *           the corresponding field is omitted in this partial Uptime check
      *           configuration, it has the effect of deleting/clearing the field from the
      *           configuration on the server.
      *           The following fields can be updated: `display_name`,
@@ -116,7 +116,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * the values for the set of fields mentioned in the `updateMask`. If an
      * `updateMask` has not been given, this Uptime check configuration replaces
      * the current configuration. If a field is mentioned in `updateMask` but
-     * the corresonding field is omitted in this partial Uptime check
+     * the corresponding field is omitted in this partial Uptime check
      * configuration, it has the effect of deleting/clearing the field from the
      * configuration on the server.
      * The following fields can be updated: `display_name`,
@@ -146,7 +146,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * the values for the set of fields mentioned in the `updateMask`. If an
      * `updateMask` has not been given, this Uptime check configuration replaces
      * the current configuration. If a field is mentioned in `updateMask` but
-     * the corresonding field is omitted in this partial Uptime check
+     * the corresponding field is omitted in this partial Uptime check
      * configuration, it has the effect of deleting/clearing the field from the
      * configuration on the server.
      * The following fields can be updated: `display_name`,

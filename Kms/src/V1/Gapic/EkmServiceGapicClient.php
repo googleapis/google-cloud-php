@@ -110,6 +110,8 @@ class EkmServiceGapicClient
 
     private static $locationNameTemplate;
 
+    private static $serviceNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -158,6 +160,15 @@ class EkmServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -165,6 +176,7 @@ class EkmServiceGapicClient
                 'ekmConfig' => self::getEkmConfigNameTemplate(),
                 'ekmConnection' => self::getEkmConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
@@ -225,12 +237,34 @@ class EkmServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $namespace, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - ekmConfig: projects/{project}/locations/{location}/ekmConfig
      * - ekmConnection: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}
      * - location: projects/{project}/locations/{location}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

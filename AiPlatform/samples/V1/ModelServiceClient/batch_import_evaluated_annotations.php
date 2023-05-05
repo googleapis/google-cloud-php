@@ -41,7 +41,7 @@ function batch_import_evaluated_annotations_sample(string $formattedParent): voi
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $evaluatedAnnotations = [new EvaluatedAnnotation()];
 
     // Call the API and handle any network failures.

@@ -61,7 +61,7 @@ function replace_access_levels_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessLevels = [new AccessLevel()];
 
     // Call the API and handle any network failures.

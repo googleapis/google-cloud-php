@@ -53,7 +53,7 @@ function create_training_pipeline_sample(
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $trainingPipelineTrainingTaskInputs = new Value();
     $trainingPipeline = (new TrainingPipeline())
         ->setDisplayName($trainingPipelineDisplayName)

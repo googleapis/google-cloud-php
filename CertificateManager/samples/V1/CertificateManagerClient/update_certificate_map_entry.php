@@ -44,7 +44,7 @@ function update_certificate_map_entry_sample(): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateMapEntry = new CertificateMapEntry();
     $updateMask = new FieldMask();
 

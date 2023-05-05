@@ -129,17 +129,41 @@ class ConversationProfilesGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $agentNameTemplate;
+
     private static $cXSecuritySettingsNameTemplate;
 
+    private static $conversationModelNameTemplate;
+
     private static $conversationProfileNameTemplate;
+
+    private static $documentNameTemplate;
+
+    private static $knowledgeBaseNameTemplate;
 
     private static $locationNameTemplate;
 
     private static $projectNameTemplate;
 
+    private static $projectAgentNameTemplate;
+
+    private static $projectConversationModelNameTemplate;
+
     private static $projectConversationProfileNameTemplate;
 
+    private static $projectKnowledgeBaseNameTemplate;
+
+    private static $projectKnowledgeBaseDocumentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
+
+    private static $projectLocationConversationModelNameTemplate;
+
     private static $projectLocationConversationProfileNameTemplate;
+
+    private static $projectLocationKnowledgeBaseNameTemplate;
+
+    private static $projectLocationKnowledgeBaseDocumentNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -164,6 +188,15 @@ class ConversationProfilesGapicClient
         ];
     }
 
+    private static function getAgentNameTemplate()
+    {
+        if (self::$agentNameTemplate == null) {
+            self::$agentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$agentNameTemplate;
+    }
+
     private static function getCXSecuritySettingsNameTemplate()
     {
         if (self::$cXSecuritySettingsNameTemplate == null) {
@@ -173,6 +206,15 @@ class ConversationProfilesGapicClient
         return self::$cXSecuritySettingsNameTemplate;
     }
 
+    private static function getConversationModelNameTemplate()
+    {
+        if (self::$conversationModelNameTemplate == null) {
+            self::$conversationModelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}');
+        }
+
+        return self::$conversationModelNameTemplate;
+    }
+
     private static function getConversationProfileNameTemplate()
     {
         if (self::$conversationProfileNameTemplate == null) {
@@ -180,6 +222,24 @@ class ConversationProfilesGapicClient
         }
 
         return self::$conversationProfileNameTemplate;
+    }
+
+    private static function getDocumentNameTemplate()
+    {
+        if (self::$documentNameTemplate == null) {
+            self::$documentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$documentNameTemplate;
+    }
+
+    private static function getKnowledgeBaseNameTemplate()
+    {
+        if (self::$knowledgeBaseNameTemplate == null) {
+            self::$knowledgeBaseNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$knowledgeBaseNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -200,6 +260,24 @@ class ConversationProfilesGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getProjectConversationModelNameTemplate()
+    {
+        if (self::$projectConversationModelNameTemplate == null) {
+            self::$projectConversationModelNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}');
+        }
+
+        return self::$projectConversationModelNameTemplate;
+    }
+
     private static function getProjectConversationProfileNameTemplate()
     {
         if (self::$projectConversationProfileNameTemplate == null) {
@@ -207,6 +285,42 @@ class ConversationProfilesGapicClient
         }
 
         return self::$projectConversationProfileNameTemplate;
+    }
+
+    private static function getProjectKnowledgeBaseNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseNameTemplate == null) {
+            self::$projectKnowledgeBaseNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$projectKnowledgeBaseNameTemplate;
+    }
+
+    private static function getProjectKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectKnowledgeBaseDocumentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
+    }
+
+    private static function getProjectLocationConversationModelNameTemplate()
+    {
+        if (self::$projectLocationConversationModelNameTemplate == null) {
+            self::$projectLocationConversationModelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}');
+        }
+
+        return self::$projectLocationConversationModelNameTemplate;
     }
 
     private static function getProjectLocationConversationProfileNameTemplate()
@@ -218,20 +332,65 @@ class ConversationProfilesGapicClient
         return self::$projectLocationConversationProfileNameTemplate;
     }
 
+    private static function getProjectLocationKnowledgeBaseNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}');
+        }
+
+        return self::$projectLocationKnowledgeBaseNameTemplate;
+    }
+
+    private static function getProjectLocationKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectLocationKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'agent' => self::getAgentNameTemplate(),
                 'cXSecuritySettings' => self::getCXSecuritySettingsNameTemplate(),
+                'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
+                'document' => self::getDocumentNameTemplate(),
+                'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'projectConversationModel' => self::getProjectConversationModelNameTemplate(),
                 'projectConversationProfile' => self::getProjectConversationProfileNameTemplate(),
+                'projectKnowledgeBase' => self::getProjectKnowledgeBaseNameTemplate(),
+                'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationProfile' => self::getProjectLocationConversationProfileNameTemplate(),
+                'projectLocationKnowledgeBase' => self::getProjectLocationKnowledgeBaseNameTemplate(),
+                'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a agent
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted agent resource.
+     */
+    public static function agentName($project)
+    {
+        return self::getAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -255,6 +414,25 @@ class ConversationProfilesGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * conversation_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationModel
+     *
+     * @return string The formatted conversation_model resource.
+     */
+    public static function conversationModelName($project, $location, $conversationModel)
+    {
+        return self::getConversationModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_model' => $conversationModel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * conversation_profile resource.
      *
      * @param string $project
@@ -267,6 +445,42 @@ class ConversationProfilesGapicClient
         return self::getConversationProfileNameTemplate()->render([
             'project' => $project,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName($project, $knowledgeBase, $document)
+    {
+        return self::getDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted knowledge_base resource.
+     */
+    public static function knowledgeBaseName($project, $knowledgeBase)
+    {
+        return self::getKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
         ]);
     }
 
@@ -304,6 +518,38 @@ class ConversationProfilesGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_conversation_model resource.
+     *
+     * @param string $project
+     * @param string $conversationModel
+     *
+     * @return string The formatted project_conversation_model resource.
+     */
+    public static function projectConversationModelName($project, $conversationModel)
+    {
+        return self::getProjectConversationModelNameTemplate()->render([
+            'project' => $project,
+            'conversation_model' => $conversationModel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_conversation_profile resource.
      *
      * @param string $project
@@ -316,6 +562,78 @@ class ConversationProfilesGapicClient
         return self::getProjectConversationProfileNameTemplate()->render([
             'project' => $project,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted project_knowledge_base resource.
+     */
+    public static function projectKnowledgeBaseName($project, $knowledgeBase)
+    {
+        return self::getProjectKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_knowledge_base_document resource.
+     */
+    public static function projectKnowledgeBaseDocumentName($project, $knowledgeBase, $document)
+    {
+        return self::getProjectKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationModel
+     *
+     * @return string The formatted project_location_conversation_model resource.
+     */
+    public static function projectLocationConversationModelName($project, $location, $conversationModel)
+    {
+        return self::getProjectLocationConversationModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_model' => $conversationModel,
         ]);
     }
 
@@ -339,15 +657,67 @@ class ConversationProfilesGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     *
+     * @return string The formatted project_location_knowledge_base resource.
+     */
+    public static function projectLocationKnowledgeBaseName($project, $location, $knowledgeBase)
+    {
+        return self::getProjectLocationKnowledgeBaseNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_location_knowledge_base_document resource.
+     */
+    public static function projectLocationKnowledgeBaseDocumentName($project, $location, $knowledgeBase, $document)
+    {
+        return self::getProjectLocationKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - agent: projects/{project}/agent
      * - cXSecuritySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
+     * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
+     * - projectAgent: projects/{project}/agent
+     * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
      * - projectConversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
+     * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
+     * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

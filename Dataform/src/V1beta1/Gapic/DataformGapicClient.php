@@ -152,6 +152,8 @@ class DataformGapicClient
 
     private static $repositoryNameTemplate;
 
+    private static $secretVersionNameTemplate;
+
     private static $workflowInvocationNameTemplate;
 
     private static $workspaceNameTemplate;
@@ -216,6 +218,17 @@ class DataformGapicClient
         return self::$repositoryNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}/versions/{version}'
+            );
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getWorkflowInvocationNameTemplate()
     {
         if (self::$workflowInvocationNameTemplate == null) {
@@ -245,6 +258,7 @@ class DataformGapicClient
                 'compilationResult' => self::getCompilationResultNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
                 'workflowInvocation' => self::getWorkflowInvocationNameTemplate(),
                 'workspace' => self::getWorkspaceNameTemplate(),
             ];
@@ -322,6 +336,27 @@ class DataformGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     *
+     * @experimental
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * workflow_invocation resource.
      *
      * @param string $project
@@ -381,6 +416,7 @@ class DataformGapicClient
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
      * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
      *

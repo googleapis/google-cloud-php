@@ -41,7 +41,7 @@ function patch_sample(string $project, string $region, string $targetHttpsProxy)
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetHttpsProxyResource = new TargetHttpsProxy();
 
     // Call the API and handle any network failures.

@@ -49,7 +49,7 @@ function create_tensorboard_time_series_sample(
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tensorboardTimeSeries = (new TensorboardTimeSeries())
         ->setDisplayName($tensorboardTimeSeriesDisplayName)
         ->setValueType($tensorboardTimeSeriesValueType);

@@ -41,7 +41,7 @@ function update_sample(string $project, string $region, string $router): void
     // Create a client.
     $routersClient = new RoutersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $routerResource = new Router();
 
     // Call the API and handle any network failures.

@@ -39,7 +39,7 @@ function import_model_evaluation_sample(string $formattedParent): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $modelEvaluation = new ModelEvaluation();
 
     // Call the API and handle any network failures.

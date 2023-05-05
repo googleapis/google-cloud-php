@@ -64,7 +64,7 @@ function batch_read_feature_values_sample(
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $destination = new FeatureValueDestination();
     $entityTypeSpecsFeatureSelectorIdMatcherIds = [
         $entityTypeSpecsFeatureSelectorIdMatcherIdsElement,

@@ -143,6 +143,8 @@ class AppConnectionsServiceGapicClient
 
     private static $appConnectorNameTemplate;
 
+    private static $appGatewayNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $pathTemplateMap;
@@ -199,6 +201,17 @@ class AppConnectionsServiceGapicClient
         return self::$appConnectorNameTemplate;
     }
 
+    private static function getAppGatewayNameTemplate()
+    {
+        if (self::$appGatewayNameTemplate == null) {
+            self::$appGatewayNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/appGateways/{app_gateway}'
+            );
+        }
+
+        return self::$appGatewayNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -216,6 +229,7 @@ class AppConnectionsServiceGapicClient
             self::$pathTemplateMap = [
                 'appConnection' => self::getAppConnectionNameTemplate(),
                 'appConnector' => self::getAppConnectorNameTemplate(),
+                'appGateway' => self::getAppGatewayNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
@@ -265,6 +279,25 @@ class AppConnectionsServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a app_gateway
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $appGateway
+     *
+     * @return string The formatted app_gateway resource.
+     */
+    public static function appGatewayName($project, $location, $appGateway)
+    {
+        return self::getAppGatewayNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'app_gateway' => $appGateway,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -287,6 +320,7 @@ class AppConnectionsServiceGapicClient
      * Template: Pattern
      * - appConnection: projects/{project}/locations/{location}/appConnections/{app_connection}
      * - appConnector: projects/{project}/locations/{location}/appConnectors/{app_connector}
+     * - appGateway: projects/{project}/locations/{location}/appGateways/{app_gateway}
      * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

@@ -41,7 +41,7 @@ function add_instance_sample(string $project, string $region, string $targetPool
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
 
     // Call the API and handle any network failures.

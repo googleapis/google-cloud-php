@@ -63,7 +63,7 @@ function create_data_labeling_job_sample(
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedDataLabelingJobDatasets = [$formattedDataLabelingJobDatasetsElement,];
     $dataLabelingJobInputs = new Value();
     $dataLabelingJob = (new DataLabelingJob())

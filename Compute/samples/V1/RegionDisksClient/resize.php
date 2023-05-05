@@ -41,7 +41,7 @@ function resize_sample(string $disk, string $project, string $region): void
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionDisksResizeRequestResource = new RegionDisksResizeRequest();
 
     // Call the API and handle any network failures.

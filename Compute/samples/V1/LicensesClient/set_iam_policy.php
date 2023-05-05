@@ -39,7 +39,7 @@ function set_iam_policy_sample(string $project, string $resource): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
 
     // Call the API and handle any network failures.

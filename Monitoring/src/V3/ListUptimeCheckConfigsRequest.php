@@ -25,6 +25,15 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
+     * If provided, this field specifies the criteria that must be met by
+     * uptime checks to be included in the response.
+     * For more details, see [Filtering
+     * syntax](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     */
+    private $filter = '';
+    /**
      * The maximum number of results to return in a single response. The server
      * may further constrain the maximum number of results returned in a single
      * page. If the page_size is <=0, the server will decide the number of results
@@ -53,6 +62,11 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *           [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
      *           Uptime check configurations are listed. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
+     *     @type string $filter
+     *           If provided, this field specifies the criteria that must be met by
+     *           uptime checks to be included in the response.
+     *           For more details, see [Filtering
+     *           syntax](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
      *     @type int $page_size
      *           The maximum number of results to return in a single response. The server
      *           may further constrain the maximum number of results returned in a single
@@ -97,6 +111,38 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * If provided, this field specifies the criteria that must be met by
+     * uptime checks to be included in the response.
+     * For more details, see [Filtering
+     * syntax](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * If provided, this field specifies the criteria that must be met by
+     * uptime checks to be included in the response.
+     * For more details, see [Filtering
+     * syntax](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

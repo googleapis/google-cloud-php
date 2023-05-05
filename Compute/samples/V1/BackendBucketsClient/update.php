@@ -40,7 +40,7 @@ function update_sample(string $backendBucket, string $project): void
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backendBucketResource = new BackendBucket();
 
     // Call the API and handle any network failures.

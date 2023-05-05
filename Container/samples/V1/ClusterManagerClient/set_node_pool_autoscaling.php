@@ -42,7 +42,7 @@ function set_node_pool_autoscaling_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $autoscaling = new NodePoolAutoscaling();
 
     // Call the API and handle any network failures.
