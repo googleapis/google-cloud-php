@@ -12,5 +12,5 @@ if (false) {
     class Instance_SuspensionReason {}
 }
 class_exists(Instance\SuspensionReason::class);
-@trigger_error('Google\Cloud\Redis\V1\Instance_SuspensionReason is deprecated and will be removed in the next major release. Use Google\Cloud\Redis\V1\Instance\SuspensionReason instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Redis\V1\Instance_SuspensionReason is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\SuspensionReason instead', E_USER_DEPRECATED);
 

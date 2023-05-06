@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [GetInstanceAuthString][google.cloud.redis.v1.CloudRedis.GetInstanceAuthString].
+ * Request for
+ * [GetInstanceAuthString][google.cloud.redis.v1.CloudRedis.GetInstanceAuthString].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.GetInstanceAuthStringRequest</code>
  */
