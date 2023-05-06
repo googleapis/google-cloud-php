@@ -95,6 +95,7 @@ class Component
             }
         }
 
+
         return '';
     }
 
@@ -269,14 +270,24 @@ class Component
     public function getVersions(): array
     {
         $versionDirs = array_diff(scandir($this->path . '/src'), ['.', '..']);
-        $versions = [];
+        $gaVersions = [];
+        $betaVersions = [];
+        $alphaVersions = [];
         foreach ($versionDirs as $version) {
             if (preg_match(self::VERSION_REGEX, $version, $matches)) {
-                $versions[] = $matches[0];
+                if (isset($matches[3]) && $matches[3] === 'alpha') {
+                    $alphaVersions[] = $matches[0];
+                } elseif (isset($matches[3]) && $matches[3] === 'beta') {
+                    $betaVersions[] = $matches[0];
+                } else {
+                    $gaVersions[] = $matches[0];
+                }
             }
         }
+        rsort($gaVersions);
+        rsort($betaVersions);
 
-        return $versions;
+        return array_merge($gaVersions, $betaVersions, $alphaVersions);
     }
 
     /**

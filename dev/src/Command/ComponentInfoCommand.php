@@ -32,28 +32,51 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ComponentInfoCommand extends Command
 {
+    private static $allFields = [
+        'name' => 'Component Name',
+        'package_name' => 'Package Name',
+        'package_version' => 'Package Version',
+        'api_versions' => 'API Version(s)',
+        'release_level' => 'Release Level',
+        'php_namespaces' => 'Php Namespace(s)',
+        'github_repo' => 'Github Repo',
+        'protobuf_package' => 'Protobuf Package',
+        'service_address' => 'Service Address',
+        'description' => 'Description',
+    ];
     protected function configure()
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
             ->addArgument('name', InputArgument::OPTIONAL, 'Component to check compliance for.', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
+            ->addOption('fields', '', InputOption::VALUE_REQUIRED, sprintf(
+                "Comma-separated list of fields. The following fields are available: \n - %s\n",
+                implode("\n - ", array_keys(self::$allFields))
+            ))
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $fields = $input->getOption('fields')
+            ? explode(',', $input->getOption('fields'))
+            : array_keys(self::$allFields);
+        // Filter out invalid fields
+        $requestedFields = array_intersect_key(array_flip($fields), self::$allFields);
         $components = [];
         if ($componentName = rtrim($input->getArgument('name'), '/')) {
-            $components[] = $this->getComponentDetails(new Component($componentName), true);
+            $components[] = $this->getComponentDetails(new Component($componentName), $requestedFields);
         } else {
             foreach (Component::getComponents() as $component) {
-                $components[] = $this->getComponentDetails($component, $input->getOption('verbose'));
+                $components[] = $this->getComponentDetails($component, $requestedFields);
             }
         }
 
+        $headers = array_values(array_replace($requestedFields, array_intersect_key(self::$allFields, $requestedFields)));
         if ($csv = $input->getOption('csv')) {
             $fp = fopen($csv, 'wa+');
+            fputcsv($fp, $headers);
             foreach ($components as $component) {
                 fputcsv($fp, $component);
             }
@@ -62,7 +85,7 @@ class ComponentInfoCommand extends Command
         } else {
             $table = new Table($output);
             $table
-                ->setHeaders(array_keys($components[0]))
+                ->setHeaders($headers)
                 ->setRows($components)
             ;
             if ($componentName) {
@@ -74,22 +97,21 @@ class ComponentInfoCommand extends Command
         return 0;
     }
 
-    private function getComponentDetails(Component $component, bool $verbose): array
+    private function getComponentDetails(Component $component, array $requestedFields): array
     {
-        $info = [
-            'Component Name' => $component->getName(),
-            'Package Name' => $component->getPackageName(),
-            'Package Version' => $component->getLocalVersion(),
-        ];
-
-        if ($verbose) {
-            $info['Release Level'] = $component->getReleaseLevel();
-            $info['Php Namespace(s)'] = implode("\n", $component->getNamespaces());
-            $info['Github Repo'] = $component->getRepoName();
-            $info['Protobuf Package'] = $component->getProtoPackage();
-            $info['Service Address'] = $component->getServiceAddress();
-            $info['Description'] = $component->getDescription();
-        }
-        return $info;
+        // use "array_intersect_key" to filter out fields that were not requested.
+        // use "array_replace" to sort the fields in the order they were requested.
+        return array_replace($requestedFields, array_intersect_key([
+            'name' => $component->getName(),
+            'package_name' => $component->getPackageName(),
+            'package_version' => $component->getLocalVersion(),
+            'api_versions' => implode(', ', $component->getVersions()),
+            'release_level' => $component->getReleaseLevel(),
+            'php_namespaces' => implode(', ', $component->getNamespaces()),
+            'github_repo' => $component->getRepoName(),
+            'protobuf_package' => $component->getProtoPackage(),
+            'service_address' => $component->getServiceAddress(),
+            'description' => $component->getDescription(),
+        ], $requestedFields));
     }
 }
