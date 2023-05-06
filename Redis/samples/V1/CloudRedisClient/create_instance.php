@@ -63,8 +63,10 @@ use Google\Rpc\Status;
  *                                     Note: Redis instances are managed and addressed at regional level so
  *                                     location_id here refers to a GCP region; however, users may choose which
  *                                     specific zone (or collection of zones for cross-zone instances) an instance
- *                                     should be provisioned in. Refer to [location_id][google.cloud.redis.v1.Instance.location_id] and
- *                                     [alternative_location_id][google.cloud.redis.v1.Instance.alternative_location_id] fields for more details.
+ *                                     should be provisioned in. Refer to
+ *                                     [location_id][google.cloud.redis.v1.Instance.location_id] and
+ *                                     [alternative_location_id][google.cloud.redis.v1.Instance.alternative_location_id]
+ *                                     fields for more details.
  * @param int    $instanceTier         The service tier of the instance.
  * @param int    $instanceMemorySizeGb Redis memory size in GiB.
  */

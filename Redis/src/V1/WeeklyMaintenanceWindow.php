@@ -29,7 +29,8 @@ class WeeklyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Duration of the maintenance window. The current window is fixed at 1 hour.
+     * Output only. Duration of the maintenance window. The current window is
+     * fixed at 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -46,7 +47,8 @@ class WeeklyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\TimeOfDay $start_time
      *           Required. Start time of the window in UTC time.
      *     @type \Google\Protobuf\Duration $duration
-     *           Output only. Duration of the maintenance window. The current window is fixed at 1 hour.
+     *           Output only. Duration of the maintenance window. The current window is
+     *           fixed at 1 hour.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,7 +119,8 @@ class WeeklyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Duration of the maintenance window. The current window is fixed at 1 hour.
+     * Output only. Duration of the maintenance window. The current window is
+     * fixed at 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Duration|null
@@ -138,7 +141,8 @@ class WeeklyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Duration of the maintenance window. The current window is fixed at 1 hour.
+     * Output only. Duration of the maintenance window. The current window is
+     * fixed at 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Duration $var
