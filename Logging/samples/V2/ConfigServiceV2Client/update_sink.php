@@ -34,8 +34,8 @@ use Google\Cloud\Logging\V2\LogSink;
  * The updated sink might also have a new `writer_identity`; see the
  * `unique_writer_identity` field.
  *
- * @param string $formattedSinkName The full resource name of the sink to update, including the parent
- *                                  resource and the sink identifier:
+ * @param string $formattedSinkName The full resource name of the sink to update, including the
+ *                                  parent resource and the sink identifier:
  *
  *                                  "projects/[PROJECT_ID]/sinks/[SINK_ID]"
  *                                  "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"

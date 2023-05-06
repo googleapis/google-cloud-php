@@ -39,9 +39,9 @@ use Google\Cloud\Logging\V2\LogBucket;
  *
  *                                `"projects/my-project/locations/global"`
  *                                Please see {@see ConfigServiceV2Client::organizationLocationName()} for help formatting this field.
- * @param string $bucketId        A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
- *                                to 100 characters and can include only letters, digits, underscores,
- *                                hyphens, and periods.
+ * @param string $bucketId        A client-assigned identifier such as `"my-bucket"`. Identifiers
+ *                                are limited to 100 characters and can include only letters, digits,
+ *                                underscores, hyphens, and periods.
  */
 function create_bucket_sample(string $formattedParent, string $bucketId): void
 {

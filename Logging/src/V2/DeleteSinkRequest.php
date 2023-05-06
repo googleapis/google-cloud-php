@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The full resource name of the sink to delete, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -36,8 +36,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sink_name
-     *           Required. The full resource name of the sink to delete, including the parent
-     *           resource and the sink identifier:
+     *           Required. The full resource name of the sink to delete, including the
+     *           parent resource and the sink identifier:
      *               "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -52,8 +52,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to delete, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -70,8 +70,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to delete, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to delete, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"

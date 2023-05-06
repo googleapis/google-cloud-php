@@ -31,7 +31,7 @@ use Google\Cloud\Logging\V2\LoggingServiceV2Client;
  * Lists the logs in projects, organizations, folders, or billing accounts.
  * Only logs that have entries are listed.
  *
- * @param string $formattedParent The resource name that owns the logs:
+ * @param string $formattedParent The resource name to list logs for:
  *
  *                                *  `projects/[PROJECT_ID]`
  *                                *  `organizations/[ORGANIZATION_ID]`

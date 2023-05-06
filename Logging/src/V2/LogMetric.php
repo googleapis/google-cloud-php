@@ -54,6 +54,17 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
+     * Optional. The resource name of the Log Bucket that owns the Log Metric.
+     * Only Log Buckets in projects are supported. The bucket has to be in the
+     * same project as the metric.
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * If empty, then the Log Metric is considered a non-Bucket Log Metric.
+     *
+     * Generated from protobuf field <code>string bucket_name = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $bucket_name = '';
+    /**
      * Optional. If set to True, then this metric is disabled and it does not
      * generate any points.
      *
@@ -86,7 +97,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Optional. A `value_extractor` is required when using a distribution
      * logs-based metric to extract the values to record from a log entry.
      * Two functions are supported for value extraction: `EXTRACT(field)` or
-     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     * `REGEXP_EXTRACT(field, regex)`. The arguments are:
      *   1. field: The name of the log entry field from which the value is to be
      *      extracted.
      *   2. regex: A regular expression using the Google RE2 syntax
@@ -111,7 +122,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * extractor expression in this map. The syntax of the extractor expression
      * is the same as for the `value_extractor` field.
      * The extracted value is converted to the type defined in the label
-     * descriptor. If the either the extraction or the type conversion fails,
+     * descriptor. If either the extraction or the type conversion fails,
      * the label will have a default value. The default value for a string
      * label is an empty string, for an integer label its 0, and for a boolean
      * label its `false`.
@@ -179,6 +190,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           is used to match log entries. Example:
      *               "resource.type=gae_app AND severity>=ERROR"
      *           The maximum length of the filter is 20000 characters.
+     *     @type string $bucket_name
+     *           Optional. The resource name of the Log Bucket that owns the Log Metric.
+     *           Only Log Buckets in projects are supported. The bucket has to be in the
+     *           same project as the metric.
+     *           For example:
+     *             `projects/my-project/locations/global/buckets/my-bucket`
+     *           If empty, then the Log Metric is considered a non-Bucket Log Metric.
      *     @type bool $disabled
      *           Optional. If set to True, then this metric is disabled and it does not
      *           generate any points.
@@ -204,7 +222,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           Optional. A `value_extractor` is required when using a distribution
      *           logs-based metric to extract the values to record from a log entry.
      *           Two functions are supported for value extraction: `EXTRACT(field)` or
-     *           `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *           `REGEXP_EXTRACT(field, regex)`. The arguments are:
      *             1. field: The name of the log entry field from which the value is to be
      *                extracted.
      *             2. regex: A regular expression using the Google RE2 syntax
@@ -225,7 +243,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           extractor expression in this map. The syntax of the extractor expression
      *           is the same as for the `value_extractor` field.
      *           The extracted value is converted to the type defined in the label
-     *           descriptor. If the either the extraction or the type conversion fails,
+     *           descriptor. If either the extraction or the type conversion fails,
      *           the label will have a default value. The default value for a string
      *           label is an empty string, for an integer label its 0, and for a boolean
      *           label its `false`.
@@ -360,6 +378,42 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The resource name of the Log Bucket that owns the Log Metric.
+     * Only Log Buckets in projects are supported. The bucket has to be in the
+     * same project as the metric.
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * If empty, then the Log Metric is considered a non-Bucket Log Metric.
+     *
+     * Generated from protobuf field <code>string bucket_name = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBucketName()
+    {
+        return $this->bucket_name;
+    }
+
+    /**
+     * Optional. The resource name of the Log Bucket that owns the Log Metric.
+     * Only Log Buckets in projects are supported. The bucket has to be in the
+     * same project as the metric.
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * If empty, then the Log Metric is considered a non-Bucket Log Metric.
+     *
+     * Generated from protobuf field <code>string bucket_name = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBucketName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->bucket_name = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. If set to True, then this metric is disabled and it does not
      * generate any points.
      *
@@ -459,7 +513,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Optional. A `value_extractor` is required when using a distribution
      * logs-based metric to extract the values to record from a log entry.
      * Two functions are supported for value extraction: `EXTRACT(field)` or
-     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     * `REGEXP_EXTRACT(field, regex)`. The arguments are:
      *   1. field: The name of the log entry field from which the value is to be
      *      extracted.
      *   2. regex: A regular expression using the Google RE2 syntax
@@ -486,7 +540,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Optional. A `value_extractor` is required when using a distribution
      * logs-based metric to extract the values to record from a log entry.
      * Two functions are supported for value extraction: `EXTRACT(field)` or
-     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     * `REGEXP_EXTRACT(field, regex)`. The arguments are:
      *   1. field: The name of the log entry field from which the value is to be
      *      extracted.
      *   2. regex: A regular expression using the Google RE2 syntax
@@ -520,7 +574,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * extractor expression in this map. The syntax of the extractor expression
      * is the same as for the `value_extractor` field.
      * The extracted value is converted to the type defined in the label
-     * descriptor. If the either the extraction or the type conversion fails,
+     * descriptor. If either the extraction or the type conversion fails,
      * the label will have a default value. The default value for a string
      * label is an empty string, for an integer label its 0, and for a boolean
      * label its `false`.
@@ -542,7 +596,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * extractor expression in this map. The syntax of the extractor expression
      * is the same as for the `value_extractor` field.
      * The extracted value is converted to the type defined in the label
-     * descriptor. If the either the extraction or the type conversion fails,
+     * descriptor. If either the extraction or the type conversion fails,
      * the label will have a default value. The default value for a string
      * label is an empty string, for an integer label its 0, and for a boolean
      * label its `false`.

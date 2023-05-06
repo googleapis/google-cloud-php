@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The full resource name of the sink to update, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -29,8 +29,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $sink_name = '';
     /**
-     * Required. The updated sink, whose name is the same identifier that appears as part
-     * of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears
+     * as part of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -74,8 +74,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sink_name
-     *           Required. The full resource name of the sink to update, including the parent
-     *           resource and the sink identifier:
+     *           Required. The full resource name of the sink to update, including the
+     *           parent resource and the sink identifier:
      *               "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -83,8 +83,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *           For example:
      *             `"projects/my-project/sinks/my-sink"`
      *     @type \Google\Cloud\Logging\V2\LogSink $sink
-     *           Required. The updated sink, whose name is the same identifier that appears as part
-     *           of `sink_name`.
+     *           Required. The updated sink, whose name is the same identifier that appears
+     *           as part of `sink_name`.
      *     @type bool $unique_writer_identity
      *           Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
      *           for a description of this field. When updating a sink, the effect of this
@@ -116,8 +116,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to update, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -134,8 +134,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to update, including the parent
-     * resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the
+     * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -156,8 +156,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated sink, whose name is the same identifier that appears as part
-     * of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears
+     * as part of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\LogSink|null
@@ -178,8 +178,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated sink, whose name is the same identifier that appears as part
-     * of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears
+     * as part of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogSink $var

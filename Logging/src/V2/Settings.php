@@ -45,8 +45,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_name = '';
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Log Router will use to access your Cloud KMS key. Use
@@ -60,18 +60,18 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $kms_service_account_id = '';
     /**
-     * Optional. The Cloud region that will be used for _Default and _Required log buckets
-     * for newly created projects and folders. For example `europe-west1`.
+     * Optional. The Cloud region that will be used for _Default and _Required log
+     * buckets for newly created projects and folders. For example `europe-west1`.
      * This setting does not affect the location of custom log buckets.
      *
      * Generated from protobuf field <code>string storage_location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $storage_location = '';
     /**
-     * Optional. If set to true, the _Default sink in newly created projects and folders
-     * will created in a disabled state. This can be used to automatically disable
-     * log ingestion if there is already an aggregated sink configured in the
-     * hierarchy. The _Default sink can be re-enabled manually if needed.
+     * Optional. If set to true, the _Default sink in newly created projects and
+     * folders will created in a disabled state. This can be used to automatically
+     * disable log ingestion if there is already an aggregated sink configured in
+     * the hierarchy. The _Default sink can be re-enabled manually if needed.
      *
      * Generated from protobuf field <code>bool disable_default_sink = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -104,8 +104,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      *           for more information.
      *     @type string $kms_service_account_id
-     *           Output only. The service account that will be used by the Log Router to access your
-     *           Cloud KMS key.
+     *           Output only. The service account that will be used by the Log Router to
+     *           access your Cloud KMS key.
      *           Before enabling CMEK for Log Router, you must first assign the role
      *           `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      *           the Log Router will use to access your Cloud KMS key. Use
@@ -115,14 +115,14 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      *           for more information.
      *     @type string $storage_location
-     *           Optional. The Cloud region that will be used for _Default and _Required log buckets
-     *           for newly created projects and folders. For example `europe-west1`.
+     *           Optional. The Cloud region that will be used for _Default and _Required log
+     *           buckets for newly created projects and folders. For example `europe-west1`.
      *           This setting does not affect the location of custom log buckets.
      *     @type bool $disable_default_sink
-     *           Optional. If set to true, the _Default sink in newly created projects and folders
-     *           will created in a disabled state. This can be used to automatically disable
-     *           log ingestion if there is already an aggregated sink configured in the
-     *           hierarchy. The _Default sink can be re-enabled manually if needed.
+     *           Optional. If set to true, the _Default sink in newly created projects and
+     *           folders will created in a disabled state. This can be used to automatically
+     *           disable log ingestion if there is already an aggregated sink configured in
+     *           the hierarchy. The _Default sink can be re-enabled manually if needed.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,8 +215,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Log Router will use to access your Cloud KMS key. Use
@@ -235,8 +235,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that will be used by the Log Router to access your
-     * Cloud KMS key.
+     * Output only. The service account that will be used by the Log Router to
+     * access your Cloud KMS key.
      * Before enabling CMEK for Log Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Log Router will use to access your Cloud KMS key. Use
@@ -259,8 +259,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud region that will be used for _Default and _Required log buckets
-     * for newly created projects and folders. For example `europe-west1`.
+     * Optional. The Cloud region that will be used for _Default and _Required log
+     * buckets for newly created projects and folders. For example `europe-west1`.
      * This setting does not affect the location of custom log buckets.
      *
      * Generated from protobuf field <code>string storage_location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -272,8 +272,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud region that will be used for _Default and _Required log buckets
-     * for newly created projects and folders. For example `europe-west1`.
+     * Optional. The Cloud region that will be used for _Default and _Required log
+     * buckets for newly created projects and folders. For example `europe-west1`.
      * This setting does not affect the location of custom log buckets.
      *
      * Generated from protobuf field <code>string storage_location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -289,10 +289,10 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the _Default sink in newly created projects and folders
-     * will created in a disabled state. This can be used to automatically disable
-     * log ingestion if there is already an aggregated sink configured in the
-     * hierarchy. The _Default sink can be re-enabled manually if needed.
+     * Optional. If set to true, the _Default sink in newly created projects and
+     * folders will created in a disabled state. This can be used to automatically
+     * disable log ingestion if there is already an aggregated sink configured in
+     * the hierarchy. The _Default sink can be re-enabled manually if needed.
      *
      * Generated from protobuf field <code>bool disable_default_sink = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -303,10 +303,10 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the _Default sink in newly created projects and folders
-     * will created in a disabled state. This can be used to automatically disable
-     * log ingestion if there is already an aggregated sink configured in the
-     * hierarchy. The _Default sink can be re-enabled manually if needed.
+     * Optional. If set to true, the _Default sink in newly created projects and
+     * folders will created in a disabled state. This can be used to automatically
+     * disable log ingestion if there is already an aggregated sink configured in
+     * the hierarchy. The _Default sink can be re-enabled manually if needed.
      *
      * Generated from protobuf field <code>bool disable_default_sink = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

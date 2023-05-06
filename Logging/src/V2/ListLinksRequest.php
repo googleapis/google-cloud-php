@@ -9,32 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The parameters to `ListViews`.
+ * The parameters to ListLinks.
  *
- * Generated from protobuf message <code>google.logging.v2.ListViewsRequest</code>
+ * Generated from protobuf message <code>google.logging.v2.ListLinksRequest</code>
  */
-class ListViewsRequest extends \Google\Protobuf\Internal\Message
+class ListLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The bucket whose views are to be listed:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     * Required. The parent resource whose links are to be listed:
+     *   "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *   "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method. `pageToken` must be the value of
-     * `nextPageToken` from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
+     * `nextPageToken` from the previous response.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
      * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of `nextPageToken` in the
-     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,17 +47,17 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The bucket whose views are to be listed:
-     *               "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           Required. The parent resource whose links are to be listed:
+     *             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
      *     @type string $page_token
      *           Optional. If present, then retrieve the next batch of results from the
      *           preceding call to this method. `pageToken` must be the value of
-     *           `nextPageToken` from the previous response. The values of other method
-     *           parameters should be identical to those in the previous call.
+     *           `nextPageToken` from the previous response.
      *     @type int $page_size
      *           Optional. The maximum number of results to return from this request.
-     *           Non-positive values are ignored. The presence of `nextPageToken` in the
-     *           response indicates that more results might be available.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,10 +66,13 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The bucket whose views are to be listed:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     * Required. The parent resource whose links are to be listed:
+     *   "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *   "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -78,10 +81,13 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The bucket whose views are to be listed:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     * Required. The parent resource whose links are to be listed:
+     *   "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *   "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *   "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,8 +102,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method. `pageToken` must be the value of
-     * `nextPageToken` from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
+     * `nextPageToken` from the previous response.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -110,8 +115,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method. `pageToken` must be the value of
-     * `nextPageToken` from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
+     * `nextPageToken` from the previous response.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -127,8 +131,6 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of `nextPageToken` in the
-     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -140,8 +142,6 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of `nextPageToken` in the
-     * response indicates that more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

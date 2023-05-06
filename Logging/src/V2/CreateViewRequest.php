@@ -25,7 +25,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as `"my-view"`. Identifiers are
+     * limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string view_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,7 +51,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      *           For example:
      *             `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type string $view_id
-     *           Required. The id to use for this view.
+     *           Required. A client-assigned identifier such as `"my-view"`. Identifiers are
+     *           limited to 100 characters and can include only letters, digits,
+     *           underscores, hyphens, and periods.
      *     @type \Google\Cloud\Logging\V2\LogView $view
      *           Required. The new view.
      * }
@@ -92,7 +96,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as `"my-view"`. Identifiers are
+     * limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string view_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -103,7 +109,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as `"my-view"`. Identifiers are
+     * limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string view_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
