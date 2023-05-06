@@ -25,17 +25,17 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
-     * to 100 characters and can include only letters, digits, underscores,
-     * hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     * are limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $bucket_id = '';
     /**
-     * Required. The new bucket. The region specified in the new bucket must be compliant
-     * with any Location Restriction Org Policy. The name field in the bucket is
-     * ignored.
+     * Required. The new bucket. The region specified in the new bucket must be
+     * compliant with any Location Restriction Org Policy. The name field in the
+     * bucket is ignored.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogBucket bucket = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,13 +53,13 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      *           For example:
      *             `"projects/my-project/locations/global"`
      *     @type string $bucket_id
-     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
-     *           to 100 characters and can include only letters, digits, underscores,
-     *           hyphens, and periods.
+     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     *           are limited to 100 characters and can include only letters, digits,
+     *           underscores, hyphens, and periods.
      *     @type \Google\Cloud\Logging\V2\LogBucket $bucket
-     *           Required. The new bucket. The region specified in the new bucket must be compliant
-     *           with any Location Restriction Org Policy. The name field in the bucket is
-     *           ignored.
+     *           Required. The new bucket. The region specified in the new bucket must be
+     *           compliant with any Location Restriction Org Policy. The name field in the
+     *           bucket is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,9 +100,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
-     * to 100 characters and can include only letters, digits, underscores,
-     * hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     * are limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -113,9 +113,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
-     * to 100 characters and can include only letters, digits, underscores,
-     * hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     * are limited to 100 characters and can include only letters, digits,
+     * underscores, hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -130,9 +130,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new bucket. The region specified in the new bucket must be compliant
-     * with any Location Restriction Org Policy. The name field in the bucket is
-     * ignored.
+     * Required. The new bucket. The region specified in the new bucket must be
+     * compliant with any Location Restriction Org Policy. The name field in the
+     * bucket is ignored.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogBucket bucket = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\LogBucket|null
@@ -153,9 +153,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new bucket. The region specified in the new bucket must be compliant
-     * with any Location Restriction Org Policy. The name field in the bucket is
-     * ignored.
+     * Required. The new bucket. The region specified in the new bucket must be
+     * compliant with any Location Restriction Org Policy. The name field in the
+     * bucket is ignored.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogBucket bucket = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogBucket $var

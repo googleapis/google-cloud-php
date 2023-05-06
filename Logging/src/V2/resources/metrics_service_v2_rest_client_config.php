@@ -114,7 +114,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=billingAccounts/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/locations/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [

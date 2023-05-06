@@ -28,18 +28,17 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      * Projects listed in the `project_ids` field are added to this list.
+     * A maximum of 100 resources may be specified in a single request.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resource_names;
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
      * Referencing a parent resource that is not listed in `resource_names` will
-     * cause the filter to return no results. The maximum length of the filter is
-     * 20000 characters.
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,10 +55,10 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. The maximum number of results to return from this request. Default is 50.
-     * If the value is negative or exceeds 1000, the request is rejected. The
-     * presence of `next_page_token` in the response indicates that more results
-     * might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Default is 50. If the value is negative or exceeds 1000, the request is
+     * rejected. The presence of `next_page_token` in the response indicates that
+     * more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -93,14 +92,13 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *            * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *           Projects listed in the `project_ids` field are added to this list.
+     *           A maximum of 100 resources may be specified in a single request.
      *     @type string $filter
-     *           Optional. A filter that chooses which log entries to return.  See [Advanced
-     *           Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).
-     *           Only log entries that match the filter are returned.  An empty filter
-     *           matches all log entries in the resources listed in `resource_names`.
+     *           Optional. Only log entries that match the filter are returned.  An empty
+     *           filter matches all log entries in the resources listed in `resource_names`.
      *           Referencing a parent resource that is not listed in `resource_names` will
-     *           cause the filter to return no results. The maximum length of the filter is
-     *           20000 characters.
+     *           cause the filter to return no results. The maximum length of a filter is
+     *           20,000 characters.
      *     @type string $order_by
      *           Optional. How the results should be sorted.  Presently, the only permitted
      *           values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
@@ -109,10 +107,10 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           in order of decreasing timestamps (newest first).  Entries with equal
      *           timestamps are returned in order of their `insert_id` values.
      *     @type int $page_size
-     *           Optional. The maximum number of results to return from this request. Default is 50.
-     *           If the value is negative or exceeds 1000, the request is rejected. The
-     *           presence of `next_page_token` in the response indicates that more results
-     *           might be available.
+     *           Optional. The maximum number of results to return from this request.
+     *           Default is 50. If the value is negative or exceeds 1000, the request is
+     *           rejected. The presence of `next_page_token` in the response indicates that
+     *           more results might be available.
      *     @type string $page_token
      *           Optional. If present, then retrieve the next batch of results from the
      *           preceding call to this method.  `page_token` must be the value of
@@ -138,6 +136,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      * Projects listed in the `project_ids` field are added to this list.
+     * A maximum of 100 resources may be specified in a single request.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -160,6 +159,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      * Projects listed in the `project_ids` field are added to this list.
+     * A maximum of 100 resources may be specified in a single request.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -174,13 +174,11 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
      * Referencing a parent resource that is not listed in `resource_names` will
-     * cause the filter to return no results. The maximum length of the filter is
-     * 20000 characters.
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -191,13 +189,11 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
      * Referencing a parent resource that is not listed in `resource_names` will
-     * cause the filter to return no results. The maximum length of the filter is
-     * 20000 characters.
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -248,10 +244,10 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request. Default is 50.
-     * If the value is negative or exceeds 1000, the request is rejected. The
-     * presence of `next_page_token` in the response indicates that more results
-     * might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Default is 50. If the value is negative or exceeds 1000, the request is
+     * rejected. The presence of `next_page_token` in the response indicates that
+     * more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -262,10 +258,10 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request. Default is 50.
-     * If the value is negative or exceeds 1000, the request is rejected. The
-     * presence of `next_page_token` in the response indicates that more results
-     * might be available.
+     * Optional. The maximum number of results to return from this request.
+     * Default is 50. If the value is negative or exceeds 1000, the request is
+     * rejected. The presence of `next_page_token` in the response indicates that
+     * more results might be available.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

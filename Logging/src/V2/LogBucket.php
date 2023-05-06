@@ -35,8 +35,8 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. The creation timestamp of the bucket. This is not set for any of the
-     * default buckets.
+     * Output only. The creation timestamp of the bucket. This is not set for any
+     * of the default buckets.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -71,6 +71,13 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      */
     private $lifecycle_state = 0;
     /**
+     * Whether log analytics is enabled for this bucket.
+     * Once enabled, log analytics features cannot be disabled.
+     *
+     * Generated from protobuf field <code>bool analytics_enabled = 14;</code>
+     */
+    private $analytics_enabled = false;
+    /**
      * Log entry field paths that are denied access in this bucket.
      * The following fields and their children are eligible: `textPayload`,
      * `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
@@ -80,6 +87,12 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
      */
     private $restricted_fields;
+    /**
+     * A list of indexed fields and related configuration data.
+     *
+     * Generated from protobuf field <code>repeated .google.logging.v2.IndexConfig index_configs = 17;</code>
+     */
+    private $index_configs;
     /**
      * The CMEK settings of the log bucket. If present, new log entries written to
      * this log bucket are encrypted using the CMEK key provided in this
@@ -109,8 +122,8 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Describes this bucket.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The creation timestamp of the bucket. This is not set for any of the
-     *           default buckets.
+     *           Output only. The creation timestamp of the bucket. This is not set for any
+     *           of the default buckets.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of the bucket.
      *     @type int $retention_days
@@ -124,12 +137,17 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *           may only be deleted if they are empty.
      *     @type int $lifecycle_state
      *           Output only. The bucket lifecycle state.
+     *     @type bool $analytics_enabled
+     *           Whether log analytics is enabled for this bucket.
+     *           Once enabled, log analytics features cannot be disabled.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_fields
      *           Log entry field paths that are denied access in this bucket.
      *           The following fields and their children are eligible: `textPayload`,
      *           `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
      *           Restricting a repeated field will restrict all values. Adding a parent will
      *           block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
+     *     @type array<\Google\Cloud\Logging\V2\IndexConfig>|\Google\Protobuf\Internal\RepeatedField $index_configs
+     *           A list of indexed fields and related configuration data.
      *     @type \Google\Cloud\Logging\V2\CmekSettings $cmek_settings
      *           The CMEK settings of the log bucket. If present, new log entries written to
      *           this log bucket are encrypted using the CMEK key provided in this
@@ -210,8 +228,8 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The creation timestamp of the bucket. This is not set for any of the
-     * default buckets.
+     * Output only. The creation timestamp of the bucket. This is not set for any
+     * of the default buckets.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -232,8 +250,8 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The creation timestamp of the bucket. This is not set for any of the
-     * default buckets.
+     * Output only. The creation timestamp of the bucket. This is not set for any
+     * of the default buckets.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -372,6 +390,34 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Whether log analytics is enabled for this bucket.
+     * Once enabled, log analytics features cannot be disabled.
+     *
+     * Generated from protobuf field <code>bool analytics_enabled = 14;</code>
+     * @return bool
+     */
+    public function getAnalyticsEnabled()
+    {
+        return $this->analytics_enabled;
+    }
+
+    /**
+     * Whether log analytics is enabled for this bucket.
+     * Once enabled, log analytics features cannot be disabled.
+     *
+     * Generated from protobuf field <code>bool analytics_enabled = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAnalyticsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->analytics_enabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Log entry field paths that are denied access in this bucket.
      * The following fields and their children are eligible: `textPayload`,
      * `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
@@ -401,6 +447,32 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->restricted_fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of indexed fields and related configuration data.
+     *
+     * Generated from protobuf field <code>repeated .google.logging.v2.IndexConfig index_configs = 17;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIndexConfigs()
+    {
+        return $this->index_configs;
+    }
+
+    /**
+     * A list of indexed fields and related configuration data.
+     *
+     * Generated from protobuf field <code>repeated .google.logging.v2.IndexConfig index_configs = 17;</code>
+     * @param array<\Google\Cloud\Logging\V2\IndexConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIndexConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Logging\V2\IndexConfig::class);
+        $this->index_configs = $arr;
 
         return $this;
     }

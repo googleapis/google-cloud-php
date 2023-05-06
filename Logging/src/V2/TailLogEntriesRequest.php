@@ -31,13 +31,11 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $resource_names;
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
-     * Referencing a parent resource that is not in `resource_names` will cause
-     * the filter to return no results. The maximum length of the filter is 20000
-     * characters.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
+     * Referencing a parent resource that is not listed in `resource_names` will
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,13 +68,11 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *            * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *     @type string $filter
-     *           Optional. A filter that chooses which log entries to return.  See [Advanced
-     *           Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
-     *           Only log entries that match the filter are returned.  An empty filter
-     *           matches all log entries in the resources listed in `resource_names`.
-     *           Referencing a parent resource that is not in `resource_names` will cause
-     *           the filter to return no results. The maximum length of the filter is 20000
-     *           characters.
+     *           Optional. Only log entries that match the filter are returned.  An empty
+     *           filter matches all log entries in the resources listed in `resource_names`.
+     *           Referencing a parent resource that is not listed in `resource_names` will
+     *           cause the filter to return no results. The maximum length of a filter is
+     *           20,000 characters.
      *     @type \Google\Protobuf\Duration $buffer_window
      *           Optional. The amount of time to buffer log entries at the server before
      *           being returned to prevent out of order results due to late arriving log
@@ -134,13 +130,11 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
-     * Referencing a parent resource that is not in `resource_names` will cause
-     * the filter to return no results. The maximum length of the filter is 20000
-     * characters.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
+     * Referencing a parent resource that is not listed in `resource_names` will
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -151,13 +145,11 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * Only log entries that match the filter are returned.  An empty filter
-     * matches all log entries in the resources listed in `resource_names`.
-     * Referencing a parent resource that is not in `resource_names` will cause
-     * the filter to return no results. The maximum length of the filter is 20000
-     * characters.
+     * Optional. Only log entries that match the filter are returned.  An empty
+     * filter matches all log entries in the resources listed in `resource_names`.
+     * Referencing a parent resource that is not listed in `resource_names` will
+     * cause the filter to return no results. The maximum length of a filter is
+     * 20,000 characters.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,36 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START logging_v2_generated_LoggingServiceV2_ListLogs_sync]
+// [START logging_v2_generated_ConfigServiceV2_ListLinks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Logging\V2\LoggingServiceV2Client;
+use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Link;
 
 /**
- * Lists the logs in projects, organizations, folders, or billing accounts.
- * Only logs that have entries are listed.
+ * Lists links.
  *
- * @param string $formattedParent The resource name to list logs for:
+ * @param string $formattedParent The parent resource whose links are to be listed:
  *
- *                                *  `projects/[PROJECT_ID]`
- *                                *  `organizations/[ORGANIZATION_ID]`
- *                                *  `billingAccounts/[BILLING_ACCOUNT_ID]`
- *                                *  `folders/[FOLDER_ID]`
- *                                Please see {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+ *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+ *                                "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+ *                                "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+ *                                "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
+ *                                Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
  */
-function list_logs_sample(string $formattedParent): void
+function list_links_sample(string $formattedParent): void
 {
     // Create a client.
-    $loggingServiceV2Client = new LoggingServiceV2Client();
+    $configServiceV2Client = new ConfigServiceV2Client();
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $loggingServiceV2Client->listLogs($formattedParent);
+        $response = $configServiceV2Client->listLinks($formattedParent);
 
-        /** @var string $element */
+        /** @var Link $element */
         foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element);
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -69,8 +69,8 @@ function list_logs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = LoggingServiceV2Client::projectName('[PROJECT]');
+    $formattedParent = ConfigServiceV2Client::logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
 
-    list_logs_sample($formattedParent);
+    list_links_sample($formattedParent);
 }
-// [END logging_v2_generated_LoggingServiceV2_ListLogs_sync]
+// [END logging_v2_generated_ConfigServiceV2_ListLinks_sync]

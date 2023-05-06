@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,14 +22,16 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START logging_v2_generated_ConfigServiceV2_UpdateBucket_sync]
+// [START logging_v2_generated_ConfigServiceV2_UpdateBucketAsync_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogBucket;
 use Google\Protobuf\FieldMask;
+use Google\Rpc\Status;
 
 /**
- * Updates a log bucket.
+ * Updates a log bucket asynchronously.
  *
  * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
  * `FAILED_PRECONDITION` will be returned.
@@ -48,7 +50,7 @@ use Google\Protobuf\FieldMask;
  *                              `"projects/my-project/locations/global/buckets/my-bucket"`
  *                              Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
  */
-function update_bucket_sample(string $formattedName): void
+function update_bucket_async_sample(string $formattedName): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
@@ -59,9 +61,19 @@ function update_bucket_sample(string $formattedName): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var LogBucket $response */
-        $response = $configServiceV2Client->updateBucket($formattedName, $bucket, $updateMask);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $configServiceV2Client->updateBucketAsync($formattedName, $bucket, $updateMask);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var LogBucket $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -80,6 +92,6 @@ function callSample(): void
 {
     $formattedName = ConfigServiceV2Client::logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
 
-    update_bucket_sample($formattedName);
+    update_bucket_async_sample($formattedName);
 }
-// [END logging_v2_generated_ConfigServiceV2_UpdateBucket_sync]
+// [END logging_v2_generated_ConfigServiceV2_UpdateBucketAsync_sync]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,14 +22,17 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START logging_v2_generated_ConfigServiceV2_CreateBucket_sync]
+// [START logging_v2_generated_ConfigServiceV2_CreateBucketAsync_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogBucket;
+use Google\Rpc\Status;
 
 /**
- * Creates a log bucket that can be used to store log entries. After a bucket
- * has been created, the bucket's location cannot be changed.
+ * Creates a log bucket asynchronously that can be used to store log entries.
+ *
+ * After a bucket has been created, the bucket's location cannot be changed.
  *
  * @param string $formattedParent The resource in which to create the log bucket:
  *
@@ -43,7 +46,7 @@ use Google\Cloud\Logging\V2\LogBucket;
  *                                are limited to 100 characters and can include only letters, digits,
  *                                underscores, hyphens, and periods.
  */
-function create_bucket_sample(string $formattedParent, string $bucketId): void
+function create_bucket_async_sample(string $formattedParent, string $bucketId): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
@@ -53,9 +56,19 @@ function create_bucket_sample(string $formattedParent, string $bucketId): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var LogBucket $response */
-        $response = $configServiceV2Client->createBucket($formattedParent, $bucketId, $bucket);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $configServiceV2Client->createBucketAsync($formattedParent, $bucketId, $bucket);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var LogBucket $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -75,6 +88,6 @@ function callSample(): void
     $formattedParent = ConfigServiceV2Client::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
     $bucketId = '[BUCKET_ID]';
 
-    create_bucket_sample($formattedParent, $bucketId);
+    create_bucket_async_sample($formattedParent, $bucketId);
 }
-// [END logging_v2_generated_ConfigServiceV2_CreateBucket_sync]
+// [END logging_v2_generated_ConfigServiceV2_CreateBucketAsync_sync]
