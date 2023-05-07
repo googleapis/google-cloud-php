@@ -50,8 +50,8 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. Only validate the connection profile, but don't create any resources.
-     * The default is false.
+     * Optional. Only validate the connection profile, but don't create any
+     * resources. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -88,8 +88,8 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. Only validate the connection profile, but don't create any resources.
-     *           The default is false.
+     *           Optional. Only validate the connection profile, but don't create any
+     *           resources. The default is false.
      *     @type bool $force
      *           Optional. Create the connection profile without validating it.
      * }
@@ -234,8 +234,8 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the connection profile, but don't create any resources.
-     * The default is false.
+     * Optional. Only validate the connection profile, but don't create any
+     * resources. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -246,8 +246,8 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the connection profile, but don't create any resources.
-     * The default is false.
+     * Optional. Only validate the connection profile, but don't create any
+     * resources. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

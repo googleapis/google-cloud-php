@@ -34,6 +34,14 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
      */
     private $max_concurrent_cdc_tasks = 0;
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     */
+    private $max_concurrent_backfill_tasks = 0;
 
     /**
      * Constructor.
@@ -48,6 +56,10 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *     @type int $max_concurrent_cdc_tasks
      *           Maximum number of concurrent CDC tasks. The number should be non negative.
      *           If not set (or set to 0), the system's default value will be used.
+     *     @type int $max_concurrent_backfill_tasks
+     *           Maximum number of concurrent backfill tasks. The number should be non
+     *           negative. If not set (or set to 0), the system's default value will be
+     *           used.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +163,36 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_concurrent_cdc_tasks = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     * @return int
+     */
+    public function getMaxConcurrentBackfillTasks()
+    {
+        return $this->max_concurrent_backfill_tasks;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxConcurrentBackfillTasks($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_concurrent_backfill_tasks = $var;
 
         return $this;
     }

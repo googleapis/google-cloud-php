@@ -32,7 +32,8 @@ use Google\Cloud\Datastream\V1\PrivateConnection;
  * Use this method to list private connectivity configurations in a project
  * and location.
  *
- * @param string $formattedParent The parent that owns the collection of private connectivity configurations. Please see
+ * @param string $formattedParent The parent that owns the collection of private connectivity
+ *                                configurations. Please see
  *                                {@see DatastreamClient::locationName()} for help formatting this field.
  */
 function list_private_connections_sample(string $formattedParent): void

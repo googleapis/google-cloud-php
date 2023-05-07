@@ -31,8 +31,8 @@ use Google\Cloud\Datastream\V1\DatastreamClient;
  * The FetchStaticIps API call exposes the static IP addresses used by
  * Datastream.
  *
- * @param string $formattedName The resource name for the location for which static IPs should be returned.
- *                              Must be in the format `projects/&#42;/locations/*`. Please see
+ * @param string $formattedName The resource name for the location for which static IPs should be
+ *                              returned. Must be in the format `projects/&#42;/locations/*`. Please see
  *                              {@see DatastreamClient::locationName()} for help formatting this field.
  */
 function fetch_static_ips_sample(string $formattedName): void

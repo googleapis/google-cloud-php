@@ -48,8 +48,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -86,8 +87,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $requested_cancellation
      *           Output only. Identifies whether the user has requested cancellation
      *           of the operation. Operations that have successfully been cancelled
-     *           have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     *           corresponding to `Code.CANCELLED`.
+     *           have [Operation.error][] value with a
+     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     *           `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
      *     @type \Google\Cloud\Datastream\V1\ValidationResult $validation_result
@@ -252,8 +254,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -266,8 +269,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

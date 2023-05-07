@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Static IP address connectivity.
+ * Static IP address connectivity. Used when the source database is configured
+ * to allow incoming connections from the Datastream public IP addresses
+ * for the region specified in the connection profile.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.StaticServiceIpConnectivity</code>
  */
