@@ -87,6 +87,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      */
@@ -124,6 +129,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
      */
     private $disable_no_speech_recognized_event = false;
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     */
+    private $enable_automatic_punctuation = false;
 
     /**
      * Constructor.
@@ -178,6 +189,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
+     *           If you specify a model, the following models typically have the best
+     *           performance:
+     *           - phone_call (best for Agent Assist and telephony)
+     *           - latest_short (best for Dialogflow non-telephony)
+     *           - command_and_search (best for very short utterances and commands)
      *     @type int $model_variant
      *           Which variant of the [Speech
      *           model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
@@ -199,6 +215,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      *           If `false` and recognition doesn't return any result, trigger
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *     @type bool $enable_automatic_punctuation
+     *           Enable automatic punctuation option at the speech backend.
      * }
      */
     public function __construct($data = NULL) {
@@ -424,6 +442,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @return string
@@ -445,6 +468,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @param string $var
@@ -562,6 +590,32 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_no_speech_recognized_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     * @return bool
+     */
+    public function getEnableAutomaticPunctuation()
+    {
+        return $this->enable_automatic_punctuation;
+    }
+
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableAutomaticPunctuation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_automatic_punctuation = $var;
 
         return $this;
     }
