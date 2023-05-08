@@ -75,7 +75,7 @@ use Google\Cloud\Spanner\V1\DirectedReadOptions;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\IncludeReplicas;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection;
-use \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 
 /**
  * Connection to Cloud Spanner over gRPC
