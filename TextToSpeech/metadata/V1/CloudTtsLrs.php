@@ -22,15 +22,15 @@ class CloudTtsLrs
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¿
+ 
 
-0google/cloud/texttospeech/v1/cloud_tts_lrs.protogoogle.cloud.texttospeech.v1google/api/client.protogoogle/api/field_behavior.proto,google/cloud/texttospeech/v1/cloud_tts.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"è
+0google/cloud/texttospeech/v1/cloud_tts_lrs.protogoogle.cloud.texttospeech.v1google/api/client.protogoogle/api/field_behavior.proto,google/cloud/texttospeech/v1/cloud_tts.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"ô
 SynthesizeLongAudioRequest
 parent (	@
 input (2,.google.cloud.texttospeech.v1.SynthesisInputB‡AD
-audio_config (2).google.cloud.texttospeech.v1.AudioConfigB‡A
-output_gcs_uri (	A
-voice (22.google.cloud.texttospeech.v1.VoiceSelectionParams"
+audio_config (2).google.cloud.texttospeech.v1.AudioConfigB‡A
+output_gcs_uri (	B‡AF
+voice (22.google.cloud.texttospeech.v1.VoiceSelectionParamsB‡A"
 SynthesizeLongAudioResponse"†
 SynthesizeLongAudioMetadata.
 
