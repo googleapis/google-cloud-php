@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/notebooks/(v1beta1)/.*-php/(.*)
+    - source: /google/cloud/notebooks/(v1|v1beta1)/.*-php/(.*)
       dest: /owl-bot-staging/Notebooks/$1/$2
 api-name: Notebooks
