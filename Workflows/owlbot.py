@@ -41,7 +41,7 @@ php.owlbot_main(
     ]
 )
 
-for (version in ['v1', 'v1beta']):
+for version in ['v1', 'v1beta']:
     executions_library = Path(f"../{php.STAGING_DIR}/Workflows/{version}/Executions").resolve()
 
     # copy all src including partial veneer classes
