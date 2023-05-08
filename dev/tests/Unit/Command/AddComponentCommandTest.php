@@ -30,16 +30,16 @@ use Symfony\Component\Console\Tester\CommandTester;
 class AddComponentCommandTest extends TestCase
 {
     private static $expectedFiles = [
-        '.OwlBot.yaml',
-        '.gitattributes',
-        '.github/pull_request_template.md',
-        '.repo-metadata.json',
-        'CONTRIBUTING.md',
-        'LICENSE',
-        'README.md',
-        'VERSION',
-        'owlbot.py',
-        'phpunit.xml.dist',
+        '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
+        '.gitattributes' => null,
+        '.github/pull_request_template.md' => null,
+        '.repo-metadata.json' => null,
+        'CONTRIBUTING.md' => null,
+        'LICENSE' => null,
+        'README.md' => null,
+        'VERSION' => null,
+        'owlbot.py' => null,
+        'phpunit.xml.dist' => null,
     ];
 
     private static string $tmpDir;
@@ -86,10 +86,10 @@ class AddComponentCommandTest extends TestCase
             $this->assertStringContainsString($expectedLine, $display);
         }
 
-        foreach (self::$expectedFiles as $file) {
+        foreach (self::$expectedFiles as $file => $fixtureFile) {
             $this->assertFileExists(self::$tmpDir . '/SecretManager/' . $file);
             $this->assertFileEquals(
-                __DIR__ . '/../../fixtures/component/SecretManager/' . $file,
+                __DIR__ . '/../../fixtures/component/SecretManager/' . ($fixtureFile ?: $file),
                 self::$tmpDir . '/SecretManager/' . $file
             );
         }
@@ -140,10 +140,10 @@ class AddComponentCommandTest extends TestCase
             $this->assertStringContainsString($expectedLine, $display);
         }
 
-        foreach (self::$expectedFiles as $file) {
+        foreach (self::$expectedFiles as $file => $fixtureFile) {
             $this->assertFileExists(self::$tmpDir . '/CustomInput/' . $file);
             $this->assertFileEquals(
-                __DIR__ . '/../../fixtures/component/CustomInput/' . $file,
+                __DIR__ . '/../../fixtures/component/CustomInput/' . ($fixtureFile ?: $file),
                 self::$tmpDir . '/CustomInput/' . $file
             );
         }
