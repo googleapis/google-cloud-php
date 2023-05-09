@@ -122,6 +122,12 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes input_audio = 6;</code>
      */
     private $input_audio = '';
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     */
+    private $enable_debugging_info = false;
 
     /**
      * Constructor.
@@ -179,6 +185,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           The input audio content to be recognized. Must be sent if
      *           `query_input` was set to a streaming input audio config. The complete audio
      *           over all streaming messages must not exceed 1 minute.
+     *     @type bool $enable_debugging_info
+     *           if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -480,6 +488,32 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->input_audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     * @return bool
+     */
+    public function getEnableDebuggingInfo()
+    {
+        return $this->enable_debugging_info;
+    }
+
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDebuggingInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_debugging_info = $var;
 
         return $this;
     }
