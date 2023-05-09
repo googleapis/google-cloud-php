@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/devtools/artifactregistry/v1beta2/.*-php/(.*)
-      dest: /owl-bot-staging/ArtifactRegistry/v1beta2/$1
+    - source: /google/devtools/artifactregistry/(v1|v1beta2)/.*-php/(.*)
+      dest: /owl-bot-staging/ArtifactRegistry/$1/$2
 api-name: ArtifactRegistry

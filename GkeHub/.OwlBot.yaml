@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/gkehub/(v1beta1)/.*-php/(.*)
+    - source: /google/cloud/gkehub/(v1|v1beta1)/.*-php/(.*)
       dest: /owl-bot-staging/GkeHub/$1/$2
 api-name: GkeHub
