@@ -27,7 +27,7 @@ class SourceRepository extends \Google\Protobuf\Internal\Message
      * In particular, to refer to HEAD use `master` moveable alias.
      * To refer to a specific fixed alias (tag):
      * `https://source.developers.google.com/projects/&#42;&#47;repos/&#42;&#47;fixed-aliases/&#42;&#47;paths/&#42;`
-     * You may omit `paths/&#42;` if you want to use the main directory.
+     * You can omit `paths/&#42;` if you want to use the main directory.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
@@ -58,7 +58,7 @@ class SourceRepository extends \Google\Protobuf\Internal\Message
      *           In particular, to refer to HEAD use `master` moveable alias.
      *           To refer to a specific fixed alias (tag):
      *           `https://source.developers.google.com/projects/&#42;&#47;repos/&#42;&#47;fixed-aliases/&#42;&#47;paths/&#42;`
-     *           You may omit `paths/&#42;` if you want to use the main directory.
+     *           You can omit `paths/&#42;` if you want to use the main directory.
      *     @type string $deployed_url
      *           Output only. The URL pointing to the hosted repository where the function
      *           were defined at the time of deployment. It always points to a specific
@@ -81,7 +81,7 @@ class SourceRepository extends \Google\Protobuf\Internal\Message
      * In particular, to refer to HEAD use `master` moveable alias.
      * To refer to a specific fixed alias (tag):
      * `https://source.developers.google.com/projects/&#42;&#47;repos/&#42;&#47;fixed-aliases/&#42;&#47;paths/&#42;`
-     * You may omit `paths/&#42;` if you want to use the main directory.
+     * You can omit `paths/&#42;` if you want to use the main directory.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @return string
@@ -102,7 +102,7 @@ class SourceRepository extends \Google\Protobuf\Internal\Message
      * In particular, to refer to HEAD use `master` moveable alias.
      * To refer to a specific fixed alias (tag):
      * `https://source.developers.google.com/projects/&#42;&#47;repos/&#42;&#47;fixed-aliases/&#42;&#47;paths/&#42;`
-     * You may omit `paths/&#42;` if you want to use the main directory.
+     * You can omit `paths/&#42;` if you want to use the main directory.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var

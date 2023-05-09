@@ -29,9 +29,9 @@ use Google\Cloud\Functions\V1\GenerateDownloadUrlResponse;
 
 /**
  * Returns a signed URL for downloading deployed function source code.
- * The URL is only valid for a limited period and should be used within
+ * The URL is only valid for a limited period and must be used within
  * minutes after generation.
- * For more information about the signed URL usage see:
+ * For more information about the signed URL usage, see:
  * https://cloud.google.com/storage/docs/access-control/signed-urls
  *
  * This sample has been automatically generated and should be regarded as a code

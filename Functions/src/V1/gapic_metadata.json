@@ -64,6 +64,11 @@
                             "methods": [
                                 "updateFunction"
                             ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }

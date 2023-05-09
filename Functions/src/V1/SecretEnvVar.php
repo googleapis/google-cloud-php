@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration for a secret environment variable. It has the information
- * necessary to fetch the secret value from secret manager and expose it as an
+ * necessary to fetch the secret value from Secret Manager and expose it as an
  * environment variable.
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.SecretEnvVar</code>
@@ -25,15 +25,15 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     private $key = '';
     /**
      * Project identifier (preferrably project number but can also be the project
-     * ID) of the project that contains the secret. If not set, it will be
-     * populated with the function's project assuming that the secret exists in
-     * the same project as of the function.
+     * ID) of the project that contains the secret. If not set, it is
+     * populated with the function's project, assuming that the secret exists in
+     * the same project as the function.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
     private $project_id = '';
     /**
-     * Name of the secret in secret manager (not the full resource name).
+     * Name of the secret in Secret Manager (not the full resource name).
      *
      * Generated from protobuf field <code>string secret = 3;</code>
      */
@@ -57,11 +57,11 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
      *           Name of the environment variable.
      *     @type string $project_id
      *           Project identifier (preferrably project number but can also be the project
-     *           ID) of the project that contains the secret. If not set, it will be
-     *           populated with the function's project assuming that the secret exists in
-     *           the same project as of the function.
+     *           ID) of the project that contains the secret. If not set, it is
+     *           populated with the function's project, assuming that the secret exists in
+     *           the same project as the function.
      *     @type string $secret
-     *           Name of the secret in secret manager (not the full resource name).
+     *           Name of the secret in Secret Manager (not the full resource name).
      *     @type string $version
      *           Version of the secret (version number or the string 'latest'). It is
      *           recommended to use a numeric version for secret environment variables as
@@ -101,9 +101,9 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
 
     /**
      * Project identifier (preferrably project number but can also be the project
-     * ID) of the project that contains the secret. If not set, it will be
-     * populated with the function's project assuming that the secret exists in
-     * the same project as of the function.
+     * ID) of the project that contains the secret. If not set, it is
+     * populated with the function's project, assuming that the secret exists in
+     * the same project as the function.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @return string
@@ -115,9 +115,9 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
 
     /**
      * Project identifier (preferrably project number but can also be the project
-     * ID) of the project that contains the secret. If not set, it will be
-     * populated with the function's project assuming that the secret exists in
-     * the same project as of the function.
+     * ID) of the project that contains the secret. If not set, it is
+     * populated with the function's project, assuming that the secret exists in
+     * the same project as the function.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @param string $var
@@ -132,7 +132,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the secret in secret manager (not the full resource name).
+     * Name of the secret in Secret Manager (not the full resource name).
      *
      * Generated from protobuf field <code>string secret = 3;</code>
      * @return string
@@ -143,7 +143,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the secret in secret manager (not the full resource name).
+     * Name of the secret in Secret Manager (not the full resource name).
      *
      * Generated from protobuf field <code>string secret = 3;</code>
      * @param string $var
