@@ -439,7 +439,7 @@ class JWT
             return $keyOrKeyArray;
         }
 
-        if (empty($kid)) {
+        if (!isset($kid)) {
             throw new UnexpectedValueException('"kid" empty, unable to lookup correct key');
         }
 
