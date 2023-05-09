@@ -191,6 +191,9 @@ class AddComponentCommand extends Command
 
     private function loadProtoContent(string $proto): string
     {
+        if (file_exists($proto)) {
+            return file_get_contents($proto);
+        }
         $protoUrl = 'https://raw.githubusercontent.com/googleapis/googleapis/master/' . $proto;
         $client = new Client();
         $response = $client->get($protoUrl);
