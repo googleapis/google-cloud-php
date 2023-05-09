@@ -124,6 +124,7 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
+        $clientConfig['libVersion'] = PubSubClient::VERSION;
         $this->reqHandler = new RequestHandler(
             $clientConfig,
             new PubSubSerializer(),

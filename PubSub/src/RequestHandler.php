@@ -50,18 +50,18 @@ class RequestHandler
         //@codeCoverageIgnoreStart
 
         $config['serializer'] = $serializer;
+        $config += ['emulatorHost' => null];
         // TODO: We should be able to swap out the use of
         // GrpcRequestWrapper with either something in gax, or
         // have the functionality in this file itself.
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $grpcConfig = $this->getGaxConfig(
-            PubSubClient::VERSION,
+            $this->pluck('libVersion', $config),
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
-                : null
+                : null,
+            $config['transport']
         );
-
-        $config += ['emulatorHost' => null];
 
         if (isset($config['apiEndpoint'])) {
             $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];

@@ -176,7 +176,7 @@ class Subscription
         array $info = []
     ) {
         $this->reqHandler = new RequestHandler(
-            [],
+            ['libVersion' => PubSubClient::VERSION],
             new PubSubSerializer(),
             [SubscriberGapicClient::class]
         );
