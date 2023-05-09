@@ -20,18 +20,18 @@ class DockerRegistry
      */
     const DOCKER_REGISTRY_UNSPECIFIED = 0;
     /**
-     * Docker images will be stored in multi-regional Container Registry
+     * Docker images are stored in multi-regional Container Registry
      * repositories named `gcf`.
      *
      * Generated from protobuf enum <code>CONTAINER_REGISTRY = 1;</code>
      */
     const CONTAINER_REGISTRY = 1;
     /**
-     * Docker images will be stored in regional Artifact Registry repositories.
-     * By default, GCF will create and use repositories named `gcf-artifacts`
-     * in every region in which a function is deployed. But the repository to
-     * use can also be specified by the user using the `docker_repository`
-     * field.
+     * Docker images are stored in regional Artifact Registry repositories.
+     * By default, Cloud Functions creates and uses repositories named
+     * `gcf-artifacts` in every region in which a function is deployed. But the
+     * repository to use can also be specified by the user by using the
+     * `docker_repository` field.
      *
      * Generated from protobuf enum <code>ARTIFACT_REGISTRY = 2;</code>
      */

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpsTrigger extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The deployed url for the function.
+     * Output only. The deployed URL for the function.
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,7 +35,7 @@ class HttpsTrigger extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $url
-     *           Output only. The deployed url for the function.
+     *           Output only. The deployed URL for the function.
      *     @type int $security_level
      *           The security level for the function.
      * }
@@ -46,7 +46,7 @@ class HttpsTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deployed url for the function.
+     * Output only. The deployed URL for the function.
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -57,7 +57,7 @@ class HttpsTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deployed url for the function.
+     * Output only. The deployed URL for the function.
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

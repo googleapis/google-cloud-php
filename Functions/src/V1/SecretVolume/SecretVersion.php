@@ -17,7 +17,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * Version of the secret (version number or the string 'latest'). It is
-     * preferrable to use `latest` version with secret volumes as secret value
+     * preferable to use `latest` version with secret volumes as secret value
      * changes are reflected immediately.
      *
      * Generated from protobuf field <code>string version = 1;</code>
@@ -25,8 +25,8 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     private $version = '';
     /**
      * Relative path of the file under the mount path where the secret value for
-     * this version will be fetched and made available. For example, setting the
-     * mount_path as '/etc/secrets' and path as `/secret_foo` would mount the
+     * this version is fetched and made available. For example, setting the
+     * mount_path as '/etc/secrets' and path as `/secret_foo` mounts the
      * secret value file at `/etc/secrets/secret_foo`.
      *
      * Generated from protobuf field <code>string path = 2;</code>
@@ -41,12 +41,12 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version
      *           Version of the secret (version number or the string 'latest'). It is
-     *           preferrable to use `latest` version with secret volumes as secret value
+     *           preferable to use `latest` version with secret volumes as secret value
      *           changes are reflected immediately.
      *     @type string $path
      *           Relative path of the file under the mount path where the secret value for
-     *           this version will be fetched and made available. For example, setting the
-     *           mount_path as '/etc/secrets' and path as `/secret_foo` would mount the
+     *           this version is fetched and made available. For example, setting the
+     *           mount_path as '/etc/secrets' and path as `/secret_foo` mounts the
      *           secret value file at `/etc/secrets/secret_foo`.
      * }
      */
@@ -57,7 +57,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Version of the secret (version number or the string 'latest'). It is
-     * preferrable to use `latest` version with secret volumes as secret value
+     * preferable to use `latest` version with secret volumes as secret value
      * changes are reflected immediately.
      *
      * Generated from protobuf field <code>string version = 1;</code>
@@ -70,7 +70,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Version of the secret (version number or the string 'latest'). It is
-     * preferrable to use `latest` version with secret volumes as secret value
+     * preferable to use `latest` version with secret volumes as secret value
      * changes are reflected immediately.
      *
      * Generated from protobuf field <code>string version = 1;</code>
@@ -87,8 +87,8 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Relative path of the file under the mount path where the secret value for
-     * this version will be fetched and made available. For example, setting the
-     * mount_path as '/etc/secrets' and path as `/secret_foo` would mount the
+     * this version is fetched and made available. For example, setting the
+     * mount_path as '/etc/secrets' and path as `/secret_foo` mounts the
      * secret value file at `/etc/secrets/secret_foo`.
      *
      * Generated from protobuf field <code>string path = 2;</code>
@@ -101,8 +101,8 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Relative path of the file under the mount path where the secret value for
-     * this version will be fetched and made available. For example, setting the
-     * mount_path as '/etc/secrets' and path as `/secret_foo` would mount the
+     * this version is fetched and made available. For example, setting the
+     * mount_path as '/etc/secrets' and path as `/secret_foo` mounts the
      * secret value file at `/etc/secrets/secret_foo`.
      *
      * Generated from protobuf field <code>string path = 2;</code>

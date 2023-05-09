@@ -30,7 +30,7 @@ use Google\Rpc\Status;
 
 /**
  * Deletes a function with the given name from the specified project. If the
- * given function is used by some trigger, the trigger will be updated to
+ * given function is used by some trigger, the trigger is updated to
  * remove this function.
  *
  * @param string $formattedName The name of the function which should be deleted. Please see

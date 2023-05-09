@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes EventTrigger, used to request events be sent from another
+ * Describes EventTrigger, used to request that events be sent from another
  * service.
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.EventTrigger</code>
@@ -28,7 +28,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    example, the Google Cloud Storage API includes the type `object`.
      * 3. action: The action that generates the event. For example, action for
      *    a Google Cloud Storage Object is 'change'.
-     * These parts are lower case.
+     * These parts are lowercase.
      *
      * Generated from protobuf field <code>string event_type = 1;</code>
      */
@@ -46,7 +46,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    `event_type` of "google.pubsub.topic.publish" should have a resource
      *    that matches Google Cloud Pub/Sub topics.
      * Additionally, some services may support short names when creating an
-     * `EventTrigger`. These will always be returned in the normalized "long"
+     * `EventTrigger`. These are always returned in the normalized "long"
      * format.
      * See each *service's* documentation for supported formats.
      *
@@ -87,7 +87,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *              example, the Google Cloud Storage API includes the type `object`.
      *           3. action: The action that generates the event. For example, action for
      *              a Google Cloud Storage Object is 'change'.
-     *           These parts are lower case.
+     *           These parts are lowercase.
      *     @type string $resource
      *           Required. The resource(s) from which to observe events, for example,
      *           `projects/_/buckets/myBucket`.
@@ -101,7 +101,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *              `event_type` of "google.pubsub.topic.publish" should have a resource
      *              that matches Google Cloud Pub/Sub topics.
      *           Additionally, some services may support short names when creating an
-     *           `EventTrigger`. These will always be returned in the normalized "long"
+     *           `EventTrigger`. These are always returned in the normalized "long"
      *           format.
      *           See each *service's* documentation for supported formats.
      *     @type string $service
@@ -130,7 +130,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    example, the Google Cloud Storage API includes the type `object`.
      * 3. action: The action that generates the event. For example, action for
      *    a Google Cloud Storage Object is 'change'.
-     * These parts are lower case.
+     * These parts are lowercase.
      *
      * Generated from protobuf field <code>string event_type = 1;</code>
      * @return string
@@ -152,7 +152,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    example, the Google Cloud Storage API includes the type `object`.
      * 3. action: The action that generates the event. For example, action for
      *    a Google Cloud Storage Object is 'change'.
-     * These parts are lower case.
+     * These parts are lowercase.
      *
      * Generated from protobuf field <code>string event_type = 1;</code>
      * @param string $var
@@ -179,7 +179,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    `event_type` of "google.pubsub.topic.publish" should have a resource
      *    that matches Google Cloud Pub/Sub topics.
      * Additionally, some services may support short names when creating an
-     * `EventTrigger`. These will always be returned in the normalized "long"
+     * `EventTrigger`. These are always returned in the normalized "long"
      * format.
      * See each *service's* documentation for supported formats.
      *
@@ -204,7 +204,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *    `event_type` of "google.pubsub.topic.publish" should have a resource
      *    that matches Google Cloud Pub/Sub topics.
      * Additionally, some services may support short names when creating an
-     * `EventTrigger`. These will always be returned in the normalized "long"
+     * `EventTrigger`. These are always returned in the normalized "long"
      * format.
      * See each *service's* documentation for supported formats.
      *

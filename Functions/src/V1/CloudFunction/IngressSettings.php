@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Available ingress settings.
  * This controls what traffic can reach the function.
- * If unspecified, ALLOW_ALL will be used.
+ * If unspecified, ALLOW_ALL is used.
  *
  * Protobuf type <code>google.cloud.functions.v1.CloudFunction.IngressSettings</code>
  */
