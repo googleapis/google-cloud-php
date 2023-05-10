@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataScanService_CreateDataScan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\CreateDataScanRequest;
 use Google\Cloud\Dataplex\V1\DataScan;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataSource;
 use Google\Rpc\Status;
 
@@ -55,11 +56,15 @@ function create_data_scan_sample(string $formattedParent, string $dataScanId): v
     $dataScanData = new DataSource();
     $dataScan = (new DataScan())
         ->setData($dataScanData);
+    $request = (new CreateDataScanRequest())
+        ->setParent($formattedParent)
+        ->setDataScan($dataScan)
+        ->setDataScanId($dataScanId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataScanServiceClient->createDataScan($formattedParent, $dataScan, $dataScanId);
+        $response = $dataScanServiceClient->createDataScan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

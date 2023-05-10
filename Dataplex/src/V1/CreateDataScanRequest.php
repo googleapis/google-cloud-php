@@ -50,6 +50,33 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                             $parent     Required. The resource name of the parent location:
+     *                                                       `projects/{project}/locations/{location_id}`
+     *                                                       where `project` refers to a *project_id* or *project_number* and
+     *                                                       `location_id` refers to a GCP region. Please see
+     *                                                       {@see DataScanServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource.
+     * @param string                             $dataScanId Required. DataScan identifier.
+     *
+     *                                                       * Must contain only lowercase letters, numbers and hyphens.
+     *                                                       * Must start with a letter.
+     *                                                       * Must end with a number or a letter.
+     *                                                       * Must be between 1-63 characters.
+     *                                                       * Must be unique within the customer project / location.
+     *
+     * @return \Google\Cloud\Dataplex\V1\CreateDataScanRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataplex\V1\DataScan $dataScan, string $dataScanId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataScan($dataScan)
+            ->setDataScanId($dataScanId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

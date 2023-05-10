@@ -44,6 +44,23 @@ class ListDataScanJobsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent environment:
+     *                       `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                       where `project` refers to a *project_id* or *project_number* and
+     *                       `location_id` refers to a GCP region. Please see
+     *                       {@see DataScanServiceClient::dataScanName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListDataScanJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

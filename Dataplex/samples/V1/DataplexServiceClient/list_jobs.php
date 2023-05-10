@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Job;
+use Google\Cloud\Dataplex\V1\ListJobsRequest;
 
 /**
  * Lists Jobs under the given task.
@@ -40,10 +41,14 @@ function list_jobs_sample(string $formattedParent): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataplexServiceClient->listJobs($formattedParent);
+        $response = $dataplexServiceClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

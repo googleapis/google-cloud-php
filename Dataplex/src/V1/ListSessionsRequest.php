@@ -54,6 +54,21 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent environment:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`. Please see
+     *                       {@see DataplexServiceClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListSessionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

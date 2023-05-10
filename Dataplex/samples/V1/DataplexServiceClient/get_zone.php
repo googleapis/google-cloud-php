@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_DataplexService_GetZone_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\GetZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
 
 /**
@@ -39,10 +40,14 @@ function get_zone_sample(string $formattedName): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetZoneRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Zone $response */
-        $response = $dataplexServiceClient->getZone($formattedName);
+        $response = $dataplexServiceClient->getZone($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

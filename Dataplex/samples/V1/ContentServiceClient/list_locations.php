@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_ContentService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataplex\V1\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\Client\ContentServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contentServiceClient->listLocations();
+        $response = $contentServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

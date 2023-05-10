@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_GetEntity_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Entity;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\GetEntityRequest;
 
 /**
  * Get a metadata entity.
@@ -39,10 +40,14 @@ function get_entity_sample(string $formattedName): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEntityRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Entity $response */
-        $response = $metadataServiceClient->getEntity($formattedName);
+        $response = $metadataServiceClient->getEntity($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_DeleteAsset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\DeleteAssetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_asset_sample(string $formattedName): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAssetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->deleteAsset($formattedName);
+        $response = $dataplexServiceClient->deleteAsset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

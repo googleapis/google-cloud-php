@@ -24,6 +24,21 @@ class GetEnvironmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the environment:
+     *                     `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`. Please see
+     *                     {@see DataplexServiceClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\GetEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

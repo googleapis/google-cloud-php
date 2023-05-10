@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
 /**
@@ -50,11 +51,14 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
 
     // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $metadataServiceClient->testIamPermissions($resource, $permissions);
+        $response = $metadataServiceClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
