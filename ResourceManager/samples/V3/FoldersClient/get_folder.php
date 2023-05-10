@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_Folders_GetFolder_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
+use Google\Cloud\ResourceManager\V3\GetFolderRequest;
 
 /**
  * Retrieves a folder identified by the supplied resource name.
@@ -43,10 +44,14 @@ function get_folder_sample(string $formattedName): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
+    // Prepare the request message.
+    $request = (new GetFolderRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Folder $response */
-        $response = $foldersClient->getFolder($formattedName);
+        $response = $foldersClient->getFolder($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

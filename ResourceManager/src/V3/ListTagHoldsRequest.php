@@ -54,6 +54,21 @@ class ListTagHoldsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent TagValue. Must be of the form:
+     *                       `tagValues/{tag-value-id}`. Please see
+     *                       {@see TagHoldsClient::tagValueName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListTagHoldsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

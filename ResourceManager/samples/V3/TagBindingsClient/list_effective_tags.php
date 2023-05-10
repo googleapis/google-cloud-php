@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagBindings_ListEffectiveTags_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagBindingsClient;
 use Google\Cloud\ResourceManager\V3\EffectiveTag;
-use Google\Cloud\ResourceManager\V3\TagBindingsClient;
+use Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest;
 
 /**
  * Return a list of effective tags for the given Google Cloud resource, as
@@ -41,10 +42,14 @@ function list_effective_tags_sample(string $parent): void
     // Create a client.
     $tagBindingsClient = new TagBindingsClient();
 
+    // Prepare the request message.
+    $request = (new ListEffectiveTagsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tagBindingsClient->listEffectiveTags($parent);
+        $response = $tagBindingsClient->listEffectiveTags($request);
 
         /** @var EffectiveTag $element */
         foreach ($response as $element) {

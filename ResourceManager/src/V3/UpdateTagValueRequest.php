@@ -39,6 +39,24 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\TagValue $tagValue   Required. The new definition of the TagValue. Only fields `description` and
+     *                                                              `etag` fields can be updated by this request. If the `etag` field is
+     *                                                              nonempty, it must match the `etag` field of the existing ControlGroup.
+     *                                                              Otherwise, `ABORTED` will be returned.
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Fields to be updated.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UpdateTagValueRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagValue $tagValue, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTagValue($tagValue)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

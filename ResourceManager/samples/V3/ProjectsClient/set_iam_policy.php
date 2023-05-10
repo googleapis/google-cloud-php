@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
 
 /**
  * Sets the IAM access control policy for the specified project, in the
@@ -78,13 +79,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $projectsClient->setIamPolicy($resource, $policy);
+        $response = $projectsClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

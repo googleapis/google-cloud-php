@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagHolds_CreateTagHold_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagHoldsClient;
+use Google\Cloud\ResourceManager\V3\CreateTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\TagHold;
-use Google\Cloud\ResourceManager\V3\TagHoldsClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,14 +46,17 @@ function create_tag_hold_sample(string $formattedParent, string $tagHoldHolder):
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagHold = (new TagHold())
         ->setHolder($tagHoldHolder);
+    $request = (new CreateTagHoldRequest())
+        ->setParent($formattedParent)
+        ->setTagHold($tagHold);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagHoldsClient->createTagHold($formattedParent, $tagHold);
+        $response = $tagHoldsClient->createTagHold($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

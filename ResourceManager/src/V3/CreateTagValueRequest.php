@@ -31,6 +31,20 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\TagValue $tagValue Required. The TagValue to be created. Only fields `short_name`,
+     *                                                            `description`, and `parent` are considered during the creation request.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateTagValueRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagValue $tagValue): self
+    {
+        return (new self())
+            ->setTagValue($tagValue);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

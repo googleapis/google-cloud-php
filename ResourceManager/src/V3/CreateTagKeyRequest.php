@@ -31,6 +31,20 @@ class CreateTagKeyRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\TagKey $tagKey Required. The TagKey to be created. Only fields `short_name`,
+     *                                                        `description`, and `parent` are considered during the creation request.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateTagKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagKey $tagKey): self
+    {
+        return (new self())
+            ->setTagKey($tagKey);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

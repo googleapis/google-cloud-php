@@ -40,6 +40,21 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the TagKey's parent.
+     *                       Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *                       `projects/{project_number}`
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListTagKeysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -67,6 +67,51 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $query Optional. A query string for searching for projects that the caller has
+     *                      `resourcemanager.projects.get` permission to. If multiple fields are
+     *                      included in the query, then it will return results that match any of the
+     *                      fields. Some eligible fields are:
+     *
+     *                      - **`displayName`, `name`**: Filters by displayName.
+     *                      - **`parent`**: Project's parent (for example: `folders/123`,
+     *                      `organizations/*`). Prefer `parent` field over `parent.type` and
+     *                      `parent.id`.
+     *                      - **`parent.type`**: Parent's type: `folder` or `organization`.
+     *                      - **`parent.id`**: Parent's id number (for example: `123`).
+     *                      - **`id`, `projectId`**: Filters by projectId.
+     *                      - **`state`, `lifecycleState`**: Filters by state.
+     *                      - **`labels`**: Filters by label name or value.
+     *                      - **`labels.<key>` (where `<key>` is the name of a label)**: Filters by label
+     *                      name.
+     *
+     *                      Search expressions are case insensitive.
+     *
+     *                      Some examples queries:
+     *
+     *
+     *                      - **`name:how*`**: The project's name starts with "how".
+     *                      - **`name:Howl`**: The project's name is `Howl` or `howl`.
+     *                      - **`name:HOWL`**: Equivalent to above.
+     *                      - **`NAME:howl`**: Equivalent to above.
+     *                      - **`labels.color:*`**: The project has the label `color`.
+     *                      - **`labels.color:red`**:  The project's label `color` has the value `red`.
+     *                      - **`labels.color:red labels.size:big`**: The project's label `color` has
+     *                      the value `red` or its label `size` has the value `big`.
+     *
+     *                      If no query is specified, the call will return projects for which the user
+     *                      has the `resourcemanager.projects.get` permission.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\SearchProjectsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $query): self
+    {
+        return (new self())
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

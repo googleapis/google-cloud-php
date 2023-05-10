@@ -52,6 +52,37 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     private $query = '';
 
     /**
+     * @param string $query Optional. An optional query string used to filter the Organizations to
+     *                      return in the response. Query rules are case-insensitive.
+     *
+     *
+     *                      ```
+     *                      | Field            | Description                                |
+     *                      |------------------|--------------------------------------------|
+     *                      | directoryCustomerId, owner.directoryCustomerId | Filters by directory
+     *                      customer id. |
+     *                      | domain           | Filters by domain.                         |
+     *                      ```
+     *
+     *                      Organizations may be queried by `directoryCustomerId` or by
+     *                      `domain`, where the domain is a G Suite domain, for example:
+     *
+     *                      * Query `directorycustomerid:123456789` returns Organization
+     *                      resources with `owner.directory_customer_id` equal to `123456789`.
+     *                      * Query `domain:google.com` returns Organization resources corresponding
+     *                      to the domain `google.com`.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\SearchOrganizationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $query): self
+    {
+        return (new self())
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
