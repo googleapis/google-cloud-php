@@ -40,7 +40,7 @@ class ComponentInfoCommand extends Command
         'release_level' => 'Release Level',
         'php_namespaces' => 'Php Namespace(s)',
         'github_repo' => 'Github Repo',
-        'protobuf_package' => 'Protobuf Package',
+        'proto' => 'Proto',
         'service_address' => 'Service Address',
         'description' => 'Description',
     ];
@@ -50,7 +50,7 @@ class ComponentInfoCommand extends Command
             ->setDescription('list info of a component or the whole library')
             ->addArgument('name', InputArgument::OPTIONAL, 'Component to check compliance for.', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
-            ->addOption('fields', '', InputOption::VALUE_REQUIRED, sprintf(
+            ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields. The following fields are available: \n - %s\n",
                 implode("\n - ", array_keys(self::$allFields))
             ))
@@ -109,7 +109,7 @@ class ComponentInfoCommand extends Command
             'release_level' => $component->getReleaseLevel(),
             'php_namespaces' => implode(', ', $component->getNamespaces()),
             'github_repo' => $component->getRepoName(),
-            'protobuf_package' => $component->getProtoPackage(),
+            'proto' => $component->getProtoPackage(),
             'service_address' => $component->getServiceAddress(),
             'description' => $component->getDescription(),
         ], $requestedFields));
