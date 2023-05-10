@@ -53,6 +53,22 @@ class ListLakesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the lake location, of the form:
+     *                       `projects/{project_number}/locations/{location_id}`
+     *                       where `location_id` refers to a GCP region. Please see
+     *                       {@see DataplexServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListLakesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_UpdateLake_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Lake;
+use Google\Cloud\Dataplex\V1\UpdateLakeRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -47,11 +48,14 @@ function update_lake_sample(): void
     // Prepare the request message.
     $updateMask = new FieldMask();
     $lake = new Lake();
+    $request = (new UpdateLakeRequest())
+        ->setUpdateMask($updateMask)
+        ->setLake($lake);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->updateLake($updateMask, $lake);
+        $response = $dataplexServiceClient->updateLake($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

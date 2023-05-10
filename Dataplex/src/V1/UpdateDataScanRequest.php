@@ -37,6 +37,23 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource to be updated.
+     *
+     *                                                       Only fields specified in `update_mask` are updated.
+     * @param \Google\Protobuf\FieldMask         $updateMask Required. Mask of fields to update.
+     *
+     * @return \Google\Cloud\Dataplex\V1\UpdateDataScanRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataplex\V1\DataScan $dataScan, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataScan($dataScan)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

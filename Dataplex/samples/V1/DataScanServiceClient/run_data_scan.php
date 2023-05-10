@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_DataScanService_RunDataScan_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\RunDataScanRequest;
 use Google\Cloud\Dataplex\V1\RunDataScanResponse;
 
 /**
@@ -43,10 +44,14 @@ function run_data_scan_sample(string $formattedName): void
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
+    // Prepare the request message.
+    $request = (new RunDataScanRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var RunDataScanResponse $response */
-        $response = $dataScanServiceClient->runDataScan($formattedName);
+        $response = $dataScanServiceClient->runDataScan($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

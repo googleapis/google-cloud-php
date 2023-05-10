@@ -37,6 +37,23 @@ class CreateContentRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                            $parent  Required. The resource name of the parent lake:
+     *                                                   projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *                                                   Please see {@see ContentServiceClient::lakeName()} for help formatting this field.
+     * @param \Google\Cloud\Dataplex\V1\Content $content Required. Content resource.
+     *
+     * @return \Google\Cloud\Dataplex\V1\CreateContentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataplex\V1\Content $content): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setContent($content);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

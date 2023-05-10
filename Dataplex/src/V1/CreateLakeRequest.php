@@ -51,6 +51,33 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                         $parent Required. The resource name of the lake location, of the form:
+     *                                               projects/{project_number}/locations/{location_id}
+     *                                               where `location_id` refers to a GCP region. Please see
+     *                                               {@see DataplexServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dataplex\V1\Lake $lake   Required. Lake resource
+     * @param string                         $lakeId Required. Lake identifier.
+     *                                               This ID will be used to generate names such as database and dataset names
+     *                                               when publishing metadata to Hive Metastore and BigQuery.
+     *                                               * Must contain only lowercase letters, numbers and hyphens.
+     *                                               * Must start with a letter.
+     *                                               * Must end with a number or a letter.
+     *                                               * Must be between 1-63 characters.
+     *                                               * Must be unique within the customer project / location.
+     *
+     * @return \Google\Cloud\Dataplex\V1\CreateLakeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataplex\V1\Lake $lake, string $lakeId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLake($lake)
+            ->setLakeId($lakeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

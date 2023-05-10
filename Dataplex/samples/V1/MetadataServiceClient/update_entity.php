@@ -24,12 +24,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_UpdateEntity_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Entity;
 use Google\Cloud\Dataplex\V1\Entity\Type;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Schema;
 use Google\Cloud\Dataplex\V1\StorageFormat;
 use Google\Cloud\Dataplex\V1\StorageSystem;
+use Google\Cloud\Dataplex\V1\UpdateEntityRequest;
 
 /**
  * Update a metadata entity. Only supports full resource update.
@@ -105,11 +106,13 @@ function update_entity_sample(
         ->setSystem($entitySystem)
         ->setFormat($entityFormat)
         ->setSchema($entitySchema);
+    $request = (new UpdateEntityRequest())
+        ->setEntity($entity);
 
     // Call the API and handle any network failures.
     try {
         /** @var Entity $response */
-        $response = $metadataServiceClient->updateEntity($entity);
+        $response = $metadataServiceClient->updateEntity($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
