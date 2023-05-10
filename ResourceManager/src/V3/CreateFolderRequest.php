@@ -24,6 +24,20 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     private $folder = null;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\Folder $folder Required. The folder being created, only the display name and parent will
+     *                                                        be consulted. All other fields will be ignored.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateFolderRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\Folder $folder): self
+    {
+        return (new self())
+            ->setFolder($folder);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

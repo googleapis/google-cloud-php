@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_UndeleteProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\UndeleteProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +51,14 @@ function undelete_project_sample(string $formattedName): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new UndeleteProjectRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->undeleteProject($formattedName);
+        $response = $projectsClient->undeleteProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

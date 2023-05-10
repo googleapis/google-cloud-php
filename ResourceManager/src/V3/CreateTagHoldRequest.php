@@ -37,6 +37,23 @@ class CreateTagHoldRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                   $parent  Required. The resource name of the TagHold's parent TagValue. Must be of
+     *                                                          the form: `tagValues/{tag-value-id}`. Please see
+     *                                                          {@see TagHoldsClient::tagValueName()} for help formatting this field.
+     * @param \Google\Cloud\ResourceManager\V3\TagHold $tagHold Required. The TagHold to be created.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateTagHoldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ResourceManager\V3\TagHold $tagHold): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTagHold($tagHold);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

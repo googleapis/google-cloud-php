@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_Organizations_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\ResourceManager\V3\OrganizationsClient;
+use Google\Cloud\ResourceManager\V3\Client\OrganizationsClient;
 
 /**
  * Gets the access control policy for an organization resource. The policy may
@@ -43,10 +44,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $organizationsClient = new OrganizationsClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $organizationsClient->getIamPolicy($resource);
+        $response = $organizationsClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

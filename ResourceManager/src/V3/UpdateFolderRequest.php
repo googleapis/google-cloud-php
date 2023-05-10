@@ -37,6 +37,23 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\Folder $folder     Required. The new definition of the Folder. It must include the `name`
+     *                                                            field, which cannot be changed.
+     * @param \Google\Protobuf\FieldMask              $updateMask Required. Fields to be updated.
+     *                                                            Only the `display_name` can be updated.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UpdateFolderRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\Folder $folder, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFolder($folder)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

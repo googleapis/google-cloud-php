@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_TagValues_GetTagValue_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\GetTagValueRequest;
 use Google\Cloud\ResourceManager\V3\TagValue;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
 
 /**
  * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
@@ -40,10 +41,14 @@ function get_tag_value_sample(string $formattedName): void
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
+    // Prepare the request message.
+    $request = (new GetTagValueRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TagValue $response */
-        $response = $tagValuesClient->getTagValue($formattedName);
+        $response = $tagValuesClient->getTagValue($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
