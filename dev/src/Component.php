@@ -95,7 +95,6 @@ class Component
             }
         }
 
-
         return '';
     }
 
