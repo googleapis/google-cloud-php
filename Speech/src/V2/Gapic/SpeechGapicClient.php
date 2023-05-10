@@ -605,6 +605,9 @@ class SpeechGapicClient
      *           The maximum number of files allowed to be specified is 5.
      *     @type RecognitionOutputConfig $recognitionOutputConfig
      *           Configuration options for where to output the transcripts of each file.
+     *     @type int $processingStrategy
+     *           Processing strategy to use for this request.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Speech\V2\BatchRecognizeRequest\ProcessingStrategy}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -635,6 +638,10 @@ class SpeechGapicClient
 
         if (isset($optionalArgs['recognitionOutputConfig'])) {
             $request->setRecognitionOutputConfig($optionalArgs['recognitionOutputConfig']);
+        }
+
+        if (isset($optionalArgs['processingStrategy'])) {
+            $request->setProcessingStrategy($optionalArgs['processingStrategy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
