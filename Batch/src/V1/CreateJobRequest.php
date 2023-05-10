@@ -59,6 +59,33 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                     $parent Required. The parent resource name where the Job will be created.
+     *                                           Pattern: "projects/{project}/locations/{location}"
+     *                                           Please see {@see BatchServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Batch\V1\Job $job    Required. The Job to create.
+     * @param string                     $jobId  ID used to uniquely identify the Job within its parent scope.
+     *                                           This field should contain at most 63 characters and must start with
+     *                                           lowercase characters.
+     *                                           Only lowercase characters, numbers and '-' are accepted.
+     *                                           The '-' character cannot be the first or the last one.
+     *                                           A system generated ID will be used if the field is not set.
+     *
+     *                                           The job.name field in the request will be ignored and the created resource
+     *                                           name of the Job will be "{parent}/jobs/{job_id}".
+     *
+     * @return \Google\Cloud\Batch\V1\CreateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Batch\V1\Job $job, string $jobId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job)
+            ->setJobId($jobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
