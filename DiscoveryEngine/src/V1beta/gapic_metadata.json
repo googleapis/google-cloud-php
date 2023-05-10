@@ -1,0 +1,153 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.discoveryengine.v1beta",
+    "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1beta",
+    "services": {
+        "CompletionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionServiceGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DocumentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DocumentServiceGapicClient",
+                    "rpcs": {
+                        "CreateDocument": {
+                            "methods": [
+                                "createDocument"
+                            ]
+                        },
+                        "DeleteDocument": {
+                            "methods": [
+                                "deleteDocument"
+                            ]
+                        },
+                        "GetDocument": {
+                            "methods": [
+                                "getDocument"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
+                            ]
+                        },
+                        "ListDocuments": {
+                            "methods": [
+                                "listDocuments"
+                            ]
+                        },
+                        "PurgeDocuments": {
+                            "methods": [
+                                "purgeDocuments"
+                            ]
+                        },
+                        "UpdateDocument": {
+                            "methods": [
+                                "updateDocument"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RecommendationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecommendationServiceGapicClient",
+                    "rpcs": {
+                        "Recommend": {
+                            "methods": [
+                                "recommend"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SchemaService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SchemaServiceGapicClient",
+                    "rpcs": {
+                        "CreateSchema": {
+                            "methods": [
+                                "createSchema"
+                            ]
+                        },
+                        "DeleteSchema": {
+                            "methods": [
+                                "deleteSchema"
+                            ]
+                        },
+                        "GetSchema": {
+                            "methods": [
+                                "getSchema"
+                            ]
+                        },
+                        "ListSchemas": {
+                            "methods": [
+                                "listSchemas"
+                            ]
+                        },
+                        "UpdateSchema": {
+                            "methods": [
+                                "updateSchema"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserEventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserEventServiceGapicClient",
+                    "rpcs": {
+                        "CollectUserEvent": {
+                            "methods": [
+                                "collectUserEvent"
+                            ]
+                        },
+                        "ImportUserEvents": {
+                            "methods": [
+                                "importUserEvents"
+                            ]
+                        },
+                        "WriteUserEvent": {
+                            "methods": [
+                                "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
