@@ -32,7 +32,6 @@ use Google\Cloud\DiscoveryEngine\V1beta\Client\UserEventServiceClient;
 use Google\Cloud\DiscoveryEngine\V1beta\CollectUserEventRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsRequest\InlineSource;
-use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsRequest\SourceOneof;
 use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\UserEvent;
 use Google\Cloud\DiscoveryEngine\V1beta\WriteUserEventRequest;
@@ -176,11 +175,12 @@ class UserEventServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $source = new SourceOneof();
-        $source->setInlineSource(new InlineSource());
+        $inlineSource = new InlineSource();
+        $inlineSourceUserEvents = [];
+        $inlineSource->setUserEvents($inlineSourceUserEvents);
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
         $request = (new ImportUserEventsRequest())
-            ->setInlineSource($source)
+            ->setInlineSource($inlineSource)
             ->setParent($formattedParent);
         $response = $gapicClient->importUserEvents($request);
         $this->assertFalse($response->isDone());
@@ -193,7 +193,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.UserEventService/ImportUserEvents', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getInlineSource();
-        $this->assertProtobufEquals($source, $actualValue);
+        $this->assertProtobufEquals($inlineSource, $actualValue);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -247,11 +247,12 @@ class UserEventServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $source = new SourceOneof();
-        $source->setInlineSource(new InlineSource());
+        $inlineSource = new InlineSource();
+        $inlineSourceUserEvents = [];
+        $inlineSource->setUserEvents($inlineSourceUserEvents);
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
         $request = (new ImportUserEventsRequest())
-            ->setInlineSource($source)
+            ->setInlineSource($inlineSource)
             ->setParent($formattedParent);
         $response = $gapicClient->importUserEvents($request);
         $this->assertFalse($response->isDone());

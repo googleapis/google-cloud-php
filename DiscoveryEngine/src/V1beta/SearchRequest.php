@@ -94,6 +94,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $order_by = '';
     /**
+     * Information about the end user.
+     * Highly recommended for analytics. The user_agent string in UserInfo will
+     * be used to deduce device_type for analytics.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
+     */
+    protected $user_info = null;
+    /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
      * error is returned.
@@ -117,7 +125,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * * `search_type`: double. Default empty. Enables non-webpage searching
      *   depending on the value. The only valid non-default value is 1,
      *   which enables image searching.
-     * This field is ignored for other verticals.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      */
@@ -159,6 +166,33 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      */
     protected $content_search_spec = null;
+    /**
+     * Whether to turn on safe search. This is only supported for
+     * [ContentConfig.PUBLIC_WEBSITE][].
+     *
+     * Generated from protobuf field <code>bool safe_search = 20;</code>
+     */
+    protected $safe_search = false;
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     */
+    private $user_label;
 
     /**
      * Constructor.
@@ -210,6 +244,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           object. Leave it unset if ordered by relevance. OrderBy expression is
      *           case-sensitive.
      *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\UserInfo $user_info
+     *           Information about the end user.
+     *           Highly recommended for analytics. The user_agent string in UserInfo will
+     *           be used to deduce device_type for analytics.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -226,7 +264,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           * `search_type`: double. Default empty. Enables non-webpage searching
      *             depending on the value. The only valid non-default value is 1,
      *             which enables image searching.
-     *           This field is ignored for other verticals.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
      *           query expansion will occur.
@@ -248,6 +285,25 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec $content_search_spec
      *           The content search spec that configs the desired behavior of content
      *           search.
+     *     @type bool $safe_search
+     *           Whether to turn on safe search. This is only supported for
+     *           [ContentConfig.PUBLIC_WEBSITE][].
+     *     @type array|\Google\Protobuf\Internal\MapField $user_label
+     *           The user labels applied to a resource must meet the following requirements:
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *             characters and cannot be empty. Values can be empty and have a maximum
+     *             length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *             underscores, and dashes. All characters must use UTF-8 encoding, and
+     *             international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *             key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -520,6 +576,46 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Information about the end user.
+     * Highly recommended for analytics. The user_agent string in UserInfo will
+     * be used to deduce device_type for analytics.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\UserInfo|null
+     */
+    public function getUserInfo()
+    {
+        return $this->user_info;
+    }
+
+    public function hasUserInfo()
+    {
+        return isset($this->user_info);
+    }
+
+    public function clearUserInfo()
+    {
+        unset($this->user_info);
+    }
+
+    /**
+     * Information about the end user.
+     * Highly recommended for analytics. The user_agent string in UserInfo will
+     * be used to deduce device_type for analytics.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\UserInfo $var
+     * @return $this
+     */
+    public function setUserInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\UserInfo::class);
+        $this->user_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
      * error is returned.
@@ -595,7 +691,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * * `search_type`: double. Default empty. Enables non-webpage searching
      *   depending on the value. The only valid non-default value is 1,
      *   which enables image searching.
-     * This field is ignored for other verticals.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -615,7 +710,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * * `search_type`: double. Default empty. Enables non-webpage searching
      *   depending on the value. The only valid non-default value is 1,
      *   which enables image searching.
-     * This field is ignored for other verticals.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -785,6 +879,88 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec::class);
         $this->content_search_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to turn on safe search. This is only supported for
+     * [ContentConfig.PUBLIC_WEBSITE][].
+     *
+     * Generated from protobuf field <code>bool safe_search = 20;</code>
+     * @return bool
+     */
+    public function getSafeSearch()
+    {
+        return $this->safe_search;
+    }
+
+    /**
+     * Whether to turn on safe search. This is only supported for
+     * [ContentConfig.PUBLIC_WEBSITE][].
+     *
+     * Generated from protobuf field <code>bool safe_search = 20;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSafeSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->safe_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabel()
+    {
+        return $this->user_label;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabel($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_label = $arr;
 
         return $this;
     }
