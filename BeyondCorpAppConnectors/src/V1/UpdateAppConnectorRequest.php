@@ -57,6 +57,26 @@ class UpdateAppConnectorRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector $appConnector Required. AppConnector message with updated fields. Only supported fields
+     *                                                                             specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask                             $updateMask   Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                             this field. The elements of the repeated paths field may only include these
+     *                                                                             fields from [BeyondCorp.AppConnector]:
+     *                                                                             * `labels`
+     *                                                                             * `display_name`
+     *
+     * @return \Google\Cloud\BeyondCorp\AppConnectors\V1\UpdateAppConnectorRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector $appConnector, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAppConnector($appConnector)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_ListLineageEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
+use Google\Cloud\DataCatalog\Lineage\V1\ListLineageEventsRequest;
 
 /**
  * Lists lineage events in the given project and location. The list order is
@@ -40,10 +41,14 @@ function list_lineage_events_sample(string $formattedParent): void
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new ListLineageEventsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->listLineageEvents($formattedParent);
+        $response = $lineageClient->listLineageEvents($request);
 
         /** @var LineageEvent $element */
         foreach ($response as $element) {

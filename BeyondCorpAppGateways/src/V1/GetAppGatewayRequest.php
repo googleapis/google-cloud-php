@@ -24,6 +24,21 @@ class GetAppGatewayRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. BeyondCorp AppGateway name using the form:
+     *                     `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
+     *                     Please see {@see AppGatewaysServiceClient::appGatewayName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BeyondCorp\AppGateways\V1\GetAppGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

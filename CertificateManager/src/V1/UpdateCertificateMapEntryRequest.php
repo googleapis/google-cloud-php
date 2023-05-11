@@ -31,6 +31,23 @@ class UpdateCertificateMapEntryRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\CertificateManager\V1\CertificateMapEntry $certificateMapEntry Required. A definition of the certificate map entry to create map entry.
+     * @param \Google\Protobuf\FieldMask                              $updateMask          Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                                                     definition, see
+     *                                                                                     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CertificateManager\V1\CertificateMapEntry $certificateMapEntry, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCertificateMapEntry($certificateMapEntry)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

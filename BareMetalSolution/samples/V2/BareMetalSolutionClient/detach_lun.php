@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_DetachLun_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
 use Google\Cloud\BareMetalSolution\V2\Instance;
 use Google\Rpc\Status;
 
@@ -42,10 +43,15 @@ function detach_lun_sample(string $formattedInstance, string $formattedLun): voi
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new DetachLunRequest())
+        ->setInstance($formattedInstance)
+        ->setLun($formattedLun);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+        $response = $bareMetalSolutionClient->detachLun($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

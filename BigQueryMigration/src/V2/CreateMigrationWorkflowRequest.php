@@ -30,6 +30,23 @@ class CreateMigrationWorkflowRequest extends \Google\Protobuf\Internal\Message
     private $migration_workflow = null;
 
     /**
+     * @param string                                                $parent            Required. The name of the project to which this migration workflow belongs.
+     *                                                                                 Example: `projects/foo/locations/bar`
+     *                                                                                 Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow $migrationWorkflow Required. The migration workflow to create.
+     *
+     * @return \Google\Cloud\BigQuery\Migration\V2\CreateMigrationWorkflowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow $migrationWorkflow): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMigrationWorkflow($migrationWorkflow);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -30,6 +30,20 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name of the API key to be deleted. Please see
+     *                     {@see ApiKeysClient::keyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiKeys\V2\DeleteKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

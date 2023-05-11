@@ -40,6 +40,23 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
     private $listing = null;
 
     /**
+     * @param string                                              $parent  Required. The parent resource path of the listing.
+     *                                                                     e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+     *                                                                     {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing Required. The listing to create.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateListingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setListing($listing);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

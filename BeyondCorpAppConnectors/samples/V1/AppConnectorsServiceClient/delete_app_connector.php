@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_AppConnectorsService_DeleteAppConnector_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\DeleteAppConnectorRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_app_connector_sample(string $formattedName): void
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAppConnectorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectorsServiceClient->deleteAppConnector($formattedName);
+        $response = $appConnectorsServiceClient->deleteAppConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApigeeRegistry\V1\Artifact;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\ListArtifactsRequest;
 
 /**
  * Returns matching artifacts.
@@ -40,10 +41,14 @@ function list_artifacts_sample(string $formattedParent): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new ListArtifactsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $registryClient->listArtifacts($formattedParent);
+        $response = $registryClient->listArtifacts($request);
 
         /** @var Artifact $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_CreateArtifact_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\Artifact;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\CreateArtifactRequest;
 
 /**
  * Creates a specified artifact.
@@ -46,13 +47,17 @@ function create_artifact_sample(string $formattedParent, string $artifactId): vo
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $artifact = new Artifact();
+    $request = (new CreateArtifactRequest())
+        ->setParent($formattedParent)
+        ->setArtifact($artifact)
+        ->setArtifactId($artifactId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Artifact $response */
-        $response = $registryClient->createArtifact($formattedParent, $artifact, $artifactId);
+        $response = $registryClient->createArtifact($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

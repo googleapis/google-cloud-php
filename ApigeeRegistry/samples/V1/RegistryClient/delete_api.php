@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START apigeeregistry_v1_generated_Registry_DeleteApi_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\DeleteApiRequest;
 
 /**
  * Removes a specified API and all of the resources that it
@@ -39,9 +40,13 @@ function delete_api_sample(string $formattedName): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new DeleteApiRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $registryClient->deleteApi($formattedName);
+        $registryClient->deleteApi($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

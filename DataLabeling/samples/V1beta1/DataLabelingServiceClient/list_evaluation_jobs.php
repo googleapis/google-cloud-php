@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ListEvaluationJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\EvaluationJob;
+use Google\Cloud\DataLabeling\V1beta1\ListEvaluationJobsRequest;
 
 /**
  * Lists all evaluation jobs within a project with possible filters.
@@ -41,10 +42,14 @@ function list_evaluation_jobs_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEvaluationJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listEvaluationJobs($formattedParent);
+        $response = $dataLabelingServiceClient->listEvaluationJobs($request);
 
         /** @var EvaluationJob $element */
         foreach ($response as $element) {

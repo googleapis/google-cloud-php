@@ -40,6 +40,31 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
     private $artifact_id = '';
 
     /**
+     * @param string                                   $parent     Required. The parent, which owns this collection of artifacts.
+     *                                                             Format: `{parent}`
+     *                                                             Please see {@see RegistryClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact   Required. The artifact to create.
+     * @param string                                   $artifactId Required. The ID to use for the artifact, which will become the final component of
+     *                                                             the artifact's resource name.
+     *
+     *                                                             This value should be 4-63 characters, and valid characters
+     *                                                             are /[a-z][0-9]-/.
+     *
+     *                                                             Following AIP-162, IDs must not have the form of a UUID.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\CreateArtifactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact, string $artifactId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setArtifact($artifact)
+            ->setArtifactId($artifactId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

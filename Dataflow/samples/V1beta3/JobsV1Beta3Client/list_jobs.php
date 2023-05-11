@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataflow_v1beta3_generated_JobsV1Beta3_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataflow\V1beta3\Client\JobsV1Beta3Client;
 use Google\Cloud\Dataflow\V1beta3\Job;
-use Google\Cloud\Dataflow\V1beta3\JobsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\ListJobsRequest;
 
 /**
  * List the jobs of a project.
@@ -49,10 +50,13 @@ function list_jobs_sample(): void
     // Create a client.
     $jobsV1Beta3Client = new JobsV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new ListJobsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobsV1Beta3Client->listJobs();
+        $response = $jobsV1Beta3Client->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

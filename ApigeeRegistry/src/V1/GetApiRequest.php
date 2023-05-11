@@ -24,6 +24,21 @@ class GetApiRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the API to retrieve.
+     *                     Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                     Please see {@see RegistryClient::apiName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\GetApiRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

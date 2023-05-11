@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataflow_v1beta3_generated_MessagesV1Beta3_ListJobMessages_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataflow\V1beta3\Client\MessagesV1Beta3Client;
 use Google\Cloud\Dataflow\V1beta3\JobMessage;
-use Google\Cloud\Dataflow\V1beta3\MessagesV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\ListJobMessagesRequest;
 
 /**
  * Request the job status.
@@ -48,10 +49,13 @@ function list_job_messages_sample(): void
     // Create a client.
     $messagesV1Beta3Client = new MessagesV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new ListJobMessagesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $messagesV1Beta3Client->listJobMessages();
+        $response = $messagesV1Beta3Client->listJobMessages($request);
 
         /** @var JobMessage $element */
         foreach ($response as $element) {

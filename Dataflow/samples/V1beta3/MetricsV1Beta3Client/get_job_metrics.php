@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataflow_v1beta3_generated_MetricsV1Beta3_GetJobMetrics_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataflow\V1beta3\Client\MetricsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\GetJobMetricsRequest;
 use Google\Cloud\Dataflow\V1beta3\JobMetrics;
-use Google\Cloud\Dataflow\V1beta3\MetricsV1Beta3Client;
 
 /**
  * Request the job status.
@@ -47,10 +48,13 @@ function get_job_metrics_sample(): void
     // Create a client.
     $metricsV1Beta3Client = new MetricsV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new GetJobMetricsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var JobMetrics $response */
-        $response = $metricsV1Beta3Client->getJobMetrics();
+        $response = $metricsV1Beta3Client->getJobMetrics($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsRequest;
 
 /**
  * Lists AppConnectors in a given project and location.
@@ -40,10 +41,14 @@ function list_app_connectors_sample(string $formattedParent): void
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAppConnectorsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appConnectorsServiceClient->listAppConnectors($formattedParent);
+        $response = $appConnectorsServiceClient->listAppConnectors($request);
 
         /** @var AppConnector $element */
         foreach ($response as $element) {

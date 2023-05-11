@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_StartInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\StartInstanceResponse;
 use Google\Rpc\Status;
 
@@ -40,10 +41,14 @@ function start_instance_sample(string $formattedName): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new StartInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->startInstance($formattedName);
+        $response = $bareMetalSolutionClient->startInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

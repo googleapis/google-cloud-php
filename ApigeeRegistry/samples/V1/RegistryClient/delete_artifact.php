@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START apigeeregistry_v1_generated_Registry_DeleteArtifact_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\DeleteArtifactRequest;
 
 /**
  * Removes a specified artifact.
@@ -38,9 +39,13 @@ function delete_artifact_sample(string $formattedName): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new DeleteArtifactRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $registryClient->deleteArtifact($formattedName);
+        $registryClient->deleteArtifact($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

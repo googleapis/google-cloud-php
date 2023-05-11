@@ -38,6 +38,24 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     protected $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Process $process    Required. The lineage process to update.
+     *
+     *                                                                 The process's `name` field is used to identify the process to update.
+     * @param \Google\Protobuf\FieldMask                   $updateMask The list of fields to update. Currently not used. The whole message is
+     *                                                                 updated.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\Lineage\V1\Process $process, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setProcess($process)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

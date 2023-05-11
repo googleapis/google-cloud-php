@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerymigration_v2_generated_MigrationService_ListMigrationSubtasks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\Client\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\ListMigrationSubtasksRequest;
 use Google\Cloud\BigQuery\Migration\V2\MigrationSubtask;
 
 /**
@@ -40,10 +41,14 @@ function list_migration_subtasks_sample(string $formattedParent): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMigrationSubtasksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $migrationServiceClient->listMigrationSubtasks($formattedParent);
+        $response = $migrationServiceClient->listMigrationSubtasks($request);
 
         /** @var MigrationSubtask $element */
         foreach ($response as $element) {

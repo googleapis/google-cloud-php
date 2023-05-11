@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_ClientGatewaysService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\Client\ClientGatewaysServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $clientGatewaysServiceClient->listLocations();
+        $response = $clientGatewaysServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

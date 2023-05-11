@@ -36,6 +36,25 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param string                                   $parent     Required. Parent resource of the Instance, of the form: `projects/&#42;/locations/*`
+     *                                                             Please see {@see ProvisioningClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ApigeeRegistry\V1\Instance $instance   Required. The Instance.
+     * @param string                                   $instanceId Required. Identifier to assign to the Instance. Must be unique within scope of the
+     *                                                             parent resource.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApigeeRegistry\V1\Instance $instance, string $instanceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstance($instance)
+            ->setInstanceId($instanceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

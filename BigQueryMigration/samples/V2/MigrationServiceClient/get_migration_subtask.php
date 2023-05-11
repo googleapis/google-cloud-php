@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerymigration_v2_generated_MigrationService_GetMigrationSubtask_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\Client\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\GetMigrationSubtaskRequest;
 use Google\Cloud\BigQuery\Migration\V2\MigrationSubtask;
 
 /**
@@ -39,10 +40,14 @@ function get_migration_subtask_sample(string $formattedName): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMigrationSubtaskRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MigrationSubtask $response */
-        $response = $migrationServiceClient->getMigrationSubtask($formattedName);
+        $response = $migrationServiceClient->getMigrationSubtask($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

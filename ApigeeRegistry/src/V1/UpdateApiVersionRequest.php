@@ -41,6 +41,27 @@ class UpdateApiVersionRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiVersion $apiVersion Required. The version to update.
+     *
+     *                                                               The `name` field is used to identify the version to update.
+     *                                                               Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     * @param \Google\Protobuf\FieldMask                 $updateMask The list of fields to be updated. If omitted, all fields are updated that
+     *                                                               are set in the request message (fields set to default values are ignored).
+     *                                                               If an asterisk "*" is specified, all fields are updated, including fields
+     *                                                               that are unspecified/default in the request.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\UpdateApiVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApigeeRegistry\V1\ApiVersion $apiVersion, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setApiVersion($apiVersion)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

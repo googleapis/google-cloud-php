@@ -43,6 +43,23 @@ class SearchExampleComparisonsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of the [Evaluation][google.cloud.datalabeling.v1beta1.Evaluation] resource to search for example
+     *                       comparisons from. Format:
+     *
+     *                       "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>"
+     *                       Please see {@see DataLabelingServiceClient::evaluationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

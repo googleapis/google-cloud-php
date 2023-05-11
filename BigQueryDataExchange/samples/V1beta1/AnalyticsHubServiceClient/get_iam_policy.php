@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 
 /**
@@ -38,10 +39,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $analyticsHubServiceClient->getIamPolicy($resource);
+        $response = $analyticsHubServiceClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

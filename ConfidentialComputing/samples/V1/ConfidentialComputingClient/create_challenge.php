@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START confidentialcomputing_v1_generated_ConfidentialComputing_CreateChallenge_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ConfidentialComputing\V1\Challenge;
-use Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient;
+use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
+use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 
 /**
  * Creates a new Challenge in a given project and location.
@@ -39,13 +40,16 @@ function create_challenge_sample(string $formattedParent): void
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $challenge = new Challenge();
+    $request = (new CreateChallengeRequest())
+        ->setParent($formattedParent)
+        ->setChallenge($challenge);
 
     // Call the API and handle any network failures.
     try {
         /** @var Challenge $response */
-        $response = $confidentialComputingClient->createChallenge($formattedParent, $challenge);
+        $response = $confidentialComputingClient->createChallenge($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

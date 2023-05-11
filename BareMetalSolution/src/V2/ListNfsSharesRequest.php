@@ -42,6 +42,20 @@ class ListNfsSharesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. Parent value for ListNfsSharesRequest. Please see
+     *                       {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ListNfsSharesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

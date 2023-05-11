@@ -24,6 +24,21 @@ class DeleteDataPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the data policy to delete. Format is
+     *                     `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`. Please see
+     *                     {@see DataPolicyServiceClient::dataPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataPolicies\V1\DeleteDataPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apikeys_v2_generated_ApiKeys_DeleteKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\DeleteKeyRequest;
 use Google\Cloud\ApiKeys\V2\Key;
 use Google\Rpc\Status;
 
@@ -44,10 +45,14 @@ function delete_key_sample(string $formattedName): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
+    // Prepare the request message.
+    $request = (new DeleteKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiKeysClient->deleteKey($formattedName);
+        $response = $apiKeysClient->deleteKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

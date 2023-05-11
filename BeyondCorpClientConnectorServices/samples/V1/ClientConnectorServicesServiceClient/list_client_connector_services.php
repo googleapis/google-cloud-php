@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ListClientConnectorServicesRequest;
 
 /**
  * Lists ClientConnectorServices in a given project and location.
@@ -39,10 +40,14 @@ function list_client_connector_services_sample(string $formattedParent): void
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListClientConnectorServicesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $clientConnectorServicesServiceClient->listClientConnectorServices($formattedParent);
+        $response = $clientConnectorServicesServiceClient->listClientConnectorServices($request);
 
         /** @var ClientConnectorService $element */
         foreach ($response as $element) {

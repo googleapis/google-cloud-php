@@ -35,6 +35,28 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BareMetalSolution\V2\Instance $instance   Required. The server to update.
+     *
+     *                                                                The `name` field is used to identify the instance to update.
+     *                                                                Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param \Google\Protobuf\FieldMask                  $updateMask The list of fields to update.
+     *                                                                The currently supported fields are:
+     *                                                                `labels`
+     *                                                                `hyperthreading_enabled`
+     *                                                                `os_image`
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BareMetalSolution\V2\Instance $instance, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_DeleteAnnotatedDataset_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\DeleteAnnotatedDatasetRequest;
 
 /**
  * Deletes an annotated dataset by resource name.
@@ -39,9 +40,13 @@ function delete_annotated_dataset_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAnnotatedDatasetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataLabelingServiceClient->deleteAnnotatedDataset($formattedName);
+        $dataLabelingServiceClient->deleteAnnotatedDataset($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

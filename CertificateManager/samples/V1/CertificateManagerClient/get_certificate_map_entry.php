@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START certificatemanager_v1_generated_CertificateManager_GetCertificateMapEntry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\CertificateMapEntry;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest;
 
 /**
  * Gets details of a single CertificateMapEntry.
@@ -39,10 +40,14 @@ function get_certificate_map_entry_sample(string $formattedName): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetCertificateMapEntryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CertificateMapEntry $response */
-        $response = $certificateManagerClient->getCertificateMapEntry($formattedName);
+        $response = $certificateManagerClient->getCertificateMapEntry($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

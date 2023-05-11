@@ -38,6 +38,22 @@ class CreateLineageEventRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                                            $parent       Required. The name of the run that should own the lineage event. Please see
+     *                                                                        {@see LineageClient::runName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\LineageEvent $lineageEvent Required. The lineage event to create.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\CreateLineageEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\Lineage\V1\LineageEvent $lineageEvent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLineageEvent($lineageEvent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
