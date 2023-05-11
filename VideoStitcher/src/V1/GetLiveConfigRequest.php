@@ -25,6 +25,22 @@ class GetLiveConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the live config to be retrieved, in the form
+     *                     of
+     *                     `projects/{project_number}/locations/{location}/liveConfigs/{id}`. Please see
+     *                     {@see VideoStitcherServiceClient::liveConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

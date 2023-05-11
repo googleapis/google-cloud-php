@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CreateCutoverJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\CreateCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\CutoverJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,17 @@ function create_cutover_job_sample(string $formattedParent, string $cutoverJobId
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cutoverJob = new CutoverJob();
+    $request = (new CreateCutoverJobRequest())
+        ->setParent($formattedParent)
+        ->setCutoverJobId($cutoverJobId)
+        ->setCutoverJob($cutoverJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->createCutoverJob($formattedParent, $cutoverJobId, $cutoverJob);
+        $response = $vmMigrationClient->createCutoverJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

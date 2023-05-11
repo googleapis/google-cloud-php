@@ -23,6 +23,20 @@ class CancelCloneJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The clone job id
+     *                     Please see {@see VmMigrationClient::cloneJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CancelCloneJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

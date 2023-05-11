@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListTargetProjects_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListTargetProjectsRequest;
 use Google\Cloud\VMMigration\V1\TargetProject;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * Lists TargetProjects in a given project.
@@ -46,10 +47,15 @@ function list_target_projects_sample(string $formattedParent, string $pageToken)
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetProjectsRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listTargetProjects($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listTargetProjects($request);
 
         /** @var TargetProject $element */
         foreach ($response as $element) {

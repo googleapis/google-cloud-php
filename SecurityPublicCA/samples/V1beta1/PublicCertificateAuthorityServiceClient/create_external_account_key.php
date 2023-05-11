@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START publicca_v1beta1_generated_PublicCertificateAuthorityService_CreateExternalAccountKey_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Security\PublicCA\V1beta1\Client\PublicCertificateAuthorityServiceClient;
+use Google\Cloud\Security\PublicCA\V1beta1\CreateExternalAccountKeyRequest;
 use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
-use Google\Cloud\Security\PublicCA\V1beta1\PublicCertificateAuthorityServiceClient;
 
 /**
  * Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] bound to the project.
@@ -40,16 +41,16 @@ function create_external_account_key_sample(string $formattedParent): void
     // Create a client.
     $publicCertificateAuthorityServiceClient = new PublicCertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $externalAccountKey = new ExternalAccountKey();
+    $request = (new CreateExternalAccountKeyRequest())
+        ->setParent($formattedParent)
+        ->setExternalAccountKey($externalAccountKey);
 
     // Call the API and handle any network failures.
     try {
         /** @var ExternalAccountKey $response */
-        $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey(
-            $formattedParent,
-            $externalAccountKey
-        );
+        $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmmigration_v1_generated_VmMigration_FetchInventory_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\FetchInventoryRequest;
 use Google\Cloud\VMMigration\V1\FetchInventoryResponse;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * List remote source's inventory of VMs.
@@ -42,10 +43,14 @@ function fetch_inventory_sample(string $formattedSource): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new FetchInventoryRequest())
+        ->setSource($formattedSource);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchInventoryResponse $response */
-        $response = $vmMigrationClient->fetchInventory($formattedSource);
+        $response = $vmMigrationClient->fetchInventory($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

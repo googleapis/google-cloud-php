@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_UpdatePrivateCloud_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\NetworkConfig;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -60,7 +61,7 @@ function update_private_cloud_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $privateCloudNetworkConfig = (new NetworkConfig())
         ->setManagementCidr($privateCloudNetworkConfigManagementCidr);
     $privateCloudManagementClusterNodeTypeConfigs = [];
@@ -71,11 +72,14 @@ function update_private_cloud_sample(
         ->setNetworkConfig($privateCloudNetworkConfig)
         ->setManagementCluster($privateCloudManagementCluster);
     $updateMask = new FieldMask();
+    $request = (new UpdatePrivateCloudRequest())
+        ->setPrivateCloud($privateCloud)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->updatePrivateCloud($privateCloud, $updateMask);
+        $response = $vmwareEngineClient->updatePrivateCloud($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

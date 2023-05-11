@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_RemoveGroupMigration_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\RemoveGroupMigrationResponse;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function remove_group_migration_sample(string $formattedGroup): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new RemoveGroupMigrationRequest())
+        ->setGroup($formattedGroup);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->removeGroupMigration($formattedGroup);
+        $response = $vmMigrationClient->removeGroupMigration($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

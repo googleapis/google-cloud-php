@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START storageinsights_v1_generated_StorageInsights_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storageInsightsClient->listLocations();
+        $response = $storageInsightsClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

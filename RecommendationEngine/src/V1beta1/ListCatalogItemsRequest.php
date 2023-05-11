@@ -43,6 +43,23 @@ class ListCatalogItemsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent catalog resource name, such as
+     *                       `projects/&#42;/locations/global/catalogs/default_catalog`. Please see
+     *                       {@see CatalogServiceClient::catalogName()} for help formatting this field.
+     * @param string $filter Optional. A filter to apply on the list results.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -45,6 +45,27 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                   $parent Required. The location and project in which this Job should be created.
+     *                                         Format: projects/{project}/locations/{location}, where {project} can be
+     *                                         project id or number. Please see
+     *                                         {@see JobsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Run\V2\Job $job    Required. The Job instance to create.
+     * @param string                   $jobId  Required. The unique identifier for the Job. The name of the job becomes
+     *                                         {parent}/jobs/{job_id}.
+     *
+     * @return \Google\Cloud\Run\V2\CreateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Run\V2\Job $job, string $jobId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job)
+            ->setJobId($jobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

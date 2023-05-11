@@ -45,6 +45,23 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The location and project to list resources on.
+     *                       Location must be a valid Google Cloud region, and cannot be the "-"
+     *                       wildcard. Format: projects/{project}/locations/{location}, where {project}
+     *                       can be project id or number. Please see
+     *                       {@see ServicesClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\ListServicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

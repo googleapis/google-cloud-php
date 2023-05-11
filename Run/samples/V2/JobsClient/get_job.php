@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START run_v2_generated_Jobs_GetJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Run\V2\Client\JobsClient;
+use Google\Cloud\Run\V2\GetJobRequest;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\JobsClient;
 
 /**
  * Gets information about a Job.
@@ -40,10 +41,14 @@ function get_job_sample(string $formattedName): void
     // Create a client.
     $jobsClient = new JobsClient();
 
+    // Prepare the request message.
+    $request = (new GetJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobsClient->getJob($formattedName);
+        $response = $jobsClient->getJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

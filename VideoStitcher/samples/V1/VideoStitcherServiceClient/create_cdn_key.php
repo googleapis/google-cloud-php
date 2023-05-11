@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,13 +48,17 @@ function create_cdn_key_sample(string $formattedParent, string $cdnKeyId): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cdnKey = new CdnKey();
+    $request = (new CreateCdnKeyRequest())
+        ->setParent($formattedParent)
+        ->setCdnKey($cdnKey)
+        ->setCdnKeyId($cdnKeyId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+        $response = $videoStitcherServiceClient->createCdnKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

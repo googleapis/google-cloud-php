@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\Group;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListGroupsRequest;
 
 /**
  * Lists Groups in a given project and location.
@@ -43,10 +44,15 @@ function list_groups_sample(string $formattedParent, string $pageToken): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListGroupsRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listGroups($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listGroups($request);
 
         /** @var Group $element */
         foreach ($response as $element) {

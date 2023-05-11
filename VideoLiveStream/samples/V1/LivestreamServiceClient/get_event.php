@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START livestream_v1_generated_LivestreamService_GetEvent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 use Google\Cloud\Video\LiveStream\V1\Event;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 
 /**
  * Returns the specified event.
@@ -39,10 +40,14 @@ function get_event_sample(string $formattedName): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEventRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Event $response */
-        $response = $livestreamServiceClient->getEvent($formattedName);
+        $response = $livestreamServiceClient->getEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

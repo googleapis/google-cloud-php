@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_AddGroupMigration_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\AddGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\AddGroupMigrationResponse;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function add_group_migration_sample(string $formattedGroup): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new AddGroupMigrationRequest())
+        ->setGroup($formattedGroup);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->addGroupMigration($formattedGroup);
+        $response = $vmMigrationClient->addGroupMigration($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -82,6 +82,23 @@ class ListVmwareEngineNetworksRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the location to query for
+     *                       VMware Engine networks. Resource names are schemeless URIs that follow the
+     *                       conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                       example: `projects/my-project/locations/global`
+     *                       Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

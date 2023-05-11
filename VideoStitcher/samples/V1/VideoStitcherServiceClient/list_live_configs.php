@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_ListLiveConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveConfig;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Lists all live configs managed by the Video Stitcher that
@@ -41,10 +42,14 @@ function list_live_configs_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListLiveConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listLiveConfigs($formattedParent);
+        $response = $videoStitcherServiceClient->listLiveConfigs($request);
 
         /** @var LiveConfig $element */
         foreach ($response as $element) {

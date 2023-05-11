@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListCloneJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CloneJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListCloneJobsRequest;
 
 /**
  * Lists CloneJobs of a given migrating VM.
@@ -43,10 +44,15 @@ function list_clone_jobs_sample(string $formattedParent, string $pageToken): voi
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListCloneJobsRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listCloneJobs($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listCloneJobs($request);
 
         /** @var CloneJob $element */
         foreach ($response as $element) {

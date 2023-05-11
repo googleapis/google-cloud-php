@@ -60,6 +60,20 @@ class ListUtilizationReportsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The Utilization Reports parent. Please see
+     *                       {@see VmMigrationClient::sourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\ListUtilizationReportsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

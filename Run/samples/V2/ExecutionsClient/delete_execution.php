@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Executions_DeleteExecution_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\ExecutionsClient;
+use Google\Cloud\Run\V2\DeleteExecutionRequest;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\ExecutionsClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function delete_execution_sample(string $formattedName): void
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteExecutionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $executionsClient->deleteExecution($formattedName);
+        $response = $executionsClient->deleteExecution($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

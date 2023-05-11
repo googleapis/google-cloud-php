@@ -23,6 +23,20 @@ class CancelCutoverJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The cutover job id
+     *                     Please see {@see VmMigrationClient::cutoverJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CancelCutoverJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListHcxActivationKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysRequest;
 
 /**
  * Lists `HcxActivationKey` resources in a given private cloud.
@@ -44,10 +45,14 @@ function list_hcx_activation_keys_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListHcxActivationKeysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listHcxActivationKeys($formattedParent);
+        $response = $vmwareEngineClient->listHcxActivationKeys($request);
 
         /** @var HcxActivationKey $element */
         foreach ($response as $element) {

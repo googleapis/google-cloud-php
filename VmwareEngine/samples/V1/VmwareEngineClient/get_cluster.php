@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmwareengine_v1_generated_VmwareEngine_GetCluster_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\Cluster;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\GetClusterRequest;
 
 /**
  * Retrieves a `Cluster` resource by its resource name.
@@ -42,10 +43,14 @@ function get_cluster_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new GetClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Cluster $response */
-        $response = $vmwareEngineClient->getCluster($formattedName);
+        $response = $vmwareEngineClient->getCluster($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

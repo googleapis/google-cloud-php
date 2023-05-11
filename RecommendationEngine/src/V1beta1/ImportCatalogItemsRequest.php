@@ -44,6 +44,29 @@ class ImportCatalogItemsRequest extends \Google\Protobuf\Internal\Message
     private $errors_config = null;
 
     /**
+     * @param string                                                        $parent       Required. `projects/1234/locations/global/catalogs/default_catalog`
+     *                                                                                    Please see {@see CatalogServiceClient::catalogName()} for help formatting this field.
+     * @param string                                                        $requestId    Optional. Unique identifier provided by client, within the ancestor
+     *                                                                                    dataset scope. Ensures idempotency and used for request deduplication.
+     *                                                                                    Server-generated if unspecified. Up to 128 characters long. This is
+     *                                                                                    returned as google.longrunning.Operation.name in the response.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\InputConfig        $inputConfig  Required. The desired input location of the data.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig $errorsConfig Optional. The desired location of errors incurred during the Import.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $requestId, \Google\Cloud\RecommendationEngine\V1beta1\InputConfig $inputConfig, \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig $errorsConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRequestId($requestId)
+            ->setInputConfig($inputConfig)
+            ->setErrorsConfig($errorsConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

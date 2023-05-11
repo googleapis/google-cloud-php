@@ -46,6 +46,28 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                       $parent    Required. The location and project in which this service should be created.
+     *                                                Format: projects/{project}/locations/{location}, where {project} can be
+     *                                                project id or number. Only lowercase characters, digits, and hyphens. Please see
+     *                                                {@see ServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Run\V2\Service $service   Required. The Service instance to create.
+     * @param string                       $serviceId Required. The unique identifier for the Service. It must begin with letter,
+     *                                                and cannot end with hyphen; must contain fewer than 50 characters.
+     *                                                The name of the service becomes {parent}/services/{service_id}.
+     *
+     * @return \Google\Cloud\Run\V2\CreateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Run\V2\Service $service, string $serviceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setService($service)
+            ->setServiceId($serviceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
