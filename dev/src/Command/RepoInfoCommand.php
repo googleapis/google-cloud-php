@@ -28,7 +28,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use GuzzleHttp\Client;
 
 /**
- * List component details
+ * List repo details
  * @internal
  */
 class RepoInfoCommand extends Command
