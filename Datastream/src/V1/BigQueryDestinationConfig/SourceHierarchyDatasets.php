@@ -17,6 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The dataset template to use for dynamic dataset creation.
+     *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate dataset_template = 2;</code>
      */
     private $dataset_template = null;
@@ -28,6 +30,7 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets\DatasetTemplate $dataset_template
+     *           The dataset template to use for dynamic dataset creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,6 +39,8 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The dataset template to use for dynamic dataset creation.
+     *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate dataset_template = 2;</code>
      * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets\DatasetTemplate|null
      */
@@ -55,6 +60,8 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The dataset template to use for dynamic dataset creation.
+     *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate dataset_template = 2;</code>
      * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets\DatasetTemplate $var
      * @return $this
