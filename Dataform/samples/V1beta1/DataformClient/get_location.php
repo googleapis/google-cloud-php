@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_GetLocation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $dataformClient->getLocation();
+        $response = $dataformClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

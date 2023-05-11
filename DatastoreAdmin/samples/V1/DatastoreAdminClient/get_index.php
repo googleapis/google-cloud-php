@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_DatastoreAdmin_GetIndex_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\GetIndexRequest;
 use Google\Cloud\Datastore\Admin\V1\Index;
 
 /**
@@ -41,10 +42,13 @@ function get_index_sample(): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = new GetIndexRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Index $response */
-        $response = $datastoreAdminClient->getIndex();
+        $response = $datastoreAdminClient->getIndex($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

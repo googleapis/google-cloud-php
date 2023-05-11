@@ -52,6 +52,24 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $scope     Required. Resource name of the organization.
+     *                          Example: organizations/123
+     *                          Please see {@see KeyTrackingServiceClient::organizationName()} for help formatting this field.
+     * @param string $cryptoKey Required. The resource name of the
+     *                          [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *
+     * @return \Google\Cloud\Kms\Inventory\V1\SearchProtectedResourcesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $cryptoKey): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setCryptoKey($cryptoKey);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

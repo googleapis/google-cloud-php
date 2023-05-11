@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START language_v1_generated_LanguageService_AnalyzeEntitySentiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse;
+use Google\Cloud\Language\V1\Client\LanguageServiceClient;
 use Google\Cloud\Language\V1\Document;
-use Google\Cloud\Language\V1\LanguageServiceClient;
 
 /**
  * Finds entities, similar to
@@ -45,13 +46,15 @@ function analyze_entity_sentiment_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
+    $request = (new AnalyzeEntitySentimentRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeEntitySentimentResponse $response */
-        $response = $languageServiceClient->analyzeEntitySentiment($document);
+        $response = $languageServiceClient->analyzeEntitySentiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

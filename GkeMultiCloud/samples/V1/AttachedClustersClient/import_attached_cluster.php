@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ImportAttachedClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -69,15 +70,17 @@ function import_attached_cluster_sample(
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new ImportAttachedClusterRequest())
+        ->setParent($formattedParent)
+        ->setFleetMembership($fleetMembership)
+        ->setPlatformVersion($platformVersion)
+        ->setDistribution($distribution);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $attachedClustersClient->importAttachedCluster(
-            $formattedParent,
-            $fleetMembership,
-            $platformVersion,
-            $distribution
-        );
+        $response = $attachedClustersClient->importAttachedCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_QueryDirectoryContents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsResponse\DirectoryEntry;
 
 /**
@@ -39,10 +40,14 @@ function query_directory_contents_sample(string $formattedWorkspace): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new QueryDirectoryContentsRequest())
+        ->setWorkspace($formattedWorkspace);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->queryDirectoryContents($formattedWorkspace);
+        $response = $dataformClient->queryDirectoryContents($request);
 
         /** @var DirectoryEntry $element */
         foreach ($response as $element) {

@@ -40,6 +40,21 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. Full name of the Restore
+     *                     Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+     *                     Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\DeleteRestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

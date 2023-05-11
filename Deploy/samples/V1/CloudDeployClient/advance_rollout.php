@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_AdvanceRollout_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Deploy\V1\AdvanceRolloutRequest;
 use Google\Cloud\Deploy\V1\AdvanceRolloutResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 
 /**
  * Advances a Rollout in a given project and location.
@@ -41,10 +42,15 @@ function advance_rollout_sample(string $formattedName, string $phaseId): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new AdvanceRolloutRequest())
+        ->setName($formattedName)
+        ->setPhaseId($phaseId);
+
     // Call the API and handle any network failures.
     try {
         /** @var AdvanceRolloutResponse $response */
-        $response = $cloudDeployClient->advanceRollout($formattedName, $phaseId);
+        $response = $cloudDeployClient->advanceRollout($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

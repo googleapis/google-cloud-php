@@ -37,6 +37,29 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeBackup\V1\Backup $backup     Required. A new version of the Backup resource that contains updated fields.
+     *                                                      This may be sparsely populated if an `update_mask` is provided.
+     * @param \Google\Protobuf\FieldMask        $updateMask This is used to specify the fields to be overwritten in the
+     *                                                      Backup targeted for update. The values for each of these
+     *                                                      updated fields will be taken from the `backup_plan` provided
+     *                                                      with this request. Field names are relative to the root of the resource.
+     *                                                      If no `update_mask` is provided, all fields in `backup` will be
+     *                                                      written to the target Backup resource.
+     *                                                      Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored
+     *                                                      and are not used to update the target Backup.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\UpdateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeBackup\V1\Backup $backup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

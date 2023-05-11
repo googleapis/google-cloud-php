@@ -54,6 +54,40 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                     $parent        Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *                                                                  resource where this node pool will be created.
+     *
+     *                                                                  `AwsCluster` names are formatted as
+     *                                                                  `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *                                                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                                                  for more details on Google Cloud resource names. Please see
+     *                                                                  {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $awsNodePool   Required. The specification of the
+     *                                                                  [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     * @param string                                     $awsNodePoolId Required. A client provided ID the resource. Must be unique within the
+     *                                                                  parent resource.
+     *
+     *                                                                  The provided ID will be part of the
+     *                                                                  [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
+     *                                                                  formatted as
+     *                                                                  `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *                                                                  Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\CreateAwsNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $awsNodePool, string $awsNodePoolId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAwsNodePool($awsNodePool)
+            ->setAwsNodePoolId($awsNodePoolId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

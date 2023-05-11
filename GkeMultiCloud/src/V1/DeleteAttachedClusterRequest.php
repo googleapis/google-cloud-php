@@ -64,6 +64,27 @@ class DeleteAttachedClusterRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name the
+     *                     [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] to delete.
+     *
+     *                     `AttachedCluster` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud Platform resource names. Please see
+     *                     {@see AttachedClustersClient::attachedClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\DeleteAttachedClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

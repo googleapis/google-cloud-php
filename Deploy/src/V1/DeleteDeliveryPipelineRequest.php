@@ -70,6 +70,21 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The name of the `DeliveryPipeline` to delete. Format should be
+     *                     projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}. Please see
+     *                     {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

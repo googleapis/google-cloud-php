@@ -60,6 +60,47 @@ class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $awsNodePool Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     *                                                                resource to update.
+     * @param \Google\Protobuf\FieldMask                 $updateMask  Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                this field. The elements of the repeated paths field can only include these
+     *                                                                fields from [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]:
+     *
+     *                                                                *   `annotations`.
+     *                                                                *   `version`.
+     *                                                                *   `autoscaling.min_node_count`.
+     *                                                                *   `autoscaling.max_node_count`.
+     *                                                                *   `config.config_encryption.kms_key_arn`.
+     *                                                                *   `config.security_group_ids`.
+     *                                                                *   `config.root_volume.iops`.
+     *                                                                *   `config.root_volume.kms_key_arn`.
+     *                                                                *   `config.root_volume.volume_type`.
+     *                                                                *   `config.root_volume.size_gib`.
+     *                                                                *   `config.proxy_config`.
+     *                                                                *   `config.proxy_config.secret_arn`.
+     *                                                                *   `config.proxy_config.secret_version`.
+     *                                                                *   `config.ssh_config`.
+     *                                                                *   `config.ssh_config.ec2_key_pair`.
+     *                                                                *   `config.instance_placement.tenancy`.
+     *                                                                *   `config.iam_instance_profile`.
+     *                                                                *   `config.labels`.
+     *                                                                *   `config.tags`.
+     *                                                                *   `config.autoscaling_metrics_collection`.
+     *                                                                *   `config.autoscaling_metrics_collection.granularity`.
+     *                                                                *   `config.autoscaling_metrics_collection.metrics`.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeMultiCloud\V1\AwsNodePool $awsNodePool, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAwsNodePool($awsNodePool)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

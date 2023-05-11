@@ -41,6 +41,23 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The relative resource name of the backup to delete, in the
+     *                     following form:
+     *
+     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`. Please see
+     *                     {@see DataprocMetastoreClient::backupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Metastore\V1\DeleteBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

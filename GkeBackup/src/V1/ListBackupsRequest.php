@@ -58,6 +58,21 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The BackupPlan that contains the Backups to list.
+     *                       Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                       Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\ListBackupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

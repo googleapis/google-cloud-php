@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_QueryCompilationResultActions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CompilationResultAction;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 
 /**
  * Returns CompilationResultActions in a given CompilationResult.
@@ -39,10 +40,14 @@ function query_compilation_result_actions_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new QueryCompilationResultActionsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->queryCompilationResultActions($formattedName);
+        $response = $dataformClient->queryCompilationResultActions($request);
 
         /** @var CompilationResultAction $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_ListVolumeBackups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListVolumeBackupsRequest;
 use Google\Cloud\GkeBackup\V1\VolumeBackup;
 
 /**
@@ -40,10 +41,14 @@ function list_volume_backups_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListVolumeBackupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listVolumeBackups($formattedParent);
+        $response = $backupForGKEClient->listVolumeBackups($request);
 
         /** @var VolumeBackup $element */
         foreach ($response as $element) {

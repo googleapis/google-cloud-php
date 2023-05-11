@@ -24,6 +24,21 @@ class GetOccurrenceNoteRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name The name of the occurrence in the form of
+     *                     `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`. Please see
+     *                     {@see GrafeasClient::occurrenceName()} for help formatting this field.
+     *
+     * @return \Grafeas\V1\GetOccurrenceNoteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

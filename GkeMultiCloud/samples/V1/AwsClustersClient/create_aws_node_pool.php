@@ -25,11 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AwsClusters_CreateAwsNodePool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodeConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePoolAutoscaling;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\CreateAwsNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
 use Google\Rpc\Status;
 
@@ -89,7 +90,7 @@ function create_aws_node_pool_sample(
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $awsNodePoolConfigConfigEncryption = (new AwsConfigEncryption())
         ->setKmsKeyArn($awsNodePoolConfigConfigEncryptionKmsKeyArn);
     $awsNodePoolConfig = (new AwsNodeConfig())
@@ -106,11 +107,15 @@ function create_aws_node_pool_sample(
         ->setAutoscaling($awsNodePoolAutoscaling)
         ->setSubnetId($awsNodePoolSubnetId)
         ->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
+    $request = (new CreateAwsNodePoolRequest())
+        ->setParent($formattedParent)
+        ->setAwsNodePool($awsNodePool)
+        ->setAwsNodePoolId($awsNodePoolId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $awsClustersClient->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
+        $response = $awsClustersClient->createAwsNodePool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

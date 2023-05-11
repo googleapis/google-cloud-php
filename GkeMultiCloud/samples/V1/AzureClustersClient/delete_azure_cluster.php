@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AzureClusters_DeleteAzureCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\DeleteAzureClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -54,10 +55,14 @@ function delete_azure_cluster_sample(string $formattedName): void
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAzureClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $azureClustersClient->deleteAzureCluster($formattedName);
+        $response = $azureClustersClient->deleteAzureCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -54,6 +54,29 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $service Required. The relative resource name of the metastore service to run
+     *                        restore, in the following form:
+     *
+     *                        `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
+     *                        {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+     * @param string $backup  Required. The relative resource name of the metastore service backup to
+     *                        restore from, in the following form:
+     *
+     *                        `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`. Please see
+     *                        {@see DataprocMetastoreClient::backupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Metastore\V1\RestoreServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $service, string $backup): self
+    {
+        return (new self())
+            ->setService($service)
+            ->setBackup($backup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

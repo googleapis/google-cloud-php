@@ -24,6 +24,21 @@ class GetDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the `DeliveryPipeline`. Format must be
+     *                     projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}. Please see
+     *                     {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

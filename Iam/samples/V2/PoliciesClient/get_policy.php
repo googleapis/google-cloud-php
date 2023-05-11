@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iam_v2_generated_Policies_GetPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iam\V2\PoliciesClient;
+use Google\Cloud\Iam\V2\Client\PoliciesClient;
+use Google\Cloud\Iam\V2\GetPolicyRequest;
 use Google\Cloud\Iam\V2\Policy;
 
 /**
@@ -46,10 +47,14 @@ function get_policy_sample(string $name): void
     // Create a client.
     $policiesClient = new PoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetPolicyRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $policiesClient->getPolicy($name);
+        $response = $policiesClient->getPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START connectgateway_v1beta1_generated_GatewayService_PatchResource_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\HttpBody;
-use Google\Cloud\GkeConnect\Gateway\V1beta1\GatewayServiceClient;
+use Google\Cloud\GkeConnect\Gateway\V1beta1\Client\GatewayServiceClient;
 
 /**
  * PatchResource performs an HTTP PATCH on the Kubernetes API Server.
@@ -41,10 +41,13 @@ function patch_resource_sample(): void
     // Create a client.
     $gatewayServiceClient = new GatewayServiceClient();
 
+    // Prepare the request message.
+    $request = new HttpBody();
+
     // Call the API and handle any network failures.
     try {
         /** @var HttpBody $response */
-        $response = $gatewayServiceClient->patchResource();
+        $response = $gatewayServiceClient->patchResource($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START lifesciences_v2beta_generated_WorkflowsServiceV2Beta_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
+use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $workflowsServiceV2BetaClient->listLocations();
+        $response = $workflowsServiceV2BetaClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {
