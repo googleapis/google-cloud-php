@@ -35,12 +35,10 @@ class Component
     private string $description;
     private array $namespaces;
 
-    public function __construct(private ?string $name, string $path = null)
+    public function __construct(private string $name, string $path = null)
     {
-        if ($name !== null) {
-            $this->path = $path ?: $this->getComponentPath($name);
-            $this->validateComponentFiles();
-        }
+        $this->path = $path ?: $this->getComponentPath($name);
+        $this->validateComponentFiles();
     }
 
     private static function getComponentNames(): array
@@ -177,9 +175,7 @@ class Component
         $components = $this->getComponentNames();
 
         if (!in_array($component, $components)) {
-            throw new \Exception($component ? 'Invalid component provided'
-                : 'You are not in a component directory. Run this command from a valid component'
-                  . ' directory or provide a valid component using the "component" option.');
+            throw new \Exception('Invalid component name provided');
         }
 
         $componentPath = realpath(self::ROOT_DIR . '/' . $component);

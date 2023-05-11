@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Dev\Command;
 
-use Google\Cloud\Dev\NewComponent;
 use Google\Cloud\Dev\Component;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -48,7 +47,7 @@ class ComponentInfoCommand extends Command
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addArgument('name', InputArgument::OPTIONAL, 'Component to check compliance for.', '')
+            ->addArgument('name', InputArgument::OPTIONAL, 'If specified, display info for this component only', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields. The following fields are available: \n - %s\n",
@@ -73,7 +72,13 @@ class ComponentInfoCommand extends Command
             }
         }
 
-        $headers = array_values(array_replace($requestedFields, array_intersect_key(self::$allFields, $requestedFields)));
+        // use "array_intersect_key" to filter out fields that were not requested.
+        // use "array_replace" to sort the fields in the order they were requested.
+        $headers = array_values(array_replace(
+            $requestedFields,
+            array_intersect_key(self::$allFields, $requestedFields)
+        ));
+
         if ($csv = $input->getOption('csv')) {
             $fp = fopen($csv, 'wa+');
             fputcsv($fp, $headers);
