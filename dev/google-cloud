@@ -19,9 +19,8 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
-use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
-use Google\Cloud\Dev\Command\ReleaseCommand;
+use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\SplitCommand;
 use Symfony\Component\Console\Application;
 
@@ -37,8 +36,7 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 
 $app = new Application;
 $app->add(new AddComponentCommand($rootDirectory));
-$app->add(new DocFxCommand());
 $app->add(new ComponentInfoCommand());
-$app->add(new ReleaseCommand($rootDirectory));
+$app->add(new DocFxCommand());
 $app->add(new SplitCommand($rootDirectory));
 $app->run();
