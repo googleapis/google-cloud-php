@@ -52,9 +52,8 @@ class Container extends \Google\Protobuf\Internal\Message
     private $options = '';
     /**
      * If set to true, external network access to and from container will be
-     * blocked, containers that are with block_external_network as true can
-     * still communicate with each other, network cannot be specified in the
-     * `container.options` field.
+     * blocked. The container will use the default internal network
+     * 'goog-internal'.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      */
@@ -99,9 +98,8 @@ class Container extends \Google\Protobuf\Internal\Message
      *           running this container, e.g. "--network host".
      *     @type bool $block_external_network
      *           If set to true, external network access to and from container will be
-     *           blocked, containers that are with block_external_network as true can
-     *           still communicate with each other, network cannot be specified in the
-     *           `container.options` field.
+     *           blocked. The container will use the default internal network
+     *           'goog-internal'.
      *     @type string $username
      *           Optional username for logging in to a docker registry. If username
      *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
@@ -259,9 +257,8 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, external network access to and from container will be
-     * blocked, containers that are with block_external_network as true can
-     * still communicate with each other, network cannot be specified in the
-     * `container.options` field.
+     * blocked. The container will use the default internal network
+     * 'goog-internal'.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      * @return bool
@@ -273,9 +270,8 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, external network access to and from container will be
-     * blocked, containers that are with block_external_network as true can
-     * still communicate with each other, network cannot be specified in the
-     * `container.options` field.
+     * blocked. The container will use the default internal network
+     * 'goog-internal'.
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      * @param bool $var

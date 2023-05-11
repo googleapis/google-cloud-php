@@ -53,12 +53,6 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      */
     private $network = null;
-    /**
-     * The placement policy.
-     *
-     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.PlacementPolicy placement = 10;</code>
-     */
-    private $placement = null;
 
     /**
      * Constructor.
@@ -83,8 +77,6 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Label names that start with "goog-" or "google-" are reserved.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy $network
      *           The network policy.
-     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy $placement
-     *           The placement policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,42 +254,6 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy::class);
         $this->network = $var;
-
-        return $this;
-    }
-
-    /**
-     * The placement policy.
-     *
-     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.PlacementPolicy placement = 10;</code>
-     * @return \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy|null
-     */
-    public function getPlacement()
-    {
-        return $this->placement;
-    }
-
-    public function hasPlacement()
-    {
-        return isset($this->placement);
-    }
-
-    public function clearPlacement()
-    {
-        unset($this->placement);
-    }
-
-    /**
-     * The placement policy.
-     *
-     * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.PlacementPolicy placement = 10;</code>
-     * @param \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy $var
-     * @return $this
-     */
-    public function setPlacement($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy::class);
-        $this->placement = $var;
 
         return $this;
     }

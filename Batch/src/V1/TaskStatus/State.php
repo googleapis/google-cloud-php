@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class State
 {
     /**
-     * Unknown state.
+     * unknown state
      *
      * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
@@ -49,12 +49,6 @@ class State
      * Generated from protobuf enum <code>SUCCEEDED = 5;</code>
      */
     const SUCCEEDED = 5;
-    /**
-     * The Task has not been executed when the Job finishes.
-     *
-     * Generated from protobuf enum <code>UNEXECUTED = 6;</code>
-     */
-    const UNEXECUTED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -63,7 +57,6 @@ class State
         self::RUNNING => 'RUNNING',
         self::FAILED => 'FAILED',
         self::SUCCEEDED => 'SUCCEEDED',
-        self::UNEXECUTED => 'UNEXECUTED',
     ];
 
     public static function name($value)

@@ -56,12 +56,6 @@ class Runnable extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
      */
     private $timeout = null;
-    /**
-     * Labels for this Runnable.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
-     */
-    private $labels;
     protected $executable;
 
     /**
@@ -96,8 +90,6 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *           whole Task or TaskGroup).
      *     @type \Google\Protobuf\Duration $timeout
      *           Timeout for this Runnable.
-     *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels for this Runnable.
      * }
      */
     public function __construct($data = NULL) {
@@ -364,32 +356,6 @@ class Runnable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->timeout = $var;
-
-        return $this;
-    }
-
-    /**
-     * Labels for this Runnable.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getLabels()
-    {
-        return $this->labels;
-    }
-
-    /**
-     * Labels for this Runnable.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setLabels($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->labels = $arr;
 
         return $this;
     }
