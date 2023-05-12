@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datafusion_v1_generated_DataFusion_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
 use Google\Cloud\DataFusion\V1\Instance;
+use Google\Cloud\DataFusion\V1\ListInstancesRequest;
 
 /**
  * Lists Data Fusion instances in the specified project and location.
@@ -42,10 +43,14 @@ function list_instances_sample(string $formattedParent): void
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
+    // Prepare the request message.
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataFusionClient->listInstances($formattedParent);
+        $response = $dataFusionClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

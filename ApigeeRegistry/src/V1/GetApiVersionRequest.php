@@ -24,6 +24,21 @@ class GetApiVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the version to retrieve.
+     *                     Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     *                     Please see {@see RegistryClient::apiVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\GetApiVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

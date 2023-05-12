@@ -31,6 +31,23 @@ class UpdateCertificateMapRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\CertificateManager\V1\CertificateMap $certificateMap Required. A definition of the certificate map to update.
+     * @param \Google\Protobuf\FieldMask                         $updateMask     Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                                           definition, see
+     *                                                                           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CertificateManager\V1\CertificateMap $certificateMap, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCertificateMap($certificateMap)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

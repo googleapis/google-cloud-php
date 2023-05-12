@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalineage_v1_generated_Lineage_UpdateProcess_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
+use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 
 /**
  * Updates a process.
@@ -41,13 +42,15 @@ function update_process_sample(): void
     // Create a client.
     $lineageClient = new LineageClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $process = new Process();
+    $request = (new UpdateProcessRequest())
+        ->setProcess($process);
 
     // Call the API and handle any network failures.
     try {
         /** @var Process $response */
-        $response = $lineageClient->updateProcess($process);
+        $response = $lineageClient->updateProcess($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

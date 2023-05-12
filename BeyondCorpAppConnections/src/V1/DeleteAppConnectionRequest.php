@@ -47,6 +47,21 @@ class DeleteAppConnectionRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. BeyondCorp Connector name using the form:
+     *                     `projects/{project_id}/locations/{location_id}/appConnections/{app_connection_id}`
+     *                     Please see {@see AppConnectionsServiceClient::appConnectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BeyondCorp\AppConnections\V1\DeleteAppConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

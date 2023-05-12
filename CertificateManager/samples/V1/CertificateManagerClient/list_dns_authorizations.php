@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_ListDnsAuthorizations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
+use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsRequest;
 
 /**
  * Lists DnsAuthorizations in a given project and location.
@@ -40,10 +41,14 @@ function list_dns_authorizations_sample(string $formattedParent): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListDnsAuthorizationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateManagerClient->listDnsAuthorizations($formattedParent);
+        $response = $certificateManagerClient->listDnsAuthorizations($request);
 
         /** @var DnsAuthorization $element */
         foreach ($response as $element) {

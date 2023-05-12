@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_CreateApiSpec_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\ApiSpec;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\CreateApiSpecRequest;
 
 /**
  * Creates a specified spec.
@@ -46,13 +47,17 @@ function create_api_spec_sample(string $formattedParent, string $apiSpecId): voi
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiSpec = new ApiSpec();
+    $request = (new CreateApiSpecRequest())
+        ->setParent($formattedParent)
+        ->setApiSpec($apiSpec)
+        ->setApiSpecId($apiSpecId);
 
     // Call the API and handle any network failures.
     try {
         /** @var ApiSpec $response */
-        $response = $registryClient->createApiSpec($formattedParent, $apiSpec, $apiSpecId);
+        $response = $registryClient->createApiSpec($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

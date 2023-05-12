@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ListExamples_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\Example;
+use Google\Cloud\DataLabeling\V1beta1\ListExamplesRequest;
 
 /**
  * Lists examples in an annotated dataset. Pagination is supported.
@@ -39,10 +40,14 @@ function list_examples_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListExamplesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listExamples($formattedParent);
+        $response = $dataLabelingServiceClient->listExamples($request);
 
         /** @var Example $element */
         foreach ($response as $element) {

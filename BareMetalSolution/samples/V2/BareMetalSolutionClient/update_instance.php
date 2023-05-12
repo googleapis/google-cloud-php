@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_UpdateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
 use Google\Cloud\BareMetalSolution\V2\Instance;
+use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_instance_sample(): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instance = new Instance();
+    $request = (new UpdateInstanceRequest())
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->updateInstance($instance);
+        $response = $bareMetalSolutionClient->updateInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

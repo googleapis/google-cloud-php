@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataflow_v1beta3_generated_SnapshotsV1Beta3_DeleteSnapshot_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataflow\V1beta3\Client\SnapshotsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\DeleteSnapshotRequest;
 use Google\Cloud\Dataflow\V1beta3\DeleteSnapshotResponse;
-use Google\Cloud\Dataflow\V1beta3\SnapshotsV1Beta3Client;
 
 /**
  * Deletes a snapshot.
@@ -41,10 +42,13 @@ function delete_snapshot_sample(): void
     // Create a client.
     $snapshotsV1Beta3Client = new SnapshotsV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new DeleteSnapshotRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var DeleteSnapshotResponse $response */
-        $response = $snapshotsV1Beta3Client->deleteSnapshot();
+        $response = $snapshotsV1Beta3Client->deleteSnapshot($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

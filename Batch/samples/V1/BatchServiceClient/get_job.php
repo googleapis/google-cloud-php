@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START batch_v1_generated_BatchService_GetJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Batch\V1\BatchServiceClient;
+use Google\Cloud\Batch\V1\Client\BatchServiceClient;
+use Google\Cloud\Batch\V1\GetJobRequest;
 use Google\Cloud\Batch\V1\Job;
 
 /**
@@ -38,10 +39,14 @@ function get_job_sample(string $formattedName): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $batchServiceClient->getJob($formattedName);
+        $response = $batchServiceClient->getJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_SubscribeListing_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingResponse;
 
 /**
@@ -44,10 +45,14 @@ function subscribe_listing_sample(string $formattedName): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = (new SubscribeListingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SubscribeListingResponse $response */
-        $response = $analyticsHubServiceClient->subscribeListing($formattedName);
+        $response = $analyticsHubServiceClient->subscribeListing($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

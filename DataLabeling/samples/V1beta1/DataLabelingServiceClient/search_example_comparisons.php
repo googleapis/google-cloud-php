@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_SearchExampleComparisons_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison;
 
 /**
@@ -44,10 +45,14 @@ function search_example_comparisons_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchExampleComparisonsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->searchExampleComparisons($formattedParent);
+        $response = $dataLabelingServiceClient->searchExampleComparisons($request);
 
         /** @var ExampleComparison $element */
         foreach ($response as $element) {

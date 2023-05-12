@@ -46,6 +46,20 @@ class DeleteClientGatewayRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. Name of the resource
+     *                     Please see {@see ClientGatewaysServiceClient::clientGatewayName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BeyondCorp\ClientGateways\V1\DeleteClientGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\ListAnnotationSpecSetsRequest;
 
 /**
  * Lists annotation spec sets for a project. Pagination is supported.
@@ -40,10 +41,14 @@ function list_annotation_spec_sets_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAnnotationSpecSetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listAnnotationSpecSets($formattedParent);
+        $response = $dataLabelingServiceClient->listAnnotationSpecSets($request);
 
         /** @var AnnotationSpecSet $element */
         foreach ($response as $element) {

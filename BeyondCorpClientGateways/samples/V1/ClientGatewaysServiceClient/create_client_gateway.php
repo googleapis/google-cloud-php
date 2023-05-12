@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGateway;
-use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\Client\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\CreateClientGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,14 +42,17 @@ function create_client_gateway_sample(string $formattedParent, string $clientGat
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $clientGateway = (new ClientGateway())
         ->setName($clientGatewayName);
+    $request = (new CreateClientGatewayRequest())
+        ->setParent($formattedParent)
+        ->setClientGateway($clientGateway);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clientGatewaysServiceClient->createClientGateway($formattedParent, $clientGateway);
+        $response = $clientGatewaysServiceClient->createClientGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

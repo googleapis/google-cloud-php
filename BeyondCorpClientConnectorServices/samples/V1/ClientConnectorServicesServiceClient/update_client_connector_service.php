@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\UpdateClientConnectorServiceRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -42,7 +43,7 @@ function update_client_connector_service_sample(string $clientConnectorServiceNa
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $clientConnectorServiceIngress = new Ingress();
     $clientConnectorServiceEgress = new Egress();
@@ -50,14 +51,14 @@ function update_client_connector_service_sample(string $clientConnectorServiceNa
         ->setName($clientConnectorServiceName)
         ->setIngress($clientConnectorServiceIngress)
         ->setEgress($clientConnectorServiceEgress);
+    $request = (new UpdateClientConnectorServiceRequest())
+        ->setUpdateMask($updateMask)
+        ->setClientConnectorService($clientConnectorService);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clientConnectorServicesServiceClient->updateClientConnectorService(
-            $updateMask,
-            $clientConnectorService
-        );
+        $response = $clientConnectorServicesServiceClient->updateClientConnectorService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

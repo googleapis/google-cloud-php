@@ -25,6 +25,22 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
     private $artifact = null;
 
     /**
+     * @param \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact Required. The artifact to replace.
+     *
+     *                                                           The `name` field is used to identify the artifact to replace.
+     *                                                           Format: `{parent}/artifacts/*`
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\ReplaceArtifactRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApigeeRegistry\V1\Artifact $artifact): self
+    {
+        return (new self())
+            ->setArtifact($artifact);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

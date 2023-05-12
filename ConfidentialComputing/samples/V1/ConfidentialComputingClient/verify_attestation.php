@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START confidentialcomputing_v1_generated_ConfidentialComputing_VerifyAttestation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient;
+use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
 use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
+use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
 
 /**
@@ -41,13 +42,16 @@ function verify_attestation_sample(string $formattedChallenge): void
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tpmAttestation = new TpmAttestation();
+    $request = (new VerifyAttestationRequest())
+        ->setChallenge($formattedChallenge)
+        ->setTpmAttestation($tpmAttestation);
 
     // Call the API and handle any network failures.
     try {
         /** @var VerifyAttestationResponse $response */
-        $response = $confidentialComputingClient->verifyAttestation($formattedChallenge, $tpmAttestation);
+        $response = $confidentialComputingClient->verifyAttestation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

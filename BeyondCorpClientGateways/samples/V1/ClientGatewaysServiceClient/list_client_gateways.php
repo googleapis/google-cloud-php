@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGateway;
-use Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\Client\ClientGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\ClientGateways\V1\ListClientGatewaysRequest;
 
 /**
  * Lists ClientGateways in a given project and location.
@@ -39,10 +40,14 @@ function list_client_gateways_sample(string $formattedParent): void
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListClientGatewaysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $clientGatewaysServiceClient->listClientGateways($formattedParent);
+        $response = $clientGatewaysServiceClient->listClientGateways($request);
 
         /** @var ClientGateway $element */
         foreach ($response as $element) {

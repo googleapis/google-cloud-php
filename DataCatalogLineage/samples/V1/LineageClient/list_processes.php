@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_ListProcesses_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\ListProcessesRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
 
 /**
@@ -41,10 +42,14 @@ function list_processes_sample(string $formattedParent): void
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new ListProcessesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->listProcesses($formattedParent);
+        $response = $lineageClient->listProcesses($request);
 
         /** @var Process $element */
         foreach ($response as $element) {

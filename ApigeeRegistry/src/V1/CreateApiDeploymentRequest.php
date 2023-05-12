@@ -40,6 +40,31 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $api_deployment_id = '';
 
     /**
+     * @param string                                        $parent          Required. The parent, which owns this collection of deployments.
+     *                                                                       Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                                                                       Please see {@see RegistryClient::apiName()} for help formatting this field.
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $apiDeployment   Required. The deployment to create.
+     * @param string                                        $apiDeploymentId Required. The ID to use for the deployment, which will become the final component of
+     *                                                                       the deployment's resource name.
+     *
+     *                                                                       This value should be 4-63 characters, and valid characters
+     *                                                                       are /[a-z][0-9]-/.
+     *
+     *                                                                       Following AIP-162, IDs must not have the form of a UUID.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\CreateApiDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $apiDeployment, string $apiDeploymentId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setApiDeployment($apiDeployment)
+            ->setApiDeploymentId($apiDeploymentId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -39,6 +39,20 @@ class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $organization Required. The organization resource path of the projects containing DataExchanges.
+     *                             e.g. `organizations/myorg/locations/US`.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\ListOrgDataExchangesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $organization): self
+    {
+        return (new self())
+            ->setOrganization($organization);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

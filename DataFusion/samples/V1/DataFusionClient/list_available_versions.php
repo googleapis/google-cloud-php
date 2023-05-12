@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datafusion_v1_generated_DataFusion_ListAvailableVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
+use Google\Cloud\DataFusion\V1\ListAvailableVersionsRequest;
 use Google\Cloud\DataFusion\V1\Version;
 
 /**
@@ -41,10 +42,14 @@ function list_available_versions_sample(string $formattedParent): void
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
+    // Prepare the request message.
+    $request = (new ListAvailableVersionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataFusionClient->listAvailableVersions($formattedParent);
+        $response = $dataFusionClient->listAvailableVersions($request);
 
         /** @var Version $element */
         foreach ($response as $element) {
