@@ -23,21 +23,21 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $bucket = '';
+    private $bucket = '';
     /**
      * User-provided prefix for Cloud Storage filename. See the [object naming
      * requirements](https://cloud.google.com/storage/docs/objects#naming).
      *
      * Generated from protobuf field <code>string filename_prefix = 2;</code>
      */
-    protected $filename_prefix = '';
+    private $filename_prefix = '';
     /**
      * User-provided suffix for Cloud Storage filename. See the [object naming
      * requirements](https://cloud.google.com/storage/docs/objects#naming).
      *
      * Generated from protobuf field <code>string filename_suffix = 3;</code>
      */
-    protected $filename_suffix = '';
+    private $filename_suffix = '';
     /**
      * The maximum duration that can elapse before a new Cloud Storage file is
      * created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
@@ -45,7 +45,7 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6;</code>
      */
-    protected $max_duration = null;
+    private $max_duration = null;
     /**
      * The maximum bytes that can be written to a Cloud Storage file before a new
      * file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded
@@ -53,14 +53,14 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_bytes = 7;</code>
      */
-    protected $max_bytes = 0;
+    private $max_bytes = 0;
     /**
      * Output only. An output-only field that indicates whether or not the
      * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
     protected $output_format;
 
     /**
