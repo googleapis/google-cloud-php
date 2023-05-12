@@ -65,6 +65,12 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionOutputConfig recognition_output_config = 6;</code>
      */
     private $recognition_output_config = null;
+    /**
+     * Processing strategy to use for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeRequest.ProcessingStrategy processing_strategy = 7;</code>
+     */
+    private $processing_strategy = 0;
 
     /**
      * Constructor.
@@ -100,6 +106,8 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of files allowed to be specified is 5.
      *     @type \Google\Cloud\Speech\V2\RecognitionOutputConfig $recognition_output_config
      *           Configuration options for where to output the transcripts of each file.
+     *     @type int $processing_strategy
+     *           Processing strategy to use for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -299,6 +307,32 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\RecognitionOutputConfig::class);
         $this->recognition_output_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Processing strategy to use for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeRequest.ProcessingStrategy processing_strategy = 7;</code>
+     * @return int
+     */
+    public function getProcessingStrategy()
+    {
+        return $this->processing_strategy;
+    }
+
+    /**
+     * Processing strategy to use for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeRequest.ProcessingStrategy processing_strategy = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProcessingStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V2\BatchRecognizeRequest\ProcessingStrategy::class);
+        $this->processing_strategy = $var;
 
         return $this;
     }

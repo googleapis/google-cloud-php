@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_Projects_GetProject_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\GetProjectRequest;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
 
 /**
  * Retrieves the project identified by the specified `name` (for example,
@@ -42,10 +43,14 @@ function get_project_sample(string $formattedName): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new GetProjectRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Project $response */
-        $response = $projectsClient->getProject($formattedName);
+        $response = $projectsClient->getProject($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

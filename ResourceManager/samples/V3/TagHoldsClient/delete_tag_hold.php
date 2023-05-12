@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagHolds_DeleteTagHold_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ResourceManager\V3\TagHoldsClient;
+use Google\Cloud\ResourceManager\V3\Client\TagHoldsClient;
+use Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_tag_hold_sample(string $formattedName): void
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTagHoldRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagHoldsClient->deleteTagHold($formattedName);
+        $response = $tagHoldsClient->deleteTagHold($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

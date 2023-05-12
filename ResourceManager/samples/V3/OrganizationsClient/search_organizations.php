@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Organizations_SearchOrganizations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\OrganizationsClient;
 use Google\Cloud\ResourceManager\V3\Organization;
-use Google\Cloud\ResourceManager\V3\OrganizationsClient;
+use Google\Cloud\ResourceManager\V3\SearchOrganizationsRequest;
 
 /**
  * Searches organization resources that are visible to the user and satisfy
@@ -48,10 +49,13 @@ function search_organizations_sample(): void
     // Create a client.
     $organizationsClient = new OrganizationsClient();
 
+    // Prepare the request message.
+    $request = new SearchOrganizationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $organizationsClient->searchOrganizations();
+        $response = $organizationsClient->searchOrganizations($request);
 
         /** @var Organization $element */
         foreach ($response as $element) {

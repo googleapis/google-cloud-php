@@ -25,11 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_UpdateTask_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Task;
 use Google\Cloud\Dataplex\V1\Task\ExecutionSpec;
 use Google\Cloud\Dataplex\V1\Task\TriggerSpec;
 use Google\Cloud\Dataplex\V1\Task\TriggerSpec\Type;
+use Google\Cloud\Dataplex\V1\UpdateTaskRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -57,11 +58,14 @@ function update_task_sample(
     $task = (new Task())
         ->setTriggerSpec($taskTriggerSpec)
         ->setExecutionSpec($taskExecutionSpec);
+    $request = (new UpdateTaskRequest())
+        ->setUpdateMask($updateMask)
+        ->setTask($task);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->updateTask($updateMask, $task);
+        $response = $dataplexServiceClient->updateTask($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

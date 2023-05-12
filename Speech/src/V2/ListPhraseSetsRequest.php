@@ -25,8 +25,8 @@ class ListPhraseSetsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The maximum number of PhraseSets to return. The service may return fewer
-     * than this value. If unspecified, at most 20 PhraseSets will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 PhraseSets will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -60,8 +60,8 @@ class ListPhraseSetsRequest extends \Google\Protobuf\Internal\Message
      *           expected format is `projects/{project}/locations/{location}`.
      *     @type int $page_size
      *           The maximum number of PhraseSets to return. The service may return fewer
-     *           than this value. If unspecified, at most 20 PhraseSets will be returned.
-     *           The maximum value is 20; values above 20 will be coerced to 20.
+     *           than this value. If unspecified, at most 5 PhraseSets will be returned.
+     *           The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           A page token, received from a previous
      *           [ListPhraseSets][google.cloud.speech.v2.Speech.ListPhraseSets] call.
@@ -108,8 +108,8 @@ class ListPhraseSetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of PhraseSets to return. The service may return fewer
-     * than this value. If unspecified, at most 20 PhraseSets will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 PhraseSets will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -121,8 +121,8 @@ class ListPhraseSetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of PhraseSets to return. The service may return fewer
-     * than this value. If unspecified, at most 20 PhraseSets will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 PhraseSets will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

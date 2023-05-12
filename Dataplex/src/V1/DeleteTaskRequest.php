@@ -24,6 +24,21 @@ class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the task:
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}`. Please see
+     *                     {@see DataplexServiceClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\DeleteTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

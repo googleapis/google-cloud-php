@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_ListZones_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\ListZonesRequest;
 use Google\Cloud\Dataplex\V1\Zone;
 
 /**
@@ -40,10 +41,14 @@ function list_zones_sample(string $formattedParent): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListZonesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataplexServiceClient->listZones($formattedParent);
+        $response = $dataplexServiceClient->listZones($request);
 
         /** @var Zone $element */
         foreach ($response as $element) {

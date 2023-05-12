@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * BigQuery destination configuration
+ *
  * Generated from protobuf message <code>google.cloud.datastream.v1.BigQueryDestinationConfig</code>
  */
 class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message

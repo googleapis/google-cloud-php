@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_DataScanService_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
 /**
@@ -50,11 +51,14 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
 
     // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $dataScanServiceClient->testIamPermissions($resource, $permissions);
+        $response = $dataScanServiceClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

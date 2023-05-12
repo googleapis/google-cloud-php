@@ -37,6 +37,22 @@ class UpdateTaskRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Dataplex\V1\Task $task       Required. Update description.
+     *                                                   Only fields specified in `update_mask` are updated.
+     * @param \Google\Protobuf\FieldMask     $updateMask Required. Mask of fields to update.
+     *
+     * @return \Google\Cloud\Dataplex\V1\UpdateTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataplex\V1\Task $task, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTask($task)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

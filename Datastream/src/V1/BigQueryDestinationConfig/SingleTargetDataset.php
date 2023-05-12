@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SingleTargetDataset extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The dataset ID of the target dataset.
+     *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      */
     private $dataset_id = '';
@@ -27,6 +29,7 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset_id
+     *           The dataset ID of the target dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,6 +38,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The dataset ID of the target dataset.
+     *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      * @return string
      */
@@ -44,6 +49,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The dataset ID of the target dataset.
+     *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      * @param string $var
      * @return $this

@@ -52,6 +52,24 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The name of the parent resource whose projects are being listed.
+     *                       Only children of this parent resource are listed; descendants are not
+     *                       listed.
+     *
+     *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *                       parent is an organization, use the value `organizations/{org_id}`.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListProjectsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

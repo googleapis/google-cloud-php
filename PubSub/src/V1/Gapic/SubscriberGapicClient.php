@@ -42,6 +42,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\AcknowledgeRequest;
 use Google\Cloud\PubSub\V1\BigQueryConfig;
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
@@ -591,6 +592,9 @@ class SubscriberGapicClient
      *     @type BigQueryConfig $bigqueryConfig
      *           If delivery to BigQuery is used with this subscription, this field is
      *           used to configure it.
+     *     @type CloudStorageConfig $cloudStorageConfig
+     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           field is used to configure it.
      *     @type int $ackDeadlineSeconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -717,6 +721,10 @@ class SubscriberGapicClient
 
         if (isset($optionalArgs['bigqueryConfig'])) {
             $request->setBigqueryConfig($optionalArgs['bigqueryConfig']);
+        }
+
+        if (isset($optionalArgs['cloudStorageConfig'])) {
+            $request->setCloudStorageConfig($optionalArgs['cloudStorageConfig']);
         }
 
         if (isset($optionalArgs['ackDeadlineSeconds'])) {

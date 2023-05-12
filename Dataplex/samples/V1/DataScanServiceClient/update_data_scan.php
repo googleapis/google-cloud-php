@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataScanService_UpdateDataScan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataScan;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataSource;
+use Google\Cloud\Dataplex\V1\UpdateDataScanRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -50,11 +51,14 @@ function update_data_scan_sample(): void
     $dataScan = (new DataScan())
         ->setData($dataScanData);
     $updateMask = new FieldMask();
+    $request = (new UpdateDataScanRequest())
+        ->setDataScan($dataScan)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataScanServiceClient->updateDataScan($dataScan, $updateMask);
+        $response = $dataScanServiceClient->updateDataScan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

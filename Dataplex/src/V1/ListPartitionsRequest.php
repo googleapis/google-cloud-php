@@ -62,6 +62,21 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent entity:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
+     *                       {@see MetadataServiceClient::entityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListPartitionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

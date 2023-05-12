@@ -30,7 +30,8 @@ use Google\Cloud\Datastream\V1\StopBackfillJobResponse;
 /**
  * Use this method to stop a backfill job for the specified stream object.
  *
- * @param string $formattedObject The name of the stream object resource to stop the backfill job for. Please see
+ * @param string $formattedObject The name of the stream object resource to stop the backfill job
+ *                                for. Please see
  *                                {@see DatastreamClient::streamObjectName()} for help formatting this field.
  */
 function stop_backfill_job_sample(string $formattedObject): void

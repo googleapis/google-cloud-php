@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_MetadataService_ListEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Entity;
+use Google\Cloud\Dataplex\V1\ListEntitiesRequest;
 use Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
 
 /**
  * List metadata entities in a zone.
@@ -42,10 +43,15 @@ function list_entities_sample(string $formattedParent, int $view): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEntitiesRequest())
+        ->setParent($formattedParent)
+        ->setView($view);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listEntities($formattedParent, $view);
+        $response = $metadataServiceClient->listEntities($request);
 
         /** @var Entity $element */
         foreach ($response as $element) {

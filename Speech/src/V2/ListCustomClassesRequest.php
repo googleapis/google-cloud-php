@@ -24,10 +24,10 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Number of results per requests. A valid page_size ranges from 0 to 20
+     * Number of results per requests. A valid page_size ranges from 0 to 100
      * inclusive. If the page_size is zero or unspecified, a page size of 5 will
-     * be chosen. If the page size exceeds 20, it will be coerced down to 20. Note
-     * that a call might return fewer results than the requested page size.
+     * be chosen. If the page size exceeds 100, it will be coerced down to 100.
+     * Note that a call might return fewer results than the requested page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -60,10 +60,10 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project and location of CustomClass resources to list. The
      *           expected format is `projects/{project}/locations/{location}`.
      *     @type int $page_size
-     *           Number of results per requests. A valid page_size ranges from 0 to 20
+     *           Number of results per requests. A valid page_size ranges from 0 to 100
      *           inclusive. If the page_size is zero or unspecified, a page size of 5 will
-     *           be chosen. If the page size exceeds 20, it will be coerced down to 20. Note
-     *           that a call might return fewer results than the requested page size.
+     *           be chosen. If the page size exceeds 100, it will be coerced down to 100.
+     *           Note that a call might return fewer results than the requested page size.
      *     @type string $page_token
      *           A page token, received from a previous
      *           [ListCustomClasses][google.cloud.speech.v2.Speech.ListCustomClasses] call.
@@ -109,10 +109,10 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of results per requests. A valid page_size ranges from 0 to 20
+     * Number of results per requests. A valid page_size ranges from 0 to 100
      * inclusive. If the page_size is zero or unspecified, a page size of 5 will
-     * be chosen. If the page size exceeds 20, it will be coerced down to 20. Note
-     * that a call might return fewer results than the requested page size.
+     * be chosen. If the page size exceeds 100, it will be coerced down to 100.
+     * Note that a call might return fewer results than the requested page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -123,10 +123,10 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of results per requests. A valid page_size ranges from 0 to 20
+     * Number of results per requests. A valid page_size ranges from 0 to 100
      * inclusive. If the page_size is zero or unspecified, a page size of 5 will
-     * be chosen. If the page size exceeds 20, it will be coerced down to 20. Note
-     * that a call might return fewer results than the requested page size.
+     * be chosen. If the page size exceeds 100, it will be coerced down to 100.
+     * Note that a call might return fewer results than the requested page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

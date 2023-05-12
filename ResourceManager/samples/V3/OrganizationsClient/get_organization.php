@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_Organizations_GetOrganization_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ResourceManager\V3\Client\OrganizationsClient;
+use Google\Cloud\ResourceManager\V3\GetOrganizationRequest;
 use Google\Cloud\ResourceManager\V3\Organization;
-use Google\Cloud\ResourceManager\V3\OrganizationsClient;
 
 /**
  * Fetches an organization resource identified by the specified resource name.
@@ -40,10 +41,14 @@ function get_organization_sample(string $formattedName): void
     // Create a client.
     $organizationsClient = new OrganizationsClient();
 
+    // Prepare the request message.
+    $request = (new GetOrganizationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Organization $response */
-        $response = $organizationsClient->getOrganization($formattedName);
+        $response = $organizationsClient->getOrganization($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

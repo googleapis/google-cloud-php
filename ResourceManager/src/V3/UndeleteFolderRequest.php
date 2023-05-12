@@ -24,6 +24,21 @@ class UndeleteFolderRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the folder to undelete.
+     *                     Must be of the form `folders/{folder_id}`. Please see
+     *                     {@see FoldersClient::folderName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UndeleteFolderRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

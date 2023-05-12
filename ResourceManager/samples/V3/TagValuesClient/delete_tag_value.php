@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagValues_DeleteTagValue_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\DeleteTagValueRequest;
 use Google\Cloud\ResourceManager\V3\TagValue;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_tag_value_sample(string $formattedName): void
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTagValueRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagValuesClient->deleteTagValue($formattedName);
+        $response = $tagValuesClient->deleteTagValue($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

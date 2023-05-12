@@ -38,8 +38,8 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. If set to true, any child routes that belong to this PrivateConnection will
-     * also be deleted.
+     * Optional. If set to true, any child routes that belong to this
+     * PrivateConnection will also be deleted.
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,8 +66,8 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
-     *           Optional. If set to true, any child routes that belong to this PrivateConnection will
-     *           also be deleted.
+     *           Optional. If set to true, any child routes that belong to this
+     *           PrivateConnection will also be deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,8 +148,8 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, any child routes that belong to this PrivateConnection will
-     * also be deleted.
+     * Optional. If set to true, any child routes that belong to this
+     * PrivateConnection will also be deleted.
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -160,8 +160,8 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, any child routes that belong to this PrivateConnection will
-     * also be deleted.
+     * Optional. If set to true, any child routes that belong to this
+     * PrivateConnection will also be deleted.
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

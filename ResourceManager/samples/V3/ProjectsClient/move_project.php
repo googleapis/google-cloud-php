@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_MoveProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\MoveProjectRequest;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
 use Google\Rpc\Status;
 
 /**
@@ -56,10 +57,15 @@ function move_project_sample(string $formattedName, string $destinationParent): 
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new MoveProjectRequest())
+        ->setName($formattedName)
+        ->setDestinationParent($destinationParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->moveProject($formattedName, $destinationParent);
+        $response = $projectsClient->moveProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataScanService_ListDataScans_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataScan;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\ListDataScansRequest;
 
 /**
  * Lists DataScans.
@@ -42,10 +43,14 @@ function list_data_scans_sample(string $formattedParent): void
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataScansRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataScanServiceClient->listDataScans($formattedParent);
+        $response = $dataScanServiceClient->listDataScans($request);
 
         /** @var DataScan $element */
         foreach ($response as $element) {

@@ -52,6 +52,21 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent lake:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+     *                       {@see DataplexServiceClient::lakeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListTasksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
