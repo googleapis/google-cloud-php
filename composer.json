@@ -385,8 +385,7 @@
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
             "Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/protos",
             "Google\\Cloud\\": [
-                "CommonProtos/src",
-                "src"
+                "CommonProtos/src"
             ],
             "Google\\Cloud\\AIPlatform\\": "AiPlatform/src",
             "Google\\Cloud\\AccessApproval\\": "AccessApproval/src",
@@ -604,16 +603,5 @@
     "bin": [
         "Core/bin/google-cloud-batch",
         "Debugger/bin/google-cloud-debugger"
-    ],
-    "extra": {
-        "component": {
-            "id": "google-cloud",
-            "target": "googleapis/google-cloud-php.git",
-            "path": "src",
-            "entry": [
-                "Version.php",
-                "ServiceBuilder.php"
-            ]
-        }
-    }
+    ]
 }
