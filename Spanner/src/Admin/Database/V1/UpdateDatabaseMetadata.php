@@ -22,7 +22,7 @@ class UpdateDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.UpdateDatabaseRequest request = 1;</code>
      */
-    protected $request = null;
+    private $request = null;
     /**
      * The progress of the
      * [UpdateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabase]
@@ -30,14 +30,14 @@ class UpdateDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
      */
-    protected $progress = null;
+    private $progress = null;
     /**
      * The time at which this operation was cancelled. If set, this operation is
      * in the process of undoing itself (which is best-effort).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      */
-    protected $cancel_time = null;
+    private $cancel_time = null;
 
     /**
      * Constructor.

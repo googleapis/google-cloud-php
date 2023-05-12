@@ -101,6 +101,20 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $database_dialect = 0;
+    /**
+     * Whether drop protection is enabled for this database. Defaults to false,
+     * if not set.
+     *
+     * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
+     */
+    private $enable_drop_protection = false;
+    /**
+     * Output only. If true, the database is being updated. If false, there are no
+     * ongoing update operations for the database.
+     *
+     * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $reconciling = false;
 
     /**
      * Constructor.
@@ -154,6 +168,12 @@ class Database extends \Google\Protobuf\Internal\Message
      *           DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
      *     @type int $database_dialect
      *           Output only. The dialect of the Cloud Spanner Database.
+     *     @type bool $enable_drop_protection
+     *           Whether drop protection is enabled for this database. Defaults to false,
+     *           if not set.
+     *     @type bool $reconciling
+     *           Output only. If true, the database is being updated. If false, there are no
+     *           ongoing update operations for the database.
      * }
      */
     public function __construct($data = NULL) {
@@ -509,6 +529,62 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect::class);
         $this->database_dialect = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether drop protection is enabled for this database. Defaults to false,
+     * if not set.
+     *
+     * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
+     * @return bool
+     */
+    public function getEnableDropProtection()
+    {
+        return $this->enable_drop_protection;
+    }
+
+    /**
+     * Whether drop protection is enabled for this database. Defaults to false,
+     * if not set.
+     *
+     * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDropProtection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_drop_protection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If true, the database is being updated. If false, there are no
+     * ongoing update operations for the database.
+     *
+     * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getReconciling()
+    {
+        return $this->reconciling;
+    }
+
+    /**
+     * Output only. If true, the database is being updated. If false, there are no
+     * ongoing update operations for the database.
+     *
+     * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReconciling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reconciling = $var;
 
         return $this;
     }
