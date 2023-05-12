@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A subscription resource. If none of `push_config` or `bigquery_config` is
- * set, then the subscriber will pull and ack messages using API methods. At
- * most one of these fields may be set.
+ * A subscription resource. If none of `push_config`, `bigquery_config`, or
+ * `cloud_storage_config` is set, then the subscriber will pull and ack messages
+ * using API methods. At most one of these fields may be set.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription</code>
  */
@@ -50,6 +50,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
      */
     private $bigquery_config = null;
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     */
+    private $cloud_storage_config = null;
     /**
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
@@ -221,6 +228,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
      *           If delivery to BigQuery is used with this subscription, this field is
      *           used to configure it.
+     *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig $cloud_storage_config
+     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           field is used to configure it.
      *     @type int $ack_deadline_seconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -461,6 +471,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\BigQueryConfig::class);
         $this->bigquery_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * @return \Google\Cloud\PubSub\V1\CloudStorageConfig|null
+     */
+    public function getCloudStorageConfig()
+    {
+        return $this->cloud_storage_config;
+    }
+
+    public function hasCloudStorageConfig()
+    {
+        return isset($this->cloud_storage_config);
+    }
+
+    public function clearCloudStorageConfig()
+    {
+        unset($this->cloud_storage_config);
+    }
+
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig cloud_storage_config = 22;</code>
+     * @param \Google\Cloud\PubSub\V1\CloudStorageConfig $var
+     * @return $this
+     */
+    public function setCloudStorageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\CloudStorageConfig::class);
+        $this->cloud_storage_config = $var;
 
         return $this;
     }
