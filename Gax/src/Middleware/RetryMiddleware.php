@@ -128,7 +128,7 @@ class RetryMiddleware
         }
 
         $delayMs = min($delayMs * $delayMult, $maxDelayMs);
-        $timeoutMs = min(
+        $timeoutMs = (int) min(
             $timeoutMs * $timeoutMult,
             $maxTimeoutMs,
             $deadlineMs - $this->getCurrentTimeMs()
