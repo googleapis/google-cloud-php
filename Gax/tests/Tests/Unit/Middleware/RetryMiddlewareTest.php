@@ -40,6 +40,7 @@ use Google\ApiCore\RetrySettings;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
+use function usleep;
 
 class RetryMiddlewareTest extends TestCase
 {
@@ -150,6 +151,38 @@ class RetryMiddlewareTest extends TestCase
         $middleware($call, [])->wait();
     }
 
+    public function testRetryTimeoutIsInteger()
+    {
+        $call = $this->getMockBuilder(Call::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $retrySettings = RetrySettings::constructDefault()
+            ->with([
+                'retriesEnabled' => true,
+                'retryableCodes' => [ApiStatus::CANCELLED],
+                'initialRpcTimeoutMillis' => 10000,
+                'totalTimeoutMillis' => 10000,
+            ]);
+        $callCount = 0;
+        $observedTimeouts = [];
+        $handler = function(Call $call, $options) use (&$callCount, &$observedTimeouts) {
+            $observedTimeouts[] = $options['timeoutMillis'];
+            $callCount += 1;
+            return $promise = new Promise(function () use (&$promise, $callCount) {
+                if ($callCount < 2) {
+                    throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
+                }
+                $promise->resolve('Ok!');
+            });
+        };
+        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware($call, [])->wait();
+
+        $this->assertCount(2, $observedTimeouts, 'Expect 2 attempts');
+        $this->assertSame(10000, $observedTimeouts[0], 'First timeout matches config');
+        $this->assertIsInt($observedTimeouts[1], 'Second timeout is an int');
+    }
+
     public function testTimeoutMillisCallSettingsOverwrite()
     {
         $handlerCalled = false;
@@ -194,6 +227,9 @@ class RetryMiddlewareTest extends TestCase
             $callCount += 1;
             $observedTimeouts[] = $options['timeoutMillis'];
             return $promise = new Promise(function () use (&$promise, $callCount) {
+                // each call needs to take at least 1 millisecond otherwise the rounded timeout will not decrease
+                // with each step of the test.
+                usleep(1000);
                 if ($callCount < 3) {
                     throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
                 }
