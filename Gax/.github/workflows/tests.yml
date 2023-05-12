@@ -16,10 +16,10 @@ jobs:
                 tools: [""]
                 include:
                   - php: "7.4"
-                    extensions: "protobuf,grpc-1.49.0"
+                    extensions: "protobuf,grpc"
                     tools: "pecl"
                   - php: 8.2
-                    extensions: "protobuf,grpc-1.49.0"
+                    extensions: "protobuf,grpc"
                     tools: "pecl"
         name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}"
         steps:
