@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_PauseEvaluationJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\PauseEvaluationJobRequest;
 
 /**
  * Pauses an evaluation job. Pausing an evaluation job that is already in a
@@ -40,9 +41,13 @@ function pause_evaluation_job_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new PauseEvaluationJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataLabelingServiceClient->pauseEvaluationJob($formattedName);
+        $dataLabelingServiceClient->pauseEvaluationJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

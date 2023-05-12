@@ -25,6 +25,22 @@ class GetJobTemplateRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the job template to retrieve.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/jobTemplates/{job_template}`
+     *                     Please see {@see TranscoderServiceClient::jobTemplateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Transcoder\V1\GetJobTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

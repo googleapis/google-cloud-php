@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START ids_v1_generated_IDS_CreateEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Ids\V1\Client\IDSClient;
+use Google\Cloud\Ids\V1\CreateEndpointRequest;
 use Google\Cloud\Ids\V1\Endpoint;
 use Google\Cloud\Ids\V1\Endpoint\Severity;
-use Google\Cloud\Ids\V1\IDSClient;
 use Google\Rpc\Status;
 
 /**
@@ -54,15 +55,19 @@ function create_endpoint_sample(
     // Create a client.
     $iDSClient = new IDSClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpoint = (new Endpoint())
         ->setNetwork($endpointNetwork)
         ->setSeverity($endpointSeverity);
+    $request = (new CreateEndpointRequest())
+        ->setParent($formattedParent)
+        ->setEndpointId($endpointId)
+        ->setEndpoint($endpoint);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $iDSClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $iDSClient->createEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

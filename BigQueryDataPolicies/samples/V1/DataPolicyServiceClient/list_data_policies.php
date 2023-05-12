@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerydatapolicy_v1_generated_DataPolicyService_ListDataPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient;
 use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy;
-use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\ListDataPoliciesRequest;
 
 /**
  * List all of the data policies in the specified parent project.
@@ -40,10 +41,14 @@ function list_data_policies_sample(string $formattedParent): void
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataPoliciesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataPolicyServiceClient->listDataPolicies($formattedParent);
+        $response = $dataPolicyServiceClient->listDataPolicies($request);
 
         /** @var DataPolicy $element */
         foreach ($response as $element) {

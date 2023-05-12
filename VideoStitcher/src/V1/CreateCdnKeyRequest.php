@@ -40,6 +40,30 @@ class CreateCdnKeyRequest extends \Google\Protobuf\Internal\Message
     private $cdn_key_id = '';
 
     /**
+     * @param string                                 $parent   Required. The project in which the CDN key should be created, in the form
+     *                                                         of `projects/{project_number}/locations/{location}`. Please see
+     *                                                         {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Stitcher\V1\CdnKey $cdnKey   Required. The CDN key resource to create.
+     * @param string                                 $cdnKeyId Required. The ID to use for the CDN key, which will become the final
+     *                                                         component of the CDN key's resource name.
+     *
+     *                                                         This value should conform to RFC-1034, which restricts to
+     *                                                         lower-case letters, numbers, and hyphen, with the first character a
+     *                                                         letter, the last a letter or a number, and a 63 character maximum.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Stitcher\V1\CdnKey $cdnKey, string $cdnKeyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCdnKey($cdnKey)
+            ->setCdnKeyId($cdnKeyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -59,6 +59,22 @@ class ListFederationsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The relative resource name of the location of metastore
+     *                       federations to list, in the following form:
+     *                       `projects/{project_number}/locations/{location_id}`. Please see
+     *                       {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Metastore\V1\ListFederationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

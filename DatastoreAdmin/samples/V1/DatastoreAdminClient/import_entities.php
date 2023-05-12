@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_ImportEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\ImportEntitiesRequest;
 use Google\Rpc\Status;
 
 /**
@@ -55,10 +56,15 @@ function import_entities_sample(string $projectId, string $inputUrl): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = (new ImportEntitiesRequest())
+        ->setProjectId($projectId)
+        ->setInputUrl($inputUrl);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastoreAdminClient->importEntities($projectId, $inputUrl);
+        $response = $datastoreAdminClient->importEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

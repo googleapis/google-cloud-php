@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouderrorreporting_v1beta1_generated_ReportErrorsService_ReportErrorEvent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ReportErrorsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
-use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 
@@ -82,16 +83,19 @@ function report_error_event_sample(string $formattedProjectName, string $eventMe
     // Create a client.
     $reportErrorsServiceClient = new ReportErrorsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $eventServiceContext = new ServiceContext();
     $event = (new ReportedErrorEvent())
         ->setServiceContext($eventServiceContext)
         ->setMessage($eventMessage);
+    $request = (new ReportErrorEventRequest())
+        ->setProjectName($formattedProjectName)
+        ->setEvent($event);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReportErrorEventResponse $response */
-        $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+        $response = $reportErrorsServiceClient->reportErrorEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

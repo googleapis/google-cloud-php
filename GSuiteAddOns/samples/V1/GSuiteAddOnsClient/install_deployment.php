@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_InstallDeployment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\InstallDeploymentRequest;
 
 /**
  * Installs a deployment in developer mode.
@@ -41,9 +42,13 @@ function install_deployment_sample(string $formattedName): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
+    // Prepare the request message.
+    $request = (new InstallDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $gSuiteAddOnsClient->installDeployment($formattedName);
+        $gSuiteAddOnsClient->installDeployment($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

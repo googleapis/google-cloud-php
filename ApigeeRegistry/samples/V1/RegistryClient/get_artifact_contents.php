@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_GetArtifactContents_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\HttpBody;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\GetArtifactContentsRequest;
 
 /**
  * Returns the contents of a specified artifact.
@@ -42,10 +43,14 @@ function get_artifact_contents_sample(string $formattedName): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new GetArtifactContentsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var HttpBody $response */
-        $response = $registryClient->getArtifactContents($formattedName);
+        $response = $registryClient->getArtifactContents($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

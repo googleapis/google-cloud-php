@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_CreateLiveSession_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Creates a new live session.
@@ -44,14 +45,17 @@ function create_live_session_sample(
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $liveSession = (new LiveSession())
         ->setLiveConfig($formattedLiveSessionLiveConfig);
+    $request = (new CreateLiveSessionRequest())
+        ->setParent($formattedParent)
+        ->setLiveSession($liveSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var LiveSession $response */
-        $response = $videoStitcherServiceClient->createLiveSession($formattedParent, $liveSession);
+        $response = $videoStitcherServiceClient->createLiveSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

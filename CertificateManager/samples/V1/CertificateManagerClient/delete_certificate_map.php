@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_DeleteCertificateMap_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\DeleteCertificateMapRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_certificate_map_sample(string $formattedName): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCertificateMapRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateManagerClient->deleteCertificateMap($formattedName);
+        $response = $certificateManagerClient->deleteCertificateMap($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

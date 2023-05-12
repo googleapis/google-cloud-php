@@ -24,6 +24,21 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Full name of the Backup resource.
+     *                     Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                     Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\GetBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

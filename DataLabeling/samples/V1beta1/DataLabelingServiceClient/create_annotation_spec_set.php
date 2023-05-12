@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_CreateAnnotationSpecSet_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\CreateAnnotationSpecSetRequest;
 
 /**
  * Creates an annotation spec set by providing a set of labels.
@@ -39,16 +40,16 @@ function create_annotation_spec_set_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $annotationSpecSet = new AnnotationSpecSet();
+    $request = (new CreateAnnotationSpecSetRequest())
+        ->setParent($formattedParent)
+        ->setAnnotationSpecSet($annotationSpecSet);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnnotationSpecSet $response */
-        $response = $dataLabelingServiceClient->createAnnotationSpecSet(
-            $formattedParent,
-            $annotationSpecSet
-        );
+        $response = $dataLabelingServiceClient->createAnnotationSpecSet($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

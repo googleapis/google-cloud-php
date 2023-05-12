@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_CreateEvaluationJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\CreateEvaluationJobRequest;
 use Google\Cloud\DataLabeling\V1beta1\EvaluationJob;
 
 /**
@@ -39,13 +40,16 @@ function create_evaluation_job_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $job = new EvaluationJob();
+    $request = (new CreateEvaluationJobRequest())
+        ->setParent($formattedParent)
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
         /** @var EvaluationJob $response */
-        $response = $dataLabelingServiceClient->createEvaluationJob($formattedParent, $job);
+        $response = $dataLabelingServiceClient->createEvaluationJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

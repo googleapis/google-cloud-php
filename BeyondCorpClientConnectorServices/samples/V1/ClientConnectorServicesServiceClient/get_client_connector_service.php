@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_ClientConnectorServicesService_GetClientConnectorService_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\GetClientConnectorServiceRequest;
 
 /**
  * Gets details of a single ClientConnectorService.
@@ -38,10 +39,14 @@ function get_client_connector_service_sample(string $formattedName): void
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetClientConnectorServiceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ClientConnectorService $response */
-        $response = $clientConnectorServicesServiceClient->getClientConnectorService($formattedName);
+        $response = $clientConnectorServicesServiceClient->getClientConnectorService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

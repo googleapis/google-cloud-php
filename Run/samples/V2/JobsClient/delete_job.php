@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Jobs_DeleteJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\JobsClient;
+use Google\Cloud\Run\V2\DeleteJobRequest;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\JobsClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_job_sample(string $formattedName): void
     // Create a client.
     $jobsClient = new JobsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobsClient->deleteJob($formattedName);
+        $response = $jobsClient->deleteJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

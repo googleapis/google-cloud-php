@@ -63,6 +63,30 @@ class CreateClientConnectorServiceRequest extends \Google\Protobuf\Internal\Mess
     private $validate_only = false;
 
     /**
+     * @param string                                                                     $parent                   Required. Value for parent. Please see
+     *                                                                                                             {@see ClientConnectorServicesServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService $clientConnectorService   Required. The resource being created.
+     * @param string                                                                     $clientConnectorServiceId Optional. User-settable client connector service resource ID.
+     *                                                                                                             * Must start with a letter.
+     *                                                                                                             * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+     *                                                                                                             * Must end with a number or a letter.
+     *
+     *                                                                                                             A random system generated name will be assigned
+     *                                                                                                             if not specified by the user.
+     *
+     * @return \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\CreateClientConnectorServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService $clientConnectorService, string $clientConnectorServiceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setClientConnectorService($clientConnectorService)
+            ->setClientConnectorServiceId($clientConnectorServiceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

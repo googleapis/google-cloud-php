@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmwareengine_v1_generated_VmwareEngine_GetVmwareEngineNetwork_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\GetVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 
 /**
@@ -45,10 +46,14 @@ function get_vmware_engine_network_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new GetVmwareEngineNetworkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var VmwareEngineNetwork $response */
-        $response = $vmwareEngineClient->getVmwareEngineNetwork($formattedName);
+        $response = $vmwareEngineClient->getVmwareEngineNetwork($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

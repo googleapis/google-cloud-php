@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_ResumeEvaluationJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\ResumeEvaluationJobRequest;
 
 /**
  * Resumes a paused evaluation job. A deleted evaluation job can't be resumed.
@@ -40,9 +41,13 @@ function resume_evaluation_job_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResumeEvaluationJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataLabelingServiceClient->resumeEvaluationJob($formattedName);
+        $dataLabelingServiceClient->resumeEvaluationJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

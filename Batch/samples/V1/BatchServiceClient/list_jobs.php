@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START batch_v1_generated_BatchService_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Batch\V1\BatchServiceClient;
+use Google\Cloud\Batch\V1\Client\BatchServiceClient;
 use Google\Cloud\Batch\V1\Job;
+use Google\Cloud\Batch\V1\ListJobsRequest;
 
 /**
  * List all Jobs for a project within a region.
@@ -42,10 +43,13 @@ function list_jobs_sample(): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
+    // Prepare the request message.
+    $request = new ListJobsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $batchServiceClient->listJobs();
+        $response = $batchServiceClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

@@ -53,6 +53,40 @@ class CreateAwsClusterRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                    $parent       Required. The parent location where this
+     *                                                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will be
+     *                                                                created.
+     *
+     *                                                                Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                                                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                                                for more details on Google Cloud resource names. Please see
+     *                                                                {@see AwsClustersClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsCluster $awsCluster   Required. The specification of the
+     *                                                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
+     * @param string                                    $awsClusterId Required. A client provided ID the resource. Must be unique within the
+     *                                                                parent resource.
+     *
+     *                                                                The provided ID will be part of the
+     *                                                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource name
+     *                                                                formatted as
+     *                                                                `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *                                                                Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\CreateAwsClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeMultiCloud\V1\AwsCluster $awsCluster, string $awsClusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAwsCluster($awsCluster)
+            ->setAwsClusterId($awsClusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

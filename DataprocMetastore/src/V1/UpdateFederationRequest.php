@@ -50,6 +50,28 @@ class UpdateFederationRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Metastore\V1\Federation $federation Required. The metastore federation to update. The server only merges fields
+     *                                                          in the service if they are specified in `update_mask`.
+     *
+     *                                                          The metastore federation's `name` field is used to identify the
+     *                                                          metastore service to be updated.
+     * @param \Google\Protobuf\FieldMask            $updateMask Required. A field mask used to specify the fields to be overwritten in the
+     *                                                          metastore federation resource by the update.
+     *                                                          Fields specified in the `update_mask` are relative to the resource (not
+     *                                                          to the full request). A field is overwritten if it is in the mask.
+     *
+     * @return \Google\Cloud\Metastore\V1\UpdateFederationRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Metastore\V1\Federation $federation, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFederation($federation)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

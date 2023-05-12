@@ -83,6 +83,24 @@ class ListPrivateCloudsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the private cloud to be queried for
+     *                       clusters. Resource names are schemeless URIs that follow the conventions in
+     *                       https://cloud.google.com/apis/design/resource_names.
+     *                       For example:
+     *                       `projects/my-project/locations/us-central1-a`
+     *                       Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

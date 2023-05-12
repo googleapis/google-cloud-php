@@ -24,6 +24,21 @@ class DeleteCertificateMapRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A name of the certificate map to delete. Must be in the format
+     *                     `projects/&#42;/locations/&#42;/certificateMaps/*`. Please see
+     *                     {@see CertificateManagerClient::certificateMapName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\DeleteCertificateMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

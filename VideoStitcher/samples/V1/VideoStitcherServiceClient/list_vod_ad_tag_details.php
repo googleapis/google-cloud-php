@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_ListVodAdTagDetails_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 
 /**
@@ -40,10 +41,14 @@ function list_vod_ad_tag_details_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListVodAdTagDetailsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listVodAdTagDetails($formattedParent);
+        $response = $videoStitcherServiceClient->listVodAdTagDetails($request);
 
         /** @var VodAdTagDetail $element */
         foreach ($response as $element) {

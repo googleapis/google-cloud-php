@@ -37,6 +37,29 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ApiKeys\V2\Key $key        Required. Set the `name` field to the resource name of the API key to be
+     *                                                 updated. You can update only the `display_name`, `restrictions`, and
+     *                                                 `annotations` fields.
+     * @param \Google\Protobuf\FieldMask   $updateMask The field mask specifies which fields to be updated as part of this
+     *                                                 request. All other fields are ignored.
+     *                                                 Mutable fields are: `display_name`, `restrictions`, and `annotations`.
+     *                                                 If an update mask is not provided, the service treats it as an implied mask
+     *                                                 equivalent to all allowed fields that are set on the wire. If the field
+     *                                                 mask has a special value "*", the service treats it equivalent to replace
+     *                                                 all allowed mutable fields.
+     *
+     * @return \Google\Cloud\ApiKeys\V2\UpdateKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApiKeys\V2\Key $key, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setKey($key)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

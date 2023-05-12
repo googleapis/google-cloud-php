@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataflow_v1beta3_generated_SnapshotsV1Beta3_ListSnapshots_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataflow\V1beta3\Client\SnapshotsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\ListSnapshotsRequest;
 use Google\Cloud\Dataflow\V1beta3\ListSnapshotsResponse;
-use Google\Cloud\Dataflow\V1beta3\SnapshotsV1Beta3Client;
 
 /**
  * Lists snapshots.
@@ -41,10 +42,13 @@ function list_snapshots_sample(): void
     // Create a client.
     $snapshotsV1Beta3Client = new SnapshotsV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new ListSnapshotsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ListSnapshotsResponse $response */
-        $response = $snapshotsV1Beta3Client->listSnapshots();
+        $response = $snapshotsV1Beta3Client->listSnapshots($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

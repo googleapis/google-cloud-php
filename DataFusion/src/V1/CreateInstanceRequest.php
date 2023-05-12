@@ -36,6 +36,25 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param string                               $parent     Required. The instance's project and location in the format
+     *                                                         projects/{project}/locations/{location}. Please see
+     *                                                         {@see DataFusionClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\DataFusion\V1\Instance $instance   An instance resource.
+     * @param string                               $instanceId Required. The name of the instance to create.
+     *
+     * @return \Google\Cloud\DataFusion\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataFusion\V1\Instance $instance, string $instanceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstance($instance)
+            ->setInstanceId($instanceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

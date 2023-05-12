@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_CatalogService_GetCatalogItem_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest;
 
 /**
  * Gets a specific catalog item.
@@ -39,10 +40,14 @@ function get_catalog_item_sample(string $formattedName): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetCatalogItemRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CatalogItem $response */
-        $response = $catalogServiceClient->getCatalogItem($formattedName);
+        $response = $catalogServiceClient->getCatalogItem($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

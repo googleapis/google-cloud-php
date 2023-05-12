@@ -40,6 +40,23 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
     private $data_exchange = null;
 
     /**
+     * @param string                                                   $parent       Required. The parent resource path of the data exchange.
+     *                                                                               e.g. `projects/myproject/locations/US`. Please see
+     *                                                                               {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange Required. The data exchange to create.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateDataExchangeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataExchange($dataExchange);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

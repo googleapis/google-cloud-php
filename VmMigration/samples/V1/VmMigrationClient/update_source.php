@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_UpdateSource_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\Source;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_source_sample(): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $source = new Source();
+    $request = (new UpdateSourceRequest())
+        ->setSource($source);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->updateSource($source);
+        $response = $vmMigrationClient->updateSource($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

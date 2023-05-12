@@ -49,6 +49,21 @@ class ListApiSpecsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of specs.
+     *                       Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     *                       Please see {@see RegistryClient::apiVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\ListApiSpecsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

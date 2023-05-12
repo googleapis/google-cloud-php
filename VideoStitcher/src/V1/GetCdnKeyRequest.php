@@ -24,6 +24,21 @@ class GetCdnKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the CDN key to be retrieved, in the form of
+     *                     `projects/{project}/locations/{location}/cdnKeys/{id}`. Please see
+     *                     {@see VideoStitcherServiceClient::cdnKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_UpdateGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\Group;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\UpdateGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_group_sample(): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $group = new Group();
+    $request = (new UpdateGroupRequest())
+        ->setGroup($group);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->updateGroup($group);
+        $response = $vmMigrationClient->updateGroup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

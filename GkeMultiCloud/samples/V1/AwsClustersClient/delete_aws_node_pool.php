@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AwsClusters_DeleteAwsNodePool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\DeleteAwsNodePoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function delete_aws_node_pool_sample(string $formattedName): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAwsNodePoolRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $awsClustersClient->deleteAwsNodePool($formattedName);
+        $response = $awsClustersClient->deleteAwsNodePool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

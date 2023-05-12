@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_UpdateRestore_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\Restore;
+use Google\Cloud\GkeBackup\V1\UpdateRestoreRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,14 +44,16 @@ function update_restore_sample(string $formattedRestoreBackup): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restore = (new Restore())
         ->setBackup($formattedRestoreBackup);
+    $request = (new UpdateRestoreRequest())
+        ->setRestore($restore);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->updateRestore($restore);
+        $response = $backupForGKEClient->updateRestore($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AttachedClusters_DeleteAttachedCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\DeleteAttachedClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function delete_attached_cluster_sample(string $formattedName): void
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAttachedClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $attachedClustersClient->deleteAttachedCluster($formattedName);
+        $response = $attachedClustersClient->deleteAttachedCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

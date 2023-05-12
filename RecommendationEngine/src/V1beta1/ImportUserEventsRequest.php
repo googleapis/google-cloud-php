@@ -47,6 +47,32 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     private $errors_config = null;
 
     /**
+     * @param string                                                        $parent       Required.
+     *                                                                                    `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
+     *                                                                                    Please see {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     * @param string                                                        $requestId    Optional. Unique identifier provided by client, within the ancestor
+     *                                                                                    dataset scope. Ensures idempotency for expensive long running operations.
+     *                                                                                    Server-generated if unspecified. Up to 128 characters long. This is
+     *                                                                                    returned as google.longrunning.Operation.name in the response. Note that
+     *                                                                                    this field must not be set if the desired input config is
+     *                                                                                    catalog_inline_source.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\InputConfig        $inputConfig  Required. The desired input location of the data.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig $errorsConfig Optional. The desired location of errors incurred during the Import.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $requestId, \Google\Cloud\RecommendationEngine\V1beta1\InputConfig $inputConfig, \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig $errorsConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRequestId($requestId)
+            ->setInputConfig($inputConfig)
+            ->setErrorsConfig($errorsConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

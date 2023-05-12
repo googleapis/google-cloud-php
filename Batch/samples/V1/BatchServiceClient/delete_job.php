@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START batch_v1_generated_BatchService_DeleteJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Batch\V1\BatchServiceClient;
+use Google\Cloud\Batch\V1\Client\BatchServiceClient;
+use Google\Cloud\Batch\V1\DeleteJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,13 @@ function delete_job_sample(): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
+    // Prepare the request message.
+    $request = new DeleteJobRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $batchServiceClient->deleteJob();
+        $response = $batchServiceClient->deleteJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

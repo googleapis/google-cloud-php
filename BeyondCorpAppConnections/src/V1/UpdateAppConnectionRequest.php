@@ -65,6 +65,28 @@ class UpdateAppConnectionRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection Required. AppConnection message with updated fields. Only supported fields
+     *                                                                                specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask                               $updateMask    Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                                this field. The elements of the repeated paths field may only include these
+     *                                                                                fields from [BeyondCorp.AppConnection]:
+     *                                                                                * `labels`
+     *                                                                                * `display_name`
+     *                                                                                * `application_endpoint`
+     *                                                                                * `connectors`
+     *
+     * @return \Google\Cloud\BeyondCorp\AppConnections\V1\UpdateAppConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAppConnection($appConnection)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

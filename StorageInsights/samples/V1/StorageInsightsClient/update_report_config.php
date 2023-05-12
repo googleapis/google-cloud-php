@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storageinsights_v1_generated_StorageInsights_UpdateReportConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\UpdateReportConfigRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_report_config_sample(): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $reportConfig = new ReportConfig();
+    $request = (new UpdateReportConfigRequest())
+        ->setUpdateMask($updateMask)
+        ->setReportConfig($reportConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReportConfig $response */
-        $response = $storageInsightsClient->updateReportConfig($updateMask, $reportConfig);
+        $response = $storageInsightsClient->updateReportConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

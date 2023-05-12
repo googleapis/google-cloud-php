@@ -32,6 +32,25 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
     private $requests;
 
     /**
+     * @param string                                           $parent   Required. The connection to contain all the repositories being created.
+     *                                                                   Format: projects/&#42;/locations/&#42;/connections/*
+     *                                                                   The parent field in the CreateRepositoryRequest messages
+     *                                                                   must either be empty or match this field. Please see
+     *                                                                   {@see RepositoryManagerClient::connectionName()} for help formatting this field.
+     * @param \Google\Cloud\Build\V2\CreateRepositoryRequest[] $requests Required. The request messages specifying the repositories to create.
+     *
+     * @return \Google\Cloud\Build\V2\BatchCreateRepositoriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $requests): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRequests($requests);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

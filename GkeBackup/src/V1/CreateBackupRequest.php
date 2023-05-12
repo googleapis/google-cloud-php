@@ -42,6 +42,32 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     private $backup_id = '';
 
     /**
+     * @param string                            $parent   Required. The BackupPlan within which to create the Backup.
+     *                                                    Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                                                    Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
+     * @param \Google\Cloud\GkeBackup\V1\Backup $backup   The Backup resource to create.
+     * @param string                            $backupId The client-provided short name for the Backup resource.
+     *                                                    This name must:
+     *
+     *                                                    - be between 1 and 63 characters long (inclusive)
+     *                                                    - consist of only lower-case ASCII letters, numbers, and dashes
+     *                                                    - start with a lower-case letter
+     *                                                    - end with a lower-case letter or number
+     *                                                    - be unique within the set of Backups in this BackupPlan
+     *
+     * @return \Google\Cloud\GkeBackup\V1\CreateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeBackup\V1\Backup $backup, string $backupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBackup($backup)
+            ->setBackupId($backupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

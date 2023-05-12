@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datafusion_v1_generated_DataFusion_GetInstance_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
+use Google\Cloud\DataFusion\V1\GetInstanceRequest;
 use Google\Cloud\DataFusion\V1\Instance;
 
 /**
@@ -39,10 +40,14 @@ function get_instance_sample(string $formattedName): void
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Instance $response */
-        $response = $dataFusionClient->getInstance($formattedName);
+        $response = $dataFusionClient->getInstance($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

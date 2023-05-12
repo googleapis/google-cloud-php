@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListPrivateClouds_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 
 /**
  * Lists `PrivateCloud` resources in a given project and location.
@@ -43,10 +44,14 @@ function list_private_clouds_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListPrivateCloudsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listPrivateClouds($formattedParent);
+        $response = $vmwareEngineClient->listPrivateClouds($request);
 
         /** @var PrivateCloud $element */
         foreach ($response as $element) {

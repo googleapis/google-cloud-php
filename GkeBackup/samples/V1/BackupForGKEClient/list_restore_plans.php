@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_ListRestorePlans_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListRestorePlansRequest;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
 
 /**
@@ -40,10 +41,14 @@ function list_restore_plans_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListRestorePlansRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listRestorePlans($formattedParent);
+        $response = $backupForGKEClient->listRestorePlans($request);
 
         /** @var RestorePlan $element */
         foreach ($response as $element) {

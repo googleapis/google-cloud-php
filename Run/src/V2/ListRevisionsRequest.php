@@ -45,6 +45,23 @@ class ListRevisionsRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The Service from which the Revisions should be listed.
+     *                       To list all Revisions across Services, use "-" instead of Service name.
+     *                       Format:
+     *                       projects/{project}/locations/{location}/services/{service}
+     *                       Please see {@see RevisionsClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\ListRevisionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

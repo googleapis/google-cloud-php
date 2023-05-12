@@ -27,6 +27,25 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     private $group_name = '';
 
     /**
+     * @param string $groupName Required. The group resource name. Written as
+     *                          `projects/{projectID}/groups/{group_name}`. Call
+     *                          [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     *                          to return a list of groups belonging to this project.
+     *
+     *                          Example: `projects/my-project-123/groups/my-group`
+     *                          Please see {@see ErrorGroupServiceClient::errorGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $groupName): self
+    {
+        return (new self())
+            ->setGroupName($groupName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

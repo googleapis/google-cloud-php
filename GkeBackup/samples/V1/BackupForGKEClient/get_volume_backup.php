@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkebackup_v1_generated_BackupForGKE_GetVolumeBackup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\GetVolumeBackupRequest;
 use Google\Cloud\GkeBackup\V1\VolumeBackup;
 
 /**
@@ -39,10 +40,14 @@ function get_volume_backup_sample(string $formattedName): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new GetVolumeBackupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var VolumeBackup $response */
-        $response = $backupForGKEClient->getVolumeBackup($formattedName);
+        $response = $backupForGKEClient->getVolumeBackup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

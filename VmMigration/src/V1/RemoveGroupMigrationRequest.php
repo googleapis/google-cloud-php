@@ -29,6 +29,20 @@ class RemoveGroupMigrationRequest extends \Google\Protobuf\Internal\Message
     private $migrating_vm = '';
 
     /**
+     * @param string $group Required. The name of the Group. Please see
+     *                      {@see VmMigrationClient::groupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $group): self
+    {
+        return (new self())
+            ->setGroup($group);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

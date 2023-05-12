@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_ReplaceArtifact_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\Artifact;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\ReplaceArtifactRequest;
 
 /**
  * Used to replace a specified artifact.
@@ -41,13 +42,15 @@ function replace_artifact_sample(): void
     // Create a client.
     $registryClient = new RegistryClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $artifact = new Artifact();
+    $request = (new ReplaceArtifactRequest())
+        ->setArtifact($artifact);
 
     // Call the API and handle any network failures.
     try {
         /** @var Artifact $response */
-        $response = $registryClient->replaceArtifact($artifact);
+        $response = $registryClient->replaceArtifact($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

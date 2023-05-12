@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_MoveDirectory_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\MoveDirectoryRequest;
 use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 
 /**
@@ -43,10 +44,16 @@ function move_directory_sample(string $formattedWorkspace, string $path, string 
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new MoveDirectoryRequest())
+        ->setWorkspace($formattedWorkspace)
+        ->setPath($path)
+        ->setNewPath($newPath);
+
     // Call the API and handle any network failures.
     try {
         /** @var MoveDirectoryResponse $response */
-        $response = $dataformClient->moveDirectory($formattedWorkspace, $path, $newPath);
+        $response = $dataformClient->moveDirectory($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

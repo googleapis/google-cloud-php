@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Revisions_DeleteRevision_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\RevisionsClient;
+use Google\Cloud\Run\V2\DeleteRevisionRequest;
 use Google\Cloud\Run\V2\Revision;
-use Google\Cloud\Run\V2\RevisionsClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_revision_sample(string $formattedName): void
     // Create a client.
     $revisionsClient = new RevisionsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRevisionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $revisionsClient->deleteRevision($formattedName);
+        $response = $revisionsClient->deleteRevision($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

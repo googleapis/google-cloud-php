@@ -31,6 +31,24 @@ class CreateDataPolicyRequest extends \Google\Protobuf\Internal\Message
     private $data_policy = null;
 
     /**
+     * @param string                                            $parent     Required. Resource name of the project that the data policy will belong to.
+     *                                                                      The format is `projects/{project_number}/locations/{location_id}`. Please see
+     *                                                                      {@see DataPolicyServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy $dataPolicy Required. The data policy to create. The `name` field does not need to be
+     *                                                                      provided for the data policy creation.
+     *
+     * @return \Google\Cloud\BigQuery\DataPolicies\V1\CreateDataPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy $dataPolicy): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataPolicy($dataPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -51,6 +51,24 @@ class CreateCutoverJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                  $parent       Required. The Cutover's parent. Please see
+     *                                                              {@see VmMigrationClient::migratingVmName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\CutoverJob $cutoverJob   Required. The cutover request body.
+     * @param string                                  $cutoverJobId Required. The cutover job identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateCutoverJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\CutoverJob $cutoverJob, string $cutoverJobId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCutoverJob($cutoverJob)
+            ->setCutoverJobId($cutoverJobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersRequest;
 
 /**
  * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
@@ -46,10 +47,14 @@ function list_aws_clusters_sample(string $formattedParent): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new ListAwsClustersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $awsClustersClient->listAwsClusters($formattedParent);
+        $response = $awsClustersClient->listAwsClusters($request);
 
         /** @var AwsCluster $element */
         foreach ($response as $element) {

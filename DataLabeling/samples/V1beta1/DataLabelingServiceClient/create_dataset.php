@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_CreateDataset_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\CreateDatasetRequest;
 use Google\Cloud\DataLabeling\V1beta1\Dataset;
 
 /**
@@ -39,13 +40,16 @@ function create_dataset_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataset = new Dataset();
+    $request = (new CreateDatasetRequest())
+        ->setParent($formattedParent)
+        ->setDataset($dataset);
 
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $dataLabelingServiceClient->createDataset($formattedParent, $dataset);
+        $response = $dataLabelingServiceClient->createDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

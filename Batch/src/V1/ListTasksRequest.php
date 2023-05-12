@@ -45,6 +45,22 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of a TaskGroup from which Tasks are being requested.
+     *                       Pattern:
+     *                       "projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}"
+     *                       Please see {@see BatchServiceClient::taskGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Batch\V1\ListTasksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_PredictionApiKeyRegistry_ListPredictionApiKeyRegistrations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\PredictionApiKeyRegistryClient;
+use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistryClient;
 
 /**
  * List the registered apiKeys for use with predict method.
@@ -40,10 +41,14 @@ function list_prediction_api_key_registrations_sample(string $formattedParent): 
     // Create a client.
     $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
 
+    // Prepare the request message.
+    $request = (new ListPredictionApiKeyRegistrationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations($formattedParent);
+        $response = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations($request);
 
         /** @var PredictionApiKeyRegistration $element */
         foreach ($response as $element) {

@@ -31,6 +31,20 @@ class DeleteLineageEventRequest extends \Google\Protobuf\Internal\Message
     protected $allow_missing = false;
 
     /**
+     * @param string $name Required. The name of the lineage event to delete. Please see
+     *                     {@see LineageClient::lineageEventName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\DeleteLineageEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

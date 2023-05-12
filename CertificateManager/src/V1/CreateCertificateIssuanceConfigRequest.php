@@ -36,6 +36,25 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
     private $certificate_issuance_config = null;
 
     /**
+     * @param string                                                        $parent                      Required. The parent resource of the certificate issuance config. Must be
+     *                                                                                                   in the format `projects/&#42;/locations/*`. Please see
+     *                                                                                                   {@see CertificateManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig $certificateIssuanceConfig   Required. A definition of the certificate issuance config to create.
+     * @param string                                                        $certificateIssuanceConfigId Required. A user-provided name of the certificate config.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\CreateCertificateIssuanceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig $certificateIssuanceConfig, string $certificateIssuanceConfigId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCertificateIssuanceConfig($certificateIssuanceConfig)
+            ->setCertificateIssuanceConfigId($certificateIssuanceConfigId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

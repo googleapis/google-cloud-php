@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START storageinsights_v1_generated_StorageInsights_ListReportConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\ListReportConfigsRequest;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
 
 /**
  * Lists ReportConfigs in a given project and location.
@@ -39,10 +40,14 @@ function list_report_configs_sample(string $formattedParent): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
+    // Prepare the request message.
+    $request = (new ListReportConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storageInsightsClient->listReportConfigs($formattedParent);
+        $response = $storageInsightsClient->listReportConfigs($request);
 
         /** @var ReportConfig $element */
         foreach ($response as $element) {

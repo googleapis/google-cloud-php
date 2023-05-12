@@ -56,6 +56,21 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of targets. Format must be
+     *                       projects/{project_id}/locations/{location_name}. Please see
+     *                       {@see CloudDeployClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\ListTargetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

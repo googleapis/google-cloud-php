@@ -68,6 +68,40 @@ class CreateNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                      $parent          Required. The resource name of the location (region)
+     *                                                                     to create the new network policy in.
+     *                                                                     Resource names are schemeless URIs that follow the conventions in
+     *                                                                     https://cloud.google.com/apis/design/resource_names.
+     *                                                                     For example:
+     *                                                                     `projects/my-project/locations/us-central1`
+     *                                                                     Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VmwareEngine\V1\NetworkPolicy $networkPolicy   Required. The network policy configuration to use in the request.
+     * @param string                                      $networkPolicyId Required. The user-provided identifier of the network policy to be created.
+     *                                                                     This identifier must be unique within parent
+     *                                                                     `projects/{my-project}/locations/{us-central1}/networkPolicies` and becomes
+     *                                                                     the final token in the name URI.
+     *                                                                     The identifier must meet the following requirements:
+     *
+     *                                                                     * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                                     * Begins with an alphabetical character
+     *                                                                     * Ends with a non-hyphen character
+     *                                                                     * Not formatted as a UUID
+     *                                                                     * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                                     (section 3.5)
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VmwareEngine\V1\NetworkPolicy $networkPolicy, string $networkPolicyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNetworkPolicy($networkPolicy)
+            ->setNetworkPolicyId($networkPolicyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

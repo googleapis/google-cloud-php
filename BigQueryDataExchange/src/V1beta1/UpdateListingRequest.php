@@ -31,6 +31,23 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     private $listing = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing    Required. The listing to update.
+     * @param \Google\Protobuf\FieldMask                          $updateMask Required. Field mask specifies the fields to update in the listing resource. The
+     *                                                                        fields specified in the `updateMask` are relative to the resource and are
+     *                                                                        not a full request.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateListingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setListing($listing)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

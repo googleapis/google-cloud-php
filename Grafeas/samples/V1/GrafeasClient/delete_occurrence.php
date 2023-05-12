@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START containeranalysis_v1_generated_Grafeas_DeleteOccurrence_sync]
 use Google\ApiCore\ApiException;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
+use Grafeas\V1\DeleteOccurrenceRequest;
 
 /**
  * Deletes the specified occurrence. For example, use this method to delete an
@@ -40,9 +41,13 @@ function delete_occurrence_sample(string $formattedName): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
+    // Prepare the request message.
+    $request = (new DeleteOccurrenceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $grafeasClient->deleteOccurrence($formattedName);
+        $grafeasClient->deleteOccurrence($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

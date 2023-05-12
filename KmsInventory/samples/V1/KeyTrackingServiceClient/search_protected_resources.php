@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START kmsinventory_v1_generated_KeyTrackingService_SearchProtectedResources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Kms\Inventory\V1\KeyTrackingServiceClient;
+use Google\Cloud\Kms\Inventory\V1\Client\KeyTrackingServiceClient;
 use Google\Cloud\Kms\Inventory\V1\ProtectedResource;
+use Google\Cloud\Kms\Inventory\V1\SearchProtectedResourcesRequest;
 
 /**
  * Returns metadata about the resources protected by the given Cloud KMS
@@ -43,10 +44,15 @@ function search_protected_resources_sample(string $formattedScope, string $crypt
     // Create a client.
     $keyTrackingServiceClient = new KeyTrackingServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchProtectedResourcesRequest())
+        ->setScope($formattedScope)
+        ->setCryptoKey($cryptoKey);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $keyTrackingServiceClient->searchProtectedResources($formattedScope, $cryptoKey);
+        $response = $keyTrackingServiceClient->searchProtectedResources($request);
 
         /** @var ProtectedResource $element */
         foreach ($response as $element) {

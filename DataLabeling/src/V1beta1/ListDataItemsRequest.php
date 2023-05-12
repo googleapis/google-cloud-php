@@ -47,6 +47,23 @@ class ListDataItemsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of the dataset to list data items, format:
+     *                       projects/{project_id}/datasets/{dataset_id}
+     *                       Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+     * @param string $filter Optional. Filter is not supported at this moment.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\ListDataItemsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

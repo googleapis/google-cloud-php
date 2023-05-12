@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_IgnoreJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\IgnoreJobRequest;
 use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 
 /**
@@ -42,10 +43,16 @@ function ignore_job_sample(string $formattedRollout, string $phaseId, string $jo
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new IgnoreJobRequest())
+        ->setRollout($formattedRollout)
+        ->setPhaseId($phaseId)
+        ->setJobId($jobId);
+
     // Call the API and handle any network failures.
     try {
         /** @var IgnoreJobResponse $response */
-        $response = $cloudDeployClient->ignoreJob($formattedRollout, $phaseId, $jobId);
+        $response = $cloudDeployClient->ignoreJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

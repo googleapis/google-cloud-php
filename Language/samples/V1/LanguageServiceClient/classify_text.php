@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START language_v1_generated_LanguageService_ClassifyText_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
+use Google\Cloud\Language\V1\Client\LanguageServiceClient;
 use Google\Cloud\Language\V1\Document;
-use Google\Cloud\Language\V1\LanguageServiceClient;
 
 /**
  * Classifies a document into categories.
@@ -42,13 +43,15 @@ function classify_text_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
+    $request = (new ClassifyTextRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
         /** @var ClassifyTextResponse $response */
-        $response = $languageServiceClient->classifyText($document);
+        $response = $languageServiceClient->classifyText($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

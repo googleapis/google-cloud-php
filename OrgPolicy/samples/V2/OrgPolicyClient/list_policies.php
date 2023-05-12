@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\Policy;
 
 /**
@@ -45,10 +46,14 @@ function list_policies_sample(string $formattedParent): void
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
+    // Prepare the request message.
+    $request = (new ListPoliciesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $orgPolicyClient->listPolicies($formattedParent);
+        $response = $orgPolicyClient->listPolicies($request);
 
         /** @var Policy $element */
         foreach ($response as $element) {

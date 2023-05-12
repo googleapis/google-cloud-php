@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_GetDeployment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
 use Google\Cloud\GSuiteAddOns\V1\Deployment;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\GetDeploymentRequest;
 
 /**
  * Gets the deployment with the specified name.
@@ -40,10 +41,14 @@ function get_deployment_sample(string $formattedName): void
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
+    // Prepare the request message.
+    $request = (new GetDeploymentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Deployment $response */
-        $response = $gSuiteAddOnsClient->getDeployment($formattedName);
+        $response = $gSuiteAddOnsClient->getDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

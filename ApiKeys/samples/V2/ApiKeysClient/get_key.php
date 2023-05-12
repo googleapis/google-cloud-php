@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START apikeys_v2_generated_ApiKeys_GetKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\GetKeyRequest;
 use Google\Cloud\ApiKeys\V2\Key;
 
 /**
@@ -42,10 +43,14 @@ function get_key_sample(string $formattedName): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
+    // Prepare the request message.
+    $request = (new GetKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Key $response */
-        $response = $apiKeysClient->getKey($formattedName);
+        $response = $apiKeysClient->getKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

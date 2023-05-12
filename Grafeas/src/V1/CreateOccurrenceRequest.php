@@ -30,6 +30,23 @@ class CreateOccurrenceRequest extends \Google\Protobuf\Internal\Message
     private $occurrence = null;
 
     /**
+     * @param string                 $parent     The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *                                           the occurrence is to be created. Please see
+     *                                           {@see GrafeasClient::projectName()} for help formatting this field.
+     * @param \Grafeas\V1\Occurrence $occurrence The occurrence to create.
+     *
+     * @return \Grafeas\V1\CreateOccurrenceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Grafeas\V1\Occurrence $occurrence): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setOccurrence($occurrence);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

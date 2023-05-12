@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AttachedClusters_GetAttachedServerConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AttachedServerConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAttachedServerConfigRequest;
 
 /**
  * Returns information, such as supported Kubernetes versions, on a given
@@ -47,10 +48,14 @@ function get_attached_server_config_sample(string $formattedName): void
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAttachedServerConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AttachedServerConfig $response */
-        $response = $attachedClustersClient->getAttachedServerConfig($formattedName);
+        $response = $attachedClustersClient->getAttachedServerConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

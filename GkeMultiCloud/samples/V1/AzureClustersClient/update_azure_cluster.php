@@ -29,10 +29,11 @@ use Google\Cloud\GkeMultiCloud\V1\AzureAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterUser;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
+use Google\Cloud\GkeMultiCloud\V1\UpdateAzureClusterRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -102,7 +103,7 @@ function update_azure_cluster_sample(
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $azureClusterNetworkingPodAddressCidrBlocks = [
         $azureClusterNetworkingPodAddressCidrBlocksElement,
     ];
@@ -133,11 +134,14 @@ function update_azure_cluster_sample(
         ->setAuthorization($azureClusterAuthorization)
         ->setFleet($azureClusterFleet);
     $updateMask = new FieldMask();
+    $request = (new UpdateAzureClusterRequest())
+        ->setAzureCluster($azureCluster)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $azureClustersClient->updateAzureCluster($azureCluster, $updateMask);
+        $response = $azureClustersClient->updateAzureCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

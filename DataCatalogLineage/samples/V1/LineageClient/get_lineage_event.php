@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalineage_v1_generated_Lineage_GetLineageEvent_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\GetLineageEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
 
 /**
@@ -38,10 +39,14 @@ function get_lineage_event_sample(string $formattedName): void
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new GetLineageEventRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var LineageEvent $response */
-        $response = $lineageClient->getLineageEvent($formattedName);
+        $response = $lineageClient->getLineageEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmwareengine_v1_generated_VmwareEngine_GetNetworkPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\GetNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 
 /**
  * Retrieves a `NetworkPolicy` resource by its resource name.
@@ -42,10 +43,14 @@ function get_network_policy_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new GetNetworkPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworkPolicy $response */
-        $response = $vmwareEngineClient->getNetworkPolicy($formattedName);
+        $response = $vmwareEngineClient->getNetworkPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

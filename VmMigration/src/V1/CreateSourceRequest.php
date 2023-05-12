@@ -51,6 +51,24 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                              $parent   Required. The Source's parent. Please see
+     *                                                      {@see VmMigrationClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\Source $source   Required. The create request body.
+     * @param string                              $sourceId Required. The source identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\Source $source, string $sourceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSource($source)
+            ->setSourceId($sourceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

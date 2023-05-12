@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START livestream_v1_generated_LivestreamService_GetInput_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
 
 /**
  * Returns the specified input.
@@ -39,10 +40,14 @@ function get_input_sample(string $formattedName): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetInputRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Input $response */
-        $response = $livestreamServiceClient->getInput($formattedName);
+        $response = $livestreamServiceClient->getInput($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

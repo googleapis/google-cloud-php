@@ -33,6 +33,26 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare   Required. The NFS share to update.
+     *
+     *                                                                The `name` field is used to identify the NFS share to update.
+     *                                                                Format: projects/{project}/locations/{location}/nfsShares/{nfs_share}
+     * @param \Google\Protobuf\FieldMask                  $updateMask The list of fields to update.
+     *                                                                The only currently supported fields are:
+     *                                                                `labels`
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setNfsShare($nfsShare)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -12,6 +12,28 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getJobMessages',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataflow\V1beta3\ListJobMessagesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'job_id',
+                        'fieldAccessors' => [
+                            'getJobId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],

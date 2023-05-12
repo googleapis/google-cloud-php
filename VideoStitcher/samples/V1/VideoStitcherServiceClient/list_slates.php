@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_ListSlates_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListSlatesRequest;
 use Google\Cloud\Video\Stitcher\V1\Slate;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Lists all slates in the specified project and location.
@@ -40,10 +41,14 @@ function list_slates_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSlatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listSlates($formattedParent);
+        $response = $videoStitcherServiceClient->listSlates($request);
 
         /** @var Slate $element */
         foreach ($response as $element) {

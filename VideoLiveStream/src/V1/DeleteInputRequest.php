@@ -40,6 +40,21 @@ class DeleteInputRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The name of the input resource, in the form of:
+     *                     `projects/{project}/locations/{location}/inputs/{inputId}`. Please see
+     *                     {@see LivestreamServiceClient::inputName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\DeleteInputRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

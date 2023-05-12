@@ -24,6 +24,21 @@ class GetVodSessionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the VOD session to be retrieved, in the form of
+     *                     `projects/{project_number}/locations/{location}/vodSessions/{id}`. Please see
+     *                     {@see VideoStitcherServiceClient::vodSessionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetVodSessionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

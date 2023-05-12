@@ -23,6 +23,20 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Job name. Please see
+     *                     {@see BatchServiceClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Batch\V1\GetJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AzureClusters_GetAzureNodePool_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAzureNodePoolRequest;
 
 /**
  * Describes a specific
@@ -47,10 +48,14 @@ function get_azure_node_pool_sample(string $formattedName): void
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAzureNodePoolRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AzureNodePool $response */
-        $response = $azureClustersClient->getAzureNodePool($formattedName);
+        $response = $azureClustersClient->getAzureNodePool($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

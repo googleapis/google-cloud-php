@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gsuiteaddons_v1_generated_GSuiteAddOns_CreateDeployment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\GSuiteAddOns\V1\Client\GSuiteAddOnsClient;
+use Google\Cloud\GSuiteAddOns\V1\CreateDeploymentRequest;
 use Google\Cloud\GSuiteAddOns\V1\Deployment;
-use Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient;
 
 /**
  * Creates a deployment with the specified name and configuration.
@@ -42,13 +43,17 @@ function create_deployment_sample(string $formattedParent, string $deploymentId)
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployment = new Deployment();
+    $request = (new CreateDeploymentRequest())
+        ->setParent($formattedParent)
+        ->setDeploymentId($deploymentId)
+        ->setDeployment($deployment);
 
     // Call the API and handle any network failures.
     try {
         /** @var Deployment $response */
-        $response = $gSuiteAddOnsClient->createDeployment($formattedParent, $deploymentId, $deployment);
+        $response = $gSuiteAddOnsClient->createDeployment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
