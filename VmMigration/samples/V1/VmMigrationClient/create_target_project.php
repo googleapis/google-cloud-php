@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CreateTargetProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\CreateTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\TargetProject;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,17 +45,17 @@ function create_target_project_sample(string $formattedParent, string $targetPro
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetProject = new TargetProject();
+    $request = (new CreateTargetProjectRequest())
+        ->setParent($formattedParent)
+        ->setTargetProjectId($targetProjectId)
+        ->setTargetProject($targetProject);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->createTargetProject(
-            $formattedParent,
-            $targetProjectId,
-            $targetProject
-        );
+        $response = $vmMigrationClient->createTargetProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

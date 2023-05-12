@@ -63,6 +63,38 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                $parent    Required. The resource name of the private cloud to create a new cluster
+     *                                                         in. Resource names are schemeless URIs that follow the conventions in
+     *                                                         https://cloud.google.com/apis/design/resource_names.
+     *                                                         For example:
+     *                                                         `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     *                                                         Please see {@see VmwareEngineClient::privateCloudName()} for help formatting this field.
+     * @param \Google\Cloud\VmwareEngine\V1\Cluster $cluster   Required. The initial description of the new cluster.
+     * @param string                                $clusterId Required. The user-provided identifier of the new `Cluster`.
+     *                                                         This identifier must be unique among clusters within the parent and becomes
+     *                                                         the final token in the name URI.
+     *                                                         The identifier must meet the following requirements:
+     *
+     *                                                         * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                         * Begins with an alphabetical character
+     *                                                         * Ends with a non-hyphen character
+     *                                                         * Not formatted as a UUID
+     *                                                         * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                         (section 3.5)
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VmwareEngine\V1\Cluster $cluster, string $clusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCluster($cluster)
+            ->setClusterId($clusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

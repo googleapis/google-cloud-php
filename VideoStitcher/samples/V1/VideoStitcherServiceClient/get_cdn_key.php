@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_GetCdnKey_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest;
 
 /**
  * Returns the specified CDN key.
@@ -39,10 +40,14 @@ function get_cdn_key_sample(string $formattedName): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetCdnKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CdnKey $response */
-        $response = $videoStitcherServiceClient->getCdnKey($formattedName);
+        $response = $videoStitcherServiceClient->getCdnKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

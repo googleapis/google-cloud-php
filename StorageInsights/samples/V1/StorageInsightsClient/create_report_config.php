@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storageinsights_v1_generated_StorageInsights_CreateReportConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\CreateReportConfigRequest;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
 
 /**
  * Creates a new ReportConfig in a given project and location.
@@ -38,13 +39,16 @@ function create_report_config_sample(string $formattedParent): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $reportConfig = new ReportConfig();
+    $request = (new CreateReportConfigRequest())
+        ->setParent($formattedParent)
+        ->setReportConfig($reportConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReportConfig $response */
-        $response = $storageInsightsClient->createReportConfig($formattedParent, $reportConfig);
+        $response = $storageInsightsClient->createReportConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

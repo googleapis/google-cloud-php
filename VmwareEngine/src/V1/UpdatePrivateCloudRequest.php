@@ -41,6 +41,25 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\VmwareEngine\V1\PrivateCloud $privateCloud Required. Private cloud description.
+     * @param \Google\Protobuf\FieldMask                 $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                                 `PrivateCloud` resource by the update. The fields specified in `updateMask`
+     *                                                                 are relative to the resource, not the full request. A field will be
+     *                                                                 overwritten if it is in the mask. If the user does not provide a mask then
+     *                                                                 all fields will be overwritten.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VmwareEngine\V1\PrivateCloud $privateCloud, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPrivateCloud($privateCloud)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

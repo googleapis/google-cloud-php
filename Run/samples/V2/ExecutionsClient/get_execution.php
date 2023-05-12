@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START run_v2_generated_Executions_GetExecution_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Run\V2\Client\ExecutionsClient;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\ExecutionsClient;
+use Google\Cloud\Run\V2\GetExecutionRequest;
 
 /**
  * Gets information about an Execution.
@@ -41,10 +42,14 @@ function get_execution_sample(string $formattedName): void
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
+    // Prepare the request message.
+    $request = (new GetExecutionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Execution $response */
-        $response = $executionsClient->getExecution($formattedName);
+        $response = $executionsClient->getExecution($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

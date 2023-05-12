@@ -51,6 +51,24 @@ class CreateMigratingVmRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                   $parent        Required. The MigratingVm's parent. Please see
+     *                                                                {@see VmMigrationClient::sourceName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\MigratingVm $migratingVm   Required. The create request body.
+     * @param string                                   $migratingVmId Required. The migratingVm identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateMigratingVmRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\MigratingVm $migratingVm, string $migratingVmId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMigratingVm($migratingVm)
+            ->setMigratingVmId($migratingVmId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

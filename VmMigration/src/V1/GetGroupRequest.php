@@ -23,6 +23,20 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The group name. Please see
+     *                     {@see VmMigrationClient::groupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\GetGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

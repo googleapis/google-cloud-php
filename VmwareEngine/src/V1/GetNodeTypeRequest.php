@@ -28,6 +28,24 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the node type to retrieve.
+     *                     Resource names are schemeless URIs that follow the conventions in
+     *                     https://cloud.google.com/apis/design/resource_names.
+     *                     For example:
+     *                     `projects/my-proj/locations/us-central1-a/nodeTypes/standard-72`
+     *                     Please see {@see VmwareEngineClient::nodeTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

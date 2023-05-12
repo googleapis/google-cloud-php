@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_DeletePrivateCloud_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\DeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Rpc\Status;
 
 /**
@@ -58,10 +59,14 @@ function delete_private_cloud_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new DeletePrivateCloudRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->deletePrivateCloud($formattedName);
+        $response = $vmwareEngineClient->deletePrivateCloud($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -45,6 +45,24 @@ class DeleteNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The resource name of the network policy to delete.
+     *                     Resource names are schemeless URIs that follow the conventions in
+     *                     https://cloud.google.com/apis/design/resource_names.
+     *                     For example:
+     *                     `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
+     *                     Please see {@see VmwareEngineClient::networkPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\DeleteNetworkPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

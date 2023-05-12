@@ -25,6 +25,22 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The full name of the Service.
+     *                     Format: projects/{project}/locations/{location}/services/{service}, where
+     *                     {project} can be project id or number. Please see
+     *                     {@see ServicesClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\GetServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

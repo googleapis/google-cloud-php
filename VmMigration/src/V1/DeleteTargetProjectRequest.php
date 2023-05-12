@@ -39,6 +39,20 @@ class DeleteTargetProjectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The TargetProject name. Please see
+     *                     {@see VmMigrationClient::targetProjectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\DeleteTargetProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

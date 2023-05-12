@@ -71,6 +71,43 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                            $parent                Required. The resource name of the location to create the new VMware Engine
+     *                                                                                 network in. A VMware Engine network of type
+     *                                                                                 `LEGACY` is a regional resource, and a VMware
+     *                                                                                 Engine network of type `STANDARD` is a global resource.
+     *                                                                                 Resource names are schemeless URIs that follow the conventions in
+     *                                                                                 https://cloud.google.com/apis/design/resource_names. For example:
+     *                                                                                 `projects/my-project/locations/global`
+     *                                                                                 Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork $vmwareEngineNetwork   Required. The initial description of the new VMware Engine network.
+     * @param string                                            $vmwareEngineNetworkId Required. The user-provided identifier of the new VMware Engine network.
+     *                                                                                 This identifier must be unique among VMware Engine network resources
+     *                                                                                 within the parent and becomes the final token in the name URI. The
+     *                                                                                 identifier must meet the following requirements:
+     *
+     *                                                                                 * For networks of type LEGACY, adheres to the format:
+     *                                                                                 `{region-id}-default`. Replace `{region-id}` with the region where you want
+     *                                                                                 to create the VMware Engine network. For example, "us-central1-default".
+     *                                                                                 * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                                                 * Begins with an alphabetical character
+     *                                                                                 * Ends with a non-hyphen character
+     *                                                                                 * Not formatted as a UUID
+     *                                                                                 * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                                                 (section 3.5)
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork $vmwareEngineNetwork, string $vmwareEngineNetworkId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setVmwareEngineNetwork($vmwareEngineNetwork)
+            ->setVmwareEngineNetworkId($vmwareEngineNetworkId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

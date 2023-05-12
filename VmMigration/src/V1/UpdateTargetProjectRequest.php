@@ -49,6 +49,25 @@ class UpdateTargetProjectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\VMMigration\V1\TargetProject $targetProject Required. The update request body.
+     * @param \Google\Protobuf\FieldMask                 $updateMask    Field mask is used to specify the fields to be overwritten in the
+     *                                                                  TargetProject resource by the update.
+     *                                                                  The fields specified in the update_mask are relative to the resource, not
+     *                                                                  the full request. A field will be overwritten if it is in the mask. If the
+     *                                                                  user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\VMMigration\V1\UpdateTargetProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VMMigration\V1\TargetProject $targetProject, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTargetProject($targetProject)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

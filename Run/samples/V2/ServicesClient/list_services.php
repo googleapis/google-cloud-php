@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Services_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Run\V2\Client\ServicesClient;
+use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\Service;
-use Google\Cloud\Run\V2\ServicesClient;
 
 /**
  * Lists Services.
@@ -42,10 +43,14 @@ function list_services_sample(string $formattedParent): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
+    // Prepare the request message.
+    $request = (new ListServicesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $servicesClient->listServices($formattedParent);
+        $response = $servicesClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

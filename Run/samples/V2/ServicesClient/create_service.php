@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Services_CreateService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\ServicesClient;
+use Google\Cloud\Run\V2\CreateServiceRequest;
 use Google\Cloud\Run\V2\RevisionTemplate;
 use Google\Cloud\Run\V2\Service;
-use Google\Cloud\Run\V2\ServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,15 +47,19 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceTemplate = new RevisionTemplate();
     $service = (new Service())
         ->setTemplate($serviceTemplate);
+    $request = (new CreateServiceRequest())
+        ->setParent($formattedParent)
+        ->setService($service)
+        ->setServiceId($serviceId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $servicesClient->createService($formattedParent, $service, $serviceId);
+        $response = $servicesClient->createService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

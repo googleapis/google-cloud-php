@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START run_v2_generated_Tasks_GetTask_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Run\V2\Client\TasksClient;
+use Google\Cloud\Run\V2\GetTaskRequest;
 use Google\Cloud\Run\V2\Task;
-use Google\Cloud\Run\V2\TasksClient;
 
 /**
  * Gets information about a Task.
@@ -40,10 +41,14 @@ function get_task_sample(string $formattedName): void
     // Create a client.
     $tasksClient = new TasksClient();
 
+    // Prepare the request message.
+    $request = (new GetTaskRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Task $response */
-        $response = $tasksClient->getTask($formattedName);
+        $response = $tasksClient->getTask($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

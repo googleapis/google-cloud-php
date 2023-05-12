@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Tasks_ListTasks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Run\V2\Client\TasksClient;
+use Google\Cloud\Run\V2\ListTasksRequest;
 use Google\Cloud\Run\V2\Task;
-use Google\Cloud\Run\V2\TasksClient;
 
 /**
  * Lists Tasks from an Execution of a Job.
@@ -42,10 +43,14 @@ function list_tasks_sample(string $formattedParent): void
     // Create a client.
     $tasksClient = new TasksClient();
 
+    // Prepare the request message.
+    $request = (new ListTasksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tasksClient->listTasks($formattedParent);
+        $response = $tasksClient->listTasks($request);
 
         /** @var Task $element */
         foreach ($response as $element) {

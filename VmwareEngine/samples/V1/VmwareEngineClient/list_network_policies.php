@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListNetworkPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 
 /**
  * Lists `NetworkPolicy` resources in a specified project and location.
@@ -42,10 +43,14 @@ function list_network_policies_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworkPoliciesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listNetworkPolicies($formattedParent);
+        $response = $vmwareEngineClient->listNetworkPolicies($request);
 
         /** @var NetworkPolicy $element */
         foreach ($response as $element) {

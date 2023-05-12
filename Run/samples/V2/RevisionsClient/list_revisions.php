@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Revisions_ListRevisions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Run\V2\Client\RevisionsClient;
+use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\Revision;
-use Google\Cloud\Run\V2\RevisionsClient;
 
 /**
  * Lists Revisions from a given Service, or from a given location.
@@ -42,10 +43,14 @@ function list_revisions_sample(string $formattedParent): void
     // Create a client.
     $revisionsClient = new RevisionsClient();
 
+    // Prepare the request message.
+    $request = (new ListRevisionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $revisionsClient->listRevisions($formattedParent);
+        $response = $revisionsClient->listRevisions($request);
 
         /** @var Revision $element */
         foreach ($response as $element) {
