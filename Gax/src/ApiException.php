@@ -307,7 +307,7 @@ class ApiException extends Exception
 
         if (isset($decoded['error']) && $decoded['error']) {
             $error = $decoded['error'];
-            $basicMessage = $error['message'] ?? null;
+            $basicMessage = $error['message'] ?? '';
             $code = isset($error['status'])
                 ? ApiStatus::rpcCodeFromStatus($error['status'])
                 : $ex->getCode();
