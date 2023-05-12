@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AwsClusters_ListAwsNodePools_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest;
 
 /**
  * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
@@ -48,10 +49,14 @@ function list_aws_node_pools_sample(string $formattedParent): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new ListAwsNodePoolsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $awsClustersClient->listAwsNodePools($formattedParent);
+        $response = $awsClustersClient->listAwsNodePools($request);
 
         /** @var AwsNodePool $element */
         foreach ($response as $element) {

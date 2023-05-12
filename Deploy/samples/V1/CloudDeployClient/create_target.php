@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_CreateTarget_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\CreateTargetRequest;
 use Google\Cloud\Deploy\V1\Target;
 use Google\Rpc\Status;
 
@@ -43,13 +44,17 @@ function create_target_sample(string $formattedParent, string $targetId): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $target = new Target();
+    $request = (new CreateTargetRequest())
+        ->setParent($formattedParent)
+        ->setTargetId($targetId)
+        ->setTarget($target);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudDeployClient->createTarget($formattedParent, $targetId, $target);
+        $response = $cloudDeployClient->createTarget($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

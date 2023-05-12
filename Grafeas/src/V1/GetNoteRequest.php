@@ -24,6 +24,21 @@ class GetNoteRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name The name of the note in the form of
+     *                     `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
+     *                     {@see GrafeasClient::noteName()} for help formatting this field.
+     *
+     * @return \Grafeas\V1\GetNoteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

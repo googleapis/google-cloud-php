@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START orgpolicy_v2_generated_OrgPolicy_UpdatePolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
 use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
 
 /**
  * Updates a Policy.
@@ -49,13 +50,15 @@ function update_policy_sample(): void
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new UpdatePolicyRequest())
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $orgPolicyClient->updatePolicy($policy);
+        $response = $orgPolicyClient->updatePolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

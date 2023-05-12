@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START essentialcontacts_v1_generated_EssentialContactsService_CreateContact_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
 use Google\Cloud\EssentialContacts\V1\Contact;
-use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\CreateContactRequest;
 
 /**
  * Adds a new contact for a resource.
@@ -40,13 +41,16 @@ function create_contact_sample(string $formattedParent): void
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $contact = new Contact();
+    $request = (new CreateContactRequest())
+        ->setParent($formattedParent)
+        ->setContact($contact);
 
     // Call the API and handle any network failures.
     try {
         /** @var Contact $response */
-        $response = $essentialContactsServiceClient->createContact($formattedParent, $contact);
+        $response = $essentialContactsServiceClient->createContact($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,6 +25,21 @@ class GetProtectedResourcesSummaryRequest extends \Google\Protobuf\Internal\Mess
     protected $name = '';
 
     /**
+     * @param string $name Required. The resource name of the
+     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey]. Please see
+     *                     {@see KeyTrackingServiceClient::protectedResourcesSummaryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

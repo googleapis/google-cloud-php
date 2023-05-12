@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_CreateBackupPlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\CreateBackupPlanRequest;
 use Google\Rpc\Status;
 
 /**
@@ -59,14 +60,18 @@ function create_backup_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backupPlan = (new BackupPlan())
         ->setCluster($formattedBackupPlanCluster);
+    $request = (new CreateBackupPlanRequest())
+        ->setParent($formattedParent)
+        ->setBackupPlan($backupPlan)
+        ->setBackupPlanId($backupPlanId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->createBackupPlan($formattedParent, $backupPlan, $backupPlanId);
+        $response = $backupForGKEClient->createBackupPlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

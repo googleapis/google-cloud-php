@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START language_v1_generated_LanguageService_AnalyzeSentiment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Language\V1\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1\AnalyzeSentimentResponse;
+use Google\Cloud\Language\V1\Client\LanguageServiceClient;
 use Google\Cloud\Language\V1\Document;
-use Google\Cloud\Language\V1\LanguageServiceClient;
 
 /**
  * Analyzes the sentiment of the provided text.
@@ -42,13 +43,15 @@ function analyze_sentiment_sample(): void
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $document = new Document();
+    $request = (new AnalyzeSentimentRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeSentimentResponse $response */
-        $response = $languageServiceClient->analyzeSentiment($document);
+        $response = $languageServiceClient->analyzeSentiment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

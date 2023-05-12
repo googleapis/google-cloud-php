@@ -36,6 +36,25 @@ class UpdateOccurrenceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                     $name       The name of the occurrence in the form of
+     *                                               `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`. Please see
+     *                                               {@see GrafeasClient::occurrenceName()} for help formatting this field.
+     * @param \Grafeas\V1\Occurrence     $occurrence The updated occurrence.
+     * @param \Google\Protobuf\FieldMask $updateMask The fields to update.
+     *
+     * @return \Grafeas\V1\UpdateOccurrenceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Grafeas\V1\Occurrence $occurrence, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setOccurrence($occurrence)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

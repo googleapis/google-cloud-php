@@ -42,6 +42,32 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
     private $restore_plan_id = '';
 
     /**
+     * @param string                                 $parent        Required. The location within which to create the RestorePlan.
+     *                                                              Format: projects/&#42;/locations/*
+     *                                                              Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\GkeBackup\V1\RestorePlan $restorePlan   Required. The RestorePlan resource object to create.
+     * @param string                                 $restorePlanId Required. The client-provided short name for the RestorePlan resource.
+     *                                                              This name must:
+     *
+     *                                                              - be between 1 and 63 characters long (inclusive)
+     *                                                              - consist of only lower-case ASCII letters, numbers, and dashes
+     *                                                              - start with a lower-case letter
+     *                                                              - end with a lower-case letter or number
+     *                                                              - be unique within the set of RestorePlans in this location
+     *
+     * @return \Google\Cloud\GkeBackup\V1\CreateRestorePlanRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeBackup\V1\RestorePlan $restorePlan, string $restorePlanId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRestorePlan($restorePlan)
+            ->setRestorePlanId($restorePlanId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

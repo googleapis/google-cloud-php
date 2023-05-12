@@ -25,6 +25,23 @@ class GetAuthorizationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the project for which to get the Google Workspace Add-ons
+     *                     authorization information.
+     *
+     *                     Example: `projects/my_project/authorization`. Please see
+     *                     {@see GSuiteAddOnsClient::authorizationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\GetAuthorizationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_ReadFile_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileResponse;
 
 /**
@@ -39,10 +40,15 @@ function read_file_sample(string $formattedWorkspace, string $path): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new ReadFileRequest())
+        ->setWorkspace($formattedWorkspace)
+        ->setPath($path);
+
     // Call the API and handle any network failures.
     try {
         /** @var ReadFileResponse $response */
-        $response = $dataformClient->readFile($formattedWorkspace, $path);
+        $response = $dataformClient->readFile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

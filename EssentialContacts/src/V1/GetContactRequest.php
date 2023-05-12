@@ -26,6 +26,23 @@ class GetContactRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the contact to retrieve.
+     *                     Format: organizations/{organization_id}/contacts/{contact_id},
+     *                     folders/{folder_id}/contacts/{contact_id} or
+     *                     projects/{project_id}/contacts/{contact_id}
+     *                     Please see {@see EssentialContactsServiceClient::contactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\EssentialContacts\V1\GetContactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

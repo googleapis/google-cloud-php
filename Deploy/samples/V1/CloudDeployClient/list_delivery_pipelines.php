@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_ListDeliveryPipelines_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
+use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 
 /**
  * Lists DeliveryPipelines in a given project and location.
@@ -40,10 +41,14 @@ function list_delivery_pipelines_sample(string $formattedParent): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new ListDeliveryPipelinesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listDeliveryPipelines($formattedParent);
+        $response = $cloudDeployClient->listDeliveryPipelines($request);
 
         /** @var DeliveryPipeline $element */
         foreach ($response as $element) {

@@ -33,6 +33,27 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
     private $event = null;
 
     /**
+     * @param string                                                  $projectName Required. The resource name of the Google Cloud Platform project. Written
+     *                                                                             as `projects/{projectId}`, where `{projectId}` is the
+     *                                                                             [Google Cloud Platform project
+     *                                                                             ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *                                                                             Example: // `projects/my-project-123`. Please see
+     *                                                                             {@see ReportErrorsServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $event       Required. The error event to be reported.
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectName, \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $event): self
+    {
+        return (new self())
+            ->setProjectName($projectName)
+            ->setEvent($event);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

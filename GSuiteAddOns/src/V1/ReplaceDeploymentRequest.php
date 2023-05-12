@@ -23,6 +23,19 @@ class ReplaceDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $deployment = null;
 
     /**
+     * @param \Google\Cloud\GSuiteAddOns\V1\Deployment $deployment Required. The deployment to create or replace.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\ReplaceDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GSuiteAddOns\V1\Deployment $deployment): self
+    {
+        return (new self())
+            ->setDeployment($deployment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

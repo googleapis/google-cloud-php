@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START containeranalysis_v1_generated_Grafeas_ListNotes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
+use Grafeas\V1\ListNotesRequest;
 use Grafeas\V1\Note;
 
 /**
@@ -40,10 +41,14 @@ function list_notes_sample(string $formattedParent): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
+    // Prepare the request message.
+    $request = (new ListNotesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $grafeasClient->listNotes($formattedParent);
+        $response = $grafeasClient->listNotes($request);
 
         /** @var Note $element */
         foreach ($response as $element) {

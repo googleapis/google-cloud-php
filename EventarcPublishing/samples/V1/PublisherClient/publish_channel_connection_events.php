@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START eventarcpublishing_v1_generated_Publisher_PublishChannelConnectionEvents_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Eventarc\Publishing\V1\Client\PublisherClient;
+use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
-use Google\Cloud\Eventarc\Publishing\V1\PublisherClient;
 
 /**
  * Publish events to a ChannelConnection in a partner's project.
@@ -41,10 +42,13 @@ function publish_channel_connection_events_sample(): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = new PublishChannelConnectionEventsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PublishChannelConnectionEventsResponse $response */
-        $response = $publisherClient->publishChannelConnectionEvents();
+        $response = $publisherClient->publishChannelConnectionEvents($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

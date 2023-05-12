@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\GkeBackup\V1\Backup;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListBackupsRequest;
 
 /**
  * Lists the Backups for a given BackupPlan.
@@ -40,10 +41,14 @@ function list_backups_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListBackupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listBackups($formattedParent);
+        $response = $backupForGKEClient->listBackups($request);
 
         /** @var Backup $element */
         foreach ($response as $element) {

@@ -45,6 +45,30 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource that the policy is attached to, along with the kind of policy
+     *                       to list. Format:
+     *                       `policies/{attachment_point}/denypolicies`
+     *
+     *
+     *                       The attachment point is identified by its URL-encoded full resource name,
+     *                       which means that the forward-slash character, `/`, must be written as
+     *                       `%2F`. For example,
+     *                       `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
+     *
+     *                       For organizations and folders, use the numeric ID in the full resource
+     *                       name. For projects, you can use the alphanumeric or the numeric ID.
+     *
+     * @return \Google\Cloud\Iam\V2\ListPoliciesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,22 @@ class InstallDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The full resource name of the deployment to install.
+     *
+     *                     Example:  `projects/my_project/deployments/my_deployment`. Please see
+     *                     {@see GSuiteAddOnsClient::deploymentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\InstallDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

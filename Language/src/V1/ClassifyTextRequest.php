@@ -30,6 +30,19 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     private $classification_model_options = null;
 
     /**
+     * @param \Google\Cloud\Language\V1\Document $document Required. Input document.
+     *
+     * @return \Google\Cloud\Language\V1\ClassifyTextRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Language\V1\Document $document): self
+    {
+        return (new self())
+            ->setDocument($document);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

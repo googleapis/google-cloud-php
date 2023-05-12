@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'CreateAwsNodePool' => [
                 'longRunning' => [
@@ -21,6 +30,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'DeleteAwsCluster' => [
@@ -32,6 +50,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'DeleteAwsNodePool' => [
                 'longRunning' => [
@@ -41,6 +68,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateAwsCluster' => [
@@ -52,6 +88,16 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_cluster.name',
+                        'fieldAccessors' => [
+                            'getAwsCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAwsNodePool' => [
                 'longRunning' => [
@@ -61,6 +107,64 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_node_pool.name',
+                        'fieldAccessors' => [
+                            'getAwsNodePool',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GenerateAwsAccessToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_cluster',
+                        'fieldAccessors' => [
+                            'getAwsCluster',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAwsCluster' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsCluster',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAwsNodePool' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsNodePool',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAwsServerConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsServerConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListAwsClusters' => [
@@ -72,6 +176,16 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getAwsClusters',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\ListAwsClustersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListAwsNodePools' => [
                 'pageStreaming' => [
@@ -82,6 +196,22 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getAwsNodePools',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'awsCluster' => 'projects/{project}/locations/{location}/awsClusters/{aws_cluster}',
+                'awsNodePool' => 'projects/{project}/locations/{location}/awsClusters/{aws_cluster}/awsNodePools/{aws_node_pool}',
+                'awsServerConfig' => 'projects/{project}/locations/{location}/awsServerConfig',
+                'location' => 'projects/{project}/locations/{location}',
             ],
         ],
     ],

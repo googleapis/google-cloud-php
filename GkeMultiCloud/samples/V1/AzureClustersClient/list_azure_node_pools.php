@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AzureClusters_ListAzureNodePools_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
+use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsRequest;
 
 /**
  * Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
@@ -48,10 +49,14 @@ function list_azure_node_pools_sample(string $formattedParent): void
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
+    // Prepare the request message.
+    $request = (new ListAzureNodePoolsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $azureClustersClient->listAzureNodePools($formattedParent);
+        $response = $azureClustersClient->listAzureNodePools($request);
 
         /** @var AzureNodePool $element */
         foreach ($response as $element) {

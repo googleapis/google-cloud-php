@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START kmsinventory_v1_generated_KeyTrackingService_GetProtectedResourcesSummary_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\Inventory\V1\KeyTrackingServiceClient;
+use Google\Cloud\Kms\Inventory\V1\Client\KeyTrackingServiceClient;
+use Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest;
 use Google\Cloud\Kms\Inventory\V1\ProtectedResourcesSummary;
 
 /**
@@ -43,10 +44,14 @@ function get_protected_resources_summary_sample(string $formattedName): void
     // Create a client.
     $keyTrackingServiceClient = new KeyTrackingServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetProtectedResourcesSummaryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProtectedResourcesSummary $response */
-        $response = $keyTrackingServiceClient->getProtectedResourcesSummary($formattedName);
+        $response = $keyTrackingServiceClient->getProtectedResourcesSummary($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

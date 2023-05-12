@@ -37,6 +37,27 @@ class CreateDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $deployment = null;
 
     /**
+     * @param string                                   $parent       Required. Name of the project in which to create the deployment.
+     *
+     *                                                               Example: `projects/my_project`. Please see
+     *                                                               {@see GSuiteAddOnsClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\GSuiteAddOns\V1\Deployment $deployment   Required. The deployment to create (deployment.name cannot be set).
+     * @param string                                   $deploymentId Required. The id to use for this deployment.  The full name of the created
+     *                                                               resource will be `projects/<project_number>/deployments/<deployment_id>`.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\CreateDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GSuiteAddOns\V1\Deployment $deployment, string $deploymentId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDeployment($deployment)
+            ->setDeploymentId($deploymentId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
