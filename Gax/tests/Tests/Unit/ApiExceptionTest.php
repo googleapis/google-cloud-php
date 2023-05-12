@@ -649,9 +649,28 @@ class ApiExceptionTest extends TestCase
                 json_encode($error)
             )
         );
+        unset($error['error']['message']);
+        $withoutErrorMessageStream = RequestException::create(
+            new Request('POST', 'http://www.example.com'),
+            new Response(
+                404,
+                [],
+                json_encode([$error])
+            )
+        );
+        $withoutErrorMessageUnary = RequestException::create(
+            new Request('POST', 'http://www.example.com'),
+            new Response(
+                404,
+                [],
+                json_encode($error)
+            )
+        );
         return [
             [$stream, true, Code::NOT_FOUND],
-            [$unary, false, Code::NOT_FOUND]
+            [$unary, false, Code::NOT_FOUND],
+            [$withoutErrorMessageStream, true, Code::NOT_FOUND],
+            [$withoutErrorMessageUnary, true, Code::NOT_FOUND]
         ];
     }
 }
