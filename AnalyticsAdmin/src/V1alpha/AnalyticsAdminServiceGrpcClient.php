@@ -1830,4 +1830,139 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Looks up a single AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAdSenseLink(\Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAdSenseLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AdSenseLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAdSenseLink(\Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAdSenseLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AdSenseLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteAdSenseLink(\Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAdSenseLink',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists AdSenseLinks on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAdSenseLinks(\Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAdSenseLinks',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListAdSenseLinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEventCreateRule(\Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists EventCreateRules on a web data stream.
+     * @param \Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListEventCreateRules(\Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventCreateRules',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListEventCreateRulesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateEventCreateRule(\Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEventCreateRule(\Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteEventCreateRule(\Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventCreateRule',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
 }

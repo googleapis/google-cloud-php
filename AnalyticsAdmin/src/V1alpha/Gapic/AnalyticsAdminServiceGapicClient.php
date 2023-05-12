@@ -35,6 +35,7 @@ use Google\Analytics\Admin\V1alpha\AccessOrderBy;
 use Google\Analytics\Admin\V1alpha\Account;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionRequest;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionResponse;
+use Google\Analytics\Admin\V1alpha\AdSenseLink;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\ArchiveAudienceRequest;
@@ -64,6 +65,7 @@ use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
+use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
@@ -74,6 +76,7 @@ use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
@@ -88,12 +91,14 @@ use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
+use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
@@ -104,6 +109,7 @@ use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
+use Google\Analytics\Admin\V1alpha\EventCreateRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
@@ -112,6 +118,7 @@ use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
+use Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetAudienceRequest;
 use Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest;
@@ -125,6 +132,7 @@ use Google\Analytics\Admin\V1alpha\GetDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
+use Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
@@ -141,6 +149,8 @@ use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
+use Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListAdSenseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
@@ -161,6 +171,8 @@ use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsReq
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsResponse;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest;
+use Google\Analytics\Admin\V1alpha\ListEventCreateRulesResponse;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
@@ -197,6 +209,7 @@ use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
+use Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
@@ -274,6 +287,8 @@ class AnalyticsAdminServiceGapicClient
 
     private static $accountUserLinkNameTemplate;
 
+    private static $adSenseLinkNameTemplate;
+
     private static $attributionSettingsNameTemplate;
 
     private static $audienceNameTemplate;
@@ -299,6 +314,8 @@ class AnalyticsAdminServiceGapicClient
     private static $displayVideo360AdvertiserLinkProposalNameTemplate;
 
     private static $enhancedMeasurementSettingsNameTemplate;
+
+    private static $eventCreateRuleNameTemplate;
 
     private static $expandedDataSetNameTemplate;
 
@@ -377,6 +394,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$accountUserLinkNameTemplate;
+    }
+
+    private static function getAdSenseLinkNameTemplate()
+    {
+        if (self::$adSenseLinkNameTemplate == null) {
+            self::$adSenseLinkNameTemplate = new PathTemplate('properties/{property}/adSenseLinks/{adsense_link}');
+        }
+
+        return self::$adSenseLinkNameTemplate;
     }
 
     private static function getAttributionSettingsNameTemplate()
@@ -496,6 +522,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$enhancedMeasurementSettingsNameTemplate;
     }
 
+    private static function getEventCreateRuleNameTemplate()
+    {
+        if (self::$eventCreateRuleNameTemplate == null) {
+            self::$eventCreateRuleNameTemplate = new PathTemplate('properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}');
+        }
+
+        return self::$eventCreateRuleNameTemplate;
+    }
+
     private static function getExpandedDataSetNameTemplate()
     {
         if (self::$expandedDataSetNameTemplate == null) {
@@ -603,6 +638,7 @@ class AnalyticsAdminServiceGapicClient
                 'account' => self::getAccountNameTemplate(),
                 'accountAccessBinding' => self::getAccountAccessBindingNameTemplate(),
                 'accountUserLink' => self::getAccountUserLinkNameTemplate(),
+                'adSenseLink' => self::getAdSenseLinkNameTemplate(),
                 'attributionSettings' => self::getAttributionSettingsNameTemplate(),
                 'audience' => self::getAudienceNameTemplate(),
                 'bigQueryLink' => self::getBigQueryLinkNameTemplate(),
@@ -616,6 +652,7 @@ class AnalyticsAdminServiceGapicClient
                 'displayVideo360AdvertiserLink' => self::getDisplayVideo360AdvertiserLinkNameTemplate(),
                 'displayVideo360AdvertiserLinkProposal' => self::getDisplayVideo360AdvertiserLinkProposalNameTemplate(),
                 'enhancedMeasurementSettings' => self::getEnhancedMeasurementSettingsNameTemplate(),
+                'eventCreateRule' => self::getEventCreateRuleNameTemplate(),
                 'expandedDataSet' => self::getExpandedDataSetNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'globalSiteTag' => self::getGlobalSiteTagNameTemplate(),
@@ -704,6 +741,25 @@ class AnalyticsAdminServiceGapicClient
         return self::getAccountUserLinkNameTemplate()->render([
             'account' => $account,
             'user_link' => $userLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * ad_sense_link resource.
+     *
+     * @param string $property
+     * @param string $adsenseLink
+     *
+     * @return string The formatted ad_sense_link resource.
+     *
+     * @experimental
+     */
+    public static function adSenseLinkName($property, $adsenseLink)
+    {
+        return self::getAdSenseLinkNameTemplate()->render([
+            'property' => $property,
+            'adsense_link' => $adsenseLink,
         ]);
     }
 
@@ -950,6 +1006,27 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * event_create_rule resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     * @param string $eventCreateRule
+     *
+     * @return string The formatted event_create_rule resource.
+     *
+     * @experimental
+     */
+    public static function eventCreateRuleName($property, $dataStream, $eventCreateRule)
+    {
+        return self::getEventCreateRuleNameTemplate()->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
+            'event_create_rule' => $eventCreateRule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * expanded_data_set resource.
      *
      * @param string $property
@@ -1163,6 +1240,7 @@ class AnalyticsAdminServiceGapicClient
      * - account: accounts/{account}
      * - accountAccessBinding: accounts/{account}/accessBindings/{access_binding}
      * - accountUserLink: accounts/{account}/userLinks/{user_link}
+     * - adSenseLink: properties/{property}/adSenseLinks/{adsense_link}
      * - attributionSettings: properties/{property}/attributionSettings
      * - audience: properties/{property}/audiences/{audience}
      * - bigQueryLink: properties/{property}/bigQueryLinks/{bigquery_link}
@@ -1176,6 +1254,7 @@ class AnalyticsAdminServiceGapicClient
      * - displayVideo360AdvertiserLink: properties/{property}/displayVideo360AdvertiserLinks/{display_video_360_advertiser_link}
      * - displayVideo360AdvertiserLinkProposal: properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}
      * - enhancedMeasurementSettings: properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
+     * - eventCreateRule: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}
      * - expandedDataSet: properties/{property}/expandedDataSets/{expanded_data_set}
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/dataStreams/{data_stream}/globalSiteTag
@@ -2085,6 +2164,52 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates an AdSenseLink.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $adsenseLink = new AdSenseLink();
+     *     $response = $analyticsAdminServiceClient->createAdSenseLink($formattedParent, $adsenseLink);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string      $parent       Required. The property for which to create an AdSense Link.
+     *                                  Format: properties/{propertyId}
+     *                                  Example: properties/1234
+     * @param AdSenseLink $adsenseLink  Required. The AdSense Link to create
+     * @param array       $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\AdSenseLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createAdSenseLink($parent, $adsenseLink, array $optionalArgs = [])
+    {
+        $request = new CreateAdSenseLinkRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAdsenseLink($adsenseLink);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateAdSenseLink', AdSenseLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates an Audience.
      *
      * Sample code:
@@ -2488,6 +2613,50 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateDisplayVideo360AdvertiserLinkProposal', DisplayVideo360AdvertiserLinkProposal::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates an EventCreateRule.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     $eventCreateRule = new EventCreateRule();
+     *     $response = $analyticsAdminServiceClient->createEventCreateRule($formattedParent, $eventCreateRule);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. Example format: properties/123/dataStreams/456
+     * @param EventCreateRule $eventCreateRule Required. The EventCreateRule to create.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\EventCreateRule
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createEventCreateRule($parent, $eventCreateRule, array $optionalArgs = [])
+    {
+        $request = new CreateEventCreateRuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setEventCreateRule($eventCreateRule);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateEventCreateRule', EventCreateRule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2900,6 +3069,47 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes an AdSenseLink.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+     *     $analyticsAdminServiceClient->deleteAdSenseLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Unique identifier for the AdSense Link to be deleted.
+     *                             Format: properties/{propertyId}/adSenseLinks/{linkId}
+     *                             Example: properties/1234/adSenseLinks/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteAdSenseLink($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAdSenseLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteAdSenseLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a ChannelGroup on a property.
      *
      * Sample code:
@@ -3148,6 +3358,46 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteDisplayVideo360AdvertiserLinkProposal', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes an EventCreateRule.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+     *     $analyticsAdminServiceClient->deleteEventCreateRule($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Example format:
+     *                             properties/123/dataStreams/456/eventCreateRules/789
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteEventCreateRule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteEventCreateRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteEventCreateRule', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3610,6 +3860,49 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAccount', Account::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Looks up a single AdSenseLink.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+     *     $response = $analyticsAdminServiceClient->getAdSenseLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Unique identifier for the AdSense Link requested.
+     *                             Format: properties/{propertyId}/adSenseLinks/{linkId}
+     *                             Example: properties/1234/adSenseLinks/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\AdSenseLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getAdSenseLink($name, array $optionalArgs = [])
+    {
+        $request = new GetAdSenseLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAdSenseLink', AdSenseLink::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -4171,6 +4464,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for a single EventCreateRule.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+     *     $response = $analyticsAdminServiceClient->getEventCreateRule($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the EventCreateRule to get.
+     *                             Example format: properties/123/dataStreams/456/eventCreateRules/789
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\EventCreateRule
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getEventCreateRule($name, array $optionalArgs = [])
+    {
+        $request = new GetEventCreateRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEventCreateRule', EventCreateRule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Lookup for a single ExpandedDataSet.
      *
      * Sample code:
@@ -4676,6 +5011,78 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return $this->getPagedListResponse('ListAccounts', $optionalArgs, ListAccountsResponse::class, $request);
+    }
+
+    /**
+     * Lists AdSenseLinks on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listAdSenseLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listAdSenseLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the parent property.
+     *                             Format: properties/{propertyId}
+     *                             Example: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listAdSenseLinks($parent, array $optionalArgs = [])
+    {
+        $request = new ListAdSenseLinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAdSenseLinks', $optionalArgs, ListAdSenseLinksResponse::class, $request);
     }
 
     /**
@@ -5359,6 +5766,76 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListDisplayVideo360AdvertiserLinks', $optionalArgs, ListDisplayVideo360AdvertiserLinksResponse::class, $request);
+    }
+
+    /**
+     * Lists EventCreateRules on a web data stream.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listEventCreateRules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listEventCreateRules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/123/dataStreams/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listEventCreateRules($parent, array $optionalArgs = [])
+    {
+        $request = new ListEventCreateRulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListEventCreateRules', $optionalArgs, ListEventCreateRulesResponse::class, $request);
     }
 
     /**
@@ -6771,6 +7248,55 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEnhancedMeasurementSettings', EnhancedMeasurementSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates an EventCreateRule.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $eventCreateRule = new EventCreateRule();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateEventCreateRule($eventCreateRule, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param EventCreateRule $eventCreateRule Required. The EventCreateRule to update.
+     *                                         The resource's `name` field is used to identify the EventCreateRule to be
+     *                                         updated.
+     * @param FieldMask       $updateMask      Required. The list of fields to be updated. Field names must be in snake
+     *                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                         replace the entire entity, use one path with the string "*" to match all
+     *                                         fields.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\EventCreateRule
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateEventCreateRule($eventCreateRule, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateEventCreateRuleRequest();
+        $requestParamHeaders = [];
+        $request->setEventCreateRule($eventCreateRule);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['event_create_rule.name'] = $eventCreateRule->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateEventCreateRule', EventCreateRule::class, $optionalArgs, $request)->wait();
     }
 
     /**
