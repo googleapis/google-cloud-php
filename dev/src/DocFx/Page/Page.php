@@ -171,12 +171,11 @@ class Page
         }
         $methodItem = array_filter([
             'uid' => $method->getFullname(),
-            'name' => $name,
+            'name' => $method->getDisplayName(),
             'id' => $name,
             'summary' => $content,
             'parent'  => $this->classNode->getFullname(),
             'type' => 'method',
-            'static' => $method->isStatic(),
             'langs' => ['php'],
             'example' => $sample
                 ? [$sample]
