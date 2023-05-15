@@ -38,6 +38,21 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. The name of the Repository to delete.
+     *                     Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`. Please see
+     *                     {@see RepositoryManagerClient::repositoryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Build\V2\DeleteRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -39,6 +39,22 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The full name of the Job.
+     *                     Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *                     can be project id or number. Please see
+     *                     {@see JobsClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\DeleteJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_FetchLinkableRepositories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\FetchLinkableRepositoriesRequest;
 use Google\Cloud\Build\V2\Repository;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 
 /**
  * FetchLinkableRepositories get repositories from SCM that are
@@ -41,10 +42,14 @@ function fetch_linkable_repositories_sample(string $formattedConnection): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new FetchLinkableRepositoriesRequest())
+        ->setConnection($formattedConnection);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $repositoryManagerClient->fetchLinkableRepositories($formattedConnection);
+        $response = $repositoryManagerClient->fetchLinkableRepositories($request);
 
         /** @var Repository $element */
         foreach ($response as $element) {

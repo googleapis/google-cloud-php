@@ -49,6 +49,25 @@ class ListExamplesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Example resource parent. Please see
+     *                       {@see DataLabelingServiceClient::annotatedDatasetName()} for help formatting this field.
+     * @param string $filter Optional. An expression for filtering Examples. For annotated datasets that
+     *                       have annotation spec set, filter by
+     *                       annotation_spec.display_name is supported. Format
+     *                       "annotation_spec.display_name = {display_name}"
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\ListExamplesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

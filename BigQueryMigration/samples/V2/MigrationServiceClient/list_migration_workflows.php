@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerymigration_v2_generated_MigrationService_ListMigrationWorkflows_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\Client\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\ListMigrationWorkflowsRequest;
 use Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow;
 
 /**
@@ -40,10 +41,14 @@ function list_migration_workflows_sample(string $formattedParent): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMigrationWorkflowsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $migrationServiceClient->listMigrationWorkflows($formattedParent);
+        $response = $migrationServiceClient->listMigrationWorkflows($request);
 
         /** @var MigrationWorkflow $element */
         foreach ($response as $element) {

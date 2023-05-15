@@ -33,6 +33,26 @@ class GetExampleRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $name   Required. Name of example, format:
+     *                       projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                       {annotated_dataset_id}/examples/{example_id}
+     *                       Please see {@see DataLabelingServiceClient::exampleName()} for help formatting this field.
+     * @param string $filter Optional. An expression for filtering Examples. Filter by
+     *                       annotation_spec.display_name is supported. Format
+     *                       "annotation_spec.display_name = {display_name}"
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\GetExampleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $filter): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

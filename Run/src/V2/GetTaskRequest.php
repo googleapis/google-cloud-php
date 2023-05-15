@@ -25,6 +25,22 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The full name of the Task.
+     *                     Format:
+     *                     projects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}
+     *                     Please see {@see TasksClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\GetTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -55,6 +55,20 @@ class ListJobRunsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The `Rollout` which owns this collection of `JobRun` objects. Please see
+     *                       {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\ListJobRunsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

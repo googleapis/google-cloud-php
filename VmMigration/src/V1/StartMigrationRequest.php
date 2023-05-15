@@ -23,6 +23,20 @@ class StartMigrationRequest extends \Google\Protobuf\Internal\Message
     private $migrating_vm = '';
 
     /**
+     * @param string $migratingVm Required. The name of the MigratingVm. Please see
+     *                            {@see VmMigrationClient::migratingVmName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\StartMigrationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $migratingVm): self
+    {
+        return (new self())
+            ->setMigratingVm($migratingVm);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

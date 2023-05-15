@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START transcoder_v1_generated_TranscoderService_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\Transcoder\V1\Client\TranscoderServiceClient;
 use Google\Cloud\Video\Transcoder\V1\Job;
-use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
+use Google\Cloud\Video\Transcoder\V1\ListJobsRequest;
 
 /**
  * Lists jobs in the specified region.
@@ -39,10 +40,14 @@ function list_jobs_sample(string $formattedParent): void
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $transcoderServiceClient->listJobs($formattedParent);
+        $response = $transcoderServiceClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

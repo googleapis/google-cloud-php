@@ -42,6 +42,23 @@ class ListNoteOccurrencesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name   The name of the note to list occurrences for in the form of
+     *                       `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
+     *                       {@see GrafeasClient::noteName()} for help formatting this field.
+     * @param string $filter The filter expression.
+     *
+     * @return \Grafeas\V1\ListNoteOccurrencesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $filter): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

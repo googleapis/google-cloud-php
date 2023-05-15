@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Jobs_RunJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\JobsClient;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\JobsClient;
+use Google\Cloud\Run\V2\RunJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function run_job_sample(string $formattedName): void
     // Create a client.
     $jobsClient = new JobsClient();
 
+    // Prepare the request message.
+    $request = (new RunJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobsClient->runJob($formattedName);
+        $response = $jobsClient->runJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,6 +24,21 @@ class DeleteInstructionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Instruction resource name, format:
+     *                     projects/{project_id}/instructions/{instruction_id}
+     *                     Please see {@see DataLabelingServiceClient::instructionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\DeleteInstructionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

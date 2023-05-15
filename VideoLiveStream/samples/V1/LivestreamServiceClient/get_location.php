@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START livestream_v1_generated_LivestreamService_GetLocation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 
 /**
  * Gets information about a location.
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $livestreamServiceClient->getLocation();
+        $response = $livestreamServiceClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

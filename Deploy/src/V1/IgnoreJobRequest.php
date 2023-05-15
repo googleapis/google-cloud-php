@@ -37,6 +37,26 @@ class IgnoreJobRequest extends \Google\Protobuf\Internal\Message
     private $job_id = '';
 
     /**
+     * @param string $rollout Required. Name of the Rollout. Format is
+     *                        projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                        releases/{release}/rollouts/{rollout}. Please see
+     *                        {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     * @param string $phaseId Required. The phase ID the Job to ignore belongs to.
+     * @param string $jobId   Required. The job ID for the Job to ignore.
+     *
+     * @return \Google\Cloud\Deploy\V1\IgnoreJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $rollout, string $phaseId, string $jobId): self
+    {
+        return (new self())
+            ->setRollout($rollout)
+            ->setPhaseId($phaseId)
+            ->setJobId($jobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,21 @@ class GetLiveAdTagDetailRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name in the form of
+     *                     `projects/{project}/locations/{location}/liveSessions/{live_session}/liveAdTagDetails/{live_ad_tag_detail}`. Please see
+     *                     {@see VideoStitcherServiceClient::liveAdTagDetailName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

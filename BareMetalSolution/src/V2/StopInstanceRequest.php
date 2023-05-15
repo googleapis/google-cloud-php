@@ -23,6 +23,20 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\StopInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

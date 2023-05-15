@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START batch_v1_generated_BatchService_CreateJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Batch\V1\BatchServiceClient;
+use Google\Cloud\Batch\V1\Client\BatchServiceClient;
+use Google\Cloud\Batch\V1\CreateJobRequest;
 use Google\Cloud\Batch\V1\Job;
 use Google\Cloud\Batch\V1\TaskGroup;
 use Google\Cloud\Batch\V1\TaskSpec;
@@ -41,18 +42,21 @@ function create_job_sample(string $formattedParent): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTaskGroupsTaskSpec = new TaskSpec();
     $taskGroup = (new TaskGroup())
         ->setTaskSpec($jobTaskGroupsTaskSpec);
     $jobTaskGroups = [$taskGroup,];
     $job = (new Job())
         ->setTaskGroups($jobTaskGroups);
+    $request = (new CreateJobRequest())
+        ->setParent($formattedParent)
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $batchServiceClient->createJob($formattedParent, $job);
+        $response = $batchServiceClient->createJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbuild_v2_generated_RepositoryManager_GetRepository_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\GetRepositoryRequest;
 use Google\Cloud\Build\V2\Repository;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 
 /**
  * Gets details of a single repository.
@@ -39,10 +40,14 @@ function get_repository_sample(string $formattedName): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetRepositoryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Repository $response */
-        $response = $repositoryManagerClient->getRepository($formattedName);
+        $response = $repositoryManagerClient->getRepository($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

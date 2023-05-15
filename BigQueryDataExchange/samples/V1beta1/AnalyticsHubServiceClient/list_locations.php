@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsHubServiceClient->listLocations();
+        $response = $analyticsHubServiceClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AwsClusters_GetAwsServerConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsServerConfig;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest;
 
 /**
  * Returns information, such as supported AWS regions and Kubernetes
@@ -47,10 +48,14 @@ function get_aws_server_config_sample(string $formattedName): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAwsServerConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AwsServerConfig $response */
-        $response = $awsClustersClient->getAwsServerConfig($formattedName);
+        $response = $awsClustersClient->getAwsServerConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

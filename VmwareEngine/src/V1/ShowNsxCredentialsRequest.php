@@ -29,6 +29,25 @@ class ShowNsxCredentialsRequest extends \Google\Protobuf\Internal\Message
     private $private_cloud = '';
 
     /**
+     * @param string $privateCloud Required. The resource name of the private cloud
+     *                             to be queried for credentials.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     *                             Please see {@see VmwareEngineClient::privateCloudName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $privateCloud): self
+    {
+        return (new self())
+            ->setPrivateCloud($privateCloud);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

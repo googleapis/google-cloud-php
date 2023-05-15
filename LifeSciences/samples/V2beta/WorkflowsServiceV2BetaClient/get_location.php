@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START lifesciences_v2beta_generated_WorkflowsServiceV2Beta_GetLocation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
+use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $workflowsServiceV2BetaClient->getLocation();
+        $response = $workflowsServiceV2BetaClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

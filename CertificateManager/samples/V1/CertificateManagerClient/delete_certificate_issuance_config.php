@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_DeleteCertificateIssuanceConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_certificate_issuance_config_sample(string $formattedName): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCertificateIssuanceConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateManagerClient->deleteCertificateIssuanceConfig($formattedName);
+        $response = $certificateManagerClient->deleteCertificateIssuanceConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

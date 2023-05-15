@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest;
 
 /**
  * Creates a catalog item.
@@ -57,7 +58,7 @@ function create_catalog_item_sample(
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $catalogItemCategoryHierarchiesCategories = [$catalogItemCategoryHierarchiesCategoriesElement,];
     $categoryHierarchy = (new CategoryHierarchy())
         ->setCategories($catalogItemCategoryHierarchiesCategories);
@@ -66,11 +67,14 @@ function create_catalog_item_sample(
         ->setId($catalogItemId)
         ->setCategoryHierarchies($catalogItemCategoryHierarchies)
         ->setTitle($catalogItemTitle);
+    $request = (new CreateCatalogItemRequest())
+        ->setParent($formattedParent)
+        ->setCatalogItem($catalogItem);
 
     // Call the API and handle any network failures.
     try {
         /** @var CatalogItem $response */
-        $response = $catalogServiceClient->createCatalogItem($formattedParent, $catalogItem);
+        $response = $catalogServiceClient->createCatalogItem($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -30,6 +30,23 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $job = null;
 
     /**
+     * @param string                                $parent Required. The parent location to create and process this job.
+     *                                                      Format: `projects/{project}/locations/{location}`
+     *                                                      Please see {@see TranscoderServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Transcoder\V1\Job $job    Required. Parameters for creating transcoding job.
+     *
+     * @return \Google\Cloud\Video\Transcoder\V1\CreateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Transcoder\V1\Job $job): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

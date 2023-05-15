@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_UpdateRestorePlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\RestoreConfig;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
+use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Rpc\Status;
 
 /**
@@ -53,17 +54,19 @@ function update_restore_plan_sample(
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $restorePlanRestoreConfig = new RestoreConfig();
     $restorePlan = (new RestorePlan())
         ->setBackupPlan($formattedRestorePlanBackupPlan)
         ->setCluster($formattedRestorePlanCluster)
         ->setRestoreConfig($restorePlanRestoreConfig);
+    $request = (new UpdateRestorePlanRequest())
+        ->setRestorePlan($restorePlan);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->updateRestorePlan($restorePlan);
+        $response = $backupForGKEClient->updateRestorePlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

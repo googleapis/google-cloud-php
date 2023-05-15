@@ -58,6 +58,21 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The RestorePlan that contains the Restores to list.
+     *                       Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                       Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\ListRestoresRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

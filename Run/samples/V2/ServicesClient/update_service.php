@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Services_UpdateService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\ServicesClient;
 use Google\Cloud\Run\V2\RevisionTemplate;
 use Google\Cloud\Run\V2\Service;
-use Google\Cloud\Run\V2\ServicesClient;
+use Google\Cloud\Run\V2\UpdateServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,15 +45,17 @@ function update_service_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceTemplate = new RevisionTemplate();
     $service = (new Service())
         ->setTemplate($serviceTemplate);
+    $request = (new UpdateServiceRequest())
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $servicesClient->updateService($service);
+        $response = $servicesClient->updateService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

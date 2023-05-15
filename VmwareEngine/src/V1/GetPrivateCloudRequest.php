@@ -28,6 +28,24 @@ class GetPrivateCloudRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the private cloud to retrieve.
+     *                     Resource names are schemeless URIs that follow the conventions in
+     *                     https://cloud.google.com/apis/design/resource_names.
+     *                     For example:
+     *                     `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     *                     Please see {@see VmwareEngineClient::privateCloudName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\GetPrivateCloudRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,27 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                                                 $name        Required. Full resource name of catalog item, such as
+     *                                                                            `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`. Please see
+     *                                                                            {@see CatalogServiceClient::catalogItemPathName()} for help formatting this field.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem $catalogItem Required. The catalog item to update/create. The 'catalog_item_id' field
+     *                                                                            has to match that in the 'name'.
+     * @param \Google\Protobuf\FieldMask                             $updateMask  Optional. Indicates which fields in the provided 'item' to update. If not
+     *                                                                            set, will by default update all fields.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UpdateCatalogItemRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem $catalogItem, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setCatalogItem($catalogItem)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_ListWorkspaces_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\ListWorkspacesRequest;
 use Google\Cloud\Dataform\V1beta1\Workspace;
 
 /**
@@ -40,10 +41,14 @@ function list_workspaces_sample(string $formattedParent): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new ListWorkspacesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->listWorkspaces($formattedParent);
+        $response = $dataformClient->listWorkspaces($request);
 
         /** @var Workspace $element */
         foreach ($response as $element) {

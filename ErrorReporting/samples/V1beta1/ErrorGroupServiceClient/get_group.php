@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouderrorreporting_v1beta1_generated_ErrorGroupService_GetGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ErrorGroupServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
-use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
 
 /**
  * Get the specified group.
@@ -43,10 +44,14 @@ function get_group_sample(string $formattedGroupName): void
     // Create a client.
     $errorGroupServiceClient = new ErrorGroupServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetGroupRequest())
+        ->setGroupName($formattedGroupName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ErrorGroup $response */
-        $response = $errorGroupServiceClient->getGroup($formattedGroupName);
+        $response = $errorGroupServiceClient->getGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

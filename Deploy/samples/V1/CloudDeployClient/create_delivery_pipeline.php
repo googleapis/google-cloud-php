@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_CreateDeliveryPipeline_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
 use Google\Rpc\Status;
 
@@ -44,17 +45,17 @@ function create_delivery_pipeline_sample(
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deliveryPipeline = new DeliveryPipeline();
+    $request = (new CreateDeliveryPipelineRequest())
+        ->setParent($formattedParent)
+        ->setDeliveryPipelineId($deliveryPipelineId)
+        ->setDeliveryPipeline($deliveryPipeline);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudDeployClient->createDeliveryPipeline(
-            $formattedParent,
-            $deliveryPipelineId,
-            $deliveryPipeline
-        );
+        $response = $cloudDeployClient->createDeliveryPipeline($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

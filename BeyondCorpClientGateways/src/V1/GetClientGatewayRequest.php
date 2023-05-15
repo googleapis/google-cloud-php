@@ -23,6 +23,20 @@ class GetClientGatewayRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the resource
+     *                     Please see {@see ClientGatewaysServiceClient::clientGatewayName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BeyondCorp\ClientGateways\V1\GetClientGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

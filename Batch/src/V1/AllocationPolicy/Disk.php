@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A new persistent disk or a local ssd.
  * A VM can only have one local SSD setting but multiple local SSD partitions.
- * https://cloud.google.com/compute/docs/disks#pdspecs.
+ * See https://cloud.google.com/compute/docs/disks#pdspecs and
  * https://cloud.google.com/compute/docs/disks#localssds.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.Disk</code>
@@ -60,17 +60,18 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $image
      *           Name of a public or custom image used as the data source.
      *           For example, the following are all valid URLs:
-     *           (1) Specify the image by its family name:
+     *           * Specify the image by its family name:
      *           projects/{project}/global/images/family/{image_family}
-     *           (2) Specify the image version:
+     *           * Specify the image version:
      *           projects/{project}/global/images/{image_version}
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
-     *           "batch-debian": use Batch Debian images.
-     *           "batch-centos": use Batch CentOS images.
-     *           "batch-cos": use Batch Container-Optimized images.
+     *           * "batch-debian": use Batch Debian images.
+     *           * "batch-centos": use Batch CentOS images.
+     *           * "batch-cos": use Batch Container-Optimized images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
+     *           Snapshot is not supported as boot disk now.
      *     @type string $type
      *           Disk type as shown in `gcloud compute disk-types list`.
      *           For example, local SSD uses type "local-ssd".
@@ -100,15 +101,15 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Name of a public or custom image used as the data source.
      * For example, the following are all valid URLs:
-     * (1) Specify the image by its family name:
+     * * Specify the image by its family name:
      * projects/{project}/global/images/family/{image_family}
-     * (2) Specify the image version:
+     * * Specify the image version:
      * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * "batch-debian": use Batch Debian images.
-     * "batch-centos": use Batch CentOS images.
-     * "batch-cos": use Batch Container-Optimized images.
+     * * "batch-debian": use Batch Debian images.
+     * * "batch-centos": use Batch CentOS images.
+     * * "batch-cos": use Batch Container-Optimized images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @return string
@@ -126,15 +127,15 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Name of a public or custom image used as the data source.
      * For example, the following are all valid URLs:
-     * (1) Specify the image by its family name:
+     * * Specify the image by its family name:
      * projects/{project}/global/images/family/{image_family}
-     * (2) Specify the image version:
+     * * Specify the image version:
      * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * "batch-debian": use Batch Debian images.
-     * "batch-centos": use Batch CentOS images.
-     * "batch-cos": use Batch Container-Optimized images.
+     * * "batch-debian": use Batch Debian images.
+     * * "batch-centos": use Batch CentOS images.
+     * * "batch-cos": use Batch Container-Optimized images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @param string $var
@@ -150,6 +151,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of a snapshot used as the data source.
+     * Snapshot is not supported as boot disk now.
      *
      * Generated from protobuf field <code>string snapshot = 5;</code>
      * @return string
@@ -166,6 +168,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of a snapshot used as the data source.
+     * Snapshot is not supported as boot disk now.
      *
      * Generated from protobuf field <code>string snapshot = 5;</code>
      * @param string $var

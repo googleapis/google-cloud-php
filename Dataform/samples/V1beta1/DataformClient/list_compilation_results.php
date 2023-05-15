@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_ListCompilationResults_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\ListCompilationResultsRequest;
 
 /**
  * Lists CompilationResults in a given Repository.
@@ -40,10 +41,14 @@ function list_compilation_results_sample(string $formattedParent): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new ListCompilationResultsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataformClient->listCompilationResults($formattedParent);
+        $response = $dataformClient->listCompilationResults($request);
 
         /** @var CompilationResult $element */
         foreach ($response as $element) {

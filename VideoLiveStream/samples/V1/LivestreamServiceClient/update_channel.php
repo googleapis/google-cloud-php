@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\LiveStream\V1\Channel;
 use Google\Cloud\Video\LiveStream\V1\Channel\Output;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,15 +45,17 @@ function update_channel_sample(): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelOutput = new Output();
     $channel = (new Channel())
         ->setOutput($channelOutput);
+    $request = (new UpdateChannelRequest())
+        ->setChannel($channel);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->updateChannel($channel);
+        $response = $livestreamServiceClient->updateChannel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

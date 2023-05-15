@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_DeleteIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Datastore\Admin\V1\Index;
 use Google\Rpc\Status;
 
@@ -52,10 +53,13 @@ function delete_index_sample(): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = new DeleteIndexRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastoreAdminClient->deleteIndex();
+        $response = $datastoreAdminClient->deleteIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

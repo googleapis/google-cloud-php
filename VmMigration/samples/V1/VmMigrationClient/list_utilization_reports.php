@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListUtilizationReports_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListUtilizationReportsRequest;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * Lists Utilization Reports of the given Source.
@@ -43,10 +44,15 @@ function list_utilization_reports_sample(string $formattedParent, string $pageTo
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListUtilizationReportsRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listUtilizationReports($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listUtilizationReports($request);
 
         /** @var UtilizationReport $element */
         foreach ($response as $element) {

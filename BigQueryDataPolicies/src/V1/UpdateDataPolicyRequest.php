@@ -35,6 +35,29 @@ class UpdateDataPolicyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy $dataPolicy Required. Update the data policy's metadata.
+     *
+     *                                                                      The target data policy is determined by the `name` field.
+     *                                                                      Other fields are updated to the specified values based on the field masks.
+     * @param \Google\Protobuf\FieldMask                        $updateMask The update mask applies to the resource. For the `FieldMask` definition,
+     *                                                                      see
+     *                                                                      https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *                                                                      If not set, defaults to all of the fields that are allowed to update.
+     *
+     *                                                                      Updates to the `name` and `dataPolicyId` fields are not allowed.
+     *
+     * @return \Google\Cloud\BigQuery\DataPolicies\V1\UpdateDataPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy $dataPolicy, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataPolicy($dataPolicy)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

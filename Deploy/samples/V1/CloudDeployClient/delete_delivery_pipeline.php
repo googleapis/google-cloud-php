@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_DeleteDeliveryPipeline_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_delivery_pipeline_sample(string $formattedName): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDeliveryPipelineRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudDeployClient->deleteDeliveryPipeline($formattedName);
+        $response = $cloudDeployClient->deleteDeliveryPipeline($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

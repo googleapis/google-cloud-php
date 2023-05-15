@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datafusion_v1_generated_DataFusion_CreateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
+use Google\Cloud\DataFusion\V1\CreateInstanceRequest;
 use Google\Cloud\DataFusion\V1\Instance;
 use Google\Rpc\Status;
 
@@ -42,10 +43,15 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
+    // Prepare the request message.
+    $request = (new CreateInstanceRequest())
+        ->setParent($formattedParent)
+        ->setInstanceId($instanceId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataFusionClient->createInstance($formattedParent, $instanceId);
+        $response = $dataFusionClient->createInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

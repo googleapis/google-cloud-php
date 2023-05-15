@@ -24,6 +24,21 @@ class GetRestorePlanRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Fully qualified RestorePlan name.
+     *                     Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                     Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\GetRestorePlanRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

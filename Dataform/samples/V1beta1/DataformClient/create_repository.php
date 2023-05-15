@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CreateRepository_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\Repository;
 
 /**
@@ -41,13 +42,17 @@ function create_repository_sample(string $formattedParent, string $repositoryId)
     // Create a client.
     $dataformClient = new DataformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $repository = new Repository();
+    $request = (new CreateRepositoryRequest())
+        ->setParent($formattedParent)
+        ->setRepository($repository)
+        ->setRepositoryId($repositoryId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Repository $response */
-        $response = $dataformClient->createRepository($formattedParent, $repository, $repositoryId);
+        $response = $dataformClient->createRepository($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\PrivateCatalog\V1beta1\Catalog;
-use Google\Cloud\PrivateCatalog\V1beta1\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\Client\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\SearchCatalogsRequest;
 
 /**
  * Search [Catalog][google.cloud.privatecatalog.v1beta1.Catalog] resources that consumers have access to, within the
@@ -43,10 +44,14 @@ function search_catalogs_sample(string $resource): void
     // Create a client.
     $privateCatalogClient = new PrivateCatalogClient();
 
+    // Prepare the request message.
+    $request = (new SearchCatalogsRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $privateCatalogClient->searchCatalogs($resource);
+        $response = $privateCatalogClient->searchCatalogs($request);
 
         /** @var Catalog $element */
         foreach ($response as $element) {

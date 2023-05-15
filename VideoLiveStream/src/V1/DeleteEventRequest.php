@@ -40,6 +40,21 @@ class DeleteEventRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The name of the event resource, in the form of:
+     *                     `projects/{project}/locations/{location}/channels/{channelId}/events/{eventId}`. Please see
+     *                     {@see LivestreamServiceClient::eventName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\DeleteEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

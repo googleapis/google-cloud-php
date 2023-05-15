@@ -40,6 +40,11 @@
                                 "updateEkmConnection"
                             ]
                         },
+                        "VerifyConnectivity": {
+                            "methods": [
+                                "verifyConnectivity"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_GetDataItem_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\DataItem;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\GetDataItemRequest;
 
 /**
  * Gets a data item in a dataset by resource name. This API can be
@@ -40,10 +41,14 @@ function get_data_item_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDataItemRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataItem $response */
-        $response = $dataLabelingServiceClient->getDataItem($formattedName);
+        $response = $dataLabelingServiceClient->getDataItem($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

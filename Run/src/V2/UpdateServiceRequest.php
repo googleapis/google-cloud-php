@@ -38,6 +38,19 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\Run\V2\Service $service Required. The Service to be updated.
+     *
+     * @return \Google\Cloud\Run\V2\UpdateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Run\V2\Service $service): self
+    {
+        return (new self())
+            ->setService($service);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

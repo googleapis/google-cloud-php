@@ -39,6 +39,20 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The Group name. Please see
+     *                     {@see VmMigrationClient::groupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\DeleteGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

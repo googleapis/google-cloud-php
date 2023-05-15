@@ -30,6 +30,28 @@ class GetAttachedServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedServerConfig]
+     *                     resource to describe.
+     *
+     *                     `AttachedServerConfig` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/attachedServerConfig`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AttachedClustersClient::attachedServerConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAttachedServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

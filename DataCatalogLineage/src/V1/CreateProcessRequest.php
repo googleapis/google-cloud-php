@@ -39,6 +39,23 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                                       $parent  Required. The name of the project and its location that should own the
+     *                                                              process. Please see
+     *                                                              {@see LineageClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Process $process Required. The process to create.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\CreateProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\Lineage\V1\Process $process): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProcess($process);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

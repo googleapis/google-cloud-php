@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_CreateVmwareEngineNetwork_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type;
 use Google\Rpc\Status;
@@ -65,18 +66,18 @@ function create_vmware_engine_network_sample(
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $vmwareEngineNetwork = (new VmwareEngineNetwork())
         ->setType($vmwareEngineNetworkType);
+    $request = (new CreateVmwareEngineNetworkRequest())
+        ->setParent($formattedParent)
+        ->setVmwareEngineNetworkId($vmwareEngineNetworkId)
+        ->setVmwareEngineNetwork($vmwareEngineNetwork);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->createVmwareEngineNetwork(
-            $formattedParent,
-            $vmwareEngineNetworkId,
-            $vmwareEngineNetwork
-        );
+        $response = $vmwareEngineClient->createVmwareEngineNetwork($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

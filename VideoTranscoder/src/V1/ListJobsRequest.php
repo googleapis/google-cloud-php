@@ -51,6 +51,20 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see TranscoderServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Transcoder\V1\ListJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

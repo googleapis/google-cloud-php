@@ -46,6 +46,33 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedCluster $attachedCluster Required. The
+     *                                                                        [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *                                                                        to update.
+     * @param \Google\Protobuf\FieldMask                     $updateMask      Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                        this field. The elements of the repeated paths field can only include these
+     *                                                                        fields from
+     *                                                                        [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
+     *
+     *                                                                        *   `description`.
+     *                                                                        *   `annotations`.
+     *                                                                        *   `platform_version`.
+     *                                                                        *   `authorization.admin_users`.
+     *                                                                        *   `logging_config.component_config.enable_components`.
+     *                                                                        *   `monitoring_config.managed_prometheus_config.enabled`.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeMultiCloud\V1\AttachedCluster $attachedCluster, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAttachedCluster($attachedCluster)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

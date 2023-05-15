@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_UpdateMigratingVm_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\MigratingVm;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\UpdateMigratingVmRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_migrating_vm_sample(): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $migratingVm = new MigratingVm();
+    $request = (new UpdateMigratingVmRequest())
+        ->setMigratingVm($migratingVm);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->updateMigratingVm($migratingVm);
+        $response = $vmMigrationClient->updateMigratingVm($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

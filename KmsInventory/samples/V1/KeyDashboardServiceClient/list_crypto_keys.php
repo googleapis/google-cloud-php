@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START kmsinventory_v1_generated_KeyDashboardService_ListCryptoKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Kms\Inventory\V1\KeyDashboardServiceClient;
+use Google\Cloud\Kms\Inventory\V1\Client\KeyDashboardServiceClient;
+use Google\Cloud\Kms\Inventory\V1\ListCryptoKeysRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 
 /**
@@ -42,10 +43,14 @@ function list_crypto_keys_sample(string $formattedParent): void
     // Create a client.
     $keyDashboardServiceClient = new KeyDashboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCryptoKeysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $keyDashboardServiceClient->listCryptoKeys($formattedParent);
+        $response = $keyDashboardServiceClient->listCryptoKeys($request);
 
         /** @var CryptoKey $element */
         foreach ($response as $element) {

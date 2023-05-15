@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmmigration_v1_generated_VmMigration_GetCutoverJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CutoverJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\GetCutoverJobRequest;
 
 /**
  * Gets details of a single CutoverJob.
@@ -38,10 +39,14 @@ function get_cutover_job_sample(string $formattedName): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new GetCutoverJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CutoverJob $response */
-        $response = $vmMigrationClient->getCutoverJob($formattedName);
+        $response = $vmMigrationClient->getCutoverJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

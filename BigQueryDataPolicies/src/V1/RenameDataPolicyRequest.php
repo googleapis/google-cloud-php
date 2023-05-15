@@ -30,6 +30,22 @@ class RenameDataPolicyRequest extends \Google\Protobuf\Internal\Message
     private $new_data_policy_id = '';
 
     /**
+     * @param string $name            Required. Resource name of the data policy to rename. The format is
+     *                                `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`
+     * @param string $newDataPolicyId Required. The new data policy id.
+     *
+     * @return \Google\Cloud\BigQuery\DataPolicies\V1\RenameDataPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $newDataPolicyId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNewDataPolicyId($newDataPolicyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

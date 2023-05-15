@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
 use Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
 
 /**
  * Creates an event with the provided unique ID in the specified channel.
@@ -43,15 +44,19 @@ function create_event_sample(string $formattedParent, string $eventId): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $eventInputSwitch = new InputSwitchTask();
     $event = (new Event())
         ->setInputSwitch($eventInputSwitch);
+    $request = (new CreateEventRequest())
+        ->setParent($formattedParent)
+        ->setEvent($event)
+        ->setEventId($eventId);
 
     // Call the API and handle any network failures.
     try {
         /** @var Event $response */
-        $response = $livestreamServiceClient->createEvent($formattedParent, $event, $eventId);
+        $response = $livestreamServiceClient->createEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

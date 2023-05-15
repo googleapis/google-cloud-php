@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START ids_v1_generated_IDS_ListEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Ids\V1\Client\IDSClient;
 use Google\Cloud\Ids\V1\Endpoint;
-use Google\Cloud\Ids\V1\IDSClient;
+use Google\Cloud\Ids\V1\ListEndpointsRequest;
 
 /**
  * Lists Endpoints in a given project and location.
@@ -39,10 +40,14 @@ function list_endpoints_sample(string $formattedParent): void
     // Create a client.
     $iDSClient = new IDSClient();
 
+    // Prepare the request message.
+    $request = (new ListEndpointsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $iDSClient->listEndpoints($formattedParent);
+        $response = $iDSClient->listEndpoints($request);
 
         /** @var Endpoint $element */
         foreach ($response as $element) {

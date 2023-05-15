@@ -27,6 +27,25 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
     private $project_name = '';
 
     /**
+     * @param string $projectName Required. The resource name of the Google Cloud Platform project. Written
+     *                            as `projects/{projectID}`, where `{projectID}` is the
+     *                            [Google Cloud Platform project
+     *                            ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *                            Example: `projects/my-project-123`. Please see
+     *                            {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectName): self
+    {
+        return (new self())
+            ->setProjectName($projectName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

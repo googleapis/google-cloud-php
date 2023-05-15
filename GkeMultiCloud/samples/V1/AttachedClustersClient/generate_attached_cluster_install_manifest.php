@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AttachedClusters_GenerateAttachedClusterInstallManifest_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse;
 
 /**
@@ -68,14 +69,16 @@ function generate_attached_cluster_install_manifest_sample(
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new GenerateAttachedClusterInstallManifestRequest())
+        ->setParent($formattedParent)
+        ->setAttachedClusterId($attachedClusterId)
+        ->setPlatformVersion($platformVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateAttachedClusterInstallManifestResponse $response */
-        $response = $attachedClustersClient->generateAttachedClusterInstallManifest(
-            $formattedParent,
-            $attachedClusterId,
-            $platformVersion
-        );
+        $response = $attachedClustersClient->generateAttachedClusterInstallManifest($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

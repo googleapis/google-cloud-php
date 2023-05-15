@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_AbandonRelease_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Deploy\V1\AbandonReleaseRequest;
 use Google\Cloud\Deploy\V1\AbandonReleaseResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 
 /**
  * Abandons a Release in the Delivery Pipeline.
@@ -40,10 +41,14 @@ function abandon_release_sample(string $formattedName): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new AbandonReleaseRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AbandonReleaseResponse $response */
-        $response = $cloudDeployClient->abandonRelease($formattedName);
+        $response = $cloudDeployClient->abandonRelease($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

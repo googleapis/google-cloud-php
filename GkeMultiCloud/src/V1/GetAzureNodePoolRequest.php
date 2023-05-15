@@ -29,6 +29,28 @@ class GetAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
+     *                     describe.
+     *
+     *                     `AzureNodePool` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AzureClustersClient::azureNodePoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

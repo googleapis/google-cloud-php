@@ -30,6 +30,23 @@ class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
     private $vod_session = null;
 
     /**
+     * @param string                                     $parent     Required. The project and location in which the VOD session should be
+     *                                                               created, in the form of `projects/{project_number}/locations/{location}`. Please see
+     *                                                               {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Stitcher\V1\VodSession $vodSession Required. Parameters for creating a session.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Stitcher\V1\VodSession $vodSession): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setVodSession($vodSession);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

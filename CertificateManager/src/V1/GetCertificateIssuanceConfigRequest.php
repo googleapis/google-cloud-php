@@ -24,6 +24,21 @@ class GetCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\Mess
     private $name = '';
 
     /**
+     * @param string $name Required. A name of the certificate issuance config to describe. Must be in
+     *                     the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`. Please see
+     *                     {@see CertificateManagerClient::certificateIssuanceConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

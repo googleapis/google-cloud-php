@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START containeranalysis_v1_generated_Grafeas_BatchCreateNotes_sync]
 use Google\ApiCore\ApiException;
+use Grafeas\V1\BatchCreateNotesRequest;
 use Grafeas\V1\BatchCreateNotesResponse;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
 
 /**
  * Creates new notes in batch.
@@ -39,13 +40,16 @@ function batch_create_notes_sample(string $formattedParent): void
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $notes = [];
+    $request = (new BatchCreateNotesRequest())
+        ->setParent($formattedParent)
+        ->setNotes($notes);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchCreateNotesResponse $response */
-        $response = $grafeasClient->batchCreateNotes($formattedParent, $notes);
+        $response = $grafeasClient->batchCreateNotes($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

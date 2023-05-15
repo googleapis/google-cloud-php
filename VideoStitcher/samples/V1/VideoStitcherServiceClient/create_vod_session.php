@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 
 /**
@@ -50,16 +51,19 @@ function create_vod_session_sample(
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $vodSession = (new VodSession())
         ->setSourceUri($vodSessionSourceUri)
         ->setAdTagUri($vodSessionAdTagUri)
         ->setAdTracking($vodSessionAdTracking);
+    $request = (new CreateVodSessionRequest())
+        ->setParent($formattedParent)
+        ->setVodSession($vodSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var VodSession $response */
-        $response = $videoStitcherServiceClient->createVodSession($formattedParent, $vodSession);
+        $response = $videoStitcherServiceClient->createVodSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

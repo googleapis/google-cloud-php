@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_DeleteBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\DeleteBackupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_backup_sample(string $formattedName): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new DeleteBackupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->deleteBackup($formattedName);
+        $response = $backupForGKEClient->deleteBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

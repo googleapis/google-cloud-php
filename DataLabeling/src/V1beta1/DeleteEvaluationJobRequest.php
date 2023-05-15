@@ -24,6 +24,22 @@ class DeleteEvaluationJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the evaluation job that is going to be deleted. Format:
+     *
+     *                     "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+     *                     Please see {@see DataLabelingServiceClient::evaluationJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\DeleteEvaluationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

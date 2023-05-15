@@ -40,6 +40,29 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $repository_id = '';
 
     /**
+     * @param string                            $parent       Required. The connection to contain the repository. If the request is part
+     *                                                        of a BatchCreateRepositoriesRequest, this field should be empty or match
+     *                                                        the parent specified there. Please see
+     *                                                        {@see RepositoryManagerClient::connectionName()} for help formatting this field.
+     * @param \Google\Cloud\Build\V2\Repository $repository   Required. The repository to create.
+     * @param string                            $repositoryId Required. The ID to use for the repository, which will become the final
+     *                                                        component of the repository's resource name. This ID should be unique in
+     *                                                        the connection. Allows alphanumeric characters and any of
+     *                                                        -._~%!$&'()*+,;=&#64;.
+     *
+     * @return \Google\Cloud\Build\V2\CreateRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Build\V2\Repository $repository, string $repositoryId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRepository($repository)
+            ->setRepositoryId($repositoryId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

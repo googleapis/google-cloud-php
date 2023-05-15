@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\CertificateManager\V1\Certificate;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\ListCertificatesRequest;
 
 /**
  * Lists Certificates in a given project and location.
@@ -40,10 +41,14 @@ function list_certificates_sample(string $formattedParent): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListCertificatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateManagerClient->listCertificates($formattedParent);
+        $response = $certificateManagerClient->listCertificates($request);
 
         /** @var Certificate $element */
         foreach ($response as $element) {

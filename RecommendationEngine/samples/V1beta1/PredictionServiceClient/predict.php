@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_PredictionService_Predict_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\PredictionServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult;
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 use Google\Cloud\RecommendationEngine\V1beta1\UserInfo;
 
@@ -100,17 +101,20 @@ function predict_sample(
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $userEventUserInfo = (new UserInfo())
         ->setVisitorId($userEventUserInfoVisitorId);
     $userEvent = (new UserEvent())
         ->setEventType($userEventEventType)
         ->setUserInfo($userEventUserInfo);
+    $request = (new PredictRequest())
+        ->setName($formattedName)
+        ->setUserEvent($userEvent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $predictionServiceClient->predict($formattedName, $userEvent);
+        $response = $predictionServiceClient->predict($request);
 
         /** @var PredictionResult $element */
         foreach ($response as $element) {

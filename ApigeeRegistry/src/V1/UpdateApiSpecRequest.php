@@ -41,6 +41,27 @@ class UpdateApiSpecRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiSpec $apiSpec    Required. The spec to update.
+     *
+     *                                                            The `name` field is used to identify the spec to update.
+     *                                                            Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
+     * @param \Google\Protobuf\FieldMask              $updateMask The list of fields to be updated. If omitted, all fields are updated that
+     *                                                            are set in the request message (fields set to default values are ignored).
+     *                                                            If an asterisk "*" is specified, all fields are updated, including fields
+     *                                                            that are unspecified/default in the request.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\UpdateApiSpecRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApigeeRegistry\V1\ApiSpec $apiSpec, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setApiSpec($apiSpec)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

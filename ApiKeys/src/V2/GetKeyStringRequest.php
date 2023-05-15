@@ -23,6 +23,20 @@ class GetKeyStringRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the API key to be retrieved. Please see
+     *                     {@see ApiKeysClient::keyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiKeys\V2\GetKeyStringRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

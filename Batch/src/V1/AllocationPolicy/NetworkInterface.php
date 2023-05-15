@@ -19,9 +19,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing network resource.
      * You can specify the network as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     * projects/{project}/global/networks/{network}
-     * global/networks/{network}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * * projects/{project}/global/networks/{network}
+     * * global/networks/{network}
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
@@ -30,9 +30,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing subnetwork resource in the network.
      * You can specify the subnetwork as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * regions/{region}/subnetworks/{subnetwork}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * regions/{region}/subnetworks/{subnetwork}
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
@@ -60,16 +60,16 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           The URL of an existing network resource.
      *           You can specify the network as a full or partial URL.
      *           For example, the following are all valid URLs:
-     *           https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     *           projects/{project}/global/networks/{network}
-     *           global/networks/{network}
+     *           * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     *           * projects/{project}/global/networks/{network}
+     *           * global/networks/{network}
      *     @type string $subnetwork
      *           The URL of an existing subnetwork resource in the network.
      *           You can specify the subnetwork as a full or partial URL.
      *           For example, the following are all valid URLs:
-     *           https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     *           projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     *           regions/{region}/subnetworks/{subnetwork}
+     *           * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     *           * projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     *           * regions/{region}/subnetworks/{subnetwork}
      *     @type bool $no_external_ip_address
      *           Default is false (with an external IP address). Required if
      *           no external public IP address is attached to the VM. If no external
@@ -89,9 +89,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing network resource.
      * You can specify the network as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     * projects/{project}/global/networks/{network}
-     * global/networks/{network}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * * projects/{project}/global/networks/{network}
+     * * global/networks/{network}
      *
      * Generated from protobuf field <code>string network = 1;</code>
      * @return string
@@ -105,9 +105,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing network resource.
      * You can specify the network as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     * projects/{project}/global/networks/{network}
-     * global/networks/{network}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * * projects/{project}/global/networks/{network}
+     * * global/networks/{network}
      *
      * Generated from protobuf field <code>string network = 1;</code>
      * @param string $var
@@ -125,9 +125,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing subnetwork resource in the network.
      * You can specify the subnetwork as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * regions/{region}/subnetworks/{subnetwork}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * regions/{region}/subnetworks/{subnetwork}
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      * @return string
@@ -141,9 +141,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * The URL of an existing subnetwork resource in the network.
      * You can specify the subnetwork as a full or partial URL.
      * For example, the following are all valid URLs:
-     * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * regions/{region}/subnetworks/{subnetwork}
+     * * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * * regions/{region}/subnetworks/{subnetwork}
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      * @param string $var

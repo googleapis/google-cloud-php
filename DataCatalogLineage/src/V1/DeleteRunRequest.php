@@ -31,6 +31,20 @@ class DeleteRunRequest extends \Google\Protobuf\Internal\Message
     protected $allow_missing = false;
 
     /**
+     * @param string $name Required. The name of the run to delete. Please see
+     *                     {@see LineageClient::runName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\DeleteRunRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

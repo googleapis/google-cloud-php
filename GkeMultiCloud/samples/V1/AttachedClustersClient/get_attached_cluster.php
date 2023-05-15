@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AttachedClusters_GetAttachedCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAttachedClusterRequest;
 
 /**
  * Describes a specific
@@ -47,10 +48,14 @@ function get_attached_cluster_sample(string $formattedName): void
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAttachedClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AttachedCluster $response */
-        $response = $attachedClustersClient->getAttachedCluster($formattedName);
+        $response = $attachedClustersClient->getAttachedCluster($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

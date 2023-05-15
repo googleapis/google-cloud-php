@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START certificatemanager_v1_generated_CertificateManager_GetCertificateIssuanceConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest;
 
 /**
  * Gets details of a single CertificateIssuanceConfig.
@@ -39,10 +40,14 @@ function get_certificate_issuance_config_sample(string $formattedName): void
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetCertificateIssuanceConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CertificateIssuanceConfig $response */
-        $response = $certificateManagerClient->getCertificateIssuanceConfig($formattedName);
+        $response = $certificateManagerClient->getCertificateIssuanceConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

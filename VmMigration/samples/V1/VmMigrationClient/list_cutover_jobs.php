@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListCutoverJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CutoverJob;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListCutoverJobsRequest;
 
 /**
  * Lists CutoverJobs of a given migrating VM.
@@ -43,10 +44,15 @@ function list_cutover_jobs_sample(string $formattedParent, string $pageToken): v
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListCutoverJobsRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listCutoverJobs($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listCutoverJobs($request);
 
         /** @var CutoverJob $element */
         foreach ($response as $element) {

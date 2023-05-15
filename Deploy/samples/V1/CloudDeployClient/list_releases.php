@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_ListReleases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\ListReleasesRequest;
 use Google\Cloud\Deploy\V1\Release;
 
 /**
@@ -40,10 +41,14 @@ function list_releases_sample(string $formattedParent): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new ListReleasesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listReleases($formattedParent);
+        $response = $cloudDeployClient->listReleases($request);
 
         /** @var Release $element */
         foreach ($response as $element) {

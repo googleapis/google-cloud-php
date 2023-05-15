@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListSources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListSourcesRequest;
 use Google\Cloud\VMMigration\V1\Source;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * Lists Sources in a given project and location.
@@ -43,10 +44,15 @@ function list_sources_sample(string $formattedParent, string $pageToken): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListSourcesRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listSources($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listSources($request);
 
         /** @var Source $element */
         foreach ($response as $element) {

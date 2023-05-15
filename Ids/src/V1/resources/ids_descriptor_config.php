@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '45000',
                     'totalPollTimeoutMillis' => '3600000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'DeleteEndpoint' => [
                 'longRunning' => [
@@ -21,6 +30,27 @@ return [
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
                     'totalPollTimeoutMillis' => '3600000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEndpoint' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Ids\V1\Endpoint',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListEndpoints' => [
@@ -32,6 +62,20 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getEndpoints',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Ids\V1\ListEndpointsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
+                'location' => 'projects/{project}/locations/{location}',
             ],
         ],
     ],

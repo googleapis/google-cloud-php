@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ImportData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\ImportDataOperationResponse;
+use Google\Cloud\DataLabeling\V1beta1\ImportDataRequest;
 use Google\Cloud\DataLabeling\V1beta1\InputConfig;
 use Google\Rpc\Status;
 
@@ -46,13 +47,16 @@ function import_data_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new InputConfig();
+    $request = (new ImportDataRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataLabelingServiceClient->importData($formattedName, $inputConfig);
+        $response = $dataLabelingServiceClient->importData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
