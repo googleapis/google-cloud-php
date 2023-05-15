@@ -10,9 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A clause for defining either a simple or sequence filter. A filter can be
- * inclusive (i.e., users satisfying the filter clause are included in the
- * Audience) or exclusive (i.e., users satisfying the filter clause are
- * excluded from the Audience).
+ * inclusive (For example, users satisfying the filter clause are included in
+ * the Audience) or exclusive (For example, users satisfying the filter clause
+ * are excluded from the Audience).
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.AudienceFilterClause</code>
  */
