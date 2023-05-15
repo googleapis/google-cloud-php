@@ -45,10 +45,14 @@ class NamespaceToc
                 $this->items[$nestedUid] = new NamespaceToc($nestedNs, $parts[0]);
             }
             $this->items[$nestedUid]->addNode($classNode);
+            // new client namespace
+            if ($classNode->isServiceClass() && $parts[0] === 'Client') {
+                $this->isVersionNamespace = true;
+            }
         } else {
             $this->items[$uid] = new ClassToc($classNode);
-
-            if ($this->items[$uid]->isServiceClass()) {
+            // previous client namespace
+            if ($classNode->isServiceClass()) {
                 $this->isVersionNamespace = true;
             }
         }

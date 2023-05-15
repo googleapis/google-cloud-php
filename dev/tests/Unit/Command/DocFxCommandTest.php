@@ -18,16 +18,18 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\DocFxCommand;
-use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @group dev
  */
 class DocFxCommandTest extends TestCase
 {
-    private static $fixturesDir;
-    private static $tmpDir;
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/docfx';
+    private static string $tmpDir;
+    private static CommandTester $commandTester;
 
     public function testGenerateVisionStructureXml()
     {
@@ -45,7 +47,7 @@ class DocFxCommandTest extends TestCase
 
     public function testGenerateDocFxFiles()
     {
-        $fixturesFiles = array_diff(scandir(self::$fixturesDir), ['..', '.']);
+        $fixturesFiles = array_diff(scandir(self::$fixturesDir . '/Vision'), ['..', '.']);
         $generatedFiles = array_diff(scandir(self::$tmpDir), ['..', '.']);
 
         $this->assertEquals([], array_diff($fixturesFiles, $generatedFiles));
@@ -58,11 +60,11 @@ class DocFxCommandTest extends TestCase
     public function testDocFxFiles(string $file)
     {
         $this->assertTrue(
-            file_exists(self::$fixturesDir . '/' . $file),
+            file_exists(self::$fixturesDir . '/Vision/' . $file),
             sprintf('%s does not exist in fixtures (%s)', $file, self::$tmpDir . '/' . $file)
         );
 
-        $left  = self::$fixturesDir . '/' . $file;
+        $left  = self::$fixturesDir . '/Vision/' . $file;
         $right = self::$tmpDir . '/' . $file;
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
@@ -77,7 +79,7 @@ class DocFxCommandTest extends TestCase
             'docs.metadata was not generated in ' . self::$tmpDir
         );
 
-        $left  = self::$fixturesDir . '/docs.metadata';
+        $left  = self::$fixturesDir . '/Vision/docs.metadata';
         $right = self::$tmpDir . '/docs.metadata';
         $rightContents = preg_replace('/seconds: \d+/', 'seconds: *', file_get_contents($right));
         $rightContents = preg_replace('/nanos: \d+/', 'nanos: *', $rightContents);
@@ -86,39 +88,18 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right);
     }
 
-    public function testOverviewPage()
-    {
-        $overview1 = new OverviewPage("# Not beta\n\n", $beta = false);
-        $this->assertEquals("# Not beta\n\n", $overview1->getContents());
-
-        $overview2 = new OverviewPage("No header\n\n", $beta = true);
-        $this->assertEquals("No header\n\n", $overview2->getContents());
-
-        $overview3 = new OverviewPage("# No newline", $beta = true);
-        $this->assertEquals('# No newline', $overview3->getContents());
-
-        $overview4 = new OverviewPage("# Yes beta\nend.", $beta = true);
-        $this->assertStringContainsString('pre-GA', $overview4->getContents());
-        $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
-        $this->assertStringEndsWith("\nend.", $overview4->getContents());
-    }
-
     public function provideDocFxFiles()
     {
-        $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
-        $componentDir = __DIR__ . '/../../fixtures/component/Vision';
-        $tmpDir = sys_get_temp_dir() . '/' . rand();
-        $cmd = sprintf(
-            '%s/google-cloud docfx --component Vision --xml %s --out=%s --metadata-version=1.0.0 --component-path=%s',
-            __DIR__ . '/../../../',
-            $structureXml,
-            $tmpDir,
-            $componentDir
-        );
-        passthru($cmd);
+        $output = self::getCommandTester()->execute([
+            '--component' => 'Vision',
+            '--xml' => __DIR__ . '/../../fixtures/phpdoc/structure.xml',
+            '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--component-path' => __DIR__ . '/../../fixtures/component/Vision',
+        ]);
 
         $filesAsArguments = [];
-        $generatedFiles = array_diff(scandir($tmpDir), ['..', '.']);
+        $generatedFiles = array_diff(scandir(self::$tmpDir), ['..', '.']);
         foreach ($generatedFiles as $file) {
             if ($file === 'docs.metadata') {
                 continue;
@@ -126,10 +107,24 @@ class DocFxCommandTest extends TestCase
             $filesAsArguments[] = [$file];
         }
 
-        self::$tmpDir = $tmpDir;
-        self::$fixturesDir = realpath(__DIR__ . '/../../fixtures/docfx');
-
         return $filesAsArguments;
+    }
+
+    public function testNewClient()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'Vision',
+            '--xml' => __DIR__ . '/../../fixtures/phpdoc/newclient.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--component-path' => __DIR__ . '/../../fixtures/component/Vision',
+        ]);
+
+        foreach (['V1.Client.ImageAnnotatorClient.yml', 'toc.yml'] as $file) {
+            $left = self::$fixturesDir . '/NewClient/' . $file;
+            $right = $tmpDir . '/' . $file;
+            $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+        }
     }
 
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
@@ -144,5 +139,15 @@ class DocFxCommandTest extends TestCase
         }
 
         $this->assertTrue(true, 'file contents match');
+    }
+
+    private static function getCommandTester(): CommandTester
+    {
+        if (!isset(self::$commandTester)) {
+            $application = new Application();
+            $application->add(new DocFxCommand());
+            self::$commandTester = new CommandTester($application->get('docfx'));
+        }
+        return self::$commandTester;
     }
 }
