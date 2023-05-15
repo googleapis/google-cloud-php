@@ -25,10 +25,11 @@ use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
+use Google\Cloud\PubSub\Schema;
+use Google\Cloud\PubSub\V1\Schema as SchemaProto;
+use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -166,6 +167,7 @@ class PubSubClient
             [
                 PublisherGapicClient::class,
                 SubscriberGapicClient::class,
+                SchemaServiceClient::class,
             ],
             $config
         );
@@ -358,6 +360,7 @@ class PubSubClient
      */
     public function subscriptions(array $options = [])
     {
+        $projectId = $this->formatName('project', $this->projectId);
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
         return new ItemIterator(
@@ -369,8 +372,15 @@ class PubSubClient
                         $subscription
                     );
                 },
-                [$this->connection, 'listSubscriptions'],
-                $options + ['project' => $this->formatName('project', $this->projectId)],
+                function($options) use ($projectId) {
+                    return $this->reqHandler->sendReq(
+                        SubscriberGapicClient::class,
+                        'listSubscriptions',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'subscriptions',
                     'resultLimit' => $resultLimit
@@ -489,7 +499,6 @@ class PubSubClient
     public function schema($schemaId, array $info = [])
     {
         return new Schema(
-            $this->connection,
             SchemaServiceClient::schemaName($this->projectId, $schemaId),
             $info
         );
@@ -518,12 +527,20 @@ class PubSubClient
      */
     public function createSchema($schemaId, $type, $definition, array $options = [])
     {
-        $res = $this->connection->createSchema([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'schemaId' => $schemaId,
+        $type = is_string($type) ? Type::value($type) : $type;
+        $parent = SchemaServiceClient::projectName($this->projectId);
+        $schema = new SchemaProto([
             'type' => $type,
             'definition' => $definition,
-        ] + $options);
+        ]);
+        $options['schemaId'] = $schemaId;
+
+        $res = $this->reqHandler->sendReq(
+            SchemaServiceClient::class,
+            'createSchema',
+            [$parent, $schema],
+            $options
+        );
 
         return $this->schema($schemaId, $res);
     }
@@ -565,6 +582,7 @@ class PubSubClient
      */
     public function schemas(array $options = [])
     {
+        $projectId = $this->formatName('project', $this->projectId);
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
         return new ItemIterator(
@@ -573,8 +591,15 @@ class PubSubClient
                     $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
-                [$this->connection, 'listSchemas'],
-                ['parent' => $this->formatName('project', $this->projectId)] + $options,
+                function($options) use($projectId){
+                    return $this->reqHandler->sendReq(
+                        SchemaServiceClient::class,
+                        'listSchemas',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'schemas',
                     'resultLimit' => $resultLimit
@@ -617,10 +642,16 @@ class PubSubClient
      */
     public function validateSchema(array $schema, array $options = [])
     {
-        return $this->connection->validateSchema([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'schema' => $schema,
-        ] + $options);
+        $parent = SchemaServiceClient::projectName($this->projectId);
+        $schema['type'] = Type::value($schema['type']);
+        $schema = new SchemaProto($schema);
+
+        return $this->reqHandler->sendReq(
+            SchemaServiceClient::class,
+            'validateSchema',
+            [$parent, $schema],
+            $options
+        );
     }
 
     /**
@@ -663,6 +694,8 @@ class PubSubClient
      */
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
+        $parent = SchemaServiceClient::projectName($this->projectId);
+
         if (is_string($schema)) {
             $options['name'] = $schema;
         } elseif ($schema instanceof Schema) {
@@ -676,11 +709,15 @@ class PubSubClient
             ));
         }
 
-        return $this->connection->validateMessage([
-            'parent' => SchemaServiceClient::projectName($this->projectId),
-            'message' => $message,
-            'encoding' => $encoding,
-        ] + $options);
+        $options['message'] = $message;
+        $options['encoding'] = $encoding;
+
+        return $this->reqHandler->sendReq(
+            SchemaServiceClient::class,
+            'validateMessage',
+            [$parent],
+            $options
+        );
     }
 
     /**
@@ -795,10 +832,6 @@ class PubSubClient
     public function __debugInfo()
     {
         $debugInfo = [];
-        if ($this->connection) {
-            $debugInfo['connection'] = get_class($this->connection);
-        }
-
         $debugInfo['projectId'] = $this->projectId;
         $debugInfo['encode'] = $this->encode;
 

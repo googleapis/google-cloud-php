@@ -18,7 +18,9 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\V1\Gapic\SchemaServiceGapicClient;
+use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\SchemaView;
 
 /**
  * Represents a Pub/Sub Schema resource.
@@ -39,9 +41,10 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 class Schema
 {
     /**
-     * @var ConnectionInterface
+     * The request handler that is responsible for sending a req and
+     * serializing responses into relevant classes.
      */
-    private $connection;
+    private $reqHandler;
 
     /**
      * @var string
@@ -54,16 +57,19 @@ class Schema
     private $info;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */
     public function __construct(
-        ConnectionInterface $connection,
         $name,
         array $info = []
     ) {
-        $this->connection = $connection;
+        $this->reqHandler = new RequestHandler(
+            new PubSubSerializer(),
+            [SchemaServiceGapicClient::class],
+            ['libVersion' => PubSubClient::VERSION]
+        );
+
         $this->name = $name;
         $this->info = $info;
     }
@@ -96,9 +102,12 @@ class Schema
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteSchema([
-            'name' => $this->name
-        ] + $options);
+        return $this->reqHandler->sendReq(
+            SchemaServiceClient::class,
+            'deleteSchema',
+            [$this->name],
+            $options
+        );
     }
 
     /**
@@ -167,9 +176,16 @@ class Schema
             'view' => 'FULL',
         ];
 
-        return $this->info = $this->connection->getSchema([
-            'name' => $this->name,
-        ] + $options);
+        if (is_string($options['view'])) {
+            $options['view'] = SchemaView::value($options['view']);
+        }
+
+        return $this->reqHandler->sendReq(
+            SchemaServiceClient::class,
+            'getSchema',
+            [$this->name],
+            $options
+        );
     }
 
     /**
