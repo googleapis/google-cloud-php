@@ -18,13 +18,10 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\V2\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\PubSub\Connection\IamTopic;
 use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use InvalidArgumentException;
@@ -126,9 +123,9 @@ class Topic
     ) {
         $clientConfig['libVersion'] = PubSubClient::VERSION;
         $this->reqHandler = new RequestHandler(
-            $clientConfig,
             new PubSubSerializer(),
-            [PublisherGapicClient::class]
+            [PublisherGapicClient::class],
+            $clientConfig
         );
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
@@ -717,8 +714,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $iamConnection = new IamTopic($this->connection);
-            $this->iam = new Iam($iamConnection, $this->name);
+            $this->iam = new Iam($this->reqHandler, PublisherGapicClient::class , $this->name);
         }
 
         return $this->iam;
@@ -737,7 +733,7 @@ class Topic
             'name' => $this->name,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'connection' => get_class($this->connection)
+            'request_handler' => $this->reqHandler
         ];
     }
 

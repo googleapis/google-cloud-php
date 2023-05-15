@@ -39,17 +39,20 @@ class RequestHandler
      */
     private $gapics;
 
+    private $serializer;
+
     /**
      * @param array $config
      */
     public function __construct(
-        array $config = [],
         Serializer $serializer,
-        array $gapicClasses = []
+        array $gapicClasses = [],
+        array $config = []
     ) {
         //@codeCoverageIgnoreStart
 
         $config['serializer'] = $serializer;
+        $this->serializer = $serializer;
         $config += ['emulatorHost' => null];
         // TODO: We should be able to swap out the use of
         // GrpcRequestWrapper with either something in gax, or
@@ -60,7 +63,7 @@ class RequestHandler
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
                 : null,
-            $config['transport']
+            $config['transport'] ?? []
         );
 
         if (isset($config['apiEndpoint'])) {
@@ -99,7 +102,8 @@ class RequestHandler
         $gapicClass,
         string $method,
         array $requiredArgs,
-        array $args) {
+        array $args,
+        bool $whitelisted = false) {
 
         $allArgs = $requiredArgs;
 

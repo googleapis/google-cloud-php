@@ -162,12 +162,13 @@ class PubSubClient
         $this->clientConfig = $config;
         $config['libVersion'] = self::VERSION;
         $this->reqHandler = new RequestHandler(
-            $config,
             new PubSubSerializer(),
             [
                 PublisherGapicClient::class,
                 SubscriberGapicClient::class,
-            ]);
+            ],
+            $config
+        );
     }
 
     /**
@@ -779,7 +780,6 @@ class PubSubClient
             : $topic;
 
         return new Subscription(
-            $this->connection,
             $this->projectId,
             $name,
             $topic,
