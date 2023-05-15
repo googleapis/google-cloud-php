@@ -22,11 +22,10 @@ items:
       - '\Google\Cloud\Vision\V1\OperationMetadata\State::CANCELLED'
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::name()'
-    name: name
+    name: 'static::name'
     id: name
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: method
-    static: true
     langs:
       - php
     syntax:
@@ -37,11 +36,10 @@ items:
           description: ''
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::value()'
-    name: value
+    name: 'static::value'
     id: value
     parent: \Google\Cloud\Vision\V1\OperationMetadata\State
     type: method
-    static: true
     langs:
       - php
     syntax:

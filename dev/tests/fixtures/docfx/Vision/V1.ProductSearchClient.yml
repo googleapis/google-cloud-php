@@ -43,13 +43,6 @@ items:
     langs:
       - php
     children:
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::locationName()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::getOperationsClient()'
-      - '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::__construct()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::addProductToProductSet()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::createProduct()'
@@ -70,207 +63,17 @@ items:
       - '\Google\Cloud\Vision\V1\ProductSearchClient::removeProductFromProductSet()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::updateProduct()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::updateProductSet()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::getOperationsClient()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::locationName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::SERVICE_NAME'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::SERVICE_ADDRESS'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::DEFAULT_SERVICE_PORT'
       - '\Google\Cloud\Vision\V1\ProductSearchClient::CODEGEN_NAME'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::locationName()'
-    name: locationName
-    id: locationName
-    summary: |-
-      Formats a string containing the fully-qualified path to represent a location
-      resource.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    static: true
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: project
-          var_type: string
-          description: ''
-        -
-          id: location
-          var_type: string
-          description: ''
-      returns:
-        -
-          var_type: string
-          description: 'The formatted location resource.'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
-    name: productName
-    id: productName
-    summary: |-
-      Formats a string containing the fully-qualified path to represent a product
-      resource.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    static: true
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: project
-          var_type: string
-          description: ''
-        -
-          id: location
-          var_type: string
-          description: ''
-        -
-          id: product
-          var_type: string
-          description: ''
-      returns:
-        -
-          var_type: string
-          description: 'The formatted product resource.'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
-    name: productSetName
-    id: productSetName
-    summary: |-
-      Formats a string containing the fully-qualified path to represent a product_set
-      resource.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    static: true
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: project
-          var_type: string
-          description: ''
-        -
-          id: location
-          var_type: string
-          description: ''
-        -
-          id: productSet
-          var_type: string
-          description: ''
-      returns:
-        -
-          var_type: string
-          description: 'The formatted product_set resource.'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
-    name: referenceImageName
-    id: referenceImageName
-    summary: |-
-      Formats a string containing the fully-qualified path to represent a
-      reference_image resource.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    static: true
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: project
-          var_type: string
-          description: ''
-        -
-          id: location
-          var_type: string
-          description: ''
-        -
-          id: product
-          var_type: string
-          description: ''
-        -
-          id: referenceImage
-          var_type: string
-          description: ''
-      returns:
-        -
-          var_type: string
-          description: 'The formatted reference_image resource.'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
-    name: parseName
-    id: parseName
-    summary: |-
-      Parses a formatted name string and returns an associative array of the components in the name.
-
-      The following name formats are supported:
-      Template: Pattern
-      - location: projects/{project}/locations/{location}
-      - product: projects/{project}/locations/{location}/products/{product}
-      - productSet: projects/{project}/locations/{location}/productSets/{product_set}
-      - referenceImage: projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}
-
-      The optional $template argument can be supplied to specify a particular pattern,
-      and must match one of the templates listed above. If no $template argument is
-      provided, or if the $template argument does not match one of the templates
-      listed, then parseName will check each of the supported templates, and return
-      the first match.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    static: true
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: formattedName
-          var_type: string
-          description: 'The formatted name string'
-        -
-          id: template
-          var_type: string
-          description: 'Optional name of template to match'
-      returns:
-        -
-          var_type: array
-          description: 'An associative array from name component IDs to component values.'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getOperationsClient()'
-    name: getOperationsClient
-    id: getOperationsClient
-    summary: 'Return an OperationsClient object with the same endpoint as $this.'
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    langs:
-      - php
-    syntax:
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
-  -
-    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
-    name: resumeOperation
-    id: resumeOperation
-    summary: |-
-      Resume an existing long running operation that was previously started by a long
-      running API method. If $methodName is not provided, or does not match a long
-      running API method, then the operation can still be resumed, but the
-      OperationResponse object will not deserialize the final response.
-    parent: \Google\Cloud\Vision\V1\ProductSearchClient
-    type: method
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: operationName
-          var_type: string
-          description: 'The name of the long running operation'
-        -
-          id: methodName
-          var_type: string
-          description: 'The name of the method used to start the operation'
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::__construct()'
     name: __construct
@@ -2002,6 +1805,198 @@ items:
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getOperationsClient()'
+    name: getOperationsClient
+    id: getOperationsClient
+    summary: 'Return an OperationsClient object with the same endpoint as $this.'
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
+    name: resumeOperation
+    id: resumeOperation
+    summary: |-
+      Resume an existing long running operation that was previously started by a long
+      running API method. If $methodName is not provided, or does not match a long
+      running API method, then the operation can still be resumed, but the
+      OperationResponse object will not deserialize the final response.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: operationName
+          var_type: string
+          description: 'The name of the long running operation'
+        -
+          id: methodName
+          var_type: string
+          description: 'The name of the method used to start the operation'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::locationName()'
+    name: 'static::locationName'
+    id: locationName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a location
+      resource.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted location resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
+    name: 'static::productName'
+    id: productName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a product
+      resource.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+        -
+          id: product
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
+    name: 'static::productSetName'
+    id: productSetName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a product_set
+      resource.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+        -
+          id: productSet
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product_set resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
+    name: 'static::referenceImageName'
+    id: referenceImageName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a
+      reference_image resource.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+        -
+          id: product
+          var_type: string
+          description: ''
+        -
+          id: referenceImage
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted reference_image resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
+    name: 'static::parseName'
+    id: parseName
+    summary: |-
+      Parses a formatted name string and returns an associative array of the components in the name.
+
+      The following name formats are supported:
+      Template: Pattern
+      - location: projects/{project}/locations/{location}
+      - product: projects/{project}/locations/{location}/products/{product}
+      - productSet: projects/{project}/locations/{location}/productSets/{product_set}
+      - referenceImage: projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}
+
+      The optional $template argument can be supplied to specify a particular pattern,
+      and must match one of the templates listed above. If no $template argument is
+      provided, or if the $template argument does not match one of the templates
+      listed, then parseName will check each of the supported templates, and return
+      the first match.
+    parent: \Google\Cloud\Vision\V1\ProductSearchClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: formattedName
+          var_type: string
+          description: 'The formatted name string'
+        -
+          id: template
+          var_type: string
+          description: 'Optional name of template to match'
+      returns:
+        -
+          var_type: array
+          description: 'An associative array from name component IDs to component values.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::SERVICE_NAME'
     name: SERVICE_NAME
