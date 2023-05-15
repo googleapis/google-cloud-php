@@ -116,7 +116,8 @@ class RequestHandler
         // fetch the gapic obj to use while sending the req.
         $obj = $this->getGapicObj($gapicClass);
 
-        return $this->send([$obj, $method], $allArgs);
+        // TODO: check how can we simplify the use of $whitelisted
+        return $this->send([$obj, $method], $allArgs, $whitelisted);
     }
 
     /**

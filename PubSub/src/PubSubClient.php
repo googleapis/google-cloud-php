@@ -430,7 +430,7 @@ class PubSubClient
      */
     public function snapshot($name, array $info = [])
     {
-        return new Snapshot($this->connection, $this->projectId, $name, $this->encode, $info);
+        return new Snapshot($this->projectId, $name, $this->encode, $info);
     }
 
     /**
@@ -461,21 +461,28 @@ class PubSubClient
      */
     public function snapshots(array $options = [])
     {
+        $projectId = $this->formatName('project', $this->projectId);
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
         return new ItemIterator(
             new PageIterator(
                 function (array $snapshot) {
                     return new Snapshot(
-                        $this->connection,
                         $this->projectId,
                         $this->pluckName('snapshot', $snapshot['name']),
                         $this->encode,
                         $snapshot
                     );
                 },
-                [$this->connection, 'listSnapshots'],
-                ['project' => $this->formatName('project', $this->projectId)] + $options,
+                function($options) use ($projectId) {
+                    return $this->reqHandler->sendReq(
+                        SubscriberGapicClient::class,
+                        'listSnapshots',
+                        [$projectId],
+                        $options
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'snapshots',
                     'resultLimit' => $resultLimit
@@ -738,7 +745,7 @@ class PubSubClient
      */
     public function consume(array $requestData)
     {
-        return $this->messageFactory($requestData, $this->connection, $this->projectId, $this->encode);
+        return $this->messageFactory($requestData, $this->projectId, $this->encode);
     }
 
     /**
