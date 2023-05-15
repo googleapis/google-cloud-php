@@ -28,6 +28,7 @@ items:
     id: name
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: method
+    static: true
     langs:
       - php
     syntax:
@@ -42,6 +43,7 @@ items:
     id: value
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: method
+    static: true
     langs:
       - php
     syntax:

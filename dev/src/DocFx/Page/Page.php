@@ -153,22 +153,20 @@ class Page
     private function getMethodItems(): array
     {
         $methods = [];
-        $isServiceClass = $this->classNode->isServiceClass();
-
         foreach ($this->classNode->getMethods() as $method) {
-            $methodItem = $this->getMethodItem($method, $isServiceClass);
+            $methodItem = $this->getMethodItem($method);
             $methods[$methodItem['uid']] = $methodItem;
         }
 
         return $methods;
     }
 
-    private function getMethodItem(MethodNode $method, bool $isServiceClass): array
+    private function getMethodItem(MethodNode $method): array
     {
         $content = $method->getContent();
         $name = $method->getName();
         $sample = null;
-        if ($isServiceClass) {
+        if ($this->classNode->isServiceClass()) {
             list($content, $sample) = $this->handleSample($content, $name);
         }
         $methodItem = array_filter([
