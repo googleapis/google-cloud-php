@@ -69,6 +69,11 @@ class MethodNode
         return '';
     }
 
+    public function isStatic(): bool
+    {
+        return (string) $this->xmlNode['static'] === 'true';
+    }
+
     public function getParameters(): array
     {
         $parameters = [];

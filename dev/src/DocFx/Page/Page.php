@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Page;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\MethodNode;
 
 /**
  * Class to output the DocFX array before exporting to YAML.
@@ -155,46 +156,52 @@ class Page
         $isServiceClass = $this->classNode->isServiceClass();
 
         foreach ($this->classNode->getMethods() as $method) {
-            $content = $method->getContent();
-            $name = $method->getName();
-            $sample = null;
-            if ($isServiceClass) {
-                list($content, $sample) = $this->handleSample($content, $name);
-            }
-            $methodItem = array_filter([
-                'uid' => $method->getFullname(),
-                'name' => $name,
-                'id' => $name,
-                'summary' => $content,
-                'parent'  => $this->classNode->getFullname(),
-                'type' => 'method',
-                'langs' => ['php'],
-                'example' => $sample
-                    ? [$sample]
-                    : null
-            ]);
-            if ($parameters = $method->getParameters()) {
-                $methodItem['syntax']['parameters'] = [];
-                foreach ($parameters as $parameter) {
-                    $methodItem['syntax']['parameters'][] = [
-                        'id' => $parameter->getName(),
-                        'var_type' => $parameter->getType(),
-                        'description' => $parameter->getDescription(),
-                    ];
-                }
-            }
-            if ($returnType = $method->getReturnType()) {
-                $methodItem['syntax']['returns'] = [];
-                $methodItem['syntax']['returns'][] = array_filter([
-                    'var_type' => $returnType,
-                    'description' => $method->getReturnDescription(),
-                ]);
-            }
-
+            $methodItem = $this->getMethodItem($method, $isServiceClass);
             $methods[$methodItem['uid']] = $methodItem;
         }
 
         return $methods;
+    }
+
+    private function getMethodItem(MethodNode $method, bool $isServiceClass): array
+    {
+        $content = $method->getContent();
+        $name = $method->getName();
+        $sample = null;
+        if ($isServiceClass) {
+            list($content, $sample) = $this->handleSample($content, $name);
+        }
+        $methodItem = array_filter([
+            'uid' => $method->getFullname(),
+            'name' => $name,
+            'id' => $name,
+            'summary' => $content,
+            'parent'  => $this->classNode->getFullname(),
+            'type' => 'method',
+            'static' => $method->isStatic(),
+            'langs' => ['php'],
+            'example' => $sample
+                ? [$sample]
+                : null
+        ]);
+        if ($parameters = $method->getParameters()) {
+            $methodItem['syntax']['parameters'] = [];
+            foreach ($parameters as $parameter) {
+                $methodItem['syntax']['parameters'][] = [
+                    'id' => $parameter->getName(),
+                    'var_type' => $parameter->getType(),
+                    'description' => $parameter->getDescription(),
+                ];
+            }
+        }
+        if ($returnType = $method->getReturnType()) {
+            $methodItem['syntax']['returns'] = [];
+            $methodItem['syntax']['returns'][] = array_filter([
+                'var_type' => $returnType,
+                'description' => $method->getReturnDescription(),
+            ]);
+        }
+        return $methodItem;
     }
 
     private function getConstantItems(): array
