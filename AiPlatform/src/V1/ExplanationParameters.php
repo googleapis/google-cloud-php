@@ -65,6 +65,9 @@ class ExplanationParameters extends \Google\Protobuf\Internal\Message
      *           house or an animal. If the images are taken in artificial environments,
      *           like a lab or manufacturing line, or from diagnostic equipment, like
      *           x-rays or quality-control cameras, use Integrated Gradients instead.
+     *     @type \Google\Cloud\AIPlatform\V1\Examples $examples
+     *           Example-based explanations that returns the nearest neighbors from the
+     *           provided dataset.
      *     @type int $top_k
      *           If populated, returns attributions for top K indices of outputs
      *           (defaults to 1). Only applies to Models that predicts more than one outputs
@@ -201,6 +204,39 @@ class ExplanationParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\XraiAttribution::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Example-based explanations that returns the nearest neighbors from the
+     * provided dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Examples examples = 7;</code>
+     * @return \Google\Cloud\AIPlatform\V1\Examples|null
+     */
+    public function getExamples()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasExamples()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Example-based explanations that returns the nearest neighbors from the
+     * provided dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Examples examples = 7;</code>
+     * @param \Google\Cloud\AIPlatform\V1\Examples $var
+     * @return $this
+     */
+    public function setExamples($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Examples::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
