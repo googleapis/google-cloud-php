@@ -519,7 +519,7 @@ class Topic
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`.
      *     @type resource $debugOutputResource A resource to output debug output
-     *           to. **Defaults to** `php://stderr`.
+     *           to. **Defaults to** Resource for `php://stderr`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
