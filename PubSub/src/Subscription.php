@@ -26,6 +26,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\V2\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
@@ -35,6 +36,7 @@ use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
 /**
@@ -99,6 +101,11 @@ class Subscription
      * serializing responses into relevant classes.
      */
     private $reqHandler;
+
+    /**
+     * The GAPIC class to call under the hood.
+     */
+    private $gapic;
 
     /**
      * @var string
@@ -177,9 +184,10 @@ class Subscription
         $encode,
         array $info = []
     ) {
+        $this->gapic = SubscriberGapicClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
-            [SubscriberGapicClient::class],
+            [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;
@@ -397,7 +405,7 @@ class Subscription
         }
 
         $this->info = $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'createSubscription',
             [$this->name,$this->topicName],
             $this->formatDeadLetterPolicyForApi($options));
@@ -585,7 +593,7 @@ class Subscription
         ] + $this->formatDeadLetterPolicyForApi($subscription));
 
         return $this->info = $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'updateSubscription',
             [$subscriptionProto, $fieldMask],
             $options
@@ -608,7 +616,7 @@ class Subscription
     public function delete(array $options = [])
     {
         $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'deleteSubscription',
             [$this->name],
             $options
@@ -693,7 +701,7 @@ class Subscription
     public function reload(array $options = [])
     {
         return $this->info = $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'getSubscription',
             [$this->name],
             $options
@@ -731,7 +739,7 @@ class Subscription
         $maxMessages = $this->pluck('maxMessages', $options, false) ?? self::MAX_MESSAGES;
 
         $response = $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'pull',
             [$this->name, $maxMessages],
             $options
@@ -1131,7 +1139,7 @@ class Subscription
         );
 
         $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'modifyPushConfig',
             [$this->name, $pushConfig],
             $options
@@ -1159,10 +1167,10 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = $timestamp->formatForApi();
+        $options['time'] = (new PubSubSerializer())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
         return $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'seek',
             [$this->name],
             $options,
@@ -1193,7 +1201,7 @@ class Subscription
         $options['snapshot'] = $snapshot->name();
 
         return $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'seek',
             [$this->name],
             $options,
@@ -1219,7 +1227,7 @@ class Subscription
     public function detach(array $options = [])
     {
         return $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'detachSubscription',
             [$this->name],
             $options
@@ -1246,7 +1254,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->reqHandler, SubscriberGapicClient::class , $this->name);
+            $this->iam = new Iam($this->reqHandler, $this->gapic , $this->name);
         }
 
         return $this->iam;
@@ -1446,7 +1454,7 @@ class Subscription
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'acknowledge',
             [$this->name,$ackIds],
             $options
@@ -1464,7 +1472,7 @@ class Subscription
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'modifyAckDeadline',
             [$this->name, $ackIds, $seconds],
             $options

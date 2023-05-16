@@ -15,14 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\PubSub;
+namespace Google\Cloud\Core\V2;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\Duration as CoreDuration;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\PubSub\PubSubClient;
 
 class RequestHandler
 {
@@ -63,7 +61,7 @@ class RequestHandler
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
                 : null,
-            $config['transport'] ?? []
+            $config['transport'] ?? $this->getDefaultTransport()
         );
 
         if (isset($config['apiEndpoint'])) {
@@ -82,7 +80,7 @@ class RequestHandler
 
         // initialize the gapics
         foreach($gapicClasses as $gapicClass) {
-            $this->gapics[] = new $gapicClass($this->clientConfig);
+            $this->gapics[$gapicClass] = new $gapicClass($this->clientConfig);
         }
     }
 
@@ -102,7 +100,7 @@ class RequestHandler
         $gapicClass,
         string $method,
         array $requiredArgs,
-        array $args,
+        array $optionalArgs,
         bool $whitelisted = false) {
 
         $allArgs = $requiredArgs;
@@ -111,29 +109,24 @@ class RequestHandler
         // passed on the the `$method` as a positional argument
         // TODO: If we merge the GrpcRequestWrapper funcationality here,
         // we can modify this behaviour
-        $allArgs[] = $args;
+        $allArgs[] = $optionalArgs;
 
         // fetch the gapic obj to use while sending the req.
-        $obj = $this->getGapicObj($gapicClass);
+        $obj = $this->gapics[$gapicClass];
 
         // TODO: check how can we simplify the use of $whitelisted
         return $this->send([$obj, $method], $allArgs, $whitelisted);
     }
 
-    /**
-     * Fetches the GAPIC class object that has been previously instantiated
-     * given the GAPIC class.
-     * 
-     * TODO: Check if we can store the same in a map and access that using the class name.
-     * That way we won't need this func.
-     */
-    private function getGapicObj($cls) {
-        foreach($this->gapics as $gapicObj) {
-            if($gapicObj instanceof $cls){
-                return $gapicObj;
-            }
-        }
+    private function getDefaultTransport()
+    {
+        $isGrpcExtensionLoaded = $this->isGrpcLoaded();
+        $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
+        return $defaultTransport;
+    }
 
-        return false;
+    protected function isGrpcLoaded()
+    {
+        return extension_loaded('grpc');
     }
 }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\V2\RequestHandler;
 use Google\Cloud\PubSub\V1\Gapic\SchemaServiceGapicClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SchemaView;
@@ -47,6 +48,11 @@ class Schema
     private $reqHandler;
 
     /**
+     * The GAPIC class to call under the hood.
+     */
+    private $gapic;
+
+    /**
      * @var string
      */
     private $name;
@@ -64,9 +70,10 @@ class Schema
         $name,
         array $info = []
     ) {
+        $this->gapic = SchemaServiceClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
-            [SchemaServiceGapicClient::class],
+            [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
 
@@ -103,7 +110,7 @@ class Schema
     public function delete(array $options = [])
     {
         return $this->reqHandler->sendReq(
-            SchemaServiceClient::class,
+            $this->gapic,
             'deleteSchema',
             [$this->name],
             $options
@@ -181,7 +188,7 @@ class Schema
         }
 
         return $this->reqHandler->sendReq(
-            SchemaServiceClient::class,
+            $this->gapic,
             'getSchema',
             [$this->name],
             $options

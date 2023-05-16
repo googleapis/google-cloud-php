@@ -19,7 +19,7 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\V2\Iam;
+use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\PubSub\V1\Encoding;
@@ -27,6 +27,7 @@ use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use InvalidArgumentException;
 use Google\Cloud\Core\GrpcTrait;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\V2\RequestHandler;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
 use Google\Cloud\PubSub\V1\Topic as TopicProto;
@@ -59,6 +60,11 @@ class Topic
      * serializing responses into relevant classes.
      */
     private $reqHandler;
+
+    /**
+     * The GAPIC class to call under the hood.
+     */
+    private $gapic;
 
     /**
      * @var string The project ID
@@ -121,11 +127,11 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $clientConfig['libVersion'] = PubSubClient::VERSION;
+        $this->gapic = PublisherGapicClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
-            [PublisherGapicClient::class],
-            $clientConfig
+            [$this->gapic],
+            $clientConfig + ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
@@ -198,7 +204,7 @@ class Topic
     public function create(array $options = [])
     {
         $this->info = $this->reqHandler->sendReq(
-            PublisherGapicClient::class,
+            $this->gapic,
             'createTopic',
             [$this->name],
             $options
@@ -327,7 +333,7 @@ class Topic
         $proto = new TopicProto($topic + ['name' => $this->name]);
 
         $this->info = $this->reqHandler->sendReq(
-            PublisherGapicClient::class,
+            $this->gapic,
             'updateTopic',
             [$proto, $fieldMask],
             $options
@@ -352,7 +358,7 @@ class Topic
     public function delete(array $options = [])
     {
         $this->reqHandler->sendReq(
-            PublisherGapicClient::class,
+            $this->gapic,
             'deleteTopic',
             [$this->name],
             $options
@@ -449,7 +455,7 @@ class Topic
     public function reload(array $options = [])
     {
         $this->info = $this->reqHandler->sendReq(
-            PublisherGapicClient::class,
+            $this->gapic,
             'getTopic',
             [$this->name],
             $options
@@ -527,11 +533,12 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
-            $message = new PubsubMessage($message);
+            $message = (new PubSubSerializer())->decodeMessage(new PubsubMessage(), $message);
+            // new PubsubMessage($message);
         }
 
         return $this->reqHandler->sendReq(
-            PublisherGapicClient::class,
+            $this->gapic,
             'publish',
             [$this->name, $messages],
             $options
@@ -679,7 +686,7 @@ class Topic
                 },
                 function($options) {
                     return $this->reqHandler->sendReq(
-                        PublisherGapicClient::class,
+                        $this->gapic,
                         'listTopicSubscriptions',
                         [$this->name],
                         $options
@@ -714,7 +721,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->reqHandler, PublisherGapicClient::class , $this->name);
+            $this->iam = new Iam($this->reqHandler, $this->gapic , $this->name);
         }
 
         return $this->iam;

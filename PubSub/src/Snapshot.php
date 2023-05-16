@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\V2\RequestHandler;
 use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
 
 /**
@@ -40,6 +41,11 @@ class Snapshot
      * serializing responses into relevant classes.
      */
     private $reqHandler;
+
+    /**
+     * The GAPIC class to call under the hood.
+     */
+    private $gapic;
 
     /**
      * @var string
@@ -87,9 +93,10 @@ class Snapshot
         array $info = [],
         array $clientConfig = []
     ) {
+        $this->gapic = SubscriberGapicClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
-            [SubscriberGapicClient::class],
+            [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;
@@ -167,7 +174,7 @@ class Snapshot
         $options['project'] = $this->formatName('project', $this->projectId);
 
         $this->info = $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'createSnapshot',
             [$this->name, $this->info['subscription']],
             $options,
@@ -193,7 +200,7 @@ class Snapshot
     public function delete(array $options = [])
     {
         $this->reqHandler->sendReq(
-            SubscriberGapicClient::class,
+            $this->gapic,
             'deleteSnapshot',
             [$this->name],
             $options

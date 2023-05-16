@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
@@ -25,6 +24,7 @@ use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\V2\RequestHandler;
 use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
 use Google\Cloud\PubSub\Schema;
@@ -32,7 +32,6 @@ use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
-use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -161,7 +160,6 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
-        $config['libVersion'] = self::VERSION;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
             [
@@ -169,7 +167,7 @@ class PubSubClient
                 SubscriberGapicClient::class,
                 SchemaServiceClient::class,
             ],
-            $config
+            $config + ['libVersion' => self::VERSION]
         );
     }
 
