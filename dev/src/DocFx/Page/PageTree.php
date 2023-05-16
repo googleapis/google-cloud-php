@@ -78,9 +78,8 @@ class PageTree
                 continue;
             }
 
-            $fullName = $classNode->getFullname();
-
             // Manually skip GAPIC base clients
+            $fullName = $classNode->getFullname();
             if ('GapicClient' === substr($fullName, -11)
                 || 'BaseClient' === substr($fullName, -10)) {
                 $gapicClients[] = $classNode;
@@ -88,7 +87,7 @@ class PageTree
             }
 
             // Skip internal classes
-            // Do this after the GAPIC check because new clients are internal
+            // Do this after the GAPIC check because new base clients are internal
             if ($classNode->isInternal()) {
                 continue;
             }
