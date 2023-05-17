@@ -68,15 +68,13 @@ class RepoInfoCommand extends Command
             $this->headers['Authorization'] = 'Bearer ' . $token;
         }
         $nextPageQuestion = new ConfirmationQuestion('Next Page (enter)', true);
-        $table = (new Table($output))
-            ->setHeaders(self::$allFields);
+        $table = (new Table($output))->setHeaders(self::$allFields);
         if ($componentName = $input->getArgument('component')) {
             $table->setVertical();
         }
         $page = (int) $input->getOption('page');
         $resultsPerPage = (int) $input->getOption('results-per-page');
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
-        $repos = [];
         foreach ($components as $i => $component) {
             if ($i < (($page-1) * $resultsPerPage)) {
                 continue;
@@ -90,15 +88,18 @@ class RepoInfoCommand extends Command
                 $page++;
             }
             $details = $this->getRepoDetails($component);
-            if ($input->getOption('fix') && !$this->checkSettingsCompliance($details)) {
-                if ($this->askFixSettingsCompliance($input, $output, $details)) {
-                    // refresh repo details
-                    $details = $this->getRepoDetails($component);
+            if ($input->getOption('fix')) {
+                if (!$token) {
+                    throw new \InvalidArgumentException('Token required to fix compliance');
                 }
-            }
-            if ($input->getOption('fix') && !$this->checkTeamCompliance($details)) {
-                if ($this->askFixTeamCompliance($input, $output, $details)) {
-                    // refresh repo details
+                $refreshDetails = false;
+                if (!$this->checkSettingsCompliance($details)) {
+                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
+                }
+                if (!$this->checkTeamCompliance($details)) {
+                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $details);
+                }
+                if ($refreshDetails) {
                     $details = $this->getRepoDetails($component);
                 }
             }
@@ -128,9 +129,6 @@ class RepoInfoCommand extends Command
 
     private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$input->getOption('token')) {
-            throw new \InvalidArgumentException('Token required to fix compliance');
-        }
         $fieldsToUpdate = array_keys(array_filter($details, fn ($value) => $value === 'true'));
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
@@ -150,9 +148,6 @@ class RepoInfoCommand extends Command
 
     private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$input->getOption('token')) {
-            throw new \InvalidArgumentException('Token required to fix compliance');
-        }
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s does not have "yoshi-php" as an admin. Would you like to add it? (Y/n)',
             $details['name']
@@ -182,25 +177,30 @@ class RepoInfoCommand extends Command
                 self::$allFields
             )
         );
-        if (isset($this->headers['Authorization'])) {
-            // get team fields
-            $response = $this->http->get(
-                'https://api.github.com/repos/' . $component->getRepoName() . '/teams', [
-                'headers' => $this->headers,
-                'http_errors' => false,
-            ]);
-            if ($response->getStatusCode() === 200) {
-                $fields['teams'] = implode("\n", array_map(
-                    fn ($team) => $team['name'] . ': ' . $team['permission'],
-                    json_decode((string) $response->getBody(), true)
-                )) . "\n";
-            } else {
-                $fields['teams'] = '**ACCESS DENIED**';
-            }
-        } else {
-            $fields['teams'] = '**Token Required**';
-        }
+
+        $fields['teams'] = $this->getRepoTeamDetails($component);
 
         return $fields;
+    }
+
+    private function getRepoTeamDetails(Component $component)
+    {
+        if (!isset($this->headers['Authorization'])) {
+            return '**Token Required**';
+        }
+        // get team fields
+        $response = $this->http->get(
+            'https://api.github.com/repos/' . $component->getRepoName() . '/teams', [
+            'headers' => $this->headers,
+            'http_errors' => false,
+        ]);
+        if ($response->getStatusCode() === 200) {
+            return implode("\n", array_map(
+                fn ($team) => $team['name'] . ': ' . $team['permission'],
+                json_decode((string) $response->getBody(), true)
+            )) . "\n";
+        }
+
+        return '**ACCESS DENIED**';
     }
 }
