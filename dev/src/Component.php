@@ -334,6 +334,6 @@ class Component
                 return $gapicClientClass;
             }
         }
-        throw new \Exception('No GAPIC client found in ' . $file);
+        throw new \Exception('No GAPIC client found in ' . $filePath);
     }
 }
