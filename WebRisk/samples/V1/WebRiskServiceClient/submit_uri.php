@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,16 +22,21 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START webrisk_v1_generated_WebRiskService_CreateSubmission_sync]
+// [START webrisk_v1_generated_WebRiskService_SubmitUri_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\WebRisk\V1\Submission;
 use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
+use Google\Rpc\Status;
 
 /**
- * Creates a Submission of a URI suspected of containing phishing content to
- * be reviewed. If the result verifies the existence of malicious phishing
- * content, the site will be added to the [Google's Social Engineering
- * lists](https://support.google.com/webmasters/answer/6350487/) in order to
+ * Submits a URI suspected of containing malicious content to be reviewed.
+ * Returns a google.longrunning.Operation which, once the review is complete,
+ * is updated with its result. You can use the [Pub/Sub API]
+ * (https://cloud.google.com/pubsub) to receive notifications for the returned
+ * Operation. If the result verifies the existence of malicious content, the
+ * site will be added to the [Google's Social Engineering lists]
+ * (https://support.google.com/webmasters/answer/6350487/) in order to
  * protect users that could get exposed to this threat in the future. Only
  * allowlisted projects can use this method during Early Access. Please reach
  * out to Sales or your customer engineer to obtain access.
@@ -42,7 +47,7 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * @param string $submissionUri   The URI that is being reported for malicious content to be
  *                                analyzed.
  */
-function create_submission_sample(string $formattedParent, string $submissionUri): void
+function submit_uri_sample(string $formattedParent, string $submissionUri): void
 {
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
@@ -53,9 +58,19 @@ function create_submission_sample(string $formattedParent, string $submissionUri
 
     // Call the API and handle any network failures.
     try {
-        /** @var Submission $response */
-        $response = $webRiskServiceClient->createSubmission($formattedParent, $submission);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $webRiskServiceClient->submitUri($formattedParent, $submission);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var Submission $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -75,6 +90,6 @@ function callSample(): void
     $formattedParent = WebRiskServiceClient::projectName('[PROJECT]');
     $submissionUri = '[URI]';
 
-    create_submission_sample($formattedParent, $submissionUri);
+    submit_uri_sample($formattedParent, $submissionUri);
 }
-// [END webrisk_v1_generated_WebRiskService_CreateSubmission_sync]
+// [END webrisk_v1_generated_WebRiskService_SubmitUri_sync]

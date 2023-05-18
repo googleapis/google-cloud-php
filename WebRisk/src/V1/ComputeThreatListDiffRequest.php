@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The threat list to update. Only a single ThreatType should be specified
-     * per request. If you want to handle multiple ThreatTypes, you must make one
-     * request per ThreatType.
+     * Required. The threat list to update. Only a single ThreatType should be
+     * specified per request. If you want to handle multiple ThreatTypes, you must
+     * make one request per ThreatType.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,9 +47,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $threat_type
-     *           Required. The threat list to update. Only a single ThreatType should be specified
-     *           per request. If you want to handle multiple ThreatTypes, you must make one
-     *           request per ThreatType.
+     *           Required. The threat list to update. Only a single ThreatType should be
+     *           specified per request. If you want to handle multiple ThreatTypes, you must
+     *           make one request per ThreatType.
      *     @type string $version_token
      *           The current version token of the client for the requested list (the
      *           client version that was received from the last successful diff).
@@ -66,9 +66,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The threat list to update. Only a single ThreatType should be specified
-     * per request. If you want to handle multiple ThreatTypes, you must make one
-     * request per ThreatType.
+     * Required. The threat list to update. Only a single ThreatType should be
+     * specified per request. If you want to handle multiple ThreatTypes, you must
+     * make one request per ThreatType.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -79,9 +79,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The threat list to update. Only a single ThreatType should be specified
-     * per request. If you want to handle multiple ThreatTypes, you must make one
-     * request per ThreatType.
+     * Required. The threat list to update. Only a single ThreatType should be
+     * specified per request. If you want to handle multiple ThreatTypes, you must
+     * make one request per ThreatType.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

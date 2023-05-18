@@ -37,9 +37,9 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * update multiple ThreatList databases, this method needs to be called once
  * for each list.
  *
- * @param int $threatType The threat list to update. Only a single ThreatType should be specified
- *                        per request. If you want to handle multiple ThreatTypes, you must make one
- *                        request per ThreatType.
+ * @param int $threatType The threat list to update. Only a single ThreatType should be
+ *                        specified per request. If you want to handle multiple ThreatTypes, you must
+ *                        make one request per ThreatType.
  */
 function compute_threat_list_diff_sample(int $threatType): void
 {
