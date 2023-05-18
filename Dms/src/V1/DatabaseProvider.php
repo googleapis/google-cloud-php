@@ -31,11 +31,25 @@ class DatabaseProvider
      * Generated from protobuf enum <code>RDS = 2;</code>
      */
     const RDS = 2;
+    /**
+     * Amazon Aurora.
+     *
+     * Generated from protobuf enum <code>AURORA = 3;</code>
+     */
+    const AURORA = 3;
+    /**
+     * AlloyDB.
+     *
+     * Generated from protobuf enum <code>ALLOYDB = 4;</code>
+     */
+    const ALLOYDB = 4;
 
     private static $valueToName = [
         self::DATABASE_PROVIDER_UNSPECIFIED => 'DATABASE_PROVIDER_UNSPECIFIED',
         self::CLOUDSQL => 'CLOUDSQL',
         self::RDS => 'RDS',
+        self::AURORA => 'AURORA',
+        self::ALLOYDB => 'ALLOYDB',
     ];
 
     public static function name($value)

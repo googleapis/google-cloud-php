@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The Cloud SQL instance ID that this connection profile is associated with.
+     * Output only. The Cloud SQL instance ID that this connection profile is
+     * associated with.
      *
      * Generated from protobuf field <code>string cloud_sql_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,6 +41,14 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string public_ip = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $public_ip = '';
+    /**
+     * Output only. The Cloud SQL database instance's additional (outgoing) public
+     * IP. Used when the Cloud SQL database availability type is REGIONAL (i.e.
+     * multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string additional_public_ip = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $additional_public_ip = '';
 
     /**
      * Constructor.
@@ -48,13 +57,18 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cloud_sql_id
-     *           Output only. The Cloud SQL instance ID that this connection profile is associated with.
+     *           Output only. The Cloud SQL instance ID that this connection profile is
+     *           associated with.
      *     @type \Google\Cloud\CloudDms\V1\CloudSqlSettings $settings
      *           Immutable. Metadata used to create the destination Cloud SQL database.
      *     @type string $private_ip
      *           Output only. The Cloud SQL database instance's private IP.
      *     @type string $public_ip
      *           Output only. The Cloud SQL database instance's public IP.
+     *     @type string $additional_public_ip
+     *           Output only. The Cloud SQL database instance's additional (outgoing) public
+     *           IP. Used when the Cloud SQL database availability type is REGIONAL (i.e.
+     *           multiple zones / highly available).
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +77,8 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud SQL instance ID that this connection profile is associated with.
+     * Output only. The Cloud SQL instance ID that this connection profile is
+     * associated with.
      *
      * Generated from protobuf field <code>string cloud_sql_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -74,7 +89,8 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud SQL instance ID that this connection profile is associated with.
+     * Output only. The Cloud SQL instance ID that this connection profile is
+     * associated with.
      *
      * Generated from protobuf field <code>string cloud_sql_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -172,6 +188,36 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Cloud SQL database instance's additional (outgoing) public
+     * IP. Used when the Cloud SQL database availability type is REGIONAL (i.e.
+     * multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string additional_public_ip = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAdditionalPublicIp()
+    {
+        return $this->additional_public_ip;
+    }
+
+    /**
+     * Output only. The Cloud SQL database instance's additional (outgoing) public
+     * IP. Used when the Cloud SQL database availability type is REGIONAL (i.e.
+     * multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string additional_public_ip = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdditionalPublicIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->additional_public_ip = $var;
 
         return $this;
     }

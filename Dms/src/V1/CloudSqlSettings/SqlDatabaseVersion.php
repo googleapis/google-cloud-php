@@ -67,6 +67,12 @@ class SqlDatabaseVersion
      * Generated from protobuf enum <code>POSTGRES_13 = 8;</code>
      */
     const POSTGRES_13 = 8;
+    /**
+     * PostgreSQL 14.
+     *
+     * Generated from protobuf enum <code>POSTGRES_14 = 17;</code>
+     */
+    const POSTGRES_14 = 17;
 
     private static $valueToName = [
         self::SQL_DATABASE_VERSION_UNSPECIFIED => 'SQL_DATABASE_VERSION_UNSPECIFIED',
@@ -78,6 +84,7 @@ class SqlDatabaseVersion
         self::MYSQL_8_0 => 'MYSQL_8_0',
         self::POSTGRES_12 => 'POSTGRES_12',
         self::POSTGRES_13 => 'POSTGRES_13',
+        self::POSTGRES_14 => 'POSTGRES_14',
     ];
 
     public static function name($value)
