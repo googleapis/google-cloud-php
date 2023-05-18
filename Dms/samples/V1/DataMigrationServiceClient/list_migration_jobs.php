@@ -31,7 +31,7 @@ use Google\Cloud\CloudDms\V1\MigrationJob;
 /**
  * Lists migration jobs in a given project and location.
  *
- * @param string $formattedParent The parent, which owns this collection of migrationJobs. Please see
+ * @param string $formattedParent The parent which owns this collection of migrationJobs. Please see
  *                                {@see DataMigrationServiceClient::locationName()} for help formatting this field.
  */
 function list_migration_jobs_sample(string $formattedParent): void

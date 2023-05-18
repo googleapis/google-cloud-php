@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 /**
  * Creates a new connection profile in a given project and location.
  *
- * @param string $formattedParent     The parent, which owns this collection of connection profiles. Please see
+ * @param string $formattedParent     The parent which owns this collection of connection profiles. Please see
  *                                    {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
  * @param string $connectionProfileId The connection profile identifier.
  */

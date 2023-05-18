@@ -22,7 +22,8 @@ class MigrationJobVerificationError extends \Google\Protobuf\Internal\Message
      */
     private $error_code = 0;
     /**
-     * Output only. A formatted message with further details about the error and a CTA.
+     * Output only. A formatted message with further details about the error and a
+     * CTA.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -43,7 +44,8 @@ class MigrationJobVerificationError extends \Google\Protobuf\Internal\Message
      *     @type int $error_code
      *           Output only. An instance of ErrorCode specifying the error that occurred.
      *     @type string $error_message
-     *           Output only. A formatted message with further details about the error and a CTA.
+     *           Output only. A formatted message with further details about the error and a
+     *           CTA.
      *     @type string $error_detail_message
      *           Output only. A specific detailed error message, if supplied by the engine.
      * }
@@ -80,7 +82,8 @@ class MigrationJobVerificationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A formatted message with further details about the error and a CTA.
+     * Output only. A formatted message with further details about the error and a
+     * CTA.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -91,7 +94,8 @@ class MigrationJobVerificationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A formatted message with further details about the error and a CTA.
+     * Output only. A formatted message with further details about the error and a
+     * CTA.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

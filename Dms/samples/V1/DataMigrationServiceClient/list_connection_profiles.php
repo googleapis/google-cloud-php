@@ -29,9 +29,10 @@ use Google\Cloud\CloudDms\V1\ConnectionProfile;
 use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
 
 /**
- * Retrieve a list of all connection profiles in a given project and location.
+ * Retrieves a list of all connection profiles in a given project and
+ * location.
  *
- * @param string $formattedParent The parent, which owns this collection of connection profiles. Please see
+ * @param string $formattedParent The parent which owns this collection of connection profiles. Please see
  *                                {@see DataMigrationServiceClient::locationName()} for help formatting this field.
  */
 function list_connection_profiles_sample(string $formattedParent): void

@@ -16,7 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. The dimension name or metric name to filter.
+     * Required. Immutable. The dimension name or metric name to filter. If the
+     * field name refers to a custom dimension or metric, a scope prefix will be
+     * added to the front of the custom dimensions or metric name. For more on
+     * scope prefixes or custom dimensions/metrics, reference the [Google
+     * Analytics Data API documentation]
+     * (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -35,7 +40,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set, specifies the time window for which to evaluate data in
      * number of days. If not set, then audience data is evaluated against
-     * lifetime data (i.e., infinite time window).
+     * lifetime data (For example, infinite time window).
      * For example, if set to 1 day, only the current day's data is evaluated. The
      * reference point is the current day when at_any_point_in_time is unset or
      * false.
@@ -64,7 +69,12 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
      *           A filter for numeric or date values between certain values on a dimension
      *           or metric.
      *     @type string $field_name
-     *           Required. Immutable. The dimension name or metric name to filter.
+     *           Required. Immutable. The dimension name or metric name to filter. If the
+     *           field name refers to a custom dimension or metric, a scope prefix will be
+     *           added to the front of the custom dimensions or metric name. For more on
+     *           scope prefixes or custom dimensions/metrics, reference the [Google
+     *           Analytics Data API documentation]
+     *           (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      *     @type bool $at_any_point_in_time
      *           Optional. Indicates whether this filter needs dynamic evaluation or not. If
      *           set to true, users join the Audience if they ever met the condition (static
@@ -75,7 +85,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
      *     @type int $in_any_n_day_period
      *           Optional. If set, specifies the time window for which to evaluate data in
      *           number of days. If not set, then audience data is evaluated against
-     *           lifetime data (i.e., infinite time window).
+     *           lifetime data (For example, infinite time window).
      *           For example, if set to 1 day, only the current day's data is evaluated. The
      *           reference point is the current day when at_any_point_in_time is unset or
      *           false.
@@ -217,7 +227,12 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The dimension name or metric name to filter.
+     * Required. Immutable. The dimension name or metric name to filter. If the
+     * field name refers to a custom dimension or metric, a scope prefix will be
+     * added to the front of the custom dimensions or metric name. For more on
+     * scope prefixes or custom dimensions/metrics, reference the [Google
+     * Analytics Data API documentation]
+     * (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -228,7 +243,12 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The dimension name or metric name to filter.
+     * Required. Immutable. The dimension name or metric name to filter. If the
+     * field name refers to a custom dimension or metric, a scope prefix will be
+     * added to the front of the custom dimensions or metric name. For more on
+     * scope prefixes or custom dimensions/metrics, reference the [Google
+     * Analytics Data API documentation]
+     * (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -281,7 +301,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set, specifies the time window for which to evaluate data in
      * number of days. If not set, then audience data is evaluated against
-     * lifetime data (i.e., infinite time window).
+     * lifetime data (For example, infinite time window).
      * For example, if set to 1 day, only the current day's data is evaluated. The
      * reference point is the current day when at_any_point_in_time is unset or
      * false.
@@ -299,7 +319,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set, specifies the time window for which to evaluate data in
      * number of days. If not set, then audience data is evaluated against
-     * lifetime data (i.e., infinite time window).
+     * lifetime data (For example, infinite time window).
      * For example, if set to 1 day, only the current day's data is evaluated. The
      * reference point is the current day when at_any_point_in_time is unset or
      * false.
