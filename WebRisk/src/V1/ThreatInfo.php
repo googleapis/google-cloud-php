@@ -22,19 +22,19 @@ class ThreatInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.AbuseType abuse_type = 1;</code>
      */
-    protected $abuse_type = 0;
+    private $abuse_type = 0;
     /**
      * Confidence that the URI is unsafe.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.Confidence threat_confidence = 2;</code>
      */
-    protected $threat_confidence = null;
+    private $threat_confidence = null;
     /**
      * Context about why the URI is unsafe.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.ThreatJustification threat_justification = 3;</code>
      */
-    protected $threat_justification = null;
+    private $threat_justification = null;
 
     /**
      * Constructor.

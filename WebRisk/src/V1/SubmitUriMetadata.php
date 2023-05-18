@@ -21,19 +21,19 @@ class SubmitUriMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.SubmitUriMetadata.State state = 1;</code>
      */
-    protected $state = 0;
+    private $state = 0;
     /**
      * Creation time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * Latest update time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    protected $update_time = null;
+    private $update_time = null;
 
     /**
      * Constructor.
