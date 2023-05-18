@@ -37,17 +37,16 @@ class DateRange extends \Google\Protobuf\Internal\Message
     private $usage_end_date_time = null;
     /**
      * The earliest invoice date (inclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the given month.
+     * If this value is not the first day of a month, this will move it back to
+     * the first day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_start_date = 3;</code>
      */
     private $invoice_start_date = null;
     /**
-     * The latest invoice date (exclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the following
-     * month.
+     * The latest invoice date (inclusive).
+     * If this value is not the last day of a month, this will move it forward to
+     * the last day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_end_date = 4;</code>
      */
@@ -73,13 +72,12 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *           that clients pass `usage_start_date_time` in Pacific time.
      *     @type \Google\Type\Date $invoice_start_date
      *           The earliest invoice date (inclusive).
-     *           If your product uses monthly invoices, and this value is not the beginning
-     *           of a month, this will adjust the date to the first day of the given month.
+     *           If this value is not the first day of a month, this will move it back to
+     *           the first day of the given month.
      *     @type \Google\Type\Date $invoice_end_date
-     *           The latest invoice date (exclusive).
-     *           If your product uses monthly invoices, and this value is not the beginning
-     *           of a month, this will adjust the date to the first day of the following
-     *           month.
+     *           The latest invoice date (inclusive).
+     *           If this value is not the last day of a month, this will move it forward to
+     *           the last day of the given month.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,8 +175,8 @@ class DateRange extends \Google\Protobuf\Internal\Message
 
     /**
      * The earliest invoice date (inclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the given month.
+     * If this value is not the first day of a month, this will move it back to
+     * the first day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_start_date = 3;</code>
      * @return \Google\Type\Date|null
@@ -200,8 +198,8 @@ class DateRange extends \Google\Protobuf\Internal\Message
 
     /**
      * The earliest invoice date (inclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the given month.
+     * If this value is not the first day of a month, this will move it back to
+     * the first day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_start_date = 3;</code>
      * @param \Google\Type\Date $var
@@ -216,10 +214,9 @@ class DateRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest invoice date (exclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the following
-     * month.
+     * The latest invoice date (inclusive).
+     * If this value is not the last day of a month, this will move it forward to
+     * the last day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_end_date = 4;</code>
      * @return \Google\Type\Date|null
@@ -240,10 +237,9 @@ class DateRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest invoice date (exclusive).
-     * If your product uses monthly invoices, and this value is not the beginning
-     * of a month, this will adjust the date to the first day of the following
-     * month.
+     * The latest invoice date (inclusive).
+     * If this value is not the last day of a month, this will move it forward to
+     * the last day of the given month.
      *
      * Generated from protobuf field <code>.google.type.Date invoice_end_date = 4;</code>
      * @param \Google\Type\Date $var
