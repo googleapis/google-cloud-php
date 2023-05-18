@@ -190,9 +190,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     * Generated from protobuf field <code>map<string, string> user_labels = 22;</code>
      */
-    private $user_label;
+    private $user_labels;
 
     /**
      * Constructor.
@@ -288,7 +288,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $safe_search
      *           Whether to turn on safe search. This is only supported for
      *           [ContentConfig.PUBLIC_WEBSITE][].
-     *     @type array|\Google\Protobuf\Internal\MapField $user_label
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           The user labels applied to a resource must meet the following requirements:
      *           * Each resource can have multiple labels, up to a maximum of 64.
      *           * Each label must be a key-value pair.
@@ -928,12 +928,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     * Generated from protobuf field <code>map<string, string> user_labels = 22;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
-    public function getUserLabel()
+    public function getUserLabels()
     {
-        return $this->user_label;
+        return $this->user_labels;
     }
 
     /**
@@ -953,14 +953,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> user_label = 22;</code>
+     * Generated from protobuf field <code>map<string, string> user_labels = 22;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
-    public function setUserLabel($var)
+    public function setUserLabels($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->user_label = $arr;
+        $this->user_labels = $arr;
 
         return $this;
     }
