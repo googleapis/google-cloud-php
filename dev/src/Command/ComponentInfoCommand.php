@@ -37,6 +37,7 @@ class ComponentInfoCommand extends Command
         'package_version' => 'Package Version',
         'api_versions' => 'API Version(s)',
         'release_level' => 'Release Level',
+        'migration' => 'Migration',
         'php_namespaces' => 'Php Namespace(s)',
         'github_repo' => 'Github Repo',
         'proto' => 'Proto',
@@ -112,10 +113,11 @@ class ComponentInfoCommand extends Command
             'package_version' => $component->getLocalVersion(),
             'api_versions' => implode(', ', $component->getVersions()),
             'release_level' => $component->getReleaseLevel(),
+            'migration' => $component->getMigrationStatus(),
             'php_namespaces' => implode(', ', $component->getNamespaces()),
             'github_repo' => $component->getRepoName(),
             'proto' => $component->getProtoPackage(),
-            'service_address' => $component->getServiceAddress(),
+            'service_address' => implode(', ', $component->getServiceAddresses()),
             'description' => $component->getDescription(),
         ], $requestedFields));
     }

@@ -41,8 +41,8 @@ class ComponentTest extends TestCase
         $this->assertEquals($details['name'], $component->getName());
         $this->assertEquals($details['path'], $component->getPath());
         $this->assertEquals($details['repo_name'], $component->getRepoName());
-        $this->assertEquals($details['service_address'], $component->getServiceAddress());
-        $this->assertEquals($details['api_shortname'], $component->getApiShortname());
+        $this->assertEquals($details['service_address'], $component->getServiceAddresses());
+        $this->assertEquals($details['api_shortnames'], $component->getApiShortnames());
         $this->assertEquals($details['issue_tracker'], $component->getIssueTracker());
         $this->assertEquals($details['package_name'], $component->getPackageName());
         $this->assertEquals($details['release_level'], $component->getReleaseLevel());
@@ -63,8 +63,8 @@ class ComponentTest extends TestCase
                     'name' => 'Bigtable',
                     'path' => realpath(__DIR__ . '/../../../Bigtable'),
                     'repo_name' => 'googleapis/google-cloud-php-bigtable',
-                    'service_address' => 'bigtable.googleapis.com',
-                    'api_shortname' => 'bigtable',
+                    'service_address' => ['bigtableadmin.googleapis.com', 'bigtable.googleapis.com'],
+                    'api_shortnames' => ['bigtableadmin', 'bigtable'],
                     'issue_tracker' => 'https://github.com/googleapis/google-cloud-php-bigtable/issues',
                     'package_name' => 'google/cloud-bigtable',
                     'release_level' => 'stable',
