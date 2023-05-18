@@ -70,12 +70,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * For node pool repairs, there may be multiple nodes being repaired, but only
      * one will be the target.
      * Examples:
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
+     * -
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
      *
      * Generated from protobuf field <code>string target_link = 7;</code>
      */
@@ -163,12 +163,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           For node pool repairs, there may be multiple nodes being repaired, but only
      *           one will be the target.
      *           Examples:
-     *             -
-     *             `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
-     *             -
-     *             `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
-     *             -
-     *             `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
+     *           -
+     *           ##
+     *           `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
+     *           ##
+     *           `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
+     *           `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
      *     @type string $location
      *           [Output only] The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
@@ -402,12 +402,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * For node pool repairs, there may be multiple nodes being repaired, but only
      * one will be the target.
      * Examples:
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
+     * -
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
      *
      * Generated from protobuf field <code>string target_link = 7;</code>
      * @return string
@@ -423,12 +423,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * For node pool repairs, there may be multiple nodes being repaired, but only
      * one will be the target.
      * Examples:
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
-     *   -
-     *   `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
+     * -
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster`
+     * ##
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np`
+     * `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
      *
      * Generated from protobuf field <code>string target_link = 7;</code>
      * @param string $var
