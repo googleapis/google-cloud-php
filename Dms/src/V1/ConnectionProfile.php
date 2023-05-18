@@ -17,7 +17,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of this connection profile resource in the form of
-     * projects/{project}/locations/{location}/instances/{instance}.
+     * projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -81,7 +81,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of this connection profile resource in the form of
-     *           projects/{project}/locations/{location}/instances/{instance}.
+     *           projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp when the resource was created.
      *           A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
@@ -103,8 +103,12 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           A MySQL database connection profile.
      *     @type \Google\Cloud\CloudDms\V1\PostgreSqlConnectionProfile $postgresql
      *           A PostgreSQL database connection profile.
+     *     @type \Google\Cloud\CloudDms\V1\OracleConnectionProfile $oracle
+     *           An Oracle database connection profile.
      *     @type \Google\Cloud\CloudDms\V1\CloudSqlConnectionProfile $cloudsql
      *           A CloudSQL database connection profile.
+     *     @type \Google\Cloud\CloudDms\V1\AlloyDbConnectionProfile $alloydb
+     *           An AlloyDB cluster connection profile.
      *     @type \Google\Rpc\Status $error
      *           Output only. The error details in case of state FAILED.
      *     @type int $provider
@@ -118,7 +122,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of this connection profile resource in the form of
-     * projects/{project}/locations/{location}/instances/{instance}.
+     * projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -130,7 +134,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of this connection profile resource in the form of
-     * projects/{project}/locations/{location}/instances/{instance}.
+     * projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -371,6 +375,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * An Oracle database connection profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.OracleConnectionProfile oracle = 104;</code>
+     * @return \Google\Cloud\CloudDms\V1\OracleConnectionProfile|null
+     */
+    public function getOracle()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasOracle()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * An Oracle database connection profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.OracleConnectionProfile oracle = 104;</code>
+     * @param \Google\Cloud\CloudDms\V1\OracleConnectionProfile $var
+     * @return $this
+     */
+    public function setOracle($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\OracleConnectionProfile::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
      * A CloudSQL database connection profile.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlConnectionProfile cloudsql = 102;</code>
@@ -397,6 +432,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\CloudSqlConnectionProfile::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * An AlloyDB cluster connection profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbConnectionProfile alloydb = 105;</code>
+     * @return \Google\Cloud\CloudDms\V1\AlloyDbConnectionProfile|null
+     */
+    public function getAlloydb()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasAlloydb()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * An AlloyDB cluster connection profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbConnectionProfile alloydb = 105;</code>
+     * @param \Google\Cloud\CloudDms\V1\AlloyDbConnectionProfile $var
+     * @return $this
+     */
+    public function setAlloydb($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\AlloyDbConnectionProfile::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }
