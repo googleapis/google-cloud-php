@@ -27,6 +27,8 @@ namespace Google\Cloud\WebRisk\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -42,7 +44,11 @@ use Google\Cloud\WebRisk\V1\SearchHashesResponse;
 use Google\Cloud\WebRisk\V1\SearchUrisRequest;
 use Google\Cloud\WebRisk\V1\SearchUrisResponse;
 use Google\Cloud\WebRisk\V1\Submission;
+use Google\Cloud\WebRisk\V1\SubmitUriRequest;
+use Google\Cloud\WebRisk\V1\ThreatDiscovery;
+use Google\Cloud\WebRisk\V1\ThreatInfo;
 use Google\Cloud\WebRisk\V1\ThreatType;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Web Risk API defines an interface to detect malicious URLs on your
@@ -91,6 +97,8 @@ class WebRiskServiceGapicClient
     private static $projectNameTemplate;
 
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -199,6 +207,41 @@ class WebRiskServiceGapicClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
      * Constructor.
      *
      * @param array $options {
@@ -256,6 +299,7 @@ class WebRiskServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -278,9 +322,9 @@ class WebRiskServiceGapicClient
      * }
      * ```
      *
-     * @param int         $threatType   Required. The threat list to update. Only a single ThreatType should be specified
-     *                                  per request. If you want to handle multiple ThreatTypes, you must make one
-     *                                  request per ThreatType.
+     * @param int         $threatType   Required. The threat list to update. Only a single ThreatType should be
+     *                                  specified per request. If you want to handle multiple ThreatTypes, you must
+     *                                  make one request per ThreatType.
      *                                  For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
      * @param Constraints $constraints  Required. The constraints associated with this request.
      * @param array       $optionalArgs {
@@ -343,8 +387,8 @@ class WebRiskServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project that is making the submission. This string is in
-     *                                 the format "projects/{project_number}".
+     * @param string     $parent       Required. The name of the project that is making the submission. This
+     *                                 string is in the format "projects/{project_number}".
      * @param Submission $submission   Required. The submission that contains the content of the phishing report.
      * @param array      $optionalArgs {
      *     Optional.
@@ -401,7 +445,8 @@ class WebRiskServiceGapicClient
      * }
      * ```
      *
-     * @param int[] $threatTypes  Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * @param int[] $threatTypes  Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *                            specified.
      *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
      * @param array $optionalArgs {
      *     Optional.
@@ -457,7 +502,8 @@ class WebRiskServiceGapicClient
      * ```
      *
      * @param string $uri          Required. The URI to be checked for matches.
-     * @param int[]  $threatTypes  Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * @param int[]  $threatTypes  Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *                             specified.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
      * @param array  $optionalArgs {
      *     Optional.
@@ -482,6 +528,104 @@ class WebRiskServiceGapicClient
             SearchUrisResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Submits a URI suspected of containing malicious content to be reviewed.
+     * Returns a google.longrunning.Operation which, once the review is complete,
+     * is updated with its result. You can use the [Pub/Sub API]
+     * (https://cloud.google.com/pubsub) to receive notifications for the returned
+     * Operation. If the result verifies the existence of malicious content, the
+     * site will be added to the [Google's Social Engineering lists]
+     * (https://support.google.com/webmasters/answer/6350487/) in order to
+     * protect users that could get exposed to this threat in the future. Only
+     * allowlisted projects can use this method during Early Access. Please reach
+     * out to Sales or your customer engineer to obtain access.
+     *
+     * Sample code:
+     * ```
+     * $webRiskServiceClient = new Google\Cloud\WebRisk\V1\WebRiskServiceClient();
+     * try {
+     *     $formattedParent = $webRiskServiceClient->projectName('[PROJECT]');
+     *     $submission = new Submission();
+     *     $operationResponse = $webRiskServiceClient->submitUri($formattedParent, $submission);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $webRiskServiceClient->submitUri($formattedParent, $submission);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $webRiskServiceClient->resumeOperation($operationName, 'submitUri');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $webRiskServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The name of the project that is making the submission. This
+     *                                 string is in the format "projects/{project_number}".
+     * @param Submission $submission   Required. The submission that contains the URI to be scanned.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type ThreatInfo $threatInfo
+     *           Provides additional information about the submission.
+     *     @type ThreatDiscovery $threatDiscovery
+     *           Provides additional information about how the submission was discovered.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function submitUri($parent, $submission, array $optionalArgs = [])
+    {
+        $request = new SubmitUriRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSubmission($submission);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['threatInfo'])) {
+            $request->setThreatInfo($optionalArgs['threatInfo']);
+        }
+
+        if (isset($optionalArgs['threatDiscovery'])) {
+            $request->setThreatDiscovery($optionalArgs['threatDiscovery']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'SubmitUri',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }
