@@ -15,118 +15,16 @@ items:
     langs:
       - php
     children:
-      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
-      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::resumeOperation()'
-      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::productSetName()'
-      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::parseName()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::__construct()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::__call()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFiles()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImages()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFiles()'
       - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImages()'
-  -
-    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
-    name: getOperationsClient
-    id: getOperationsClient
-    summary: 'Return an OperationsClient object with the same endpoint as $this.'
-    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
-  -
-    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::resumeOperation()'
-    name: resumeOperation
-    id: resumeOperation
-    summary: |-
-      Resume an existing long running operation that was previously started by a long
-      running API method. If $methodName is not provided, or does not match a long
-      running API method, then the operation can still be resumed, but the
-      OperationResponse object will not deserialize the final response.
-    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: operationName
-          var_type: string
-          description: 'The name of the long running operation'
-        -
-          id: methodName
-          var_type: string
-          description: 'The name of the method used to start the operation'
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
-  -
-    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::productSetName()'
-    name: productSetName
-    id: productSetName
-    summary: |-
-      Formats a string containing the fully-qualified path to represent a product_set
-      resource.
-    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: project
-          var_type: string
-          description: ''
-        -
-          id: location
-          var_type: string
-          description: ''
-        -
-          id: productSet
-          var_type: string
-          description: ''
-      returns:
-        -
-          var_type: string
-          description: 'The formatted product_set resource.'
-  -
-    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::parseName()'
-    name: parseName
-    id: parseName
-    summary: |-
-      Parses a formatted name string and returns an associative array of the components in the name.
-
-      The following name formats are supported:
-      Template: Pattern
-      - productSet: projects/{project}/locations/{location}/productSets/{product_set}
-
-      The optional $template argument can be supplied to specify a particular pattern,
-      and must match one of the templates listed above. If no $template argument is
-      provided, or if the $template argument does not match one of the templates
-      listed, then parseName will check each of the supported templates, and return
-      the first match.
-    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: formattedName
-          var_type: string
-          description: 'The formatted name string'
-        -
-          id: template
-          var_type: string
-          description: 'Optional name of template to match'
-      returns:
-        -
-          var_type: array
-          description: 'An associative array from name component IDs to component values.'
+      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
+      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::resumeOperation()'
+      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::productSetName()'
+      - '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::parseName()'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::__construct()'
     name: __construct
@@ -330,3 +228,105 @@ items:
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
+    name: getOperationsClient
+    id: getOperationsClient
+    summary: 'Return an OperationsClient object with the same endpoint as $this.'
+    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::resumeOperation()'
+    name: resumeOperation
+    id: resumeOperation
+    summary: |-
+      Resume an existing long running operation that was previously started by a long
+      running API method. If $methodName is not provided, or does not match a long
+      running API method, then the operation can still be resumed, but the
+      OperationResponse object will not deserialize the final response.
+    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: operationName
+          var_type: string
+          description: 'The name of the long running operation'
+        -
+          id: methodName
+          var_type: string
+          description: 'The name of the method used to start the operation'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::productSetName()'
+    name: 'static::productSetName'
+    id: productSetName
+    summary: |-
+      Formats a string containing the fully-qualified path to represent a product_set
+      resource.
+    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: project
+          var_type: string
+          description: ''
+        -
+          id: location
+          var_type: string
+          description: ''
+        -
+          id: productSet
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product_set resource.'
+  -
+    uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::parseName()'
+    name: 'static::parseName'
+    id: parseName
+    summary: |-
+      Parses a formatted name string and returns an associative array of the components in the name.
+
+      The following name formats are supported:
+      Template: Pattern
+      - productSet: projects/{project}/locations/{location}/productSets/{product_set}
+
+      The optional $template argument can be supplied to specify a particular pattern,
+      and must match one of the templates listed above. If no $template argument is
+      provided, or if the $template argument does not match one of the templates
+      listed, then parseName will check each of the supported templates, and return
+      the first match.
+    parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: formattedName
+          var_type: string
+          description: 'The formatted name string'
+        -
+          id: template
+          var_type: string
+          description: 'Optional name of template to match'
+      returns:
+        -
+          var_type: array
+          description: 'An associative array from name component IDs to component values.'
