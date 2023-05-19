@@ -29,6 +29,7 @@ class ClassNode
 
     private $childNode;
     private array $protoPackages = [];
+    private string $tocName;
 
     public function __construct(
         private SimpleXMLElement $xmlNode
@@ -68,8 +69,23 @@ class ClassNode
     public function isServiceClass(): bool
     {
         // returns true if the class extends a generated GAPIC client
+        return $this->isV1ServiceClass() || $this->isV2ServiceClass();
+    }
+
+    public function isV1ServiceClass(): bool
+    {
+        // returns true if the class extends a generated V1 GAPIC client
         if ($extends = $this->getExtends()) {
             return 'GapicClient' === substr($extends, -11);
+        }
+        return false;
+    }
+
+    public function isV2ServiceClass(): bool
+    {
+        // returns true if the class extends a generated V2 GAPIC client
+        if ($extends = $this->getExtends()) {
+            return 'BaseClient' === substr($extends, -10);
         }
         return false;
     }
@@ -197,5 +213,15 @@ class ClassNode
     public function setProtoPackages(array $protoPackages)
     {
         $this->protoPackages = $protoPackages;
+    }
+
+    public function getTocName()
+    {
+        return isset($this->tocName) ? $this->tocName : $this->getName();
+    }
+
+    public function setTocName(string $tocName)
+    {
+        $this->tocName = $tocName;
     }
 }
