@@ -81,6 +81,13 @@ class ClassNode
         return false;
     }
 
+    public function isServiceBaseClass(): bool
+    {
+        // returns true if the class extends a generated GAPIC client
+        return 'GapicClient' === substr($this->getName(), -11)
+            || 'BaseClient' === substr($this->getName(), -10);
+    }
+
     public function isV2ServiceClass(): bool
     {
         // returns true if the class extends a generated V2 GAPIC client
