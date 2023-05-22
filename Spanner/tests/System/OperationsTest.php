@@ -28,9 +28,6 @@ class OperationsTest extends SpannerTestCase
 {
     private static $id1;
     private static $id2;
-    private static $id3;
-    private static $id4;
-    private static $id5;
     private static $name1;
     private static $name2;
 
@@ -38,9 +35,6 @@ class OperationsTest extends SpannerTestCase
     {
         self::$id1 = rand(1000, 9999);
         self::$id2 = rand(1, 999);
-        self::$id3 = rand(10000, 10999);
-        self::$id4 = rand(11000, 11999);
-        self::$id5 = rand(12000, 12999);
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
@@ -198,89 +192,88 @@ class OperationsTest extends SpannerTestCase
         $this->assertEmpty(iterator_to_array($res->rows()));
     }
 
-    public function testInsertWithDatabaseRole()
+    public function testInsertWithDbRole()
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
-        $error = null;
-        $db = self::$databaseWithReaderDatabaseRole;
+        foreach ($this->insertDbProvider() as $dbProvided) {
+            list($db, $values, $expected) = $dbProvided;
+            $error = null;
 
-        try {
-            $res = $db->insert(self::TEST_TABLE_NAME, [
-                'id' => self::$id3,
-                'name' => self::$name2,
-                'birthday' => new Date(new \DateTime('2000-01-01'))
+            try {
+                $res = $db->insert(self::TEST_TABLE_NAME, $values);
+            } catch (ServiceException $e) {
+                $error = $e;
+            }
+
+            if ($expected === null) {
+                $this->assertEquals($error, $expected);
+            } else {
+                $this->assertInstanceOf(ServiceException::class, $error);
+                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+            }
+        }
+    }
+
+    public function testReadWithDbRole()
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        foreach ($this->readDbProvider() as $dbProvided) {
+            list($db, $expected) = $dbProvided;
+            $error = null;
+            $keySet = self::$client->keySet([
+                'keys' => [self::$id1]
             ]);
-        } catch (ServiceException $e) {
-            $error = $e;
-        }
+            $columns = ['id', 'name', 'birthday'];
 
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            try {
+                $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
+                $row = $res->rows()->current();
+            } catch (ServiceException $e) {
+                $error = $e;
+            }
+
+            if ($expected === null) {
+                $this->assertEquals(self::$id1, $row['id']);
+            } else {
+                $this->assertInstanceOf(ServiceException::class, $error);
+                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+            }
+        }
     }
 
-    public function testInsertWithRestrictiveDatabaseRole()
+    private function insertDbProvider()
     {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        $error = null;
-        $db = self::$databaseWithReaderDatabaseRole;
-
-        try {
-            $res = $db->insert(self::TEST_TABLE_NAME, [
-                'id' => self::$id5,
-                'name' => self::$name2,
-                'birthday' => new Date(new \DateTime('2000-01-01'))
-            ]);
-        } catch (ServiceException $e) {
-            $error = $e;
-        }
-
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        return [
+            [
+                self::$dbWithRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
+                    'name' => uniqid(self::TESTING_PREFIX),
+                    'birthday' => new Date(new \DateTime('2000-01-01'))
+                ],
+                'PERMISSION_DENIED'
+            ],
+            [
+                self::$dbWithSessionPoolRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
+                    'name' => uniqid(self::TESTING_PREFIX)
+                ],
+                null
+            ]
+        ];
     }
 
-    public function testReadWithDatabaseRole()
+    private function readDbProvider()
     {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        $db = self::$databaseWithReaderDatabaseRole;
-
-        $keySet = self::$client->keySet([
-            'keys' => [self::$id1]
-        ]);
-        $columns = ['id', 'name'];
-
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
-        $row = $res->rows()->current();
-        $this->assertEquals(self::$id1, $row['id']);
-    }
-
-    public function testReadWithRestrictiveDatabaseRole()
-    {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        $error = null;
-        $db = self::$databaseWithRestrictiveDatabaseRole;
-
-        $keySet = self::$client->keySet([
-            'keys' => [self::$id1]
-        ]);
-        $columns = ['id', 'name', 'birthday'];
-
-        try {
-            $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
-            $row = $res->rows()->current();
-        } catch (ServiceException $e) {
-            $error = $e;
-        }
-
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        return [
+            [self::$dbWithReaderRole, null],
+            [self::$dbWithRestrictiveRole, 'PERMISSION_DENIED']
+        ];
     }
 
     private function getRow()

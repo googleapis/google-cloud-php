@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
@@ -31,36 +32,30 @@ class PgTransactionTest extends SpannerPgTestCase
     private static $row = [];
 
     private static $tableName;
-    private static $table2;
+    private static $id1;
 
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
         self::$tableName = "transactions_test";
-        self::$table2 = "transactions_users";
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::$tableName . ' (
                 id bigint NOT NULL,
                 number bigint NOT NULL,
                 PRIMARY KEY (id)
-            )',
-            'CREATE TABLE ' . self::$table2 . ' (
-                id bigint NOT NULL,
-                name varchar(1024) NOT NULL,
-                birthday date,
-                PRIMARY KEY (id)
             )'
         ])->pollUntilComplete();
 
+        self::$id1 = rand(1000, 9999);
         self::$row = [
-            'id' => rand(1000, 9999),
+            'id' => self::$id1,
             'name' => uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
 
-        self::$database->insert(self::$table2, self::$row);
+        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
     }
 
     public function testRunTransaction()
@@ -69,7 +64,7 @@ class PgTransactionTest extends SpannerPgTestCase
 
         $db->runTransaction(function ($t) {
             $id = rand(1, 346464);
-            $t->insert(self::$table2, [
+            $t->insert(self::TEST_TABLE_NAME, [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
                 'birthday' => new Date(new \DateTime('2000-01-01'))
@@ -110,12 +105,73 @@ class PgTransactionTest extends SpannerPgTestCase
         ]);
 
         list($keySet, $cols) = $this->readArgs();
-        $res = $snapshot->read(self::$table2, $keySet, $cols);
+        $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
 
         $row = $res->rows()->current();
 
         $this->assertEquals(self::$row, $row);
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
+    }
+
+    public function testRunTransactionWithDbRole()
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        foreach ($this->insertDbProvider() as $dbProvided) {
+            list($db, $values, $expected) = $dbProvided;
+            $error = null;
+            $row = $this->getRow();
+            $row['name'] = 'Doug';
+
+            $db->runTransaction(function ($t) use ($row) {
+                $t->update(self::TEST_TABLE_NAME, $row);
+                $t->commit();
+            });
+            $row = $this->getRow();
+            $this->assertEquals('Doug', $row['name']);
+
+            try {
+                $db->runTransaction(function ($t) use ($values) {
+                    $id = rand(1, 346464);
+                    $t->insert(self::TEST_TABLE_NAME, $values);
+
+                    $t->commit();
+                });
+            } catch (ServiceException $e) {
+                $error = $e;
+            }
+
+            if ($expected === null) {
+                $this->assertEquals($error, $expected);
+            } else {
+                $this->assertInstanceOf(ServiceException::class, $error);
+                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+            }
+        }
+    }
+
+    private function insertDbProvider()
+    {
+        return [
+            [
+                self::$dbWithRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
+                    'name' => uniqid(self::TESTING_PREFIX),
+                    'birthday' => new Date(new \DateTime('2000-01-01'))
+                ],
+                'PERMISSION_DENIED'
+            ],
+            [
+                self::$dbWithSessionPoolRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
+                    'name' => uniqid(self::TESTING_PREFIX)
+                ],
+                null
+            ]
+        ];
     }
 
     private function readArgs()
@@ -126,5 +182,17 @@ class PgTransactionTest extends SpannerPgTestCase
             ]),
             array_keys(self::$row)
         ];
+    }
+
+    private function getRow()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT "id", name FROM ' . self::TEST_TABLE_NAME . ' WHERE id=$1', [
+            'parameters' => [
+                'p1' => self::$id1
+            ]
+        ]);
+
+        return $res->rows()->current();
     }
 }

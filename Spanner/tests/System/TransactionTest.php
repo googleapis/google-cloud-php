@@ -220,80 +220,65 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
-    public function testRunTransactionWithRestrictiveDatabaseRole()
+    public function testRunTransactionWithDbRole()
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
-        $error = null;
-        $db = self::$databaseWithRestrictiveDatabaseRole;
+        foreach ($this->insertDbProvider() as $dbProvided) {
+            list($db, $values, $expected) = $dbProvided;
+            $error = null;
+            $row = $this->getRow();
+            $row['name'] = 'Doug';
 
-        $row = $this->getRow();
-        $row['name'] = 'Doug';
-
-        $db->runTransaction(function ($t) use ($row) {
-            $t->update('Users', $row);
-
-            $t->commit();
-        });
-        $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
-
-        try {
-            $db->runTransaction(function ($t) {
-                $id = rand(1, 346464);
-                $t->insert(self::TEST_TABLE_NAME, [
-                    'id' => $id,
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime)
-                ]);
-
+            $db->runTransaction(function ($t) use ($row) {
+                $t->update(self::TEST_TABLE_NAME, $row);
                 $t->commit();
             });
-        } catch (ServiceException $e) {
-            $error = $e;
-        }
+            $row = $this->getRow();
+            $this->assertEquals('Doug', $row['name']);
 
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            try {
+                $db->runTransaction(function ($t) use ($values) {
+                    $id = rand(1, 346464);
+                    $t->insert(self::TEST_TABLE_NAME, $values);
+
+                    $t->commit();
+                });
+            } catch (ServiceException $e) {
+                $error = $e;
+            }
+
+            if ($expected === null) {
+                $this->assertEquals($error, $expected);
+            } else {
+                $this->assertInstanceOf(ServiceException::class, $error);
+                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+            }
+        }
     }
 
-    public function testRunTransactionWithSessionPoolDatabaseRole()
+    private function insertDbProvider()
     {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        $error = null;
-        $db = self::$databaseWithSessionPoolRestrictiveDatabaseRole;
-
-        $row = $this->getRow();
-        $row['name'] = 'Doug';
-
-        $db->runTransaction(function ($t) use ($row) {
-            $t->update('Users', $row);
-
-            $t->commit();
-        });
-        $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
-
-        try {
-            $db->runTransaction(function ($t) {
-                $id = rand(1, 346464);
-                $t->insert(self::TEST_TABLE_NAME, [
-                    'id' => $id,
+        return [
+            [
+                self::$dbWithRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
                     'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime)
-                ]);
-
-                $t->commit();
-            });
-        } catch (ServiceException $e) {
-            $error = $e;
-        }
-
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+                    'birthday' => new Date(new \DateTime('2000-01-01'))
+                ],
+                'PERMISSION_DENIED'
+            ],
+            [
+                self::$dbWithSessionPoolRestrictiveRole,
+                [
+                    'id' => rand(1, 346464),
+                    'name' => uniqid(self::TESTING_PREFIX)
+                ],
+                null
+            ]
+        ];
     }
 
     private function readArgs()

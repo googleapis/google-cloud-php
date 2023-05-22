@@ -43,9 +43,9 @@ class SpannerTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-    protected static $databaseWithReaderDatabaseRole;
-    protected static $databaseWithRestrictiveDatabaseRole;
-    protected static $databaseWithSessionPoolRestrictiveDatabaseRole;
+    protected static $dbWithReaderRole;
+    protected static $dbWithRestrictiveRole;
+    protected static $dbWithSessionPoolRestrictiveRole;
 
     private static $hasSetUp = false;
 
@@ -69,17 +69,18 @@ class SpannerTestCase extends SystemTestCase
             $db->drop();
         });
 
-        $db->updateDdlBatch(
+        $op = $db->updateDdlBatch(
             [
                 'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                   id INT64 NOT NULL,
                   name STRING(MAX) NOT NULL,
-                  birthday DATE NOT NULL
+                  birthday DATE
                 ) PRIMARY KEY (id)',
                 'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
                 ON ' . self::TEST_TABLE_NAME . ' (name)',
             ]
-        )->pollUntilComplete();
+        );
+        $op->pollUntilComplete();
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
@@ -96,18 +97,18 @@ class SpannerTestCase extends SystemTestCase
                 ]
             )->pollUntilComplete();
 
-            self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(
+            self::$dbWithReaderRole = self::getDatabaseFromInstance(
                 self::INSTANCE_NAME,
                 self::$dbName,
                 ['databaseRole' => self::DATABASE_ROLE]
             );
 
-            self::$databaseWithRestrictiveDatabaseRole = self::getDatabaseInstance(
+            self::$dbWithRestrictiveRole = self::getDatabaseInstance(
                 self::$dbName,
                 ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
             );
 
-            self::$databaseWithSessionPoolRestrictiveDatabaseRole = self::getDatabaseWithSessionPool(
+            self::$dbWithSessionPoolRestrictiveRole = self::getDatabaseWithSessionPool(
                 self::$dbName,
                 ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
             );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google Inc.
+ * Copyright 2023 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ use Google\Cloud\Core\Exception\ServiceException;
  * @group spanner
  * @group spanner-batch
  */
-class BatchTest extends SpannerTestCase
+class PgBatchTest extends SpannerPgTestCase
 {
     private static $tableName;
     private static $dbRole;
@@ -44,13 +44,13 @@ class BatchTest extends SpannerTestCase
 
         self::$database->updateDdl(sprintf(
             'CREATE TABLE %s (
-                id INT64 NOT NULL,
-                decade INT64 NOT NULL
-            ) PRIMARY KEY (id)',
+                id INTEGER PRIMARY KEY,
+                decade INTEGER NOT NULL
+            )',
             self::$tableName
         ))->pollUntilComplete();
 
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
             self::$database->updateDdlBatch([
                 sprintf(
                     'CREATE ROLE %s',
@@ -61,12 +61,12 @@ class BatchTest extends SpannerTestCase
                     self::$restrictiveDbRole
                 ),
                 sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
+                    'GRANT SELECT(id) ON TABLE %s TO %s',
                     self::$tableName,
                     self::$restrictiveDbRole
                 ),
                 sprintf(
-                    'GRANT SELECT ON TABLE %s TO ROLE %s',
+                    'GRANT SELECT ON TABLE %s TO %s',
                     self::$tableName,
                     self::$dbRole
                 )
@@ -89,50 +89,6 @@ class BatchTest extends SpannerTestCase
         }
     }
 
-    public function testBatch()
-    {
-        $query = 'SELECT
-                id,
-                decade
-            FROM ' . self::$tableName . '
-            WHERE
-                decade > @earlyBound
-            AND
-                decade < @lateBound';
-
-        $parameters = [
-            'earlyBound' => 1960,
-            'lateBound' => 1980
-        ];
-
-        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
-
-        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName);
-        $string = $batch->snapshot()->serialize();
-
-        $snapshot = $batch->snapshotFromString($string);
-
-        $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        // ($table, KeySet $keySet, array $columns, array $options = [])
-        $keySet = new KeySet([
-            'ranges' => [
-                new KeyRange([
-                    'start' => $parameters['earlyBound'],
-                    'startType' => KeyRange::TYPE_OPEN,
-                    'end' => $parameters['lateBound'],
-                    'endType' => KeyRange::TYPE_OPEN
-                ])
-            ]
-        ]);
-
-        $partitions = $snapshot->partitionRead(self::$tableName, $keySet, ['id', 'decade']);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        $snapshot->close();
-    }
-
     public function testBatchWithDbRole()
     {
         // Emulator does not support FGAC
@@ -146,13 +102,13 @@ class BatchTest extends SpannerTestCase
                     decade
                 FROM ' . self::$tableName . '
                 WHERE
-                    decade > @earlyBound
+                    decade > $1
                 AND
-                    decade < @lateBound';
+                    decade < $2';
 
             $parameters = [
-                'earlyBound' => 1960,
-                'lateBound' => 1980
+                'p1' => 1960,
+                'p2' => 1980
             ];
 
             $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
@@ -184,60 +140,6 @@ class BatchTest extends SpannerTestCase
             [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
             [self::$dbRole, null]
         ];
-    }
-
-    public function testBatchWithDataBoostEnabled()
-    {
-        // Emulator does not support dataBoostEnabled
-        $this->skipEmulatorTests();
-
-        $query = 'SELECT
-                id,
-                decade
-            FROM ' . self::$tableName . '
-            WHERE
-                decade > @earlyBound
-            AND
-                decade < @lateBound';
-
-        $parameters = [
-            'earlyBound' => 1960,
-            'lateBound' => 1980
-        ];
-
-        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
-
-        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName);
-        $string = $batch->snapshot()->serialize();
-
-        $snapshot = $batch->snapshotFromString($string);
-
-        $partitions = $snapshot->partitionQuery($query, [
-            'parameters' => $parameters,
-            'dataBoostEnabled' => true
-        ]);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        $keySet = new KeySet([
-            'ranges' => [
-                new KeyRange([
-                    'start' => $parameters['earlyBound'],
-                    'startType' => KeyRange::TYPE_OPEN,
-                    'end' => $parameters['lateBound'],
-                    'endType' => KeyRange::TYPE_OPEN
-                ])
-            ]
-        ]);
-
-        $partitions = $snapshot->partitionRead(
-            self::$tableName,
-            $keySet,
-            ['id', 'decade'],
-            ['dataBoostEnabled' => true]
-        );
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        $snapshot->close();
     }
 
     private function executePartitions(BatchClient $client, BatchSnapshot $snapshot, array $partitions)
