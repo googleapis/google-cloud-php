@@ -262,7 +262,7 @@ class Component
     /**
      * Get the API versions supported by this component
      */
-    public function getVersions(): array
+    public function getApiVersions(): array
     {
         $versionDirs = array_diff(scandir($this->path . '/src'), ['.', '..']);
         $gaVersions = [];
@@ -288,7 +288,7 @@ class Component
     /**
      * Get the contents of VERSION in the component directory
      */
-    public function getLocalVersion(): string
+    public function getPackageVersion(): string
     {
         return trim(file_get_contents(sprintf('%s/VERSION', $this->path)));
     }
