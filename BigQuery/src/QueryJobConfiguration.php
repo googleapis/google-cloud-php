@@ -288,6 +288,49 @@ class QueryJobConfiguration implements JobConfigurationInterface
     }
 
     /**
+     * Sets the parameter types for positional parameters.
+     * Note, that this is of high importance when an empty array can be passed as
+     * a positional parameter, as we have no way of guessing the data type of the
+     * array contents.
+     * 
+     * ```
+     * $queryStr = 'SELECT * FROM `bigquery-public-data.github_repos.commits` ' .
+     * 'WHERE author.time_sec IN UNNEST (?) AND message IN UNNEST (?) AND committer.name = ? LIMIT 10';
+     * 
+     * $queryJobConfig = $bigQuery->query("")
+     *   ->parameters([[], ["abc", "def"], "John"])
+     *   ->setParamTypes(['INT64']);
+     * ```
+     * In the above example, the first array will have a type of INT64 
+     * while the next one will have a type of
+     * STRING(even though the second array type is not suppleid).
+     * 
+     * @param array $userTypes The user supplied types for the positional parameters.
+     * This overrides the guessed types that the ValueMapper got from the toParameter
+     * method call.
+     * 
+     * @return QueryJobConfiguration
+     */
+    public function setParamTypes(array $userTypes)
+    {
+        $queryParams = $this->config['configuration']['query']['queryParameters'];
+
+        foreach($userTypes as $key => $type) {
+            $guessedType = $queryParams[$key]['parameterType']['type'];
+
+            if($guessedType === $this->mapper::TYPE_ARRAY) {
+                $queryParams[$key]['parameterType']['arrayType'] = ['type' => $type];
+            } else {
+                $queryParams[$key]['parameterType']['type'] = $type;
+            }
+        }
+
+        $this->config['configuration']['query']['queryParameters'] = $queryParams;
+
+        return $this;
+    }
+
+    /**
      * Sets a priority for the query.
      *
      * Example:
