@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Deprecated. No effect.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.videointelligence.v1.FaceFrame</code>
  */
 class FaceFrame extends \Google\Protobuf\Internal\Message
