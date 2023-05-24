@@ -21,7 +21,7 @@ class Debugger
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ƒ
+î
 /google/devtools/clouddebugger/v2/debugger.proto google.devtools.clouddebugger.v2google/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.protogoogle/protobuf/empty.protogoogle/api/annotations.proto"”
 SetBreakpointRequest
 debuggee_id (	BàAE
@@ -68,8 +68,8 @@ breakpointÚA%debuggee_id,breakpoint,client_versionõ
 GetBreakpoint6.google.devtools.clouddebugger.v2.GetBreakpointRequest7.google.devtools.clouddebugger.v2.GetBreakpointResponse"s‚Óä“B@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}ÚA(debuggee_id,breakpoint_id,client_versionÚ
 DeleteBreakpoint9.google.devtools.clouddebugger.v2.DeleteBreakpointRequest.google.protobuf.Empty"s‚Óä“B*@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}ÚA(debuggee_id,breakpoint_id,client_versionÝ
 ListBreakpoints8.google.devtools.clouddebugger.v2.ListBreakpointsRequest9.google.devtools.clouddebugger.v2.ListBreakpointsResponse"U‚Óä“20/v2/debugger/debuggees/{debuggee_id}/breakpointsÚAdebuggee_id,client_version¹
-ListDebuggees6.google.devtools.clouddebugger.v2.ListDebuggeesRequest7.google.devtools.clouddebugger.v2.ListDebuggeesResponse"7‚Óä“/v2/debugger/debuggeesÚAproject,client_versionÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÚ
-$com.google.devtools.clouddebugger.v2BDebuggerProtoPZMgoogle.golang.org/genproto/googleapis/devtools/clouddebugger/v2;clouddebuggerªGoogle.Cloud.Debugger.V2ÊGoogle\\Cloud\\Debugger\\V2êGoogle::Cloud::Debugger::V2bproto3'
+ListDebuggees6.google.devtools.clouddebugger.v2.ListDebuggeesRequest7.google.devtools.clouddebugger.v2.ListDebuggeesResponse"7‚Óä“/v2/debugger/debuggeesÚAproject,client_versionÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÅ
+$com.google.devtools.clouddebugger.v2BDebuggerProtoPZ8cloud.google.com/go/debugger/apiv2/debuggerpb;debuggerpbªGoogle.Cloud.Debugger.V2ÊGoogle\\Cloud\\Debugger\\V2êGoogle::Cloud::Debugger::V2bproto3'
         , true);
 
         static::$is_initialized = true;
