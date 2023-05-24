@@ -41,7 +41,7 @@ function add_secret_version_sample(string $formattedParent): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $payload = new SecretPayload();
 
     // Call the API and handle any network failures.
