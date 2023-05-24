@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [Vehicle.LoadLimit.Interval][google.cloud.optimization.v1.Vehicle.LoadLimit.Interval]
  * instead.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.optimization.v1.CapacityQuantity</code>
  */
 class CapacityQuantity extends \Google\Protobuf\Internal\Message
