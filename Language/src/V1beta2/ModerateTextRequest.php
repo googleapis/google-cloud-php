@@ -9,24 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The entity-level sentiment analysis request message.
+ * The document moderation request message.
  *
- * Generated from protobuf message <code>google.cloud.language.v1beta2.AnalyzeEntitySentimentRequest</code>
+ * Generated from protobuf message <code>google.cloud.language.v1beta2.ModerateTextRequest</code>
  */
-class AnalyzeEntitySentimentRequest extends \Google\Protobuf\Internal\Message
+class ModerateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $document = null;
-    /**
-     * The encoding type used by the API to calculate offsets.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
-     */
-    protected $encoding_type = 0;
+    private $document = null;
 
     /**
      * Constructor.
@@ -36,8 +30,6 @@ class AnalyzeEntitySentimentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Language\V1beta2\Document $document
      *           Required. Input document.
-     *     @type int $encoding_type
-     *           The encoding type used by the API to calculate offsets.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,32 +69,6 @@ class AnalyzeEntitySentimentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V1beta2\Document::class);
         $this->document = $var;
-
-        return $this;
-    }
-
-    /**
-     * The encoding type used by the API to calculate offsets.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
-     * @return int
-     */
-    public function getEncodingType()
-    {
-        return $this->encoding_type;
-    }
-
-    /**
-     * The encoding type used by the API to calculate offsets.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setEncodingType($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\EncodingType::class);
-        $this->encoding_type = $var;
 
         return $this;
     }
