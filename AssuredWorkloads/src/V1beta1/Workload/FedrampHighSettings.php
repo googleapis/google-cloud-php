@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Settings specific to resources needed for FedRAMP High.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings</code>
  */
 class FedrampHighSettings extends \Google\Protobuf\Internal\Message
