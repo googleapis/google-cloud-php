@@ -23,6 +23,19 @@ class GetApplicationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Name of the Application resource to get. Example: `apps/myapp`.
+     *
+     * @return \Google\Cloud\AppEngine\V1\GetApplicationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

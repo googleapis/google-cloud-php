@@ -55,6 +55,23 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     private $partition_keys;
 
     /**
+     * @param string $reportJob Required. The report job created by
+     *                          [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     *                          Report_job uses the format:
+     *                          accounts/{account_id}/reportJobs/{report_job_id}
+     *                          Please see {@see CloudChannelReportsServiceClient::reportJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\FetchReportResultsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $reportJob): self
+    {
+        return (new self())
+            ->setReportJob($reportJob);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

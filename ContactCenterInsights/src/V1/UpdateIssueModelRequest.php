@@ -29,6 +29,21 @@ class UpdateIssueModelRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ContactCenterInsights\V1\IssueModel $issueModel Required. The new values for the issue model.
+     * @param \Google\Protobuf\FieldMask                        $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ContactCenterInsights\V1\IssueModel $issueModel, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIssueModel($issueModel)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

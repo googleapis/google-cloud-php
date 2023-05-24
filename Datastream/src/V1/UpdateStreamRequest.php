@@ -62,6 +62,25 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param \Google\Cloud\Datastream\V1\Stream $stream     Required. The stream resource to update.
+     * @param \Google\Protobuf\FieldMask         $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
+     *                                                       stream resource by the update.
+     *                                                       The fields specified in the update_mask are relative to the resource, not
+     *                                                       the full request. A field will be overwritten if it is in the mask. If the
+     *                                                       user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\Datastream\V1\UpdateStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Datastream\V1\Stream $stream, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setStream($stream)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

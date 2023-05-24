@@ -64,6 +64,25 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $graceful_decommission_timeout = null;
 
     /**
+     * @param string $name Required. The name of the node group to resize.
+     *                     Format:
+     *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+     * @param int    $size Required. The number of running instances for the node group to maintain.
+     *                     The group adds or removes instances to maintain the number of instances
+     *                     specified by this parameter.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ResizeNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $size): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSize($size);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

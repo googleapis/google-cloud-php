@@ -23,6 +23,19 @@ class DeleteAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
     private $name = '';
 
     /**
+     * @param string $name Name of the AccessApprovalSettings to delete.
+     *
+     * @return \Google\Cloud\AccessApproval\V1\DeleteAccessApprovalSettingsMessage
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

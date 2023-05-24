@@ -33,6 +33,38 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup Required. Updates for the entry group. The `name` field must be set.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup): self
+    {
+        return (new self())
+            ->setEntryGroup($entryGroup);
+    }
+
+    /**
+     * @param \Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup Required. Updates for the entry group. The `name` field must be set.
+     * @param \Google\Protobuf\FieldMask              $updateMask Names of fields whose values to overwrite on an entry group.
+     *
+     *                                                            If this parameter is absent or empty, all modifiable fields
+     *                                                            are overwritten. If such fields are non-required and omitted in the
+     *                                                            request body, their values are emptied.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest
+     *
+     * @experimental
+     */
+    public static function buildFromEntryGroupUpdateMask(\Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEntryGroup($entryGroup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

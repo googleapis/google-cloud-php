@@ -36,6 +36,24 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     private $cluster_name = '';
 
     /**
+     * @param string $projectId   Required. The ID of the Google Cloud Platform project that the cluster
+     *                            belongs to.
+     * @param string $region      Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName Required. The cluster name.
+     *
+     * @return \Google\Cloud\Dataproc\V1\GetClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, string $clusterName): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setClusterName($clusterName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

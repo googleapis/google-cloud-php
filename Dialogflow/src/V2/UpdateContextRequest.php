@@ -30,6 +30,21 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Context $context    Required. The context to update.
+     * @param \Google\Protobuf\FieldMask          $updateMask Optional. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateContextRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Context $context, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

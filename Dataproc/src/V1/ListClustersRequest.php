@@ -62,6 +62,58 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     *                          belongs to.
+     * @param string $region    Required. The Dataproc region in which to handle the request.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region);
+    }
+
+    /**
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     *                          belongs to.
+     * @param string $region    Required. The Dataproc region in which to handle the request.
+     * @param string $filter    Optional. A filter constraining the clusters to list. Filters are
+     *                          case-sensitive and have the following syntax:
+     *
+     *                          field = value [AND [field = value]] ...
+     *
+     *                          where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
+     *                          and `[KEY]` is a label key. **value** can be `*` to match all values.
+     *                          `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
+     *                          `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
+     *                          contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
+     *                          contains the `DELETING` and `ERROR` states.
+     *                          `clusterName` is the name of the cluster provided at creation time.
+     *                          Only the logical `AND` operator is supported; space-separated items are
+     *                          treated as having an implicit `AND` operator.
+     *
+     *                          Example filter:
+     *
+     *                          status.state = ACTIVE AND clusterName = mycluster
+     *                          AND labels.env = staging AND labels.starred = *
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function buildFromProjectIdRegionFilter(string $projectId, string $region, string $filter): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

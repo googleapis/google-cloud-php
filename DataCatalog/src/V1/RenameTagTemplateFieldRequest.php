@@ -31,6 +31,23 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     private $new_tag_template_field_id = '';
 
     /**
+     * @param string $name                  Required. The name of the tag template field. Please see
+     *                                      {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
+     *                                      `my_new_field`.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $newTagTemplateFieldId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNewTagTemplateFieldId($newTagTemplateFieldId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,19 @@ class UpdateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
     private $channel_partner_repricing_config = null;
 
     /**
+     * @param \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
+     *
+     * @return \Google\Cloud\Channel\V1\UpdateChannelPartnerRepricingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig $channelPartnerRepricingConfig): self
+    {
+        return (new self())
+            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
