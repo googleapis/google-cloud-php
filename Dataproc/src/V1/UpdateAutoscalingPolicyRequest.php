@@ -23,6 +23,19 @@ class UpdateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     private $policy = null;
 
     /**
+     * @param \Google\Cloud\Dataproc\V1\AutoscalingPolicy $policy Required. The updated autoscaling policy.
+     *
+     * @return \Google\Cloud\Dataproc\V1\UpdateAutoscalingPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataproc\V1\AutoscalingPolicy $policy): self
+    {
+        return (new self())
+            ->setPolicy($policy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

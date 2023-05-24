@@ -40,6 +40,24 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the Data Catalog resource to list the tags of.
+     *
+     *                       The resource can be an [Entry][google.cloud.datacatalog.v1.Entry]
+     *                       or an [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]
+     *                       (without `/entries/{entries}` at the end). Please see
+     *                       {@see DataCatalogClient::entryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\ListTagsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

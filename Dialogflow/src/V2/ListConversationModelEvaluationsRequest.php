@@ -38,6 +38,20 @@ class ListConversationModelEvaluationsRequest extends \Google\Protobuf\Internal\
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The conversation model resource name. Format:
+     *                       `projects/<Project ID>/conversationModels/<Conversation Model ID>`
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListConversationModelEvaluationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

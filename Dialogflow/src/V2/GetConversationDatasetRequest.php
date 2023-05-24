@@ -26,6 +26,22 @@ class GetConversationDatasetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The conversation dataset to retrieve. Format:
+     *                     `projects/<Project ID>/locations/<Location
+     *                     ID>/conversationDatasets/<Conversation Dataset ID>`
+     *                     Please see {@see ConversationDatasetsClient::conversationDatasetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetConversationDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

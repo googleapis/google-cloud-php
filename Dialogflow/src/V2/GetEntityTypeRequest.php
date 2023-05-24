@@ -35,6 +35,42 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $language_code = '';
 
     /**
+     * @param string $name Required. The name of the entity type.
+     *                     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. Please see
+     *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
+     * @param string $name         Required. The name of the entity type.
+     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. Please see
+     *                             {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     * @param string $languageCode Optional. The language used to access language-specific data.
+     *                             If not specified, the agent's default language is used.
+     *                             For more information, see
+     *                             [Multilingual intent and entity
+     *                             data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameLanguageCode(string $name, string $languageCode): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

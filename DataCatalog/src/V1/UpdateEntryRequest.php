@@ -50,6 +50,62 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\Entry $entry Required. Updates for the entry. The `name` field must be set.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateEntryRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\Entry $entry): self
+    {
+        return (new self())
+            ->setEntry($entry);
+    }
+
+    /**
+     * @param \Google\Cloud\DataCatalog\V1\Entry $entry      Required. Updates for the entry. The `name` field must be set.
+     * @param \Google\Protobuf\FieldMask         $updateMask Names of fields whose values to overwrite on an entry.
+     *
+     *                                                       If this parameter is absent or empty, all modifiable fields
+     *                                                       are overwritten. If such fields are non-required and omitted in the
+     *                                                       request body, their values are emptied.
+     *
+     *                                                       You can modify only the fields listed below.
+     *
+     *                                                       For entries with type `DATA_STREAM`:
+     *
+     *                                                       * `schema`
+     *
+     *                                                       For entries with type `FILESET`:
+     *
+     *                                                       * `schema`
+     *                                                       * `display_name`
+     *                                                       * `description`
+     *                                                       * `gcs_fileset_spec`
+     *                                                       * `gcs_fileset_spec.file_patterns`
+     *
+     *                                                       For entries with `user_specified_type`:
+     *
+     *                                                       * `schema`
+     *                                                       * `display_name`
+     *                                                       * `description`
+     *                                                       * `user_specified_type`
+     *                                                       * `user_specified_system`
+     *                                                       * `linked_resource`
+     *                                                       * `source_system_timestamps`
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateEntryRequest
+     *
+     * @experimental
+     */
+    public static function buildFromEntryUpdateMask(\Google\Cloud\DataCatalog\V1\Entry $entry, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEntry($entry)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

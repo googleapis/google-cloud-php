@@ -48,6 +48,21 @@ class ListApiConfigsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. Parent resource of the API Config, of the form:
+     *                       `projects/&#42;/locations/global/apis/*`
+     *                       Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\ListApiConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

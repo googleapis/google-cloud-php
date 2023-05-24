@@ -35,6 +35,27 @@ class UpdateBudgetRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Billing\Budgets\V1\Budget $budget     Required. The updated budget object.
+     *                                                            The budget to update is specified by the budget name in the budget.
+     * @param \Google\Protobuf\FieldMask              $updateMask Optional. Indicates which fields in the provided budget to update.
+     *                                                            Read-only fields (such as `name`) cannot be changed. If this is not
+     *                                                            provided, then only fields with non-default values from the request are
+     *                                                            updated. See
+     *                                                            https://developers.google.com/protocol-buffers/docs/proto3#default for more
+     *                                                            details about default values.
+     *
+     * @return \Google\Cloud\Billing\Budgets\V1\UpdateBudgetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Billing\Budgets\V1\Budget $budget, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBudget($budget)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

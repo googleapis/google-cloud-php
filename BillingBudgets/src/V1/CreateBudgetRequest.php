@@ -30,6 +30,23 @@ class CreateBudgetRequest extends \Google\Protobuf\Internal\Message
     private $budget = null;
 
     /**
+     * @param string                                  $parent Required. The name of the billing account to create the budget in. Values
+     *                                                        are of the form `billingAccounts/{billingAccountId}`. Please see
+     *                                                        {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
+     * @param \Google\Cloud\Billing\Budgets\V1\Budget $budget Required. Budget to create.
+     *
+     * @return \Google\Cloud\Billing\Budgets\V1\CreateBudgetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Billing\Budgets\V1\Budget $budget): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBudget($budget);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

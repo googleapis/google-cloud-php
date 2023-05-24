@@ -44,6 +44,41 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string $projectId Deprecated. The Google Developers Console [project ID or project
+     *                          number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                          This field has been deprecated and replaced by the parent field.
+     * @param string $zone      Deprecated. The name of the Google Compute Engine
+     *                          [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                          cluster resides, or "-" for all zones. This field has been deprecated and
+     *                          replaced by the parent field.
+     *
+     * @return \Google\Cloud\Container\V1\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone);
+    }
+
+    /**
+     * @param string $parent The parent (project and location) where the clusters will be listed.
+     *                       Specified in the format `projects/&#42;/locations/*`.
+     *                       Location "-" matches all zones and all regions.
+     *
+     * @return \Google\Cloud\Container\V1\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParent(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

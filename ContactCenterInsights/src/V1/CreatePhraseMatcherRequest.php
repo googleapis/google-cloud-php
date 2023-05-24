@@ -32,6 +32,25 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     private $phrase_matcher = null;
 
     /**
+     * @param string                                               $parent        Required. The parent resource of the phrase matcher. Required. The location
+     *                                                                            to create a phrase matcher for. Format: `projects/<Project
+     *                                                                            ID>/locations/<Location ID>` or `projects/<Project
+     *                                                                            Number>/locations/<Location ID>`
+     *                                                                            Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPhraseMatcher($phraseMatcher);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

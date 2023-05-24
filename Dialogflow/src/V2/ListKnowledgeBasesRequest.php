@@ -62,6 +62,21 @@ class ListKnowledgeBasesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The project to list of knowledge bases for.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see KnowledgeBasesClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListKnowledgeBasesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

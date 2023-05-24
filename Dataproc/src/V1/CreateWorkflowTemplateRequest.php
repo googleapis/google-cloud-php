@@ -36,6 +36,31 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     private $template = null;
 
     /**
+     * @param string                                     $parent   Required. The resource name of the region or location, as described
+     *                                                             in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                                                             * For `projects.regions.workflowTemplates.create`, the resource name of the
+     *                                                             region has the following format:
+     *                                                             `projects/{project_id}/regions/{region}`
+     *
+     *                                                             * For `projects.locations.workflowTemplates.create`, the resource name of
+     *                                                             the location has the following format:
+     *                                                             `projects/{project_id}/locations/{location}`
+     *                                                             Please see {@see WorkflowTemplateServiceClient::regionName()} for help formatting this field.
+     * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate $template Required. The Dataproc workflow template to create.
+     *
+     * @return \Google\Cloud\Dataproc\V1\CreateWorkflowTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataproc\V1\WorkflowTemplate $template): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTemplate($template);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

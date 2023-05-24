@@ -33,6 +33,25 @@ class UpdateApiConfigRequest extends \Google\Protobuf\Internal\Message
     private $api_config = null;
 
     /**
+     * @param \Google\Cloud\ApiGateway\V1\ApiConfig $apiConfig  Required. API Config resource.
+     * @param \Google\Protobuf\FieldMask            $updateMask Field mask is used to specify the fields to be overwritten in the
+     *                                                          ApiConfig resource by the update.
+     *                                                          The fields specified in the update_mask are relative to the resource, not
+     *                                                          the full request. A field will be overwritten if it is in the mask. If the
+     *                                                          user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\UpdateApiConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApiGateway\V1\ApiConfig $apiConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setApiConfig($apiConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -36,6 +36,42 @@ class UpdateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate Required. The template to update. The `name` field must be set.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate): self
+    {
+        return (new self())
+            ->setTagTemplate($tagTemplate);
+    }
+
+    /**
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate Required. The template to update. The `name` field must be set.
+     * @param \Google\Protobuf\FieldMask               $updateMask  Names of fields whose values to overwrite on a tag template. Currently,
+     *                                                              only `display_name` and `is_publicly_readable` can be overwritten.
+     *
+     *                                                              If this parameter is absent or empty, all modifiable fields
+     *                                                              are overwritten. If such fields are non-required and omitted in the
+     *                                                              request body, their values are emptied.
+     *
+     *                                                              Note: Updating the `is_publicly_readable` field may require up to 12
+     *                                                              hours to take effect in search results.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagTemplateRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTagTemplateUpdateMask(\Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTagTemplate($tagTemplate)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,6 +31,29 @@ class DeleteAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The "resource name" of the autoscaling policy, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                     * For `projects.regions.autoscalingPolicies.delete`, the resource name
+     *                     of the policy has the following format:
+     *                     `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     *
+     *                     * For `projects.locations.autoscalingPolicies.delete`, the resource name
+     *                     of the policy has the following format:
+     *                     `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+     *                     Please see {@see AutoscalingPolicyServiceClient::autoscalingPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\DeleteAutoscalingPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

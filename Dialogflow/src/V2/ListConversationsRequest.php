@@ -58,6 +58,21 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The project from which to list all conversation.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see ConversationsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListConversationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

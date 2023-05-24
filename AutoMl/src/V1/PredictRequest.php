@@ -58,6 +58,54 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     private $params;
 
     /**
+     * @param string                                 $name    Required. Name of the model requested to serve the prediction. Please see
+     *                                                        {@see PredictionServiceClient::modelName()} for help formatting this field.
+     * @param \Google\Cloud\AutoMl\V1\ExamplePayload $payload Required. Payload to perform a prediction on. The payload must match the
+     *                                                        problem type that the model was trained to solve.
+     * @param array                                  $params  Additional domain-specific parameters, any string must be up to 25000
+     *                                                        characters long.
+     *
+     *                                                        AutoML Vision Classification
+     *
+     *                                                        `score_threshold`
+     *                                                        : (float) A value from 0.0 to 1.0. When the model
+     *                                                        makes predictions for an image, it will only produce results that have
+     *                                                        at least this confidence score. The default is 0.5.
+     *
+     *                                                        AutoML Vision Object Detection
+     *
+     *                                                        `score_threshold`
+     *                                                        : (float) When Model detects objects on the image,
+     *                                                        it will only produce bounding boxes which have at least this
+     *                                                        confidence score. Value in 0 to 1 range, default is 0.5.
+     *
+     *                                                        `max_bounding_box_count`
+     *                                                        : (int64) The maximum number of bounding
+     *                                                        boxes returned. The default is 100. The
+     *                                                        number of returned bounding boxes might be limited by the server.
+     *
+     *                                                        AutoML Tables
+     *
+     *                                                        `feature_importance`
+     *                                                        : (boolean) Whether
+     *                                                        [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *                                                        is populated in the returned list of
+     *                                                        [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *                                                        objects. The default is false.
+     *
+     * @return \Google\Cloud\AutoMl\V1\PredictRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\AutoMl\V1\ExamplePayload $payload, array $params): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setPayload($payload)
+            ->setParams($params);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
