@@ -15,6 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The relationship attributes which include  `type`, `source_resource_type`,
  * `target_resource_type` and `action`.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.asset.v1.RelationshipAttributes</code>
  */
 class RelationshipAttributes extends \Google\Protobuf\Internal\Message
