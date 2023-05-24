@@ -22,6 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *   a break), in which case it does not affect the vehicle start time.
  * * after the vehicle end (ditto, with the vehicle end time).
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.optimization.v1.ShipmentModel.BreakRule</code>
  */
 class BreakRule extends \Google\Protobuf\Internal\Message
