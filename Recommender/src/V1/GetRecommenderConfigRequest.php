@@ -27,6 +27,28 @@ class GetRecommenderConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the Recommendation Config to get.
+     *
+     *                     Acceptable formats:
+     *
+     *                     * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *                     * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *                     * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *                     Please see {@see RecommenderClient::recommenderConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Recommender\V1\GetRecommenderConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

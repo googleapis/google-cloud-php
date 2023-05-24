@@ -77,6 +77,21 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the project and location whose namespaces
+     *                       we'd like to list. Please see
+     *                       {@see RegistrationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\ListNamespacesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

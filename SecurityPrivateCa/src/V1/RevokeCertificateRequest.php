@@ -50,6 +50,22 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The resource name for this
+     *                     [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
+     *                     `projects/&#42;/locations/&#42;/caPools/&#42;/certificates/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\RevokeCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

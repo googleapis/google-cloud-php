@@ -36,6 +36,21 @@ class UpdateInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Recommender\V1\InsightTypeConfig $insightTypeConfig Required. The InsightTypeConfig to update.
+     * @param \Google\Protobuf\FieldMask                     $updateMask        The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Recommender\V1\InsightTypeConfig $insightTypeConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInsightTypeConfig($insightTypeConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

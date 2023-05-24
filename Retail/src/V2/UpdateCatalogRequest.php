@@ -39,6 +39,32 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\Catalog $catalog    Required. The [Catalog][google.cloud.retail.v2.Catalog] to update.
+     *
+     *                                                    If the caller does not have permission to update the
+     *                                                    [Catalog][google.cloud.retail.v2.Catalog], regardless of whether or not it
+     *                                                    exists, a PERMISSION_DENIED error is returned.
+     *
+     *                                                    If the [Catalog][google.cloud.retail.v2.Catalog] to update does not exist,
+     *                                                    a NOT_FOUND error is returned.
+     * @param \Google\Protobuf\FieldMask      $updateMask Indicates which fields in the provided
+     *                                                    [Catalog][google.cloud.retail.v2.Catalog] to update.
+     *
+     *                                                    If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
+     *                                                    is returned.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateCatalogRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\Catalog $catalog, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCatalog($catalog)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

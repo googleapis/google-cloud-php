@@ -30,6 +30,23 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
     private $assessment = null;
 
     /**
+     * @param string                                          $parent     Required. The name of the project in which the assessment will be created,
+     *                                                                    in the format "projects/{project}". Please see
+     *                                                                    {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\Assessment $assessment Required. The assessment details.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\RecaptchaEnterprise\V1\Assessment $assessment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAssessment($assessment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

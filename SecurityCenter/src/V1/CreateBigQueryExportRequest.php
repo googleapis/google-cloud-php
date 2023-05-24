@@ -40,6 +40,29 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     private $big_query_export_id = '';
 
     /**
+     * @param string                                         $parent           Required. The name of the parent resource of the new BigQuery export. Its
+     *                                                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                                                         "projects/[project_id]". Please see
+     *                                                                         {@see SecurityCenterClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
+     * @param string                                         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
+     *                                                                         It must consist of lower case letters, numbers, and hyphen, with the first
+     *                                                                         character a letter, the last a letter or a number, and a 63 character
+     *                                                                         maximum.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport, string $bigQueryExportId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBigQueryExport($bigQueryExport)
+            ->setBigQueryExportId($bigQueryExportId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

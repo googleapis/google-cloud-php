@@ -33,6 +33,25 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Scheduler\V1\Job $job        Required. The new job properties.
+     *                                                   [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     *
+     *                                                   Output only fields cannot be modified using UpdateJob.
+     *                                                   Any value specified for an output only field will be ignored.
+     * @param \Google\Protobuf\FieldMask     $updateMask A  mask used to specify which fields of the job are being updated.
+     *
+     * @return \Google\Cloud\Scheduler\V1\UpdateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Scheduler\V1\Job $job, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setJob($job)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

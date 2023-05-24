@@ -51,6 +51,30 @@ class ListServiceRolloutsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $serviceName Required. The name of the service.  See the
+     *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                            example: `example.googleapis.com`.
+     * @param string $filter      Required. Use `filter` to return subset of rollouts.
+     *                            The following filters are supported:
+     *                            -- To limit the results to only those in
+     *                            status (google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *                            use filter='status=SUCCESS'
+     *                            -- To limit the results to those in
+     *                            status (google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *                            or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\ListServiceRolloutsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName, string $filter): self
+    {
+        return (new self())
+            ->setServiceName($serviceName)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

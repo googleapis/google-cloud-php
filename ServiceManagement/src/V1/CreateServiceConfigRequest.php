@@ -31,6 +31,23 @@ class CreateServiceConfigRequest extends \Google\Protobuf\Internal\Message
     private $service_config = null;
 
     /**
+     * @param string              $serviceName   Required. The name of the service.  See the
+     *                                           [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                                           example: `example.googleapis.com`.
+     * @param \Google\Api\Service $serviceConfig Required. The service configuration resource.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\CreateServiceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName, \Google\Api\Service $serviceConfig): self
+    {
+        return (new self())
+            ->setServiceName($serviceName)
+            ->setServiceConfig($serviceConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
