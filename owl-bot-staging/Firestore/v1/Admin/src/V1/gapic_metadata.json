@@ -1,0 +1,78 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.firestore.admin.v1",
+    "libraryPackage": "Google\\Cloud\\Firestore\\Admin\\V1",
+    "services": {
+        "FirestoreAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FirestoreAdminGapicClient",
+                    "rpcs": {
+                        "CreateIndex": {
+                            "methods": [
+                                "createIndex"
+                            ]
+                        },
+                        "DeleteIndex": {
+                            "methods": [
+                                "deleteIndex"
+                            ]
+                        },
+                        "ExportDocuments": {
+                            "methods": [
+                                "exportDocuments"
+                            ]
+                        },
+                        "GetDatabase": {
+                            "methods": [
+                                "getDatabase"
+                            ]
+                        },
+                        "GetField": {
+                            "methods": [
+                                "getField"
+                            ]
+                        },
+                        "GetIndex": {
+                            "methods": [
+                                "getIndex"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
+                            ]
+                        },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
+                            ]
+                        },
+                        "ListFields": {
+                            "methods": [
+                                "listFields"
+                            ]
+                        },
+                        "ListIndexes": {
+                            "methods": [
+                                "listIndexes"
+                            ]
+                        },
+                        "UpdateDatabase": {
+                            "methods": [
+                                "updateDatabase"
+                            ]
+                        },
+                        "UpdateField": {
+                            "methods": [
+                                "updateField"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
