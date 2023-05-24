@@ -47,6 +47,24 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     private $skip_human_review = false;
 
     /**
+     * @param string $name Required. The resource name of
+     *                     [Processor][google.cloud.documentai.v1.Processor] or
+     *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                     or
+     *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *
+     * @return \Google\Cloud\DocumentAI\V1\BatchProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

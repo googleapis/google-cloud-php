@@ -46,6 +46,23 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     private $location_id = '';
 
     /**
+     * @param string $parent The parent resource name.
+     *
+     *                       The format of this value is as follows:
+     *
+     *                       locations/<var>LOCATION_ID</var>
+     *
+     * @return \Google\Cloud\Dlp\V2\ListInfoTypesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

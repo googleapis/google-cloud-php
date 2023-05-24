@@ -24,6 +24,20 @@ class DeleteEnvironmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name The environment to delete, in the form:
+     *                     "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\DeleteEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

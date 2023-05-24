@@ -23,6 +23,20 @@ class GetConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the conversion workspace resource to get. Please see
+     *                     {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\GetConversionWorkspaceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -41,6 +41,23 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the
+     *                       [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
+     *                       evaluations for.
+     *                       `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *                       Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ListEvaluationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

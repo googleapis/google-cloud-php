@@ -30,6 +30,20 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Monitoring\V3\Service $service Required. The `Service` to draw updates from.
+     *                                                     The given `name` specifies the resource to update.
+     *
+     * @return \Google\Cloud\Monitoring\V3\UpdateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Monitoring\V3\Service $service): self
+    {
+        return (new self())
+            ->setService($service);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

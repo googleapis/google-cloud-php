@@ -29,6 +29,28 @@ class GetOSPolicyAssignmentReportRequest extends \Google\Protobuf\Internal\Messa
     private $name = '';
 
     /**
+     * @param string $name Required. API resource name for OS policy assignment report.
+     *
+     *                     Format:
+     *                     `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report`
+     *
+     *                     For `{project}`, either `project-number` or `project-id` can be provided.
+     *                     For `{instance_id}`, either Compute Engine `instance-id` or `instance-name`
+     *                     can be provided.
+     *                     For `{assignment_id}`, the OSPolicyAssignment id must be provided. Please see
+     *                     {@see OsConfigZonalServiceClient::oSPolicyAssignmentReportName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\GetOSPolicyAssignmentReportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

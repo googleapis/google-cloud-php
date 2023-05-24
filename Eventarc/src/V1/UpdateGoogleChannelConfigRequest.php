@@ -31,6 +31,23 @@ class UpdateGoogleChannelConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Eventarc\V1\GoogleChannelConfig $googleChannelConfig Required. The config to be updated.
+     * @param \Google\Protobuf\FieldMask                    $updateMask          The fields to be updated; only fields explicitly provided are updated.
+     *                                                                           If no field mask is provided, all provided fields in the request are
+     *                                                                           updated. To update all fields, provide a field mask of "*".
+     *
+     * @return \Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Eventarc\V1\GoogleChannelConfig $googleChannelConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setGoogleChannelConfig($googleChannelConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

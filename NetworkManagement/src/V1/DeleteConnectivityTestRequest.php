@@ -24,6 +24,20 @@ class DeleteConnectivityTestRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Connectivity Test resource name using the form:
+     *                     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *
+     * @return \Google\Cloud\NetworkManagement\V1\DeleteConnectivityTestRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

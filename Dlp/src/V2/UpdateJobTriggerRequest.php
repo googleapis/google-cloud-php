@@ -36,6 +36,25 @@ class UpdateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                          $name       Required. Resource name of the project and the triggeredJob, for example
+     *                                                    `projects/dlp-test-project/jobTriggers/53234423`. Please see
+     *                                                    {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
+     * @param \Google\Cloud\Dlp\V2\JobTrigger $jobTrigger New JobTrigger value.
+     * @param \Google\Protobuf\FieldMask      $updateMask Mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dlp\V2\UpdateJobTriggerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Dlp\V2\JobTrigger $jobTrigger, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setJobTrigger($jobTrigger)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
