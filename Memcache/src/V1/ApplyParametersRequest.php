@@ -38,6 +38,27 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
     private $apply_all = false;
 
     /**
+     * @param string   $name     Required. Resource name of the Memcached instance for which parameter group updates
+     *                           should be applied. Please see
+     *                           {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+     * @param string[] $nodeIds  Nodes to which the instance-level parameter group is applied.
+     * @param bool     $applyAll Whether to apply instance-level parameter group to all nodes. If set to
+     *                           true, users are restricted from specifying individual nodes, and
+     *                           `ApplyParameters` updates all nodes within the instance.
+     *
+     * @return \Google\Cloud\Memcache\V1\ApplyParametersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $nodeIds, bool $applyAll): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNodeIds($nodeIds)
+            ->setApplyAll($applyAll);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

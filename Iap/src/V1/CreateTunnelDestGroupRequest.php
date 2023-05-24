@@ -40,6 +40,30 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     private $tunnel_dest_group_id = '';
 
     /**
+     * @param string                               $parent            Required. Google Cloud Project ID and location.
+     *                                                                In the following format:
+     *                                                                `projects/{project_number/id}/iap_tunnel/locations/{location}`. Please see
+     *                                                                {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
+     * @param \Google\Cloud\Iap\V1\TunnelDestGroup $tunnelDestGroup   Required. The TunnelDestGroup to create.
+     * @param string                               $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final
+     *                                                                component of the resource name.
+     *
+     *                                                                This value must be 4-63 characters, and valid characters
+     *                                                                are `[a-z]-`.
+     *
+     * @return \Google\Cloud\Iap\V1\CreateTunnelDestGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Iap\V1\TunnelDestGroup $tunnelDestGroup, string $tunnelDestGroupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTunnelDestGroup($tunnelDestGroup)
+            ->setTunnelDestGroupId($tunnelDestGroupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

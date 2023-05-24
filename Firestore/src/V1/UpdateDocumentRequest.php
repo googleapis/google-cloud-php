@@ -51,6 +51,28 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     private $current_document = null;
 
     /**
+     * @param \Google\Cloud\Firestore\V1\Document     $document   Required. The updated document.
+     *                                                            Creates the document if it does not already exist.
+     * @param \Google\Cloud\Firestore\V1\DocumentMask $updateMask The fields to update.
+     *                                                            None of the field paths in the mask may contain a reserved name.
+     *
+     *                                                            If the document exists on the server and has fields not referenced in the
+     *                                                            mask, they are left unchanged.
+     *                                                            Fields referenced in the mask, but not present in the input document, are
+     *                                                            deleted from the document on the server.
+     *
+     * @return \Google\Cloud\Firestore\V1\UpdateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Firestore\V1\Document $document, \Google\Cloud\Firestore\V1\DocumentMask $updateMask): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

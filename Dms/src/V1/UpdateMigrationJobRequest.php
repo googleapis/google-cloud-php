@@ -40,6 +40,22 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\CloudDms\V1\MigrationJob $migrationJob Required. The migration job parameters to update.
+     * @param \Google\Protobuf\FieldMask             $updateMask   Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                             update in the conversion workspace resource.
+     *
+     * @return \Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CloudDms\V1\MigrationJob $migrationJob, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMigrationJob($migrationJob)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

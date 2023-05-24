@@ -39,6 +39,21 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent (project and location) which owns this collection of
+     *                       Processors. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ListProcessorsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

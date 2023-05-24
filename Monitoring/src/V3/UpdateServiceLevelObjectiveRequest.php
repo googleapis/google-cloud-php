@@ -30,6 +30,20 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Monitoring\V3\ServiceLevelObjective $serviceLevelObjective Required. The `ServiceLevelObjective` to draw updates from.
+     *                                                                                 The given `name` specifies the resource to update.
+     *
+     * @return \Google\Cloud\Monitoring\V3\UpdateServiceLevelObjectiveRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Monitoring\V3\ServiceLevelObjective $serviceLevelObjective): self
+    {
+        return (new self())
+            ->setServiceLevelObjective($serviceLevelObjective);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

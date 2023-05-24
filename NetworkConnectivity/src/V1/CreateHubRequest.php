@@ -54,6 +54,24 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                   $parent Required. The parent resource. Please see
+     *                                                         {@see HubServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkConnectivity\V1\Hub $hub    Required. The initial values for a new hub.
+     * @param string                                   $hubId  Required. A unique identifier for the hub.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\CreateHubRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkConnectivity\V1\Hub $hub, string $hubId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setHub($hub)
+            ->setHubId($hubId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

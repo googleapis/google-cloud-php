@@ -38,6 +38,27 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param string                              $parent     Required. The instance's project and location, in the format
+     *                                                        `projects/{project_id}/locations/{location}`. In Filestore,
+     *                                                        locations map to Google Cloud zones, for example **us-west1-b**. Please see
+     *                                                        {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Filestore\V1\Instance $instance   Required. An [instance resource][google.cloud.filestore.v1.Instance]
+     * @param string                              $instanceId Required. The name of the instance to create.
+     *                                                        The name must be unique for the specified project and location.
+     *
+     * @return \Google\Cloud\Filestore\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Filestore\V1\Instance $instance, string $instanceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstance($instance)
+            ->setInstanceId($instanceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,23 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Eventarc\V1\Channel $channel    The channel to be updated.
+     * @param \Google\Protobuf\FieldMask        $updateMask The fields to be updated; only fields explicitly provided are updated.
+     *                                                      If no field mask is provided, all provided fields in the request are
+     *                                                      updated. To update all fields, provide a field mask of "*".
+     *
+     * @return \Google\Cloud\Eventarc\V1\UpdateChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Eventarc\V1\Channel $channel, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setChannel($channel)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

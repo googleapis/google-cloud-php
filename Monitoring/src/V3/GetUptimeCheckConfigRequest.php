@@ -24,6 +24,22 @@ class GetUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The Uptime check configuration to retrieve. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     *                     Please see {@see UptimeCheckServiceClient::uptimeCheckConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

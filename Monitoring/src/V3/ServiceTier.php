@@ -7,6 +7,7 @@ namespace Google\Cloud\Monitoring\V3;
 use UnexpectedValueException;
 
 /**
+ * @deprecated
  * The tier of service for a Workspace. Please see the
  * [service tiers
  * documentation](https://cloud.google.com/monitoring/workspaces/tiers) for more

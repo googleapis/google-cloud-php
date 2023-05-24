@@ -38,6 +38,20 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent in the form `projects/*`. Please see
+     *                       {@see OsConfigServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\ListPatchDeploymentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

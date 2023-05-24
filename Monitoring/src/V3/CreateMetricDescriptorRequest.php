@@ -33,6 +33,25 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     private $metric_descriptor = null;
 
     /**
+     * @param string                       $name             Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *                                                       which to execute the request. The format is:
+     *                                                       4
+     *                                                       projects/[PROJECT_ID_OR_NUMBER]
+     * @param \Google\Api\MetricDescriptor $metricDescriptor Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
+     *                                                       descriptor.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Api\MetricDescriptor $metricDescriptor): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setMetricDescriptor($metricDescriptor);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -36,6 +36,23 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
     private $game_server_deployment = null;
 
     /**
+     * @param string                                       $parent               Required. The parent resource name, in the following form:
+     *                                                                           `projects/{project}/locations/{location}`. Please see
+     *                                                                           {@see GameServerDeploymentsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Gaming\V1\GameServerDeployment $gameServerDeployment Required. The game server delpoyment resource to be created.
+     *
+     * @return \Google\Cloud\Gaming\V1\CreateGameServerDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Gaming\V1\GameServerDeployment $gameServerDeployment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGameServerDeployment($gameServerDeployment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

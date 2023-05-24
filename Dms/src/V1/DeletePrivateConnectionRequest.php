@@ -33,6 +33,20 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The name of the private connection to delete. Please see
+     *                     {@see DataMigrationServiceClient::privateConnectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\DeletePrivateConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

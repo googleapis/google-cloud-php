@@ -24,6 +24,21 @@ class DeleteJobTriggerRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the project and the triggeredJob, for example
+     *                     `projects/dlp-test-project/jobTriggers/53234423`. Please see
+     *                     {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\DeleteJobTriggerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

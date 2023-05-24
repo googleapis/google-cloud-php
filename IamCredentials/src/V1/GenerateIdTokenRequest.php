@@ -52,6 +52,40 @@ class GenerateIdTokenRequest extends \Google\Protobuf\Internal\Message
     private $include_email = false;
 
     /**
+     * @param string   $name         Required. The resource name of the service account for which the credentials
+     *                               are requested, in the following format:
+     *                               `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                               character is required; replacing it with a project ID is invalid. Please see
+     *                               {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
+     * @param string[] $delegates    The sequence of service accounts in a delegation chain. Each service
+     *                               account must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                               on its next service account in the chain. The last service account in the
+     *                               chain must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                               on the service account that is specified in the `name` field of the
+     *                               request.
+     *
+     *                               The delegates must have the following format:
+     *                               `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                               character is required; replacing it with a project ID is invalid.
+     * @param string   $audience     Required. The audience for the token, such as the API or account that this token
+     *                               grants access to.
+     * @param bool     $includeEmail Include the service account email in the token. If set to `true`, the
+     *                               token will contain `email` and `email_verified` claims.
+     *
+     * @return \Google\Cloud\Iam\Credentials\V1\GenerateIdTokenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $delegates, string $audience, bool $includeEmail): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setDelegates($delegates)
+            ->setAudience($audience)
+            ->setIncludeEmail($includeEmail);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

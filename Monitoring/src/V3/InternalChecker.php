@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An internal checker allows Uptime checks to run on private/internal GCP
  * resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.monitoring.v3.InternalChecker</code>
  */
 class InternalChecker extends \Google\Protobuf\Internal\Message
