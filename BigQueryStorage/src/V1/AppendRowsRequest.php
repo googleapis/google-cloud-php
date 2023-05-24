@@ -71,6 +71,31 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     protected $rows;
 
     /**
+     * @param string $writeStream Required. The write_stream identifies the target of the append operation,
+     *                            and only needs to be specified as part of the first request on the gRPC
+     *                            connection. If provided for subsequent requests, it must match the value of
+     *                            the first request.
+     *
+     *                            For explicitly created write streams, the format is:
+     *
+     *                            * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
+     *
+     *                            For the special default stream, the format is:
+     *
+     *                            * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`. Please see
+     *                            {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $writeStream): self
+    {
+        return (new self())
+            ->setWriteStream($writeStream);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

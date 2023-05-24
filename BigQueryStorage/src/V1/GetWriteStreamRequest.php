@@ -31,6 +31,21 @@ class GetWriteStreamRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. Name of the stream to get, in the form of
+     *                     `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`. Please see
+     *                     {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Storage\V1\GetWriteStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
