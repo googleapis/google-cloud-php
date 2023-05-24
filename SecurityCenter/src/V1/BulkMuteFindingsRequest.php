@@ -57,6 +57,21 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
     protected $mute_annotation = '';
 
     /**
+     * @param string $parent Required. The parent, at which bulk action needs to be applied. Its format
+     *                       is "organizations/[organization_id]", "folders/[folder_id]",
+     *                       "projects/[project_id]".
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

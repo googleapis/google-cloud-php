@@ -41,6 +41,40 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Full resource name of [Product][google.cloud.retail.v2.Product],
+     *                     such as
+     *                     `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *
+     *                     If the caller does not have permission to delete the
+     *                     [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                     exists, a PERMISSION_DENIED error is returned.
+     *
+     *                     If the [Product][google.cloud.retail.v2.Product] to delete does not exist,
+     *                     a NOT_FOUND error is returned.
+     *
+     *                     The [Product][google.cloud.retail.v2.Product] to delete can neither be a
+     *                     [Product.Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]
+     *                     [Product][google.cloud.retail.v2.Product] member nor a
+     *                     [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     *                     [Product][google.cloud.retail.v2.Product] with more than one
+     *                     [variants][google.cloud.retail.v2.Product.Type.VARIANT]. Otherwise, an
+     *                     INVALID_ARGUMENT error is returned.
+     *
+     *                     All inventory information for the named
+     *                     [Product][google.cloud.retail.v2.Product] will be deleted. Please see
+     *                     {@see ProductServiceClient::productName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\DeleteProductRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

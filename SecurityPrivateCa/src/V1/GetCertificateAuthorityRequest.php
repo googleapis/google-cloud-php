@@ -27,6 +27,23 @@ class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The
+     *                     [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                     to get. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\GetCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

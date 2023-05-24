@@ -30,6 +30,23 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
     private $key = null;
 
     /**
+     * @param string                                   $parent Required. The name of the project in which the key will be created, in the
+     *                                                         format "projects/{project}". Please see
+     *                                                         {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\Key $key    Required. Information to create a reCAPTCHA Enterprise key.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\RecaptchaEnterprise\V1\Key $key): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setKey($key);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

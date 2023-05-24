@@ -72,6 +72,21 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the service whose endpoints we'd like to
+     *                       list. Please see
+     *                       {@see RegistrationServiceClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\ListEndpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

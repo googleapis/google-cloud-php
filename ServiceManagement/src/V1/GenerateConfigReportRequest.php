@@ -37,6 +37,29 @@ class GenerateConfigReportRequest extends \Google\Protobuf\Internal\Message
     private $old_config = null;
 
     /**
+     * @param \Google\Protobuf\Any $newConfig Required. Service configuration for which we want to generate the report.
+     *                                        For this version of API, the supported types are
+     *                                        [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
+     *                                        [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
+     *                                        and [google.api.Service][google.api.Service]
+     * @param \Google\Protobuf\Any $oldConfig Optional. Service configuration against which the comparison will be done.
+     *                                        For this version of API, the supported types are
+     *                                        [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
+     *                                        [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
+     *                                        and [google.api.Service][google.api.Service]
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\GenerateConfigReportRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Protobuf\Any $newConfig, \Google\Protobuf\Any $oldConfig): self
+    {
+        return (new self())
+            ->setNewConfig($newConfig)
+            ->setOldConfig($oldConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
