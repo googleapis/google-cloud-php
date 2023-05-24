@@ -32,6 +32,26 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $job = null;
 
     /**
+     * @param string                           $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                                                 The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                                                 "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     *                                                 is created. For example, "projects/foo". Please see
+     *                                                 {@see JobServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Talent\V4beta1\Job $job    Required. The Job to be created.
+     *
+     * @return \Google\Cloud\Talent\V4beta1\CreateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Talent\V4beta1\Job $job): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

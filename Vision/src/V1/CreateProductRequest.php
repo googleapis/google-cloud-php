@@ -40,6 +40,30 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     private $product_id = '';
 
     /**
+     * @param string                          $parent    Required. The project in which the Product should be created.
+     *
+     *                                                   Format is
+     *                                                   `projects/PROJECT_ID/locations/LOC_ID`. Please see
+     *                                                   {@see ProductSearchClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Vision\V1\Product $product   Required. The product to create.
+     * @param string                          $productId A user-supplied resource id for this Product. If set, the server will
+     *                                                   attempt to use this value as the resource id. If it is already in use, an
+     *                                                   error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *                                                   long. It cannot contain the character `/`.
+     *
+     * @return \Google\Cloud\Vision\V1\CreateProductRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Vision\V1\Product $product, string $productId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProduct($product)
+            ->setProductId($productId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

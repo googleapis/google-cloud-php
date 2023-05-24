@@ -25,6 +25,23 @@ class DeleteProductSetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the ProductSet to delete.
+     *
+     *                     Format is:
+     *                     `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *                     Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\DeleteProductSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,36 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                       The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                       "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *                       is created. For example, "projects/foo". Please see
+     *                       {@see JobServiceClient::projectName()} for help formatting this field.
+     * @param string $filter Required. The filter string specifies the jobs to be deleted.
+     *
+     *                       Supported operator: =, AND
+     *
+     *                       The fields eligible for filtering are:
+     *
+     *                       * `companyName` (Required)
+     *                       * `requisitionId` (Required)
+     *
+     *                       Sample Query: companyName = "projects/foo/companies/bar" AND
+     *                       requisitionId = "req-1"
+     *
+     * @return \Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

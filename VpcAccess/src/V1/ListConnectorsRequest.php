@@ -35,6 +35,20 @@ class ListConnectorsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project and location from which the routes should be listed. Please see
+     *                       {@see VpcAccessServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VpcAccess\V1\ListConnectorsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

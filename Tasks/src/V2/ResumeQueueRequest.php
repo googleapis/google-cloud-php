@@ -24,6 +24,21 @@ class ResumeQueueRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The queue name. For example:
+     *                     `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     *                     Please see {@see CloudTasksClient::queueName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Tasks\V2\ResumeQueueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -61,6 +61,45 @@ class DetectLanguageRequest extends \Google\Protobuf\Internal\Message
     protected $source;
 
     /**
+     * @param string $parent   Required. Project or location to make a call. Must refer to a caller's
+     *                         project.
+     *
+     *                         Format: `projects/{project-number-or-id}/locations/{location-id}` or
+     *                         `projects/{project-number-or-id}`.
+     *
+     *                         For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *                         `projects/{project-number-or-id}`.
+     *
+     *                         Only models within the same region (has same location-id) can be used.
+     *                         Otherwise an INVALID_ARGUMENT (400) error is returned. Please see
+     *                         {@see TranslationServiceClient::locationName()} for help formatting this field.
+     * @param string $model    Optional. The language detection model to be used.
+     *
+     *                         Format:
+     *                         `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/{model-id}`
+     *
+     *                         Only one language detection model is currently supported:
+     *                         `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/default`.
+     *
+     *                         If not specified, the default model is used.
+     * @param string $mimeType Optional. The format of the source text, for example, "text/html",
+     *                         "text/plain". If left blank, the MIME type defaults to "text/html".
+     * @param string $content  The content of the input stored as a string.
+     *
+     * @return \Google\Cloud\Translate\V3\DetectLanguageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $model, string $mimeType, string $content): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModel($model)
+            ->setMimeType($mimeType)
+            ->setContent($content);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

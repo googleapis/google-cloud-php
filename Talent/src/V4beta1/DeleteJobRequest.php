@@ -28,6 +28,27 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the job to be deleted.
+     *
+     *                     The format is
+     *                     "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     *                     example, "projects/foo/tenants/bar/jobs/baz".
+     *
+     *                     If tenant id is unspecified, the default tenant is used. For
+     *                     example, "projects/foo/jobs/bar". Please see
+     *                     {@see JobServiceClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Talent\V4beta1\DeleteJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
