@@ -29,6 +29,19 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Functions\V1\CloudFunction $function Required. New version of the function.
+     *
+     * @return \Google\Cloud\Functions\V1\UpdateFunctionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Functions\V1\CloudFunction $function): self
+    {
+        return (new self())
+            ->setFunction($function);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

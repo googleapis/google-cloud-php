@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes the Service being deployed.
  * Currently Supported : Cloud Run (fully managed).
- * Next tag: 23
  *
  * Generated from protobuf message <code>google.cloud.functions.v2.ServiceConfig</code>
  */
@@ -45,7 +44,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     private $available_memory = '';
     /**
-     * The number of CPUs used in a single container instance.
+     * [Preview] The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -151,8 +150,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     private $revision = '';
     /**
-     * Sets the maximum number of concurrent requests that each instance can
-     * receive. Defaults to 1.
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
      */
@@ -189,7 +188,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *           a full description.
      *     @type string $available_cpu
-     *           The number of CPUs used in a single container instance.
+     *           [Preview] The number of CPUs used in a single container instance.
      *           Default value is calculated from available memory.
      *           Supports the same values as Cloud Run, see
      *           https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -243,8 +242,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *     @type string $revision
      *           Output only. The name of service revision.
      *     @type int $max_instance_request_concurrency
-     *           Sets the maximum number of concurrent requests that each instance can
-     *           receive. Defaults to 1.
+     *           [Preview] Sets the maximum number of concurrent requests that each instance
+     *           can receive. Defaults to 1.
      *     @type int $security_level
      *           Security level configure whether the function only accepts https.
      *           This configuration is only applicable to 1st Gen functions with Http
@@ -354,7 +353,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of CPUs used in a single container instance.
+     * [Preview] The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -369,7 +368,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of CPUs used in a single container instance.
+     * [Preview] The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -748,8 +747,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the maximum number of concurrent requests that each instance can
-     * receive. Defaults to 1.
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
      * @return int
@@ -760,8 +759,8 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the maximum number of concurrent requests that each instance can
-     * receive. Defaults to 1.
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
      * @param int $var
