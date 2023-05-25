@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,17 +22,14 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START language_v1beta2_generated_LanguageService_AnalyzeEntitySentiment_sync]
+// [START language_v1beta2_generated_LanguageService_ModerateText_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
+use Google\Cloud\Language\V1beta2\ModerateTextResponse;
 
 /**
- * Finds entities, similar to
- * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
- * in the text and analyzes sentiment associated with each entity and its
- * mentions.
+ * Moderates a document for harmful and sensitive categories.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -40,7 +37,7 @@ use Google\Cloud\Language\V1beta2\LanguageServiceClient;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function analyze_entity_sentiment_sample(): void
+function moderate_text_sample(): void
 {
     // Create a client.
     $languageServiceClient = new LanguageServiceClient();
@@ -50,11 +47,11 @@ function analyze_entity_sentiment_sample(): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var AnalyzeEntitySentimentResponse $response */
-        $response = $languageServiceClient->analyzeEntitySentiment($document);
+        /** @var ModerateTextResponse $response */
+        $response = $languageServiceClient->moderateText($document);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END language_v1beta2_generated_LanguageService_AnalyzeEntitySentiment_sync]
+// [END language_v1beta2_generated_LanguageService_ModerateText_sync]
