@@ -31,6 +31,25 @@ class RollbackSchemaRequest extends \Google\Protobuf\Internal\Message
     private $revision_id = '';
 
     /**
+     * @param string $name       Required. The schema being rolled back with revision id. Please see
+     *                           {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     * @param string $revisionId Required. The revision ID to roll back to.
+     *                           It must be a revision of the same schema.
+     *
+     *                           Example: c7cfa2a8
+     *
+     * @return \Google\Cloud\PubSub\V1\RollbackSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $revisionId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setRevisionId($revisionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
