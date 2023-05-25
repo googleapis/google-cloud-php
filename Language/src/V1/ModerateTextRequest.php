@@ -9,30 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The document classification request message.
+ * The document moderation request message.
  *
- * Generated from protobuf message <code>google.cloud.language.v1.ClassifyTextRequest</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.ModerateTextRequest</code>
  */
-class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
+class ModerateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $document = null;
-    /**
-     * Model options to use for classification. Defaults to v1 options if not
-     * specified.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
-     */
-    protected $classification_model_options = null;
+    private $document = null;
 
     /**
      * @param \Google\Cloud\Language\V1\Document $document Required. Input document.
      *
-     * @return \Google\Cloud\Language\V1\ClassifyTextRequest
+     * @return \Google\Cloud\Language\V1\ModerateTextRequest
      *
      * @experimental
      */
@@ -50,9 +43,6 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Language\V1\Document $document
      *           Required. Input document.
-     *     @type \Google\Cloud\Language\V1\ClassificationModelOptions $classification_model_options
-     *           Model options to use for classification. Defaults to v1 options if not
-     *           specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,44 +82,6 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\Document::class);
         $this->document = $var;
-
-        return $this;
-    }
-
-    /**
-     * Model options to use for classification. Defaults to v1 options if not
-     * specified.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
-     * @return \Google\Cloud\Language\V1\ClassificationModelOptions|null
-     */
-    public function getClassificationModelOptions()
-    {
-        return $this->classification_model_options;
-    }
-
-    public function hasClassificationModelOptions()
-    {
-        return isset($this->classification_model_options);
-    }
-
-    public function clearClassificationModelOptions()
-    {
-        unset($this->classification_model_options);
-    }
-
-    /**
-     * Model options to use for classification. Defaults to v1 options if not
-     * specified.
-     *
-     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
-     * @param \Google\Cloud\Language\V1\ClassificationModelOptions $var
-     * @return $this
-     */
-    public function setClassificationModelOptions($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\ClassificationModelOptions::class);
-        $this->classification_model_options = $var;
 
         return $this;
     }
