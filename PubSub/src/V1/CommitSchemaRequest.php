@@ -30,6 +30,23 @@ class CommitSchemaRequest extends \Google\Protobuf\Internal\Message
     private $schema = null;
 
     /**
+     * @param string                         $name   Required. The name of the schema we are revising.
+     *                                               Format is `projects/{project}/schemas/{schema}`. Please see
+     *                                               {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     * @param \Google\Cloud\PubSub\V1\Schema $schema Required. The schema revision to commit.
+     *
+     * @return \Google\Cloud\PubSub\V1\CommitSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\PubSub\V1\Schema $schema): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSchema($schema);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

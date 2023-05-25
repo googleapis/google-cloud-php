@@ -22,7 +22,7 @@ class NoWrapper extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool write_metadata = 1;</code>
      */
-    protected $write_metadata = false;
+    private $write_metadata = false;
 
     /**
      * Constructor.

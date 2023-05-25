@@ -30,6 +30,23 @@ class ValidateSchemaRequest extends \Google\Protobuf\Internal\Message
     private $schema = null;
 
     /**
+     * @param string                         $parent Required. The name of the project in which to validate schemas.
+     *                                               Format is `projects/{project-id}`. Please see
+     *                                               {@see SchemaServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\PubSub\V1\Schema $schema Required. The schema object to validate.
+     *
+     * @return \Google\Cloud\PubSub\V1\ValidateSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\PubSub\V1\Schema $schema): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSchema($schema);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
