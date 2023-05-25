@@ -305,24 +305,37 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * while the next one will have a type of
      * STRING(even though the second array type is not suppleid).
      * 
+     * For named params, we can simply call:
+     * ```
+     * $queryJobConfig = $bigQuery->query("")
+     *   ->parameters([ 'times' => [], 'messages' => ["abc", "def"]])
+     *   ->setParamTypes(['times' => 'INT64']);
+     * ```
+     * 
      * @param array $userTypes The user supplied types for the positional parameters.
      * This overrides the guessed types that the ValueMapper got from the toParameter
      * method call.
      * 
      * @return QueryJobConfiguration
      */
-    public function setParamTypes(array $userTypes)
-    {
+    public function setParamTypes(array $userTypes) {
         $queryParams = $this->config['configuration']['query']['queryParameters'];
+        $mode = $this->config['configuration']['query']['parameterMode'];
 
-        foreach($userTypes as $key => $type) {
-            $guessedType = $queryParams[$key]['parameterType']['type'];
+        foreach($queryParams as $index => &$param) {
+            // if the user supplied named params, we use the `name` attribute of the parameter
+            // otherwise we just use the index to map.
+            $key = $mode === 'named' ? $param['name'] : $index;
+            $userType = $userTypes[$key];
+
+            $guessedType = $param['parameterType']['type'];
 
             if($guessedType === $this->mapper::TYPE_ARRAY) {
-                $queryParams[$key]['parameterType']['arrayType'] = ['type' => $type];
+                $param['parameterType']['arrayType'] = ['type' => $userType];
             } else {
-                $queryParams[$key]['parameterType']['type'] = $type;
+                $param['parameterType']['type'] = $userType;
             }
+
         }
 
         $this->config['configuration']['query']['queryParameters'] = $queryParams;
