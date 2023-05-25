@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev;
 
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use RuntimeException;
 
@@ -315,14 +316,34 @@ class Component
 
     private function getV1GapicClientFiles(): array
     {
-        $results = (new Finder())->files()->name('*GapicClient.php')->in($this->path . '/src');
-        return array_map(fn ($file) => $file->getRealPath(), iterator_to_array($results));
+        $results = [];
+        foreach ($this->getApiVersions() as $version) {
+            $results += $this->getFilesInDir($this->path . '/src', $version, '*GapicClient.php');
+        }
+        return $results;
     }
 
     private function getV2GapicClientFiles(): array
     {
-        $results = (new Finder())->files()->name('*BaseClient.php')->in($this->path . '/src');
-        return array_map(fn ($file) => $file->getRealPath(), iterator_to_array($results));
+        $results = [];
+        foreach ($this->getApiVersions() as $version) {
+            $results += $this->getFilesInDir($this->path . '/src', $version, '*BaseClient.php');
+        }
+        return $results;
+    }
+
+    protected function getFilesInDir(string $path, string $version, string $pattern): array
+    {
+        $results = [];
+        foreach ([$path . '/' . $version, $path . '/*/' . $version] as $pathWithVersion) {
+            try {
+                $result = (new Finder())->files()->name($pattern)->in($pathWithVersion);
+                $results += array_map(fn ($file) => $file->getRealPath(), iterator_to_array($result));
+            } catch (DirectoryNotFoundException $e) {
+                // skip if directory doesn't exist
+            }
+        }
+        return $results;
     }
 
     private function getClassFromFile(string $filePath): string
