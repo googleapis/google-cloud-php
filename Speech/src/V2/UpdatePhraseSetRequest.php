@@ -40,6 +40,25 @@ class UpdatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Speech\V2\PhraseSet $phraseSet  Required. The PhraseSet to update.
+     *
+     *                                                      The PhraseSet's `name` field is used to identify the PhraseSet to update.
+     *                                                      Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
+     * @param \Google\Protobuf\FieldMask        $updateMask The list of fields to update. If empty, all non-default valued fields are
+     *                                                      considered for update. Use `*` to update the entire PhraseSet resource.
+     *
+     * @return \Google\Cloud\Speech\V2\UpdatePhraseSetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Speech\V2\PhraseSet $phraseSet, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPhraseSet($phraseSet)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
