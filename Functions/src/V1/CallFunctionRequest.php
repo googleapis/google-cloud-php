@@ -29,6 +29,22 @@ class CallFunctionRequest extends \Google\Protobuf\Internal\Message
     private $data = '';
 
     /**
+     * @param string $name Required. The name of the function to be called. Please see
+     *                     {@see CloudFunctionsServiceClient::cloudFunctionName()} for help formatting this field.
+     * @param string $data Required. Input to be passed to the function.
+     *
+     * @return \Google\Cloud\Functions\V1\CallFunctionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $data): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setData($data);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
