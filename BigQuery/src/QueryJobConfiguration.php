@@ -318,12 +318,12 @@ class QueryJobConfiguration implements JobConfigurationInterface
      *
      * @return QueryJobConfiguration
      */
-    public function setParamTypes(array $userTypes) {
+    public function setParamTypes(array $userTypes)
+    {
         $queryParams = $this->config['configuration']['query']['queryParameters'];
         $mode = $this->config['configuration']['query']['parameterMode'];
 
-        foreach($queryParams as $index => &$param)
-        {
+        foreach ($queryParams as $index => &$param) {
             // if the user supplied named params, we use the `name` attribute of the parameter
             // otherwise we just use the index to map.
             $key = $mode === 'named' ? $param['name'] : $index;
@@ -331,8 +331,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
 
             $guessedType = $param['parameterType']['type'];
 
-            if($guessedType === $this->mapper::TYPE_ARRAY)
-            {
+            if ($guessedType === $this->mapper::TYPE_ARRAY) {
                 $param['parameterType']['arrayType'] = ['type' => $userType];
             } else {
                 $param['parameterType']['type'] = $userType;
