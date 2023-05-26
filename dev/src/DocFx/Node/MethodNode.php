@@ -69,6 +69,17 @@ class MethodNode
         return '';
     }
 
+    public function isStatic(): bool
+    {
+        return 'true' === (string) $this->xmlNode['static'];
+    }
+
+    public function isOperationMethod(): bool
+    {
+        return $this->getName() === 'getOperationsClient'
+            || $this->getName() === 'resumeOperation';
+    }
+
     public function getParameters(): array
     {
         $parameters = [];
@@ -107,5 +118,10 @@ class MethodNode
         }
 
         return $parameters;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->isStatic() ? 'static::' . $this->getName() : $this->getName();
     }
 }
