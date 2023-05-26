@@ -30,6 +30,22 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\PubSub\V1\Snapshot $snapshot   Required. The updated snapshot object.
+     * @param \Google\Protobuf\FieldMask       $updateMask Required. Indicates which fields in the provided snapshot to update.
+     *                                                     Must be specified and non-empty.
+     *
+     * @return \Google\Cloud\PubSub\V1\UpdateSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\PubSub\V1\Snapshot $snapshot, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSnapshot($snapshot)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

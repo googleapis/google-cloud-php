@@ -27,6 +27,10 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Language\V1\ClassifyTextResponse',
             ],
+            'ModerateText' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Language\V1\ModerateTextResponse',
+            ],
         ],
     ],
 ];

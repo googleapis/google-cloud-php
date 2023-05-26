@@ -38,6 +38,21 @@ class ListTopicSnapshotsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $topic Required. The name of the topic that snapshots are attached to.
+     *                      Format is `projects/{project}/topics/{topic}`. Please see
+     *                      {@see PublisherClient::topicName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $topic): self
+    {
+        return (new self())
+            ->setTopic($topic);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

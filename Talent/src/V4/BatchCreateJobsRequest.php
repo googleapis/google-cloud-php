@@ -32,6 +32,26 @@ class BatchCreateJobsRequest extends \Google\Protobuf\Internal\Message
     private $jobs;
 
     /**
+     * @param string                        $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                                              The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                                              "projects/foo/tenants/bar". Please see
+     *                                              {@see JobServiceClient::tenantName()} for help formatting this field.
+     * @param \Google\Cloud\Talent\V4\Job[] $jobs   Required. The jobs to be created.
+     *                                              A maximum of 200 jobs can be created in a batch.
+     *
+     * @return \Google\Cloud\Talent\V4\BatchCreateJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $jobs): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJobs($jobs);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

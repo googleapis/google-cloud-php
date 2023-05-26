@@ -44,6 +44,20 @@ class ListSchemaRevisionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name Required. The name of the schema to list revisions for. Please see
+     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

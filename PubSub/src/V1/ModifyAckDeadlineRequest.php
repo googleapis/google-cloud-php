@@ -43,6 +43,32 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     private $ack_deadline_seconds = 0;
 
     /**
+     * @param string   $subscription       Required. The name of the subscription.
+     *                                     Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                                     {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     * @param string[] $ackIds             Required. List of acknowledgment IDs.
+     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was
+     *                                     sent to the Pub/Sub system. For example, if the value is 10, the new ack
+     *                                     deadline will expire 10 seconds after the `ModifyAckDeadline` call was
+     *                                     made. Specifying zero might immediately make the message available for
+     *                                     delivery to another subscriber client. This typically results in an
+     *                                     increase in the rate of message redeliveries (that is, duplicates).
+     *                                     The minimum deadline you can specify is 0 seconds.
+     *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
+     *
+     * @return \Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $subscription, array $ackIds, int $ackDeadlineSeconds): self
+    {
+        return (new self())
+            ->setSubscription($subscription)
+            ->setAckIds($ackIds)
+            ->setAckDeadlineSeconds($ackDeadlineSeconds);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
