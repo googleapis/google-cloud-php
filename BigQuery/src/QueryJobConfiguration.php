@@ -292,37 +292,38 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * Note, that this is of high importance when an empty array can be passed as
      * a positional parameter, as we have no way of guessing the data type of the
      * array contents.
-     * 
+     *
      * ```
      * $queryStr = 'SELECT * FROM `bigquery-public-data.github_repos.commits` ' .
      * 'WHERE author.time_sec IN UNNEST (?) AND message IN UNNEST (?) AND committer.name = ? LIMIT 10';
-     * 
+     *
      * $queryJobConfig = $bigQuery->query("")
      *   ->parameters([[], ["abc", "def"], "John"])
      *   ->setParamTypes(['INT64']);
      * ```
-     * In the above example, the first array will have a type of INT64 
+     * In the above example, the first array will have a type of INT64
      * while the next one will have a type of
      * STRING(even though the second array type is not suppleid).
-     * 
+     *
      * For named params, we can simply call:
      * ```
      * $queryJobConfig = $bigQuery->query("")
      *   ->parameters([ 'times' => [], 'messages' => ["abc", "def"]])
      *   ->setParamTypes(['times' => 'INT64']);
      * ```
-     * 
+     *
      * @param array $userTypes The user supplied types for the positional parameters.
      * This overrides the guessed types that the ValueMapper got from the toParameter
      * method call.
-     * 
+     *
      * @return QueryJobConfiguration
      */
     public function setParamTypes(array $userTypes) {
         $queryParams = $this->config['configuration']['query']['queryParameters'];
         $mode = $this->config['configuration']['query']['parameterMode'];
 
-        foreach($queryParams as $index => &$param) {
+        foreach($queryParams as $index => &$param)
+        {
             // if the user supplied named params, we use the `name` attribute of the parameter
             // otherwise we just use the index to map.
             $key = $mode === 'named' ? $param['name'] : $index;
@@ -330,12 +331,12 @@ class QueryJobConfiguration implements JobConfigurationInterface
 
             $guessedType = $param['parameterType']['type'];
 
-            if($guessedType === $this->mapper::TYPE_ARRAY) {
+            if($guessedType === $this->mapper::TYPE_ARRAY)
+            {
                 $param['parameterType']['arrayType'] = ['type' => $userType];
             } else {
                 $param['parameterType']['type'] = $userType;
             }
-
         }
 
         $this->config['configuration']['query']['queryParameters'] = $queryParams;
