@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Settings specific to resources needed for CJIS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings</code>
  */
 class CJISSettings extends \Google\Protobuf\Internal\Message
