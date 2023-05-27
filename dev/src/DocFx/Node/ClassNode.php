@@ -164,6 +164,11 @@ class ClassNode
             }
         }
 
+        if ($this->isServiceClass()) {
+            usort($methods, fn($a, $b) => $a->isOperationMethod() <=> $b->isOperationMethod());
+        }
+        usort($methods, fn($a, $b) => $a->isStatic() <=> $b->isStatic());
+
         return $methods;
     }
 

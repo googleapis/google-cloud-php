@@ -65,13 +65,13 @@ items:
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()'
-      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
-      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::__construct()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateFiles()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateImages()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateFiles()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateImages()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_ADDRESS'
       - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::DEFAULT_SERVICE_PORT'
@@ -624,45 +624,6 @@ items:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
-    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
-    name: getOperationsClient
-    id: getOperationsClient
-    summary: 'Return an OperationsClient object with the same endpoint as $this.'
-    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
-  -
-    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
-    name: resumeOperation
-    id: resumeOperation
-    summary: |-
-      Resume an existing long running operation that was previously started by a long
-      running API method. If $methodName is not provided, or does not match a long
-      running API method, then the operation can still be resumed, but the
-      OperationResponse object will not deserialize the final response.
-    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
-    type: method
-    langs:
-      - php
-    syntax:
-      parameters:
-        -
-          id: operationName
-          var_type: string
-          description: 'The name of the long running operation'
-        -
-          id: methodName
-          var_type: string
-          description: 'The name of the method used to start the operation'
-      returns:
-        -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
-  -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::__construct()'
     name: __construct
     id: __construct
@@ -1022,6 +983,45 @@ items:
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
+    name: getOperationsClient
+    id: getOperationsClient
+    summary: 'Return an OperationsClient object with the same endpoint as $this.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
+    name: resumeOperation
+    id: resumeOperation
+    summary: |-
+      Resume an existing long running operation that was previously started by a long
+      running API method. If $methodName is not provided, or does not match a long
+      running API method, then the operation can still be resumed, but the
+      OperationResponse object will not deserialize the final response.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: operationName
+          var_type: string
+          description: 'The name of the long running operation'
+        -
+          id: methodName
+          var_type: string
+          description: 'The name of the method used to start the operation'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
     name: SERVICE_NAME

@@ -58,7 +58,7 @@ items:
       - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_CHEEK_CENTER'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::name()'
-    name: name
+    name: 'static::name'
     id: name
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
     type: method
@@ -72,7 +72,7 @@ items:
           description: ''
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::value()'
-    name: value
+    name: 'static::value'
     id: value
     parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
     type: method

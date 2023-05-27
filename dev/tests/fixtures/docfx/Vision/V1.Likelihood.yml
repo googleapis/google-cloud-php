@@ -24,7 +24,7 @@ items:
       - '\Google\Cloud\Vision\V1\Likelihood::VERY_LIKELY'
   -
     uid: '\Google\Cloud\Vision\V1\Likelihood::name()'
-    name: name
+    name: 'static::name'
     id: name
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: method
@@ -38,7 +38,7 @@ items:
           description: ''
   -
     uid: '\Google\Cloud\Vision\V1\Likelihood::value()'
-    name: value
+    name: 'static::value'
     id: value
     parent: \Google\Cloud\Vision\V1\Likelihood
     type: method

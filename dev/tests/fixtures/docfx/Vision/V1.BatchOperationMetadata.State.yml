@@ -22,7 +22,7 @@ items:
       - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::CANCELLED'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::name()'
-    name: name
+    name: 'static::name'
     id: name
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
     type: method
@@ -36,7 +36,7 @@ items:
           description: ''
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::value()'
-    name: value
+    name: 'static::value'
     id: value
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
     type: method
