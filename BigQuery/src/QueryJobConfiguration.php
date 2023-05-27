@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\BigQuery;
 
+use InvalidArgumentException;
+use LogicException;
+
 /**
  * Represents a configuration for a query job. For more information on the
  * available settings please see the
@@ -295,7 +298,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
      *
      * ```
      * $queryStr = 'SELECT * FROM `bigquery-public-data.github_repos.commits` ' .
-     * 'WHERE author.time_sec IN UNNEST (?) AND message IN UNNEST (?) AND committer.name = ? LIMIT 10';
+     *     'WHERE author.time_sec IN UNNEST (?) AND message IN UNNEST (?) AND committer.name = ? LIMIT 10';
      *
      * $queryJobConfig = $bigQuery->query("")
      *   ->parameters([[], ["abc", "def"], "John"])
@@ -303,12 +306,12 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * ```
      * In the above example, the first array will have a type of INT64
      * while the next one will have a type of
-     * STRING(even though the second array type is not suppleid).
+     * STRING (even though the second array type is not supplied).
      *
      * For named params, we can simply call:
      * ```
      * $queryJobConfig = $bigQuery->query("")
-     *   ->parameters([ 'times' => [], 'messages' => ["abc", "def"]])
+     *   ->parameters(['times' => [], 'messages' => ["abc", "def"]])
      *   ->setParamTypes(['times' => 'INT64']);
      * ```
      *
@@ -320,14 +323,24 @@ class QueryJobConfiguration implements JobConfigurationInterface
      */
     public function setParamTypes(array $userTypes)
     {
-        $queryParams = $this->config['configuration']['query']['queryParameters'];
-        $mode = $this->config['configuration']['query']['parameterMode'];
+        $queryParams = $this->config['configuration']['query']['queryParameters'] ?? null;
+        $mode = $this->config['configuration']['query']['parameterMode'] ?? null;
+
+        if (is_null($queryParams)) {
+            throw new LogicException('QueryJobConfiguration::parameters must be called before setParamTypes');
+        }
 
         foreach ($queryParams as $index => &$param) {
-            // if the user supplied named params, we use the `name` attribute of the parameter
+            // If the user supplied named params, we use the `name` attribute of the parameter
             // otherwise we just use the index to map.
             $key = $mode === 'named' ? $param['name'] : $index;
-            $userType = $userTypes[$key];
+            $userType = $this->pluck($key, $userTypes, false);
+
+            // If the user hasn't supplied this key in the setParamTypes
+            // call, then we just use the $guessedType(no need to override)
+            if (is_null($userType)) {
+                continue;
+            }
 
             $guessedType = $param['parameterType']['type'];
 
@@ -336,6 +349,16 @@ class QueryJobConfiguration implements JobConfigurationInterface
             } else {
                 $param['parameterType']['type'] = $userType;
             }
+        }
+
+        // If the $userTypes still contains a value,
+        // that means it had an extra key which doesn't exist
+        // in the parameters() call
+        if (count($userTypes) > 0) {
+            throw new InvalidArgumentException(sprintf(
+                'The key \'%s\' doesn\'t exist in the parameters',
+                key($userTypes)
+            ));
         }
 
         $this->config['configuration']['query']['queryParameters'] = $queryParams;

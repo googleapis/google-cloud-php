@@ -21,6 +21,8 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use InvalidArgumentException;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -288,5 +290,49 @@ class QueryJobConfigurationTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * Test for setparamTypes call before parameters call
+     */
+    public function testSetParamTypesThrowsLogicException()
+    {
+        $this->expectException(LogicException::class);
+        $this->config
+            ->setParamTypes(['STRING'])
+            ->parameters(['test']);
+    }
+
+    public function testSetParamTypesThrowsInvalidArgumentException()
+    {
+        // Test for extra param sent in setParamTypes
+        try {
+            $this->config
+            ->parameters(['test'])
+            ->setParamTypes(['STRING', 'INT64']);
+            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
+        } catch (InvalidArgumentException $e) {
+            $this->assertTrue(true);
+        }
+
+        // Test for incorrect name param sent in setParamTypes
+        try {
+            $this->config
+            ->parameters(['key1' => 'test'])
+            ->setParamTypes(['key2' => 'INT64']);
+            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
+        } catch (InvalidArgumentException $e) {
+            $this->assertTrue(true);
+        }
+
+        // Test for incorrect index sent in setParamTypes
+        try {
+            $this->config
+            ->parameters(['test'])
+            ->setParamTypes([1 => 'INT64']);
+            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
+        } catch (InvalidArgumentException $e) {
+            $this->assertTrue(true);
+        }
     }
 }
