@@ -91,17 +91,28 @@ class DebuggerClient
      */
     public function __construct(array $config = [])
     {
-        $connectionType = $this->getConnectionType($config);
+        if (isset($config['use_firebase']) && $config['use_firebase'] == true) {
+            $connectionType = 'firebase';
+        } else {
+            $connectionType = $this->getConnectionType($config);
+        }
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'preferNumericProjectId' => true
         ];
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($this->configureAuthentication($config))
-            : new Rest($this->configureAuthentication($config));
+        switch ($connectionType) {
+            case 'firebase':
+                $this->connection = new Firebase($this->configureAuthentication($config));
+                break;
+            case 'grpc':
+                $this->connection = new Grpc($this->configureAuthentication($config));
+                break;
+            default:
+                $this->connection = new Rest($this->configureAuthentication($config));
+        }
     }
-
+    
     /**
      * Lazily instantiate a debuggee. There are no network requests made at this
      * point. To see the operations that can be performed on a debuggee, please
