@@ -23,7 +23,7 @@ class CloudBigtableSystemSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_display_name = 1;</code>
      */
-    protected $instance_display_name = '';
+    private $instance_display_name = '';
 
     /**
      * Constructor.

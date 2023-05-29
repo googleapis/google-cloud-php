@@ -16,6 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class LookupEntryRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Project where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string project = 6;</code>
+     */
+    private $project = '';
+    /**
+     * Location where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     */
+    private $location = '';
     protected $target_name;
 
     /**
@@ -43,7 +59,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *           [Lexical structure in Standard SQL]
      *           (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      *     @type string $fully_qualified_name
-     *           Fully qualified name (FQN) of the resource.
+     *           [Fully Qualified Name
+     *           (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     *           of the resource.
      *           FQNs take two forms:
      *           * For non-regionalized resources:
      *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
@@ -51,6 +69,14 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
      *           Example for a DPMS table:
      *           `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *     @type string $project
+     *           Project where the lookup should be performed. Required to lookup
+     *           entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     *           using its `fully_qualified_name`. Ignored in other cases.
+     *     @type string $location
+     *           Location where the lookup should be performed. Required to lookup
+     *           entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     *           using its `fully_qualified_name`. Ignored in other cases.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,7 +175,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified name (FQN) of the resource.
+     * [Fully Qualified Name
+     * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     * of the resource.
      * FQNs take two forms:
      * * For non-regionalized resources:
      *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
@@ -172,7 +200,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified name (FQN) of the resource.
+     * [Fully Qualified Name
+     * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     * of the resource.
      * FQNs take two forms:
      * * For non-regionalized resources:
      *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
@@ -189,6 +219,66 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Project where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string project = 6;</code>
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Project where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string project = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Location where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Location where the lookup should be performed. Required to lookup
+     * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
+     * using its `fully_qualified_name`. Ignored in other cases.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
