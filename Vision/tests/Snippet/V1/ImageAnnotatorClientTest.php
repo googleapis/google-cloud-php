@@ -33,6 +33,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ImageAnnotatorClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     /** @var ImageAnnotatorClient */
     private $client;
     private $transport;
