@@ -25,6 +25,21 @@ class GetEnvironmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the requested resource, for example `users/me/environments/default`
+     *                     or `users/someone&#64;example.com/environments/default`. Please see
+     *                     {@see CloudShellServiceClient::environmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Shell\V1\GetEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

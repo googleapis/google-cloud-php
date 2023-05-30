@@ -53,6 +53,20 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $catalog Full resource name of the catalog, such as
+     *                        `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *
+     * @return \Google\Cloud\Retail\V2\SetDefaultBranchRequest
+     *
+     * @experimental
+     */
+    public static function build(string $catalog): self
+    {
+        return (new self())
+            ->setCatalog($catalog);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

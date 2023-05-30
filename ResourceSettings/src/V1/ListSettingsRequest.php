@@ -46,6 +46,25 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $parent Required. The Cloud resource that parents the setting. Must be in one of the
+     *                       following forms:
+     *
+     *                       * `projects/{project_number}`
+     *                       * `projects/{project_id}`
+     *                       * `folders/{folder_id}`
+     *                       * `organizations/{organization_id}`
+     *
+     * @return \Google\Cloud\ResourceSettings\V1\ListSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -48,6 +48,23 @@ class UpdateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority Required.
+     *                                                                                       [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                                                                       with updated values.
+     * @param \Google\Protobuf\FieldMask                               $updateMask           Required. A list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\UpdateCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCertificateAuthority($certificateAuthority)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

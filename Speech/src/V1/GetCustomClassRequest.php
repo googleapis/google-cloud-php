@@ -24,6 +24,22 @@ class GetCustomClassRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the custom class to retrieve. Format:
+     *
+     *                     `projects/{project}/locations/{location}/customClasses/{custom_class}`
+     *                     Please see {@see AdaptationClient::customClassName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V1\GetCustomClassRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

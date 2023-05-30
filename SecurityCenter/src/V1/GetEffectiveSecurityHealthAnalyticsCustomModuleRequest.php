@@ -28,6 +28,24 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the effective custom module to get. Its format is
+     *                     "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *                     "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *                     or
+     *                     "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
+     *                     Please see {@see SecurityCenterClient::effectiveSecurityHealthAnalyticsCustomModuleName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

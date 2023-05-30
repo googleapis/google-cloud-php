@@ -39,6 +39,27 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                          $serviceName  Required. The name of the service.  See the
+     *                                                                      [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                                                                      example: `example.googleapis.com`.
+     * @param \Google\Cloud\ServiceManagement\V1\ConfigSource $configSource Required. The source configuration for the service.
+     * @param bool                                            $validateOnly Optional. If set, this will result in the generation of a
+     *                                                                      `google.api.Service` configuration based on the `ConfigSource` provided,
+     *                                                                      but the generated config and the sources will NOT be persisted.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\SubmitConfigSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName, \Google\Cloud\ServiceManagement\V1\ConfigSource $configSource, bool $validateOnly): self
+    {
+        return (new self())
+            ->setServiceName($serviceName)
+            ->setConfigSource($configSource)
+            ->setValidateOnly($validateOnly);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

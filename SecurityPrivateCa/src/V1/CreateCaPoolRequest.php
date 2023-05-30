@@ -56,6 +56,28 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                     $parent   Required. The resource name of the location associated with the
+     *                                                             [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
+     *                                                             `projects/&#42;/locations/*`. Please see
+     *                                                             {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Security\PrivateCA\V1\CaPool $caPool   Required. A [CaPool][google.cloud.security.privateca.v1.CaPool] with
+     *                                                             initial field values.
+     * @param string                                     $caPoolId Required. It must be unique within a location and match the regular
+     *                                                             expression `[a-zA-Z0-9_-]{1,63}`
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\CreateCaPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Security\PrivateCA\V1\CaPool $caPool, string $caPoolId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCaPool($caPool)
+            ->setCaPoolId($caPoolId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

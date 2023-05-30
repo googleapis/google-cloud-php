@@ -25,6 +25,21 @@ class ResumeModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the model to resume.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
+     *
+     * @return \Google\Cloud\Retail\V2\ResumeModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

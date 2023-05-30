@@ -59,6 +59,23 @@ class ListCertificateAuthoritiesRequest extends \Google\Protobuf\Internal\Messag
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the
+     *                       [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                       [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     *                       in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificateAuthoritiesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

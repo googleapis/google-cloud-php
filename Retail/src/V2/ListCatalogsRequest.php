@@ -52,6 +52,25 @@ class ListCatalogsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The account resource name with an associated location.
+     *
+     *                       If the caller does not have permission to list
+     *                       [Catalog][google.cloud.retail.v2.Catalog]s under this location, regardless
+     *                       of whether or not this location exists, a PERMISSION_DENIED error is
+     *                       returned. Please see
+     *                       {@see CatalogServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\ListCatalogsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

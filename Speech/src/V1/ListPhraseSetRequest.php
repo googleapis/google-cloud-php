@@ -47,6 +47,28 @@ class ListPhraseSetRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of phrase set. Format:
+     *
+     *                       `projects/{project}/locations/{location}`
+     *
+     *                       Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *                       and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *                       endpoint, use the `global` location. To specify a region, use a
+     *                       [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                       with matching `us` or `eu` location value. Please see
+     *                       {@see AdaptationClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V1\ListPhraseSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

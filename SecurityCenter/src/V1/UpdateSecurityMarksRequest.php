@@ -41,6 +41,19 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     private $start_time = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\SecurityMarks $securityMarks Required. The security marks resource to update.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\SecurityMarks $securityMarks): self
+    {
+        return (new self())
+            ->setSecurityMarks($securityMarks);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
