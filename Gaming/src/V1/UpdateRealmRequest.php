@@ -32,6 +32,24 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Gaming\V1\Realm $realm      Required. The realm to be updated.
+     *                                                  Only fields specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask    $updateMask Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                  definition, see
+     *                                                  https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *
+     * @return \Google\Cloud\Gaming\V1\UpdateRealmRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Gaming\V1\Realm $realm, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRealm($realm)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

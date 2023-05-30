@@ -29,6 +29,29 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of an existing exclusion to delete:
+     *
+     *                     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *                     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *                     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *                     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     *                     For example:
+     *
+     *                     `"projects/my-project/exclusions/my-exclusion"`
+     *                     Please see {@see ConfigServiceV2Client::logExclusionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\DeleteExclusionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

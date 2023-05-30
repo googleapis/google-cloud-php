@@ -51,6 +51,22 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *                     which to execute the request. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -39,6 +39,22 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The location of processor type to list.
+     *                       The available processor types may depend on the allow-listing on projects.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

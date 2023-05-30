@@ -32,6 +32,25 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     private $uptime_check_config = null;
 
     /**
+     * @param string                                        $parent            Required. The
+     *                                                                         [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                                                         to create the Uptime check. The format is:
+     *
+     *                                                                         projects/[PROJECT_ID_OR_NUMBER]
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptimeCheckConfig Required. The new Uptime check configuration.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptimeCheckConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setUptimeCheckConfig($uptimeCheckConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

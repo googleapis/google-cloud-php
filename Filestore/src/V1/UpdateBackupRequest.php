@@ -30,6 +30,22 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Filestore\V1\Backup $backup     Required. A [backup resource][google.cloud.filestore.v1.Backup]
+     * @param \Google\Protobuf\FieldMask        $updateMask Required. Mask of fields to update.  At least one path must be supplied in
+     *                                                      this field.
+     *
+     * @return \Google\Cloud\Filestore\V1\UpdateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Filestore\V1\Backup $backup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

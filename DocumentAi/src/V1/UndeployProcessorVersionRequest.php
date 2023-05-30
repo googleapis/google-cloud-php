@@ -23,6 +23,20 @@ class UndeployProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The processor version resource name to be undeployed. Please see
+     *                     {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

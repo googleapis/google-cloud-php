@@ -30,6 +30,22 @@ class UpdatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\OsConfig\V1\PatchDeployment $patchDeployment Required. The patch deployment to Update.
+     * @param \Google\Protobuf\FieldMask                $updateMask      Optional. Field mask that controls which fields of the patch deployment
+     *                                                                   should be updated.
+     *
+     * @return \Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\OsConfig\V1\PatchDeployment $patchDeployment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPatchDeployment($patchDeployment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

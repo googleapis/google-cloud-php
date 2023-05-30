@@ -32,6 +32,20 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     private $options = null;
 
     /**
+     * @param string $database Required. The database name. In the format:
+     *                         `projects/{project_id}/databases/{database_id}`.
+     *
+     * @return \Google\Cloud\Firestore\V1\BeginTransactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

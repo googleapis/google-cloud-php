@@ -88,6 +88,25 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     private $additional_authenticated_data_crc32c = null;
 
     /**
+     * @param string $name       Required. The resource name of the
+     *                           [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
+     *                           server will choose the appropriate version. Please see
+     *                           {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     * @param string $ciphertext Required. The encrypted data originally returned in
+     *                           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
+     *
+     * @return \Google\Cloud\Kms\V1\DecryptRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $ciphertext): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setCiphertext($ciphertext);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

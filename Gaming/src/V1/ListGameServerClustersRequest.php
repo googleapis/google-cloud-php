@@ -64,6 +64,21 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $parent Required. The parent resource name, in the following form:
+     *                       "projects/{project}/locations/{location}/realms/{realm}". Please see
+     *                       {@see GameServerClustersServiceClient::realmName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Gaming\V1\ListGameServerClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

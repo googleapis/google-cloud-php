@@ -44,6 +44,20 @@ class ListPatchJobsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. In the form of `projects/*`
+     *                       Please see {@see OsConfigServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\ListPatchJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

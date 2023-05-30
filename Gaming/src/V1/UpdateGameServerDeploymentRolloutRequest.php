@@ -33,6 +33,24 @@ class UpdateGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Gaming\V1\GameServerDeploymentRollout $rollout    Required. The game server delpoyment rollout to be updated.
+     *                                                                        Only fields specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask                          $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                        this field. For the `FieldMask` definition, see
+     *                                                                        https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *
+     * @return \Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRolloutRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Gaming\V1\GameServerDeploymentRollout $rollout, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRollout($rollout)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,22 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
     private $metric_name = '';
 
     /**
+     * @param string $metricName Required. The resource name of the desired metric:
+     *
+     *                           "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *                           Please see {@see MetricsServiceV2Client::logMetricName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\GetLogMetricRequest
+     *
+     * @experimental
+     */
+    public static function build(string $metricName): self
+    {
+        return (new self())
+            ->setMetricName($metricName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

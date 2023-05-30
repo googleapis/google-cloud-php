@@ -41,6 +41,22 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
     protected $consistency_selector;
 
     /**
+     * @param string $parent Required. The parent document. In the format:
+     *                       `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *                       For example:
+     *                       `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *
+     * @return \Google\Cloud\Firestore\V1\ListCollectionIdsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
