@@ -43,7 +43,7 @@ s.replace(
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
-s.replace(cpde
+s.replace(
     "src/**/V*/**/*.php",
     r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
     r"""Generated from protobuf field \1
