@@ -37,6 +37,20 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param \Google\Cloud\Vision\V1\AnnotateFileRequest[] $requests Required. The list of file annotation requests. Right now we support only one
+     *                                                                AnnotateFileRequest in BatchAnnotateFilesRequest.
+     *
+     * @return \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
+     *
+     * @experimental
+     */
+    public static function build(array $requests): self
+    {
+        return (new self())
+            ->setRequests($requests);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
