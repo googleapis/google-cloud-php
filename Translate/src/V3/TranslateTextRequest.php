@@ -99,6 +99,100 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     private $labels;
 
     /**
+     * @param string   $parent             Required. Project or location to make a call. Must refer to a caller's
+     *                                     project.
+     *
+     *                                     Format: `projects/{project-number-or-id}` or
+     *                                     `projects/{project-number-or-id}/locations/{location-id}`.
+     *
+     *                                     For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *                                     `projects/{project-number-or-id}`.
+     *
+     *                                     Non-global location is required for requests using AutoML models or
+     *                                     custom glossaries.
+     *
+     *                                     Models and glossaries must be within the same region (have same
+     *                                     location-id), otherwise an INVALID_ARGUMENT (400) error is returned. Please see
+     *                                     {@see TranslationServiceClient::locationName()} for help formatting this field.
+     * @param string   $targetLanguageCode Required. The ISO-639 language code to use for translation of the input
+     *                                     text, set to one of the language codes listed in Language Support.
+     * @param string[] $contents           Required. The content of the input in string format.
+     *                                     We recommend the total content be less than 30,000 codepoints. The max
+     *                                     length of this field is 1024. Use BatchTranslateText for larger text.
+     *
+     * @return \Google\Cloud\Translate\V3\TranslateTextRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $targetLanguageCode, array $contents): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTargetLanguageCode($targetLanguageCode)
+            ->setContents($contents);
+    }
+
+    /**
+     * @param string   $parent             Required. Project or location to make a call. Must refer to a caller's
+     *                                     project.
+     *
+     *                                     Format: `projects/{project-number-or-id}` or
+     *                                     `projects/{project-number-or-id}/locations/{location-id}`.
+     *
+     *                                     For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *                                     `projects/{project-number-or-id}`.
+     *
+     *                                     Non-global location is required for requests using AutoML models or
+     *                                     custom glossaries.
+     *
+     *                                     Models and glossaries must be within the same region (have same
+     *                                     location-id), otherwise an INVALID_ARGUMENT (400) error is returned. Please see
+     *                                     {@see TranslationServiceClient::locationName()} for help formatting this field.
+     * @param string   $model              Optional. The `model` type requested for this translation.
+     *
+     *                                     The format depends on model type:
+     *
+     *                                     - AutoML Translation models:
+     *                                     `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+     *
+     *                                     - General (built-in) models:
+     *                                     `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     *
+     *
+     *                                     For global (non-regionalized) requests, use `location-id` `global`.
+     *                                     For example,
+     *                                     `projects/{project-number-or-id}/locations/global/models/general/nmt`.
+     *
+     *                                     If not provided, the default Google model (NMT) will be used.
+     * @param string   $mimeType           Optional. The format of the source text, for example, "text/html",
+     *                                     "text/plain". If left blank, the MIME type defaults to "text/html".
+     * @param string   $sourceLanguageCode Optional. The ISO-639 language code of the input text if
+     *                                     known, for example, "en-US" or "sr-Latn". Supported language codes are
+     *                                     listed in Language Support. If the source language isn't specified, the API
+     *                                     attempts to identify the source language automatically and returns the
+     *                                     source language within the response.
+     * @param string   $targetLanguageCode Required. The ISO-639 language code to use for translation of the input
+     *                                     text, set to one of the language codes listed in Language Support.
+     * @param string[] $contents           Required. The content of the input in string format.
+     *                                     We recommend the total content be less than 30,000 codepoints. The max
+     *                                     length of this field is 1024. Use BatchTranslateText for larger text.
+     *
+     * @return \Google\Cloud\Translate\V3\TranslateTextRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentModelMimeTypeSourceLanguageCodeTargetLanguageCodeContents(string $parent, string $model, string $mimeType, string $sourceLanguageCode, string $targetLanguageCode, array $contents): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModel($model)
+            ->setMimeType($mimeType)
+            ->setSourceLanguageCode($sourceLanguageCode)
+            ->setTargetLanguageCode($targetLanguageCode)
+            ->setContents($contents);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

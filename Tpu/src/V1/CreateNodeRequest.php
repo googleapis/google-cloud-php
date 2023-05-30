@@ -35,6 +35,24 @@ class CreateNodeRequest extends \Google\Protobuf\Internal\Message
     private $node = null;
 
     /**
+     * @param string                    $parent Required. The parent resource name. Please see
+     *                                          {@see TpuClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Tpu\V1\Node $node   Required. The node.
+     * @param string                    $nodeId The unqualified resource name.
+     *
+     * @return \Google\Cloud\Tpu\V1\CreateNodeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Tpu\V1\Node $node, string $nodeId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNode($node)
+            ->setNodeId($nodeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

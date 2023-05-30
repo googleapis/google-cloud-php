@@ -35,6 +35,19 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Talent\V4beta1\Job $job Required. The Job to be updated.
+     *
+     * @return \Google\Cloud\Talent\V4beta1\UpdateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Talent\V4beta1\Job $job): self
+    {
+        return (new self())
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

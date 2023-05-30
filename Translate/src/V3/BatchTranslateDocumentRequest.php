@@ -103,6 +103,44 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     private $customized_attribution = '';
 
     /**
+     * @param string                                                $parent              Required. Location to make a regional call.
+     *
+     *                                                                                   Format: `projects/{project-number-or-id}/locations/{location-id}`.
+     *
+     *                                                                                   The `global` location is not supported for batch translation.
+     *
+     *                                                                                   Only AutoML Translation models or glossaries within the same region (have
+     *                                                                                   the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
+     *                                                                                   error is returned. Please see
+     *                                                                                   {@see TranslationServiceClient::locationName()} for help formatting this field.
+     * @param string                                                $sourceLanguageCode  Required. The ISO-639 language code of the input document if known, for
+     *                                                                                   example, "en-US" or "sr-Latn". Supported language codes are listed in
+     *                                                                                   [Language Support](https://cloud.google.com/translate/docs/languages).
+     * @param string[]                                              $targetLanguageCodes Required. The ISO-639 language code to use for translation of the input
+     *                                                                                   document. Specify up to 10 language codes here.
+     * @param \Google\Cloud\Translate\V3\BatchDocumentInputConfig[] $inputConfigs        Required. Input configurations.
+     *                                                                                   The total number of files matched should be <= 100.
+     *                                                                                   The total content size to translate should be <= 100M Unicode codepoints.
+     *                                                                                   The files must use UTF-8 encoding.
+     * @param \Google\Cloud\Translate\V3\BatchDocumentOutputConfig  $outputConfig        Required. Output configuration.
+     *                                                                                   If 2 input configs match to the same file (that is, same input path),
+     *                                                                                   we don't generate output for duplicate inputs.
+     *
+     * @return \Google\Cloud\Translate\V3\BatchTranslateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $sourceLanguageCode, array $targetLanguageCodes, array $inputConfigs, \Google\Cloud\Translate\V3\BatchDocumentOutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSourceLanguageCode($sourceLanguageCode)
+            ->setTargetLanguageCodes($targetLanguageCodes)
+            ->setInputConfigs($inputConfigs)
+            ->setOutputConfig($outputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

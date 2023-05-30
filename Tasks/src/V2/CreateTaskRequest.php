@@ -73,6 +73,57 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
     private $response_view = 0;
 
     /**
+     * @param string                      $parent Required. The queue name. For example:
+     *                                            `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *
+     *                                            The queue must already exist. Please see
+     *                                            {@see CloudTasksClient::queueName()} for help formatting this field.
+     * @param \Google\Cloud\Tasks\V2\Task $task   Required. The task to add.
+     *
+     *                                            Task names have the following format:
+     *                                            `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
+     *                                            The user can optionally specify a task [name][google.cloud.tasks.v2.Task.name]. If a
+     *                                            name is not specified then the system will generate a random
+     *                                            unique task id, which will be set in the task returned in the
+     *                                            [response][google.cloud.tasks.v2.Task.name].
+     *
+     *                                            If [schedule_time][google.cloud.tasks.v2.Task.schedule_time] is not set or is in the
+     *                                            past then Cloud Tasks will set it to the current time.
+     *
+     *                                            Task De-duplication:
+     *
+     *                                            Explicitly specifying a task ID enables task de-duplication.  If
+     *                                            a task's ID is identical to that of an existing task or a task
+     *                                            that was deleted or executed recently then the call will fail
+     *                                            with [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS].
+     *                                            If the task's queue was created using Cloud Tasks, then another task with
+     *                                            the same name can't be created for ~1hour after the original task was
+     *                                            deleted or executed. If the task's queue was created using queue.yaml or
+     *                                            queue.xml, then another task with the same name can't be created
+     *                                            for ~9days after the original task was deleted or executed.
+     *
+     *                                            Because there is an extra lookup cost to identify duplicate task
+     *                                            names, these [CreateTask][google.cloud.tasks.v2.CloudTasks.CreateTask] calls have significantly
+     *                                            increased latency. Using hashed strings for the task id or for
+     *                                            the prefix of the task id is recommended. Choosing task ids that
+     *                                            are sequential or have sequential prefixes, for example using a
+     *                                            timestamp, causes an increase in latency and error rates in all
+     *                                            task commands. The infrastructure relies on an approximately
+     *                                            uniform distribution of task ids to store and serve tasks
+     *                                            efficiently.
+     *
+     * @return \Google\Cloud\Tasks\V2\CreateTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Tasks\V2\Task $task): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTask($task);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,20 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Talent\V4beta1\Tenant $tenant Required. The tenant resource to replace the current resource in the
+     *                                                    system.
+     *
+     * @return \Google\Cloud\Talent\V4beta1\UpdateTenantRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Talent\V4beta1\Tenant $tenant): self
+    {
+        return (new self())
+            ->setTenant($tenant);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
