@@ -26,7 +26,13 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/AssuredWorkloads").resolve()
 dest = Path().resolve()
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/[A-Z]*_*.php"
+    ]
+)
 
 # Change the wording for the deprecation warning.
 s.replace(
@@ -37,7 +43,7 @@ s.replace(
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
-s.replace(
+s.replace(cpde
     "src/**/V*/**/*.php",
     r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
     r"""Generated from protobuf field \1
