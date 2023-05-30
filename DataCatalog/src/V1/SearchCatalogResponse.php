@@ -23,6 +23,12 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
+     * The approximate total number of entries matched by the query.
+     *
+     * Generated from protobuf field <code>int32 total_size = 2;</code>
+     */
+    private $total_size = 0;
+    /**
      * Pagination token that can be used in subsequent calls to retrieve the next
      * page of results.
      *
@@ -48,6 +54,8 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           Search results.
+     *     @type int $total_size
+     *           The approximate total number of entries matched by the query.
      *     @type string $next_page_token
      *           Pagination token that can be used in subsequent calls to retrieve the next
      *           page of results.
@@ -86,6 +94,32 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\V1\SearchCatalogResult::class);
         $this->results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The approximate total number of entries matched by the query.
+     *
+     * Generated from protobuf field <code>int32 total_size = 2;</code>
+     * @return int
+     */
+    public function getTotalSize()
+    {
+        return $this->total_size;
+    }
+
+    /**
+     * The approximate total number of entries matched by the query.
+     *
+     * Generated from protobuf field <code>int32 total_size = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_size = $var;
 
         return $this;
     }
