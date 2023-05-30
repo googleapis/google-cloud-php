@@ -30,6 +30,22 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $snapshot = null;
 
     /**
+     * @param \Google\Cloud\Filestore\V1\Snapshot $snapshot   Required. A snapshot resource.
+     * @param \Google\Protobuf\FieldMask          $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                                                        this field.
+     *
+     * @return \Google\Cloud\Filestore\V1\UpdateSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Filestore\V1\Snapshot $snapshot, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSnapshot($snapshot)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

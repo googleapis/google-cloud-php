@@ -40,6 +40,29 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     private $tag_template = null;
 
     /**
+     * @param string                                   $parent        Required. The name of the project and the template location
+     *                                                                [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Please see
+     *                                                                {@see DataCatalogClient::locationName()} for help formatting this field.
+     * @param string                                   $tagTemplateId Required. The ID of the tag template to create.
+     *
+     *                                                                The ID must contain only lowercase letters (a-z), numbers (0-9),
+     *                                                                or underscores (_), and must start with a letter or underscore.
+     *                                                                The maximum size is 64 bytes when encoded in UTF-8.
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate   Required. The tag template to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateTagTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $tagTemplateId, \Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTagTemplateId($tagTemplateId)
+            ->setTagTemplate($tagTemplate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -68,6 +68,77 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                           $sinkName   Required. The full resource name of the sink to update, including the
+     *                                                     parent resource and the sink identifier:
+     *
+     *                                                     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *                                                     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *                                                     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *                                                     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *                                                     For example:
+     *
+     *                                                     `"projects/my-project/sinks/my-sink"`
+     *                                                     Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogSink $sink       Required. The updated sink, whose name is the same identifier that appears
+     *                                                     as part of `sink_name`.
+     * @param \Google\Protobuf\FieldMask       $updateMask Optional. Field mask that specifies the fields in `sink` that need
+     *                                                     an update. A sink field will be overwritten if, and only if, it is
+     *                                                     in the update mask. `name` and output only fields cannot be updated.
+     *
+     *                                                     An empty `updateMask` is temporarily treated as using the following mask
+     *                                                     for backwards compatibility purposes:
+     *
+     *                                                     `destination,filter,includeChildren`
+     *
+     *                                                     At some point in the future, behavior will be removed and specifying an
+     *                                                     empty `updateMask` will be an error.
+     *
+     *                                                     For a detailed `FieldMask` definition, see
+     *                                                     https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
+     *
+     *                                                     For example: `updateMask=filter`
+     *
+     * @return \Google\Cloud\Logging\V2\UpdateSinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $sinkName, \Google\Cloud\Logging\V2\LogSink $sink, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSinkName($sinkName)
+            ->setSink($sink)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
+     * @param string                           $sinkName Required. The full resource name of the sink to update, including the
+     *                                                   parent resource and the sink identifier:
+     *
+     *                                                   "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *                                                   "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *                                                   "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *                                                   "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *                                                   For example:
+     *
+     *                                                   `"projects/my-project/sinks/my-sink"`
+     *                                                   Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogSink $sink     Required. The updated sink, whose name is the same identifier that appears
+     *                                                   as part of `sink_name`.
+     *
+     * @return \Google\Cloud\Logging\V2\UpdateSinkRequest
+     *
+     * @experimental
+     */
+    public static function buildFromSinkNameSink(string $sinkName, \Google\Cloud\Logging\V2\LogSink $sink): self
+    {
+        return (new self())
+            ->setSinkName($sinkName)
+            ->setSink($sink);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

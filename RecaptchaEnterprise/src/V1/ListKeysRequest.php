@@ -38,6 +38,21 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project that contains the keys that will be
+     *                       listed, in the format "projects/{project}". Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

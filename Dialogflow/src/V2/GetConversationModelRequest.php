@@ -25,6 +25,20 @@ class GetConversationModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The conversation model to retrieve. Format:
+     *                     `projects/<Project ID>/conversationModels/<Conversation Model ID>`
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetConversationModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

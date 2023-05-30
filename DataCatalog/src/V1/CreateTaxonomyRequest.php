@@ -30,6 +30,22 @@ class CreateTaxonomyRequest extends \Google\Protobuf\Internal\Message
     private $taxonomy = null;
 
     /**
+     * @param string                                $parent   Required. Resource name of the project that the taxonomy will belong to. Please see
+     *                                                        {@see PolicyTagManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\V1\Taxonomy $taxonomy The taxonomy to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateTaxonomyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\V1\Taxonomy $taxonomy): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTaxonomy($taxonomy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

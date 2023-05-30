@@ -56,6 +56,26 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param string $product Required. Full resource name of [Product][google.cloud.retail.v2.Product],
+     *                        such as
+     *                        `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *
+     *                        If the caller does not have permission to access the
+     *                        [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                        exists, a PERMISSION_DENIED error is returned. Please see
+     *                        {@see ProductServiceClient::productName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $product): self
+    {
+        return (new self())
+            ->setProduct($product);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

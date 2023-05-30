@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Available security level settings.
  * This enforces security protocol on function URL.
- * Security level is only ocnfigurable for 1st Gen functions, If unspecified,
+ * Security level is only configurable for 1st Gen functions, If unspecified,
  * SECURE_OPTIONAL will be used. 2nd Gen functions are SECURE_ALWAYS ONLY.
  *
  * Protobuf type <code>google.cloud.functions.v2.ServiceConfig.SecurityLevel</code>

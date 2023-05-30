@@ -53,6 +53,20 @@ class ListProvidersRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent of the provider to get. Please see
+     *                       {@see EventarcClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Eventarc\V1\ListProvidersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

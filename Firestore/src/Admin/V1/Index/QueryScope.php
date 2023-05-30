@@ -36,11 +36,19 @@ class QueryScope
      * Generated from protobuf enum <code>COLLECTION_GROUP = 2;</code>
      */
     const COLLECTION_GROUP = 2;
+    /**
+     * Include all the collections's ancestor in the index. Only available for
+     * Datastore Mode databases.
+     *
+     * Generated from protobuf enum <code>COLLECTION_RECURSIVE = 3;</code>
+     */
+    const COLLECTION_RECURSIVE = 3;
 
     private static $valueToName = [
         self::QUERY_SCOPE_UNSPECIFIED => 'QUERY_SCOPE_UNSPECIFIED',
         self::COLLECTION => 'COLLECTION',
         self::COLLECTION_GROUP => 'COLLECTION_GROUP',
+        self::COLLECTION_RECURSIVE => 'COLLECTION_RECURSIVE',
     ];
 
     public static function name($value)

@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * responses.
  * The detailed related assets with the `relationship_type`.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.asset.v1.RelatedAssets</code>
  */
 class RelatedAssets extends \Google\Protobuf\Internal\Message

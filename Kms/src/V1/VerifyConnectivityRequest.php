@@ -25,6 +25,21 @@ class VerifyConnectivityRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
+     *                     [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify. Please see
+     *                     {@see EkmServiceClient::ekmConnectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\V1\VerifyConnectivityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

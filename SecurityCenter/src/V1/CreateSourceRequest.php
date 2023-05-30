@@ -31,6 +31,24 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
     private $source = null;
 
     /**
+     * @param string                                 $parent Required. Resource name of the new source's parent. Its format should be
+     *                                                       "organizations/[organization_id]". Please see
+     *                                                       {@see SecurityCenterClient::organizationName()} for help formatting this field.
+     * @param \Google\Cloud\SecurityCenter\V1\Source $source Required. The Source being created, only the display_name and description
+     *                                                       will be used. All other fields will be ignored.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\CreateSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\SecurityCenter\V1\Source $source): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSource($source);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

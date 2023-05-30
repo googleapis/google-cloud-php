@@ -34,6 +34,26 @@ class UpdateVersionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Version $version    Required. The version to update.
+     *                                                        Supported formats:
+     *
+     *                                                        - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                                                        - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                                                        ID>`
+     * @param \Google\Protobuf\FieldMask          $updateMask Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Version $version, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setVersion($version)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -73,6 +73,36 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope $scope Required. The scope of this search request.
+     *
+     *                                                                       The `scope` is invalid if `include_org_ids`, `include_project_ids` are
+     *                                                                       empty AND `include_gcp_public_datasets` is set to `false`. In this case,
+     *                                                                       the request returns an error.
+     * @param string                                                  $query Optional. The query string with a minimum of 3 characters and specific
+     *                                                                       syntax. For more information, see [Data Catalog search
+     *                                                                       syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+     *
+     *                                                                       An empty query string returns all data assets (in the specified scope)
+     *                                                                       that you have access to.
+     *
+     *                                                                       A query string can be a simple `xyz` or qualified by predicates:
+     *
+     *                                                                       * `name:x`
+     *                                                                       * `column:y`
+     *                                                                       * `description:z`
+     *
+     * @return \Google\Cloud\DataCatalog\V1\SearchCatalogRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope $scope, string $query): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

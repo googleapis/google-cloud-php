@@ -25,6 +25,22 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A reference to the POSIX account to update. POSIX accounts are
+     *                     identified by the project ID they are associated with. A reference to the
+     *                     POSIX account is in format `users/{user}/projects/{project}`. Please see
+     *                     {@see OsLoginServiceClient::posixAccountName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsLogin\V1\DeletePosixAccountRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

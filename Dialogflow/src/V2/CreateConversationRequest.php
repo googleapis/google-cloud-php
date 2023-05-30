@@ -45,6 +45,23 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
     private $conversation_id = '';
 
     /**
+     * @param string                                   $parent       Required. Resource identifier of the project creating the conversation.
+     *                                                               Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                               {@see ConversationsClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Conversation $conversation Required. The conversation to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateConversationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Conversation $conversation): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversation($conversation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

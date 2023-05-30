@@ -34,6 +34,25 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     private $processor = null;
 
     /**
+     * @param string                                $parent    Required. The parent (project and location) under which to create the
+     *                                                         processor. Format: `projects/{project}/locations/{location}`
+     *                                                         Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\DocumentAI\V1\Processor $processor Required. The processor to be created, requires [processor_type] and
+     *                                                         [display_name] to be set. Also, the processor is under CMEK if CMEK fields
+     *                                                         are set.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\CreateProcessorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DocumentAI\V1\Processor $processor): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProcessor($processor);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

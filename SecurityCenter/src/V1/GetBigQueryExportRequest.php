@@ -26,6 +26,23 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the BigQuery export to retrieve. Its format is
+     *                     organizations/{organization}/bigQueryExports/{export_id},
+     *                     folders/{folder}/bigQueryExports/{export_id}, or
+     *                     projects/{project}/bigQueryExports/{export_id}
+     *                     Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

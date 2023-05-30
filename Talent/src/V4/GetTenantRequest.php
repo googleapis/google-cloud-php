@@ -25,6 +25,23 @@ class GetTenantRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the tenant to be retrieved.
+     *
+     *                     The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *                     "projects/foo/tenants/bar". Please see
+     *                     {@see TenantServiceClient::tenantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Talent\V4\GetTenantRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

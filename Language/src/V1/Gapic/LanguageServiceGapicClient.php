@@ -46,6 +46,8 @@ use Google\Cloud\Language\V1\ClassificationModelOptions;
 use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\ModerateTextRequest;
+use Google\Cloud\Language\V1\ModerateTextResponse;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -426,5 +428,40 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall('ClassifyText', ClassifyTextResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     *
+     * Sample code:
+     * ```
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
+     * try {
+     *     $document = new Google\Cloud\Language\V1\Document();
+     *     $response = $languageServiceClient->moderateText($document);
+     * } finally {
+     *     $languageServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Document $document     Required. Input document.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Language\V1\ModerateTextResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function moderateText($document, array $optionalArgs = [])
+    {
+        $request = new ModerateTextRequest();
+        $request->setDocument($document);
+        return $this->startCall('ModerateText', ModerateTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

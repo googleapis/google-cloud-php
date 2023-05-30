@@ -99,8 +99,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
@@ -160,8 +160,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           - num_units: The total commitment for commitment-based offers
      *           The response may additionally include the following output-only Parameters:
      *           - assigned_units: The number of licenses assigned to users.
-     *           For GCP billing subaccounts, the following Parameter may be accepted as
-     *           input:
+     *           For Google Cloud billing subaccounts, the following Parameter may be
+     *           accepted as input:
      *           - display_name: The display name of the billing subaccount.
      *     @type string $billing_account
      *           Optional. The billing account resource name that is used to pay for this
@@ -545,8 +545,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
@@ -567,8 +567,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>

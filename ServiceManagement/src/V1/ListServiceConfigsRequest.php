@@ -38,6 +38,21 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $serviceName Required. The name of the service.  See the
+     *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                            example: `example.googleapis.com`.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\ListServiceConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName): self
+    {
+        return (new self())
+            ->setServiceName($serviceName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

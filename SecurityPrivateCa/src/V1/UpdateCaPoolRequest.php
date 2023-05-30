@@ -47,6 +47,22 @@ class UpdateCaPoolRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Security\PrivateCA\V1\CaPool $caPool     Required. [CaPool][google.cloud.security.privateca.v1.CaPool] with updated
+     *                                                               values.
+     * @param \Google\Protobuf\FieldMask                 $updateMask Required. A list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\UpdateCaPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Security\PrivateCA\V1\CaPool $caPool, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCaPool($caPool)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -40,6 +40,22 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent (project, location and processor) to list all
+     *                       versions. Format:
+     *                       `projects/{project}/locations/{location}/processors/{processor}`
+     *                       Please see {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

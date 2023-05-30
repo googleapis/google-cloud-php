@@ -43,6 +43,23 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     private $keys;
 
     /**
+     * @param string                                 $projectId   Required. The ID of the project against which to make the request.
+     * @param \Google\Cloud\Datastore\V1\ReadOptions $readOptions The options for this lookup request.
+     * @param \Google\Cloud\Datastore\V1\Key[]       $keys        Required. Keys of entities to look up.
+     *
+     * @return \Google\Cloud\Datastore\V1\LookupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, \Google\Cloud\Datastore\V1\ReadOptions $readOptions, array $keys): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setReadOptions($readOptions)
+            ->setKeys($keys);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

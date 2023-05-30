@@ -42,6 +42,20 @@ class ListImageVersionsRequest extends \Google\Protobuf\Internal\Message
     private $include_past_releases = false;
 
     /**
+     * @param string $parent List ImageVersions in the given project and location, in the form:
+     *                       "projects/{projectId}/locations/{locationId}"
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\ListImageVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

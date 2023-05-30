@@ -29,6 +29,11 @@
                             "methods": [
                                 "searchUris"
                             ]
+                        },
+                        "SubmitUri": {
+                            "methods": [
+                                "submitUri"
+                            ]
                         }
                     }
                 }

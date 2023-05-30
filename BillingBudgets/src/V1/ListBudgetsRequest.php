@@ -39,6 +39,21 @@ class ListBudgetsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of billing account to list budgets under. Values
+     *                       are of the form `billingAccounts/{billingAccountId}`. Please see
+     *                       {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Billing\Budgets\V1\ListBudgetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

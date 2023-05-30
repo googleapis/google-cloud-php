@@ -103,6 +103,27 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The parent branch resource name, such as
+     *                       `projects/&#42;/locations/global/catalogs/default_catalog/branches/0`. Use
+     *                       `default_branch` as the branch ID, to list products under the default
+     *                       branch.
+     *
+     *                       If the caller does not have permission to list
+     *                       [Product][google.cloud.retail.v2.Product]s under this branch, regardless of
+     *                       whether or not this branch exists, a PERMISSION_DENIED error is returned. Please see
+     *                       {@see ProductServiceClient::branchName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\ListProductsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -56,6 +56,44 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
     private $lifetime = null;
 
     /**
+     * @param string                    $name      Required. The resource name of the service account for which the credentials
+     *                                             are requested, in the following format:
+     *                                             `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                                             character is required; replacing it with a project ID is invalid. Please see
+     *                                             {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
+     * @param string[]                  $delegates The sequence of service accounts in a delegation chain. Each service
+     *                                             account must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                                             on its next service account in the chain. The last service account in the
+     *                                             chain must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                                             on the service account that is specified in the `name` field of the
+     *                                             request.
+     *
+     *                                             The delegates must have the following format:
+     *                                             `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                                             character is required; replacing it with a project ID is invalid.
+     * @param string[]                  $scope     Required. Code to identify the scopes to be included in the OAuth 2.0 access token.
+     *                                             See https://developers.google.com/identity/protocols/googlescopes for more
+     *                                             information.
+     *                                             At least one value required.
+     * @param \Google\Protobuf\Duration $lifetime  The desired lifetime duration of the access token in seconds.
+     *                                             Must be set to a value less than or equal to 3600 (1 hour). If a value is
+     *                                             not specified, the token's lifetime will be set to a default value of one
+     *                                             hour.
+     *
+     * @return \Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $delegates, array $scope, \Google\Protobuf\Duration $lifetime): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setDelegates($delegates)
+            ->setScope($scope)
+            ->setLifetime($lifetime);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

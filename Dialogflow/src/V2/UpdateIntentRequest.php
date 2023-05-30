@@ -46,6 +46,46 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
     private $intent_view = 0;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Intent $intent       Required. The intent to update.
+     * @param string                             $languageCode Optional. The language used to access language-specific data.
+     *                                                         If not specified, the agent's default language is used.
+     *                                                         For more information, see
+     *                                                         [Multilingual intent and entity
+     *                                                         data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Intent $intent, string $languageCode): self
+    {
+        return (new self())
+            ->setIntent($intent)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Intent $intent       Required. The intent to update.
+     * @param string                             $languageCode Optional. The language used to access language-specific data.
+     *                                                         If not specified, the agent's default language is used.
+     *                                                         For more information, see
+     *                                                         [Multilingual intent and entity
+     *                                                         data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     * @param \Google\Protobuf\FieldMask         $updateMask   Optional. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateIntentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromIntentLanguageCodeUpdateMask(\Google\Cloud\Dialogflow\V2\Intent $intent, string $languageCode, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIntent($intent)
+            ->setLanguageCode($languageCode)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

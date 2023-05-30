@@ -26,6 +26,24 @@ class GetSavedQueryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the saved query and it must be in the format of:
+     *
+     *                     * projects/project_number/savedQueries/saved_query_id
+     *                     * folders/folder_number/savedQueries/saved_query_id
+     *                     * organizations/organization_number/savedQueries/saved_query_id
+     *                     Please see {@see AssetServiceClient::savedQueryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Asset\V1\GetSavedQueryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

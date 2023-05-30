@@ -32,6 +32,24 @@ class UpgradeInstanceRequest extends \Google\Protobuf\Internal\Message
     private $redis_version = '';
 
     /**
+     * @param string $name         Required. Redis instance resource name using the form:
+     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                             where `location_id` refers to a GCP region. Please see
+     *                             {@see CloudRedisClient::instanceName()} for help formatting this field.
+     * @param string $redisVersion Required. Specifies the target version of Redis software to upgrade to.
+     *
+     * @return \Google\Cloud\Redis\V1\UpgradeInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $redisVersion): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setRedisVersion($redisVersion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * migration job resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,15 +29,31 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $migration_job = null;
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
      */
     private $request_id = '';
+
+    /**
+     * @param \Google\Cloud\CloudDms\V1\MigrationJob $migrationJob Required. The migration job parameters to update.
+     * @param \Google\Protobuf\FieldMask             $updateMask   Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                             update in the conversion workspace resource.
+     *
+     * @return \Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CloudDms\V1\MigrationJob $migrationJob, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMigrationJob($migrationJob)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -46,15 +62,15 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           migration job resource by the update.
+     *           Required. Field mask is used to specify the fields to be overwritten by the
+     *           update in the conversion workspace resource.
      *     @type \Google\Cloud\CloudDms\V1\MigrationJob $migration_job
      *           Required. The migration job parameters to update.
      *     @type string $request_id
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *           It is recommended to always set this value to a UUID.
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      * }
      */
@@ -64,8 +80,8 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * migration job resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -86,8 +102,8 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * migration job resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -138,10 +154,10 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
@@ -153,10 +169,10 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 3;</code>

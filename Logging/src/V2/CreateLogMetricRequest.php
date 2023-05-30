@@ -32,6 +32,27 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
     private $metric = null;
 
     /**
+     * @param string                             $parent Required. The resource name of the project in which to create the metric:
+     *
+     *                                                   "projects/[PROJECT_ID]"
+     *
+     *                                                   The new metric must be provided in the request. Please see
+     *                                                   {@see MetricsServiceV2Client::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogMetric $metric Required. The new logs-based metric, which must not have an identifier that
+     *                                                   already exists.
+     *
+     * @return \Google\Cloud\Logging\V2\CreateLogMetricRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Logging\V2\LogMetric $metric): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMetric($metric);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

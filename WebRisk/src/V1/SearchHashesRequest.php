@@ -25,7 +25,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      */
     private $hash_prefix = '';
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +44,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      *           Note that if this parameter is provided by a URI, it must be encoded using
      *           the web safe base64 variant (RFC 4648).
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
-     *           Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     *           Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *           specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,7 +86,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -95,7 +98,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

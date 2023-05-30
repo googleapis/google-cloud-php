@@ -62,6 +62,22 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the location associated with the
+     *                       [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     *                       format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

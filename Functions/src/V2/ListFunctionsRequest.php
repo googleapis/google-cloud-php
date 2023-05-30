@@ -61,6 +61,25 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The project and location from which the function should be
+     *                       listed, specified in the format `projects/&#42;/locations/*` If you want to
+     *                       list functions in all locations, use "-" in place of a location. When
+     *                       listing functions in all locations, if one or more location(s) are
+     *                       unreachable, the response will contain functions from all reachable
+     *                       locations along with the names of any unreachable locations. Please see
+     *                       {@see FunctionServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Functions\V2\ListFunctionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

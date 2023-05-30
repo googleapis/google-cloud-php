@@ -51,6 +51,24 @@ class CreateRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                            $parent  Required. The parent that owns the collection of Routes. Please see
+     *                                                   {@see DatastreamClient::privateConnectionName()} for help formatting this field.
+     * @param \Google\Cloud\Datastream\V1\Route $route   Required. The Route resource to create.
+     * @param string                            $routeId Required. The Route identifier.
+     *
+     * @return \Google\Cloud\Datastream\V1\CreateRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Datastream\V1\Route $route, string $routeId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRoute($route)
+            ->setRouteId($routeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

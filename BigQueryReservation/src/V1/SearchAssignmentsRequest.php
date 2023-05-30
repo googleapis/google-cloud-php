@@ -50,6 +50,30 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the admin project(containing project and
+     *                       location), e.g.:
+     *                       `projects/myproject/locations/US`. Please see
+     *                       {@see ReservationServiceClient::locationName()} for help formatting this field.
+     * @param string $query  Please specify resource name as assignee in the query.
+     *
+     *                       Examples:
+     *
+     *                       * `assignee=projects/myproject`
+     *                       * `assignee=folders/123`
+     *                       * `assignee=organizations/456`
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $query): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

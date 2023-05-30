@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * connection profile resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,15 +29,47 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $connection_profile = null;
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. Only validate the connection profile, but don't update any
+     * resources. The default is false. Only supported for Oracle connection
+     * profiles.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $validate_only = false;
+    /**
+     * Optional. Update the connection profile without validating it.
+     * The default is false.
+     * Only supported for Oracle connection profiles.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $skip_validation = false;
+
+    /**
+     * @param \Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile Required. The connection profile parameters to update.
+     * @param \Google\Protobuf\FieldMask                  $updateMask        Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                                       update in the conversion workspace resource.
+     *
+     * @return \Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConnectionProfile($connectionProfile)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -46,16 +78,24 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           connection profile resource by the update.
+     *           Required. Field mask is used to specify the fields to be overwritten by the
+     *           update in the conversion workspace resource.
      *     @type \Google\Cloud\CloudDms\V1\ConnectionProfile $connection_profile
      *           Required. The connection profile parameters to update.
      *     @type string $request_id
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
      *           It is recommended to always set this value to a UUID.
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $validate_only
+     *           Optional. Only validate the connection profile, but don't update any
+     *           resources. The default is false. Only supported for Oracle connection
+     *           profiles.
+     *     @type bool $skip_validation
+     *           Optional. Update the connection profile without validating it.
+     *           The default is false.
+     *           Only supported for Oracle connection profiles.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,8 +104,8 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * connection profile resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -86,8 +126,8 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * connection profile resource by the update.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the conversion workspace resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -138,13 +178,13 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -153,13 +193,13 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -167,6 +207,66 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only validate the connection profile, but don't update any
+     * resources. The default is false. Only supported for Oracle connection
+     * profiles.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. Only validate the connection profile, but don't update any
+     * resources. The default is false. Only supported for Oracle connection
+     * profiles.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Update the connection profile without validating it.
+     * The default is false.
+     * Only supported for Oracle connection profiles.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSkipValidation()
+    {
+        return $this->skip_validation;
+    }
+
+    /**
+     * Optional. Update the connection profile without validating it.
+     * The default is false.
+     * Only supported for Oracle connection profiles.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_validation = $var;
 
         return $this;
     }

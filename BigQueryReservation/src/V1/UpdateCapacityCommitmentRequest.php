@@ -30,6 +30,21 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment Content of the capacity commitment to update.
+     * @param \Google\Protobuf\FieldMask                               $updateMask         Standard field mask for the set of fields to be updated.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCapacityCommitment($capacityCommitment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

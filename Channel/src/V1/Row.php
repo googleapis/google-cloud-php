@@ -21,6 +21,13 @@ class Row extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ReportValue values = 1;</code>
      */
     private $values;
+    /**
+     * The key for the partition this row belongs to. This field is empty
+     * if the report is not partitioned.
+     *
+     * Generated from protobuf field <code>string partition_key = 2;</code>
+     */
+    private $partition_key = '';
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class Row extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Channel\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $values
      *           The list of values in the row.
+     *     @type string $partition_key
+     *           The key for the partition this row belongs to. This field is empty
+     *           if the report is not partitioned.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,34 @@ class Row extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\ReportValue::class);
         $this->values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The key for the partition this row belongs to. This field is empty
+     * if the report is not partitioned.
+     *
+     * Generated from protobuf field <code>string partition_key = 2;</code>
+     * @return string
+     */
+    public function getPartitionKey()
+    {
+        return $this->partition_key;
+    }
+
+    /**
+     * The key for the partition this row belongs to. This field is empty
+     * if the report is not partitioned.
+     *
+     * Generated from protobuf field <code>string partition_key = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPartitionKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->partition_key = $var;
 
         return $this;
     }

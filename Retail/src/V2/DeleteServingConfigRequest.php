@@ -24,6 +24,21 @@ class DeleteServingConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the ServingConfig to delete. Format:
+     *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *                     Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\DeleteServingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

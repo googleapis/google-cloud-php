@@ -59,6 +59,21 @@ class ListDomainsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the domain location using the form:
+     *                       `projects/{project_id}/locations/global`
+     *                       Please see {@see ManagedIdentitiesServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ManagedIdentities\V1\ListDomainsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

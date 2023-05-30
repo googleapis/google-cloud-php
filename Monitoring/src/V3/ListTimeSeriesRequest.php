@@ -93,6 +93,40 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string                                   $name     Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name),
+     *                                                           organization or folder on which to execute the request. The format is:
+     *
+     *                                                           projects/[PROJECT_ID_OR_NUMBER]
+     *                                                           organizations/[ORGANIZATION_ID]
+     *                                                           folders/[FOLDER_ID]
+     *                                                           Please see {@see MetricServiceClient::workspaceName()} for help formatting this field.
+     * @param string                                   $filter   Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *                                                           that specifies which time series should be returned.  The filter must
+     *                                                           specify a single metric type, and can additionally specify metric labels
+     *                                                           and other information. For example:
+     *
+     *                                                           metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
+     *                                                           metric.labels.instance_name = "my-instance-name"
+     * @param \Google\Cloud\Monitoring\V3\TimeInterval $interval Required. The time interval for which results should be returned. Only time series
+     *                                                           that contain data points in the specified interval are included
+     *                                                           in the response.
+     * @param int                                      $view     Required. Specifies which information is returned about the time series.
+     *                                                           For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $filter, \Google\Cloud\Monitoring\V3\TimeInterval $interval, int $view): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setFilter($filter)
+            ->setInterval($interval)
+            ->setView($view);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

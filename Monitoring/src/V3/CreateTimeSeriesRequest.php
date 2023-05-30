@@ -36,6 +36,31 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     private $time_series;
 
     /**
+     * @param string                                   $name       Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *                                                             which to execute the request. The format is:
+     *
+     *                                                             projects/[PROJECT_ID_OR_NUMBER]
+     *                                                             Please see {@see MetricServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Monitoring\V3\TimeSeries[] $timeSeries Required. The new data to be added to a list of time series.
+     *                                                             Adds at most one data point to each of several time series.  The new data
+     *                                                             point must be more recent than any other point in its time series.  Each
+     *                                                             `TimeSeries` value must fully specify a unique time series by supplying
+     *                                                             all label values for the metric and the monitored resource.
+     *
+     *                                                             The maximum number of `TimeSeries` objects per `Create` request is 200.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $timeSeries): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setTimeSeries($timeSeries);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

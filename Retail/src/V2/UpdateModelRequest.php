@@ -30,6 +30,22 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\Model $model      Required. The body of the updated [Model][google.cloud.retail.v2.Model].
+     * @param \Google\Protobuf\FieldMask    $updateMask Optional. Indicates which fields in the provided 'model' to
+     *                                                  update. If not set, by default updates all fields.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateModelRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\Model $model, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setModel($model)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

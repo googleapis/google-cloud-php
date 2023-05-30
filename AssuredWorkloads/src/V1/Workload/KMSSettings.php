@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * In order to create a Keyring, callers should specify,
  * ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1.Workload.KMSSettings</code>
  */
 class KMSSettings extends \Google\Protobuf\Internal\Message

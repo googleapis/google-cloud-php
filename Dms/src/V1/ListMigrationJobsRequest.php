@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Retrieve a list of all migration jobs in a given project and location.
+ * Retrieves a list of all migration jobs in a given project and location.
  *
  * Generated from protobuf message <code>google.cloud.clouddms.v1.ListMigrationJobsRequest</code>
  */
 class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns this collection of migrationJobs.
+     * Required. The parent which owns this collection of migrationJobs.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -24,7 +24,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of migration jobs to return. The service may return
      * fewer than this value. If unspecified, at most 50 migration jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * returned. The maximum value is 1000; values above 1000 are coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -63,17 +63,31 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent which owns this collection of migrationJobs. Please see
+     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\ListMigrationJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns this collection of migrationJobs.
+     *           Required. The parent which owns this collection of migrationJobs.
      *     @type int $page_size
      *           The maximum number of migration jobs to return. The service may return
      *           fewer than this value. If unspecified, at most 50 migration jobs will be
-     *           returned. The maximum value is 1000; values above 1000 will be coerced to
+     *           returned. The maximum value is 1000; values above 1000 are coerced to
      *           1000.
      *     @type string $page_token
      *           The nextPageToken value received in the previous call to
@@ -102,7 +116,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of migrationJobs.
+     * Required. The parent which owns this collection of migrationJobs.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +127,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of migrationJobs.
+     * Required. The parent which owns this collection of migrationJobs.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -130,7 +144,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of migration jobs to return. The service may return
      * fewer than this value. If unspecified, at most 50 migration jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * returned. The maximum value is 1000; values above 1000 are coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -144,7 +158,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of migration jobs to return. The service may return
      * fewer than this value. If unspecified, at most 50 migration jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * returned. The maximum value is 1000; values above 1000 are coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>

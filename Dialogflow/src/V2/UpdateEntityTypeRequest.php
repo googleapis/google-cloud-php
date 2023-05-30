@@ -40,6 +40,38 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\EntityType $entityType Required. The entity type to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\EntityType $entityType): self
+    {
+        return (new self())
+            ->setEntityType($entityType);
+    }
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\EntityType $entityType   Required. The entity type to update.
+     * @param string                                 $languageCode Optional. The language used to access language-specific data.
+     *                                                             If not specified, the agent's default language is used.
+     *                                                             For more information, see
+     *                                                             [Multilingual intent and entity
+     *                                                             data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromEntityTypeLanguageCode(\Google\Cloud\Dialogflow\V2\EntityType $entityType, string $languageCode): self
+    {
+        return (new self())
+            ->setEntityType($entityType)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

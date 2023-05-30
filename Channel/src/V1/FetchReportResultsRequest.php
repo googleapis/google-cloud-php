@@ -46,6 +46,30 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. List of keys specifying which report partitions to return.
+     * If empty, returns all partitions.
+     *
+     * Generated from protobuf field <code>repeated string partition_keys = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $partition_keys;
+
+    /**
+     * @param string $reportJob Required. The report job created by
+     *                          [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     *                          Report_job uses the format:
+     *                          accounts/{account_id}/reportJobs/{report_job_id}
+     *                          Please see {@see CloudChannelReportsServiceClient::reportJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\FetchReportResultsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $reportJob): self
+    {
+        return (new self())
+            ->setReportJob($reportJob);
+    }
 
     /**
      * Constructor.
@@ -71,6 +95,9 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *           of the previous
      *           [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
      *           call.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $partition_keys
+     *           Optional. List of keys specifying which report partitions to return.
+     *           If empty, returns all partitions.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +203,34 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of keys specifying which report partitions to return.
+     * If empty, returns all partitions.
+     *
+     * Generated from protobuf field <code>repeated string partition_keys = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPartitionKeys()
+    {
+        return $this->partition_keys;
+    }
+
+    /**
+     * Optional. List of keys specifying which report partitions to return.
+     * If empty, returns all partitions.
+     *
+     * Generated from protobuf field <code>repeated string partition_keys = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPartitionKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->partition_keys = $arr;
 
         return $this;
     }

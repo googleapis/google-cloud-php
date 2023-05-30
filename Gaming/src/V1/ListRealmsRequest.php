@@ -54,6 +54,21 @@ class ListRealmsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent resource name, in the following form:
+     *                       `projects/{project}/locations/{location}`. Please see
+     *                       {@see RealmsServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Gaming\V1\ListRealmsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

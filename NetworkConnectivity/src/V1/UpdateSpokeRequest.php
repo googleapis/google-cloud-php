@@ -52,6 +52,25 @@ class UpdateSpokeRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\NetworkConnectivity\V1\Spoke $spoke      Required. The state that the spoke should be in after the update.
+     * @param \Google\Protobuf\FieldMask                 $updateMask Optional. In the case of an update to an existing spoke, field mask is used
+     *                                                               to specify the fields to be overwritten. The fields specified in the
+     *                                                               update_mask are relative to the resource, not the full request. A field is
+     *                                                               overwritten if it is in the mask. If the user does not provide a mask, then
+     *                                                               all fields are overwritten.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\NetworkConnectivity\V1\Spoke $spoke, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSpoke($spoke)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

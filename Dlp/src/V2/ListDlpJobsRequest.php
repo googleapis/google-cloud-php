@@ -101,6 +101,35 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     private $location_id = '';
 
     /**
+     * @param string $parent Required. Parent resource name.
+     *
+     *                       The format of this value varies depending on whether you have [specified a
+     *                       processing
+     *                       location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *                       + Projects scope, location specified:<br/>
+     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       + Projects scope, no location specified (defaults to global):<br/>
+     *                       `projects/`<var>PROJECT_ID</var>
+     *
+     *                       The following example `parent` string specifies a parent project with the
+     *                       identifier `example-project`, and specifies the `europe-west3` location
+     *                       for processing data:
+     *
+     *                       parent=projects/example-project/locations/europe-west3
+     *                       Please see {@see DlpServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\ListDlpJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

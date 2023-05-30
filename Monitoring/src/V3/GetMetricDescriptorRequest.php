@@ -26,6 +26,25 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The metric descriptor on which to execute the request. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
+     *
+     *                     An example value of `[METRIC_ID]` is
+     *                     `"compute.googleapis.com/instance/disk/read_bytes_count"`. Please see
+     *                     {@see MetricServiceClient::metricDescriptorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

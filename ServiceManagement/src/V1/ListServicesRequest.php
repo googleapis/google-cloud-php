@@ -47,6 +47,25 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     protected $consumer_id = '';
 
     /**
+     * @param string $producerProjectId Include services produced by the specified project.
+     * @param string $consumerId        Include services consumed by the specified consumer.
+     *
+     *                                  The Google Service Management implementation accepts the following
+     *                                  forms:
+     *                                  - project:<project_id>
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\ListServicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $producerProjectId, string $consumerId): self
+    {
+        return (new self())
+            ->setProducerProjectId($producerProjectId)
+            ->setConsumerId($consumerId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

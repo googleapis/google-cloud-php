@@ -26,6 +26,22 @@ class TuneModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the model to tune.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
+     *                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\TuneModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

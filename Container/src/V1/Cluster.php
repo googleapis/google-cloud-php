@@ -273,7 +273,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $shielded_nodes = null;
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      */
@@ -659,7 +664,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ShieldedNodes $shielded_nodes
      *           Shielded Nodes configuration.
      *     @type \Google\Cloud\Container\V1\ReleaseChannel $release_channel
-     *           Release channel configuration.
+     *           Release channel configuration. If left unspecified on cluster creation and
+     *           a version is specified, the cluster is enrolled in the most mature release
+     *           channel where the version is available (first checking STABLE, then
+     *           REGULAR, and finally RAPID). Otherwise, if no release channel
+     *           configuration and no version is specified, the cluster is enrolled in the
+     *           REGULAR channel with its default version.
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $workload_identity_config
      *           Configuration for the use of Kubernetes Service Accounts in GCP IAM
      *           policies.
@@ -1911,7 +1921,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      * @return \Google\Cloud\Container\V1\ReleaseChannel|null
@@ -1932,7 +1947,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      * @param \Google\Cloud\Container\V1\ReleaseChannel $var

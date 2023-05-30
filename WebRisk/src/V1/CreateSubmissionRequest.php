@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project that is making the submission. This string is in
-     * the format "projects/{project_number}".
+     * Required. The name of the project that is making the submission. This
+     * string is in the format "projects/{project_number}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +36,8 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project that is making the submission. This string is in
-     *           the format "projects/{project_number}".
+     *           Required. The name of the project that is making the submission. This
+     *           string is in the format "projects/{project_number}".
      *     @type \Google\Cloud\WebRisk\V1\Submission $submission
      *           Required. The submission that contains the content of the phishing report.
      * }
@@ -48,8 +48,8 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project that is making the submission. This string is in
-     * the format "projects/{project_number}".
+     * Required. The name of the project that is making the submission. This
+     * string is in the format "projects/{project_number}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +60,8 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project that is making the submission. This string is in
-     * the format "projects/{project_number}".
+     * Required. The name of the project that is making the submission. This
+     * string is in the format "projects/{project_number}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
