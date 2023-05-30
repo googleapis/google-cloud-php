@@ -53,6 +53,34 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Resource name of the model to list the model evaluations for.
+     *                       If modelId is set as "-", this will list model evaluations from across all
+     *                       models of the parent location. Please see
+     *                       {@see AutoMlClient::modelName()} for help formatting this field.
+     * @param string $filter Required. An expression for filtering the results of the request.
+     *
+     *                       * `annotation_spec_id` - for =, !=  or existence. See example below for
+     *                       the last.
+     *
+     *                       Some examples of using the filter are:
+     *
+     *                       * `annotation_spec_id!=4` --> The model evaluation was done for
+     *                       annotation spec with ID different than 4.
+     *                       * `NOT annotation_spec_id:*` --> The model evaluation was done for
+     *                       aggregate of all annotation specs.
+     *
+     * @return \Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

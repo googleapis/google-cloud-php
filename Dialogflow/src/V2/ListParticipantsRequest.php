@@ -39,6 +39,22 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The conversation to list all participants from.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>`. Please see
+     *                       {@see ParticipantsClient::conversationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListParticipantsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

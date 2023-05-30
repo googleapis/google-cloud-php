@@ -62,6 +62,59 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string   $projectId Deprecated. The Google Developers Console [project ID or project
+     *                            number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                            This field has been deprecated and replaced by the name field.
+     * @param string   $zone      Deprecated. The name of the Google Compute Engine
+     *                            [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                            cluster resides. This field has been deprecated and replaced by the name
+     *                            field.
+     * @param string   $clusterId Deprecated. The name of the cluster to upgrade.
+     *                            This field has been deprecated and replaced by the name field.
+     * @param string[] $locations Required. The desired list of Google Compute Engine
+     *                            [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                            cluster's nodes should be located. Changing the locations a cluster is in
+     *                            will result in nodes being either created or removed from the cluster,
+     *                            depending on whether locations are being added or removed.
+     *
+     *                            This list must always include the cluster's primary zone.
+     *
+     * @return \Google\Cloud\Container\V1\SetLocationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $clusterId, array $locations): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setClusterId($clusterId)
+            ->setLocations($locations);
+    }
+
+    /**
+     * @param string   $name      The name (project, location, cluster) of the cluster to set locations.
+     *                            Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     * @param string[] $locations Required. The desired list of Google Compute Engine
+     *                            [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                            cluster's nodes should be located. Changing the locations a cluster is in
+     *                            will result in nodes being either created or removed from the cluster,
+     *                            depending on whether locations are being added or removed.
+     *
+     *                            This list must always include the cluster's primary zone.
+     *
+     * @return \Google\Cloud\Container\V1\SetLocationsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameLocations(string $name, array $locations): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setLocations($locations);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,6 +25,22 @@ class GetDataSourceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The field will contain name of the resource requested, for
+     *                     example: `projects/{project_id}/dataSources/{data_source_id}` or
+     *                     `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *                     Please see {@see DataTransferServiceClient::dataSourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

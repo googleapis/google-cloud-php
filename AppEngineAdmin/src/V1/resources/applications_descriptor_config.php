@@ -12,6 +12,7 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
             ],
             'RepairApplication' => [
                 'longRunning' => [
@@ -22,6 +23,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateApplication' => [
                 'longRunning' => [
@@ -31,6 +41,27 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetApplication' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AppEngine\V1\Application',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

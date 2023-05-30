@@ -53,6 +53,22 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project to list all answer records for in reverse
+     *                       chronological order. Format: `projects/<Project ID>/locations/<Location
+     *                       ID>`. Please see
+     *                       {@see AnswerRecordsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

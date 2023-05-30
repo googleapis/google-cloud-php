@@ -53,6 +53,20 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $parent Required. The parent resource of the conversation. Please see
+     *                       {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\ListConversationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

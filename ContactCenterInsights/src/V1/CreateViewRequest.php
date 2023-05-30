@@ -32,6 +32,25 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
     private $view = null;
 
     /**
+     * @param string                                      $parent Required. The parent resource of the view. Required. The location to create
+     *                                                            a view for.
+     *                                                            Format: `projects/<Project ID>/locations/<Location ID>` or
+     *                                                            `projects/<Project Number>/locations/<Location ID>`
+     *                                                            Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ContactCenterInsights\V1\View $view   Required. The view resource to create.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CreateViewRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ContactCenterInsights\V1\View $view): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setView($view);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

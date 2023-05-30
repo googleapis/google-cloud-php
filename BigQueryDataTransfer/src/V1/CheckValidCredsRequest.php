@@ -30,6 +30,22 @@ class CheckValidCredsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The data source in the form:
+     *                     `projects/{project_id}/dataSources/{data_source_id}` or
+     *                     `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`. Please see
+     *                     {@see DataTransferServiceClient::dataSourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -29,6 +29,21 @@ class UpdateBiReservationRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\Reservation\V1\BiReservation $biReservation A reservation to update.
+     * @param \Google\Protobuf\FieldMask                          $updateMask    A list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\Reservation\V1\BiReservation $biReservation, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBiReservation($biReservation)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

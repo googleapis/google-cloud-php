@@ -7,6 +7,7 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1;
 use UnexpectedValueException;
 
 /**
+ * @deprecated
  * DEPRECATED. Represents data transfer type.
  *
  * Protobuf type <code>google.cloud.bigquery.datatransfer.v1.TransferType</code>

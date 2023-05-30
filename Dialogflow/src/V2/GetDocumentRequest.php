@@ -26,6 +26,22 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the document to retrieve.
+     *                     Format `projects/<Project ID>/locations/<Location
+     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`. Please see
+     *                     {@see DocumentsClient::documentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

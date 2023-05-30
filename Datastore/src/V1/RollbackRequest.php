@@ -38,6 +38,22 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     private $transaction = '';
 
     /**
+     * @param string $projectId   Required. The ID of the project against which to make the request.
+     * @param string $transaction Required. The transaction identifier, returned by a call to
+     *                            [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     *
+     * @return \Google\Cloud\Datastore\V1\RollbackRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $transaction): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setTransaction($transaction);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

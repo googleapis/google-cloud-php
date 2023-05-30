@@ -61,6 +61,25 @@ class ListChannelPartnerRepricingConfigsRequest extends \Google\Protobuf\Interna
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the account's
+     *                       [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
+     *                       uses the format:
+     *                       accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
+     *                       Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
+     *                       for all channel partners. Please see
+     *                       {@see CloudChannelServiceClient::channelPartnerLinkName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
