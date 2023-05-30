@@ -26,7 +26,13 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/ArtifactRegistry").resolve()
 dest = Path().resolve()
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/[A-Z]*_*.php"
+    ]
+)
 
 # Change the wording for the deprecation warning.
 s.replace(
