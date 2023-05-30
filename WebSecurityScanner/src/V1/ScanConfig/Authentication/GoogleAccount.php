@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes authentication configuration that uses a Google account.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.websecurityscanner.v1.ScanConfig.Authentication.GoogleAccount</code>
  */
 class GoogleAccount extends \Google\Protobuf\Internal\Message

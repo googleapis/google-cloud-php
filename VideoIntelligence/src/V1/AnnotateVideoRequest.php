@@ -74,6 +74,32 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     private $location_id = '';
 
     /**
+     * @param string $inputUri Input video location. Currently, only
+     *                         [Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *                         supported. URIs must be specified in the following format:
+     *                         `gs://bucket-id/object-id` (other URI formats return
+     *                         [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
+     *                         more information, see [Request
+     *                         URIs](https://cloud.google.com/storage/docs/request-endpoints). To identify
+     *                         multiple videos, a video URI may include wildcards in the `object-id`.
+     *                         Supported wildcards: '*' to match 0 or more characters;
+     *                         '?' to match 1 character. If unset, the input video should be embedded
+     *                         in the request as `input_content`. If set, `input_content` must be unset.
+     * @param int[]  $features Required. Requested video annotation features.
+     *                         For allowed values, use constants defined on {@see \Google\Cloud\VideoIntelligence\V1\Feature}
+     *
+     * @return \Google\Cloud\VideoIntelligence\V1\AnnotateVideoRequest
+     *
+     * @experimental
+     */
+    public static function build(string $inputUri, array $features): self
+    {
+        return (new self())
+            ->setInputUri($inputUri)
+            ->setFeatures($features);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

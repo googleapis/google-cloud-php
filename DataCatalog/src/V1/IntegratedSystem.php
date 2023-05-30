@@ -44,6 +44,18 @@ class IntegratedSystem
      */
     const DATAPLEX = 4;
     /**
+     * Cloud Spanner
+     *
+     * Generated from protobuf enum <code>CLOUD_SPANNER = 6;</code>
+     */
+    const CLOUD_SPANNER = 6;
+    /**
+     * Cloud Bigtable
+     *
+     * Generated from protobuf enum <code>CLOUD_BIGTABLE = 7;</code>
+     */
+    const CLOUD_BIGTABLE = 7;
+    /**
      * Cloud Sql
      *
      * Generated from protobuf enum <code>CLOUD_SQL = 8;</code>
@@ -62,6 +74,8 @@ class IntegratedSystem
         self::CLOUD_PUBSUB => 'CLOUD_PUBSUB',
         self::DATAPROC_METASTORE => 'DATAPROC_METASTORE',
         self::DATAPLEX => 'DATAPLEX',
+        self::CLOUD_SPANNER => 'CLOUD_SPANNER',
+        self::CLOUD_BIGTABLE => 'CLOUD_BIGTABLE',
         self::CLOUD_SQL => 'CLOUD_SQL',
         self::LOOKER => 'LOOKER',
     ];

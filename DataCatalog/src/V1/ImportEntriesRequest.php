@@ -23,6 +23,13 @@ class ImportEntriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * Optional. (Optional) Dataplex task job id, if specified will be used as
+     * part of ImportEntries LRO ID
+     *
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $job_id = '';
     protected $source;
 
     /**
@@ -35,6 +42,9 @@ class ImportEntriesRequest extends \Google\Protobuf\Internal\Message
      *           Required. Target entry group for ingested entries.
      *     @type string $gcs_bucket_path
      *           Path to a Cloud Storage bucket that contains a dump ready for ingestion.
+     *     @type string $job_id
+     *           Optional. (Optional) Dataplex task job id, if specified will be used as
+     *           part of ImportEntries LRO ID
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +105,34 @@ class ImportEntriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. (Optional) Dataplex task job id, if specified will be used as
+     * part of ImportEntries LRO ID
+     *
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getJobId()
+    {
+        return $this->job_id;
+    }
+
+    /**
+     * Optional. (Optional) Dataplex task job id, if specified will be used as
+     * part of ImportEntries LRO ID
+     *
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJobId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job_id = $var;
 
         return $this;
     }

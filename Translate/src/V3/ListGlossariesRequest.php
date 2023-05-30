@@ -60,6 +60,20 @@ class ListGlossariesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The name of the project from which to list all of the glossaries. Please see
+     *                       {@see TranslationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Translate\V3\ListGlossariesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
