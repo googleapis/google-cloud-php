@@ -22,7 +22,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $name = 0;
     /**
-     * P4SA Identity of the service.
+     * The service agent for the service.
      *
      * Generated from protobuf field <code>string identity = 2;</code>
      */
@@ -37,7 +37,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type int $name
      *           The Google Cloud service name.
      *     @type string $identity
-     *           P4SA Identity of the service.
+     *           The service agent for the service.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * P4SA Identity of the service.
+     * The service agent for the service.
      *
      * Generated from protobuf field <code>string identity = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * P4SA Identity of the service.
+     * The service agent for the service.
      *
      * Generated from protobuf field <code>string identity = 2;</code>
      * @param string $var
