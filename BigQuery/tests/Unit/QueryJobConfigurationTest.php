@@ -303,36 +303,30 @@ class QueryJobConfigurationTest extends TestCase
             ->parameters(['test']);
     }
 
-    public function testSetParamTypesThrowsInvalidArgumentException()
+    public function testExtraParamInSetParamTypesThrowsException()
     {
-        // Test for extra param sent in setParamTypes
-        try {
-            $this->config
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
             ->parameters(['test'])
             ->setParamTypes(['STRING', 'INT64']);
-            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
-        } catch (InvalidArgumentException $e) {
-            $this->assertTrue(true);
-        }
+    }
 
-        // Test for incorrect name param sent in setParamTypes
-        try {
-            $this->config
+    public function testIncorrectNameInSetParamTypesThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
             ->parameters(['key1' => 'test'])
             ->setParamTypes(['key2' => 'INT64']);
-            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
-        } catch (InvalidArgumentException $e) {
-            $this->assertTrue(true);
-        }
+    }
 
-        // Test for incorrect index sent in setParamTypes
-        try {
-            $this->config
+    public function testIncorrectIndexInSetParamTypesThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
             ->parameters(['test'])
             ->setParamTypes([1 => 'INT64']);
-            $this->fail('Expect an InvalidArgumentException exception but didn\'t receive any.');
-        } catch (InvalidArgumentException $e) {
-            $this->assertTrue(true);
-        }
     }
 }

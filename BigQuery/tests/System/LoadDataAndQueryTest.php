@@ -399,6 +399,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testRunQueryWithEmptyNamedArrayParams()
     {
+        // we expect an exception as we didn't use setParamTypes with an empty array
+        $this->expectException(BadRequestException::class);
         $queryStr = sprintf(
             'SELECT Name Location FROM `%s.%s` WHERE Age IN UNNEST(@ages)',
             self::$dataset->id(),
@@ -418,9 +420,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'ages' => []
         ]);
 
-        // we expect an exception as we didn't use setParamTypes with an empty array
-        $this->expectException(BadRequestException::class);
-        $results = self::$client->runQuery($query);
+        self::$client->runQuery($query);
     }
 
     public function testStartQueryWithNamedParameters()
