@@ -249,6 +249,32 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('publishMessage', $args, $expected);
     }
 
+    public function testPublishMessageWithPublishTime()
+    {
+        $messageData = '123';
+        $attributes = ['testing' => 123];
+        $message = new PubsubMessage([
+            'data' => $messageData,
+            'publish_time' => new Timestamp(['seconds' => 1685528173, 'nanos' => 569000000]),
+            'attributes' => $attributes
+        ]);
+
+        $args = [
+            'topic' => $this->topicName,
+            'messages' => [
+                [
+                    'data' => $messageData,
+                    'publishTime' => '2023-05-31T10:16:13.569+00:00',
+                    'attributes' => $attributes
+                ]
+            ]
+        ];
+
+        $expected = [$this->topicName, [$message], []];
+
+        $this->sendAndAssert('publishMessage', $args, $expected);
+    }
+
     public function testListSubscriptionsByTopic()
     {
         $args = ['topic' => $this->topicName] + $this->pageSize;
