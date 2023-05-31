@@ -22,13 +22,13 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    protected $key = '';
+    private $key = '';
     /**
      * Operator for NodeAffinity.
      *
      * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig.NodeAffinity.Operator operator = 2;</code>
      */
-    protected $operator = 0;
+    private $operator = 0;
     /**
      * Values for NodeAffinity.
      *
