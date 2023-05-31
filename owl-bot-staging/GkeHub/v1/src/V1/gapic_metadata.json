@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gkehub.v1",
+    "libraryPackage": "Google\\Cloud\\GkeHub\\V1",
+    "services": {
+        "GkeHub": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GkeHubGapicClient",
+                    "rpcs": {
+                        "CreateFeature": {
+                            "methods": [
+                                "createFeature"
+                            ]
+                        },
+                        "CreateMembership": {
+                            "methods": [
+                                "createMembership"
+                            ]
+                        },
+                        "DeleteFeature": {
+                            "methods": [
+                                "deleteFeature"
+                            ]
+                        },
+                        "DeleteMembership": {
+                            "methods": [
+                                "deleteMembership"
+                            ]
+                        },
+                        "GenerateConnectManifest": {
+                            "methods": [
+                                "generateConnectManifest"
+                            ]
+                        },
+                        "GetFeature": {
+                            "methods": [
+                                "getFeature"
+                            ]
+                        },
+                        "GetMembership": {
+                            "methods": [
+                                "getMembership"
+                            ]
+                        },
+                        "ListFeatures": {
+                            "methods": [
+                                "listFeatures"
+                            ]
+                        },
+                        "ListMemberships": {
+                            "methods": [
+                                "listMemberships"
+                            ]
+                        },
+                        "UpdateFeature": {
+                            "methods": [
+                                "updateFeature"
+                            ]
+                        },
+                        "UpdateMembership": {
+                            "methods": [
+                                "updateMembership"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
