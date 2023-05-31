@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.datafusion.v1",
+    "libraryPackage": "Google\\Cloud\\DataFusion\\V1",
+    "services": {
+        "DataFusion": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataFusionGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListAvailableVersions": {
+                            "methods": [
+                                "listAvailableVersions"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "RestartInstance": {
+                            "methods": [
+                                "restartInstance"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
