@@ -95,7 +95,8 @@ class BatchSnapshotTest extends TestCase
         $opts = [
             'index' => 'foo',
             'maxPartitions' => 10,
-            'partitionSizeBytes' => 1
+            'partitionSizeBytes' => 1,
+            'dataBoostEnabled' => true
         ];
 
         $this->connection->partitionRead(Argument::allOf(
@@ -106,6 +107,7 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('columns', $columns),
             Argument::withEntry('keySet', $keySet->keySetObject()),
             Argument::withEntry('index', $opts['index']),
+            Argument::withEntry('dataBoostEnabled', $opts['dataBoostEnabled']),
             Argument::withEntry('partitionOptions', [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
@@ -139,7 +141,8 @@ class BatchSnapshotTest extends TestCase
                 'foo' => 'bar'
             ],
             'maxPartitions' => 10,
-            'partitionSizeBytes' => 1
+            'partitionSizeBytes' => 1,
+            'dataBoostEnabled' => true
         ];
 
         $this->connection->partitionQuery(Argument::allOf(
@@ -149,6 +152,7 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
             Argument::withEntry('paramTypes', ['foo' => ['code' => 6]]),
+            Argument::withEntry('dataBoostEnabled', $opts['dataBoostEnabled']),
             Argument::withEntry('partitionOptions', [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
