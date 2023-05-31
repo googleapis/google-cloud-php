@@ -125,6 +125,8 @@ class BatchSnapshot implements TransactionalReadInterface
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
      *     @type string $index The name of an index on the table.
+     *     @type bool $dataBoostEnabled If set to `true`, the request will be
+     *           executed via Spanner independent compute resources.
      * }
      * @return ReadPartition[]
      */
@@ -185,6 +187,8 @@ class BatchSnapshot implements TransactionalReadInterface
      *           the type should be given as an array, where the first element
      *           is `Database::TYPE_ARRAY` and the second element is the
      *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     *     @type bool $dataBoostEnabled If set to `true`, the request will be
+     *           executed via Spanner independent compute resources.
      * }
      * @return QueryPartition[]
      */
