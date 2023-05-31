@@ -69,7 +69,7 @@ class ComponentTest extends TestCase
                 [
                     'id' => 'cloud-talent',
                     'apiVersions' => ['V4', 'V4beta1'],
-                    'protoPackage' => 'google/cloud/talent/v4/event_service.proto',
+                    'protoPackages' => ['google/cloud/talent/v4'],
                 ]
             ]
         ];

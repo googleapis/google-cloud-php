@@ -41,7 +41,7 @@ class ComponentInfoCommand extends Command
         'migration' => 'Migration',
         'php_namespaces' => 'Php Namespace(s)',
         'github_repo' => 'Github Repo',
-        'proto' => 'Proto',
+        'proto' => 'Proto Path(s)',
         'service_address' => 'Service Address',
         'description' => 'Description',
         'available_api_versions' => 'Availble API Versions',
@@ -134,7 +134,7 @@ class ComponentInfoCommand extends Command
             'migration' => $component->getMigrationStatus(),
             'php_namespaces' => implode(', ', $component->getNamespaces()),
             'github_repo' => $component->getRepoName(),
-            'proto' => $component->getProtoPackage(),
+            'proto' => implode("\n", $component->getProtoPackages()),
             'service_address' => implode(', ', $component->getServiceAddresses()),
             'description' => $component->getDescription(),
         ], $requestedFields));
