@@ -29,6 +29,21 @@ class UpdateDatabaseRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Firestore\Admin\V1\Database $database   Required. The database to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Firestore\Admin\V1\Database $database, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

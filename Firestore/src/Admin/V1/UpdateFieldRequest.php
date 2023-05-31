@@ -30,6 +30,19 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Firestore\Admin\V1\Field $field Required. The field to be updated.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Firestore\Admin\V1\Field $field): self
+    {
+        return (new self())
+            ->setField($field);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
