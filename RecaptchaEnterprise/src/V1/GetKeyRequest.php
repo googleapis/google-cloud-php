@@ -24,6 +24,21 @@ class GetKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the requested key, in the format
+     *                     "projects/{project}/keys/{key}". Please see
+     *                     {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

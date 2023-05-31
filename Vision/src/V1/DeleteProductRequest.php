@@ -25,6 +25,23 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of product to delete.
+     *
+     *                     Format is:
+     *                     `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     *                     Please see {@see ProductSearchClient::productName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\DeleteProductRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

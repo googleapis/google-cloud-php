@@ -57,6 +57,24 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $action_on_failed_primary_workers = 0;
 
     /**
+     * @param string                            $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     *                                                     belongs to.
+     * @param string                            $region    Required. The Dataproc region in which to handle the request.
+     * @param \Google\Cloud\Dataproc\V1\Cluster $cluster   Required. The cluster to create.
+     *
+     * @return \Google\Cloud\Dataproc\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, \Google\Cloud\Dataproc\V1\Cluster $cluster): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setCluster($cluster);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -36,6 +36,25 @@ class CreateGameServerClusterRequest extends \Google\Protobuf\Internal\Message
     private $game_server_cluster = null;
 
     /**
+     * @param string                                    $parent              Required. The parent resource name, in the following form:
+     *                                                                       `projects/{project}/locations/{location}/realms/{realm-id}`. Please see
+     *                                                                       {@see GameServerClustersServiceClient::realmName()} for help formatting this field.
+     * @param \Google\Cloud\Gaming\V1\GameServerCluster $gameServerCluster   Required. The game server cluster resource to be created.
+     * @param string                                    $gameServerClusterId Required. The ID of the game server cluster resource to be created.
+     *
+     * @return \Google\Cloud\Gaming\V1\CreateGameServerClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Gaming\V1\GameServerCluster $gameServerCluster, string $gameServerClusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGameServerCluster($gameServerCluster)
+            ->setGameServerClusterId($gameServerClusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

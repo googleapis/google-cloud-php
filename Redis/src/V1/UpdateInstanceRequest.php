@@ -38,6 +38,30 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param \Google\Protobuf\FieldMask      $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                                                    this field. The elements of the repeated paths field may only include these
+     *                                                    fields from [Instance][google.cloud.redis.v1.Instance]:
+     *
+     *                                                    *   `displayName`
+     *                                                    *   `labels`
+     *                                                    *   `memorySizeGb`
+     *                                                    *   `redisConfig`
+     *                                                    *   `replica_count`
+     * @param \Google\Cloud\Redis\V1\Instance $instance   Required. Update description.
+     *                                                    Only fields specified in update_mask are updated.
+     *
+     * @return \Google\Cloud\Redis\V1\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Protobuf\FieldMask $updateMask, \Google\Cloud\Redis\V1\Instance $instance): self
+    {
+        return (new self())
+            ->setUpdateMask($updateMask)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

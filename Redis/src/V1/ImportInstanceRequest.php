@@ -31,6 +31,23 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
     private $input_config = null;
 
     /**
+     * @param string                             $name        Required. Redis instance resource name using the form:
+     *                                                        `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                                        where `location_id` refers to a GCP region.
+     * @param \Google\Cloud\Redis\V1\InputConfig $inputConfig Required. Specify data to be imported.
+     *
+     * @return \Google\Cloud\Redis\V1\ImportInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Redis\V1\InputConfig $inputConfig): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setInputConfig($inputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

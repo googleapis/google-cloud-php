@@ -32,6 +32,23 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Document $document   Required. The document to update.
+     * @param \Google\Protobuf\FieldMask           $updateMask Optional. Not specified means `update all`.
+     *                                                         Currently, only `display_name` can be updated, an InvalidArgument will be
+     *                                                         returned for attempting to update other fields.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Document $document, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

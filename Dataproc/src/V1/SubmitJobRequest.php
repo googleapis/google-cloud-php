@@ -51,6 +51,24 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                        $projectId Required. The ID of the Google Cloud Platform project that the job
+     *                                                 belongs to.
+     * @param string                        $region    Required. The Dataproc region in which to handle the request.
+     * @param \Google\Cloud\Dataproc\V1\Job $job       Required. The job resource.
+     *
+     * @return \Google\Cloud\Dataproc\V1\SubmitJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, \Google\Cloud\Dataproc\V1\Job $job): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

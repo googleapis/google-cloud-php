@@ -62,6 +62,21 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The queue name. For example:
+     *                       `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *                       Please see {@see CloudTasksClient::queueName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Tasks\V2\ListTasksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

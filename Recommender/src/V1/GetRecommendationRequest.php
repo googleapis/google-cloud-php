@@ -23,6 +23,20 @@ class GetRecommendationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the recommendation. Please see
+     *                     {@see RecommenderClient::recommendationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Recommender\V1\GetRecommendationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

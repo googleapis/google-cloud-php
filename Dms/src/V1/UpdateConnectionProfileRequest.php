@@ -56,6 +56,22 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $skip_validation = false;
 
     /**
+     * @param \Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile Required. The connection profile parameters to update.
+     * @param \Google\Protobuf\FieldMask                  $updateMask        Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                                       update in the conversion workspace resource.
+     *
+     * @return \Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConnectionProfile($connectionProfile)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

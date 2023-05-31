@@ -52,6 +52,24 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $skip_validation = false;
 
     /**
+     * @param string                                      $parent              Required. The parent that owns the collection of PrivateConnections. Please see
+     *                                                                         {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\CloudDms\V1\PrivateConnection $privateConnection   Required. The private connection resource to create.
+     * @param string                                      $privateConnectionId Required. The private connection identifier.
+     *
+     * @return \Google\Cloud\CloudDms\V1\CreatePrivateConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\CloudDms\V1\PrivateConnection $privateConnection, string $privateConnectionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPrivateConnection($privateConnection)
+            ->setPrivateConnectionId($privateConnectionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -37,6 +37,24 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     private $transaction = '';
 
     /**
+     * @param string                             $database Required. The database name. In the format:
+     *                                                     `projects/{project_id}/databases/{database_id}`.
+     * @param \Google\Cloud\Firestore\V1\Write[] $writes   The writes to apply.
+     *
+     *                                                     Always executed atomically and in order.
+     *
+     * @return \Google\Cloud\Firestore\V1\CommitRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database, array $writes): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setWrites($writes);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

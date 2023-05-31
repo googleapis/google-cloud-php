@@ -52,6 +52,20 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent that owns the collection of connection profiles. Please see
+     *                       {@see DatastreamClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\ListConnectionProfilesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

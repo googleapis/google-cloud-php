@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'FetchReportResults' => [
                 'pageStreaming' => [
@@ -21,6 +30,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getRows',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Channel\V1\FetchReportResultsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'report_job',
+                        'fieldAccessors' => [
+                            'getReportJob',
+                        ],
+                    ],
                 ],
             ],
             'ListReports' => [
@@ -32,6 +51,20 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getReports',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Channel\V1\ListReportsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'report' => 'accounts/{account}/reports/{report}',
+                'reportJob' => 'accounts/{account}/reportJobs/{report_job}',
             ],
         ],
     ],

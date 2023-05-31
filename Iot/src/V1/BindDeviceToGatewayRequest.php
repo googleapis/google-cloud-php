@@ -39,6 +39,28 @@ class BindDeviceToGatewayRequest extends \Google\Protobuf\Internal\Message
     private $device_id = '';
 
     /**
+     * @param string $parent    Required. The name of the registry. For example,
+     *                          `projects/example-project/locations/us-central1/registries/my-registry`. Please see
+     *                          {@see DeviceManagerClient::registryName()} for help formatting this field.
+     * @param string $gatewayId Required. The value of `gateway_id` can be either the device numeric ID or the
+     *                          user-defined device identifier.
+     * @param string $deviceId  Required. The device to associate with the specified gateway. The value of
+     *                          `device_id` can be either the device numeric ID or the user-defined device
+     *                          identifier.
+     *
+     * @return \Google\Cloud\Iot\V1\BindDeviceToGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $gatewayId, string $deviceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGatewayId($gatewayId)
+            ->setDeviceId($deviceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,19 @@ class UpdateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     private $customer_repricing_config = null;
 
     /**
+     * @param \Google\Cloud\Channel\V1\CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
+     *
+     * @return \Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Channel\V1\CustomerRepricingConfig $customerRepricingConfig): self
+    {
+        return (new self())
+            ->setCustomerRepricingConfig($customerRepricingConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

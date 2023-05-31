@@ -27,6 +27,24 @@ class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Int
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the custom module to get. Its format is
+     *                     "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                     "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                     or
+     *                     "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     *                     Please see {@see SecurityCenterClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\GetSecurityHealthAnalyticsCustomModuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

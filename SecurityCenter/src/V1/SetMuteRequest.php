@@ -34,6 +34,28 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
     private $mute = 0;
 
     /**
+     * @param string $name Required. The [relative resource
+     *                     name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                     of the finding. Example:
+     *                     "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *                     "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *                     "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
+     *                     {@see SecurityCenterClient::findingName()} for help formatting this field.
+     * @param int    $mute Required. The desired state of the Mute.
+     *                     For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SetMuteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $mute): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setMute($mute);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

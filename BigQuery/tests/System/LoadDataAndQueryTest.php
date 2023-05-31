@@ -21,6 +21,7 @@ use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Timestamp;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
 use GuzzleHttp\Psr7\Utils;
 
@@ -368,6 +369,58 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         ];
 
         $this->assertEquals($expectedRows, $actualRows);
+    }
+
+    public function testRunQueryWithEmptyPositionalArrayParams()
+    {
+        $queryStr = sprintf(
+            'SELECT Name Location FROM `%s.%s` WHERE Age IN UNNEST(?)',
+            self::$dataset->id(),
+            self::$table->id()
+        );
+
+        $query = self::$client->query($queryStr)->parameters([
+            []
+        ])->setParamTypes(['INT64']);
+        $results = self::$client->runQuery($query);
+        $actualRows = iterator_to_array($results->rows());
+        $this->assertEquals(0, count($actualRows));
+
+
+        // Test the same w/o the call to setParamTypes
+        $query = self::$client->query($queryStr)->parameters([
+            []
+        ]);
+
+        // we expect an exception as we didn't use setParamTypes with an empty array
+        $this->expectException(BadRequestException::class);
+        $results = self::$client->runQuery($query);
+    }
+
+    public function testRunQueryWithEmptyNamedArrayParams()
+    {
+        // we expect an exception as we didn't use setParamTypes with an empty array
+        $this->expectException(BadRequestException::class);
+        $queryStr = sprintf(
+            'SELECT Name Location FROM `%s.%s` WHERE Age IN UNNEST(@ages)',
+            self::$dataset->id(),
+            self::$table->id()
+        );
+
+        $query = self::$client->query($queryStr)->parameters([
+            'ages' => []
+        ])->setParamTypes(['ages' => 'INT64']);
+        $results = self::$client->runQuery($query);
+        $actualRows = iterator_to_array($results->rows());
+        $this->assertEquals(0, count($actualRows));
+
+
+        // Test the same w/o the call to setParamTypes
+        $query = self::$client->query($queryStr)->parameters([
+            'ages' => []
+        ]);
+
+        self::$client->runQuery($query);
     }
 
     public function testStartQueryWithNamedParameters()

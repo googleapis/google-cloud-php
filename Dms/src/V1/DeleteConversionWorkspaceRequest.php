@@ -33,6 +33,20 @@ class DeleteConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. Name of the conversion workspace resource to delete. Please see
+     *                     {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\DeleteConversionWorkspaceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

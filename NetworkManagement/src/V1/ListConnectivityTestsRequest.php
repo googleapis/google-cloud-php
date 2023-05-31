@@ -63,6 +63,20 @@ class ListConnectivityTestsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent resource of the Connectivity Tests:
+     *                       `projects/{project_id}/locations/global`
+     *
+     * @return \Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

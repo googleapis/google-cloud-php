@@ -41,6 +41,31 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     private $reference_image_id = '';
 
     /**
+     * @param string                                 $parent           Required. Resource name of the product in which to create the reference image.
+     *
+     *                                                                 Format is
+     *                                                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+     *                                                                 {@see ProductSearchClient::productName()} for help formatting this field.
+     * @param \Google\Cloud\Vision\V1\ReferenceImage $referenceImage   Required. The reference image to create.
+     *                                                                 If an image ID is specified, it is ignored.
+     * @param string                                 $referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set,
+     *                                                                 the server will attempt to use this value as the resource id. If it is
+     *                                                                 already in use, an error is returned with code ALREADY_EXISTS. Must be at
+     *                                                                 most 128 characters long. It cannot contain the character `/`.
+     *
+     * @return \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Vision\V1\ReferenceImage $referenceImage, string $referenceImageId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setReferenceImage($referenceImage)
+            ->setReferenceImageId($referenceImageId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

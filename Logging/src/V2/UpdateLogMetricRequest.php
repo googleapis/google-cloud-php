@@ -33,6 +33,28 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
     private $metric = null;
 
     /**
+     * @param string                             $metricName Required. The resource name of the metric to update:
+     *
+     *                                                       "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *
+     *                                                       The updated metric must be provided in the request and it's
+     *                                                       `name` field must be the same as `[METRIC_ID]` If the metric
+     *                                                       does not exist in `[PROJECT_ID]`, then a new metric is created. Please see
+     *                                                       {@see MetricsServiceV2Client::logMetricName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogMetric $metric     Required. The updated metric.
+     *
+     * @return \Google\Cloud\Logging\V2\UpdateLogMetricRequest
+     *
+     * @experimental
+     */
+    public static function build(string $metricName, \Google\Cloud\Logging\V2\LogMetric $metric): self
+    {
+        return (new self())
+            ->setMetricName($metricName)
+            ->setMetric($metric);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

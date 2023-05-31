@@ -23,6 +23,20 @@ class SendNotificationChannelVerificationCodeRequest extends \Google\Protobuf\In
     private $name = '';
 
     /**
+     * @param string $name Required. The notification channel to which to send a verification code. Please see
+     *                     {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\SendNotificationChannelVerificationCodeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

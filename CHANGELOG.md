@@ -1,5 +1,145 @@
 # Changelog
 
+## 0.206.0
+
+<details><summary>google/cloud-ai-platform 0.17.0</summary>
+
+
+
+### Features
+
+* Add match service in aiplatform v1 ([#6228](https://github.com/googleapis/google-cloud-php/issues/6228)) ([e55a092](https://github.com/googleapis/google-cloud-php/commit/e55a092d8a9d2f59ed9339cc622cdbebe26f9915))
+
+</details>
+
+<details><summary>google/analytics-admin 0.14.0</summary>
+
+
+
+### Features
+
+* Add `AdSenseLink` type to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `audience`, `event_create_rule` fields to the `ChangeHistoryResource.resource` oneof field ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `AUDIENCE`, `EVENT_CREATE_RULE` options to the `ChangeHistoryResourceType` enum ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `CreateEventCreateRule`, `UpdateEventCreateRule`,`DeleteEventCreateRule`, `ListEventCreateRules` methods to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `EventCreateRule`, `MatchingCondition` types to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `FetchConnectedGa4Property` method to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `GetAdSenseLink`, `CreateAdSenseLink`, `DeleteAdSenseLink`, `ListAdSenseLinks` methods to the Admin API v1alpha ([#6222](https://github.com/googleapis/google-cloud-php/issues/6222)) ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+
+</details>
+
+<details><summary>google/cloud-batch 0.7.0</summary>
+
+
+
+### Features
+
+* Add support for placement policies ([#6231](https://github.com/googleapis/google-cloud-php/issues/6231)) ([a5e03eb](https://github.com/googleapis/google-cloud-php/commit/a5e03eb347bab6f4cdb12d9562102398834b2264))
+* Per-Runnable labels ([a5e03eb](https://github.com/googleapis/google-cloud-php/commit/a5e03eb347bab6f4cdb12d9562102398834b2264))
+
+</details>
+
+<details><summary>google/cloud-channel 1.4.0</summary>
+
+
+
+### Features
+
+* Added partition_keys field to filter results from FetchReportResults ([#6227](https://github.com/googleapis/google-cloud-php/issues/6227)) ([fd42477](https://github.com/googleapis/google-cloud-php/commit/fd424774de1dd9b21c38b110588e7ccd59b9f869))
+
+
+### Documentation
+
+* Change references from GCP to Google Cloud ([fd42477](https://github.com/googleapis/google-cloud-php/commit/fd424774de1dd9b21c38b110588e7ccd59b9f869))
+
+</details>
+
+<details><summary>google/cloud-container 1.13.1</summary>
+
+
+
+### Documentation
+
+* Clarified release channel defaulting behavior for create cluster requests when release channel is unspecified ([#6233](https://github.com/googleapis/google-cloud-php/issues/6233)) ([18c4755](https://github.com/googleapis/google-cloud-php/commit/18c475523d78fc25b6511e96c7a101a1d9fb76a1))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.8.0 ([#6220](https://github.com/googleapis/google-cloud-php/issues/6220)) ([a24654d](https://github.com/googleapis/google-cloud-php/commit/a24654d026cb602bb6fb2cc0ea1e125294801db3))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* Fix the field name typo for search service user_labels ([#6232](https://github.com/googleapis/google-cloud-php/issues/6232)) ([9361d63](https://github.com/googleapis/google-cloud-php/commit/9361d630530c2c3f8be5c7cc9211dc5eaf12f630))
+
+</details>
+
+<details><summary>google/cloud-dms 1.1.0</summary>
+
+
+
+### Features
+
+* Add Oracle to PostgreSQL migration APIs ([#6237](https://github.com/googleapis/google-cloud-php/issues/6237)) ([1a931d2](https://github.com/googleapis/google-cloud-php/commit/1a931d26e9ddbd931b73b486657b9eaa94694442))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.33.0</summary>
+
+
+
+### Features
+
+* Add ApiScope and COLLECTION_RECURSIVE query_scope for Firestore index ([#6236](https://github.com/googleapis/google-cloud-php/issues/6236)) ([cb902e9](https://github.com/googleapis/google-cloud-php/commit/cb902e9d4de741f9ac2b0ce6911b851117e59626))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* Add missing protos to PHP assembly ([#6240](https://github.com/googleapis/google-cloud-php/issues/6240)) ([e51616e](https://github.com/googleapis/google-cloud-php/commit/e51616eb10b22c3c8ffe8cb572d9f54f567f39dc))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **docs:** Fix reference docs for new clients ([#6226](https://github.com/googleapis/google-cloud-php/issues/6226)) ([0e3418d](https://github.com/googleapis/google-cloud-php/commit/0e3418d1d0bececf4a66da0cdbd42bf3837c3ad4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.42.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.3.0</summary>
+
+
+
+### Features
+
+* Add SubmitUri endpoint ([#6239](https://github.com/googleapis/google-cloud-php/issues/6239)) ([4ba0217](https://github.com/googleapis/google-cloud-php/commit/4ba0217a3cf0d452734f39a32f78336a06359b13))
+
+</details>
+
 ## 0.205.0
 
 <details><summary>google/cloud-api-keys 0.2.0</summary>

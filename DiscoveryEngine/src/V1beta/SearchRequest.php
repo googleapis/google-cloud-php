@@ -117,9 +117,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $boost_spec = null;
     /**
      * Additional search parameters.
-     * For
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1beta.IndustryVertical.SITE_SEARCH]
-     * vertical, supported values are:
+     * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
      * * `search_type`: double. Default empty. Enables non-webpage searching
@@ -256,9 +254,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Boost specification to boost certain documents.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional search parameters.
-     *           For
-     *           [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1beta.IndustryVertical.SITE_SEARCH]
-     *           vertical, supported values are:
+     *           For public website search only, supported values are:
      *           * `user_country_code`: string. Default empty. If set to non-empty, results
      *              are restricted or boosted based on the location provided.
      *           * `search_type`: double. Default empty. Enables non-webpage searching
@@ -683,9 +679,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional search parameters.
-     * For
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1beta.IndustryVertical.SITE_SEARCH]
-     * vertical, supported values are:
+     * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
      * * `search_type`: double. Default empty. Enables non-webpage searching
@@ -702,9 +696,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional search parameters.
-     * For
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1beta.IndustryVertical.SITE_SEARCH]
-     * vertical, supported values are:
+     * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
      * * `search_type`: double. Default empty. Enables non-webpage searching

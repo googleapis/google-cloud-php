@@ -38,6 +38,24 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\Finding $finding Required. The finding resource to update or create if it does not already
+     *                                                         exist. parent, security_marks, and update_time will be ignored.
+     *
+     *                                                         In the case of creation, the finding id portion of the name must be
+     *                                                         alphanumeric and less than or equal to 32 characters and greater than 0
+     *                                                         characters in length.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateFindingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\Finding $finding): self
+    {
+        return (new self())
+            ->setFinding($finding);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

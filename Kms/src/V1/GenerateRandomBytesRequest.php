@@ -41,6 +41,29 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
     private $protection_level = 0;
 
     /**
+     * @param string $location        The project-specific location in which to generate random bytes.
+     *                                For example, "projects/my-project/locations/us-central1".
+     * @param int    $lengthBytes     The length in bytes of the amount of randomness to retrieve.  Minimum 8
+     *                                bytes, maximum 1024 bytes.
+     * @param int    $protectionLevel The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     *                                generating the random data. Currently, only
+     *                                [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     *                                supported.
+     *                                For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\ProtectionLevel}
+     *
+     * @return \Google\Cloud\Kms\V1\GenerateRandomBytesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $location, int $lengthBytes, int $protectionLevel): self
+    {
+        return (new self())
+            ->setLocation($location)
+            ->setLengthBytes($lengthBytes)
+            ->setProtectionLevel($protectionLevel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

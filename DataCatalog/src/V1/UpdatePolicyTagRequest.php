@@ -35,6 +35,20 @@ class UpdatePolicyTagRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\PolicyTag $policyTag The policy tag to update. You can update only its description, display
+     *                                                          name, and parent policy tag fields.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdatePolicyTagRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\PolicyTag $policyTag): self
+    {
+        return (new self())
+            ->setPolicyTag($policyTag);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

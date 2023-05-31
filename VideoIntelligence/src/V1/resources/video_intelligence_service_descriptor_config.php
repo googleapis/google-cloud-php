@@ -12,6 +12,7 @@ return [
                     'maxPollDelayMillis' => '45000',
                     'totalPollTimeoutMillis' => '86400000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
             ],
         ],
     ],

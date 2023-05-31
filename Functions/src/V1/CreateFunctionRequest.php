@@ -30,6 +30,23 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
     private $function = null;
 
     /**
+     * @param string                                   $location Required. The project and location in which the function should be created,
+     *                                                           specified in the format `projects/&#42;/locations/*`
+     *                                                           Please see {@see CloudFunctionsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Functions\V1\CloudFunction $function Required. Function to be created.
+     *
+     * @return \Google\Cloud\Functions\V1\CreateFunctionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $location, \Google\Cloud\Functions\V1\CloudFunction $function): self
+    {
+        return (new self())
+            ->setLocation($location)
+            ->setFunction($function);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

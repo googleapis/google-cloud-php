@@ -40,6 +40,22 @@ class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The name of the parent in which to list the notification
+     *                       configurations. Its format is "organizations/[organization_id]",
+     *                       "folders/[folder_id]", or "projects/[project_id]". Please see
+     *                       {@see SecurityCenterClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

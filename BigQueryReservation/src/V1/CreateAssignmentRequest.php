@@ -42,6 +42,23 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
     private $assignment_id = '';
 
     /**
+     * @param string                                           $parent     Required. The parent resource name of the assignment
+     *                                                                     E.g. `projects/myproject/locations/US/reservations/team1-prod`
+     *                                                                     Please see {@see ReservationServiceClient::reservationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment Assignment resource to create.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAssignment($assignment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

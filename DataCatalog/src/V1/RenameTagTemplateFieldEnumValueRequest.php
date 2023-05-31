@@ -31,6 +31,23 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
     private $new_enum_value_display_name = '';
 
     /**
+     * @param string $name                    Required. The name of the enum field value. Please see
+     *                                        {@see DataCatalogClient::tagTemplateFieldEnumValueName()} for help formatting this field.
+     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example,
+     *                                        `my_new_enum_value`.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $newEnumValueDisplayName): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNewEnumValueDisplayName($newEnumValueDisplayName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -32,6 +32,24 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     private $document = null;
 
     /**
+     * @param string                               $parent   Required. The knowledge base to create a document for.
+     *                                                       Format: `projects/<Project ID>/locations/<Location
+     *                                                       ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                                                       {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Document $document Required. The document to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Document $document): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDocument($document);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

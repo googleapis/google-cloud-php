@@ -41,6 +41,31 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
     private $entry = null;
 
     /**
+     * @param string                             $parent  Required. The name of the entry group this entry belongs to.
+     *
+     *                                                    Note: The entry itself and its child resources might not be stored in
+     *                                                    the location specified in its name. Please see
+     *                                                    {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+     * @param string                             $entryId Required. The ID of the entry to create.
+     *
+     *                                                    The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *                                                    and underscores (_).
+     *                                                    The maximum size is 64 bytes when encoded in UTF-8.
+     * @param \Google\Cloud\DataCatalog\V1\Entry $entry   Required. The entry to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateEntryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $entryId, \Google\Cloud\DataCatalog\V1\Entry $entry): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntryId($entryId)
+            ->setEntry($entry);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

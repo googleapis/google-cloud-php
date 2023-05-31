@@ -41,6 +41,8 @@ use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
 use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\ModerateTextRequest;
+use Google\Cloud\Language\V1\ModerateTextResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -449,6 +451,68 @@ class LanguageServiceClientTest extends GeneratedTest
             ->setDocument($document);
         try {
             $gapicClient->classifyText($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moderateTextTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ModerateTextResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $document = new Document();
+        $request = (new ModerateTextRequest())
+            ->setDocument($document);
+        $response = $gapicClient->moderateText($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/ModerateText', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDocument();
+        $this->assertProtobufEquals($document, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moderateTextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $document = new Document();
+        $request = (new ModerateTextRequest())
+            ->setDocument($document);
+        try {
+            $gapicClient->moderateText($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

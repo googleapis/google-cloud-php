@@ -43,6 +43,29 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                       * For `projects.regions.workflowTemplates,list`, the resource
+     *                       name of the region has the following format:
+     *                       `projects/{project_id}/regions/{region}`
+     *
+     *                       * For `projects.locations.workflowTemplates.list`, the
+     *                       resource name of the location has the following format:
+     *                       `projects/{project_id}/locations/{location}`
+     *                       Please see {@see WorkflowTemplateServiceClient::regionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListWorkflowTemplatesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

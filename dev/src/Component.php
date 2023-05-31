@@ -184,7 +184,7 @@ class Component
         $components = $this->getComponentNames();
 
         if (!in_array($component, $components)) {
-            throw new \Exception('Invalid component name provided');
+            throw new \Exception('Invalid component name provided: ' . $component);
         }
 
         $componentPath = realpath(self::ROOT_DIR . '/' . $component);

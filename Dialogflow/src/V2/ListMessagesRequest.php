@@ -51,6 +51,22 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the conversation to list messages for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>`
+     *                       Please see {@see ConversationsClient::conversationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListMessagesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

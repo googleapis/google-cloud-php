@@ -1,0 +1,2860 @@
+<?xml version="1.0"?>
+<project name="Documentation">
+                <file path="V1/Client/BaseClient/ImageAnnotatorBaseClient.php" hash="a71510c5a6e6b6f30c9a0c47ca42a9be">
+            <docblock line="0">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+
+
+                            <namespace-alias name="\Google\Cloud\Vision\V1\Client\BaseClient"/>
+
+
+
+
+
+                                        <class final="false" abstract="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="74">
+                    <name>ImageAnnotatorBaseClient</name>
+                    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</full_name>
+                    <docblock line="74">
+    <description>Service Description: Service that performs Google Cloud Vision API detection tasks over client
+images, such as face, landmark, logo, label, and text detection. The
+ImageAnnotator service returns detected entities from the images.</description>
+    <long-description>This class provides the ability to make remote calls to the backing service through method
+calls that map to API methods.
+
+Many parameters require resource names to be formatted in a particular way. To
+assist with these names, this class includes a format method for each type of
+name, and additionally a parseName method to extract the individual identifiers
+contained within formatted names that are returned by the API.
+
+This class is currently experimental and may be subject to changes.</long-description>
+                    <tag
+                name="experimental"
+                description=""
+                                                                                                />
+                            <tag
+                name="internal"
+                description=""
+                                                                                                />
+                            <tag
+                name="method"
+                description=""
+                                                                                 method_name="asyncBatchAnnotateFilesAsync"                />
+                <tag
+                name="method"
+                description=""
+                                                                                 method_name="asyncBatchAnnotateImagesAsync"                />
+                <tag
+                name="method"
+                description=""
+                                                                                 method_name="batchAnnotateFilesAsync"                />
+                <tag
+                name="method"
+                description=""
+                                                                                 method_name="batchAnnotateImagesAsync"                />
+                            <tag
+                name="package"
+                description="Application"
+                                                                                                />
+                        </docblock>
+
+
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="80" visibility="private">
+    <name>SERVICE_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::SERVICE_NAME</full_name>
+    <value>&#039;google.cloud.vision.v1.ImageAnnotator&#039;</value>
+        <docblock line="80">
+    <description>The name of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="83" visibility="private">
+    <name>SERVICE_ADDRESS</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::SERVICE_ADDRESS</full_name>
+    <value>&#039;vision.googleapis.com&#039;</value>
+        <docblock line="83">
+    <description>The default address of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="86" visibility="private">
+    <name>DEFAULT_SERVICE_PORT</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::DEFAULT_SERVICE_PORT</full_name>
+    <value>443</value>
+        <docblock line="86">
+    <description>The default port of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="89" visibility="private">
+    <name>CODEGEN_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::CODEGEN_NAME</full_name>
+    <value>&#039;gapic&#039;</value>
+        <docblock line="89">
+    <description>The name of the code generator, to be included in the agent header.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="92" visibility="public">
+    <name>serviceScopes</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::$serviceScopes</full_name>
+    <default>[&#039;https://www.googleapis.com/auth/cloud-platform&#039;, &#039;https://www.googleapis.com/auth/cloud-vision&#039;]</default>
+        <docblock line="92">
+    <description>The default scopes required by the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="97" visibility="private">
+    <name>operationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::$operationsClient</full_name>
+    <default></default>
+        <docblock line="97">
+    <description></description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="99" visibility="private" returnByReference="false">
+    <name>getClientDefaults</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::getClientDefaults()</full_name>
+    <value></value>
+            <docblock line="99">
+    <description></description>
+    <long-description></long-description>
+                </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="123" visibility="public" returnByReference="false">
+    <name>getOperationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::getOperationsClient()</full_name>
+    <value></value>
+            <docblock line="123">
+    <description>Return an OperationsClient object with the same endpoint as $this.</description>
+    <long-description></long-description>
+                    <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\LongRunning\OperationsClient"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="139" visibility="public" returnByReference="false">
+    <name>resumeOperation</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::resumeOperation()</full_name>
+    <value></value>
+                <argument line="139" by_reference="false">
+    <name>operationName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="139" by_reference="false">
+    <name>methodName</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="139">
+    <description>Resume an existing long running operation that was previously started by a long
+running API method. If $methodName is not provided, or does not match a long
+running API method, then the operation can still be resumed, but the
+OperationResponse object will not deserialize the final response.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="The name of the long running operation"
+                                                                 variable="operationName"                                 type="string"/>
+                <tag
+                name="param"
+                description="The name of the method used to start the operation"
+                                                                 variable="methodName"                                 type="string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="157" visibility="public" returnByReference="false">
+    <name>productSetName</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::productSetName()</full_name>
+    <value></value>
+                <argument line="157" by_reference="false">
+    <name>project</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="157" by_reference="false">
+    <name>location</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="157" by_reference="false">
+    <name>productSet</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+        <docblock line="157">
+    <description>Formats a string containing the fully-qualified path to represent a product_set
+resource.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="project"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="location"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="productSet"                                 type="string"/>
+                            <tag
+                name="return"
+                description="The formatted product_set resource."
+                                                                                                 type="string"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="185" visibility="public" returnByReference="false">
+    <name>parseName</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::parseName()</full_name>
+    <value></value>
+                <argument line="185" by_reference="false">
+    <name>formattedName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="185" by_reference="false">
+    <name>template</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="185">
+    <description>Parses a formatted name string and returns an associative array of the components in the name.</description>
+    <long-description>The following name formats are supported:
+Template: Pattern
+- productSet: projects/{project}/locations/{location}/productSets/{product_set}
+
+The optional $template argument can be supplied to specify a particular pattern,
+and must match one of the templates listed above. If no $template argument is
+provided, or if the $template argument does not match one of the templates
+listed, then parseName will check each of the supported templates, and return
+the first match.</long-description>
+                    <tag
+                name="param"
+                description="The formatted name string"
+                                                                 variable="formattedName"                                 type="string"/>
+                <tag
+                name="param"
+                description="Optional name of template to match"
+                                                                 variable="template"                                 type="string"/>
+                            <tag
+                name="return"
+                description="An associative array from name component IDs to component values."
+                                                                                                 type="array"/>
+                            <tag
+                name="throws"
+                description="If $formattedName could not be matched."
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="244" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::__construct()</full_name>
+    <value></value>
+                <argument line="244" by_reference="false">
+    <name>options</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="244">
+    <description>Constructor.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="{&#10;    Optional. Options for configuring the service API wrapper.&#10;&#10;    @type string $apiEndpoint&#10;          The address of the API remote host. May optionally include the port, formatted&#10;          as &quot;&lt;uri&gt;:&lt;port&gt;&quot;. Default &#039;vision.googleapis.com:443&#039;.&#10;    @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials&#10;          The credentials to be used by the client to authorize API calls. This option&#10;          accepts either a path to a credentials file, or a decoded credentials file as a&#10;          PHP array.&#10;          *Advanced usage*: In addition, this option can also accept a pre-constructed&#10;          {@see \Google\Auth\FetchAuthTokenInterface} object or&#10;          {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these&#10;          objects are provided, any settings in $credentialsConfig will be ignored.&#10;    @type array $credentialsConfig&#10;          Options used to configure credentials, including auth token caching, for the&#10;          client. For a full list of supporting configuration options, see&#10;          {@see \Google\ApiCore\CredentialsWrapper::build()} .&#10;    @type bool $disableRetries&#10;          Determines whether or not retries defined by the client configuration should be&#10;          disabled. Defaults to `false`.&#10;    @type string|array $clientConfig&#10;          Client method configuration, including retry settings. This option can be either&#10;          a path to a JSON file, or a PHP array containing the decoded JSON data. By&#10;          default this settings points to the default client config file, which is&#10;          provided in the resources folder.&#10;    @type string|TransportInterface $transport&#10;          The transport used for executing network requests. May be either the string&#10;          `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.&#10;          *Advanced usage*: Additionally, it is possible to pass in an already&#10;          instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note&#10;          that when this object is provided, any settings in $transportConfig, and any&#10;          $apiEndpoint setting, will be ignored.&#10;    @type array $transportConfig&#10;          Configuration options that will be used to construct the transport. Options for&#10;          each supported transport type should be passed in a key for that transport. For&#10;          example:&#10;          $transportConfig = [&#10;              &#039;grpc&#039; =&gt; [...],&#10;              &#039;rest&#039; =&gt; [...],&#10;          ];&#10;          See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and&#10;          {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the&#10;          supported options.&#10;    @type callable $clientCertSource&#10;          A callable which returns the client cert as a string. This can be used to&#10;          provide a certificate and private key to the transport layer for mTLS.&#10;}"
+                                                                 variable="options"                                 type="array"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="252" visibility="public" returnByReference="false">
+    <name>__call</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::__call()</full_name>
+    <value></value>
+                <argument line="252" by_reference="false">
+    <name>method</name>
+    <default></default>
+    <type>mixed</type>
+</argument>
+
+            <argument line="252" by_reference="false">
+    <name>args</name>
+    <default></default>
+    <type>mixed</type>
+</argument>
+
+        <docblock line="252">
+    <description>Handles execution of the async variants for each documented method.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="286" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::asyncBatchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="286" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</type>
+</argument>
+
+            <argument line="286" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="286">
+    <description>Run asynchronous image detection and annotation for a list of generic
+files, such as PDF files, which may contain multiple pages and multiple
+images per page. Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.</description>
+    <long-description>`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::asyncBatchAnnotateFilesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="318" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::asyncBatchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="318" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</type>
+</argument>
+
+            <argument line="318" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="318">
+    <description>Run asynchronous image detection and annotation for a list of images.</description>
+    <long-description>Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.
+`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+This service will write image annotation outputs to json files in customer
+GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::asyncBatchAnnotateImagesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="348" visibility="public" returnByReference="false">
+    <name>batchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::batchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="348" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</type>
+</argument>
+
+            <argument line="348" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="348">
+    <description>Service that performs image detection and annotation for a batch of files.</description>
+    <long-description>Now only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported.
+
+This service will extract at most 5 (customers can specify which 5 in
+AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+file provided and perform detection and annotation for each image
+extracted.
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::batchAnnotateFilesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="372" visibility="public" returnByReference="false">
+    <name>batchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::batchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="372" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest</type>
+</argument>
+
+            <argument line="372" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="372">
+    <description>Run image detection and annotation for a batch of images.</description>
+    <long-description>The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::batchAnnotateImagesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                                        </class>
+
+
+
+            <parse_markers></parse_markers>
+        </file>
+<file path="V1/Client/ImageAnnotatorClient.php" hash="26b34af8b1ac316fa3b6dd5b1566b14f">
+            <docblock line="0">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+
+
+                            <namespace-alias name="\Google\Cloud\Vision\V1\Client"/>
+
+
+
+
+
+                                        <class final="true" abstract="false" namespace="\Google\Cloud\Vision\V1\Client" line="36">
+                    <name>ImageAnnotatorClient</name>
+                    <full_name>\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient</full_name>
+                    <docblock line="36">
+    <description>Service Description: Service that performs Google Cloud Vision API detection tasks over client
+images, such as face, landmark, logo, label, and text detection. The
+ImageAnnotator service returns detected entities from the images.</description>
+    <long-description>This class is currently experimental and may be subject to changes.</long-description>
+                    <tag
+                name="experimental"
+                description=""
+                                                                                                />
+                            <tag
+                name="package"
+                description="Application"
+                                                                                                />
+                        </docblock>
+
+                                            <extends>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</extends>
+
+                                                                <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="80" visibility="private">
+    <name>SERVICE_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::SERVICE_NAME</full_name>
+    <value>&#039;google.cloud.vision.v1.ImageAnnotator&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="80">
+    <description>The name of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="83" visibility="private">
+    <name>SERVICE_ADDRESS</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::SERVICE_ADDRESS</full_name>
+    <value>&#039;vision.googleapis.com&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="83">
+    <description>The default address of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="86" visibility="private">
+    <name>DEFAULT_SERVICE_PORT</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::DEFAULT_SERVICE_PORT</full_name>
+    <value>443</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="86">
+    <description>The default port of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="89" visibility="private">
+    <name>CODEGEN_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::CODEGEN_NAME</full_name>
+    <value>&#039;gapic&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="89">
+    <description>The name of the code generator, to be included in the agent header.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+
+                                                                <property namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="92" visibility="public">
+    <name>serviceScopes</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::$serviceScopes</full_name>
+    <default>[&#039;https://www.googleapis.com/auth/cloud-platform&#039;, &#039;https://www.googleapis.com/auth/cloud-vision&#039;]</default>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="92">
+    <description>The default scopes required by the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient" line="97" visibility="private">
+    <name>operationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::$operationsClient</full_name>
+    <default></default>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>    <docblock line="97">
+    <description></description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+
+                                                                <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="99" visibility="private" returnByReference="false">
+    <name>getClientDefaults</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::getClientDefaults()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>        <docblock line="99">
+    <description></description>
+    <long-description></long-description>
+                </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="123" visibility="public" returnByReference="false">
+    <name>getOperationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::getOperationsClient()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>        <docblock line="123">
+    <description>Return an OperationsClient object with the same endpoint as $this.</description>
+    <long-description></long-description>
+                    <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\LongRunning\OperationsClient"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="139" visibility="public" returnByReference="false">
+    <name>resumeOperation</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::resumeOperation()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="139" by_reference="false">
+    <name>operationName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="139" by_reference="false">
+    <name>methodName</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="139">
+    <description>Resume an existing long running operation that was previously started by a long
+running API method. If $methodName is not provided, or does not match a long
+running API method, then the operation can still be resumed, but the
+OperationResponse object will not deserialize the final response.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="The name of the long running operation"
+                                                                 variable="operationName"                                 type="string"/>
+                <tag
+                name="param"
+                description="The name of the method used to start the operation"
+                                                                 variable="methodName"                                 type="string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="157" visibility="public" returnByReference="false">
+    <name>productSetName</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::productSetName()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="157" by_reference="false">
+    <name>project</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="157" by_reference="false">
+    <name>location</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="157" by_reference="false">
+    <name>productSet</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+        <docblock line="157">
+    <description>Formats a string containing the fully-qualified path to represent a product_set
+resource.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="project"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="location"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="productSet"                                 type="string"/>
+                            <tag
+                name="return"
+                description="The formatted product_set resource."
+                                                                                                 type="string"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="185" visibility="public" returnByReference="false">
+    <name>parseName</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::parseName()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="185" by_reference="false">
+    <name>formattedName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="185" by_reference="false">
+    <name>template</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="185">
+    <description>Parses a formatted name string and returns an associative array of the components in the name.</description>
+    <long-description>The following name formats are supported:
+Template: Pattern
+- productSet: projects/{project}/locations/{location}/productSets/{product_set}
+
+The optional $template argument can be supplied to specify a particular pattern,
+and must match one of the templates listed above. If no $template argument is
+provided, or if the $template argument does not match one of the templates
+listed, then parseName will check each of the supported templates, and return
+the first match.</long-description>
+                    <tag
+                name="param"
+                description="The formatted name string"
+                                                                 variable="formattedName"                                 type="string"/>
+                <tag
+                name="param"
+                description="Optional name of template to match"
+                                                                 variable="template"                                 type="string"/>
+                            <tag
+                name="return"
+                description="An associative array from name component IDs to component values."
+                                                                                                 type="array"/>
+                            <tag
+                name="throws"
+                description="If $formattedName could not be matched."
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="244" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::__construct()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="244" by_reference="false">
+    <name>options</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="244">
+    <description>Constructor.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="{&#10;    Optional. Options for configuring the service API wrapper.&#10;&#10;    @type string $apiEndpoint&#10;          The address of the API remote host. May optionally include the port, formatted&#10;          as &quot;&lt;uri&gt;:&lt;port&gt;&quot;. Default &#039;vision.googleapis.com:443&#039;.&#10;    @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials&#10;          The credentials to be used by the client to authorize API calls. This option&#10;          accepts either a path to a credentials file, or a decoded credentials file as a&#10;          PHP array.&#10;          *Advanced usage*: In addition, this option can also accept a pre-constructed&#10;          {@see \Google\Auth\FetchAuthTokenInterface} object or&#10;          {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these&#10;          objects are provided, any settings in $credentialsConfig will be ignored.&#10;    @type array $credentialsConfig&#10;          Options used to configure credentials, including auth token caching, for the&#10;          client. For a full list of supporting configuration options, see&#10;          {@see \Google\ApiCore\CredentialsWrapper::build()} .&#10;    @type bool $disableRetries&#10;          Determines whether or not retries defined by the client configuration should be&#10;          disabled. Defaults to `false`.&#10;    @type string|array $clientConfig&#10;          Client method configuration, including retry settings. This option can be either&#10;          a path to a JSON file, or a PHP array containing the decoded JSON data. By&#10;          default this settings points to the default client config file, which is&#10;          provided in the resources folder.&#10;    @type string|TransportInterface $transport&#10;          The transport used for executing network requests. May be either the string&#10;          `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.&#10;          *Advanced usage*: Additionally, it is possible to pass in an already&#10;          instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note&#10;          that when this object is provided, any settings in $transportConfig, and any&#10;          $apiEndpoint setting, will be ignored.&#10;    @type array $transportConfig&#10;          Configuration options that will be used to construct the transport. Options for&#10;          each supported transport type should be passed in a key for that transport. For&#10;          example:&#10;          $transportConfig = [&#10;              &#039;grpc&#039; =&gt; [...],&#10;              &#039;rest&#039; =&gt; [...],&#10;          ];&#10;          See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and&#10;          {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the&#10;          supported options.&#10;    @type callable $clientCertSource&#10;          A callable which returns the client cert as a string. This can be used to&#10;          provide a certificate and private key to the transport layer for mTLS.&#10;}"
+                                                                 variable="options"                                 type="array"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="252" visibility="public" returnByReference="false">
+    <name>__call</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::__call()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="252" by_reference="false">
+    <name>method</name>
+    <default></default>
+    <type>mixed</type>
+</argument>
+
+            <argument line="252" by_reference="false">
+    <name>args</name>
+    <default></default>
+    <type>mixed</type>
+</argument>
+
+        <docblock line="252">
+    <description>Handles execution of the async variants for each documented method.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="286" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::asyncBatchAnnotateFiles()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="286" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</type>
+</argument>
+
+            <argument line="286" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="286">
+    <description>Run asynchronous image detection and annotation for a list of generic
+files, such as PDF files, which may contain multiple pages and multiple
+images per page. Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.</description>
+    <long-description>`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::asyncBatchAnnotateFilesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="318" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::asyncBatchAnnotateImages()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="318" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</type>
+</argument>
+
+            <argument line="318" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="318">
+    <description>Run asynchronous image detection and annotation for a list of images.</description>
+    <long-description>Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.
+`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+This service will write image annotation outputs to json files in customer
+GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::asyncBatchAnnotateImagesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="348" visibility="public" returnByReference="false">
+    <name>batchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::batchAnnotateFiles()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="348" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</type>
+</argument>
+
+            <argument line="348" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="348">
+    <description>Service that performs image detection and annotation for a batch of files.</description>
+    <long-description>Now only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported.
+
+This service will extract at most 5 (customers can specify which 5 in
+AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+file provided and perform detection and annotation for each image
+extracted.
+
+The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::batchAnnotateFilesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Client\BaseClient" line="372" visibility="public" returnByReference="false">
+    <name>batchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient::batchAnnotateImages()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Client\BaseClient\ImageAnnotatorBaseClient</inherited_from>            <argument line="372" by_reference="false">
+    <name>request</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest</type>
+</argument>
+
+            <argument line="372" by_reference="false">
+    <name>callOptions</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="372">
+    <description>Run image detection and annotation for a batch of images.</description>
+    <long-description>The async variant is {@see \Google\Cloud\Vision\V1\Client\BaseClient\self::batchAnnotateImagesAsync()} .</long-description>
+                    <tag
+                name="param"
+                description="A request to house fields associated with the call."
+                                                                 variable="request"                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="callOptions"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse"/>
+                            <tag
+                name="throws"
+                description="Thrown if the API call fails."
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                    </class>
+
+
+
+            <parse_markers></parse_markers>
+        </file>
+        <file path="V1/ImageAnnotatorClient.php" hash="b54a881228332e0b4516718fac9fed7e">
+            <docblock line="0">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+
+
+                            <namespace-alias name="\Google\Cloud\Vision\V1"/>
+
+
+
+
+
+                                        <class final="false" abstract="false" namespace="\Google\Cloud\Vision\V1" line="38">
+                    <name>ImageAnnotatorClient</name>
+                    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient</full_name>
+                    <docblock line="38">
+    <description>Service Description: Service that performs Google Cloud Vision API detection tasks over client
+images, such as face, landmark, logo, label, and text detection. The
+ImageAnnotator service returns detected entities from the images.</description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+                        </docblock>
+
+                                            <extends>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</extends>
+
+                                                                <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="100" visibility="public">
+    <name>SERVICE_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_NAME</full_name>
+    <value>&#039;google.cloud.vision.v1.ImageAnnotator&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="100">
+    <description>The name of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="103" visibility="public">
+    <name>SERVICE_ADDRESS</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_ADDRESS</full_name>
+    <value>&#039;vision.googleapis.com&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="103">
+    <description>The default address of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="106" visibility="public">
+    <name>DEFAULT_SERVICE_PORT</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::DEFAULT_SERVICE_PORT</full_name>
+    <value>443</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="106">
+    <description>The default port of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="109" visibility="public">
+    <name>CODEGEN_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::CODEGEN_NAME</full_name>
+    <value>&#039;gapic&#039;</value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="109">
+    <description>The name of the code generator, to be included in the agent header.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+
+                                                                <property namespace="\Google\Cloud\Vision\VisionHelpersTrait" line="38" visibility="private">
+    <name>urlSchemes</name>
+    <full_name>\Google\Cloud\Vision\VisionHelpersTrait::$urlSchemes</full_name>
+    <default>[&#039;http&#039;, &#039;https&#039;, &#039;gs&#039;]</default>
+    <inherited_from>\Google\Cloud\Vision\VisionHelpersTrait</inherited_from>    <docblock line="38">
+    <description>A list of allowed url schemes.</description>
+    <long-description></long-description>
+                    <tag
+                name="var"
+                description=""
+                                                                                                 type="array"/>
+                        </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="112" visibility="public">
+    <name>serviceScopes</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$serviceScopes</full_name>
+    <default>[&#039;https://www.googleapis.com/auth/cloud-platform&#039;, &#039;https://www.googleapis.com/auth/cloud-vision&#039;]</default>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="112">
+    <description>The default scopes required by the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="117" visibility="private">
+    <name>operationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$operationsClient</full_name>
+    <default></default>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>    <docblock line="117">
+    <description></description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="74" visibility="public" returnByReference="false">
+    <name>createImageObject</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::createImageObject()</full_name>
+    <value></value>
+                <argument line="74" by_reference="false">
+    <name>imageInput</name>
+    <default></default>
+    <type>resource|string</type>
+</argument>
+
+        <docblock line="74">
+    <description>Creates an Image object that can be used as part of an image annotation request.</description>
+    <long-description>Example:
+```
+//[snippet=resource]
+$imageResource = fopen(&#039;path/to/image.jpg&#039;, &#039;r&#039;);
+$image = $imageAnnotatorClient-&gt;createImageObject($imageResource);
+$response = $imageAnnotatorClient-&gt;faceDetection($image);
+```
+
+```
+//[snippet=data]
+$imageData = file_get_contents(&#039;path/to/image.jpg&#039;);
+$image = $imageAnnotatorClient-&gt;createImageObject($imageData);
+$response = $imageAnnotatorClient-&gt;faceDetection($image);
+```
+
+```
+//[snippet=url]
+$imageUri = &quot;gs://my-bucket/image.jpg&quot;;
+$image = $imageAnnotatorClient-&gt;createImageObject($imageUri);
+$response = $imageAnnotatorClient-&gt;faceDetection($image);
+```</long-description>
+                    <tag
+                name="param"
+                description="An image to configure with&#10;the given settings. This parameter will accept a resource, a&#10;string of bytes, or the URI of an image in a publicly-accessible&#10;web location."
+                                                                 variable="imageInput"                                 type="resource|string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\Image"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\InvalidArgumentException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="109" visibility="public" returnByReference="false">
+    <name>annotateImage</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateImage()</full_name>
+    <value></value>
+                <argument line="109" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="109" by_reference="false">
+    <name>features</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\Feature[]|int[]</type>
+</argument>
+
+            <argument line="109" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="109">
+    <description>Run image detection and annotation for an image.</description>
+    <long-description>Example:
+```
+use Google\Cloud\Vision\V1\Feature;
+use Google\Cloud\Vision\V1\Feature\Type;
+
+$imageResource = fopen(&#039;path/to/image.jpg&#039;, &#039;r&#039;);
+$features = [Type::FACE_DETECTION];
+$response = $imageAnnotatorClient-&gt;annotateImage($imageResource, $features);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="Requested features."
+                                                                 variable="features"                                 type="\Google\Cloud\Vision\V1\Feature[]|int[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="146" visibility="public" returnByReference="false">
+    <name>faceDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::faceDetection()</full_name>
+    <value></value>
+                <argument line="146" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="146" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="146">
+    <description>Run face detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;faceDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="180" visibility="public" returnByReference="false">
+    <name>landmarkDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::landmarkDetection()</full_name>
+    <value></value>
+                <argument line="180" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="180" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="180">
+    <description>Run landmark detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;landmarkDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="214" visibility="public" returnByReference="false">
+    <name>logoDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::logoDetection()</full_name>
+    <value></value>
+                <argument line="214" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="214" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="214">
+    <description>Run logo detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;logoDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="248" visibility="public" returnByReference="false">
+    <name>labelDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::labelDetection()</full_name>
+    <value></value>
+                <argument line="248" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="248" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="248">
+    <description>Run label detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;labelDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="282" visibility="public" returnByReference="false">
+    <name>textDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::textDetection()</full_name>
+    <value></value>
+                <argument line="282" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="282" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="282">
+    <description>Run text detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;textDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="316" visibility="public" returnByReference="false">
+    <name>documentTextDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::documentTextDetection()</full_name>
+    <value></value>
+                <argument line="316" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="316" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="316">
+    <description>Run document text detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;documentTextDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="350" visibility="public" returnByReference="false">
+    <name>safeSearchDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::safeSearchDetection()</full_name>
+    <value></value>
+                <argument line="350" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="350" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="350">
+    <description>Run safe search detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;safeSearchDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="384" visibility="public" returnByReference="false">
+    <name>imagePropertiesDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::imagePropertiesDetection()</full_name>
+    <value></value>
+                <argument line="384" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="384" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="384">
+    <description>Run image properties detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;imagePropertiesDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="418" visibility="public" returnByReference="false">
+    <name>cropHintsDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::cropHintsDetection()</full_name>
+    <value></value>
+                <argument line="418" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="418" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="418">
+    <description>Run crop hints detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;cropHintsDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="452" visibility="public" returnByReference="false">
+    <name>webDetection</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()</full_name>
+    <value></value>
+                <argument line="452" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="452" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="452">
+    <description>Run web detection for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;webDetection($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="486" visibility="public" returnByReference="false">
+    <name>objectLocalization</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()</full_name>
+    <value></value>
+                <argument line="486" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="486" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="486">
+    <description>Run object localization for an image.</description>
+    <long-description>Example:
+```
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$response = $imageAnnotatorClient-&gt;objectLocalization($imageContent);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="532" visibility="public" returnByReference="false">
+    <name>productSearch</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()</full_name>
+    <value></value>
+                <argument line="532" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>resource|string|\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="532" by_reference="false">
+    <name>productSearchParams</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\ProductSearchParams</type>
+</argument>
+
+            <argument line="532" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="532">
+    <description>Run product search for an image.</description>
+    <long-description>Example:
+```
+use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\ProductSearchParams;
+
+$imageContent = file_get_contents(&#039;path/to/image.jpg&#039;);
+$productSetName = ProductSearchClient::productSetName(&#039;PROJECT_ID&#039;, &#039;LOC_ID&#039;, &#039;PRODUCT_SET_ID&#039;);
+$productSearchParams = (new ProductSearchParams)
+    -&gt;setProductSet($productSetName);
+$response = $imageAnnotatorClient-&gt;productSearch(
+    $imageContent,
+    $productSearchParams
+);
+```</long-description>
+                    <tag
+                name="param"
+                description="The image to be processed."
+                                                                 variable="image"                                 type="resource|string|\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description="Parameters for a product search request. Please note, this&#10;value will override the {@see \Google\Cloud\Vision\V1\ProductSearchParams} in the&#10;{@see \Google\Cloud\Vision\V1\ImageContext} instance if provided."
+                                                                 variable="productSearchParams"                                 type="\Google\Cloud\Vision\V1\ProductSearchParams"/>
+                <tag
+                name="param"
+                description="{&#10;    Configuration Options.&#10;&#10;    @type ImageContext        $imageContext  Additional context that may accompany the image.&#10;    @type RetrySettings|array $retrySettings&#10;         Retry settings to use for this call. Can be a&#10;         {@see \Google\ApiCore\RetrySettings} object, or an associative array&#10;         of retry settings parameters. See the documentation on&#10;         {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="554" visibility="private" returnByReference="false">
+    <name>annotateSingleFeature</name>
+    <full_name>\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateSingleFeature()</full_name>
+    <value></value>
+                <argument line="554" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\Image</type>
+</argument>
+
+            <argument line="554" by_reference="false">
+    <name>featureType</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\Feature|int</type>
+</argument>
+
+            <argument line="554" by_reference="false">
+    <name>optionalArgs</name>
+    <default></default>
+    <type>array</type>
+</argument>
+
+        <docblock line="554">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="image"                                 type="\Google\Cloud\Vision\V1\Image"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="featureType"                                 type="\Google\Cloud\Vision\V1\Feature|int"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse"/>
+                        </docblock>
+
+</method>
+
+                                                                <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision" line="52" visibility="private" returnByReference="false">
+    <name>annotateImageHelper</name>
+    <full_name>\Google\Cloud\Vision\VisionHelpersTrait::annotateImageHelper()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\VisionHelpersTrait</inherited_from>            <argument line="52" by_reference="false">
+    <name>callback</name>
+    <default></default>
+    <type>callable</type>
+</argument>
+
+            <argument line="52" by_reference="false">
+    <name>requestClass</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest|mixed</type>
+</argument>
+
+            <argument line="52" by_reference="false">
+    <name>image</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\Image|mixed</type>
+</argument>
+
+            <argument line="52" by_reference="false">
+    <name>features</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\Feature[]|int[]</type>
+</argument>
+
+            <argument line="52" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="52">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="callback"                                 type="callable"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="requestClass"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest|mixed"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="image"                                 type="\Google\Cloud\Vision\Image|mixed"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="features"                                 type="\Google\Cloud\Vision\V1\Feature[]|int[]"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\AnnotateImageResponse|mixed"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision" line="75" visibility="private" returnByReference="false">
+    <name>buildFeatureList</name>
+    <full_name>\Google\Cloud\Vision\VisionHelpersTrait::buildFeatureList()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\VisionHelpersTrait</inherited_from>            <argument line="75" by_reference="false">
+    <name>featureClass</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="75" by_reference="false">
+    <name>featureTypes</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\Feature[]|int[]</type>
+</argument>
+
+        <docblock line="75">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="featureClass"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="featureTypes"                                 type="\Google\Cloud\Vision\V1\Feature[]|int[]"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\Feature[]|array"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision" line="96" visibility="private" returnByReference="false">
+    <name>createImageHelper</name>
+    <full_name>\Google\Cloud\Vision\VisionHelpersTrait::createImageHelper()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\VisionHelpersTrait</inherited_from>            <argument line="96" by_reference="false">
+    <name>imageClass</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="96" by_reference="false">
+    <name>imageSourceClass</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="96" by_reference="false">
+    <name>imageInput</name>
+    <default></default>
+    <type>string|resource|\Google\Cloud\Vision\Image|mixed</type>
+</argument>
+
+        <docblock line="96">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description=""
+                                                                 variable="imageClass"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="imageSourceClass"                                 type="string"/>
+                <tag
+                name="param"
+                description=""
+                                                                 variable="imageInput"                                 type="string|resource|\Google\Cloud\Vision\Image|mixed"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\Image|mixed"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Gapic" line="119" visibility="private" returnByReference="false">
+    <name>getClientDefaults</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getClientDefaults()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>        <docblock line="119">
+    <description></description>
+    <long-description></long-description>
+                </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="149" visibility="public" returnByReference="false">
+    <name>getOperationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getOperationsClient()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>        <docblock line="149">
+    <description>Return an OperationsClient object with the same endpoint as $this.</description>
+    <long-description></long-description>
+                    <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\LongRunning\OperationsClient"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="165" visibility="public" returnByReference="false">
+    <name>resumeOperation</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::resumeOperation()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="165" by_reference="false">
+    <name>operationName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="165" by_reference="false">
+    <name>methodName</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="165">
+    <description>Resume an existing long running operation that was previously started by a long
+running API method. If $methodName is not provided, or does not match a long
+running API method, then the operation can still be resumed, but the
+OperationResponse object will not deserialize the final response.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="The name of the long running operation"
+                                                                 variable="operationName"                                 type="string"/>
+                <tag
+                name="param"
+                description="The name of the method used to start the operation"
+                                                                 variable="methodName"                                 type="string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="233" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::__construct()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="233" by_reference="false">
+    <name>options</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="233">
+    <description>Constructor.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="{&#10;    Optional. Options for configuring the service API wrapper.&#10;&#10;    @type string $apiEndpoint&#10;          The address of the API remote host. May optionally include the port, formatted&#10;          as &quot;&lt;uri&gt;:&lt;port&gt;&quot;. Default &#039;vision.googleapis.com:443&#039;.&#10;    @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials&#10;          The credentials to be used by the client to authorize API calls. This option&#10;          accepts either a path to a credentials file, or a decoded credentials file as a&#10;          PHP array.&#10;          *Advanced usage*: In addition, this option can also accept a pre-constructed&#10;          {@see \Google\Auth\FetchAuthTokenInterface} object or&#10;          {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these&#10;          objects are provided, any settings in $credentialsConfig will be ignored.&#10;    @type array $credentialsConfig&#10;          Options used to configure credentials, including auth token caching, for the&#10;          client. For a full list of supporting configuration options, see&#10;          {@see \Google\ApiCore\CredentialsWrapper::build()} .&#10;    @type bool $disableRetries&#10;          Determines whether or not retries defined by the client configuration should be&#10;          disabled. Defaults to `false`.&#10;    @type string|array $clientConfig&#10;          Client method configuration, including retry settings. This option can be either&#10;          a path to a JSON file, or a PHP array containing the decoded JSON data. By&#10;          default this settings points to the default client config file, which is&#10;          provided in the resources folder.&#10;    @type string|TransportInterface $transport&#10;          The transport used for executing network requests. May be either the string&#10;          `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.&#10;          *Advanced usage*: Additionally, it is possible to pass in an already&#10;          instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note&#10;          that when this object is provided, any settings in $transportConfig, and any&#10;          $apiEndpoint setting, will be ignored.&#10;    @type array $transportConfig&#10;          Configuration options that will be used to construct the transport. Options for&#10;          each supported transport type should be passed in a key for that transport. For&#10;          example:&#10;          $transportConfig = [&#10;              &#039;grpc&#039; =&gt; [...],&#10;              &#039;rest&#039; =&gt; [...],&#10;          ];&#10;          See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and&#10;          {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the&#10;          supported options.&#10;    @type callable $clientCertSource&#10;          A callable which returns the client cert as a string. This can be used to&#10;          provide a certificate and private key to the transport layer for mTLS.&#10;}"
+                                                                 variable="options"                                 type="array"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="311" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateFiles()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="311" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="311" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="311">
+    <description>Run asynchronous image detection and annotation for a list of generic
+files, such as PDF files, which may contain multiple pages and multiple
+images per page. Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.</description>
+    <long-description>`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateFiles&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual async file annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="411" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateImages()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="411" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="411" by_reference="false">
+    <name>outputConfig</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\OutputConfig</type>
+</argument>
+
+            <argument line="411" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="411">
+    <description>Run asynchronous image detection and annotation for a list of images.</description>
+    <long-description>Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.
+`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+This service will write image annotation outputs to json files in customer
+GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $outputConfig = new OutputConfig();
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateImages&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="Required. The desired output location and metadata (e.g. format)."
+                                                                 variable="outputConfig"                                 type="\Google\Cloud\Vision\V1\OutputConfig"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="487" visibility="public" returnByReference="false">
+    <name>batchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateFiles()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="487" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="487" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="487">
+    <description>Service that performs image detection and annotation for a batch of files.</description>
+    <long-description>Now only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported.
+
+This service will extract at most 5 (customers can specify which 5 in
+AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+file provided and perform detection and annotation for each image
+extracted.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateFiles($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. The list of file annotation requests. Right now we support only one&#10;AnnotateFileRequest in BatchAnnotateFilesRequest."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="552" visibility="public" returnByReference="false">
+    <name>batchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateImages()</full_name>
+    <value></value>
+    <inherited_from>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</inherited_from>            <argument line="552" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="552" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="552">
+    <description>Run image detection and annotation for a batch of images.</description>
+    <long-description>Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateImages($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                    </class>
+
+
+
+            <parse_markers></parse_markers>
+        </file>
+<file path="V1/Gapic/ImageAnnotatorGapicClient.php" hash="89b00d3ca2b68f914a9bb9316e343904">
+            <docblock line="0">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+
+
+                            <namespace-alias name="\Google\Cloud\Vision\V1\Gapic"/>
+
+
+
+
+
+                                        <class final="false" abstract="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="95">
+                    <name>ImageAnnotatorGapicClient</name>
+                    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient</full_name>
+                    <docblock line="95">
+    <description>Service Description: Service that performs Google Cloud Vision API detection tasks over client
+images, such as face, landmark, logo, label, and text detection. The
+ImageAnnotator service returns detected entities from the images.</description>
+    <long-description>This class provides the ability to make remote calls to the backing service through method
+calls that map to API methods. Sample code to get started:
+
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateFiles&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+                        </docblock>
+
+
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="100" visibility="public">
+    <name>SERVICE_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_NAME</full_name>
+    <value>&#039;google.cloud.vision.v1.ImageAnnotator&#039;</value>
+        <docblock line="100">
+    <description>The name of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="103" visibility="public">
+    <name>SERVICE_ADDRESS</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::SERVICE_ADDRESS</full_name>
+    <value>&#039;vision.googleapis.com&#039;</value>
+        <docblock line="103">
+    <description>The default address of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="106" visibility="public">
+    <name>DEFAULT_SERVICE_PORT</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::DEFAULT_SERVICE_PORT</full_name>
+    <value>443</value>
+        <docblock line="106">
+    <description>The default port of the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+                                            <constant namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="109" visibility="public">
+    <name>CODEGEN_NAME</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::CODEGEN_NAME</full_name>
+    <value>&#039;gapic&#039;</value>
+        <docblock line="109">
+    <description>The name of the code generator, to be included in the agent header.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</constant>
+
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="112" visibility="public">
+    <name>serviceScopes</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$serviceScopes</full_name>
+    <default>[&#039;https://www.googleapis.com/auth/cloud-platform&#039;, &#039;https://www.googleapis.com/auth/cloud-vision&#039;]</default>
+        <docblock line="112">
+    <description>The default scopes required by the service.</description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+                                            <property namespace="\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient" line="117" visibility="private">
+    <name>operationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::$operationsClient</full_name>
+    <default></default>
+        <docblock line="117">
+    <description></description>
+    <long-description></long-description>
+                            </docblock>
+
+</property>
+
+
+                                            <method final="false" abstract="false" static="true" namespace="\Google\Cloud\Vision\V1\Gapic" line="119" visibility="private" returnByReference="false">
+    <name>getClientDefaults</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getClientDefaults()</full_name>
+    <value></value>
+            <docblock line="119">
+    <description></description>
+    <long-description></long-description>
+                </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="149" visibility="public" returnByReference="false">
+    <name>getOperationsClient</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::getOperationsClient()</full_name>
+    <value></value>
+            <docblock line="149">
+    <description>Return an OperationsClient object with the same endpoint as $this.</description>
+    <long-description></long-description>
+                    <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\LongRunning\OperationsClient"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="165" visibility="public" returnByReference="false">
+    <name>resumeOperation</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::resumeOperation()</full_name>
+    <value></value>
+                <argument line="165" by_reference="false">
+    <name>operationName</name>
+    <default></default>
+    <type>string</type>
+</argument>
+
+            <argument line="165" by_reference="false">
+    <name>methodName</name>
+    <default>null</default>
+    <type>string</type>
+</argument>
+
+        <docblock line="165">
+    <description>Resume an existing long running operation that was previously started by a long
+running API method. If $methodName is not provided, or does not match a long
+running API method, then the operation can still be resumed, but the
+OperationResponse object will not deserialize the final response.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="The name of the long running operation"
+                                                                 variable="operationName"                                 type="string"/>
+                <tag
+                name="param"
+                description="The name of the method used to start the operation"
+                                                                 variable="methodName"                                 type="string"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="233" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::__construct()</full_name>
+    <value></value>
+                <argument line="233" by_reference="false">
+    <name>options</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="233">
+    <description>Constructor.</description>
+    <long-description></long-description>
+                    <tag
+                name="param"
+                description="{&#10;    Optional. Options for configuring the service API wrapper.&#10;&#10;    @type string $apiEndpoint&#10;          The address of the API remote host. May optionally include the port, formatted&#10;          as &quot;&lt;uri&gt;:&lt;port&gt;&quot;. Default &#039;vision.googleapis.com:443&#039;.&#10;    @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials&#10;          The credentials to be used by the client to authorize API calls. This option&#10;          accepts either a path to a credentials file, or a decoded credentials file as a&#10;          PHP array.&#10;          *Advanced usage*: In addition, this option can also accept a pre-constructed&#10;          {@see \Google\Auth\FetchAuthTokenInterface} object or&#10;          {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these&#10;          objects are provided, any settings in $credentialsConfig will be ignored.&#10;    @type array $credentialsConfig&#10;          Options used to configure credentials, including auth token caching, for the&#10;          client. For a full list of supporting configuration options, see&#10;          {@see \Google\ApiCore\CredentialsWrapper::build()} .&#10;    @type bool $disableRetries&#10;          Determines whether or not retries defined by the client configuration should be&#10;          disabled. Defaults to `false`.&#10;    @type string|array $clientConfig&#10;          Client method configuration, including retry settings. This option can be either&#10;          a path to a JSON file, or a PHP array containing the decoded JSON data. By&#10;          default this settings points to the default client config file, which is&#10;          provided in the resources folder.&#10;    @type string|TransportInterface $transport&#10;          The transport used for executing network requests. May be either the string&#10;          `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.&#10;          *Advanced usage*: Additionally, it is possible to pass in an already&#10;          instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note&#10;          that when this object is provided, any settings in $transportConfig, and any&#10;          $apiEndpoint setting, will be ignored.&#10;    @type array $transportConfig&#10;          Configuration options that will be used to construct the transport. Options for&#10;          each supported transport type should be passed in a key for that transport. For&#10;          example:&#10;          $transportConfig = [&#10;              &#039;grpc&#039; =&gt; [...],&#10;              &#039;rest&#039; =&gt; [...],&#10;          ];&#10;          See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and&#10;          {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the&#10;          supported options.&#10;    @type callable $clientCertSource&#10;          A callable which returns the client cert as a string. This can be used to&#10;          provide a certificate and private key to the transport layer for mTLS.&#10;}"
+                                                                 variable="options"                                 type="array"/>
+                            <tag
+                name="throws"
+                description=""
+                                                                                                 type="\Google\ApiCore\ValidationException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="311" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="311" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="311" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="311">
+    <description>Run asynchronous image detection and annotation for a list of generic
+files, such as PDF files, which may contain multiple pages and multiple
+images per page. Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.</description>
+    <long-description>`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateFiles($requests);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateFiles&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual async file annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="411" visibility="public" returnByReference="false">
+    <name>asyncBatchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::asyncBatchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="411" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="411" by_reference="false">
+    <name>outputConfig</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\OutputConfig</type>
+</argument>
+
+            <argument line="411" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="411">
+    <description>Run asynchronous image detection and annotation for a list of images.</description>
+    <long-description>Progress and results can be retrieved through the
+`google.longrunning.Operations` interface.
+`Operation.metadata` contains `OperationMetadata` (metadata).
+`Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+This service will write image annotation outputs to json files in customer
+GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $outputConfig = new OutputConfig();
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationResponse-&gt;pollUntilComplete();
+    if ($operationResponse-&gt;operationSucceeded()) {
+        $result = $operationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $operationResponse-&gt;getError();
+        // handleError($error)
+    }
+    // Alternatively:
+    // start the operation, keep the operation name, and resume later
+    $operationResponse = $imageAnnotatorClient-&gt;asyncBatchAnnotateImages($requests, $outputConfig);
+    $operationName = $operationResponse-&gt;getName();
+    // ... do other work
+    $newOperationResponse = $imageAnnotatorClient-&gt;resumeOperation($operationName, &#039;asyncBatchAnnotateImages&#039;);
+    while (!$newOperationResponse-&gt;isDone()) {
+        // ... do other work
+        $newOperationResponse-&gt;reload();
+    }
+    if ($newOperationResponse-&gt;operationSucceeded()) {
+        $result = $newOperationResponse-&gt;getResult();
+    // doSomethingWith($result)
+    } else {
+        $error = $newOperationResponse-&gt;getError();
+        // handleError($error)
+    }
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="Required. The desired output location and metadata (e.g. format)."
+                                                                 variable="outputConfig"                                 type="\Google\Cloud\Vision\V1\OutputConfig"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\ApiCore\OperationResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="487" visibility="public" returnByReference="false">
+    <name>batchAnnotateFiles</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateFiles()</full_name>
+    <value></value>
+                <argument line="487" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateFileRequest[]</type>
+</argument>
+
+            <argument line="487" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="487">
+    <description>Service that performs image detection and annotation for a batch of files.</description>
+    <long-description>Now only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported.
+
+This service will extract at most 5 (customers can specify which 5 in
+AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+file provided and perform detection and annotation for each image
+extracted.
+
+Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateFiles($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. The list of file annotation requests. Right now we support only one&#10;AnnotateFileRequest in BatchAnnotateFilesRequest."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateFileRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1\Gapic" line="552" visibility="public" returnByReference="false">
+    <name>batchAnnotateImages</name>
+    <full_name>\Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient::batchAnnotateImages()</full_name>
+    <value></value>
+                <argument line="552" by_reference="false">
+    <name>requests</name>
+    <default></default>
+    <type>\Google\Cloud\Vision\V1\AnnotateImageRequest[]</type>
+</argument>
+
+            <argument line="552" by_reference="false">
+    <name>optionalArgs</name>
+    <default>[]</default>
+    <type>array</type>
+</argument>
+
+        <docblock line="552">
+    <description>Run image detection and annotation for a batch of images.</description>
+    <long-description>Sample code:
+```
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient-&gt;batchAnnotateImages($requests);
+} finally {
+    $imageAnnotatorClient-&gt;close();
+}
+```</long-description>
+                    <tag
+                name="param"
+                description="Required. Individual image annotation requests for this batch."
+                                                                 variable="requests"                                 type="\Google\Cloud\Vision\V1\AnnotateImageRequest[]"/>
+                <tag
+                name="param"
+                description="{&#10;    Optional.&#10;&#10;    @type string $parent&#10;          Optional. Target project and location to make a call.&#10;&#10;          Format: `projects/{project-id}/locations/{location-id}`.&#10;&#10;          If no parent is specified, a region will be chosen automatically.&#10;&#10;          Supported location-ids:&#10;          `us`: USA country only,&#10;          `asia`: East asia areas, like Japan, Taiwan,&#10;          `eu`: The European Union.&#10;&#10;          Example: `projects/project-A/locations/eu`.&#10;    @type RetrySettings|array $retrySettings&#10;          Retry settings to use for this call. Can be a {@see \Google\ApiCore\RetrySettings} object, or an&#10;          associative array of retry settings parameters. See the documentation on&#10;          {@see \Google\ApiCore\RetrySettings} for example usage.&#10;}"
+                                                                 variable="optionalArgs"                                 type="array"/>
+                            <tag
+                name="return"
+                description=""
+                                                                                                 type="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse"/>
+                            <tag
+                name="throws"
+                description="if the remote call fails"
+                                                                                                 type="\Google\ApiCore\ApiException"/>
+                        </docblock>
+
+</method>
+
+                                                        </class>
+
+
+
+            <parse_markers></parse_markers>
+        </file>
+            <namespace name="Google" full_name="\Google">
+            <namespace name="Cloud" full_name="\Google\Cloud">
+            <namespace name="Vision" full_name="\Google\Cloud\Vision">
+
+            <namespace name="V1" full_name="\Google\Cloud\Vision\V1">
+            <namespace name="Client" full_name="\Google\Cloud\Vision\V1\Client">
+            <namespace name="BaseClient" full_name="\Google\Cloud\Vision\V1\Client\BaseClient" />
+
+    </namespace>
+    </namespace>
+
+    </namespace>
+
+    </namespace>
+
+    </namespace>
+
+    </project>

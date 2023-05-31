@@ -31,6 +31,22 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $cryptoKeyVersion Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                                                updated values.
+     * @param \Google\Protobuf\FieldMask            $updateMask       Required. List of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Kms\V1\CryptoKeyVersion $cryptoKeyVersion, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCryptoKeyVersion($cryptoKeyVersion)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

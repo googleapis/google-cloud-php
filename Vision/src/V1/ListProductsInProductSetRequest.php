@@ -37,6 +37,23 @@ class ListProductsInProductSetRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name Required. The ProductSet resource for which to retrieve Products.
+     *
+     *                     Format is:
+     *                     `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *                     Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

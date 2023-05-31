@@ -38,6 +38,20 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Talent\V4beta1\Company $company Required. The company resource to replace the current resource in the
+     *                                                      system.
+     *
+     * @return \Google\Cloud\Talent\V4beta1\UpdateCompanyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Talent\V4beta1\Company $company): self
+    {
+        return (new self())
+            ->setCompany($company);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

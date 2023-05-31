@@ -29,6 +29,22 @@ class CreateAnalysisRequest extends \Google\Protobuf\Internal\Message
     private $analysis = null;
 
     /**
+     * @param string                                          $parent   Required. The parent resource of the analysis. Please see
+     *                                                                  {@see ContactCenterInsightsClient::conversationName()} for help formatting this field.
+     * @param \Google\Cloud\ContactCenterInsights\V1\Analysis $analysis Required. The analysis to create.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ContactCenterInsights\V1\Analysis $analysis): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAnalysis($analysis);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -45,6 +45,23 @@ class ListTunnelDestGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Google Cloud Project ID and location.
+     *                       In the following format:
+     *                       `projects/{project_number/id}/iap_tunnel/locations/{location}`.
+     *                       A `-` can be used for the location to group across all locations. Please see
+     *                       {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,20 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
     private $catalog = '';
 
     /**
+     * @param string $catalog The parent catalog resource name, such as
+     *                        `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *
+     * @return \Google\Cloud\Retail\V2\GetDefaultBranchRequest
+     *
+     * @experimental
+     */
+    public static function build(string $catalog): self
+    {
+        return (new self())
+            ->setCatalog($catalog);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

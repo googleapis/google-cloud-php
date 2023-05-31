@@ -40,6 +40,22 @@ class UpdateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\CloudDms\V1\ConversionWorkspace $conversionWorkspace Required. The conversion workspace parameters to update.
+     * @param \Google\Protobuf\FieldMask                    $updateMask          Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                                           update in the conversion workspace resource.
+     *
+     * @return \Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CloudDms\V1\ConversionWorkspace $conversionWorkspace, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConversionWorkspace($conversionWorkspace)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

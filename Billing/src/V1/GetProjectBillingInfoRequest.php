@@ -24,6 +24,20 @@ class GetProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the project for which billing information is
+     *                     retrieved. For example, `projects/tokyo-rain-123`.
+     *
+     * @return \Google\Cloud\Billing\V1\GetProjectBillingInfoRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

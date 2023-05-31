@@ -43,6 +43,8 @@ use Google\Cloud\Language\V1\AnnotateTextRequest;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
 use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
+use Google\Cloud\Language\V1\ModerateTextRequest;
+use Google\Cloud\Language\V1\ModerateTextResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -64,6 +66,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface analyzeSyntaxAsync(AnalyzeSyntaxRequest $request, array $optionalArgs = [])
  * @method PromiseInterface annotateTextAsync(AnnotateTextRequest $request, array $optionalArgs = [])
  * @method PromiseInterface classifyTextAsync(ClassifyTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moderateTextAsync(ModerateTextRequest $request, array $optionalArgs = [])
  */
 abstract class LanguageServiceBaseClient
 {
@@ -327,5 +330,29 @@ abstract class LanguageServiceBaseClient
     public function classifyText(ClassifyTextRequest $request, array $callOptions = []): ClassifyTextResponse
     {
         return $this->startApiCall('ClassifyText', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     *
+     * The async variant is {@see self::moderateTextAsync()} .
+     *
+     * @param ModerateTextRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ModerateTextResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moderateText(ModerateTextRequest $request, array $callOptions = []): ModerateTextResponse
+    {
+        return $this->startApiCall('ModerateText', $request, $callOptions)->wait();
     }
 }

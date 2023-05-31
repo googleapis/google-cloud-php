@@ -26,6 +26,22 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     private $billing_account = null;
 
     /**
+     * @param \Google\Cloud\Billing\V1\BillingAccount $billingAccount Required. The billing account resource to create.
+     *                                                                Currently CreateBillingAccount only supports subaccount creation, so
+     *                                                                any created billing accounts must be under a provided parent billing
+     *                                                                account.
+     *
+     * @return \Google\Cloud\Billing\V1\CreateBillingAccountRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Billing\V1\BillingAccount $billingAccount): self
+    {
+        return (new self())
+            ->setBillingAccount($billingAccount);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -23,6 +23,19 @@ class DeleteAgentPoolRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the agent pool to delete.
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

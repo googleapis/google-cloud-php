@@ -48,6 +48,21 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The catalog resource name. Format:
+     *                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *                       Please see {@see ControlServiceClient::catalogName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\ListControlsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,26 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
     private $capacity_commitment_ids;
 
     /**
+     * @param string   $parent                Parent resource that identifies admin project and location e.g.,
+     *                                        `projects/myproject/locations/us`
+     * @param string[] $capacityCommitmentIds Ids of capacity commitments to merge.
+     *                                        These capacity commitments must exist under admin project and location
+     *                                        specified in the parent.
+     *                                        ID is the last portion of capacity commitment name e.g., 'abc' for
+     *                                        projects/myproject/locations/US/capacityCommitments/abc
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $capacityCommitmentIds): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCapacityCommitmentIds($capacityCommitmentIds);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

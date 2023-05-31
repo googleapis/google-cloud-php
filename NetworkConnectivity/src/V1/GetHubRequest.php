@@ -25,6 +25,20 @@ class GetHubRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the hub resource to get. Please see
+     *                     {@see HubServiceClient::hubName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\GetHubRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

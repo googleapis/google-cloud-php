@@ -48,7 +48,8 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 5;</code>
      */
@@ -59,6 +60,12 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.ClassificationCategory categories = 6;</code>
      */
     private $categories;
+    /**
+     * Harmful and sensitive categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.ClassificationCategory moderation_categories = 8;</code>
+     */
+    private $moderation_categories;
 
     /**
      * Constructor.
@@ -83,9 +90,12 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
      *           in the request or, if not specified, the automatically-detected language.
-     *           See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     *           See [Document.language][google.cloud.language.v1beta2.Document.language]
+     *           field for more details.
      *     @type array<\Google\Cloud\Language\V1beta2\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $categories
      *           Categories identified in the input document.
+     *     @type array<\Google\Cloud\Language\V1beta2\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $moderation_categories
+     *           Harmful and sensitive categories identified in the input document.
      * }
      */
     public function __construct($data = NULL) {
@@ -222,7 +232,8 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 5;</code>
      * @return string
@@ -235,7 +246,8 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 5;</code>
      * @param string $var
@@ -271,6 +283,32 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1beta2\ClassificationCategory::class);
         $this->categories = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Harmful and sensitive categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.ClassificationCategory moderation_categories = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getModerationCategories()
+    {
+        return $this->moderation_categories;
+    }
+
+    /**
+     * Harmful and sensitive categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.ClassificationCategory moderation_categories = 8;</code>
+     * @param array<\Google\Cloud\Language\V1beta2\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setModerationCategories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1beta2\ClassificationCategory::class);
+        $this->moderation_categories = $arr;
 
         return $this;
     }

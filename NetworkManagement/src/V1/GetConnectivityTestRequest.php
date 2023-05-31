@@ -24,6 +24,20 @@ class GetConnectivityTestRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. `ConnectivityTest` resource name using the form:
+     *                     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *
+     * @return \Google\Cloud\NetworkManagement\V1\GetConnectivityTestRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

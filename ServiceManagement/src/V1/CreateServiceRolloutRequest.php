@@ -31,6 +31,23 @@ class CreateServiceRolloutRequest extends \Google\Protobuf\Internal\Message
     private $rollout = null;
 
     /**
+     * @param string                                     $serviceName Required. The name of the service.  See the
+     *                                                                [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                                                                example: `example.googleapis.com`.
+     * @param \Google\Cloud\ServiceManagement\V1\Rollout $rollout     Required. The rollout resource. The `service_name` field is output only.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\CreateServiceRolloutRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName, \Google\Cloud\ServiceManagement\V1\Rollout $rollout): self
+    {
+        return (new self())
+            ->setServiceName($serviceName)
+            ->setRollout($rollout);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

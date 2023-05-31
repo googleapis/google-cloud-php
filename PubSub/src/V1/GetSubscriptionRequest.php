@@ -24,6 +24,21 @@ class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
     private $subscription = '';
 
     /**
+     * @param string $subscription Required. The name of the subscription to get.
+     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\GetSubscriptionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $subscription): self
+    {
+        return (new self())
+            ->setSubscription($subscription);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

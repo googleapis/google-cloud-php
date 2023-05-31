@@ -29,6 +29,21 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ContactCenterInsights\V1\Settings $settings   Required. The new settings values.
+     * @param \Google\Protobuf\FieldMask                      $updateMask Required. The list of fields to be updated.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ContactCenterInsights\V1\Settings $settings, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSettings($settings)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
