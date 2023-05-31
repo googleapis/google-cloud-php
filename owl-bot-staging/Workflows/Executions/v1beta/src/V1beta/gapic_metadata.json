@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.workflows.executions.v1beta",
+    "libraryPackage": "Google\\Cloud\\Workflows\\Executions\\V1beta",
+    "services": {
+        "Executions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ExecutionsGapicClient",
+                    "rpcs": {
+                        "CancelExecution": {
+                            "methods": [
+                                "cancelExecution"
+                            ]
+                        },
+                        "CreateExecution": {
+                            "methods": [
+                                "createExecution"
+                            ]
+                        },
+                        "GetExecution": {
+                            "methods": [
+                                "getExecution"
+                            ]
+                        },
+                        "ListExecutions": {
+                            "methods": [
+                                "listExecutions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
