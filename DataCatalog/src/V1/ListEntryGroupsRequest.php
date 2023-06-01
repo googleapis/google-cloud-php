@@ -40,6 +40,22 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the location that contains the entry groups to list.
+     *
+     *                       Can be provided as a URL. Please see
+     *                       {@see DataCatalogClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
