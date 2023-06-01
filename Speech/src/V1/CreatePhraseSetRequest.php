@@ -45,37 +45,6 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     private $phrase_set = null;
 
     /**
-     * @param string                            $parent      Required. The parent resource where this phrase set will be created.
-     *                                                       Format:
-     *
-     *                                                       `projects/{project}/locations/{location}`
-     *
-     *                                                       Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                                       and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                                       endpoint, use the `global` location. To specify a region, use a
-     *                                                       [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                                       with matching `us` or `eu` location value. Please see
-     *                                                       {@see AdaptationClient::locationName()} for help formatting this field.
-     * @param \Google\Cloud\Speech\V1\PhraseSet $phraseSet   Required. The phrase set to create.
-     * @param string                            $phraseSetId Required. The ID to use for the phrase set, which will become the final
-     *                                                       component of the phrase set's resource name.
-     *
-     *                                                       This value should restrict to letters, numbers, and hyphens, with the first
-     *                                                       character a letter, the last a letter or a number, and be 4-63 characters.
-     *
-     * @return \Google\Cloud\Speech\V1\CreatePhraseSetRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent, \Google\Cloud\Speech\V1\PhraseSet $phraseSet, string $phraseSetId): self
-    {
-        return (new self())
-            ->setParent($parent)
-            ->setPhraseSet($phraseSet)
-            ->setPhraseSetId($phraseSetId);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {
