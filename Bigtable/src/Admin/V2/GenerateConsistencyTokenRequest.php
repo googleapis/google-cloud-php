@@ -26,6 +26,22 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The unique name of the Table for which to create a consistency token.
+     *                     Values are of the form
+     *                     `projects/{project}/instances/{instance}/tables/{table}`. Please see
+     *                     {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,21 @@ class GetAppProfileRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The unique name of the requested app profile. Values are of the form
+     *                     `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
+     *                     {@see BigtableInstanceAdminClient::appProfileName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
