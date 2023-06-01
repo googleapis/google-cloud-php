@@ -130,6 +130,9 @@ return [
                     ],
                 ],
             ],
+            'templateMap' => [
+                'environment' => 'projects/{project}/locations/{location}/environments/{environment}',
+            ],
         ],
     ],
 ];

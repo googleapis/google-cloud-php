@@ -37,32 +37,6 @@ class UpdatePhraseSetRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\Speech\V1\PhraseSet $phraseSet  Required. The phrase set to update.
-     *
-     *                                                      The phrase set's `name` field is used to identify the set to be
-     *                                                      updated. Format:
-     *
-     *                                                      `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     *
-     *                                                      Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                                      and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                                      endpoint, use the `global` location. To specify a region, use a
-     *                                                      [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                                      with matching `us` or `eu` location value.
-     * @param \Google\Protobuf\FieldMask        $updateMask The list of fields to be updated.
-     *
-     * @return \Google\Cloud\Speech\V1\UpdatePhraseSetRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Cloud\Speech\V1\PhraseSet $phraseSet, \Google\Protobuf\FieldMask $updateMask): self
-    {
-        return (new self())
-            ->setPhraseSet($phraseSet)
-            ->setUpdateMask($updateMask);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

@@ -108,6 +108,23 @@ abstract class ProfilerServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a profile
+     * resource.
+     *
+     * @param string $project
+     * @param string $profile
+     *
+     * @return string The formatted profile resource.
+     */
+    public static function profileName(string $project, string $profile): string
+    {
+        return self::getPathTemplate('profile')->render([
+            'project' => $project,
+            'profile' => $profile,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -126,6 +143,7 @@ abstract class ProfilerServiceBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - profile: projects/{project}/profiles/{profile}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

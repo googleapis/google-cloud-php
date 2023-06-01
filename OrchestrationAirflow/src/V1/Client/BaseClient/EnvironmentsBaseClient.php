@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -51,6 +52,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
  * This class is currently experimental and may be subject to changes.
  *
  * @experimental
@@ -68,6 +74,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 abstract class EnvironmentsBaseClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.orchestration.airflow.service.v1.Environments';
@@ -134,6 +141,49 @@ abstract class EnvironmentsBaseClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a environment
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     *
+     * @return string The formatted environment resource.
+     */
+    public static function environmentName(string $project, string $location, string $environment): string
+    {
+        return self::getPathTemplate('environment')->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - environment: projects/{project}/locations/{location}/environments/{environment}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName(string $formattedName, string $template = null): array
+    {
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**

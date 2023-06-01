@@ -41,6 +41,7 @@ return [
                 ],
             ],
             'templateMap' => [
+                'profile' => 'projects/{project}/profiles/{profile}',
                 'project' => 'projects/{project}',
             ],
         ],

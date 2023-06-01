@@ -407,6 +407,29 @@ abstract class ArtifactRegistryBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tag
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $package
+     * @param string $tag
+     *
+     * @return string The formatted tag resource.
+     */
+    public static function tagName(string $project, string $location, string $repository, string $package, string $tag): string
+    {
+        return self::getPathTemplate('tag')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'package' => $package,
+            'tag' => $tag,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a vpcsc_config
      * resource.
      *
@@ -436,6 +459,7 @@ abstract class ArtifactRegistryBaseClient
      * - projectSettings: projects/{project}/projectSettings
      * - pythonPackage: projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - tag: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}
      * - vpcscConfig: projects/{project}/locations/{location}/vpcscConfig
      *
      * The optional $template argument can be supplied to specify a particular pattern,

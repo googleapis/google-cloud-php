@@ -29,28 +29,6 @@ class DeleteCustomClassRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the custom class to delete. Format:
-     *
-     *                     `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     *
-     *                     Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                     and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                     endpoint, use the `global` location. To specify a region, use a
-     *                     [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                     with matching `us` or `eu` location value. Please see
-     *                     {@see AdaptationClient::customClassName()} for help formatting this field.
-     *
-     * @return \Google\Cloud\Speech\V1\DeleteCustomClassRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {
