@@ -148,9 +148,10 @@ class ComponentInfoCommand extends Command
 
     private function getAvailableApiVersions(Component $component): string
     {
-        $proto = $component->getProtoPackage();
+        $protos = $component->getProtoPackages();
+        $proto = array_shift($protos);
         // Proto packages should be in a version directory
-        $versionPath = dirname(dirname($proto));
+        $versionPath = dirname($proto);
         $versionsUrl = 'https://api.github.com/repos/googleapis/googleapis/contents/' . $versionPath;
         $client = new Client();
         $response = $client->get($versionsUrl, [
