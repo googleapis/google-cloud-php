@@ -47,6 +47,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic', merge=preserve_copyright_year)
+s.move(admin_library / f'src/V2/Client', 'src/Admin/V2/Client', merge=preserve_copyright_year)
 s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources', merge=preserve_copyright_year)
 
 # copy proto files to src also
