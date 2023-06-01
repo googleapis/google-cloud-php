@@ -30,6 +30,23 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
     private $index = null;
 
     /**
+     * @param string                                 $parent Required. A parent name of the form
+     *                                                       `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *                                                       Please see {@see FirestoreAdminClient::collectionGroupName()} for help formatting this field.
+     * @param \Google\Cloud\Firestore\Admin\V1\Index $index  Required. The composite index to create.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\CreateIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Firestore\Admin\V1\Index $index): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIndex($index);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

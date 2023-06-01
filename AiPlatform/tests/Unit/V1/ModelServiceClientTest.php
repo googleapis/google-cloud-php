@@ -703,6 +703,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -714,6 +715,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
@@ -1255,6 +1257,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -1266,6 +1269,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
@@ -1337,6 +1341,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -1348,6 +1353,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
