@@ -37,32 +37,6 @@ class UpdateCustomClassRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\Speech\V1\CustomClass $customClass Required. The custom class to update.
-     *
-     *                                                         The custom class's `name` field is used to identify the custom class to be
-     *                                                         updated. Format:
-     *
-     *                                                         `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     *
-     *                                                         Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                                         and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                                         endpoint, use the `global` location. To specify a region, use a
-     *                                                         [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                                         with matching `us` or `eu` location value.
-     * @param \Google\Protobuf\FieldMask          $updateMask  The list of fields to be updated.
-     *
-     * @return \Google\Cloud\Speech\V1\UpdateCustomClassRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Cloud\Speech\V1\CustomClass $customClass, \Google\Protobuf\FieldMask $updateMask): self
-    {
-        return (new self())
-            ->setCustomClass($customClass)
-            ->setUpdateMask($updateMask);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

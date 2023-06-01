@@ -98,11 +98,19 @@ class AlertPolicyServiceGapicClient
 
     private static $alertPolicyNameTemplate;
 
+    private static $alertPolicyConditionNameTemplate;
+
     private static $folderAlertPolicyNameTemplate;
+
+    private static $folderAlertPolicyConditionNameTemplate;
 
     private static $organizationAlertPolicyNameTemplate;
 
+    private static $organizationAlertPolicyConditionNameTemplate;
+
     private static $projectAlertPolicyNameTemplate;
+
+    private static $projectAlertPolicyConditionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -134,6 +142,15 @@ class AlertPolicyServiceGapicClient
         return self::$alertPolicyNameTemplate;
     }
 
+    private static function getAlertPolicyConditionNameTemplate()
+    {
+        if (self::$alertPolicyConditionNameTemplate == null) {
+            self::$alertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$alertPolicyConditionNameTemplate;
+    }
+
     private static function getFolderAlertPolicyNameTemplate()
     {
         if (self::$folderAlertPolicyNameTemplate == null) {
@@ -141,6 +158,15 @@ class AlertPolicyServiceGapicClient
         }
 
         return self::$folderAlertPolicyNameTemplate;
+    }
+
+    private static function getFolderAlertPolicyConditionNameTemplate()
+    {
+        if (self::$folderAlertPolicyConditionNameTemplate == null) {
+            self::$folderAlertPolicyConditionNameTemplate = new PathTemplate('folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$folderAlertPolicyConditionNameTemplate;
     }
 
     private static function getOrganizationAlertPolicyNameTemplate()
@@ -152,6 +178,15 @@ class AlertPolicyServiceGapicClient
         return self::$organizationAlertPolicyNameTemplate;
     }
 
+    private static function getOrganizationAlertPolicyConditionNameTemplate()
+    {
+        if (self::$organizationAlertPolicyConditionNameTemplate == null) {
+            self::$organizationAlertPolicyConditionNameTemplate = new PathTemplate('organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$organizationAlertPolicyConditionNameTemplate;
+    }
+
     private static function getProjectAlertPolicyNameTemplate()
     {
         if (self::$projectAlertPolicyNameTemplate == null) {
@@ -161,14 +196,27 @@ class AlertPolicyServiceGapicClient
         return self::$projectAlertPolicyNameTemplate;
     }
 
+    private static function getProjectAlertPolicyConditionNameTemplate()
+    {
+        if (self::$projectAlertPolicyConditionNameTemplate == null) {
+            self::$projectAlertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
+        }
+
+        return self::$projectAlertPolicyConditionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'alertPolicy' => self::getAlertPolicyNameTemplate(),
+                'alertPolicyCondition' => self::getAlertPolicyConditionNameTemplate(),
                 'folderAlertPolicy' => self::getFolderAlertPolicyNameTemplate(),
+                'folderAlertPolicyCondition' => self::getFolderAlertPolicyConditionNameTemplate(),
                 'organizationAlertPolicy' => self::getOrganizationAlertPolicyNameTemplate(),
+                'organizationAlertPolicyCondition' => self::getOrganizationAlertPolicyConditionNameTemplate(),
                 'projectAlertPolicy' => self::getProjectAlertPolicyNameTemplate(),
+                'projectAlertPolicyCondition' => self::getProjectAlertPolicyConditionNameTemplate(),
             ];
         }
 
@@ -194,6 +242,25 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted alert_policy_condition resource.
+     */
+    public static function alertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return self::getAlertPolicyConditionNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_alert_policy resource.
      *
      * @param string $folder
@@ -206,6 +273,25 @@ class AlertPolicyServiceGapicClient
         return self::getFolderAlertPolicyNameTemplate()->render([
             'folder' => $folder,
             'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_alert_policy_condition resource.
+     *
+     * @param string $folder
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted folder_alert_policy_condition resource.
+     */
+    public static function folderAlertPolicyConditionName($folder, $alertPolicy, $condition)
+    {
+        return self::getFolderAlertPolicyConditionNameTemplate()->render([
+            'folder' => $folder,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
         ]);
     }
 
@@ -228,6 +314,25 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_alert_policy_condition resource.
+     *
+     * @param string $organization
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted organization_alert_policy_condition resource.
+     */
+    public static function organizationAlertPolicyConditionName($organization, $alertPolicy, $condition)
+    {
+        return self::getOrganizationAlertPolicyConditionNameTemplate()->render([
+            'organization' => $organization,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_alert_policy resource.
      *
      * @param string $project
@@ -244,13 +349,36 @@ class AlertPolicyServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted project_alert_policy_condition resource.
+     */
+    public static function projectAlertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return self::getProjectAlertPolicyConditionNameTemplate()->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      * - folderAlertPolicy: folders/{folder}/alertPolicies/{alert_policy}
+     * - folderAlertPolicyCondition: folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}
      * - organizationAlertPolicy: organizations/{organization}/alertPolicies/{alert_policy}
+     * - organizationAlertPolicyCondition: organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}
      * - projectAlertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - projectAlertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

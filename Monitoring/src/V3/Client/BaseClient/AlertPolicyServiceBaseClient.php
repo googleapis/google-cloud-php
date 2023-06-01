@@ -132,6 +132,25 @@ abstract class AlertPolicyServiceBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted alert_policy_condition resource.
+     */
+    public static function alertPolicyConditionName(string $project, string $alertPolicy, string $condition): string
+    {
+        return self::getPathTemplate('alertPolicyCondition')->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_alert_policy resource.
      *
      * @param string $folder
@@ -144,6 +163,25 @@ abstract class AlertPolicyServiceBaseClient
         return self::getPathTemplate('folderAlertPolicy')->render([
             'folder' => $folder,
             'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_alert_policy_condition resource.
+     *
+     * @param string $folder
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted folder_alert_policy_condition resource.
+     */
+    public static function folderAlertPolicyConditionName(string $folder, string $alertPolicy, string $condition): string
+    {
+        return self::getPathTemplate('folderAlertPolicyCondition')->render([
+            'folder' => $folder,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
         ]);
     }
 
@@ -166,6 +204,25 @@ abstract class AlertPolicyServiceBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_alert_policy_condition resource.
+     *
+     * @param string $organization
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted organization_alert_policy_condition resource.
+     */
+    public static function organizationAlertPolicyConditionName(string $organization, string $alertPolicy, string $condition): string
+    {
+        return self::getPathTemplate('organizationAlertPolicyCondition')->render([
+            'organization' => $organization,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_alert_policy resource.
      *
      * @param string $project
@@ -182,13 +239,36 @@ abstract class AlertPolicyServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted project_alert_policy_condition resource.
+     */
+    public static function projectAlertPolicyConditionName(string $project, string $alertPolicy, string $condition): string
+    {
+        return self::getPathTemplate('projectAlertPolicyCondition')->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      * - folderAlertPolicy: folders/{folder}/alertPolicies/{alert_policy}
+     * - folderAlertPolicyCondition: folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}
      * - organizationAlertPolicy: organizations/{organization}/alertPolicies/{alert_policy}
+     * - organizationAlertPolicyCondition: organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}
      * - projectAlertPolicy: projects/{project}/alertPolicies/{alert_policy}
+     * - projectAlertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
