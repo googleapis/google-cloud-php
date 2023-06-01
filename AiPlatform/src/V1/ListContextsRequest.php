@@ -58,6 +58,9 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`.
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Parent Child filtering**:
      *    To filter Contexts based on parent-child relationship use the HAS
      *    operator as follows:
@@ -139,6 +142,9 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *              To filter on metadata fields use traversal operation as follows:
      *              `metadata.<field_name>.<type_value>`.
      *              For example: `metadata.field_1.number_value = 10.0`.
+     *              In case the field name contains special characters (such as colon), one
+     *              can embed it inside double quote.
+     *              For example: `metadata."field:1".number_value = 10.0`
      *           *  **Parent Child filtering**:
      *              To filter Contexts based on parent-child relationship use the HAS
      *              operator as follows:
@@ -276,6 +282,9 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`.
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Parent Child filtering**:
      *    To filter Contexts based on parent-child relationship use the HAS
      *    operator as follows:
@@ -314,6 +323,9 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`.
      *    For example: `metadata.field_1.number_value = 10.0`.
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Parent Child filtering**:
      *    To filter Contexts based on parent-child relationship use the HAS
      *    operator as follows:
