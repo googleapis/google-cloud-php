@@ -87,7 +87,10 @@ class BatchSnapshotTest extends TestCase
         $this->snapshot->close();
     }
 
-    public function testPartitionRead()
+    /**
+     * @dataProvider optionsProvider
+     */
+    public function testPartitionRead($testCaseOptions)
     {
         $table = 'table';
         $keySet = new KeySet(['all' =>  true]);
@@ -96,10 +99,9 @@ class BatchSnapshotTest extends TestCase
             'index' => 'foo',
             'maxPartitions' => 10,
             'partitionSizeBytes' => 1,
-            'dataBoostEnabled' => true
-        ];
+        ] + $testCaseOptions;
 
-        $this->connection->partitionRead(Argument::allOf(
+        $arguments = [
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('database', self::DATABASE),
             Argument::withEntry('transactionId', self::TRANSACTION),
@@ -107,11 +109,19 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('columns', $columns),
             Argument::withEntry('keySet', $keySet->keySetObject()),
             Argument::withEntry('index', $opts['index']),
-            Argument::withEntry('dataBoostEnabled', $opts['dataBoostEnabled']),
             Argument::withEntry('partitionOptions', [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
             ])
+        ];
+
+        // This loop adds extra variable options to the arguments array.
+        foreach ($testCaseOptions as $key => $value){
+            $arguments[] = Argument::withEntry($key, $value);
+        }
+
+        $this->connection->partitionRead(call_user_func_array(
+            [Argument::class, 'allOf'], $arguments
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
@@ -133,7 +143,10 @@ class BatchSnapshotTest extends TestCase
         $this->assertEquals($opts, $partitions[0]->options());
     }
 
-    public function testPartitionQuery()
+    /**
+     * @dataProvider optionsProvider
+     */
+    public function testPartitionQuery(array $testCaseOptions)
     {
         $sql = 'SELECT 1=1';
         $opts = [
@@ -141,22 +154,29 @@ class BatchSnapshotTest extends TestCase
                 'foo' => 'bar'
             ],
             'maxPartitions' => 10,
-            'partitionSizeBytes' => 1,
-            'dataBoostEnabled' => true
-        ];
+            'partitionSizeBytes' => 1
+        ] + $testCaseOptions;
 
-        $this->connection->partitionQuery(Argument::allOf(
+        $arguments = [
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('database', self::DATABASE),
             Argument::withEntry('transactionId', self::TRANSACTION),
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
             Argument::withEntry('paramTypes', ['foo' => ['code' => 6]]),
-            Argument::withEntry('dataBoostEnabled', $opts['dataBoostEnabled']),
             Argument::withEntry('partitionOptions', [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
             ])
+        ];
+
+        // This loop adds extra variable options to the arguments array.
+        foreach ($testCaseOptions as $key => $value){
+            $arguments[] = Argument::withEntry($key, $value);
+        }
+
+        $this->connection->partitionQuery(call_user_func_array(
+            [Argument::class, 'allOf'], $arguments
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
@@ -257,6 +277,14 @@ class BatchSnapshotTest extends TestCase
 
         $dummy = new DummyPartition;
         $this->snapshot->executePartition($dummy);
+    }
+
+    public function optionsProvider()
+    {
+        return [
+            [[]],
+            [['dataBoostEnabled' => true]]
+        ];
     }
 }
 
