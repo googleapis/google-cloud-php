@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.translation.v3",
+    "libraryPackage": "Google\\Cloud\\Translate\\V3",
+    "services": {
+        "TranslationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TranslationServiceGapicClient",
+                    "rpcs": {
+                        "BatchTranslateDocument": {
+                            "methods": [
+                                "batchTranslateDocument"
+                            ]
+                        },
+                        "BatchTranslateText": {
+                            "methods": [
+                                "batchTranslateText"
+                            ]
+                        },
+                        "CreateGlossary": {
+                            "methods": [
+                                "createGlossary"
+                            ]
+                        },
+                        "DeleteGlossary": {
+                            "methods": [
+                                "deleteGlossary"
+                            ]
+                        },
+                        "DetectLanguage": {
+                            "methods": [
+                                "detectLanguage"
+                            ]
+                        },
+                        "GetGlossary": {
+                            "methods": [
+                                "getGlossary"
+                            ]
+                        },
+                        "GetSupportedLanguages": {
+                            "methods": [
+                                "getSupportedLanguages"
+                            ]
+                        },
+                        "ListGlossaries": {
+                            "methods": [
+                                "listGlossaries"
+                            ]
+                        },
+                        "TranslateDocument": {
+                            "methods": [
+                                "translateDocument"
+                            ]
+                        },
+                        "TranslateText": {
+                            "methods": [
+                                "translateText"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

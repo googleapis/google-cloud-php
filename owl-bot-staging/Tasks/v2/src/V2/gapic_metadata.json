@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.tasks.v2",
+    "libraryPackage": "Google\\Cloud\\Tasks\\V2",
+    "services": {
+        "CloudTasks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudTasksGapicClient",
+                    "rpcs": {
+                        "CreateQueue": {
+                            "methods": [
+                                "createQueue"
+                            ]
+                        },
+                        "CreateTask": {
+                            "methods": [
+                                "createTask"
+                            ]
+                        },
+                        "DeleteQueue": {
+                            "methods": [
+                                "deleteQueue"
+                            ]
+                        },
+                        "DeleteTask": {
+                            "methods": [
+                                "deleteTask"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetQueue": {
+                            "methods": [
+                                "getQueue"
+                            ]
+                        },
+                        "GetTask": {
+                            "methods": [
+                                "getTask"
+                            ]
+                        },
+                        "ListQueues": {
+                            "methods": [
+                                "listQueues"
+                            ]
+                        },
+                        "ListTasks": {
+                            "methods": [
+                                "listTasks"
+                            ]
+                        },
+                        "PauseQueue": {
+                            "methods": [
+                                "pauseQueue"
+                            ]
+                        },
+                        "PurgeQueue": {
+                            "methods": [
+                                "purgeQueue"
+                            ]
+                        },
+                        "ResumeQueue": {
+                            "methods": [
+                                "resumeQueue"
+                            ]
+                        },
+                        "RunTask": {
+                            "methods": [
+                                "runTask"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateQueue": {
+                            "methods": [
+                                "updateQueue"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
