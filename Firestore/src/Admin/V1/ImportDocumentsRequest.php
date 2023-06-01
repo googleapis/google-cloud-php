@@ -41,6 +41,21 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     private $input_uri_prefix = '';
 
     /**
+     * @param string $name Required. Database to import into. Should be of the form:
+     *                     `projects/{project_id}/databases/{database_id}`. Please see
+     *                     {@see FirestoreAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
