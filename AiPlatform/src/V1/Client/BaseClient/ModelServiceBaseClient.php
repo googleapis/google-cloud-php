@@ -280,6 +280,25 @@ abstract class ModelServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a pipeline_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipelineJob
+     *
+     * @return string The formatted pipeline_job resource.
+     */
+    public static function pipelineJobName(string $project, string $location, string $pipelineJob): string
+    {
+        return self::getPathTemplate('pipelineJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
@@ -347,6 +366,7 @@ abstract class ModelServiceBaseClient
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}
      * - modelEvaluationSlice: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}
+     * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
