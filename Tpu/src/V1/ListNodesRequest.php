@@ -35,20 +35,6 @@ class ListNodesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The parent resource name. Please see
-     *                       {@see TpuClient::locationName()} for help formatting this field.
-     *
-     * @return \Google\Cloud\Tpu\V1\ListNodesRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent): self
-    {
-        return (new self())
-            ->setParent($parent);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {
