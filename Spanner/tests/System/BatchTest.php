@@ -232,7 +232,6 @@ class BatchTest extends SpannerTestCase
         ]);
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
-        // ($table, KeySet $keySet, array $columns, array $options = [])
         $keySet = new KeySet([
             'ranges' => [
                 new KeyRange([
