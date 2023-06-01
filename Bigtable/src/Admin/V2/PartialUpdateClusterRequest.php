@@ -30,6 +30,22 @@ class PartialUpdateClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster    Required. The Cluster which contains the partial updates to be applied, subject to
+     *                                                            the update_mask.
+     * @param \Google\Protobuf\FieldMask              $updateMask Required. The subset of Cluster fields which should be replaced.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\Cluster $cluster, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCluster($cluster)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

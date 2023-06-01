@@ -60,6 +60,22 @@ class ListHotTabletsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The cluster name to list hot tablets.
+     *                       Value is in the following form:
+     *                       `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
+     *                       {@see BigtableInstanceAdminClient::clusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

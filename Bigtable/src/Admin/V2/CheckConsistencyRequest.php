@@ -32,6 +32,24 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     private $consistency_token = '';
 
     /**
+     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
+     *                                 Values are of the form
+     *                                 `projects/{project}/instances/{instance}/tables/{table}`. Please see
+     *                                 {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $consistencyToken): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setConsistencyToken($consistencyToken);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
