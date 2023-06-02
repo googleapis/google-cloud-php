@@ -17,7 +17,7 @@ class EntityIdSelector extends \Google\Protobuf\Internal\Message
 {
     /**
      * Source column that holds entity IDs. If not provided, entity IDs are
-     * extracted from the column named `entity_id`.
+     * extracted from the column named entity_id.
      *
      * Generated from protobuf field <code>string entity_id_field = 5;</code>
      */
@@ -34,7 +34,7 @@ class EntityIdSelector extends \Google\Protobuf\Internal\Message
      *           Source of Csv
      *     @type string $entity_id_field
      *           Source column that holds entity IDs. If not provided, entity IDs are
-     *           extracted from the column named `entity_id`.
+     *           extracted from the column named entity_id.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class EntityIdSelector extends \Google\Protobuf\Internal\Message
 
     /**
      * Source column that holds entity IDs. If not provided, entity IDs are
-     * extracted from the column named `entity_id`.
+     * extracted from the column named entity_id.
      *
      * Generated from protobuf field <code>string entity_id_field = 5;</code>
      * @return string
@@ -87,7 +87,7 @@ class EntityIdSelector extends \Google\Protobuf\Internal\Message
 
     /**
      * Source column that holds entity IDs. If not provided, entity IDs are
-     * extracted from the column named `entity_id`.
+     * extracted from the column named entity_id.
      *
      * Generated from protobuf field <code>string entity_id_field = 5;</code>
      * @param string $var

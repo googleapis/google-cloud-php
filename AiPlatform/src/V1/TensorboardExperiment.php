@@ -49,7 +49,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * The labels with user-defined metadata to organize your Datasets.
+     * The labels with user-defined metadata to organize your
+     * TensorboardExperiment.
      * Label keys and values cannot be longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -100,7 +101,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this TensorboardExperiment was last updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           The labels with user-defined metadata to organize your Datasets.
+     *           The labels with user-defined metadata to organize your
+     *           TensorboardExperiment.
      *           Label keys and values cannot be longer than 64 characters
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
@@ -281,7 +283,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The labels with user-defined metadata to organize your Datasets.
+     * The labels with user-defined metadata to organize your
+     * TensorboardExperiment.
      * Label keys and values cannot be longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
@@ -304,7 +307,8 @@ class TensorboardExperiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The labels with user-defined metadata to organize your Datasets.
+     * The labels with user-defined metadata to organize your
+     * TensorboardExperiment.
      * Label keys and values cannot be longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
