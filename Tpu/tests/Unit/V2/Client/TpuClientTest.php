@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tpu\Tests\Unit\V1\Client;
+namespace Google\Cloud\Tpu\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -31,27 +31,33 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Tpu\V1\AcceleratorType;
-use Google\Cloud\Tpu\V1\Client\TpuClient;
-use Google\Cloud\Tpu\V1\CreateNodeRequest;
-use Google\Cloud\Tpu\V1\DeleteNodeRequest;
-use Google\Cloud\Tpu\V1\GetAcceleratorTypeRequest;
-use Google\Cloud\Tpu\V1\GetNodeRequest;
-use Google\Cloud\Tpu\V1\GetTensorFlowVersionRequest;
-use Google\Cloud\Tpu\V1\ListAcceleratorTypesRequest;
-use Google\Cloud\Tpu\V1\ListAcceleratorTypesResponse;
-use Google\Cloud\Tpu\V1\ListNodesRequest;
-use Google\Cloud\Tpu\V1\ListNodesResponse;
-use Google\Cloud\Tpu\V1\ListTensorFlowVersionsRequest;
-use Google\Cloud\Tpu\V1\ListTensorFlowVersionsResponse;
-use Google\Cloud\Tpu\V1\Node;
-use Google\Cloud\Tpu\V1\ReimageNodeRequest;
-use Google\Cloud\Tpu\V1\StartNodeRequest;
-use Google\Cloud\Tpu\V1\StopNodeRequest;
-use Google\Cloud\Tpu\V1\TensorFlowVersion;
+use Google\Cloud\Tpu\V2\AcceleratorType;
+use Google\Cloud\Tpu\V2\Client\TpuClient;
+use Google\Cloud\Tpu\V2\CreateNodeRequest;
+use Google\Cloud\Tpu\V2\DeleteNodeRequest;
+use Google\Cloud\Tpu\V2\GenerateServiceIdentityRequest;
+use Google\Cloud\Tpu\V2\GenerateServiceIdentityResponse;
+use Google\Cloud\Tpu\V2\GetAcceleratorTypeRequest;
+use Google\Cloud\Tpu\V2\GetGuestAttributesRequest;
+use Google\Cloud\Tpu\V2\GetGuestAttributesResponse;
+use Google\Cloud\Tpu\V2\GetNodeRequest;
+use Google\Cloud\Tpu\V2\GetRuntimeVersionRequest;
+use Google\Cloud\Tpu\V2\ListAcceleratorTypesRequest;
+use Google\Cloud\Tpu\V2\ListAcceleratorTypesResponse;
+use Google\Cloud\Tpu\V2\ListNodesRequest;
+use Google\Cloud\Tpu\V2\ListNodesResponse;
+use Google\Cloud\Tpu\V2\ListRuntimeVersionsRequest;
+use Google\Cloud\Tpu\V2\ListRuntimeVersionsResponse;
+use Google\Cloud\Tpu\V2\Node;
+use Google\Cloud\Tpu\V2\RuntimeVersion;
+use Google\Cloud\Tpu\V2\StartNodeRequest;
+use Google\Cloud\Tpu\V2\StopNodeRequest;
+use Google\Cloud\Tpu\V2\UpdateNodeRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -107,26 +113,18 @@ class TpuClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
         $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
+        $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
+        $id = 3355;
         $expectedResponse = new Node();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
         $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse->setId($id);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -139,8 +137,8 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
         $node->setAcceleratorType($nodeAcceleratorType);
-        $nodeTensorflowVersion = 'nodeTensorflowVersion-1950315537';
-        $node->setTensorflowVersion($nodeTensorflowVersion);
+        $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
+        $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())
             ->setParent($formattedParent)
             ->setNode($node);
@@ -153,7 +151,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/CreateNode', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/CreateNode', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getNode();
@@ -213,8 +211,8 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
         $node->setAcceleratorType($nodeAcceleratorType);
-        $nodeTensorflowVersion = 'nodeTensorflowVersion-1950315537';
-        $node->setTensorflowVersion($nodeTensorflowVersion);
+        $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
+        $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())
             ->setParent($formattedParent)
             ->setNode($node);
@@ -261,29 +259,7 @@ class TpuClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/deleteNodeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name2 = 'name2-1052831874';
-        $description = 'description-1724546052';
-        $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
-        $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
-        $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
-        $expectedResponse = new Node();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
-        $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -304,7 +280,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/DeleteNode', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/DeleteNode', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -384,6 +360,68 @@ class TpuClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateServiceIdentityTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GenerateServiceIdentityResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new GenerateServiceIdentityRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->generateServiceIdentity($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/GenerateServiceIdentity', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateServiceIdentityExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new GenerateServiceIdentityRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->generateServiceIdentity($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAcceleratorTypeTest()
     {
         $transport = $this->createTransport();
@@ -408,7 +446,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/GetAcceleratorType', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/GetAcceleratorType', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -450,6 +488,68 @@ class TpuClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getGuestAttributesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GetGuestAttributesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new GetGuestAttributesRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getGuestAttributes($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/GetGuestAttributes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGuestAttributesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new GetGuestAttributesRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getGuestAttributes($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getNodeTest()
     {
         $transport = $this->createTransport();
@@ -461,26 +561,18 @@ class TpuClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
         $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
+        $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
+        $id = 3355;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
         $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
@@ -492,7 +584,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/GetNode', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/GetNode', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -534,7 +626,7 @@ class TpuClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getTensorFlowVersionTest()
+    public function getRuntimeVersionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -544,28 +636,28 @@ class TpuClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $version = 'version351608024';
-        $expectedResponse = new TensorFlowVersion();
+        $expectedResponse = new RuntimeVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $request = (new GetTensorFlowVersionRequest())
+        $formattedName = $gapicClient->runtimeVersionName('[PROJECT]', '[LOCATION]', '[RUNTIME_VERSION]');
+        $request = (new GetRuntimeVersionRequest())
             ->setName($formattedName);
-        $response = $gapicClient->getTensorFlowVersion($request);
+        $response = $gapicClient->getRuntimeVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/GetTensorFlowVersion', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/GetRuntimeVersion', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getTensorFlowVersionExceptionTest()
+    public function getRuntimeVersionExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -583,11 +675,11 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $request = (new GetTensorFlowVersionRequest())
+        $formattedName = $gapicClient->runtimeVersionName('[PROJECT]', '[LOCATION]', '[RUNTIME_VERSION]');
+        $request = (new GetRuntimeVersionRequest())
             ->setName($formattedName);
         try {
-            $gapicClient->getTensorFlowVersion($request);
+            $gapicClient->getRuntimeVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -618,7 +710,7 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setAcceleratorTypes($acceleratorTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $request = (new ListAcceleratorTypesRequest())
             ->setParent($formattedParent);
         $response = $gapicClient->listAcceleratorTypes($request);
@@ -630,7 +722,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/ListAcceleratorTypes', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/ListAcceleratorTypes', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -655,7 +747,7 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $request = (new ListAcceleratorTypesRequest())
             ->setParent($formattedParent);
         try {
@@ -702,7 +794,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/ListNodes', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/ListNodes', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -744,7 +836,7 @@ class TpuClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listTensorFlowVersionsTest()
+    public function listRuntimeVersionsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -753,35 +845,35 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $tensorflowVersionsElement = new TensorFlowVersion();
-        $tensorflowVersions = [
-            $tensorflowVersionsElement,
+        $runtimeVersionsElement = new RuntimeVersion();
+        $runtimeVersions = [
+            $runtimeVersionsElement,
         ];
-        $expectedResponse = new ListTensorFlowVersionsResponse();
+        $expectedResponse = new ListRuntimeVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTensorflowVersions($tensorflowVersions);
+        $expectedResponse->setRuntimeVersions($runtimeVersions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $request = (new ListTensorFlowVersionsRequest())
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRuntimeVersionsRequest())
             ->setParent($formattedParent);
-        $response = $gapicClient->listTensorFlowVersions($request);
+        $response = $gapicClient->listRuntimeVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTensorflowVersions()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getRuntimeVersions()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/ListTensorFlowVersions', $actualFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/ListRuntimeVersions', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listTensorFlowVersionsExceptionTest()
+    public function listRuntimeVersionsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -799,11 +891,11 @@ class TpuClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorFlowVersionName('[PROJECT]', '[LOCATION]', '[TENSOR_FLOW_VERSION]');
-        $request = (new ListTensorFlowVersionsRequest())
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRuntimeVersionsRequest())
             ->setParent($formattedParent);
         try {
-            $gapicClient->listTensorFlowVersions($request);
+            $gapicClient->listRuntimeVersions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -813,141 +905,6 @@ class TpuClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function reimageNodeTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/reimageNodeTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name2 = 'name2-1052831874';
-        $description = 'description-1724546052';
-        $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
-        $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion2 = 'tensorflowVersion2467487059';
-        $network = 'network1843485230';
-        $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
-        $expectedResponse = new Node();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
-        $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion2);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/reimageNodeTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        $request = new ReimageNodeRequest();
-        $response = $gapicClient->reimageNode($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/ReimageNode', $actualApiFuncCall);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/reimageNodeTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function reimageNodeExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/reimageNodeTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $operationsTransport->addResponse(null, $status);
-        $request = new ReimageNodeRequest();
-        $response = $gapicClient->reimageNode($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/reimageNodeTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -974,26 +931,18 @@ class TpuClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
         $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
+        $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
+        $id = 3355;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
         $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse->setId($id);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1001,7 +950,10 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new StartNodeRequest();
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new StartNodeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->startNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1011,7 +963,9 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/StartNode', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/StartNode', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startNodeTest');
         $response->pollUntilComplete([
@@ -1062,7 +1016,10 @@ class TpuClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new StartNodeRequest();
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new StartNodeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->startNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1109,26 +1066,18 @@ class TpuClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
         $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
+        $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
+        $id = 3355;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
         $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse->setId($id);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1136,7 +1085,10 @@ class TpuClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new StopNodeRequest();
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new StopNodeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->stopNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1146,7 +1098,9 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/StopNode', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/StopNode', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopNodeTest');
         $response->pollUntilComplete([
@@ -1197,12 +1151,164 @@ class TpuClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new StopNodeRequest();
+        // Mock request
+        $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
+        $request = (new StopNodeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->stopNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopNodeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNodeTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNodeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $acceleratorType = 'acceleratorType1748643982';
+        $healthDescription = 'healthDescription-1057342823';
+        $runtimeVersion = 'runtimeVersion1819622257';
+        $cidrBlock = 'cidrBlock313022466';
+        $id = 3355;
+        $expectedResponse = new Node();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setAcceleratorType($acceleratorType);
+        $expectedResponse->setHealthDescription($healthDescription);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
+        $expectedResponse->setCidrBlock($cidrBlock);
+        $expectedResponse->setId($id);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateNodeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $updateMask = new FieldMask();
+        $node = new Node();
+        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
+        $node->setAcceleratorType($nodeAcceleratorType);
+        $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
+        $node->setRuntimeVersion($nodeRuntimeVersion);
+        $request = (new UpdateNodeRequest())
+            ->setUpdateMask($updateMask)
+            ->setNode($node);
+        $response = $gapicClient->updateNode($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/UpdateNode', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getNode();
+        $this->assertProtobufEquals($node, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNodeTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNodeExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNodeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $node = new Node();
+        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
+        $node->setAcceleratorType($nodeAcceleratorType);
+        $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
+        $node->setRuntimeVersion($nodeRuntimeVersion);
+        $request = (new UpdateNodeRequest())
+            ->setUpdateMask($updateMask)
+            ->setNode($node);
+        $response = $gapicClient->updateNode($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNodeTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1368,26 +1474,18 @@ class TpuClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $acceleratorType = 'acceleratorType1748643982';
-        $ipAddress = 'ipAddress1480014044';
-        $port = 'port3446913';
         $healthDescription = 'healthDescription-1057342823';
-        $tensorflowVersion = 'tensorflowVersion-1353701984';
-        $network = 'network1843485230';
+        $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $useServiceNetworking = true;
+        $id = 3355;
         $expectedResponse = new Node();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setAcceleratorType($acceleratorType);
-        $expectedResponse->setIpAddress($ipAddress);
-        $expectedResponse->setPort($port);
         $expectedResponse->setHealthDescription($healthDescription);
-        $expectedResponse->setTensorflowVersion($tensorflowVersion);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
-        $expectedResponse->setServiceAccount($serviceAccount);
-        $expectedResponse->setUseServiceNetworking($useServiceNetworking);
+        $expectedResponse->setId($id);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1400,8 +1498,8 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
         $node->setAcceleratorType($nodeAcceleratorType);
-        $nodeTensorflowVersion = 'nodeTensorflowVersion-1950315537';
-        $node->setTensorflowVersion($nodeTensorflowVersion);
+        $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
+        $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())
             ->setParent($formattedParent)
             ->setNode($node);
@@ -1414,7 +1512,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.tpu.v1.Tpu/CreateNode', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.tpu.v2.Tpu/CreateNode', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getNode();
