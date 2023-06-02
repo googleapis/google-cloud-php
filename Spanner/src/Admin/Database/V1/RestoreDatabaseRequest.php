@@ -49,6 +49,32 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     protected $source;
 
     /**
+     * @param string $parent     Required. The name of the instance in which to create the
+     *                           restored database. This instance must be in the same project and
+     *                           have the same instance configuration as the instance containing
+     *                           the source backup. Values are of the form
+     *                           `projects/<project>/instances/<instance>`. Please see
+     *                           {@see DatabaseAdminClient::instanceName()} for help formatting this field.
+     * @param string $databaseId Required. The id of the database to create and restore to. This
+     *                           database must not already exist. The `database_id` appended to
+     *                           `parent` forms the full database name of the form
+     *                           `projects/<project>/instances/<instance>/databases/<database_id>`.
+     * @param string $backup     Name of the backup from which to restore.  Values are of the form
+     *                           `projects/<project>/instances/<instance>/backups/<backup>`.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $databaseId, string $backup): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDatabaseId($databaseId)
+            ->setBackup($backup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
