@@ -28,6 +28,7 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Firestore\Admin\V1\Client\FirestoreAdminClient;
+use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
@@ -80,6 +81,147 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new FirestoreAdminClient($options);
+    }
+
+    /** @test */
+    public function createDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $locationId = 'locationId552319461';
+        $keyPrefix = 'keyPrefix438630514';
+        $etag = 'etag3123477';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setKeyPrefix($keyPrefix);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $database = new Database();
+        $databaseId = 'databaseId816491103';
+        $request = (new CreateDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setDatabase($database)
+            ->setDatabaseId($databaseId);
+        $response = $gapicClient->createDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabaseId();
+        $this->assertProtobufEquals($databaseId, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $database = new Database();
+        $databaseId = 'databaseId816491103';
+        $request = (new CreateDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setDatabase($database)
+            ->setDatabaseId($databaseId);
+        $response = $gapicClient->createDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1177,7 +1319,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createIndexAsyncTest()
+    public function createDatabaseAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1194,26 +1336,34 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createIndexTest');
+        $incompleteOperation->setName('operations/createDatabaseTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $expectedResponse = new Index();
+        $locationId = 'locationId552319461';
+        $keyPrefix = 'keyPrefix438630514';
+        $etag = 'etag3123477';
+        $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setKeyPrefix($keyPrefix);
+        $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createIndexTest');
+        $completeOperation->setName('operations/createDatabaseTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $index = new Index();
-        $request = (new CreateIndexRequest())
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $database = new Database();
+        $databaseId = 'databaseId816491103';
+        $request = (new CreateDatabaseRequest())
             ->setParent($formattedParent)
-            ->setIndex($index);
-        $response = $gapicClient->createIndexAsync($request)->wait();
+            ->setDatabase($database)
+            ->setDatabaseId($databaseId);
+        $response = $gapicClient->createDatabaseAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1222,13 +1372,15 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateIndex', $actualApiFuncCall);
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateDatabase', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getIndex();
-        $this->assertProtobufEquals($index, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabaseId();
+        $this->assertProtobufEquals($databaseId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createIndexTest');
+        $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

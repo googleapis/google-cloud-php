@@ -22,13 +22,13 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The Database to create.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database database = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $database = null;
+    private $database = null;
     /**
      * Required. The ID to use for the database, which will become the final
      * component of the database's resource name.
@@ -36,7 +36,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $database_id = '';
+    private $database_id = '';
 
     /**
      * @param string                                    $parent     Required. A parent name of the form

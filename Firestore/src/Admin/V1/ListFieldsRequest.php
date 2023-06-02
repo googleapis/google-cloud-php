@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields].
+ * The request for
+ * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ListFieldsRequest</code>
  */
@@ -24,10 +25,11 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The filter to apply to list results. Currently,
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     * that have been explicitly overridden. To issue this query, call
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with a filter that includes
-     * `indexConfig.usesAncestorConfig:false` .
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * only supports listing fields that have been explicitly overridden. To issue
+     * this query, call
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * with a filter that includes `indexConfig.usesAncestorConfig:false` .
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -40,8 +42,8 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -73,16 +75,17 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     @type string $filter
      *           The filter to apply to list results. Currently,
-     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     *           that have been explicitly overridden. To issue this query, call
-     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with a filter that includes
-     *           `indexConfig.usesAncestorConfig:false` .
+     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     *           only supports listing fields that have been explicitly overridden. To issue
+     *           this query, call
+     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     *           with a filter that includes `indexConfig.usesAncestorConfig:false` .
      *     @type int $page_size
      *           The number of results to return.
      *     @type string $page_token
      *           A page token, returned from a previous call to
-     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields], that may be used to get the next
-     *           page of results.
+     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields],
+     *           that may be used to get the next page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,10 +123,11 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The filter to apply to list results. Currently,
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     * that have been explicitly overridden. To issue this query, call
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with a filter that includes
-     * `indexConfig.usesAncestorConfig:false` .
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * only supports listing fields that have been explicitly overridden. To issue
+     * this query, call
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * with a filter that includes `indexConfig.usesAncestorConfig:false` .
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -135,10 +139,11 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The filter to apply to list results. Currently,
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     * that have been explicitly overridden. To issue this query, call
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with a filter that includes
-     * `indexConfig.usesAncestorConfig:false` .
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * only supports listing fields that have been explicitly overridden. To issue
+     * this query, call
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * with a filter that includes `indexConfig.usesAncestorConfig:false` .
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -180,8 +185,8 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -193,8 +198,8 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
