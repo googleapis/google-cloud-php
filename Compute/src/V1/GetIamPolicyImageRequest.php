@@ -35,6 +35,21 @@ class GetIamPolicyImageRequest extends \Google\Protobuf\Internal\Message
     private $resource = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $resource Name or id of the resource for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\GetIamPolicyImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $resource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setResource($resource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,23 @@ class InsertRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $source_image = null;
 
     /**
+     * @param string                        $project      Project ID for this request.
+     * @param string                        $region       Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\Disk $diskResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\Disk $diskResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDiskResource($diskResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

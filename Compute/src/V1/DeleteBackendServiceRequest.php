@@ -35,6 +35,21 @@ class DeleteBackendServiceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $backendService Name of the BackendService resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

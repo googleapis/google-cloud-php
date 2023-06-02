@@ -47,6 +47,23 @@ class AddAssociationNetworkFirewallPolicyRequest extends \Google\Protobuf\Intern
     private $request_id = null;
 
     /**
+     * @param string                                             $project                           Project ID for this request.
+     * @param string                                             $firewallPolicy                    Name of the firewall policy to update.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyAssociation $firewallPolicyAssociationResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $firewallPolicy, \Google\Cloud\Compute\V1\FirewallPolicyAssociation $firewallPolicyAssociationResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,25 @@ class UpdateShieldedInstanceConfigInstanceRequest extends \Google\Protobuf\Inter
     private $zone = '';
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $zone                           The name of the zone for this request.
+     * @param string                                          $instance                       Name or id of the instance scoping this request.
+     * @param \Google\Cloud\Compute\V1\ShieldedInstanceConfig $shieldedInstanceConfigResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateShieldedInstanceConfigInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, \Google\Cloud\Compute\V1\ShieldedInstanceConfig $shieldedInstanceConfigResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setShieldedInstanceConfigResource($shieldedInstanceConfigResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

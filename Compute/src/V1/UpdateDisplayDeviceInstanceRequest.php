@@ -47,6 +47,25 @@ class UpdateDisplayDeviceInstanceRequest extends \Google\Protobuf\Internal\Messa
     private $zone = '';
 
     /**
+     * @param string                                 $project               Project ID for this request.
+     * @param string                                 $zone                  The name of the zone for this request.
+     * @param string                                 $instance              Name of the instance scoping this request.
+     * @param \Google\Cloud\Compute\V1\DisplayDevice $displayDeviceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateDisplayDeviceInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, \Google\Cloud\Compute\V1\DisplayDevice $displayDeviceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setDisplayDeviceResource($displayDeviceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

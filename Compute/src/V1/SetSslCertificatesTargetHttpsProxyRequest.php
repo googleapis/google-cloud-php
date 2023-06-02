@@ -41,6 +41,23 @@ class SetSslCertificatesTargetHttpsProxyRequest extends \Google\Protobuf\Interna
     private $target_https_proxy = '';
 
     /**
+     * @param string                                                               $project                                             Project ID for this request.
+     * @param string                                                               $targetHttpsProxy                                    Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param \Google\Cloud\Compute\V1\TargetHttpsProxiesSetSslCertificatesRequest $targetHttpsProxiesSetSslCertificatesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetSslCertificatesTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetHttpsProxy, \Google\Cloud\Compute\V1\TargetHttpsProxiesSetSslCertificatesRequest $targetHttpsProxiesSetSslCertificatesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setTargetHttpsProxiesSetSslCertificatesRequestResource($targetHttpsProxiesSetSslCertificatesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,21 @@ class InsertGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroup $networkEndpointGroupResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertGlobalNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\NetworkEndpointGroup $networkEndpointGroupResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetworkEndpointGroupResource($networkEndpointGroupResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,19 @@ class RemoveAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\M
     private $request_id = null;
 
     /**
+     * @param string $firewallPolicy Name of the firewall policy to update.
+     *
+     * @return \Google\Cloud\Compute\V1\RemoveAssociationFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

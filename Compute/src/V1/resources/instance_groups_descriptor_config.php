@@ -18,6 +18,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
+                ],
             ],
             'Delete' => [
                 'longRunning' => [
@@ -33,6 +55,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
                 ],
             ],
             'Insert' => [
@@ -50,6 +94,22 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
             ],
             'RemoveInstances' => [
                 'longRunning' => [
@@ -65,6 +125,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
                 ],
             ],
             'SetNamedPorts' => [
@@ -82,6 +164,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
+                ],
             ],
             'AggregatedList' => [
                 'pageStreaming' => [
@@ -91,6 +195,40 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InstanceGroupAggregatedList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InstanceGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
                 ],
             ],
             'List' => [
@@ -102,6 +240,22 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InstanceGroupList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
             ],
             'ListInstances' => [
                 'pageStreaming' => [
@@ -111,6 +265,28 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InstanceGroupsListInstances',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
                 ],
             ],
         ],

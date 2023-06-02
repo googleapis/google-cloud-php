@@ -35,6 +35,23 @@ class GetRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project     Project ID for this request.
+     * @param string $region      Name of the region scoping this request.
+     * @param string $healthCheck Name of the HealthCheck resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionHealthCheckRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $healthCheck): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setHealthCheck($healthCheck);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

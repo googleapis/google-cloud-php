@@ -41,6 +41,23 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = null;
 
     /**
+     * @param string                                      $project                    Project ID for this request.
+     * @param string                                      $securityPolicy             Name of the security policy to update.
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddRuleSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $securityPolicy, \Google\Cloud\Compute\V1\SecurityPolicyRule $securityPolicyRuleResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

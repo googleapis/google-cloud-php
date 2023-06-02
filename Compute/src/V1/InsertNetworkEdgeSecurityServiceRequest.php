@@ -47,6 +47,23 @@ class InsertNetworkEdgeSecurityServiceRequest extends \Google\Protobuf\Internal\
     private $validate_only = null;
 
     /**
+     * @param string                                              $project                            Project ID for this request.
+     * @param string                                              $region                             Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\NetworkEdgeSecurityService $networkEdgeSecurityServiceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertNetworkEdgeSecurityServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\NetworkEdgeSecurityService $networkEdgeSecurityServiceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

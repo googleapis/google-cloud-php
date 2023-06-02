@@ -47,6 +47,23 @@ class InsertInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
     private $validate_only = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $region                         Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachment $interconnectAttachmentResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertInterconnectAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\InterconnectAttachment $interconnectAttachmentResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInterconnectAttachmentResource($interconnectAttachmentResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,23 @@ class GetImageFamilyViewRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $zone    The name of the zone for this request.
+     * @param string $family  Name of the image family to search for.
+     *
+     * @return \Google\Cloud\Compute\V1\GetImageFamilyViewRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $family): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setFamily($family);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

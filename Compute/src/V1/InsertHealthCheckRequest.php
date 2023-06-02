@@ -35,6 +35,21 @@ class InsertHealthCheckRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                               $project             Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\HealthCheck $healthCheckResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertHealthCheckRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\HealthCheck $healthCheckResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setHealthCheckResource($healthCheckResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

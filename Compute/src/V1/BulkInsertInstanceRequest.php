@@ -41,6 +41,23 @@ class BulkInsertInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                              $project                            Project ID for this request.
+     * @param string                                              $zone                               The name of the zone for this request.
+     * @param \Google\Cloud\Compute\V1\BulkInsertInstanceResource $bulkInsertInstanceResourceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\BulkInsertInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, \Google\Cloud\Compute\V1\BulkInsertInstanceResource $bulkInsertInstanceResourceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -41,6 +41,23 @@ class InsertRouterRequest extends \Google\Protobuf\Internal\Message
     private $router_resource = null;
 
     /**
+     * @param string                          $project        Project ID for this request.
+     * @param string                          $region         Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\Router $routerResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRouterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\Router $routerResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRouterResource($routerResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
