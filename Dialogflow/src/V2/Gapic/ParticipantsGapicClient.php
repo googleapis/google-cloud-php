@@ -105,6 +105,8 @@ class ParticipantsGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $contextNameTemplate;
+
     private static $conversationNameTemplate;
 
     private static $messageNameTemplate;
@@ -117,11 +119,39 @@ class ParticipantsGapicClient
 
     private static $projectConversationParticipantNameTemplate;
 
+    private static $projectEnvironmentUserSessionNameTemplate;
+
+    private static $projectEnvironmentUserSessionContextNameTemplate;
+
+    private static $projectEnvironmentUserSessionEntityTypeNameTemplate;
+
     private static $projectLocationConversationNameTemplate;
 
     private static $projectLocationConversationMessageNameTemplate;
 
     private static $projectLocationConversationParticipantNameTemplate;
+
+    private static $projectLocationEnvironmentUserSessionNameTemplate;
+
+    private static $projectLocationEnvironmentUserSessionContextNameTemplate;
+
+    private static $projectLocationEnvironmentUserSessionEntityTypeNameTemplate;
+
+    private static $projectLocationSessionNameTemplate;
+
+    private static $projectLocationSessionContextNameTemplate;
+
+    private static $projectLocationSessionEntityTypeNameTemplate;
+
+    private static $projectSessionNameTemplate;
+
+    private static $projectSessionContextNameTemplate;
+
+    private static $projectSessionEntityTypeNameTemplate;
+
+    private static $sessionNameTemplate;
+
+    private static $sessionEntityTypeNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -142,6 +172,15 @@ class ParticipantsGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getContextNameTemplate()
+    {
+        if (self::$contextNameTemplate == null) {
+            self::$contextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$contextNameTemplate;
     }
 
     private static function getConversationNameTemplate()
@@ -198,6 +237,33 @@ class ParticipantsGapicClient
         return self::$projectConversationParticipantNameTemplate;
     }
 
+    private static function getProjectEnvironmentUserSessionNameTemplate()
+    {
+        if (self::$projectEnvironmentUserSessionNameTemplate == null) {
+            self::$projectEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionContextNameTemplate()
+    {
+        if (self::$projectEnvironmentUserSessionContextNameTemplate == null) {
+            self::$projectEnvironmentUserSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectEnvironmentUserSessionContextNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionEntityTypeNameTemplate()
+    {
+        if (self::$projectEnvironmentUserSessionEntityTypeNameTemplate == null) {
+            self::$projectEnvironmentUserSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectEnvironmentUserSessionEntityTypeNameTemplate;
+    }
+
     private static function getProjectLocationConversationNameTemplate()
     {
         if (self::$projectLocationConversationNameTemplate == null) {
@@ -225,23 +291,156 @@ class ParticipantsGapicClient
         return self::$projectLocationConversationParticipantNameTemplate;
     }
 
+    private static function getProjectLocationEnvironmentUserSessionNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectLocationEnvironmentUserSessionContextNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionContextNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionContextNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionContextNameTemplate;
+    }
+
+    private static function getProjectLocationEnvironmentUserSessionEntityTypeNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionEntityTypeNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionEntityTypeNameTemplate;
+    }
+
+    private static function getProjectLocationSessionNameTemplate()
+    {
+        if (self::$projectLocationSessionNameTemplate == null) {
+            self::$projectLocationSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}');
+        }
+
+        return self::$projectLocationSessionNameTemplate;
+    }
+
+    private static function getProjectLocationSessionContextNameTemplate()
+    {
+        if (self::$projectLocationSessionContextNameTemplate == null) {
+            self::$projectLocationSessionContextNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectLocationSessionContextNameTemplate;
+    }
+
+    private static function getProjectLocationSessionEntityTypeNameTemplate()
+    {
+        if (self::$projectLocationSessionEntityTypeNameTemplate == null) {
+            self::$projectLocationSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectLocationSessionEntityTypeNameTemplate;
+    }
+
+    private static function getProjectSessionNameTemplate()
+    {
+        if (self::$projectSessionNameTemplate == null) {
+            self::$projectSessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$projectSessionNameTemplate;
+    }
+
+    private static function getProjectSessionContextNameTemplate()
+    {
+        if (self::$projectSessionContextNameTemplate == null) {
+            self::$projectSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectSessionContextNameTemplate;
+    }
+
+    private static function getProjectSessionEntityTypeNameTemplate()
+    {
+        if (self::$projectSessionEntityTypeNameTemplate == null) {
+            self::$projectSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectSessionEntityTypeNameTemplate;
+    }
+
+    private static function getSessionNameTemplate()
+    {
+        if (self::$sessionNameTemplate == null) {
+            self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$sessionNameTemplate;
+    }
+
+    private static function getSessionEntityTypeNameTemplate()
+    {
+        if (self::$sessionEntityTypeNameTemplate == null) {
+            self::$sessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$sessionEntityTypeNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'context' => self::getContextNameTemplate(),
                 'conversation' => self::getConversationNameTemplate(),
                 'message' => self::getMessageNameTemplate(),
                 'participant' => self::getParticipantNameTemplate(),
                 'projectConversation' => self::getProjectConversationNameTemplate(),
                 'projectConversationMessage' => self::getProjectConversationMessageNameTemplate(),
                 'projectConversationParticipant' => self::getProjectConversationParticipantNameTemplate(),
+                'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectEnvironmentUserSessionContext' => self::getProjectEnvironmentUserSessionContextNameTemplate(),
+                'projectEnvironmentUserSessionEntityType' => self::getProjectEnvironmentUserSessionEntityTypeNameTemplate(),
                 'projectLocationConversation' => self::getProjectLocationConversationNameTemplate(),
                 'projectLocationConversationMessage' => self::getProjectLocationConversationMessageNameTemplate(),
                 'projectLocationConversationParticipant' => self::getProjectLocationConversationParticipantNameTemplate(),
+                'projectLocationEnvironmentUserSession' => self::getProjectLocationEnvironmentUserSessionNameTemplate(),
+                'projectLocationEnvironmentUserSessionContext' => self::getProjectLocationEnvironmentUserSessionContextNameTemplate(),
+                'projectLocationEnvironmentUserSessionEntityType' => self::getProjectLocationEnvironmentUserSessionEntityTypeNameTemplate(),
+                'projectLocationSession' => self::getProjectLocationSessionNameTemplate(),
+                'projectLocationSessionContext' => self::getProjectLocationSessionContextNameTemplate(),
+                'projectLocationSessionEntityType' => self::getProjectLocationSessionEntityTypeNameTemplate(),
+                'projectSession' => self::getProjectSessionNameTemplate(),
+                'projectSessionContext' => self::getProjectSessionContextNameTemplate(),
+                'projectSessionEntityType' => self::getProjectSessionEntityTypeNameTemplate(),
+                'session' => self::getSessionNameTemplate(),
+                'sessionEntityType' => self::getSessionEntityTypeNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName($project, $session, $context)
+    {
+        return self::getContextNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
     }
 
     /**
@@ -356,6 +555,73 @@ class ParticipantsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     */
+    public static function projectEnvironmentUserSessionName($project, $environment, $user, $session)
+    {
+        return self::getProjectEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_environment_user_session_context resource.
+     */
+    public static function projectEnvironmentUserSessionContextName($project, $environment, $user, $session, $context)
+    {
+        return self::getProjectEnvironmentUserSessionContextNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_environment_user_session_entity_type resource.
+     */
+    public static function projectEnvironmentUserSessionEntityTypeName($project, $environment, $user, $session, $entityType)
+    {
+        return self::getProjectEnvironmentUserSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -416,18 +682,258 @@ class ParticipantsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_location_environment_user_session resource.
+     */
+    public static function projectLocationEnvironmentUserSessionName($project, $location, $environment, $user, $session)
+    {
+        return self::getProjectLocationEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_environment_user_session_context resource.
+     */
+    public static function projectLocationEnvironmentUserSessionContextName($project, $location, $environment, $user, $session, $context)
+    {
+        return self::getProjectLocationEnvironmentUserSessionContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_location_environment_user_session_entity_type resource.
+     */
+    public static function projectLocationEnvironmentUserSessionEntityTypeName($project, $location, $environment, $user, $session, $entityType)
+    {
+        return self::getProjectLocationEnvironmentUserSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     *
+     * @return string The formatted project_location_session resource.
+     */
+    public static function projectLocationSessionName($project, $location, $session)
+    {
+        return self::getProjectLocationSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_session_context resource.
+     */
+    public static function projectLocationSessionContextName($project, $location, $session, $context)
+    {
+        return self::getProjectLocationSessionContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_location_session_entity_type resource.
+     */
+    public static function projectLocationSessionEntityTypeName($project, $location, $session, $entityType)
+    {
+        return self::getProjectLocationSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     */
+    public static function projectSessionName($project, $session)
+    {
+        return self::getProjectSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_context resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_session_context resource.
+     */
+    public static function projectSessionContextName($project, $session, $context)
+    {
+        return self::getProjectSessionContextNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_session_entity_type resource.
+     */
+    public static function projectSessionEntityTypeName($project, $session, $entityType)
+    {
+        return self::getProjectSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a session
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     */
+    public static function sessionName($project, $session)
+    {
+        return self::getSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted session_entity_type resource.
+     */
+    public static function sessionEntityTypeName($project, $session, $entityType)
+    {
+        return self::getSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - conversation: projects/{project}/conversations/{conversation}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
      * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - projectConversation: projects/{project}/conversations/{conversation}
      * - projectConversationMessage: projects/{project}/conversations/{conversation}/messages/{message}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
+     * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationEnvironmentUserSessionContext: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectLocationEnvironmentUserSessionEntityType: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
+     * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
+     * - projectLocationSessionContext: projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}
+     * - projectLocationSessionEntityType: projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}
+     * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - projectSessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}
+     * - session: projects/{project}/agent/sessions/{session}
+     * - sessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

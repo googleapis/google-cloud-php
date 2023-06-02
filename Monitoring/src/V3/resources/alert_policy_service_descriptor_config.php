@@ -74,9 +74,13 @@ return [
             ],
             'templateMap' => [
                 'alertPolicy' => 'projects/{project}/alertPolicies/{alert_policy}',
+                'alertPolicyCondition' => 'projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}',
                 'folderAlertPolicy' => 'folders/{folder}/alertPolicies/{alert_policy}',
+                'folderAlertPolicyCondition' => 'folders/{folder}/alertPolicies/{alert_policy}/conditions/{condition}',
                 'organizationAlertPolicy' => 'organizations/{organization}/alertPolicies/{alert_policy}',
+                'organizationAlertPolicyCondition' => 'organizations/{organization}/alertPolicies/{alert_policy}/conditions/{condition}',
                 'projectAlertPolicy' => 'projects/{project}/alertPolicies/{alert_policy}',
+                'projectAlertPolicyCondition' => 'projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}',
             ],
         ],
     ],

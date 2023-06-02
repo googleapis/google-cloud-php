@@ -526,6 +526,27 @@ abstract class JobServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a trial
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $study
+     * @param string $trial
+     *
+     * @return string The formatted trial resource.
+     */
+    public static function trialName(string $project, string $location, string $study, string $trial): string
+    {
+        return self::getPathTemplate('trial')->render([
+            'project' => $project,
+            'location' => $location,
+            'study' => $study,
+            'trial' => $trial,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -545,6 +566,7 @@ abstract class JobServiceBaseClient
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}
+     * - trial: projects/{project}/locations/{location}/studies/{study}/trials/{trial}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

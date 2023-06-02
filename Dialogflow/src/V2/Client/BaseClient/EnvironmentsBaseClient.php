@@ -146,6 +146,21 @@ abstract class EnvironmentsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a fulfillment
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted fulfillment resource.
+     */
+    public static function fulfillmentName(string $project): string
+    {
+        return self::getPathTemplate('fulfillment')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_agent resource.
      *
@@ -174,6 +189,21 @@ abstract class EnvironmentsBaseClient
         return self::getPathTemplate('projectEnvironment')->render([
             'project' => $project,
             'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_fulfillment resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_fulfillment resource.
+     */
+    public static function projectFulfillmentName(string $project): string
+    {
+        return self::getPathTemplate('projectFulfillment')->render([
+            'project' => $project,
         ]);
     }
 
@@ -210,6 +240,23 @@ abstract class EnvironmentsBaseClient
             'project' => $project,
             'location' => $location,
             'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_fulfillment resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_fulfillment resource.
+     */
+    public static function projectLocationFulfillmentName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationFulfillment')->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -272,10 +319,13 @@ abstract class EnvironmentsBaseClient
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - environment: projects/{project}/agent/environments/{environment}
+     * - fulfillment: projects/{project}/agent/fulfillment
      * - projectAgent: projects/{project}/agent
      * - projectEnvironment: projects/{project}/agent/environments/{environment}
+     * - projectFulfillment: projects/{project}/agent/fulfillment
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
      * - projectLocationEnvironment: projects/{project}/locations/{location}/agent/environments/{environment}
+     * - projectLocationFulfillment: projects/{project}/locations/{location}/agent/fulfillment
      * - projectLocationVersion: projects/{project}/locations/{location}/agent/versions/{version}
      * - projectVersion: projects/{project}/agent/versions/{version}
      * - version: projects/{project}/agent/versions/{version}

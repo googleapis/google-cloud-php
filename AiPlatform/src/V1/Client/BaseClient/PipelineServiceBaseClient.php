@@ -166,6 +166,27 @@ abstract class PipelineServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a artifact
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $artifact
+     *
+     * @return string The formatted artifact resource.
+     */
+    public static function artifactName(string $project, string $location, string $metadataStore, string $artifact): string
+    {
+        return self::getPathTemplate('artifact')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'artifact' => $artifact,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a context
      * resource.
      *
@@ -225,6 +246,27 @@ abstract class PipelineServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName(string $project, string $location, string $metadataStore, string $execution): string
+    {
+        return self::getPathTemplate('execution')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'execution' => $execution,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -238,6 +280,25 @@ abstract class PipelineServiceBaseClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     *
+     * @return string The formatted metadata_store resource.
+     */
+    public static function metadataStoreName(string $project, string $location, string $metadataStore): string
+    {
+        return self::getPathTemplate('metadataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
         ]);
     }
 
@@ -359,10 +420,13 @@ abstract class PipelineServiceBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - artifact: projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}
      * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
      * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - execution: projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}
      * - location: projects/{project}/locations/{location}
+     * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
