@@ -61,6 +61,14 @@ class DiversificationLevel
      */
     const TWO_PER_COMPANY = 4;
     /**
+     * Similar to ONE_PER_COMPANY, but it allows at most three jobs in the
+     * same company to be shown at once, the other jobs under same company are
+     * dropped.
+     *
+     * Generated from protobuf enum <code>MAX_THREE_PER_COMPANY = 6;</code>
+     */
+    const MAX_THREE_PER_COMPANY = 6;
+    /**
      * The result list is ordered such that somewhat similar results are pushed
      * to the end of the last page of the search results. This option is
      * recommended if SIMPLE diversification does not diversify enough.
@@ -75,6 +83,7 @@ class DiversificationLevel
         self::SIMPLE => 'SIMPLE',
         self::ONE_PER_COMPANY => 'ONE_PER_COMPANY',
         self::TWO_PER_COMPANY => 'TWO_PER_COMPANY',
+        self::MAX_THREE_PER_COMPANY => 'MAX_THREE_PER_COMPANY',
         self::DIVERSIFY_BY_LOOSER_SIMILARITY => 'DIVERSIFY_BY_LOOSER_SIMILARITY',
     ];
 
