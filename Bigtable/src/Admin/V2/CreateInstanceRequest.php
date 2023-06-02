@@ -49,6 +49,34 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $clusters;
 
     /**
+     * @param string                                   $parent     Required. The unique name of the project in which to create the new instance.
+     *                                                             Values are of the form `projects/{project}`. Please see
+     *                                                             {@see BigtableInstanceAdminClient::projectName()} for help formatting this field.
+     * @param string                                   $instanceId Required. The ID to be used when referring to the new instance within its project,
+     *                                                             e.g., just `myinstance` rather than
+     *                                                             `projects/myproject/instances/myinstance`.
+     * @param \Google\Cloud\Bigtable\Admin\V2\Instance $instance   Required. The instance to create.
+     *                                                             Fields marked `OutputOnly` must be left blank.
+     * @param array                                    $clusters   Required. The clusters to be created within the instance, mapped by desired
+     *                                                             cluster ID, e.g., just `mycluster` rather than
+     *                                                             `projects/myproject/instances/myinstance/clusters/mycluster`.
+     *                                                             Fields marked `OutputOnly` must be left blank.
+     *                                                             Currently, at most four clusters can be specified.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $instanceId, \Google\Cloud\Bigtable\Admin\V2\Instance $instance, array $clusters): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstanceId($instanceId)
+            ->setInstance($instance)
+            ->setClusters($clusters);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

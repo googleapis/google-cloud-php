@@ -23,20 +23,6 @@ class DeleteFunctionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the function which should be deleted. Please see
-     *                     {@see CloudFunctionsServiceClient::cloudFunctionName()} for help formatting this field.
-     *
-     * @return \Google\Cloud\Functions\V1\DeleteFunctionRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

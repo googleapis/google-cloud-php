@@ -36,6 +36,28 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\Backup $backup     Required. The backup to update. `backup.name`, and the fields to be updated
+     *                                                           as specified by `update_mask` are required. Other fields are ignored.
+     *                                                           Update is only supported for the following fields:
+     *                                                           * `backup.expire_time`.
+     * @param \Google\Protobuf\FieldMask             $updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the
+     *                                                           Backup resource should be updated. This mask is relative to the Backup
+     *                                                           resource, not to the request message. The field mask must always be
+     *                                                           specified; this prevents any future fields from being erased accidentally
+     *                                                           by clients that do not know about them.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\Backup $backup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

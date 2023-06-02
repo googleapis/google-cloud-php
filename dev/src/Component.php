@@ -264,31 +264,23 @@ class Component
     private function getPackagePaths(): array
     {
         $result = (new Finder())->directories()->in($this->path . '/src/')->name(self::VERSION_REGEX);
-        $paths = array_values(array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result)));
+        $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
+        $paths = array_reverse(array_values($paths));
         usort($paths, [$this, 'versionCompare']);
         return $paths;
     }
 
-    private static function versionCompare(string $version1, string $version2)
+    private static function versionCompare(string $v1, string $v2)
     {
-        $v1Sort = 1;
-        switch (true) {
-            case strpos($version1, 'beta'):
-                $v1Sort = 0;
-                break;
-            case strpos($version1, 'alpha'):
-                $v1Sort = -1;
-                break;
+        // First, sort by API number (e.g. V1 vs V2)
+        $sort = substr($v1, strrpos($v1, 'V')) <=> substr($v2, strrpos($v2, 'V'));
+        if ($sort === 0) {
+            // If same API version, sort by if one is in a subdirectory
+            return strpos($v1, '/') <=> strpos($v2, '/');
         }
-        $v2Sort = 1;
-        switch (true) {
-            case strpos($version2, 'beta'):
-                $v2Sort = 0;
-                break;
-            case strpos($version2, 'alpha'):
-                $v2Sort = -1;
-                break;
-        }
+        // Else, sort by release level (e.g. beta vs alpha vs GA)
+        $v1Sort = strpos($v1, 'beta') ? 0 : (strpos($v1, 'alpha') ? -1 : 1);
+        $v2Sort = strpos($v2, 'beta') ? 0 : (strpos($v2, 'alpha') ? -1 : 1);
         return $v2Sort <=> $v1Sort;
     }
 }

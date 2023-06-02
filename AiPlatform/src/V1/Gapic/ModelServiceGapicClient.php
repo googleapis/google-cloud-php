@@ -131,6 +131,8 @@ class ModelServiceGapicClient
 
     private static $modelEvaluationSliceNameTemplate;
 
+    private static $pipelineJobNameTemplate;
+
     private static $projectLocationEndpointNameTemplate;
 
     private static $projectLocationPublisherModelNameTemplate;
@@ -221,6 +223,17 @@ class ModelServiceGapicClient
         return self::$modelEvaluationSliceNameTemplate;
     }
 
+    private static function getPipelineJobNameTemplate()
+    {
+        if (self::$pipelineJobNameTemplate == null) {
+            self::$pipelineJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}'
+            );
+        }
+
+        return self::$pipelineJobNameTemplate;
+    }
+
     private static function getProjectLocationEndpointNameTemplate()
     {
         if (self::$projectLocationEndpointNameTemplate == null) {
@@ -263,6 +276,7 @@ class ModelServiceGapicClient
                 'model' => self::getModelNameTemplate(),
                 'modelEvaluation' => self::getModelEvaluationNameTemplate(),
                 'modelEvaluationSlice' => self::getModelEvaluationSliceNameTemplate(),
+                'pipelineJob' => self::getPipelineJobNameTemplate(),
                 'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
                 'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
@@ -381,6 +395,25 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a pipeline_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipelineJob
+     *
+     * @return string The formatted pipeline_job resource.
+     */
+    public static function pipelineJobName($project, $location, $pipelineJob)
+    {
+        return self::getPipelineJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
@@ -458,6 +491,7 @@ class ModelServiceGapicClient
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}
      * - modelEvaluationSlice: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}
+     * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}

@@ -1664,7 +1664,7 @@ class FeaturestoreServiceGapicClient
      *           timestamp must not have higher than millisecond precision.
      *     @type string $entityIdField
      *           Source column that holds entity IDs. If not provided, entity IDs are
-     *           extracted from the column named `entity_id`.
+     *           extracted from the column named entity_id.
      *     @type bool $disableOnlineServing
      *           If set, data will not be imported for online serving. This
      *           is typically used for backfilling, where Feature generation timestamps are

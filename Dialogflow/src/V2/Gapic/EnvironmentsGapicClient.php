@@ -99,13 +99,19 @@ class EnvironmentsGapicClient
 
     private static $environmentNameTemplate;
 
+    private static $fulfillmentNameTemplate;
+
     private static $projectAgentNameTemplate;
 
     private static $projectEnvironmentNameTemplate;
 
+    private static $projectFulfillmentNameTemplate;
+
     private static $projectLocationAgentNameTemplate;
 
     private static $projectLocationEnvironmentNameTemplate;
+
+    private static $projectLocationFulfillmentNameTemplate;
 
     private static $projectLocationVersionNameTemplate;
 
@@ -152,6 +158,15 @@ class EnvironmentsGapicClient
         return self::$environmentNameTemplate;
     }
 
+    private static function getFulfillmentNameTemplate()
+    {
+        if (self::$fulfillmentNameTemplate == null) {
+            self::$fulfillmentNameTemplate = new PathTemplate('projects/{project}/agent/fulfillment');
+        }
+
+        return self::$fulfillmentNameTemplate;
+    }
+
     private static function getProjectAgentNameTemplate()
     {
         if (self::$projectAgentNameTemplate == null) {
@@ -170,6 +185,15 @@ class EnvironmentsGapicClient
         return self::$projectEnvironmentNameTemplate;
     }
 
+    private static function getProjectFulfillmentNameTemplate()
+    {
+        if (self::$projectFulfillmentNameTemplate == null) {
+            self::$projectFulfillmentNameTemplate = new PathTemplate('projects/{project}/agent/fulfillment');
+        }
+
+        return self::$projectFulfillmentNameTemplate;
+    }
+
     private static function getProjectLocationAgentNameTemplate()
     {
         if (self::$projectLocationAgentNameTemplate == null) {
@@ -186,6 +210,15 @@ class EnvironmentsGapicClient
         }
 
         return self::$projectLocationEnvironmentNameTemplate;
+    }
+
+    private static function getProjectLocationFulfillmentNameTemplate()
+    {
+        if (self::$projectLocationFulfillmentNameTemplate == null) {
+            self::$projectLocationFulfillmentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/fulfillment');
+        }
+
+        return self::$projectLocationFulfillmentNameTemplate;
     }
 
     private static function getProjectLocationVersionNameTemplate()
@@ -221,10 +254,13 @@ class EnvironmentsGapicClient
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
                 'environment' => self::getEnvironmentNameTemplate(),
+                'fulfillment' => self::getFulfillmentNameTemplate(),
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectEnvironment' => self::getProjectEnvironmentNameTemplate(),
+                'projectFulfillment' => self::getProjectFulfillmentNameTemplate(),
                 'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
                 'projectLocationEnvironment' => self::getProjectLocationEnvironmentNameTemplate(),
+                'projectLocationFulfillment' => self::getProjectLocationFulfillmentNameTemplate(),
                 'projectLocationVersion' => self::getProjectLocationVersionNameTemplate(),
                 'projectVersion' => self::getProjectVersionNameTemplate(),
                 'version' => self::getVersionNameTemplate(),
@@ -267,6 +303,21 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a fulfillment
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted fulfillment resource.
+     */
+    public static function fulfillmentName($project)
+    {
+        return self::getFulfillmentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_agent resource.
      *
@@ -295,6 +346,21 @@ class EnvironmentsGapicClient
         return self::getProjectEnvironmentNameTemplate()->render([
             'project' => $project,
             'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_fulfillment resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_fulfillment resource.
+     */
+    public static function projectFulfillmentName($project)
+    {
+        return self::getProjectFulfillmentNameTemplate()->render([
+            'project' => $project,
         ]);
     }
 
@@ -331,6 +397,23 @@ class EnvironmentsGapicClient
             'project' => $project,
             'location' => $location,
             'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_fulfillment resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_fulfillment resource.
+     */
+    public static function projectLocationFulfillmentName($project, $location)
+    {
+        return self::getProjectLocationFulfillmentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -393,10 +476,13 @@ class EnvironmentsGapicClient
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - environment: projects/{project}/agent/environments/{environment}
+     * - fulfillment: projects/{project}/agent/fulfillment
      * - projectAgent: projects/{project}/agent
      * - projectEnvironment: projects/{project}/agent/environments/{environment}
+     * - projectFulfillment: projects/{project}/agent/fulfillment
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
      * - projectLocationEnvironment: projects/{project}/locations/{location}/agent/environments/{environment}
+     * - projectLocationFulfillment: projects/{project}/locations/{location}/agent/fulfillment
      * - projectLocationVersion: projects/{project}/locations/{location}/agent/versions/{version}
      * - projectVersion: projects/{project}/agent/versions/{version}
      * - version: projects/{project}/agent/versions/{version}

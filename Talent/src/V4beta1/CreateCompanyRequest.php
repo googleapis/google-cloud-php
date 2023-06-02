@@ -32,26 +32,6 @@ class CreateCompanyRequest extends \Google\Protobuf\Internal\Message
     private $company = null;
 
     /**
-     * @param string                               $parent  Required. Resource name of the tenant under which the company is created.
-     *
-     *                                                      The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                                                      "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
-     *                                                      is created, for example, "projects/foo". Please see
-     *                                                      {@see CompanyServiceClient::projectName()} for help formatting this field.
-     * @param \Google\Cloud\Talent\V4beta1\Company $company Required. The company to be created.
-     *
-     * @return \Google\Cloud\Talent\V4beta1\CreateCompanyRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent, \Google\Cloud\Talent\V4beta1\Company $company): self
-    {
-        return (new self())
-            ->setParent($parent)
-            ->setCompany($company);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

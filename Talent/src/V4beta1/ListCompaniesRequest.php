@@ -50,26 +50,6 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     private $require_open_jobs = false;
 
     /**
-     * @param string $parent Required. Resource name of the tenant under which the company is created.
-     *
-     *                       The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                       "projects/foo/tenant/bar".
-     *
-     *                       If tenant id is unspecified, the default tenant will be used, for
-     *                       example, "projects/foo". Please see
-     *                       {@see CompanyServiceClient::projectName()} for help formatting this field.
-     *
-     * @return \Google\Cloud\Talent\V4beta1\ListCompaniesRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent): self
-    {
-        return (new self())
-            ->setParent($parent);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

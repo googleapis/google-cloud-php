@@ -45,6 +45,30 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $source_snapshot = '';
 
     /**
+     * @param string $parent         Required. The unique name of the instance in which to create the table.
+     *                               Values are of the form `projects/{project}/instances/{instance}`. Please see
+     *                               {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
+     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
+     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
+     *                               snapshot and the table must be in the same instance.
+     *                               Values are of the form
+     *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`. Please see
+     *                               {@see BigtableTableAdminClient::snapshotName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $tableId, string $sourceSnapshot): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTableId($tableId)
+            ->setSourceSnapshot($sourceSnapshot);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

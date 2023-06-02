@@ -58,6 +58,27 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     private $initial_splits;
 
     /**
+     * @param string                                $parent  Required. The unique name of the instance in which to create the table.
+     *                                                       Values are of the form `projects/{project}/instances/{instance}`. Please see
+     *                                                       {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
+     * @param string                                $tableId Required. The name by which the new table should be referred to within the parent
+     *                                                       instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     *                                                       Maximum 50 characters.
+     * @param \Google\Cloud\Bigtable\Admin\V2\Table $table   Required. The Table to create.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $tableId, \Google\Cloud\Bigtable\Admin\V2\Table $table): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTableId($tableId)
+            ->setTable($table);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
