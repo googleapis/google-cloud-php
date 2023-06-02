@@ -29,6 +29,21 @@ class GetInterconnectRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $interconnect Name of the interconnect to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetInterconnectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $interconnect): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInterconnect($interconnect);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

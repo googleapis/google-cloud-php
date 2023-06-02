@@ -41,6 +41,25 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     private $region_instance_group_managers_apply_updates_request_resource = null;
 
     /**
+     * @param string                                                                  $project                                                Project ID for this request.
+     * @param string                                                                  $region                                                 Name of the region scoping this request, should conform to RFC1035.
+     * @param string                                                                  $instanceGroupManager                                   The name of the managed instance group, should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest $regionInstanceGroupManagersApplyUpdatesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest $regionInstanceGroupManagersApplyUpdatesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

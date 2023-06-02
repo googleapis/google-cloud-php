@@ -29,6 +29,21 @@ class GetExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project            Project ID for this request.
+     * @param string $externalVpnGateway Name of the externalVpnGateway to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetExternalVpnGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $externalVpnGateway): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setExternalVpnGateway($externalVpnGateway);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

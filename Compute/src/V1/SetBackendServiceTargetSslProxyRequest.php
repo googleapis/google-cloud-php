@@ -41,6 +41,23 @@ class SetBackendServiceTargetSslProxyRequest extends \Google\Protobuf\Internal\M
     private $target_ssl_proxy = '';
 
     /**
+     * @param string                                                            $project                                          Project ID for this request.
+     * @param string                                                            $targetSslProxy                                   Name of the TargetSslProxy resource whose BackendService resource is to be set.
+     * @param \Google\Cloud\Compute\V1\TargetSslProxiesSetBackendServiceRequest $targetSslProxiesSetBackendServiceRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetBackendServiceTargetSslProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetSslProxy, \Google\Cloud\Compute\V1\TargetSslProxiesSetBackendServiceRequest $targetSslProxiesSetBackendServiceRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy)
+            ->setTargetSslProxiesSetBackendServiceRequestResource($targetSslProxiesSetBackendServiceRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

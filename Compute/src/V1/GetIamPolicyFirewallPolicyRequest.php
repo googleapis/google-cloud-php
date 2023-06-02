@@ -29,6 +29,19 @@ class GetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
     private $resource = '';
 
     /**
+     * @param string $resource Name or id of the resource for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\GetIamPolicyFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $resource): self
+    {
+        return (new self())
+            ->setResource($resource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

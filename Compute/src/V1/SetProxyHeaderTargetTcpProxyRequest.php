@@ -41,6 +41,23 @@ class SetProxyHeaderTargetTcpProxyRequest extends \Google\Protobuf\Internal\Mess
     private $target_tcp_proxy = '';
 
     /**
+     * @param string                                                         $project                                       Project ID for this request.
+     * @param string                                                         $targetTcpProxy                                Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
+     * @param \Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest $targetTcpProxiesSetProxyHeaderRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetProxyHeaderTargetTcpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetTcpProxy, \Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest $targetTcpProxiesSetProxyHeaderRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetTcpProxy($targetTcpProxy)
+            ->setTargetTcpProxiesSetProxyHeaderRequestResource($targetTcpProxiesSetProxyHeaderRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,25 @@ class SetNameInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                           $project                         Project ID for this request.
+     * @param string                                           $zone                            The name of the zone for this request.
+     * @param string                                           $instance                        The instance name for this request.
+     * @param \Google\Cloud\Compute\V1\InstancesSetNameRequest $instancesSetNameRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetNameInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, \Google\Cloud\Compute\V1\InstancesSetNameRequest $instancesSetNameRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setInstancesSetNameRequestResource($instancesSetNameRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

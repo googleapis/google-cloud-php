@@ -47,6 +47,25 @@ class RemoveResourcePoliciesInstanceRequest extends \Google\Protobuf\Internal\Me
     private $zone = '';
 
     /**
+     * @param string                                                          $project                                        Project ID for this request.
+     * @param string                                                          $zone                                           The name of the zone for this request.
+     * @param string                                                          $instance                                       The instance name for this request.
+     * @param \Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest $instancesRemoveResourcePoliciesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, \Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest $instancesRemoveResourcePoliciesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setInstancesRemoveResourcePoliciesRequestResource($instancesRemoveResourcePoliciesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -65,6 +65,23 @@ class ListPerInstanceConfigsRegionInstanceGroupManagersRequest extends \Google\P
     private $return_partial_success = null;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request, should conform to RFC1035.
+     * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\ListPerInstanceConfigsRegionInstanceGroupManagersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

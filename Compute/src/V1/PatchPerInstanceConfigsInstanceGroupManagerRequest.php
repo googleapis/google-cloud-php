@@ -47,6 +47,25 @@ class PatchPerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protobu
     private $zone = '';
 
     /**
+     * @param string                                                                   $project                                                 Project ID for this request.
+     * @param string                                                                   $zone                                                    The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * @param string                                                                   $instanceGroupManager                                    The name of the managed instance group. It should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagersPatchPerInstanceConfigsReq $instanceGroupManagersPatchPerInstanceConfigsReqResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchPerInstanceConfigsInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, \Google\Cloud\Compute\V1\InstanceGroupManagersPatchPerInstanceConfigsReq $instanceGroupManagersPatchPerInstanceConfigsReqResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource($instanceGroupManagersPatchPerInstanceConfigsReqResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

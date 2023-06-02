@@ -41,6 +41,21 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                         $project       Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\Image $imageResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\Image $imageResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setImageResource($imageResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

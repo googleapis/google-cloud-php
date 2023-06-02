@@ -35,6 +35,23 @@ class GetTargetInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $zone           Name of the zone scoping this request.
+     * @param string $targetInstance Name of the TargetInstance resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetTargetInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $targetInstance): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setTargetInstance($targetInstance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -41,6 +41,23 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     private $request_id = null;
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $backendService Name of the BackendService resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $backendService): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setBackendService($backendService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

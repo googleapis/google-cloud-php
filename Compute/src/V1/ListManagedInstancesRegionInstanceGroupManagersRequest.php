@@ -65,6 +65,23 @@ class ListManagedInstancesRegionInstanceGroupManagersRequest extends \Google\Pro
     private $return_partial_success = null;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param string $instanceGroupManager The name of the managed instance group.
+     *
+     * @return \Google\Cloud\Compute\V1\ListManagedInstancesRegionInstanceGroupManagersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

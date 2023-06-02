@@ -41,6 +41,23 @@ class PatchPublicAdvertisedPrefixeRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $publicAdvertisedPrefix         Name of the PublicAdvertisedPrefix resource to patch.
+     * @param \Google\Cloud\Compute\V1\PublicAdvertisedPrefix $publicAdvertisedPrefixResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchPublicAdvertisedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicAdvertisedPrefix, \Google\Cloud\Compute\V1\PublicAdvertisedPrefix $publicAdvertisedPrefixResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix)
+            ->setPublicAdvertisedPrefixResource($publicAdvertisedPrefixResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

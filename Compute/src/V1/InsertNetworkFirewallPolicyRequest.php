@@ -35,6 +35,21 @@ class InsertNetworkFirewallPolicyRequest extends \Google\Protobuf\Internal\Messa
     private $request_id = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewallPolicyResource($firewallPolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

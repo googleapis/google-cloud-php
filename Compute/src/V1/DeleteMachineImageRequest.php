@@ -35,6 +35,21 @@ class DeleteMachineImageRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $machineImage The name of the machine image to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteMachineImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $machineImage): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setMachineImage($machineImage);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

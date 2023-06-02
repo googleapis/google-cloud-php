@@ -41,6 +41,23 @@ class DeleteForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $forwardingRule Name of the ForwardingRule resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $forwardingRule): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setForwardingRule($forwardingRule);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

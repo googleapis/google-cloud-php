@@ -47,6 +47,25 @@ class PatchForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $region                 Name of the region scoping this request.
+     * @param string                                  $forwardingRule         Name of the ForwardingRule resource to patch.
+     * @param \Google\Cloud\Compute\V1\ForwardingRule $forwardingRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $forwardingRule, \Google\Cloud\Compute\V1\ForwardingRule $forwardingRuleResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setForwardingRule($forwardingRule)
+            ->setForwardingRuleResource($forwardingRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

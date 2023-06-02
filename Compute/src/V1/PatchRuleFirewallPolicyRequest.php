@@ -41,6 +41,21 @@ class PatchRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                      $firewallPolicy             Name of the firewall policy to update.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchRuleFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy, \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

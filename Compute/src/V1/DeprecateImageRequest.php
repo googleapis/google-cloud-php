@@ -41,6 +41,23 @@ class DeprecateImageRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                     $project                   Project ID for this request.
+     * @param string                                     $image                     Image name.
+     * @param \Google\Cloud\Compute\V1\DeprecationStatus $deprecationStatusResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\DeprecateImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $image, \Google\Cloud\Compute\V1\DeprecationStatus $deprecationStatusResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setImage($image)
+            ->setDeprecationStatusResource($deprecationStatusResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
