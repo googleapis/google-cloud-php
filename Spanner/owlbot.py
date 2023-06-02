@@ -45,6 +45,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Database/v1").resol
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/Client', 'src/Admin/Database/V1/Client', merge=php._merge)
 s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources', merge=php._merge)
 
 # copy proto files to src also
@@ -59,6 +60,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Instance/v1").resol
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/Client', 'src/Admin/Instance/V1/Client', merge=php._merge)
 s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources', merge=php._merge)
 
 # copy proto files to src also
