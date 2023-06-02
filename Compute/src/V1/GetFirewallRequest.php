@@ -29,6 +29,21 @@ class GetFirewallRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $firewall Name of the firewall rule to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetFirewallRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $firewall): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewall($firewall);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

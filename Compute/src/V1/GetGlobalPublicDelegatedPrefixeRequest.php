@@ -29,6 +29,21 @@ class GetGlobalPublicDelegatedPrefixeRequest extends \Google\Protobuf\Internal\M
     private $public_delegated_prefix = '';
 
     /**
+     * @param string $project               Project ID for this request.
+     * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetGlobalPublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicDelegatedPrefix): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicDelegatedPrefix($publicDelegatedPrefix);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

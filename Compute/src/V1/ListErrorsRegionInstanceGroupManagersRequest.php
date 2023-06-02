@@ -65,6 +65,23 @@ class ListErrorsRegionInstanceGroupManagersRequest extends \Google\Protobuf\Inte
     private $return_partial_success = null;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request. This should conform to RFC1035.
+     * @param string $instanceGroupManager The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
+     *
+     * @return \Google\Cloud\Compute\V1\ListErrorsRegionInstanceGroupManagersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

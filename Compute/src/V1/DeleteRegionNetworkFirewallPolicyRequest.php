@@ -41,6 +41,23 @@ class DeleteRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\Internal
     private $request_id = null;
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $firewallPolicy Name of the firewall policy to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $firewallPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

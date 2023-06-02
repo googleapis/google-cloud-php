@@ -47,6 +47,25 @@ class ResizeInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Messag
     private $zone = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $zone                 The name of the zone where the managed instance group is located.
+     * @param string $instanceGroupManager The name of the managed instance group.
+     * @param int    $size                 The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
+     *
+     * @return \Google\Cloud\Compute\V1\ResizeInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, int $size): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setSize($size);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,25 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
     private $zone = '';
 
     /**
+     * @param string                                                              $project                                            Project ID for this request.
+     * @param string                                                              $zone                                               The name of the zone where the managed instance group is located.
+     * @param string                                                              $instanceGroupManager                               The name of the managed instance group.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest $instanceGroupManagersSetTargetPoolsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetTargetPoolsInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, \Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest $instanceGroupManagersSetTargetPoolsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersSetTargetPoolsRequestResource($instanceGroupManagersSetTargetPoolsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

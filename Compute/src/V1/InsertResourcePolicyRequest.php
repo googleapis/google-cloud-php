@@ -41,6 +41,23 @@ class InsertResourcePolicyRequest extends \Google\Protobuf\Internal\Message
     private $resource_policy_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $region                 Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\ResourcePolicy $resourcePolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertResourcePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\ResourcePolicy $resourcePolicyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResourcePolicyResource($resourcePolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

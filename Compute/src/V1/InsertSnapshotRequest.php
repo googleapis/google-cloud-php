@@ -35,6 +35,21 @@ class InsertSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $snapshot_resource = null;
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\Snapshot $snapshotResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\Snapshot $snapshotResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSnapshotResource($snapshotResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

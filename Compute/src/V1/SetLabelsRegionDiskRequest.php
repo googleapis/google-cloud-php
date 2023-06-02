@@ -47,6 +47,25 @@ class SetLabelsRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $resource = '';
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $region                         The region for this request.
+     * @param string                                          $resource                       Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\RegionSetLabelsRequest $regionSetLabelsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetLabelsRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $resource, \Google\Cloud\Compute\V1\RegionSetLabelsRequest $regionSetLabelsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,21 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $firewallPolicy Name of the firewall policy to update.
+     * @param string $parentId       The new parent of the firewall policy. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
+     *
+     * @return \Google\Cloud\Compute\V1\MoveFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy, string $parentId): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setParentId($parentId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -18,6 +18,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'autoscaler',
+                        'fieldAccessors' => [
+                            'getAutoscaler',
+                        ],
+                    ],
+                ],
             ],
             'Insert' => [
                 'longRunning' => [
@@ -33,6 +55,22 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
             'Patch' => [
@@ -50,6 +88,22 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
             ],
             'Update' => [
                 'longRunning' => [
@@ -66,6 +120,46 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\Autoscaler',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'autoscaler',
+                        'fieldAccessors' => [
+                            'getAutoscaler',
+                        ],
+                    ],
+                ],
             ],
             'List' => [
                 'pageStreaming' => [
@@ -75,6 +169,22 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RegionAutoscalerList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
         ],

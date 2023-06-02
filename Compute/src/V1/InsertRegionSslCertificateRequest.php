@@ -41,6 +41,23 @@ class InsertRegionSslCertificateRequest extends \Google\Protobuf\Internal\Messag
     private $ssl_certificate_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $region                 Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\SslCertificate $sslCertificateResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionSslCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\SslCertificate $sslCertificateResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSslCertificateResource($sslCertificateResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

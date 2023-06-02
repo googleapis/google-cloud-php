@@ -41,6 +41,23 @@ class InsertRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $region                       The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroup $networkEndpointGroupResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\NetworkEndpointGroup $networkEndpointGroupResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkEndpointGroupResource($networkEndpointGroupResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

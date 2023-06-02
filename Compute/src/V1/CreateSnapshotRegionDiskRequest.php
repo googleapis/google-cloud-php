@@ -47,6 +47,25 @@ class CreateSnapshotRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $snapshot_resource = null;
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param string                            $region           Name of the region for this request.
+     * @param string                            $disk             Name of the regional persistent disk to snapshot.
+     * @param \Google\Cloud\Compute\V1\Snapshot $snapshotResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\CreateSnapshotRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $disk, \Google\Cloud\Compute\V1\Snapshot $snapshotResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDisk($disk)
+            ->setSnapshotResource($snapshotResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

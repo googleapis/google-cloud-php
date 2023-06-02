@@ -41,6 +41,23 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     private $signed_url_key_resource = null;
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param string                                $backendService       Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\SignedUrlKey $signedUrlKeyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddSignedUrlKeyBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService, \Google\Cloud\Compute\V1\SignedUrlKey $signedUrlKeyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService)
+            ->setSignedUrlKeyResource($signedUrlKeyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

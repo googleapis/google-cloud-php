@@ -47,6 +47,25 @@ class PatchServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $service_attachment_resource = null;
 
     /**
+     * @param string                                     $project                   Project ID for this request.
+     * @param string                                     $region                    The region scoping this request and should conform to RFC1035.
+     * @param string                                     $serviceAttachment         The resource id of the ServiceAttachment to patch. It should conform to RFC1035 resource name or be a string form on an unsigned long number.
+     * @param \Google\Cloud\Compute\V1\ServiceAttachment $serviceAttachmentResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchServiceAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $serviceAttachment, \Google\Cloud\Compute\V1\ServiceAttachment $serviceAttachmentResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setServiceAttachment($serviceAttachment)
+            ->setServiceAttachmentResource($serviceAttachmentResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

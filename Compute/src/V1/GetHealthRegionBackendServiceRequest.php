@@ -39,6 +39,25 @@ class GetHealthRegionBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     private $resource_group_reference_resource = null;
 
     /**
+     * @param string                                          $project
+     * @param string                                          $region                         Name of the region scoping this request.
+     * @param string                                          $backendService                 Name of the BackendService resource for which to get health.
+     * @param \Google\Cloud\Compute\V1\ResourceGroupReference $resourceGroupReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\GetHealthRegionBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $backendService, \Google\Cloud\Compute\V1\ResourceGroupReference $resourceGroupReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setBackendService($backendService)
+            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

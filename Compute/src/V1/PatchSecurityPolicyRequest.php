@@ -41,6 +41,23 @@ class PatchSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $security_policy_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $securityPolicy         Name of the security policy to update.
+     * @param \Google\Cloud\Compute\V1\SecurityPolicy $securityPolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $securityPolicy, \Google\Cloud\Compute\V1\SecurityPolicy $securityPolicyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyResource($securityPolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

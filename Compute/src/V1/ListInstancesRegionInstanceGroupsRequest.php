@@ -71,6 +71,25 @@ class ListInstancesRegionInstanceGroupsRequest extends \Google\Protobuf\Internal
     private $return_partial_success = null;
 
     /**
+     * @param string                                                            $project                                          Project ID for this request.
+     * @param string                                                            $region                                           Name of the region scoping this request.
+     * @param string                                                            $instanceGroup                                    Name of the regional instance group for which we want to list the instances.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest $regionInstanceGroupsListInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ListInstancesRegionInstanceGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroup, \Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest $regionInstanceGroupsListInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroup($instanceGroup)
+            ->setRegionInstanceGroupsListInstancesRequestResource($regionInstanceGroupsListInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

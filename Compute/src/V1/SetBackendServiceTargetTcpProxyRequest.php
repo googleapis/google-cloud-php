@@ -41,6 +41,23 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
     private $target_tcp_proxy = '';
 
     /**
+     * @param string                                                            $project                                          Project ID for this request.
+     * @param string                                                            $targetTcpProxy                                   Name of the TargetTcpProxy resource whose BackendService resource is to be set.
+     * @param \Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest $targetTcpProxiesSetBackendServiceRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetBackendServiceTargetTcpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetTcpProxy, \Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest $targetTcpProxiesSetBackendServiceRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetTcpProxy($targetTcpProxy)
+            ->setTargetTcpProxiesSetBackendServiceRequestResource($targetTcpProxiesSetBackendServiceRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
