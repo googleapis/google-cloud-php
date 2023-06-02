@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.GetField][google.firestore.admin.v1.FirestoreAdmin.GetField].
+ * The request for
+ * [FirestoreAdmin.GetField][google.firestore.admin.v1.FirestoreAdmin.GetField].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.GetFieldRequest</code>
  */
