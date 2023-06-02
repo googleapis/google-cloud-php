@@ -46,6 +46,16 @@ class ComponentInfoCommand extends Command
         'description' => 'Description',
         'available_api_versions' => 'Availble API Versions',
     ];
+    private static $defaultFields = [
+        'name',
+        'package_name',
+        'package_version',
+        'api_versions',
+        'release_level',
+        'migration',
+        'proto',
+        'service_address',
+    ];
 
     private string $token;
 
@@ -53,7 +63,7 @@ class ComponentInfoCommand extends Command
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addArgument('name', InputArgument::OPTIONAL, 'If specified, display info for this component only', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs only for a single component.', '')
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields. The following fields are available: \n - %s\n" .
@@ -68,6 +78,7 @@ class ComponentInfoCommand extends Command
                 InputOption::VALUE_NONE,
                 'Show available API versions for each component. Requires an API call'
             )
+            ->addOption('expanded', '', InputOption::VALUE_NONE, 'Break down each component by packages')
         ;
     }
 
@@ -78,21 +89,26 @@ class ComponentInfoCommand extends Command
         }
         $fields = $input->getOption('fields')
             ? explode(',', $input->getOption('fields'))
-            : array_keys(self::$allFields);
+            : self::$defaultFields;
         $this->token = $input->getOption('token');
+
         // Filter out invalid fields
         $requestedFields = array_intersect_key(array_flip($fields), self::$allFields);
-        $components = [];
-        if ($componentName = rtrim($input->getArgument('name'), '/')) {
-            $components[] = $this->getComponentDetails(new Component($componentName), $requestedFields);
-        } else {
-            foreach (Component::getComponents() as $component) {
-                $components[] = $this->getComponentDetails($component, $requestedFields);
-            }
+
+        // Compile all the component data into rows
+        $componentName = $input->getOption('component');
+        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+
+        $rows = [];
+        foreach ($components as $component) {
+            $rows = array_merge($rows, $this->getComponentDetails(
+                $component,
+                $requestedFields,
+                $input->getOption('expanded')
+            ));
         }
 
-        // use "array_intersect_key" to filter out fields that were not requested.
-        // use "array_replace" to sort the fields in the order they were requested.
+        // output the component data
         $headers = array_values(array_replace(
             $requestedFields,
             array_intersect_key(self::$allFields, $requestedFields)
@@ -101,8 +117,8 @@ class ComponentInfoCommand extends Command
         if ($csv = $input->getOption('csv')) {
             $fp = fopen($csv, 'wa+');
             fputcsv($fp, $headers);
-            foreach ($components as $component) {
-                fputcsv($fp, $component);
+            foreach ($rows as $row) {
+                fputcsv($fp, $row);
             }
             fclose($fp);
             $output->writeln('Output written to ' . $csv);
@@ -110,9 +126,9 @@ class ComponentInfoCommand extends Command
             $table = new Table($output);
             $table
                 ->setHeaders($headers)
-                ->setRows($components)
+                ->setRows($rows)
             ;
-            if ($componentName) {
+            if (count($rows) == 1) {
                 $table->setVertical();
             }
             $table->render();
@@ -121,21 +137,22 @@ class ComponentInfoCommand extends Command
         return 0;
     }
 
-    private function getComponentDetails(Component $component, array $requestedFields): array
+    private function getComponentDetails(Component $component, array $requestedFields, bool $expanded): array
     {
+        $rows = [];
         // use "array_intersect_key" to filter out fields that were not requested.
         // use "array_replace" to sort the fields in the order they were requested.
         $details = array_replace($requestedFields, array_intersect_key([
             'name' => $component->getName(),
             'package_name' => $component->getPackageName(),
             'package_version' => $component->getPackageVersion(),
-            'api_versions' => implode(', ', $component->getApiVersions()),
+            'api_versions' => $expanded ? '' : implode(', ', $component->getApiVersions()),
             'release_level' => $component->getReleaseLevel(),
-            'migration' => $component->getMigrationStatus(),
-            'php_namespaces' => implode(', ', $component->getNamespaces()),
+            'migration' => $expanded ? '' : implode(', ', $component->getMigrationStatuses()),
+            'php_namespaces' => implode(', ', array_keys($component->getNamespaces())),
             'github_repo' => $component->getRepoName(),
-            'proto' => implode("\n", $component->getProtoPackages()),
-            'service_address' => implode(', ', $component->getServiceAddresses()),
+            'proto' => $expanded ? '' : implode(', ', $component->getProtoPackages()),
+            'service_address' => $expanded ? '' : implode(', ', $component->getServiceAddresses()),
             'description' => $component->getDescription(),
         ], $requestedFields));
 
@@ -143,7 +160,29 @@ class ComponentInfoCommand extends Command
             $details['available_api_versions'] = $this->getAvailableApiVersions($component);
         }
 
-        return $details;
+        $rows[] = $details;
+
+        if ($expanded) {
+            foreach ($component->getComponentPackages() as $pkg) {
+                // use "array_intersect_key" to filter out fields that were not requested.
+                // use "array_replace" to sort the fields in the order they were requested.
+                $rows[] = array_replace($requestedFields, array_intersect_key([
+                    'name' => "    " . $pkg->getName(),
+                    'package_name' => '',       // defined by component
+                    'package_version' => '',    // defined by component
+                    'api_versions' => '',       // included in "name"
+                    'release_level' => '',      // defined by component
+                    'migration' => $pkg->getMigrationStatus(),
+                    'php_namespaces' => '',     // defined by component
+                    'github_repo' => '',        // defined by component
+                    'proto' => $pkg->getProtoPackage(),
+                    'service_address' => $pkg->getServiceAddress(),
+                    'description' => '',        // defined by component
+                ], $requestedFields));
+            }
+        }
+
+        return $rows;
     }
 
     private function getAvailableApiVersions(Component $component): string
@@ -165,7 +204,7 @@ class ComponentInfoCommand extends Command
 
         return implode(', ', array_map(
             fn ($file) => ucfirst($file['name']),
-            $f = array_filter(
+            array_filter(
                 json_decode((string) $response->getBody(), true),
                 fn ($file) => $file['type'] === 'dir' && $file['name'][0] === 'v' && !in_array($file['name'], $versions)
             )

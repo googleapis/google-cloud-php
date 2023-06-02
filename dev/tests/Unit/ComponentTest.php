@@ -60,7 +60,7 @@ class ComponentTest extends TestCase
                     'clientDocumentation' => 'https://cloud.google.com/php/docs/reference/cloud-bigtable/latest',
                     'productDocumentation' => '',
                     'description' => 'Cloud Bigtable Client for PHP',
-                    'namespaces' => ['Google\Cloud\Bigtable'],
+                    'namespaces' => ['Google\Cloud\Bigtable' => 'src'],
                     'referenceDocumentationUid' => 'google-cloud-bigtable',
                 ]
             ],

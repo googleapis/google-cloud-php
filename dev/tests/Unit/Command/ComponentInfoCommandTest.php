@@ -78,9 +78,6 @@ class ComponentInfoCommandTest extends TestCase
 
         $this->assertStringContainsString('Component Name: AccessContextManager', $display);
         $this->assertStringContainsString('Package Name: google/access-context-manager', $display);
-        $this->assertStringContainsString('Php Namespace(s): Google\Identity\AccessContextManager', $display);
-        $this->assertStringContainsString('Github Repo: googleapis/php-access-context-manager', $display);
-        $this->assertStringContainsString('Service Address: accesscontextmanager.googleapis.com', $display);
         $this->assertStringContainsString('Release Level: ', $display);   // these values might change
         $this->assertStringContainsString('Package Version: ', $display); // these values might change
     }
