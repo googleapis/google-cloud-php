@@ -25,6 +25,22 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the backup.
+     *                     Values are of the form
+     *                     `projects/<project>/instances/<instance>/backups/<backup>`. Please see
+     *                     {@see DatabaseAdminClient::backupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

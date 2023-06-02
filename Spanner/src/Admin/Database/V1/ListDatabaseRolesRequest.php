@@ -40,6 +40,22 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The database whose roles should be listed.
+     *                       Values are of the form
+     *                       `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`. Please see
+     *                       {@see DatabaseAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
