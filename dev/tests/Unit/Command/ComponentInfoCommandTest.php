@@ -71,7 +71,7 @@ class ComponentInfoCommandTest extends TestCase
 
     public function testComponentDetails()
     {
-        self::$commandTester->execute(['name' => 'AccessContextManager']);
+        self::$commandTester->execute(['-c' => 'AccessContextManager']);
 
         // confirm a few fields we expect to see in the output
         $display = self::$commandTester->getDisplay();
@@ -85,7 +85,7 @@ class ComponentInfoCommandTest extends TestCase
     public function testFieldsOption()
     {
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'name,package_name,doesnt_exist',
         ]);
         $this->assertEquals(<<<EOL
@@ -100,7 +100,7 @@ EOL, self::$commandTester->getDisplay());
     public function testFieldsOptionOrder()
     {
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'package_name,name',
         ]);
         $this->assertEquals(<<<EOL
@@ -117,7 +117,7 @@ EOL, self::$commandTester->getDisplay());
         mkdir($tmpDir = sys_get_temp_dir() . '/component-info-test-' . time());
         $csv = $tmpDir . '/test.csv';
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'package_name,name,github_repo',
             '--csv' => $csv,
         ]);
