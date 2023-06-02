@@ -88,7 +88,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # Use phpDocumentor from HEAD until they create a new release
 # TODO: Remove once phpDocumentor tags a new release
 # @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
-COPY --from=phpdoc/phpdoc:202301112131087e6028 /opt/phpdoc /opt/phpdoc
+COPY --from=phpdoc/phpdoc:20230522201300af6fb5 /opt/phpdoc /opt/phpdoc
 RUN ln -s /opt/phpdoc/bin/phpdoc /usr/local/bin/phpdoc
 ENV PHPDOC_ENV=prod
 
@@ -112,4 +112,3 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
 # Install docsuploader
 COPY requirements.txt .
 RUN python3.9 -m pip install --require-hashes -r requirements.txt
-
