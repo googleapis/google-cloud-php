@@ -45,6 +45,9 @@ class Firebase implements ConnectionInterface
 
     public function __construct(array $config = [])
     {
+        if (!class_exists(Factory::class)) {
+            throw new \LogicException('Please install "kreait/firebase-php:^5.20"');
+        }
         $databaseUrl = isset($config['firebase_db_url'])
             ? $config['firebase_db_url']
             : null;

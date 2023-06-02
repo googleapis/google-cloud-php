@@ -21,6 +21,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
+use Google\Cloud\Debugger\Connection\Firebase;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -112,7 +113,7 @@ class DebuggerClient
                 $this->connection = new Rest($this->configureAuthentication($config));
         }
     }
-    
+
     /**
      * Lazily instantiate a debuggee. There are no network requests made at this
      * point. To see the operations that can be performed on a debuggee, please
