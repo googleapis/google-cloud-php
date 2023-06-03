@@ -235,7 +235,7 @@ class Component
 
     public function getApiShortnames(): array
     {
-        return array_map(fn($sa) => substr($sa, 0, strpos($sa, '.')), $this->getServiceAddresses());
+        return array_unique(array_map(fn($pkg) => $pkg->getApiShortname(), $this->getComponentPackages()));
     }
 
     public function getMigrationStatuses(): array

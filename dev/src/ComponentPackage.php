@@ -87,6 +87,13 @@ class ComponentPackage
         return '';
     }
 
+    public function getApiShortname(): string
+    {
+        $sa = $this->getServiceAddress();
+        return substr($sa, 0, strpos($sa, '.'));
+    }
+
+
     private function getV1GapicClientFiles(): array
     {
         return $this->getFilesInDir('*GapicClient.php');

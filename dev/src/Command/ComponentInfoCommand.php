@@ -36,13 +36,14 @@ class ComponentInfoCommand extends Command
         'name' => 'Component Name',
         'package_name' => 'Package Name',
         'package_version' => 'Package Version',
-        'api_versions' => 'API Version(s)',
+        'api_versions' => 'API Version',
         'release_level' => 'Release Level',
         'migration' => 'Migration',
-        'php_namespaces' => 'Php Namespace(s)',
+        'php_namespaces' => 'Php Namespace',
         'github_repo' => 'Github Repo',
-        'proto' => 'Proto Path(s)',
+        'proto' => 'Proto Path',
         'service_address' => 'Service Address',
+        'shortname' => 'API Shortname',
         'description' => 'Description',
         'available_api_versions' => 'Availble API Versions',
     ];
@@ -54,7 +55,7 @@ class ComponentInfoCommand extends Command
         'release_level',
         'migration',
         'proto',
-        'service_address',
+        'shortname',
     ];
 
     private string $token;
@@ -146,13 +147,14 @@ class ComponentInfoCommand extends Command
             'name' => $component->getName(),
             'package_name' => $component->getPackageName(),
             'package_version' => $component->getPackageVersion(),
-            'api_versions' => $expanded ? '' : implode(', ', $component->getApiVersions()),
+            'api_versions' => $expanded ? '' : implode("\n", $component->getApiVersions()),
             'release_level' => $component->getReleaseLevel(),
-            'migration' => $expanded ? '' : implode(', ', $component->getMigrationStatuses()),
-            'php_namespaces' => implode(', ', array_keys($component->getNamespaces())),
+            'migration' => $expanded ? '' : implode("\n", $component->getMigrationStatuses()),
+            'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
             'github_repo' => $component->getRepoName(),
-            'proto' => $expanded ? '' : implode(', ', $component->getProtoPackages()),
-            'service_address' => $expanded ? '' : implode(', ', $component->getServiceAddresses()),
+            'proto' => $expanded ? '' : implode("\n", $component->getProtoPackages()),
+            'service_address' => $expanded ? '' : implode("\n", $component->getServiceAddresses()),
+            'shortname' => $expanded ? '' : implode("\n", $component->getApiShortnames()),
             'description' => $component->getDescription(),
         ], $requestedFields));
 
@@ -177,6 +179,7 @@ class ComponentInfoCommand extends Command
                     'github_repo' => '',        // defined by component
                     'proto' => $pkg->getProtoPackage(),
                     'service_address' => $pkg->getServiceAddress(),
+                    'shortname' => $pkg->getApiShortname(),
                     'description' => '',        // defined by component
                 ], $requestedFields));
             }
