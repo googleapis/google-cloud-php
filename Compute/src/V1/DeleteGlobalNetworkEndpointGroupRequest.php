@@ -35,6 +35,21 @@ class DeleteGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteGlobalNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $networkEndpointGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetworkEndpointGroup($networkEndpointGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

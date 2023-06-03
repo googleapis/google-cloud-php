@@ -41,6 +41,23 @@ class RemovePeeringNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                                $project                              Project ID for this request.
+     * @param string                                                $network                              Name of the network resource to remove peering from.
+     * @param \Google\Cloud\Compute\V1\NetworksRemovePeeringRequest $networksRemovePeeringRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\RemovePeeringNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network, \Google\Cloud\Compute\V1\NetworksRemovePeeringRequest $networksRemovePeeringRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network)
+            ->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -29,6 +29,21 @@ class GetSslCertificateRequest extends \Google\Protobuf\Internal\Message
     private $ssl_certificate = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $sslCertificate Name of the SslCertificate resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetSslCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $sslCertificate): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSslCertificate($sslCertificate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

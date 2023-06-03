@@ -41,6 +41,23 @@ class DeleteSubnetworkRequest extends \Google\Protobuf\Internal\Message
     private $subnetwork = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region scoping this request.
+     * @param string $subnetwork Name of the Subnetwork resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteSubnetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $subnetwork): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

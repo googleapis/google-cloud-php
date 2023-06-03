@@ -35,6 +35,23 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project       Project ID for this request.
+     * @param string $zone          The name of the zone where the instance group is located.
+     * @param string $instanceGroup The name of the instance group.
+     *
+     * @return \Google\Cloud\Compute\V1\GetInstanceGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroup($instanceGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

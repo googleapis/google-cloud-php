@@ -35,6 +35,21 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\Metadata $metadataResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\Metadata $metadataResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setMetadataResource($metadataResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

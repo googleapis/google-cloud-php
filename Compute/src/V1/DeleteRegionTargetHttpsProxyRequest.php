@@ -41,6 +41,23 @@ class DeleteRegionTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Mess
     private $target_https_proxy = '';
 
     /**
+     * @param string $project          Project ID for this request.
+     * @param string $region           Name of the region scoping this request.
+     * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetHttpsProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

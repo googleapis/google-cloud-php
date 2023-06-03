@@ -47,6 +47,23 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $instance Name of the instance for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\GetSerialPortOutputInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

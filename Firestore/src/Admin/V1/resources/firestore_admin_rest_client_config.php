@@ -3,6 +3,21 @@
 return [
     'interfaces' => [
         'google.firestore.admin.v1.FirestoreAdmin' => [
+            'CreateDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/databases',
+                'body' => 'database',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'database_id',
+                ],
+            ],
             'CreateIndex' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes',

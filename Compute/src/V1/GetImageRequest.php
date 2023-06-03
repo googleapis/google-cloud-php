@@ -29,6 +29,21 @@ class GetImageRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $image   Name of the image resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $image): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setImage($image);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

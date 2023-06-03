@@ -41,6 +41,23 @@ class InsertPublicDelegatedPrefixeRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = null;
 
     /**
+     * @param string                                         $project                       Project ID for this request.
+     * @param string                                         $region                        Name of the region of this request.
+     * @param \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertPublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

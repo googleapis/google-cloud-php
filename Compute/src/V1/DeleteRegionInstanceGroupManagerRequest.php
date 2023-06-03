@@ -41,6 +41,23 @@ class DeleteRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param string $instanceGroupManager Name of the managed instance group to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

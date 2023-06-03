@@ -41,6 +41,23 @@ class DeleteInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = null;
 
     /**
+     * @param string $project                Project ID for this request.
+     * @param string $region                 Name of the region for this request.
+     * @param string $interconnectAttachment Name of the interconnect attachment to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteInterconnectAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $interconnectAttachment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInterconnectAttachment($interconnectAttachment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

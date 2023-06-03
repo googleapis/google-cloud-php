@@ -41,6 +41,23 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param string                                $interconnect         Name of the interconnect to update.
+     * @param \Google\Cloud\Compute\V1\Interconnect $interconnectResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchInterconnectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $interconnect, \Google\Cloud\Compute\V1\Interconnect $interconnectResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInterconnect($interconnect)
+            ->setInterconnectResource($interconnectResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

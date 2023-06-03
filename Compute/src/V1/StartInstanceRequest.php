@@ -41,6 +41,23 @@ class StartInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $instance Name of the instance resource to start.
+     *
+     * @return \Google\Cloud\Compute\V1\StartInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

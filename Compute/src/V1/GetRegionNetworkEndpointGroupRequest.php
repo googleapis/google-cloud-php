@@ -35,6 +35,23 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     private $region = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $networkEndpointGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkEndpointGroup($networkEndpointGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

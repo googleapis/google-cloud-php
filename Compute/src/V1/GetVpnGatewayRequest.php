@@ -35,6 +35,23 @@ class GetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     private $vpn_gateway = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region for this request.
+     * @param string $vpnGateway Name of the VPN gateway to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetVpnGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $vpnGateway): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setVpnGateway($vpnGateway);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

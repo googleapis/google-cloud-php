@@ -47,6 +47,25 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                   $project                 Project ID for this request.
+     * @param string                                   $region                  Name of the region for this request.
+     * @param string                                   $packetMirroring         Name of the PacketMirroring resource to patch.
+     * @param \Google\Cloud\Compute\V1\PacketMirroring $packetMirroringResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchPacketMirroringRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $packetMirroring, \Google\Cloud\Compute\V1\PacketMirroring $packetMirroringResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setPacketMirroring($packetMirroring)
+            ->setPacketMirroringResource($packetMirroringResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

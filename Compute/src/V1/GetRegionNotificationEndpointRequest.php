@@ -35,6 +35,23 @@ class GetRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\Mes
     private $region = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param string $notificationEndpoint Name of the NotificationEndpoint resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionNotificationEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $notificationEndpoint): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNotificationEndpoint($notificationEndpoint);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

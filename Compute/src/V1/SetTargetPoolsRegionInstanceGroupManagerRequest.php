@@ -47,6 +47,25 @@ class SetTargetPoolsRegionInstanceGroupManagerRequest extends \Google\Protobuf\I
     private $request_id = null;
 
     /**
+     * @param string                                                                    $project                                                  Project ID for this request.
+     * @param string                                                                    $region                                                   Name of the region scoping this request.
+     * @param string                                                                    $instanceGroupManager                                     Name of the managed instance group.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest $regionInstanceGroupManagersSetTargetPoolsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetTargetPoolsRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest $regionInstanceGroupManagersSetTargetPoolsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

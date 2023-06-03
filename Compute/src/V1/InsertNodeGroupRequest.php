@@ -47,6 +47,25 @@ class InsertNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                             $project           Project ID for this request.
+     * @param string                             $zone              The name of the zone for this request.
+     * @param int                                $initialNodeCount  Initial count of nodes in the node group.
+     * @param \Google\Cloud\Compute\V1\NodeGroup $nodeGroupResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, int $initialNodeCount, \Google\Cloud\Compute\V1\NodeGroup $nodeGroupResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInitialNodeCount($initialNodeCount)
+            ->setNodeGroupResource($nodeGroupResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

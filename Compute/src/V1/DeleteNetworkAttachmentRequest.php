@@ -41,6 +41,23 @@ class DeleteNetworkAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project           Project ID for this request.
+     * @param string $region            Name of the region of this request.
+     * @param string $networkAttachment Name of the NetworkAttachment resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteNetworkAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $networkAttachment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkAttachment($networkAttachment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

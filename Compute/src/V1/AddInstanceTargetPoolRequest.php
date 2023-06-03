@@ -47,6 +47,25 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
     private $target_pools_add_instance_request_resource = null;
 
     /**
+     * @param string                                                 $project                               Project ID for this request.
+     * @param string                                                 $region                                Name of the region scoping this request.
+     * @param string                                                 $targetPool                            Name of the TargetPool resource to add instances to.
+     * @param \Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest $targetPoolsAddInstanceRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddInstanceTargetPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetPool, \Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest $targetPoolsAddInstanceRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetPool($targetPool)
+            ->setTargetPoolsAddInstanceRequestResource($targetPoolsAddInstanceRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

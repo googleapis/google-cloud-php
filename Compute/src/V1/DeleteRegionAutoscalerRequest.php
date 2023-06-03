@@ -41,6 +41,23 @@ class DeleteRegionAutoscalerRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region scoping this request.
+     * @param string $autoscaler Name of the autoscaler to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionAutoscalerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $autoscaler): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setAutoscaler($autoscaler);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

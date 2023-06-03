@@ -65,6 +65,23 @@ class ListPerInstanceConfigsInstanceGroupManagersRequest extends \Google\Protobu
     private $zone = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $zone                 The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\ListPerInstanceConfigsInstanceGroupManagersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

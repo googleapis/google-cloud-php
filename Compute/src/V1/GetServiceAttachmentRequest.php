@@ -35,6 +35,23 @@ class GetServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $service_attachment = '';
 
     /**
+     * @param string $project           Project ID for this request.
+     * @param string $region            Name of the region of this request.
+     * @param string $serviceAttachment Name of the ServiceAttachment resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetServiceAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $serviceAttachment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setServiceAttachment($serviceAttachment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

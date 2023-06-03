@@ -47,6 +47,25 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     private $request_id = null;
 
     /**
+     * @param string                                                                     $project                                                   Project ID for this request.
+     * @param string                                                                     $region                                                    The name of the region where the managed instance group is located. It should conform to RFC1035.
+     * @param string                                                                     $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersCreateInstancesRequest $regionInstanceGroupManagersCreateInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\CreateInstancesRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagersCreateInstancesRequest $regionInstanceGroupManagersCreateInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
