@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Google Inc. All Rights Reserved.
+ * Copyright 2023 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,11 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
 /**
- * Implementation of the
+ * Implementation of the GAPIC connection class which uses both
+ * REST and GRPC transports via
  * [Google Pub/Sub gRPC API](https://cloud.google.com/pubsub/docs/reference/rpc/).
  */
-class Grpc implements ConnectionInterface
+class Gapic implements ConnectionInterface
 {
     use EmulatorTrait;
     use GrpcTrait;
@@ -105,7 +106,8 @@ class Grpc implements ConnectionInterface
             PubSubClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
-                : null
+                : null,
+            $config['transport']
         );
 
         $config += ['emulatorHost' => null];

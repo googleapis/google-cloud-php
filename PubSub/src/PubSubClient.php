@@ -25,8 +25,7 @@ use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\Connection\Gapic;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -149,21 +148,17 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
+        $this->encode = $connectionType === 'grpc' ? false : true;
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
+            'transport' => $connectionType
         ];
 
-        if ($connectionType === 'grpc') {
-            $this->connection = new Grpc($this->configureAuthentication($config));
-            $this->encode = false;
-        } else {
-            $this->connection = new Rest($this->configureAuthentication($config));
-            $this->encode = true;
-        }
+        $this->connection = new Gapic($this->configureAuthentication($config));
     }
 
     /**
