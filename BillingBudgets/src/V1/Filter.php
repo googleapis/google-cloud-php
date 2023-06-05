@@ -18,13 +18,22 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of projects of the form `projects/{project}`,
      * specifying that usage from only this set of projects should be
-     * included in the budget. If omitted, the report will include all usage for
+     * included in the budget. If omitted, the report includes all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $projects;
+    /**
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_ancestors;
     /**
      * Optional. If
      * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1.Filter.credit_types_treatment]
@@ -48,7 +57,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of services of the form `services/{service_id}`,
      * specifying that usage from only this set of services should be
-     * included in the budget. If omitted, the report will include usage for
+     * included in the budget. If omitted, the report includes usage for
      * all the services.
      * The service names are available through the Catalog API:
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
@@ -60,8 +69,8 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
      * specifying that usage from only this set of subaccounts should be included
      * in the budget. If a subaccount is set to the name of the parent account,
-     * usage from the parent account will be included. If the field is omitted,
-     * the report will include usage from the parent account and all subaccounts,
+     * usage from the parent account is included. If the field is omitted,
+     * the report includes usage from the parent account and all subaccounts,
      * if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -69,9 +78,12 @@ class Filter extends \Google\Protobuf\Internal\Message
     private $subaccounts;
     /**
      * Optional. A single label and value pair specifying that usage from only
-     * this set of labeled resources should be included in the budget. Currently,
-     * multiple entries or multiple values per entry are not allowed. If omitted,
-     * the report will include all labeled and unlabeled usage.
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report includes all labeled and unlabeled usage.
+     * An object containing a single `"key": value` pair. Example: `{ "name":
+     * "wrench" }`.
+     *  _Currently, multiple entries or multiple values per entry are not
+     *  allowed._
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.ListValue> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -87,9 +99,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
      *           Optional. A set of projects of the form `projects/{project}`,
      *           specifying that usage from only this set of projects should be
-     *           included in the budget. If omitted, the report will include all usage for
+     *           included in the budget. If omitted, the report includes all usage for
      *           the billing account, regardless of which project the usage occurred on.
-     *           Only zero or one project can be specified currently.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_ancestors
+     *           Optional. A set of folder and organization names of the form
+     *           `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     *           usage from only this set of folders and organizations should be included in
+     *           the budget. If omitted, the report includes all usage for all
+     *           organizations, regardless of which organization the usage occurred on.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $credit_types
      *           Optional. If
      *           [Filter.credit_types_treatment][google.cloud.billing.budgets.v1.Filter.credit_types_treatment]
@@ -105,7 +122,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $services
      *           Optional. A set of services of the form `services/{service_id}`,
      *           specifying that usage from only this set of services should be
-     *           included in the budget. If omitted, the report will include usage for
+     *           included in the budget. If omitted, the report includes usage for
      *           all the services.
      *           The service names are available through the Catalog API:
      *           https://cloud.google.com/billing/v1/how-tos/catalog-api.
@@ -113,19 +130,22 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
      *           specifying that usage from only this set of subaccounts should be included
      *           in the budget. If a subaccount is set to the name of the parent account,
-     *           usage from the parent account will be included. If the field is omitted,
-     *           the report will include usage from the parent account and all subaccounts,
+     *           usage from the parent account is included. If the field is omitted,
+     *           the report includes usage from the parent account and all subaccounts,
      *           if they exist.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. A single label and value pair specifying that usage from only
-     *           this set of labeled resources should be included in the budget. Currently,
-     *           multiple entries or multiple values per entry are not allowed. If omitted,
-     *           the report will include all labeled and unlabeled usage.
+     *           this set of labeled resources should be included in the budget. If omitted,
+     *           the report includes all labeled and unlabeled usage.
+     *           An object containing a single `"key": value` pair. Example: `{ "name":
+     *           "wrench" }`.
+     *            _Currently, multiple entries or multiple values per entry are not
+     *            allowed._
      *     @type int $calendar_period
      *           Optional. Specifies to track usage for recurring calendar period.
-     *           For example, assume that CalendarPeriod.QUARTER is set. The budget will
-     *           track usage from April 1 to June 30, when the current calendar month is
-     *           April, May, June. After that, it will track usage from July 1 to
+     *           For example, assume that CalendarPeriod.QUARTER is set. The budget
+     *           tracks usage from April 1 to June 30, when the current calendar month is
+     *           April, May, June. After that, it tracks usage from July 1 to
      *           September 30 when the current calendar month is July, August, September,
      *           so on.
      *     @type \Google\Cloud\Billing\Budgets\V1\CustomPeriod $custom_period
@@ -141,9 +161,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of projects of the form `projects/{project}`,
      * specifying that usage from only this set of projects should be
-     * included in the budget. If omitted, the report will include all usage for
+     * included in the budget. If omitted, the report includes all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -156,9 +175,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of projects of the form `projects/{project}`,
      * specifying that usage from only this set of projects should be
-     * included in the budget. If omitted, the report will include all usage for
+     * included in the budget. If omitted, the report includes all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -168,6 +186,40 @@ class Filter extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->projects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceAncestors()
+    {
+        return $this->resource_ancestors;
+    }
+
+    /**
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceAncestors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_ancestors = $arr;
 
         return $this;
     }
@@ -243,7 +295,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of services of the form `services/{service_id}`,
      * specifying that usage from only this set of services should be
-     * included in the budget. If omitted, the report will include usage for
+     * included in the budget. If omitted, the report includes usage for
      * all the services.
      * The service names are available through the Catalog API:
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
@@ -259,7 +311,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A set of services of the form `services/{service_id}`,
      * specifying that usage from only this set of services should be
-     * included in the budget. If omitted, the report will include usage for
+     * included in the budget. If omitted, the report includes usage for
      * all the services.
      * The service names are available through the Catalog API:
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
@@ -280,8 +332,8 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
      * specifying that usage from only this set of subaccounts should be included
      * in the budget. If a subaccount is set to the name of the parent account,
-     * usage from the parent account will be included. If the field is omitted,
-     * the report will include usage from the parent account and all subaccounts,
+     * usage from the parent account is included. If the field is omitted,
+     * the report includes usage from the parent account and all subaccounts,
      * if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -296,8 +348,8 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
      * specifying that usage from only this set of subaccounts should be included
      * in the budget. If a subaccount is set to the name of the parent account,
-     * usage from the parent account will be included. If the field is omitted,
-     * the report will include usage from the parent account and all subaccounts,
+     * usage from the parent account is included. If the field is omitted,
+     * the report includes usage from the parent account and all subaccounts,
      * if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -314,9 +366,12 @@ class Filter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A single label and value pair specifying that usage from only
-     * this set of labeled resources should be included in the budget. Currently,
-     * multiple entries or multiple values per entry are not allowed. If omitted,
-     * the report will include all labeled and unlabeled usage.
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report includes all labeled and unlabeled usage.
+     * An object containing a single `"key": value` pair. Example: `{ "name":
+     * "wrench" }`.
+     *  _Currently, multiple entries or multiple values per entry are not
+     *  allowed._
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.ListValue> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -328,9 +383,12 @@ class Filter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A single label and value pair specifying that usage from only
-     * this set of labeled resources should be included in the budget. Currently,
-     * multiple entries or multiple values per entry are not allowed. If omitted,
-     * the report will include all labeled and unlabeled usage.
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report includes all labeled and unlabeled usage.
+     * An object containing a single `"key": value` pair. Example: `{ "name":
+     * "wrench" }`.
+     *  _Currently, multiple entries or multiple values per entry are not
+     *  allowed._
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.ListValue> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -346,9 +404,9 @@ class Filter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies to track usage for recurring calendar period.
-     * For example, assume that CalendarPeriod.QUARTER is set. The budget will
-     * track usage from April 1 to June 30, when the current calendar month is
-     * April, May, June. After that, it will track usage from July 1 to
+     * For example, assume that CalendarPeriod.QUARTER is set. The budget
+     * tracks usage from April 1 to June 30, when the current calendar month is
+     * April, May, June. After that, it tracks usage from July 1 to
      * September 30 when the current calendar month is July, August, September,
      * so on.
      *
@@ -367,9 +425,9 @@ class Filter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies to track usage for recurring calendar period.
-     * For example, assume that CalendarPeriod.QUARTER is set. The budget will
-     * track usage from April 1 to June 30, when the current calendar month is
-     * April, May, June. After that, it will track usage from July 1 to
+     * For example, assume that CalendarPeriod.QUARTER is set. The budget
+     * tracks usage from April 1 to June 30, when the current calendar month is
+     * April, May, June. After that, it tracks usage from July 1 to
      * September 30 when the current calendar month is July, August, September,
      * so on.
      *
