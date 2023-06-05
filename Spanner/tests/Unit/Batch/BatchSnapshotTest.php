@@ -98,7 +98,7 @@ class BatchSnapshotTest extends TestCase
         $opts = [
             'index' => 'foo',
             'maxPartitions' => 10,
-            'partitionSizeBytes' => 1,
+            'partitionSizeBytes' => 1
         ] + $testCaseOptions;
 
         $arguments = [
