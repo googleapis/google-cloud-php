@@ -88,7 +88,7 @@ class BatchSnapshotTest extends TestCase
     }
 
     /**
-     * @dataProvider optionsProvider
+     * @dataProvider partitionReadAndQueryOptions
      */
     public function testPartitionRead($testCaseOptions)
     {
@@ -144,7 +144,7 @@ class BatchSnapshotTest extends TestCase
     }
 
     /**
-     * @dataProvider optionsProvider
+     * @dataProvider partitionReadAndQueryOptions
      */
     public function testPartitionQuery(array $testCaseOptions)
     {
@@ -279,10 +279,10 @@ class BatchSnapshotTest extends TestCase
         $this->snapshot->executePartition($dummy);
     }
 
-    public function optionsProvider()
+    public function partitionReadAndQueryOptions()
     {
         return [
-            [[]],
+            [['dataBoostEnabled' => false]],
             [['dataBoostEnabled' => true]]
         ];
     }
