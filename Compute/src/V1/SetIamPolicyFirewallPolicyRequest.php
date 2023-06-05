@@ -29,6 +29,21 @@ class SetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
     private $resource = '';
 
     /**
+     * @param string                                                      $resource                                   Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\GlobalOrganizationSetPolicyRequest $globalOrganizationSetPolicyRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetIamPolicyFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $resource, \Google\Cloud\Compute\V1\GlobalOrganizationSetPolicyRequest $globalOrganizationSetPolicyRequestResource): self
+    {
+        return (new self())
+            ->setResource($resource)
+            ->setGlobalOrganizationSetPolicyRequestResource($globalOrganizationSetPolicyRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

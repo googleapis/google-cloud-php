@@ -41,6 +41,25 @@ class TestIamPermissionsNetworkEndpointGroupRequest extends \Google\Protobuf\Int
     private $zone = '';
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $zone                           The name of the zone for this request.
+     * @param string                                          $resource                       Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\TestIamPermissionsNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $resource, \Google\Cloud\Compute\V1\TestPermissionsRequest $testPermissionsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

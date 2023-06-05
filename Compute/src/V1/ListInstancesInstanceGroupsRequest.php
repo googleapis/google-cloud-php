@@ -71,6 +71,25 @@ class ListInstancesInstanceGroupsRequest extends \Google\Protobuf\Internal\Messa
     private $zone = '';
 
     /**
+     * @param string                                                      $project                                    Project ID for this request.
+     * @param string                                                      $zone                                       The name of the zone where the instance group is located.
+     * @param string                                                      $instanceGroup                              The name of the instance group from which you want to generate a list of included instances.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest $instanceGroupsListInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ListInstancesInstanceGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroup, \Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest $instanceGroupsListInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroup($instanceGroup)
+            ->setInstanceGroupsListInstancesRequestResource($instanceGroupsListInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

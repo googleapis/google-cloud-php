@@ -59,6 +59,21 @@ class ListRegionNetworkEndpointGroupsRequest extends \Google\Protobuf\Internal\M
     private $return_partial_success = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

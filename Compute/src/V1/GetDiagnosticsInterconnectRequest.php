@@ -29,6 +29,21 @@ class GetDiagnosticsInterconnectRequest extends \Google\Protobuf\Internal\Messag
     private $project = '';
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $interconnect Name of the interconnect resource to query.
+     *
+     * @return \Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $interconnect): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInterconnect($interconnect);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

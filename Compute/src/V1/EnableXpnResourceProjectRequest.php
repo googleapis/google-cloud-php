@@ -35,6 +35,21 @@ class EnableXpnResourceProjectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                                    $project                                  Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest $projectsEnableXpnResourceRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\EnableXpnResourceProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest $projectsEnableXpnResourceRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setProjectsEnableXpnResourceRequestResource($projectsEnableXpnResourceRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -47,6 +47,25 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
     private $zone = '';
 
     /**
+     * @param string                                                      $project                                    Project ID for this request.
+     * @param string                                                      $zone                                       The name of the zone where the instance group is located.
+     * @param string                                                      $instanceGroup                              The name of the instance group where the named ports are updated.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest $instanceGroupsSetNamedPortsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetNamedPortsInstanceGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroup, \Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest $instanceGroupsSetNamedPortsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroup($instanceGroup)
+            ->setInstanceGroupsSetNamedPortsRequestResource($instanceGroupsSetNamedPortsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

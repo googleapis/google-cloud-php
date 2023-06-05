@@ -25,6 +25,21 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the instance to be deleted. Values are of the form
+     *                     `projects/<project>/instances/<instance>`
+     *                     Please see {@see InstanceAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

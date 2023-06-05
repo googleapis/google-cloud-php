@@ -35,6 +35,23 @@ class GetNetworkEdgeSecurityServiceRequest extends \Google\Protobuf\Internal\Mes
     private $region = '';
 
     /**
+     * @param string $project                    Project ID for this request.
+     * @param string $region                     Name of the region scoping this request.
+     * @param string $networkEdgeSecurityService Name of the network edge security service to get.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNetworkEdgeSecurityServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $networkEdgeSecurityService): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkEdgeSecurityService($networkEdgeSecurityService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

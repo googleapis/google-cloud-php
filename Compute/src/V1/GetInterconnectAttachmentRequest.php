@@ -35,6 +35,23 @@ class GetInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project                Project ID for this request.
+     * @param string $region                 Name of the region for this request.
+     * @param string $interconnectAttachment Name of the interconnect attachment to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetInterconnectAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $interconnectAttachment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInterconnectAttachment($interconnectAttachment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

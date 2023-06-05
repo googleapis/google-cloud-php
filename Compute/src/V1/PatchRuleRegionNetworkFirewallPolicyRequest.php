@@ -53,6 +53,25 @@ class PatchRuleRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\Inter
     private $request_id = null;
 
     /**
+     * @param string                                      $project                    Project ID for this request.
+     * @param string                                      $region                     Name of the region scoping this request.
+     * @param string                                      $firewallPolicy             Name of the firewall policy to update.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $firewallPolicy, \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

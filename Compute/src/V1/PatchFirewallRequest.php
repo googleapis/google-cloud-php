@@ -41,6 +41,23 @@ class PatchFirewallRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param string                            $firewall         Name of the firewall rule to patch.
+     * @param \Google\Cloud\Compute\V1\Firewall $firewallResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchFirewallRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $firewall, \Google\Cloud\Compute\V1\Firewall $firewallResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewall($firewall)
+            ->setFirewallResource($firewallResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

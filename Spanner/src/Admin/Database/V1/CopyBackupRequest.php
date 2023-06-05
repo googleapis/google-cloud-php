@@ -63,6 +63,39 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
     private $encryption_config = null;
 
     /**
+     * @param string                     $parent       Required. The name of the destination instance that will contain the backup copy.
+     *                                                 Values are of the form: `projects/<project>/instances/<instance>`. Please see
+     *                                                 {@see DatabaseAdminClient::instanceName()} for help formatting this field.
+     * @param string                     $backupId     Required. The id of the backup copy.
+     *                                                 The `backup_id` appended to `parent` forms the full backup_uri of the form
+     *                                                 `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param string                     $sourceBackup Required. The source backup to be copied.
+     *                                                 The source backup needs to be in READY state for it to be copied.
+     *                                                 Once CopyBackup is in progress, the source backup cannot be deleted or
+     *                                                 cleaned up on expiration until CopyBackup is finished.
+     *                                                 Values are of the form:
+     *                                                 `projects/<project>/instances/<instance>/backups/<backup>`. Please see
+     *                                                 {@see DatabaseAdminClient::backupName()} for help formatting this field.
+     * @param \Google\Protobuf\Timestamp $expireTime   Required. The expiration time of the backup in microsecond granularity.
+     *                                                 The expiration time must be at least 6 hours and at most 366 days
+     *                                                 from the `create_time` of the source backup. Once the `expire_time` has
+     *                                                 passed, the backup is eligible to be automatically deleted by Cloud Spanner
+     *                                                 to free the resources used by the backup.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $backupId, string $sourceBackup, \Google\Protobuf\Timestamp $expireTime): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($sourceBackup)
+            ->setExpireTime($expireTime);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

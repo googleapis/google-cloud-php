@@ -35,6 +35,21 @@ class InsertTargetTcpProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_tcp_proxy_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\TargetTcpProxy $targetTcpProxyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertTargetTcpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\TargetTcpProxy $targetTcpProxyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetTcpProxyResource($targetTcpProxyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

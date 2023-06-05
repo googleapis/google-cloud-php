@@ -29,6 +29,19 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
     private $parent_id = null;
 
     /**
+     * @param string $operation Name of the Operations resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $operation): self
+    {
+        return (new self())
+            ->setOperation($operation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

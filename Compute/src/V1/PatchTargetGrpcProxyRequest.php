@@ -41,6 +41,23 @@ class PatchTargetGrpcProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_grpc_proxy_resource = null;
 
     /**
+     * @param string                                   $project                 Project ID for this request.
+     * @param string                                   $targetGrpcProxy         Name of the TargetGrpcProxy resource to patch.
+     * @param \Google\Cloud\Compute\V1\TargetGrpcProxy $targetGrpcProxyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchTargetGrpcProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetGrpcProxy, \Google\Cloud\Compute\V1\TargetGrpcProxy $targetGrpcProxyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy)
+            ->setTargetGrpcProxyResource($targetGrpcProxyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

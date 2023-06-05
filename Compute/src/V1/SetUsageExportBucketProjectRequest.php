@@ -35,6 +35,21 @@ class SetUsageExportBucketProjectRequest extends \Google\Protobuf\Internal\Messa
     private $usage_export_location_resource = null;
 
     /**
+     * @param string                                       $project                     Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\UsageExportLocation $usageExportLocationResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetUsageExportBucketProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\UsageExportLocation $usageExportLocationResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setUsageExportLocationResource($usageExportLocationResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -29,6 +29,21 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $snapshot = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $snapshot Name of the Snapshot resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $snapshot): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

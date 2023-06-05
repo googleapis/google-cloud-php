@@ -35,6 +35,23 @@ class GetRegionTargetTcpProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_tcp_proxy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $targetTcpProxy Name of the TargetTcpProxy resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionTargetTcpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetTcpProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

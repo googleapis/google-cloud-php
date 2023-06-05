@@ -35,6 +35,21 @@ class DeleteInterconnectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $interconnect Name of the interconnect to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteInterconnectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $interconnect): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInterconnect($interconnect);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -53,6 +53,25 @@ class CreateSnapshotDiskRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param string                            $zone             The name of the zone for this request.
+     * @param string                            $disk             Name of the persistent disk to snapshot.
+     * @param \Google\Cloud\Compute\V1\Snapshot $snapshotResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\CreateSnapshotDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $disk, \Google\Cloud\Compute\V1\Snapshot $snapshotResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setDisk($disk)
+            ->setSnapshotResource($snapshotResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
