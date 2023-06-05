@@ -116,12 +116,13 @@ class BatchSnapshotTest extends TestCase
         ];
 
         // This loop adds extra variable options to the arguments array.
-        foreach ($testCaseOptions as $key => $value){
+        foreach ($testCaseOptions as $key => $value) {
             $arguments[] = Argument::withEntry($key, $value);
         }
 
         $this->connection->partitionRead(call_user_func_array(
-            [Argument::class, 'allOf'], $arguments
+            [Argument::class, 'allOf'],
+            $arguments
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
@@ -171,12 +172,13 @@ class BatchSnapshotTest extends TestCase
         ];
 
         // This loop adds extra variable options to the arguments array.
-        foreach ($testCaseOptions as $key => $value){
+        foreach ($testCaseOptions as $key => $value) {
             $arguments[] = Argument::withEntry($key, $value);
         }
 
         $this->connection->partitionQuery(call_user_func_array(
-            [Argument::class, 'allOf'], $arguments
+            [Argument::class, 'allOf'],
+            $arguments
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
