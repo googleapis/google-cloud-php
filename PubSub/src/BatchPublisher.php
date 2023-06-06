@@ -45,13 +45,12 @@ class BatchPublisher
 {
     use BatchTrait;
 
-    const ID_TEMPLATE = 'pubsub-topic-%s-%s';
+    const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
      * @var array Stores all the topics that have been created.
-     *      as [key => value] pairs where key is the unique topic
-     *      identifier consisting of the topic name and the
-     *      config identifier.
+     *      as [key => value] pairs where key is the unique
+     *      identifier of a BatchPublisher.
      */
     private static $topics = [];
 
@@ -65,8 +64,6 @@ class BatchPublisher
      */
     private $client;
 
-    private $configIdentifier;
-
     /**
      * @param string $topicName The topic name.
      * @param array $options [optional] Please see
@@ -76,13 +73,8 @@ class BatchPublisher
     public function __construct($topicName, array $options = [])
     {
         $this->topicName = $topicName;
-        $this->configIdentifier = $options['configIdentifier'] ?? 'default';
         $this->setCommonBatchProperties($options + [
-            'identifier' => sprintf(
-                self::ID_TEMPLATE,
-                $this->topicName,
-                $this->configIdentifier
-            ),
+            'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishDeferred'
         ]);
     }
