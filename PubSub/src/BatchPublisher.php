@@ -78,7 +78,11 @@ class BatchPublisher
         $this->topicName = $topicName;
         $this->configIdentifier = $options['configIdentifier'] ?? 'default';
         $this->setCommonBatchProperties($options + [
-            'identifier' => $this->getUniqueIdentifier(),
+            'identifier' => sprintf(
+                self::ID_TEMPLATE,
+                $this->topicName,
+                $this->configIdentifier
+            ),
             'batchMethod' => 'publishDeferred'
         ]);
     }
@@ -164,14 +168,5 @@ class BatchPublisher
         }
 
         return $res;
-    }
-
-    private function getUniqueIdentifier()
-    {
-        return sprintf(
-            self::ID_TEMPLATE,
-            $this->topicName,
-            $this->configIdentifier
-        );
     }
 }
