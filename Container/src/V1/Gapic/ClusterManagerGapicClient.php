@@ -35,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
@@ -368,6 +370,50 @@ class ClusterManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CancelOperation', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Checks the cluster compatibility with Autopilot mode, and returns a list of
+     * compatibility issues.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $response = $clusterManagerClient->checkAutopilotCompatibility();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The name (project, location, cluster) of the cluster to retrieve.
+     *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function checkAutopilotCompatibility(array $optionalArgs = [])
+    {
+        $request = new CheckAutopilotCompatibilityRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CheckAutopilotCompatibility', CheckAutopilotCompatibilityResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
