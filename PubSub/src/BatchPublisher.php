@@ -98,13 +98,13 @@ class BatchPublisher
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @return void
      */
-    public function publish($message): void
+    public function publish($message)
     {
         $message = $message instanceof Message
             ? $message->toArray()
             : $message;
 
-        $this->batchRunner->submitItem($this->identifier, $message);
+        return $this->batchRunner->submitItem($this->identifier, $message);
     }
 
     /**
