@@ -34,6 +34,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
@@ -94,6 +96,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @internal
  *
  * @method PromiseInterface cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
@@ -300,6 +303,31 @@ abstract class ClusterManagerBaseClient
     public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('CancelOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Checks the cluster compatibility with Autopilot mode, and returns a list of
+     * compatibility issues.
+     *
+     * The async variant is {@see self::checkAutopilotCompatibilityAsync()} .
+     *
+     * @param CheckAutopilotCompatibilityRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CheckAutopilotCompatibilityResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function checkAutopilotCompatibility(CheckAutopilotCompatibilityRequest $request, array $callOptions = []): CheckAutopilotCompatibilityResponse
+    {
+        return $this->startApiCall('CheckAutopilotCompatibility', $request, $callOptions)->wait();
     }
 
     /**
