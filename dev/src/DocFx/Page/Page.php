@@ -131,7 +131,7 @@ class Page
                 // Generated samples include the method description, which is redundant on the doc
                 // site. This removes the description.
                 $sample = preg_replace(
-                    '/(\/\*\*\n)(.*?)(@param|\n \*\/)/s',
+                    '/(\/\*\*\n)(.*?)(@param|This sample has been automatically generated|\n \*\/)/s',
                     '$1 * $3',
                     $match[1],
                     1 // only replace the first occurrence
