@@ -16,6 +16,7 @@
             -
               uid: \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient
               name: 'SecretManagerServiceClient (new)'
+              status: beta
             -
               uid: \Google\Cloud\SecretManager\V1\SecretManagerServiceClient
               name: 'SecretManagerServiceClient (previous)'
