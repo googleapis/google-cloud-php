@@ -328,6 +328,24 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig removed_additional_pod_ranges_config = 121;</code>
      */
     private $removed_additional_pod_ranges_config = null;
+    /**
+     * Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 122;</code>
+     */
+    private $enable_k8s_beta_apis = null;
+    /**
+     * Enable/Disable FQDN Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
+     */
+    private $desired_enable_fqdn_network_policy = null;
+    /**
+     * Desired Beta APIs to be enabled for cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig desired_k8s_beta_apis = 131;</code>
+     */
+    private $desired_k8s_beta_apis = null;
 
     /**
      * Constructor.
@@ -474,6 +492,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The additional pod ranges that are to be removed from the cluster.
      *           The pod ranges specified here must have been specified earlier in the
      *           'additional_pod_ranges_config' argument.
+     *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
+     *           Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     *     @type bool $desired_enable_fqdn_network_policy
+     *           Enable/Disable FQDN Network Policy for the cluster.
+     *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
+     *           Desired Beta APIs to be enabled for cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -2021,6 +2045,114 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdditionalPodRangesConfig::class);
         $this->removed_additional_pod_ranges_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 122;</code>
+     * @return \Google\Cloud\Container\V1\K8sBetaAPIConfig|null
+     */
+    public function getEnableK8SBetaApis()
+    {
+        return $this->enable_k8s_beta_apis;
+    }
+
+    public function hasEnableK8SBetaApis()
+    {
+        return isset($this->enable_k8s_beta_apis);
+    }
+
+    public function clearEnableK8SBetaApis()
+    {
+        unset($this->enable_k8s_beta_apis);
+    }
+
+    /**
+     * Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 122;</code>
+     * @param \Google\Cloud\Container\V1\K8sBetaAPIConfig $var
+     * @return $this
+     */
+    public function setEnableK8SBetaApis($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
+        $this->enable_k8s_beta_apis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable FQDN Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
+     * @return bool
+     */
+    public function getDesiredEnableFqdnNetworkPolicy()
+    {
+        return isset($this->desired_enable_fqdn_network_policy) ? $this->desired_enable_fqdn_network_policy : false;
+    }
+
+    public function hasDesiredEnableFqdnNetworkPolicy()
+    {
+        return isset($this->desired_enable_fqdn_network_policy);
+    }
+
+    public function clearDesiredEnableFqdnNetworkPolicy()
+    {
+        unset($this->desired_enable_fqdn_network_policy);
+    }
+
+    /**
+     * Enable/Disable FQDN Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredEnableFqdnNetworkPolicy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_enable_fqdn_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Desired Beta APIs to be enabled for cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig desired_k8s_beta_apis = 131;</code>
+     * @return \Google\Cloud\Container\V1\K8sBetaAPIConfig|null
+     */
+    public function getDesiredK8SBetaApis()
+    {
+        return $this->desired_k8s_beta_apis;
+    }
+
+    public function hasDesiredK8SBetaApis()
+    {
+        return isset($this->desired_k8s_beta_apis);
+    }
+
+    public function clearDesiredK8SBetaApis()
+    {
+        unset($this->desired_k8s_beta_apis);
+    }
+
+    /**
+     * Desired Beta APIs to be enabled for cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig desired_k8s_beta_apis = 131;</code>
+     * @param \Google\Cloud\Container\V1\K8sBetaAPIConfig $var
+     * @return $this
+     */
+    public function setDesiredK8SBetaApis($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
+        $this->desired_k8s_beta_apis = $var;
 
         return $this;
     }

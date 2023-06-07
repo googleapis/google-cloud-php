@@ -28,6 +28,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
@@ -151,6 +153,62 @@ class ClusterManagerClientTest extends GeneratedTest
         $request = new CancelOperationRequest();
         try {
             $gapicClient->cancelOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function checkAutopilotCompatibilityTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $summary = 'summary-1857640538';
+        $expectedResponse = new CheckAutopilotCompatibilityResponse();
+        $expectedResponse->setSummary($summary);
+        $transport->addResponse($expectedResponse);
+        $request = new CheckAutopilotCompatibilityRequest();
+        $response = $gapicClient->checkAutopilotCompatibility($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/CheckAutopilotCompatibility', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function checkAutopilotCompatibilityExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        $request = new CheckAutopilotCompatibilityRequest();
+        try {
+            $gapicClient->checkAutopilotCompatibility($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
