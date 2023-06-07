@@ -48,7 +48,7 @@ class BatchPublisher
     const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
-     * @var array Stores all the topics that have been created.
+     * @var array Stores all the topics that have been created
      *      as [key => value] pairs where key is the unique
      *      identifier of a BatchPublisher.
      */
