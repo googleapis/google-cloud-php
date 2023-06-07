@@ -183,11 +183,12 @@ class PageTree
                 $parentClassNode = $pageMap[$clientFullName]->getClassNode();
                 $parentClassNode->setChildNode($gapicClient);
                 if ($this->hasV1Client && $this->hasV2Client) {
-                    $parentClassNode->setTocName(sprintf(
-                        '%s (%s)',
-                        $parentClassNode->getName(),
-                        $parentClassNode->isV2ServiceClass() ? 'new' : 'previous'
-                    ));
+                    if ($parentClassNode->isV2ServiceClass()) {
+                        $parentClassNode->setTocName(sprintf(
+                            '%s (beta)',
+                            $parentClassNode->getName()
+                        ));
+                    }
                 }
             }
         }

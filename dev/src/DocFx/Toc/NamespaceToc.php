@@ -113,6 +113,10 @@ class NamespaceToc
             }
         }
 
+        usort($services, function ($a, $b) {
+            return (false !== strpos($a['name'], '(beta)')) <=> (false !== strpos($b['name'], '(beta)'));
+        });
+
         // Do not wrap in namespace if none exist or we're in top level namespace
         if (!$services || $this->isVersionNamespace) {
             return $services;
