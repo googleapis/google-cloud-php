@@ -99,4 +99,22 @@ class PageTest extends TestCase
         $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
         $this->assertStringEndsWith("\nend.", $overview4->getContents());
     }
+
+    public function testHandleSample()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
+        $componentPath = __DIR__ . '/../../fixtures/component/ClientSnippets';
+        $pageTree = new PageTree($structureXml, 'Google\Cloud\ClientSnippets', '', $componentPath);
+
+        $pages = $pageTree->getPages();
+        $this->assertCount(1, $pages);
+        $items = array_pop($pages)->getItems();
+        $this->assertCount(2, $items);
+        $rpcMethod = $items[1];
+        $this->assertArrayHasKey('example', $rpcMethod);
+        $this->assertNotEmpty($rpcMethod['example']);
+        $this->assertCount(1, $rpcMethod['example']);
+        $this->assertStringContainsString('function an_rpc_method_sample', $rpcMethod['example'][0]);
+
+    }
 }

@@ -69,6 +69,18 @@ class MethodNode
         return '';
     }
 
+    public function getExample(): string
+    {
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ($tag['name'] == 'example' && (string) $tag['description']) {
+                    return $tag['description'];
+                }
+            }
+        }
+        return '';
+    }
+
     public function isStatic(): bool
     {
         return 'true' === (string) $this->xmlNode['static'];
