@@ -85,12 +85,12 @@ class ComponentInfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (!$input->getOption('show-available-api-versions')) {
-            unset(self::$allFields['available_api_versions']);
-        }
         $fields = $input->getOption('fields')
             ? explode(',', $input->getOption('fields'))
             : self::$defaultFields;
+        if ($input->getOption('show-available-api-versions')) {
+            $fields[] = 'available_api_versions';
+        }
         $this->token = $input->getOption('token');
 
         // Filter out invalid fields
@@ -181,6 +181,7 @@ class ComponentInfoCommand extends Command
                     'service_address' => $pkg->getServiceAddress(),
                     'shortname' => $pkg->getApiShortname(),
                     'description' => '',        // defined by component
+                    'available_api_versions' => '', // defined by component
                 ], $requestedFields));
             }
         }
