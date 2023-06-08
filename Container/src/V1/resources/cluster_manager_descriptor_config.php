@@ -33,6 +33,18 @@ return [
                     ],
                 ],
             ],
+            'CheckAutopilotCompatibility' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CompleteIPRotation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Container\V1\Operation',

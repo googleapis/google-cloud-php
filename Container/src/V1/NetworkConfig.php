@@ -90,6 +90,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
      */
     private $gateway_api_config = null;
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     */
+    private $enable_fqdn_network_policy = null;
 
     /**
      * Constructor.
@@ -132,6 +138,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $gateway_api_config
      *           GatewayAPIConfig contains the desired config of Gateway API on this
      *           cluster.
+     *     @type bool $enable_fqdn_network_policy
+     *           Whether FQDN Network Policy is enabled on this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -465,6 +473,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
         $this->gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     * @return bool
+     */
+    public function getEnableFqdnNetworkPolicy()
+    {
+        return isset($this->enable_fqdn_network_policy) ? $this->enable_fqdn_network_policy : false;
+    }
+
+    public function hasEnableFqdnNetworkPolicy()
+    {
+        return isset($this->enable_fqdn_network_policy);
+    }
+
+    public function clearEnableFqdnNetworkPolicy()
+    {
+        unset($this->enable_fqdn_network_policy);
+    }
+
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableFqdnNetworkPolicy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_fqdn_network_policy = $var;
 
         return $this;
     }

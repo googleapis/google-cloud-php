@@ -1579,7 +1579,7 @@ class CloudDeployGapicClient
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $allowMissing
      *           Optional. If set to true, then deleting an already deleted or non-existing
-     *           DeliveryPipeline will succeed.
+     *           `Target` will succeed.
      *     @type bool $validateOnly
      *           Optional. If set, validate the request and preview the review, but do not
      *           actually post it.
