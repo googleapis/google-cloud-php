@@ -160,6 +160,16 @@ class ClassNode
         foreach ($this->xmlNode->method as $methodNode) {
             $method = new MethodNode($methodNode, $this->protoPackages);
             if ($method->isPublic() && !$method->isInherited()) {
+                // This is to fix an issue in phpdocumentor where magic methods do not have
+                // "inhereted_from" set as expected.
+                // TODO: Remove this once the above issue is fixed.
+                // @see https://github.com/phpDocumentor/phpDocumentor/pull/3520
+                if (false !== strpos($method->getFullname(), 'Async()')) {
+                    list($class, $_) = explode('::', $method->getFullname());
+                    if ($class !== $this->getFullName()) {
+                        continue;
+                    }
+                }
                 $methods[] = $method;
             }
         }
