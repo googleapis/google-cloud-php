@@ -13,6 +13,7 @@ items:
 
       Generated from protobuf message <code>google.cloud.vision.v1.Position</code>
     type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
     langs:
       - php
     children:
