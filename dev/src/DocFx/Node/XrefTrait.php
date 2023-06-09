@@ -87,7 +87,7 @@ trait XrefTrait
     private function replaceProtoRef(string $description): string
     {
         return preg_replace_callback(
-            '/\[([^\]]*?)\]\[([a-z1-9\.]*)([a-zA-Z1-9_\.]*)\]/',
+            '/\[([^\]]*?)\]\s?\[([a-z1-9\.]*)([a-zA-Z1-9_\.]*)\]/',
             function ($matches) {
                 list($link, $name, $package, $class) = $matches;
                 $property = $method = $constant = null;

@@ -607,8 +607,8 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
           description: |-
             Parameters for a product search request. Please note, this
-            value will override the {@see \Google\Cloud\Vision\V1\ProductSearchParams} in the
-            {@see \Google\Cloud\Vision\V1\ImageContext} instance if provided.
+            value will override the <xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref> in the
+            <xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref> instance if provided.
         -
           id: optionalArgs
           var_type: array

@@ -168,13 +168,31 @@ class NodeTest extends TestCase
                 'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use <xref uid="\Google\Logging\V2\ConfigServiceV2Client::getCmekSettings()">GetCmekSettings</xref> to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.'
             ],
             [
-                // Separation using newlines
+                // Separation between links using newlines
                 'Required. The [Model\'s][google.cloud.aiplatform.v1.BatchPredictionJob.model]' . PHP_EOL
                 . '[PredictSchemata\'s][google.cloud.aiplatform.v1.Model.predict_schemata]' . PHP_EOL
                 . '[instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
                 'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>' . PHP_EOL
                 . '<xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>' . PHP_EOL
                 . '<xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using newlines
+                'Required. The [Model\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri]' . PHP_EOL . '[google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using a space - some APIs do this :/
+                'Required. The [Model\'s] [google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s] [google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri] [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
                 'Testing that a code sample like $foo["bar"]["baz"] does not get replaced',
