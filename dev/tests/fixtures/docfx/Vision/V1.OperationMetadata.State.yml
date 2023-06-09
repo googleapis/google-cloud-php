@@ -10,6 +10,7 @@ items:
 
       Protobuf type <code>google.cloud.vision.v1.OperationMetadata.State</code>
     type: class
+    namespace: 'Google \ Cloud \ Vision \ V1 \ OperationMetadata'
     langs:
       - php
     children:

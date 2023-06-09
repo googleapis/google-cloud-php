@@ -51,6 +51,8 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,7 +67,7 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Etag to validate that the object is unchanged for a
      * read-modify-write operation.
-     * An empty etag will cause an update to overwrite other changes.
+     * An empty etag causes an update to overwrite other changes.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -93,13 +95,15 @@ class Budget extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $threshold_rules
      *           Optional. Rules that trigger alerts (notifications of thresholds
      *           being crossed) when spend exceeds the specified percentages of the budget.
+     *           Optional for `pubsubTopic` notifications.
+     *           Required if using email notifications.
      *     @type \Google\Cloud\Billing\Budgets\V1\NotificationsRule $notifications_rule
      *           Optional. Rules to apply to notifications sent based on budget spend and
      *           thresholds.
      *     @type string $etag
      *           Optional. Etag to validate that the object is unchanged for a
      *           read-modify-write operation.
-     *           An empty etag will cause an update to overwrite other changes.
+     *           An empty etag causes an update to overwrite other changes.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,6 +248,8 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -256,6 +262,8 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -310,7 +318,7 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Etag to validate that the object is unchanged for a
      * read-modify-write operation.
-     * An empty etag will cause an update to overwrite other changes.
+     * An empty etag causes an update to overwrite other changes.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -323,7 +331,7 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Etag to validate that the object is unchanged for a
      * read-modify-write operation.
-     * An empty etag will cause an update to overwrite other changes.
+     * An empty etag causes an update to overwrite other changes.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

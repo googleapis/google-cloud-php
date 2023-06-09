@@ -14,12 +14,12 @@
           uid: 'services:Google\Cloud\SecretManager\V1'
           items:
             -
-              uid: \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient
-              name: 'SecretManagerServiceClient (new)'
-              status: beta
-            -
               uid: \Google\Cloud\SecretManager\V1\SecretManagerServiceClient
-              name: 'SecretManagerServiceClient (previous)'
+              name: SecretManagerServiceClient
+            -
+              uid: \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient
+              name: 'SecretManagerServiceClient (beta)'
+              status: beta
     -
       name: Google\Cloud\SecretManager\V1beta1
       uid: 'ns:Google\Cloud\SecretManager\V1beta1'
@@ -30,5 +30,5 @@
           items:
             -
               uid: \Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient
-              name: 'SecretManagerServiceClient (previous)'
+              name: SecretManagerServiceClient
               status: beta
