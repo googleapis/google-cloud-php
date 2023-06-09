@@ -104,6 +104,9 @@ class ClassNode
                 if ((string) $tag['name'] === 'deprecated') {
                     return 'deprecated';
                 }
+                if ((string) $tag['name'] === 'experimental') {
+                    return 'beta';
+                }
             }
         }
 
