@@ -14,6 +14,7 @@ items:
 
       Protobuf type <code>google.cloud.vision.v1.FaceAnnotation.Landmark.Type</code>
     type: class
+    namespace: 'Google \ Cloud \ Vision \ V1 \ FaceAnnotation \ Landmark'
     langs:
       - php
     children:

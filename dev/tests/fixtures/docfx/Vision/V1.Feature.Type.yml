@@ -10,6 +10,7 @@ items:
 
       Protobuf type <code>google.cloud.vision.v1.Feature.Type</code>
     type: class
+    namespace: 'Google \ Cloud \ Vision \ V1 \ Feature'
     langs:
       - php
     children:

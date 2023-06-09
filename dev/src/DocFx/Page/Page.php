@@ -95,6 +95,7 @@ class Page
             'summary' => $this->classNode->getContent(),
             'status' => $this->classNode->getStatus(),
             'type' => 'class',
+            'namespace' => implode(' \ ', explode('\\', ltrim($this->classNode->getNamespace(), '\\'))),
             'langs' => ['php'],
             'implements' => $this->classNode->getImplements(),
         ]);

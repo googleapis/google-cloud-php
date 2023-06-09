@@ -10,6 +10,7 @@ items:
 
       Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.DetectedLanguage</code>
     type: class
+    namespace: 'Google \ Cloud \ Vision \ V1 \ TextAnnotation'
     langs:
       - php
     children:
