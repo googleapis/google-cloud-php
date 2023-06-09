@@ -87,9 +87,8 @@ class MethodNode
     }
 
     /**
-     * Function to manually exclude some functions we don't want to display in
-     * the docs, such as magic methods. Right now the only such method is
-     * "__call".
+     * Allows exclusion of some methods we don't want to display in the docs,
+     * such as magic methods. Right now the only such method is "__call".
      */
     public function isExcludedMethod(): bool
     {
