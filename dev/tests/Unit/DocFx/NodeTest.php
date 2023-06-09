@@ -178,9 +178,18 @@ class NodeTest extends TestCase
             ],
             [
                 // Separation within links using newlines
-                'Required. The [Model\'s]'  . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
-                . ' [PredictSchemata\'s]'  . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
+                'Required. The [Model\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
                 . ' [instance_schema_uri]' . PHP_EOL . '[google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using a space - some APIs do this :/
+                'Required. The [Model\'s] [google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s] [google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri] [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
                 'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
                 . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
                 . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'

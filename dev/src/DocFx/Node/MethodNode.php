@@ -99,7 +99,7 @@ class MethodNode
             $parameter = new ParameterNode(
                 $parameterName,
                 (string) $parameterNode->type,
-                $this->replaceProtoRef($description)
+                $this->replaceSeeTag($this->replaceProtoRef($description))
             );
 
             $parameters[] = $parameter;
