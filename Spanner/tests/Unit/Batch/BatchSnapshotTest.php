@@ -158,27 +158,25 @@ class BatchSnapshotTest extends TestCase
             'partitionSizeBytes' => 1
         ] + $testCaseOptions;
 
-        $arguments = [
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('params', $opts['parameters']),
-            Argument::withEntry('paramTypes', ['foo' => ['code' => 6]]),
-            Argument::withEntry('partitionOptions', [
+        $expectedArguments = [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'sql' => $sql,
+            'params' => $opts['parameters'],
+            'paramTypes' => ['foo' => ['code' => 6]],
+            'partitionOptions' => [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
-            ])
+            ]
         ];
 
-        // This loop adds extra variable options to the arguments array.
-        foreach ($testCaseOptions as $key => $value) {
-            $arguments[] = Argument::withEntry($key, $value);
-        }
+        $expectedArguments += $testCaseOptions;
 
-        $this->connection->partitionQuery(call_user_func_array(
-            [Argument::class, 'allOf'],
-            $arguments
+        $this->connection->partitionQuery(Argument::that(
+            function ($actualArguments) use ($expectedArguments) {
+                return $actualArguments == $expectedArguments;
+            }
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
