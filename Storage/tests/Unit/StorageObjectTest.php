@@ -30,7 +30,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
@@ -553,7 +553,7 @@ class StorageObjectTest extends TestCase
                 ]
             ]
         ])
-            ->willReturn(Promise\promise_for($stream));
+            ->willReturn(Create::promiseFor($stream));
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
