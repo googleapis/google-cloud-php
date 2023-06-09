@@ -1,4 +1,5 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-apigee-registry",
     "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apigee-registry/latest",
