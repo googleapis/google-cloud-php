@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.0](https://github.com/googleapis/gax-php/compare/v1.20.2...v1.21.0) (2023-06-09)
+
+
+### Features
+
+* Support guzzle/promises:v2 ([753eae9](https://github.com/googleapis/gax-php/commit/753eae9acf638f3356f8149acf84444eb399a699))
+
 ## [1.20.2](https://github.com/googleapis/gax-php/compare/v1.20.1...v1.20.2) (2023-05-12)
 
 
