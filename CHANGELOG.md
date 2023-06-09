@@ -1,5 +1,100 @@
 # Changelog
 
+## 0.208.0
+
+<details><summary>google/cloud-billing-budgets 1.2.0</summary>
+
+
+
+### Features
+
+* Add resource_ancestors field to support filtering by folders & organizations ([#6320](https://github.com/googleapis/google-cloud-php/issues/6320)) ([3751ae5](https://github.com/googleapis/google-cloud-php/commit/3751ae50bac3315f7d518a596b10fa5cf6909302))
+
+</details>
+
+<details><summary>google/cloud-build 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.15.0</summary>
+
+
+
+### Features
+
+* Add a API field to enable FQDN Network Policy on clusters ([#6323](https://github.com/googleapis/google-cloud-php/issues/6323)) ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+* Add CheckAutopilotCompatibility API to get autopilot compatibility issues for a given standard cluster ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+* Turn on public visibility for best effort provision ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.5.1</summary>
+
+
+
+### Bug Fixes
+
+* Allow using the key file path configuration in the new Firebase connection ([#6334](https://github.com/googleapis/google-cloud-php/issues/6334)) ([b219b68](https://github.com/googleapis/google-cloud-php/commit/b219b686f9af32a262a26b49b13c2bc4194d76af))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.8.0</summary>
+
+
+
+### Features
+
+* Add support for disabling Pod overprovisioning in the progressive deployment strategy configuration for a Kubernetes Target ([#6318](https://github.com/googleapis/google-cloud-php/issues/6318)) ([99cfa68](https://github.com/googleapis/google-cloud-php/commit/99cfa6857f29f307326b3eb7c4f7f097af5121cf))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.3.0</summary>
+
+
+
+### Features
+
+* Introduce DiscoveryEngine v1 ([a2dbd1e](https://github.com/googleapis/google-cloud-php/commit/a2dbd1e4b506abc24b39363256a69cb7b842abf4))
+
+
+### Bug Fixes
+
+* Remove the summarization feature from v1 version ([a2dbd1e](https://github.com/googleapis/google-cloud-php/commit/a2dbd1e4b506abc24b39363256a69cb7b842abf4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.43.1</summary>
+
+
+
+### Bug Fixes
+
+* **Pub/Sub:** Ensure uniqueness of batch publishers under a topic ([#6324](https://github.com/googleapis/google-cloud-php/issues/6324)) ([85f2dfd](https://github.com/googleapis/google-cloud-php/commit/85f2dfd9653bbf138166d09a6fa16474d5401fa7))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce RapidMigrationAssessment ([#6311](https://github.com/googleapis/google-cloud-php/issues/6311)) ([91152c9](https://github.com/googleapis/google-cloud-php/commit/91152c9b2da4b05bd4cb83cc58d82a8f3240b81e))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.61.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Federation M2 ([#6300](https://github.com/googleapis/google-cloud-php/issues/6300)) ([64f4ebc](https://github.com/googleapis/google-cloud-php/commit/64f4ebcae2eb9c14f0c90eab5ab905655bcad3f2))
+
+</details>
+
 ## 0.207.0
 
 <details><summary>google/cloud-access-approval 1.1.0</summary>
