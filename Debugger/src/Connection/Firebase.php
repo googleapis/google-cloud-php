@@ -59,6 +59,10 @@ class Firebase implements ConnectionInterface
         $this->factory = (new Factory())
             ->withDatabaseUri($databaseUrl);
 
+        if (isset($config['keyFilePath'])) {
+            $this->factory = $this->factory->withServiceAccount($config['keyFilePath']);
+        }
+
         $this->database = $this->factory->createDatabase();
         $this->breakpoints = [];
     }
