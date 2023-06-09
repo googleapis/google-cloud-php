@@ -162,7 +162,7 @@ class ClassNode
         $methods = [];
         foreach ($this->xmlNode->method as $methodNode) {
             $method = new MethodNode($methodNode, $this->protoPackages);
-            if ($method->isPublic() && !$method->isInherited()) {
+            if ($method->isPublic() && !$method->isInherited() && !$method->isExcludedMethod()) {
                 // This is to fix an issue in phpdocumentor where magic methods do not have
                 // "inhereted_from" set as expected.
                 // TODO: Remove this once the above issue is fixed.

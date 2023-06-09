@@ -86,6 +86,15 @@ class MethodNode
         return 'true' === (string) $this->xmlNode['static'];
     }
 
+    /**
+     * Allows exclusion of some methods we don't want to display in the docs,
+     * such as magic methods. Right now the only such method is "__call".
+     */
+    public function isExcludedMethod(): bool
+    {
+        return $this->getName() === '__call';
+    }
+
     public function isOperationMethod(): bool
     {
         return $this->getName() === 'getOperationsClient'
