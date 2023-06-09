@@ -37,22 +37,6 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
     private $output_config = null;
 
     /**
-     * @param \Google\Cloud\Speech\V1\RecognitionConfig $config Required. Provides information to the recognizer that specifies how to
-     *                                                          process the request.
-     * @param \Google\Cloud\Speech\V1\RecognitionAudio  $audio  Required. The audio data to be recognized.
-     *
-     * @return \Google\Cloud\Speech\V1\LongRunningRecognizeRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Cloud\Speech\V1\RecognitionConfig $config, \Google\Cloud\Speech\V1\RecognitionAudio $audio): self
-    {
-        return (new self())
-            ->setConfig($config)
-            ->setAudio($audio);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

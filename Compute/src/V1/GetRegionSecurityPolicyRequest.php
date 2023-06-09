@@ -35,6 +35,23 @@ class GetRegionSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $security_policy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to get.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $securityPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSecurityPolicy($securityPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

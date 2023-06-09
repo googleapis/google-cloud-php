@@ -47,6 +47,25 @@ class AddHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Message
     private $target_pools_add_health_check_request_resource = null;
 
     /**
+     * @param string                                                    $project                                  Project ID for this request.
+     * @param string                                                    $region                                   Name of the region scoping this request.
+     * @param string                                                    $targetPool                               Name of the target pool to add a health check to.
+     * @param \Google\Cloud\Compute\V1\TargetPoolsAddHealthCheckRequest $targetPoolsAddHealthCheckRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddHealthCheckTargetPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetPool, \Google\Cloud\Compute\V1\TargetPoolsAddHealthCheckRequest $targetPoolsAddHealthCheckRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetPool($targetPool)
+            ->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

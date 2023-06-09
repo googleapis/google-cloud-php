@@ -41,6 +41,23 @@ class InsertRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $region                       Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManagerResource($instanceGroupManagerResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,21 @@ class SetDefaultNetworkTierProjectRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = null;
 
     /**
+     * @param string                                                        $project                                      Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest $projectsSetDefaultNetworkTierRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest $projectsSetDefaultNetworkTierRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setProjectsSetDefaultNetworkTierRequestResource($projectsSetDefaultNetworkTierRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,6 +25,22 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     private $database = '';
 
     /**
+     * @param string $database Required. The database whose schema we wish to get.
+     *                         Values are of the form
+     *                         `projects/<project>/instances/<instance>/databases/<database>`
+     *                         Please see {@see DatabaseAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

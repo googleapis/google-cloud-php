@@ -35,6 +35,21 @@ class DeleteGlobalPublicDelegatedPrefixeRequest extends \Google\Protobuf\Interna
     private $request_id = null;
 
     /**
+     * @param string $project               Project ID for this request.
+     * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteGlobalPublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicDelegatedPrefix): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicDelegatedPrefix($publicDelegatedPrefix);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

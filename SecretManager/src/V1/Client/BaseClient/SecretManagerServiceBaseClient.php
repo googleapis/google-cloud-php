@@ -187,12 +187,30 @@ abstract class SecretManagerServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName(string $project, string $topic): string
+    {
+        return self::getPathTemplate('topic')->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

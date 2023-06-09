@@ -41,6 +41,21 @@ class InsertMachineImageRequest extends \Google\Protobuf\Internal\Message
     private $source_instance = null;
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\MachineImage $machineImageResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertMachineImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\MachineImage $machineImageResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setMachineImageResource($machineImageResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

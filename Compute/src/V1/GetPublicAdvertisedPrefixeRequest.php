@@ -29,6 +29,21 @@ class GetPublicAdvertisedPrefixeRequest extends \Google\Protobuf\Internal\Messag
     private $public_advertised_prefix = '';
 
     /**
+     * @param string $project                Project ID for this request.
+     * @param string $publicAdvertisedPrefix Name of the PublicAdvertisedPrefix resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetPublicAdvertisedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicAdvertisedPrefix): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

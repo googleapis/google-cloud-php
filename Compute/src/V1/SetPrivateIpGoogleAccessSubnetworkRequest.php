@@ -47,6 +47,25 @@ class SetPrivateIpGoogleAccessSubnetworkRequest extends \Google\Protobuf\Interna
     private $subnetworks_set_private_ip_google_access_request_resource = null;
 
     /**
+     * @param string                                                              $project                                            Project ID for this request.
+     * @param string                                                              $region                                             Name of the region scoping this request.
+     * @param string                                                              $subnetwork                                         Name of the Subnetwork resource.
+     * @param \Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest $subnetworksSetPrivateIpGoogleAccessRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetPrivateIpGoogleAccessSubnetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $subnetwork, \Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest $subnetworksSetPrivateIpGoogleAccessRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksSetPrivateIpGoogleAccessRequestResource($subnetworksSetPrivateIpGoogleAccessRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

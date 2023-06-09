@@ -53,6 +53,27 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     private $zone = '';
 
     /**
+     * @param string $project          Project ID for this request.
+     * @param string $zone             The name of the zone for this request.
+     * @param string $instance         The instance name for this request.
+     * @param string $accessConfig     The name of the access config to delete.
+     * @param string $networkInterface The name of the network interface.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteAccessConfigInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, string $accessConfig, string $networkInterface): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setAccessConfig($accessConfig)
+            ->setNetworkInterface($networkInterface);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

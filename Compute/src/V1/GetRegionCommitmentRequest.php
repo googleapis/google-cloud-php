@@ -35,6 +35,23 @@ class GetRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region for this request.
+     * @param string $commitment Name of the commitment to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $commitment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setCommitment($commitment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

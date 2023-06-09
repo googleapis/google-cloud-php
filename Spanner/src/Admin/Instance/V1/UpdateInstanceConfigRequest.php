@@ -47,6 +47,31 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig Required. The user instance config to update, which must always include the
+     *                                                                               instance config name. Otherwise, only fields mentioned in
+     *                                                                               [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
+     *                                                                               need be included. To prevent conflicts of concurrent updates,
+     *                                                                               [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
+     *                                                                               be used.
+     * @param \Google\Protobuf\FieldMask                             $updateMask     Required. A mask specifying which fields in
+     *                                                                               [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] should be
+     *                                                                               updated. The field mask must always be specified; this prevents any future
+     *                                                                               fields in [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig]
+     *                                                                               from being erased accidentally by clients that do not know about them. Only
+     *                                                                               display_name and labels can be updated.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstanceConfig($instanceConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

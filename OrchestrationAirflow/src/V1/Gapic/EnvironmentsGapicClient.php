@@ -29,6 +29,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -85,6 +86,11 @@ use Google\Protobuf\FieldMask;
  *     $environmentsClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class EnvironmentsGapicClient
 {
@@ -106,6 +112,10 @@ class EnvironmentsGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $environmentNameTemplate;
+
+    private static $pathTemplateMap;
 
     private $operationsClient;
 
@@ -132,6 +142,92 @@ class EnvironmentsGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getEnvironmentNameTemplate()
+    {
+        if (self::$environmentNameTemplate == null) {
+            self::$environmentNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/environments/{environment}'
+            );
+        }
+
+        return self::$environmentNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'environment' => self::getEnvironmentNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a environment
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     *
+     * @return string The formatted environment resource.
+     */
+    public static function environmentName($project, $location, $environment)
+    {
+        return self::getEnvironmentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - environment: projects/{project}/locations/{location}/environments/{environment}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**

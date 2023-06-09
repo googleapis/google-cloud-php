@@ -48,7 +48,9 @@ class BatchPublisher
     const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
-     * @var array
+     * @var array Stores all the topics that have been created
+     *      as [key => value] pairs where key is the unique
+     *      identifier of a BatchPublisher.
      */
     private static $topics = [];
 
@@ -90,7 +92,7 @@ class BatchPublisher
      * @param Message|array $message An instance of
      *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
-     * @return bool
+     * @return void
      */
     public function publish($message)
     {
@@ -141,16 +143,16 @@ class BatchPublisher
             $calls[$key][] = $message;
         }
 
-        if (!array_key_exists($this->topicName, self::$topics)) {
+        if (!array_key_exists($this->identifier, self::$topics)) {
             if (!$this->client) {
                 //@codeCoverageIgnoreStart
                 $this->client = new PubSubClient($this->getUnwrappedClientConfig());
                 //@codeCoverageIgnoreEnd
             }
-            self::$topics[$this->topicName] = $this->client->topic($this->topicName);
+            self::$topics[$this->identifier] = $this->client->topic($this->topicName);
         }
 
-        $topic = self::$topics[$this->topicName];
+        $topic = self::$topics[$this->identifier];
 
         $res = [];
         foreach ($calls as $call) {

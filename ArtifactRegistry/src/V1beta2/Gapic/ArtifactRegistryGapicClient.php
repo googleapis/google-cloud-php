@@ -175,6 +175,8 @@ class ArtifactRegistryGapicClient
 
     private static $repositoryNameTemplate;
 
+    private static $tagNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -225,6 +227,15 @@ class ArtifactRegistryGapicClient
         return self::$repositoryNameTemplate;
     }
 
+    private static function getTagNameTemplate()
+    {
+        if (self::$tagNameTemplate == null) {
+            self::$tagNameTemplate = new PathTemplate('projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}');
+        }
+
+        return self::$tagNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -232,6 +243,7 @@ class ArtifactRegistryGapicClient
                 'location' => self::getLocationNameTemplate(),
                 'projectSettings' => self::getProjectSettingsNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
+                'tag' => self::getTagNameTemplate(),
             ];
         }
 
@@ -296,12 +308,38 @@ class ArtifactRegistryGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tag
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $package
+     * @param string $tag
+     *
+     * @return string The formatted tag resource.
+     *
+     * @experimental
+     */
+    public static function tagName($project, $location, $repository, $package, $tag)
+    {
+        return self::getTagNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'package' => $package,
+            'tag' => $tag,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - projectSettings: projects/{project}/projectSettings
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - tag: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

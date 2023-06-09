@@ -35,6 +35,21 @@ class DeletePublicAdvertisedPrefixeRequest extends \Google\Protobuf\Internal\Mes
     private $request_id = null;
 
     /**
+     * @param string $project                Project ID for this request.
+     * @param string $publicAdvertisedPrefix Name of the PublicAdvertisedPrefix resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeletePublicAdvertisedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicAdvertisedPrefix): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

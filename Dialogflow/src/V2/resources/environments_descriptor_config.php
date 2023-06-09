@@ -129,10 +129,13 @@ return [
             'templateMap' => [
                 'agent' => 'projects/{project}/agent',
                 'environment' => 'projects/{project}/agent/environments/{environment}',
+                'fulfillment' => 'projects/{project}/agent/fulfillment',
                 'projectAgent' => 'projects/{project}/agent',
                 'projectEnvironment' => 'projects/{project}/agent/environments/{environment}',
+                'projectFulfillment' => 'projects/{project}/agent/fulfillment',
                 'projectLocationAgent' => 'projects/{project}/locations/{location}/agent',
                 'projectLocationEnvironment' => 'projects/{project}/locations/{location}/agent/environments/{environment}',
+                'projectLocationFulfillment' => 'projects/{project}/locations/{location}/agent/fulfillment',
                 'projectLocationVersion' => 'projects/{project}/locations/{location}/agent/versions/{version}',
                 'projectVersion' => 'projects/{project}/agent/versions/{version}',
                 'version' => 'projects/{project}/agent/versions/{version}',

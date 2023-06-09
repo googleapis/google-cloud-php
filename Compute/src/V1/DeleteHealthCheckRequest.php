@@ -35,6 +35,21 @@ class DeleteHealthCheckRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project     Project ID for this request.
+     * @param string $healthCheck Name of the HealthCheck resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteHealthCheckRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $healthCheck): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setHealthCheck($healthCheck);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

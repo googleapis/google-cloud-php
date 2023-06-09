@@ -58,6 +58,9 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *     To filter on metadata fields use traversal operation as follows:
      *     `metadata.<field_name>.<type_value>`.
      *     For example: `metadata.field_1.number_value = 10.0`
+     *     In case the field name contains special characters (such as colon), one
+     *     can embed it inside double quote.
+     *     For example: `metadata."field:1".number_value = 10.0`
      * *   **Context based filtering**:
      *     To filter Artifacts based on the contexts to which they belong, use the
      *     function operator with the full resource name
@@ -136,6 +139,9 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *               To filter on metadata fields use traversal operation as follows:
      *               `metadata.<field_name>.<type_value>`.
      *               For example: `metadata.field_1.number_value = 10.0`
+     *               In case the field name contains special characters (such as colon), one
+     *               can embed it inside double quote.
+     *               For example: `metadata."field:1".number_value = 10.0`
      *           *   **Context based filtering**:
      *               To filter Artifacts based on the contexts to which they belong, use the
      *               function operator with the full resource name
@@ -270,6 +276,9 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *     To filter on metadata fields use traversal operation as follows:
      *     `metadata.<field_name>.<type_value>`.
      *     For example: `metadata.field_1.number_value = 10.0`
+     *     In case the field name contains special characters (such as colon), one
+     *     can embed it inside double quote.
+     *     For example: `metadata."field:1".number_value = 10.0`
      * *   **Context based filtering**:
      *     To filter Artifacts based on the contexts to which they belong, use the
      *     function operator with the full resource name
@@ -305,6 +314,9 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *     To filter on metadata fields use traversal operation as follows:
      *     `metadata.<field_name>.<type_value>`.
      *     For example: `metadata.field_1.number_value = 10.0`
+     *     In case the field name contains special characters (such as colon), one
+     *     can embed it inside double quote.
+     *     For example: `metadata."field:1".number_value = 10.0`
      * *   **Context based filtering**:
      *     To filter Artifacts based on the contexts to which they belong, use the
      *     function operator with the full resource name

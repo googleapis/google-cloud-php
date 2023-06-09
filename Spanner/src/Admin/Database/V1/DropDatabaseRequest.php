@@ -23,6 +23,20 @@ class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
     private $database = '';
 
     /**
+     * @param string $database Required. The database to be dropped. Please see
+     *                         {@see DatabaseAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

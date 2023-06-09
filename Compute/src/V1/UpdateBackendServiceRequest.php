@@ -41,6 +41,23 @@ class UpdateBackendServiceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $backendService         Name of the BackendService resource to update.
+     * @param \Google\Cloud\Compute\V1\BackendService $backendServiceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService, \Google\Cloud\Compute\V1\BackendService $backendServiceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService)
+            ->setBackendServiceResource($backendServiceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

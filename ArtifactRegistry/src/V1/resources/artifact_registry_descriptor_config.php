@@ -585,6 +585,7 @@ return [
                 'projectSettings' => 'projects/{project}/projectSettings',
                 'pythonPackage' => 'projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'tag' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}',
                 'vpcscConfig' => 'projects/{project}/locations/{location}/vpcscConfig',
             ],
         ],

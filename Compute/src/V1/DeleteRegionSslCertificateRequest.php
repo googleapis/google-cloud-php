@@ -41,6 +41,23 @@ class DeleteRegionSslCertificateRequest extends \Google\Protobuf\Internal\Messag
     private $ssl_certificate = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $sslCertificate Name of the SslCertificate resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionSslCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $sslCertificate): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSslCertificate($sslCertificate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

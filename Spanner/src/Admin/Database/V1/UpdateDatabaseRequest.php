@@ -33,6 +33,24 @@ class UpdateDatabaseRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\Database $database   Required. The database to update.
+     *                                                                     The `name` field of the database is of the form
+     *                                                                     `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param \Google\Protobuf\FieldMask                       $updateMask Required. The list of fields to update. Currently, only
+     *                                                                     `enable_drop_protection` field can be updated.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Spanner\Admin\Database\V1\Database $database, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

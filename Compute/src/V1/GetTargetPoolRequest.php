@@ -35,6 +35,23 @@ class GetTargetPoolRequest extends \Google\Protobuf\Internal\Message
     private $target_pool = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region scoping this request.
+     * @param string $targetPool Name of the TargetPool resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetTargetPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetPool): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetPool($targetPool);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

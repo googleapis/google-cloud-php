@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
@@ -100,6 +101,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @internal
  *
+ * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDocumentsAsync(ExportDocumentsRequest $request, array $optionalArgs = [])
@@ -380,9 +382,35 @@ abstract class FirestoreAdminBaseClient
     }
 
     /**
-     * Creates a composite index. This returns a [google.longrunning.Operation][google.longrunning.Operation]
-     * which may be used to track the status of the creation. The metadata for
-     * the operation will be the type [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
+     * Create a database.
+     *
+     * The async variant is {@see self::createDatabaseAsync()} .
+     *
+     * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDatabase(CreateDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a composite index. This returns a
+     * [google.longrunning.Operation][google.longrunning.Operation] which may be
+     * used to track the status of the creation. The metadata for the operation
+     * will be the type
+     * [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
      *
      * The async variant is {@see self::createIndexAsync()} .
      *
@@ -588,10 +616,12 @@ abstract class FirestoreAdminBaseClient
     /**
      * Lists the field configuration and metadata for this database.
      *
-     * Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     * that have been explicitly overridden. To issue this query, call
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with the filter set to
-     * `indexConfig.usesAncestorConfig:false` .
+     * Currently,
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * only supports listing fields that have been explicitly overridden. To issue
+     * this query, call
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * with the filter set to `indexConfig.usesAncestorConfig:false` .
      *
      * The async variant is {@see self::listFieldsAsync()} .
      *
@@ -665,13 +695,16 @@ abstract class FirestoreAdminBaseClient
     /**
      * Updates a field configuration. Currently, field updates apply only to
      * single field index configuration. However, calls to
-     * [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField] should provide a field mask to avoid
-     * changing any configuration that the caller isn't aware of. The field mask
-     * should be specified as: `{ paths: "index_config" }`.
+     * [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField]
+     * should provide a field mask to avoid changing any configuration that the
+     * caller isn't aware of. The field mask should be specified as: `{ paths:
+     * "index_config" }`.
      *
-     * This call returns a [google.longrunning.Operation][google.longrunning.Operation] which may be used to
-     * track the status of the field update. The metadata for
-     * the operation will be the type [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
+     * This call returns a
+     * [google.longrunning.Operation][google.longrunning.Operation] which may be
+     * used to track the status of the field update. The metadata for the
+     * operation will be the type
+     * [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
      *
      * To configure the default field settings for the database, use
      * the special `Field` with resource name:

@@ -35,6 +35,21 @@ class DeleteSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $security_policy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $securityPolicy Name of the security policy to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $securityPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSecurityPolicy($securityPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

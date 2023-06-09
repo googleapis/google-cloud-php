@@ -108,6 +108,25 @@ abstract class SessionsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName(string $project, string $session, string $context): string
+    {
+        return self::getPathTemplate('context')->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_environment_user_session resource.
      *
@@ -125,6 +144,52 @@ abstract class SessionsBaseClient
             'environment' => $environment,
             'user' => $user,
             'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_environment_user_session_context resource.
+     */
+    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_environment_user_session_entity_type resource.
+     */
+    public static function projectEnvironmentUserSessionEntityTypeName(string $project, string $environment, string $user, string $session, string $entityType): string
+    {
+        return self::getPathTemplate('projectEnvironmentUserSessionEntityType')->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'entity_type' => $entityType,
         ]);
     }
 
@@ -153,6 +218,56 @@ abstract class SessionsBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_environment_user_session_context resource.
+     */
+    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_location_environment_user_session_entity_type resource.
+     */
+    public static function projectLocationEnvironmentUserSessionEntityTypeName(string $project, string $location, string $environment, string $user, string $session, string $entityType): string
+    {
+        return self::getPathTemplate('projectLocationEnvironmentUserSessionEntityType')->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_session resource.
      *
      * @param string $project
@@ -167,6 +282,48 @@ abstract class SessionsBaseClient
             'project' => $project,
             'location' => $location,
             'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_session_context resource.
+     */
+    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectLocationSessionContext')->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_location_session_entity_type resource.
+     */
+    public static function projectLocationSessionEntityTypeName(string $project, string $location, string $session, string $entityType): string
+    {
+        return self::getPathTemplate('projectLocationSessionEntityType')->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'entity_type' => $entityType,
         ]);
     }
 
@@ -188,6 +345,44 @@ abstract class SessionsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_context resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_session_context resource.
+     */
+    public static function projectSessionContextName(string $project, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectSessionContext')->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_session_entity_type resource.
+     */
+    public static function projectSessionEntityTypeName(string $project, string $session, string $entityType): string
+    {
+        return self::getPathTemplate('projectSessionEntityType')->render([
+            'project' => $project,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a session
      * resource.
      *
@@ -205,14 +400,43 @@ abstract class SessionsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted session_entity_type resource.
+     */
+    public static function sessionEntityTypeName(string $project, string $session, string $entityType): string
+    {
+        return self::getPathTemplate('sessionEntityType')->render([
+            'project' => $project,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
      * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationEnvironmentUserSessionContext: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectLocationEnvironmentUserSessionEntityType: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
      * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
+     * - projectLocationSessionContext: projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}
+     * - projectLocationSessionEntityType: projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}
      * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - projectSessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}
      * - session: projects/{project}/agent/sessions/{session}
+     * - sessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

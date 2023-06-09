@@ -78,6 +78,21 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     private $return_partial_success = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $network Name of the network for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

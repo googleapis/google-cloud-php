@@ -167,6 +167,25 @@ abstract class IntentsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName(string $project, string $session, string $context): string
+    {
+        return self::getPathTemplate('context')->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a intent
      * resource.
      *
@@ -195,6 +214,50 @@ abstract class IntentsBaseClient
     {
         return self::getPathTemplate('projectAgent')->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     */
+    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
+    {
+        return self::getPathTemplate('projectEnvironmentUserSession')->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_environment_user_session_context resource.
+     */
+    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
         ]);
     }
 
@@ -234,6 +297,54 @@ abstract class IntentsBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_location_environment_user_session resource.
+     */
+    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
+    {
+        return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_environment_user_session_context resource.
+     */
+    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_intent resource.
      *
      * @param string $project
@@ -252,15 +363,118 @@ abstract class IntentsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     *
+     * @return string The formatted project_location_session resource.
+     */
+    public static function projectLocationSessionName(string $project, string $location, string $session): string
+    {
+        return self::getPathTemplate('projectLocationSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_session_context resource.
+     */
+    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectLocationSessionContext')->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     */
+    public static function projectSessionName(string $project, string $session): string
+    {
+        return self::getPathTemplate('projectSession')->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_context resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_session_context resource.
+     */
+    public static function projectSessionContextName(string $project, string $session, string $context): string
+    {
+        return self::getPathTemplate('projectSessionContext')->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a session
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     */
+    public static function sessionName(string $project, string $session): string
+    {
+        return self::getPathTemplate('session')->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
+     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - intent: projects/{project}/agent/intents/{intent}
      * - projectAgent: projects/{project}/agent
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectIntent: projects/{project}/agent/intents/{intent}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationEnvironmentUserSessionContext: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectLocationIntent: projects/{project}/locations/{location}/agent/intents/{intent}
+     * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
+     * - projectLocationSessionContext: projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}
+     * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - session: projects/{project}/agent/sessions/{session}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

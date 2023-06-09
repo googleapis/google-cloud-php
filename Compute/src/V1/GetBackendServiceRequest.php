@@ -29,6 +29,21 @@ class GetBackendServiceRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $backendService Name of the BackendService resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
