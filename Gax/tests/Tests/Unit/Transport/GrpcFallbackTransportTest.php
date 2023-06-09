@@ -43,7 +43,7 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
@@ -94,7 +94,7 @@ class GrpcFallbackTransportTest extends TestCase
         $httpHandler = function (RequestInterface $request, array $options = []) use ($expectedResponse, $expectedRequest) {
             $this->assertEquals($expectedRequest, $request);
 
-            return Promise\promise_for(
+            return Create::promiseFor(
                 new Response(
                     200,
                     [],
@@ -130,7 +130,7 @@ class GrpcFallbackTransportTest extends TestCase
     public function testStartUnaryCallThrowsException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(new Exception());
+            return Create::rejectionFor(new Exception());
         };
 
         $this->expectException(Exception::class);
@@ -146,7 +146,7 @@ class GrpcFallbackTransportTest extends TestCase
             $status = new Status();
             $status->setCode(Code::NOT_FOUND);
             $status->setMessage("Ruh-roh");
-            return Promise\rejection_for(
+            return Create::rejectionFor(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
                     new Response(
@@ -219,7 +219,7 @@ class GrpcFallbackTransportTest extends TestCase
     public function testNonBinaryProtobufResponseException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(
+            return Create::rejectionFor(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
                     new Response(
