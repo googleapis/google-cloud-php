@@ -64,7 +64,7 @@
         "opis/closure": "^3.0",
         "rg/avro-php": "^3.0.0",
         "phpspec/prophecy-phpunit": "^2.0",
-        "kreait/firebase-php": "^5.20"
+        "kreait/firebase-php": "^5.26.5"
     },
     "conflict": {
         "psr/log": ">=3"
