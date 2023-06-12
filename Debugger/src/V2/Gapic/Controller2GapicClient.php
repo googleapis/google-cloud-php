@@ -75,6 +75,9 @@ use Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse;
  *     $controller2Client->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Debugger\V2\Client\Controller2Client} to use the new surface.
  */
 class Controller2GapicClient
 {

@@ -427,6 +427,8 @@ abstract class UserEventServiceBaseClient
      *
      * The async variant is {@see self::collectUserEventAsync()} .
      *
+     * @example samples/V1/UserEventServiceClient/collect_user_event.php
+     *
      * @param CollectUserEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -463,6 +465,8 @@ abstract class UserEventServiceBaseClient
      *
      * The async variant is {@see self::importUserEventsAsync()} .
      *
+     * @example samples/V1/UserEventServiceClient/import_user_events.php
+     *
      * @param ImportUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -492,6 +496,8 @@ abstract class UserEventServiceBaseClient
      * Writes a single user event.
      *
      * The async variant is {@see self::writeUserEventAsync()} .
+     *
+     * @example samples/V1/UserEventServiceClient/write_user_event.php
      *
      * @param WriteUserEventRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

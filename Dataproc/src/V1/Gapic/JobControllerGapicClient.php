@@ -64,6 +64,9 @@ use Google\Protobuf\GPBEmpty;
  *     $jobControllerClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataproc\V1\Client\JobControllerClient} to use the new surface.
  */
 class JobControllerGapicClient
 {

@@ -123,6 +123,9 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataform\V1beta1\Client\DataformClient} to use the new surface.
+ *
  * @experimental
  */
 class DataformGapicClient
