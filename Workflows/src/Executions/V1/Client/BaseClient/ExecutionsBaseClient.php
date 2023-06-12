@@ -245,6 +245,8 @@ abstract class ExecutionsBaseClient
      *
      * The async variant is {@see self::cancelExecutionAsync()} .
      *
+     * @example samples/V1/ExecutionsClient/cancel_execution.php
+     *
      * @param CancelExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -269,6 +271,8 @@ abstract class ExecutionsBaseClient
      *
      * The async variant is {@see self::createExecutionAsync()} .
      *
+     * @example samples/V1/ExecutionsClient/create_execution.php
+     *
      * @param CreateExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -292,6 +296,8 @@ abstract class ExecutionsBaseClient
      * Returns an execution of the given name.
      *
      * The async variant is {@see self::getExecutionAsync()} .
+     *
+     * @example samples/V1/ExecutionsClient/get_execution.php
      *
      * @param GetExecutionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -319,6 +325,8 @@ abstract class ExecutionsBaseClient
      * first).
      *
      * The async variant is {@see self::listExecutionsAsync()} .
+     *
+     * @example samples/V1/ExecutionsClient/list_executions.php
      *
      * @param ListExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
