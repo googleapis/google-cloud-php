@@ -295,6 +295,8 @@ abstract class CompletionServiceBaseClient
      *
      * The async variant is {@see self::completeQueryAsync()} .
      *
+     * @example samples/V1beta/CompletionServiceClient/complete_query.php
+     *
      * @param CompleteQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.

@@ -53,6 +53,10 @@ use Google\Cloud\Dataflow\V1beta3\LaunchFlexTemplateResponse;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataflow\V1beta3\Client\FlexTemplatesServiceClient} to use the new
+ * surface.
+ *
  * @experimental
  */
 class FlexTemplatesServiceGapicClient
