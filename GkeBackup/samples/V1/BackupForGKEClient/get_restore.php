@@ -32,7 +32,7 @@ use Google\Cloud\GkeBackup\V1\Restore;
  * Retrieves the details of a single Restore.
  *
  * @param string $formattedName Name of the restore resource.
- *                              Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+ *                              Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
  *                              Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
  */
 function get_restore_sample(string $formattedName): void

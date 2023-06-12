@@ -17,15 +17,15 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * If provided, this value must match the current value of the
-     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the request is
-     * rejected.
+     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
+     * request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
@@ -41,7 +41,7 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the Backup resource.
-     *                     Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                     Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *                     Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\DeleteBackupRequest
@@ -62,11 +62,11 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the Backup resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the request is
-     *           rejected.
+     *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
+     *           request is rejected.
      *     @type bool $force
      *           If set to true, any VolumeBackups below this Backup will also be deleted.
      *           Otherwise, the request will only succeed if the Backup has no
@@ -80,7 +80,7 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,7 +92,7 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -108,8 +108,8 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, this value must match the current value of the
-     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the request is
-     * rejected.
+     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
+     * request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @return string
@@ -121,8 +121,8 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, this value must match the current value of the
-     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the request is
-     * rejected.
+     * target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
+     * request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @param string $var

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateBackupPlanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A new version of the BackupPlan resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the BackupPlan resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan backup_plan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class UpdateBackupPlanRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\GkeBackup\V1\BackupPlan $backupPlan Required. A new version of the BackupPlan resource that contains updated fields.
-     *                                                          This may be sparsely populated if an `update_mask` is provided.
+     * @param \Google\Cloud\GkeBackup\V1\BackupPlan $backupPlan Required. A new version of the BackupPlan resource that contains updated
+     *                                                          fields. This may be sparsely populated if an `update_mask` is provided.
      * @param \Google\Protobuf\FieldMask            $updateMask This is used to specify the fields to be overwritten in the
      *                                                          BackupPlan targeted for update. The values for each of these
      *                                                          updated fields will be taken from the `backup_plan` provided
@@ -68,8 +68,8 @@ class UpdateBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlan $backup_plan
-     *           Required. A new version of the BackupPlan resource that contains updated fields.
-     *           This may be sparsely populated if an `update_mask` is provided.
+     *           Required. A new version of the BackupPlan resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           This is used to specify the fields to be overwritten in the
      *           BackupPlan targeted for update. The values for each of these
@@ -88,8 +88,8 @@ class UpdateBackupPlanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new version of the BackupPlan resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the BackupPlan resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan backup_plan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeBackup\V1\BackupPlan|null
@@ -110,8 +110,8 @@ class UpdateBackupPlanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new version of the BackupPlan resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the BackupPlan resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan backup_plan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeBackup\V1\BackupPlan $var

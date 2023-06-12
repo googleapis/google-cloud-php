@@ -34,17 +34,17 @@ use Google\Rpc\Status;
 /**
  * Update a RestorePlan.
  *
- * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
- *                                               source for Restores created via this RestorePlan.
- *                                               Format: projects/&#42;/locations/&#42;/backupPlans/*. Please see
+ * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the
+ *                                               [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+ *                                               be used as the source for Restores created via this RestorePlan. Format:
+ *                                               `projects/&#42;/locations/&#42;/backupPlans/*`. Please see
  *                                               {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
- * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via this RestorePlan
- *                                               will restore data. NOTE: the cluster's region must be the same as the
- *                                               RestorePlan.
- *                                               Valid formats:
+ * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via
+ *                                               this RestorePlan will restore data. NOTE: the cluster's region must be the
+ *                                               same as the RestorePlan. Valid formats:
  *
- *                                               - projects/&#42;/locations/&#42;/clusters/*
- *                                               - projects/&#42;/zones/&#42;/clusters/*
+ *                                               - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                               - `projects/&#42;/zones/&#42;/clusters/*`
  *                                               Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  */
 function update_restore_plan_sample(

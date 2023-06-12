@@ -19,7 +19,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,20 +52,20 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
-     * source for Restores created via this RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;.
+     * Required. Immutable. A reference to the
+     * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+     * be used as the source for Restores created via this RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $backup_plan = '';
     /**
-     * Required. Immutable. The target cluster into which Restores created via this RestorePlan
-     * will restore data. NOTE: the cluster's region must be the same as the
-     * RestorePlan.
-     * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The target cluster into which Restores created via
+     * this RestorePlan will restore data. NOTE: the cluster's region must be the
+     * same as the RestorePlan. Valid formats:
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -83,8 +83,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestorePlan`,
@@ -104,7 +104,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the RestorePlan resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;.
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -117,23 +117,23 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           User specified descriptive string for this RestorePlan.
      *     @type string $backup_plan
-     *           Required. Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
-     *           source for Restores created via this RestorePlan.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;.
+     *           Required. Immutable. A reference to the
+     *           [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+     *           be used as the source for Restores created via this RestorePlan. Format:
+     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
      *     @type string $cluster
-     *           Required. Immutable. The target cluster into which Restores created via this RestorePlan
-     *           will restore data. NOTE: the cluster's region must be the same as the
-     *           RestorePlan.
-     *           Valid formats:
-     *             - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *             - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *           Required. Immutable. The target cluster into which Restores created via
+     *           this RestorePlan will restore data. NOTE: the cluster's region must be the
+     *           same as the RestorePlan. Valid formats:
+     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig $restore_config
      *           Required. Configuration of Restores created via this RestorePlan.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           A set of custom labels supplied by user.
      *     @type string $etag
-     *           Output only. `etag` is used for optimistic concurrency control as a way to help
-     *           prevent simultaneous updates of a restore from overwriting each other.
+     *           Output only. `etag` is used for optimistic concurrency control as a way to
+     *           help prevent simultaneous updates of a restore from overwriting each other.
      *           It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform restore updates in order to avoid
      *           race conditions: An `etag` is returned in the response to `GetRestorePlan`,
@@ -149,7 +149,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -161,7 +161,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -306,9 +306,10 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
-     * source for Restores created via this RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;.
+     * Required. Immutable. A reference to the
+     * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+     * be used as the source for Restores created via this RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -319,9 +320,10 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
-     * source for Restores created via this RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;.
+     * Required. Immutable. A reference to the
+     * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+     * be used as the source for Restores created via this RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -336,12 +338,11 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The target cluster into which Restores created via this RestorePlan
-     * will restore data. NOTE: the cluster's region must be the same as the
-     * RestorePlan.
-     * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The target cluster into which Restores created via
+     * this RestorePlan will restore data. NOTE: the cluster's region must be the
+     * same as the RestorePlan. Valid formats:
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -352,12 +353,11 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The target cluster into which Restores created via this RestorePlan
-     * will restore data. NOTE: the cluster's region must be the same as the
-     * RestorePlan.
-     * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     * Required. Immutable. The target cluster into which Restores created via
+     * this RestorePlan will restore data. NOTE: the cluster's region must be the
+     * same as the RestorePlan. Valid formats:
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -434,8 +434,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestorePlan`,
@@ -452,8 +452,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestorePlan`,

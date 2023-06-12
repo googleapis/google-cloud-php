@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START gkebackup_v1_generated_BackupForGKE_GetBackup_sync]
+// [START gkebackup_v1_generated_BackupForGKE_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeBackup\V1\Backup;
 use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
-use Google\Cloud\GkeBackup\V1\GetBackupRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
 
 /**
- * Retrieve the details of a single Backup.
+ * Gets the access control policy for a resource. Returns an empty policy
+if the resource exists and does not have a policy set.
  *
- * @param string $formattedName Full name of the Backup resource.
- *                              Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
- *                              Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
+ * @param string $resource REQUIRED: The resource for which the policy is being requested.
+ *                         See the operation documentation for the appropriate value for this field.
  */
-function get_backup_sample(string $formattedName): void
+function get_iam_policy_sample(string $resource): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $request = (new GetBackupRequest())
-        ->setName($formattedName);
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Backup $response */
-        $response = $backupForGKEClient->getBackup($request);
+        /** @var Policy $response */
+        $response = $backupForGKEClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -65,13 +65,8 @@ function get_backup_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = BackupForGKEClient::backupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[BACKUP_PLAN]',
-        '[BACKUP]'
-    );
+    $resource = '[RESOURCE]';
 
-    get_backup_sample($formattedName);
+    get_iam_policy_sample($resource);
 }
-// [END gkebackup_v1_generated_BackupForGKE_GetBackup_sync]
+// [END gkebackup_v1_generated_BackupForGKE_GetIamPolicy_sync]

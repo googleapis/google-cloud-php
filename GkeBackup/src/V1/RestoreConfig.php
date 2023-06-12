@@ -28,7 +28,8 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * Defines the behavior for handling the situation where cluster-scoped
      * resources being restored already exist in the target cluster. This MUST be
      * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
-     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope] is not empty.
+     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
+     * is not empty.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
      */
@@ -74,7 +75,8 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *           Defines the behavior for handling the situation where cluster-scoped
      *           resources being restored already exist in the target cluster. This MUST be
      *           set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
-     *           [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope] is not empty.
+     *           [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
+     *           is not empty.
      *     @type int $namespaced_resource_restore_mode
      *           Defines the behavior for handling the situation where sets of namespaced
      *           resources being restored already exist in the target cluster. This MUST be
@@ -139,7 +141,8 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * Defines the behavior for handling the situation where cluster-scoped
      * resources being restored already exist in the target cluster. This MUST be
      * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
-     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope] is not empty.
+     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
+     * is not empty.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
      * @return int
@@ -153,7 +156,8 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * Defines the behavior for handling the situation where cluster-scoped
      * resources being restored already exist in the target cluster. This MUST be
      * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
-     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope] is not empty.
+     * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
+     * is not empty.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
      * @param int $var

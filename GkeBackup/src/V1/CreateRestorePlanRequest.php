@@ -17,7 +17,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                 $parent        Required. The location within which to create the RestorePlan.
-     *                                                              Format: projects/&#42;/locations/*
+     *                                                              Format: `projects/&#42;/locations/*`
      *                                                              Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\GkeBackup\V1\RestorePlan $restorePlan   Required. The RestorePlan resource object to create.
      * @param string                                 $restorePlanId Required. The client-provided short name for the RestorePlan resource.
@@ -75,7 +75,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location within which to create the RestorePlan.
-     *           Format: projects/&#42;&#47;locations/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\RestorePlan $restore_plan
      *           Required. The RestorePlan resource object to create.
      *     @type string $restore_plan_id
@@ -95,7 +95,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class CreateRestorePlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location within which to create the RestorePlan.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

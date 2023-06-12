@@ -17,7 +17,7 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The RestorePlan that contains the Restores to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The RestorePlan that contains the Restores to list.
-     *                       Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                       Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      *                       Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListRestoresRequest
@@ -80,7 +80,7 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The RestorePlan that contains the Restores to list.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *     @type int $page_size
      *           The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
@@ -108,7 +108,7 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The RestorePlan that contains the Restores to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,7 +120,7 @@ class ListRestoresRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The RestorePlan that contains the Restores to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

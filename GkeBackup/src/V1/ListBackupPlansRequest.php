@@ -17,7 +17,7 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location that contains the BackupPlans to list.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The location that contains the BackupPlans to list.
-     *                       Format: projects/&#42;/locations/*
+     *                       Format: `projects/&#42;/locations/*`
      *                       Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListBackupPlansRequest
@@ -80,7 +80,7 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location that contains the BackupPlans to list.
-     *           Format: projects/&#42;&#47;locations/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;`
      *     @type int $page_size
      *           The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
@@ -108,7 +108,7 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location that contains the BackupPlans to list.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,7 +120,7 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location that contains the BackupPlans to list.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -34,12 +34,14 @@ use Google\Rpc\Status;
  * Creates a new Restore for the given RestorePlan.
  *
  * @param string $formattedParent        The RestorePlan within which to create the Restore.
- *                                       Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                                       Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                                       Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
- * @param string $formattedRestoreBackup Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
- *                                       will restore. Note that this Backup must be a sub-resource of the
- *                                       RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
- *                                       Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*. Please see
+ * @param string $formattedRestoreBackup Immutable. A reference to the
+ *                                       [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+ *                                       this Restore will restore. Note that this Backup must be a sub-resource of
+ *                                       the RestorePlan's
+ *                                       [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+ *                                       `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`. Please see
  *                                       {@see BackupForGKEClient::backupName()} for help formatting this field.
  * @param string $restoreId              The client-provided short name for the Restore resource.
  *                                       This name must:
