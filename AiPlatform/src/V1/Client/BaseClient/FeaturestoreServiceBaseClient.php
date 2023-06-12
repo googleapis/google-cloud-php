@@ -81,7 +81,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -370,6 +372,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::batchCreateFeaturesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/batch_create_features.php
+     *
      * @param BatchCreateFeaturesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -399,6 +403,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::batchReadFeatureValuesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/batch_read_feature_values.php
+     *
      * @param BatchReadFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -422,6 +428,8 @@ abstract class FeaturestoreServiceBaseClient
      * Creates a new EntityType in a given Featurestore.
      *
      * The async variant is {@see self::createEntityTypeAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/create_entity_type.php
      *
      * @param CreateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -447,6 +455,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::createFeatureAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/create_feature.php
+     *
      * @param CreateFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -470,6 +480,8 @@ abstract class FeaturestoreServiceBaseClient
      * Creates a new Featurestore in a given project and location.
      *
      * The async variant is {@see self::createFeaturestoreAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/create_featurestore.php
      *
      * @param CreateFeaturestoreRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -496,6 +508,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::deleteEntityTypeAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/delete_entity_type.php
+     *
      * @param DeleteEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -519,6 +533,8 @@ abstract class FeaturestoreServiceBaseClient
      * Deletes a single Feature.
      *
      * The async variant is {@see self::deleteFeatureAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/delete_feature.php
      *
      * @param DeleteFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -553,6 +569,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::deleteFeatureValuesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/delete_feature_values.php
+     *
      * @param DeleteFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -578,6 +596,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::deleteFeaturestoreAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/delete_featurestore.php
+     *
      * @param DeleteFeaturestoreRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -601,6 +621,8 @@ abstract class FeaturestoreServiceBaseClient
      * Exports Feature values from all the entities of a target EntityType.
      *
      * The async variant is {@see self::exportFeatureValuesAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/export_feature_values.php
      *
      * @param ExportFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -626,6 +648,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::getEntityTypeAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/get_entity_type.php
+     *
      * @param GetEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -650,6 +674,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::getFeatureAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/get_feature.php
+     *
      * @param GetFeatureRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -673,6 +699,8 @@ abstract class FeaturestoreServiceBaseClient
      * Gets details of a single Featurestore.
      *
      * The async variant is {@see self::getFeaturestoreAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/get_featurestore.php
      *
      * @param GetFeaturestoreRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -717,6 +745,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::importFeatureValuesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/import_feature_values.php
+     *
      * @param ImportFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -740,6 +770,8 @@ abstract class FeaturestoreServiceBaseClient
      * Lists EntityTypes in a given Featurestore.
      *
      * The async variant is {@see self::listEntityTypesAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/list_entity_types.php
      *
      * @param ListEntityTypesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -765,6 +797,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::listFeaturesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/list_features.php
+     *
      * @param ListFeaturesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -788,6 +822,8 @@ abstract class FeaturestoreServiceBaseClient
      * Lists Featurestores in a given project and location.
      *
      * The async variant is {@see self::listFeaturestoresAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/list_featurestores.php
      *
      * @param ListFeaturestoresRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -813,6 +849,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::searchFeaturesAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/search_features.php
+     *
      * @param SearchFeaturesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -836,6 +874,8 @@ abstract class FeaturestoreServiceBaseClient
      * Updates the parameters of a single EntityType.
      *
      * The async variant is {@see self::updateEntityTypeAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/update_entity_type.php
      *
      * @param UpdateEntityTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -861,6 +901,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::updateFeatureAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/update_feature.php
+     *
      * @param UpdateFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -884,6 +926,8 @@ abstract class FeaturestoreServiceBaseClient
      * Updates the parameters of a single Featurestore.
      *
      * The async variant is {@see self::updateFeaturestoreAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/update_featurestore.php
      *
      * @param UpdateFeaturestoreRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -909,6 +953,8 @@ abstract class FeaturestoreServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/FeaturestoreServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -932,6 +978,8 @@ abstract class FeaturestoreServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -957,6 +1005,8 @@ abstract class FeaturestoreServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -985,6 +1035,8 @@ abstract class FeaturestoreServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1015,6 +1067,8 @@ abstract class FeaturestoreServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/FeaturestoreServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

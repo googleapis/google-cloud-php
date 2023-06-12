@@ -56,7 +56,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\ModelGardenServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -227,6 +229,8 @@ abstract class ModelGardenServiceBaseClient
      *
      * The async variant is {@see self::getPublisherModelAsync()} .
      *
+     * @example samples/V1/ModelGardenServiceClient/get_publisher_model.php
+     *
      * @param GetPublisherModelRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -250,6 +254,8 @@ abstract class ModelGardenServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/ModelGardenServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -275,6 +281,8 @@ abstract class ModelGardenServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/ModelGardenServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -299,6 +307,8 @@ abstract class ModelGardenServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ModelGardenServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -327,6 +337,8 @@ abstract class ModelGardenServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ModelGardenServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -357,6 +369,8 @@ abstract class ModelGardenServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ModelGardenServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

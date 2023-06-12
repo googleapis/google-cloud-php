@@ -40,7 +40,8 @@ use Google\Auth\FetchAuthTokenInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ApigeeConnect\V1\TetherClient} for the stable implementation
  *
  * @experimental
  *
