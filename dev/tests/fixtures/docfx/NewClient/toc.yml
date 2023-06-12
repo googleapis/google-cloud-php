@@ -6,7 +6,7 @@
       name: Overview
       href: index.md
     -
-      name: Google\Cloud\SecretManager\V1
+      name: V1
       uid: 'ns:Google\Cloud\SecretManager\V1'
       items:
         -
@@ -21,7 +21,7 @@
               name: 'SecretManagerServiceClient (beta)'
               status: beta
     -
-      name: Google\Cloud\SecretManager\V1beta1
+      name: V1beta1
       uid: 'ns:Google\Cloud\SecretManager\V1beta1'
       items:
         -
