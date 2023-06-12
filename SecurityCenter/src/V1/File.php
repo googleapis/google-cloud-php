@@ -51,8 +51,7 @@ class File extends \Google\Protobuf\Internal\Message
      */
     private $partially_hashed = false;
     /**
-     * Prefix of the file contents as a JSON encoded string.
-     * (Currently only populated for Malicious Script Executed findings.)
+     * Prefix of the file contents as a JSON-encoded string.
      *
      * Generated from protobuf field <code>string contents = 6;</code>
      */
@@ -79,8 +78,7 @@ class File extends \Google\Protobuf\Internal\Message
      *     @type bool $partially_hashed
      *           True when the hash covers only a prefix of the file.
      *     @type string $contents
-     *           Prefix of the file contents as a JSON encoded string.
-     *           (Currently only populated for Malicious Script Executed findings.)
+     *           Prefix of the file contents as a JSON-encoded string.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,8 +225,7 @@ class File extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Prefix of the file contents as a JSON encoded string.
-     * (Currently only populated for Malicious Script Executed findings.)
+     * Prefix of the file contents as a JSON-encoded string.
      *
      * Generated from protobuf field <code>string contents = 6;</code>
      * @return string
@@ -239,8 +236,7 @@ class File extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Prefix of the file contents as a JSON encoded string.
-     * (Currently only populated for Malicious Script Executed findings.)
+     * Prefix of the file contents as a JSON-encoded string.
      *
      * Generated from protobuf field <code>string contents = 6;</code>
      * @param string $var

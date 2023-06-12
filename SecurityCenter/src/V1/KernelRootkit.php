@@ -16,61 +16,61 @@ use Google\Protobuf\Internal\GPBUtil;
 class KernelRootkit extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Rootkit name when available.
+     * Rootkit name, when available.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * True when unexpected modifications of kernel code memory are present.
+     * True if unexpected modifications of kernel code memory are present.
      *
      * Generated from protobuf field <code>bool unexpected_code_modification = 2;</code>
      */
     private $unexpected_code_modification = false;
     /**
-     * True when unexpected modifications of kernel read-only data memory are
+     * True if unexpected modifications of kernel read-only data memory are
      * present.
      *
      * Generated from protobuf field <code>bool unexpected_read_only_data_modification = 3;</code>
      */
     private $unexpected_read_only_data_modification = false;
     /**
-     * True when `ftrace` points are present with callbacks pointing to regions
+     * True if `ftrace` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_ftrace_handler = 4;</code>
      */
     private $unexpected_ftrace_handler = false;
     /**
-     * True when `kprobe` points are present with callbacks pointing to regions
+     * True if `kprobe` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_kprobe_handler = 5;</code>
      */
     private $unexpected_kprobe_handler = false;
     /**
-     * True when kernel code pages that are not in the expected kernel or module
+     * True if kernel code pages that are not in the expected kernel or module
      * code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_kernel_code_pages = 6;</code>
      */
     private $unexpected_kernel_code_pages = false;
     /**
-     * True when system call handlers that are are not in the expected kernel or
+     * True if system call handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_system_call_handler = 7;</code>
      */
     private $unexpected_system_call_handler = false;
     /**
-     * True when interrupt handlers that are are not in the expected kernel or
+     * True if interrupt handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_interrupt_handler = 8;</code>
      */
     private $unexpected_interrupt_handler = false;
     /**
-     * True when unexpected processes in the scheduler run queue are present. Such
+     * True if unexpected processes in the scheduler run queue are present. Such
      * processes are in the run queue, but not in the process task list.
      *
      * Generated from protobuf field <code>bool unexpected_processes_in_runqueue = 9;</code>
@@ -84,29 +84,29 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Rootkit name when available.
+     *           Rootkit name, when available.
      *     @type bool $unexpected_code_modification
-     *           True when unexpected modifications of kernel code memory are present.
+     *           True if unexpected modifications of kernel code memory are present.
      *     @type bool $unexpected_read_only_data_modification
-     *           True when unexpected modifications of kernel read-only data memory are
+     *           True if unexpected modifications of kernel read-only data memory are
      *           present.
      *     @type bool $unexpected_ftrace_handler
-     *           True when `ftrace` points are present with callbacks pointing to regions
+     *           True if `ftrace` points are present with callbacks pointing to regions
      *           that are not in the expected kernel or module code range.
      *     @type bool $unexpected_kprobe_handler
-     *           True when `kprobe` points are present with callbacks pointing to regions
+     *           True if `kprobe` points are present with callbacks pointing to regions
      *           that are not in the expected kernel or module code range.
      *     @type bool $unexpected_kernel_code_pages
-     *           True when kernel code pages that are not in the expected kernel or module
+     *           True if kernel code pages that are not in the expected kernel or module
      *           code regions are present.
      *     @type bool $unexpected_system_call_handler
-     *           True when system call handlers that are are not in the expected kernel or
+     *           True if system call handlers that are are not in the expected kernel or
      *           module code regions are present.
      *     @type bool $unexpected_interrupt_handler
-     *           True when interrupt handlers that are are not in the expected kernel or
+     *           True if interrupt handlers that are are not in the expected kernel or
      *           module code regions are present.
      *     @type bool $unexpected_processes_in_runqueue
-     *           True when unexpected processes in the scheduler run queue are present. Such
+     *           True if unexpected processes in the scheduler run queue are present. Such
      *           processes are in the run queue, but not in the process task list.
      * }
      */
@@ -116,7 +116,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rootkit name when available.
+     * Rootkit name, when available.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -127,7 +127,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rootkit name when available.
+     * Rootkit name, when available.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -142,7 +142,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected modifications of kernel code memory are present.
+     * True if unexpected modifications of kernel code memory are present.
      *
      * Generated from protobuf field <code>bool unexpected_code_modification = 2;</code>
      * @return bool
@@ -153,7 +153,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected modifications of kernel code memory are present.
+     * True if unexpected modifications of kernel code memory are present.
      *
      * Generated from protobuf field <code>bool unexpected_code_modification = 2;</code>
      * @param bool $var
@@ -168,7 +168,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected modifications of kernel read-only data memory are
+     * True if unexpected modifications of kernel read-only data memory are
      * present.
      *
      * Generated from protobuf field <code>bool unexpected_read_only_data_modification = 3;</code>
@@ -180,7 +180,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected modifications of kernel read-only data memory are
+     * True if unexpected modifications of kernel read-only data memory are
      * present.
      *
      * Generated from protobuf field <code>bool unexpected_read_only_data_modification = 3;</code>
@@ -196,7 +196,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when `ftrace` points are present with callbacks pointing to regions
+     * True if `ftrace` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_ftrace_handler = 4;</code>
@@ -208,7 +208,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when `ftrace` points are present with callbacks pointing to regions
+     * True if `ftrace` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_ftrace_handler = 4;</code>
@@ -224,7 +224,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when `kprobe` points are present with callbacks pointing to regions
+     * True if `kprobe` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_kprobe_handler = 5;</code>
@@ -236,7 +236,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when `kprobe` points are present with callbacks pointing to regions
+     * True if `kprobe` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_kprobe_handler = 5;</code>
@@ -252,7 +252,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when kernel code pages that are not in the expected kernel or module
+     * True if kernel code pages that are not in the expected kernel or module
      * code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_kernel_code_pages = 6;</code>
@@ -264,7 +264,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when kernel code pages that are not in the expected kernel or module
+     * True if kernel code pages that are not in the expected kernel or module
      * code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_kernel_code_pages = 6;</code>
@@ -280,7 +280,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when system call handlers that are are not in the expected kernel or
+     * True if system call handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_system_call_handler = 7;</code>
@@ -292,7 +292,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when system call handlers that are are not in the expected kernel or
+     * True if system call handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_system_call_handler = 7;</code>
@@ -308,7 +308,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when interrupt handlers that are are not in the expected kernel or
+     * True if interrupt handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_interrupt_handler = 8;</code>
@@ -320,7 +320,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when interrupt handlers that are are not in the expected kernel or
+     * True if interrupt handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_interrupt_handler = 8;</code>
@@ -336,7 +336,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected processes in the scheduler run queue are present. Such
+     * True if unexpected processes in the scheduler run queue are present. Such
      * processes are in the run queue, but not in the process task list.
      *
      * Generated from protobuf field <code>bool unexpected_processes_in_runqueue = 9;</code>
@@ -348,7 +348,7 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when unexpected processes in the scheduler run queue are present. Such
+     * True if unexpected processes in the scheduler run queue are present. Such
      * processes are in the run queue, but not in the process task list.
      *
      * Generated from protobuf field <code>bool unexpected_processes_in_runqueue = 9;</code>

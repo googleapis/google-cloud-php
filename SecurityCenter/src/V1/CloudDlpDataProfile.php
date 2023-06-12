@@ -23,6 +23,12 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_profile = 1 [(.google.api.resource_reference) = {</code>
      */
     private $data_profile = '';
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile.ParentType parent_type = 2;</code>
+     */
+    private $parent_type = 0;
 
     /**
      * Constructor.
@@ -33,6 +39,8 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $data_profile
      *           Name of the data profile, for example,
      *           `projects/123/locations/europe/tableProfiles/8383929`.
+     *     @type int $parent_type
+     *           The resource hierarchy level at which the data profile was generated.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +72,32 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile.ParentType parent_type = 2;</code>
+     * @return int
+     */
+    public function getParentType()
+    {
+        return $this->parent_type;
+    }
+
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile.ParentType parent_type = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setParentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile\ParentType::class);
+        $this->parent_type = $var;
 
         return $this;
     }
