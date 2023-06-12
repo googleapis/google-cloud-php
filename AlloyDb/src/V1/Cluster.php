@@ -141,9 +141,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $automated_backup_policy = null;
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18 [deprecated = true];</code>
+     * @deprecated
      */
     protected $ssl_config = null;
     /**
@@ -162,6 +163,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionInfo encryption_info = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $encryption_info = null;
+    /**
+     * Optional. Continuous backup configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupConfig continuous_backup_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $continuous_backup_config = null;
+    /**
+     * Output only. Continuous backup properties for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupInfo continuous_backup_info = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $continuous_backup_info = null;
     /**
      * Cross Region replication config specific to SECONDARY cluster.
      *
@@ -246,7 +259,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           For more information on the defaults, consult the
      *           documentation for the message type.
      *     @type \Google\Cloud\AlloyDb\V1\SslConfig $ssl_config
-     *           SSL configuration for this AlloyDB Cluster.
+     *           SSL configuration for this AlloyDB cluster.
      *     @type \Google\Cloud\AlloyDb\V1\EncryptionConfig $encryption_config
      *           Optional. The encryption config can be specified to encrypt the data disks
      *           and other persistent data resources of a cluster with a
@@ -255,6 +268,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           protect the user data.
      *     @type \Google\Cloud\AlloyDb\V1\EncryptionInfo $encryption_info
      *           Output only. The encryption information for the cluster.
+     *     @type \Google\Cloud\AlloyDb\V1\ContinuousBackupConfig $continuous_backup_config
+     *           Optional. Continuous backup configuration for this cluster.
+     *     @type \Google\Cloud\AlloyDb\V1\ContinuousBackupInfo $continuous_backup_info
+     *           Output only. Continuous backup properties for this cluster.
      *     @type \Google\Cloud\AlloyDb\V1\Cluster\SecondaryConfig $secondary_config
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1\Cluster\PrimaryConfig $primary_config
@@ -849,35 +866,41 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @return \Google\Cloud\AlloyDb\V1\SslConfig|null
+     * @deprecated
      */
     public function getSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return $this->ssl_config;
     }
 
     public function hasSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->ssl_config);
     }
 
     public function clearSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         unset($this->ssl_config);
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @param \Google\Cloud\AlloyDb\V1\SslConfig $var
      * @return $this
+     * @deprecated
      */
     public function setSslConfig($var)
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\SslConfig::class);
         $this->ssl_config = $var;
 
@@ -960,6 +983,78 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Continuous backup configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupConfig continuous_backup_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\ContinuousBackupConfig|null
+     */
+    public function getContinuousBackupConfig()
+    {
+        return $this->continuous_backup_config;
+    }
+
+    public function hasContinuousBackupConfig()
+    {
+        return isset($this->continuous_backup_config);
+    }
+
+    public function clearContinuousBackupConfig()
+    {
+        unset($this->continuous_backup_config);
+    }
+
+    /**
+     * Optional. Continuous backup configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupConfig continuous_backup_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\ContinuousBackupConfig $var
+     * @return $this
+     */
+    public function setContinuousBackupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\ContinuousBackupConfig::class);
+        $this->continuous_backup_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Continuous backup properties for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupInfo continuous_backup_info = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\ContinuousBackupInfo|null
+     */
+    public function getContinuousBackupInfo()
+    {
+        return $this->continuous_backup_info;
+    }
+
+    public function hasContinuousBackupInfo()
+    {
+        return isset($this->continuous_backup_info);
+    }
+
+    public function clearContinuousBackupInfo()
+    {
+        unset($this->continuous_backup_info);
+    }
+
+    /**
+     * Output only. Continuous backup properties for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupInfo continuous_backup_info = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\ContinuousBackupInfo $var
+     * @return $this
+     */
+    public function setContinuousBackupInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\ContinuousBackupInfo::class);
+        $this->continuous_backup_info = $var;
 
         return $this;
     }

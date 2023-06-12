@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SSL configuration for an AlloyDB Cluster.
+ * SSL configuration.
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.SslConfig</code>
  */

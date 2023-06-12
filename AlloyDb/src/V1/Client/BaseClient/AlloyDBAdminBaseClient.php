@@ -41,23 +41,33 @@ use Google\Cloud\AlloyDb\V1\Cluster;
 use Google\Cloud\AlloyDb\V1\CreateBackupRequest;
 use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
+use Google\Cloud\AlloyDb\V1\CreateSecondaryClusterRequest;
+use Google\Cloud\AlloyDb\V1\CreateSecondaryInstanceRequest;
+use Google\Cloud\AlloyDb\V1\CreateUserRequest;
 use Google\Cloud\AlloyDb\V1\DeleteBackupRequest;
 use Google\Cloud\AlloyDb\V1\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
+use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 use Google\Cloud\AlloyDb\V1\GetClusterRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
+use Google\Cloud\AlloyDb\V1\GetUserRequest;
+use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
 use Google\Cloud\AlloyDb\V1\Instance;
 use Google\Cloud\AlloyDb\V1\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1\ListClustersRequest;
 use Google\Cloud\AlloyDb\V1\ListInstancesRequest;
 use Google\Cloud\AlloyDb\V1\ListSupportedDatabaseFlagsRequest;
+use Google\Cloud\AlloyDb\V1\ListUsersRequest;
+use Google\Cloud\AlloyDb\V1\PromoteClusterRequest;
 use Google\Cloud\AlloyDb\V1\RestartInstanceRequest;
 use Google\Cloud\AlloyDb\V1\RestoreClusterRequest;
 use Google\Cloud\AlloyDb\V1\UpdateBackupRequest;
 use Google\Cloud\AlloyDb\V1\UpdateClusterRequest;
 use Google\Cloud\AlloyDb\V1\UpdateInstanceRequest;
+use Google\Cloud\AlloyDb\V1\UpdateUserRequest;
+use Google\Cloud\AlloyDb\V1\User;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -86,22 +96,31 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createSecondaryClusterAsync(CreateSecondaryClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createSecondaryInstanceAsync(CreateSecondaryInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSupportedDatabaseFlagsAsync(ListSupportedDatabaseFlagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface promoteClusterAsync(PromoteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restartInstanceAsync(RestartInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreClusterAsync(RestoreClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -294,6 +313,27 @@ abstract class AlloyDBAdminBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     * @param string $user
+     *
+     * @return string The formatted user resource.
+     */
+    public static function userName(string $project, string $location, string $cluster, string $user): string
+    {
+        return self::getPathTemplate('user')->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -303,6 +343,7 @@ abstract class AlloyDBAdminBaseClient
      * - instance: projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - user: projects/{project}/locations/{location}/clusters/{cluster}/users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -508,6 +549,85 @@ abstract class AlloyDBAdminBaseClient
     }
 
     /**
+     * Creates a cluster of type SECONDARY in the given location using
+     * the primary cluster as the source.
+     *
+     * The async variant is {@see self::createSecondaryClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/create_secondary_cluster.php
+     *
+     * @param CreateSecondaryClusterRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createSecondaryCluster(CreateSecondaryClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateSecondaryCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new SECONDARY Instance in a given project and location.
+     *
+     * The async variant is {@see self::createSecondaryInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/create_secondary_instance.php
+     *
+     * @param CreateSecondaryInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createSecondaryInstance(CreateSecondaryInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateSecondaryInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new User in a given project, location, and cluster.
+     *
+     * The async variant is {@see self::createUserAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/create_user.php
+     *
+     * @param CreateUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createUser(CreateUserRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('CreateUser', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Backup.
      *
      * The async variant is {@see self::deleteBackupAsync()} .
@@ -583,6 +703,30 @@ abstract class AlloyDBAdminBaseClient
     public function deleteInstance(DeleteInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single User.
+     *
+     * The async variant is {@see self::deleteUserAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/delete_user.php
+     *
+     * @param DeleteUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteUser(DeleteUserRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteUser', $request, $callOptions)->wait();
     }
 
     /**
@@ -692,6 +836,59 @@ abstract class AlloyDBAdminBaseClient
     }
 
     /**
+     * Gets details of a single User.
+     *
+     * The async variant is {@see self::getUserAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/get_user.php
+     *
+     * @param GetUserRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getUser(GetUserRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('GetUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Injects fault in an instance.
+     * Imperative only.
+     *
+     * The async variant is {@see self::injectFaultAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/inject_fault.php
+     *
+     * @param InjectFaultRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function injectFault(InjectFaultRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('InjectFault', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists Backups in a given project and location.
      *
      * The async variant is {@see self::listBackupsAsync()} .
@@ -793,6 +990,61 @@ abstract class AlloyDBAdminBaseClient
     public function listSupportedDatabaseFlags(ListSupportedDatabaseFlagsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSupportedDatabaseFlags', $request, $callOptions);
+    }
+
+    /**
+     * Lists Users in a given project and location.
+     *
+     * The async variant is {@see self::listUsersAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/list_users.php
+     *
+     * @param ListUsersRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsers(ListUsersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsers', $request, $callOptions);
+    }
+
+    /**
+     * Promotes a SECONDARY cluster. This turns down replication
+     * from the PRIMARY cluster and promotes a secondary cluster
+     * into its own standalone cluster.
+     * Imperative only.
+     *
+     * The async variant is {@see self::promoteClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/promote_cluster.php
+     *
+     * @param PromoteClusterRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function promoteCluster(PromoteClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PromoteCluster', $request, $callOptions)->wait();
     }
 
     /**
@@ -926,6 +1178,32 @@ abstract class AlloyDBAdminBaseClient
     public function updateInstance(UpdateInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single User.
+     *
+     * The async variant is {@see self::updateUserAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/update_user.php
+     *
+     * @param UpdateUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateUser(UpdateUserRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('UpdateUser', $request, $callOptions)->wait();
     }
 
     /**
