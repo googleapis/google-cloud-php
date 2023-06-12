@@ -21,13 +21,13 @@ class SecurityPostureConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.container.v1.SecurityPostureConfig.Mode mode = 1;</code>
      */
-    protected $mode = null;
+    private $mode = null;
     /**
      * Sets which mode to use for vulnerability scanning.
      *
      * Generated from protobuf field <code>optional .google.container.v1.SecurityPostureConfig.VulnerabilityMode vulnerability_mode = 2;</code>
      */
-    protected $vulnerability_mode = null;
+    private $vulnerability_mode = null;
 
     /**
      * Constructor.

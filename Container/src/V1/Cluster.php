@@ -526,6 +526,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $fleet = null;
     /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     */
+    private $security_posture_config = null;
+    /**
      * Beta APIs Config
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
@@ -785,6 +791,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           up-to-date value before proceeding.
      *     @type \Google\Cloud\Container\V1\Fleet $fleet
      *           Fleet information for the cluster.
+     *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $security_posture_config
+     *           Enable/Disable Security Posture API features for the cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
      *           Beta APIs Config
      * }
@@ -3032,6 +3040,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\Fleet::class);
         $this->fleet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * @return \Google\Cloud\Container\V1\SecurityPostureConfig|null
+     */
+    public function getSecurityPostureConfig()
+    {
+        return $this->security_posture_config;
+    }
+
+    public function hasSecurityPostureConfig()
+    {
+        return isset($this->security_posture_config);
+    }
+
+    public function clearSecurityPostureConfig()
+    {
+        unset($this->security_posture_config);
+    }
+
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * @param \Google\Cloud\Container\V1\SecurityPostureConfig $var
+     * @return $this
+     */
+    public function setSecurityPostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecurityPostureConfig::class);
+        $this->security_posture_config = $var;
 
         return $this;
     }

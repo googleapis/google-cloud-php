@@ -21,7 +21,7 @@ class WorkloadPolicyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool allow_net_admin = 1;</code>
      */
-    protected $allow_net_admin = null;
+    private $allow_net_admin = null;
 
     /**
      * Constructor.
