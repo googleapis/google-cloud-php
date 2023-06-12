@@ -528,6 +528,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::acknowledgeUserDataCollectionAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/acknowledge_user_data_collection.php
+     *
      * @param AcknowledgeUserDataCollectionRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -554,6 +556,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::archiveCustomDimensionAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/archive_custom_dimension.php
+     *
      * @param ArchiveCustomDimensionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -578,6 +582,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::archiveCustomMetricAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/archive_custom_metric.php
+     *
      * @param ArchiveCustomMetricRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -601,6 +607,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Creates a conversion event with the specified attributes.
      *
      * The async variant is {@see self::createConversionEventAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_conversion_event.php
      *
      * @param CreateConversionEventRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -628,6 +636,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::createCustomDimensionAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_custom_dimension.php
+     *
      * @param CreateCustomDimensionRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -654,6 +664,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::createCustomMetricAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_custom_metric.php
+     *
      * @param CreateCustomMetricRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -679,6 +691,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Creates a DataStream.
      *
      * The async variant is {@see self::createDataStreamAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_data_stream.php
      *
      * @param CreateDataStreamRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -708,6 +722,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::createFirebaseLinkAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_firebase_link.php
+     *
      * @param CreateFirebaseLinkRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -733,6 +749,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Creates a GoogleAdsLink.
      *
      * The async variant is {@see self::createGoogleAdsLinkAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_google_ads_link.php
      *
      * @param CreateGoogleAdsLinkRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -760,6 +778,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::createMeasurementProtocolSecretAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_measurement_protocol_secret.php
+     *
      * @param CreateMeasurementProtocolSecretRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -785,6 +805,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Creates an "GA4" property with the specified location and attributes.
      *
      * The async variant is {@see self::createPropertyAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/create_property.php
      *
      * @param CreatePropertyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -822,6 +844,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::deleteAccountAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_account.php
+     *
      * @param DeleteAccountRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -845,6 +869,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Deletes a conversion event in a property.
      *
      * The async variant is {@see self::deleteConversionEventAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_conversion_event.php
      *
      * @param DeleteConversionEventRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -870,6 +896,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::deleteDataStreamAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_data_stream.php
+     *
      * @param DeleteDataStreamRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -893,6 +921,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Deletes a FirebaseLink on a property
      *
      * The async variant is {@see self::deleteFirebaseLinkAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_firebase_link.php
      *
      * @param DeleteFirebaseLinkRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -918,6 +948,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::deleteGoogleAdsLinkAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_google_ads_link.php
+     *
      * @param DeleteGoogleAdsLinkRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -941,6 +973,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Deletes target MeasurementProtocolSecret.
      *
      * The async variant is {@see self::deleteMeasurementProtocolSecretAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_measurement_protocol_secret.php
      *
      * @param DeleteMeasurementProtocolSecretRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -976,6 +1010,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::deletePropertyAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/delete_property.php
+     *
      * @param DeletePropertyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1001,6 +1037,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lookup for a single Account.
      *
      * The async variant is {@see self::getAccountAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_account.php
      *
      * @param GetAccountRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1028,6 +1066,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::getConversionEventAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_conversion_event.php
+     *
      * @param GetConversionEventRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1053,6 +1093,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lookup for a single CustomDimension.
      *
      * The async variant is {@see self::getCustomDimensionAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_custom_dimension.php
      *
      * @param GetCustomDimensionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1080,6 +1122,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::getCustomMetricAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_custom_metric.php
+     *
      * @param GetCustomMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1105,6 +1149,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Returns the singleton data retention settings for this property.
      *
      * The async variant is {@see self::getDataRetentionSettingsAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_retention_settings.php
      *
      * @param GetDataRetentionSettingsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1133,6 +1179,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::getDataSharingSettingsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_sharing_settings.php
+     *
      * @param GetDataSharingSettingsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1158,6 +1206,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lookup for a single DataStream.
      *
      * The async variant is {@see self::getDataStreamAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_data_stream.php
      *
      * @param GetDataStreamRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1185,6 +1235,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::getMeasurementProtocolSecretAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_measurement_protocol_secret.php
+     *
      * @param GetMeasurementProtocolSecretRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -1211,6 +1263,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::getPropertyAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/get_property.php
+     *
      * @param GetPropertyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1236,6 +1290,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Returns summaries of all accounts accessible by the caller.
      *
      * The async variant is {@see self::listAccountSummariesAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_account_summaries.php
      *
      * @param ListAccountSummariesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1267,6 +1323,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::listAccountsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_accounts.php
+     *
      * @param ListAccountsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1295,6 +1353,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::listConversionEventsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_conversion_events.php
+     *
      * @param ListConversionEventsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1320,6 +1380,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lists CustomDimensions on a property.
      *
      * The async variant is {@see self::listCustomDimensionsAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_custom_dimensions.php
      *
      * @param ListCustomDimensionsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1347,6 +1409,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::listCustomMetricsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_custom_metrics.php
+     *
      * @param ListCustomMetricsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1372,6 +1436,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lists DataStreams on a property.
      *
      * The async variant is {@see self::listDataStreamsAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_data_streams.php
      *
      * @param ListDataStreamsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1400,6 +1466,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::listFirebaseLinksAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_firebase_links.php
+     *
      * @param ListFirebaseLinksRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1425,6 +1493,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Lists GoogleAdsLinks on a property.
      *
      * The async variant is {@see self::listGoogleAdsLinksAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_google_ads_links.php
      *
      * @param ListGoogleAdsLinksRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1452,6 +1522,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Property.
      *
      * The async variant is {@see self::listMeasurementProtocolSecretsAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_measurement_protocol_secrets.php
      *
      * @param ListMeasurementProtocolSecretsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -1484,6 +1556,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::listPropertiesAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/list_properties.php
+     *
      * @param ListPropertiesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1509,6 +1583,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Requests a ticket for creating an account.
      *
      * The async variant is {@see self::provisionAccountTicketAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/provision_account_ticket.php
      *
      * @param ProvisionAccountTicketRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1548,6 +1624,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::runAccessReportAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/run_access_report.php
+     *
      * @param RunAccessReportRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1575,6 +1653,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::searchChangeHistoryEventsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/search_change_history_events.php
+     *
      * @param SearchChangeHistoryEventsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1600,6 +1680,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Updates an account.
      *
      * The async variant is {@see self::updateAccountAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_account.php
      *
      * @param UpdateAccountRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1627,6 +1709,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::updateCustomDimensionAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_custom_dimension.php
+     *
      * @param UpdateCustomDimensionRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1652,6 +1736,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Updates a CustomMetric on a property.
      *
      * The async variant is {@see self::updateCustomMetricAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_custom_metric.php
      *
      * @param UpdateCustomMetricRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1679,6 +1765,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::updateDataRetentionSettingsAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_data_retention_settings.php
+     *
      * @param UpdateDataRetentionSettingsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -1704,6 +1792,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Updates a DataStream on a property.
      *
      * The async variant is {@see self::updateDataStreamAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_data_stream.php
      *
      * @param UpdateDataStreamRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1731,6 +1821,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::updateGoogleAdsLinkAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_google_ads_link.php
+     *
      * @param UpdateGoogleAdsLinkRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1757,6 +1849,8 @@ abstract class AnalyticsAdminServiceBaseClient
      *
      * The async variant is {@see self::updateMeasurementProtocolSecretAsync()} .
      *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_measurement_protocol_secret.php
+     *
      * @param UpdateMeasurementProtocolSecretRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -1782,6 +1876,8 @@ abstract class AnalyticsAdminServiceBaseClient
      * Updates a property.
      *
      * The async variant is {@see self::updatePropertyAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_property.php
      *
      * @param UpdatePropertyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

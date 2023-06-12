@@ -313,6 +313,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      *
      * The async variant is {@see self::acknowledgeViolationAsync()} .
      *
+     * @example samples/V1/AssuredWorkloadsServiceClient/acknowledge_violation.php
+     *
      * @param AcknowledgeViolationRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -336,6 +338,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      * Creates Assured Workload.
      *
      * The async variant is {@see self::createWorkloadAsync()} .
+     *
+     * @example samples/V1/AssuredWorkloadsServiceClient/create_workload.php
      *
      * @param CreateWorkloadRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -363,6 +367,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      *
      * The async variant is {@see self::deleteWorkloadAsync()} .
      *
+     * @example samples/V1/AssuredWorkloadsServiceClient/delete_workload.php
+     *
      * @param DeleteWorkloadRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -384,6 +390,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      * Retrieves Assured Workload Violation based on ID.
      *
      * The async variant is {@see self::getViolationAsync()} .
+     *
+     * @example samples/V1/AssuredWorkloadsServiceClient/get_violation.php
      *
      * @param GetViolationRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -408,6 +416,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      * Gets Assured Workload associated with a CRM Node
      *
      * The async variant is {@see self::getWorkloadAsync()} .
+     *
+     * @example samples/V1/AssuredWorkloadsServiceClient/get_workload.php
      *
      * @param GetWorkloadRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -437,6 +447,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      *
      * The async variant is {@see self::listViolationsAsync()} .
      *
+     * @example samples/V1/AssuredWorkloadsServiceClient/list_violations.php
+     *
      * @param ListViolationsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -460,6 +472,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      * Lists Assured Workloads under a CRM Node.
      *
      * The async variant is {@see self::listWorkloadsAsync()} .
+     *
+     * @example samples/V1/AssuredWorkloadsServiceClient/list_workloads.php
      *
      * @param ListWorkloadsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -490,6 +504,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      *
      * The async variant is {@see self::restrictAllowedResourcesAsync()} .
      *
+     * @example samples/V1/AssuredWorkloadsServiceClient/restrict_allowed_resources.php
+     *
      * @param RestrictAllowedResourcesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -516,6 +532,8 @@ abstract class AssuredWorkloadsServiceBaseClient
      * Only one update operation per workload can be in progress.
      *
      * The async variant is {@see self::updateWorkloadAsync()} .
+     *
+     * @example samples/V1/AssuredWorkloadsServiceClient/update_workload.php
      *
      * @param UpdateWorkloadRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

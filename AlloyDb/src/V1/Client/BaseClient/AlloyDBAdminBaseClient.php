@@ -75,7 +75,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AlloyDb\V1\AlloyDBAdminClient} for the stable implementation
  *
  * @experimental
  *
@@ -407,6 +408,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::batchCreateInstancesAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/batch_create_instances.php
+     *
      * @param BatchCreateInstancesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -430,6 +433,8 @@ abstract class AlloyDBAdminBaseClient
      * Creates a new Backup in a given project and location.
      *
      * The async variant is {@see self::createBackupAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/create_backup.php
      *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -455,6 +460,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::createClusterAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/create_cluster.php
+     *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -478,6 +485,8 @@ abstract class AlloyDBAdminBaseClient
      * Creates a new Instance in a given project and location.
      *
      * The async variant is {@see self::createInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/create_instance.php
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -503,6 +512,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::deleteBackupAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/delete_backup.php
+     *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -527,6 +538,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::deleteClusterAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/delete_cluster.php
+     *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -550,6 +563,8 @@ abstract class AlloyDBAdminBaseClient
      * Deletes a single Instance.
      *
      * The async variant is {@see self::deleteInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/delete_instance.php
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -577,6 +592,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::failoverInstanceAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/failover_instance.php
+     *
      * @param FailoverInstanceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -600,6 +617,8 @@ abstract class AlloyDBAdminBaseClient
      * Gets details of a single Backup.
      *
      * The async variant is {@see self::getBackupAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -625,6 +644,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::getClusterAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/get_cluster.php
+     *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -648,6 +669,8 @@ abstract class AlloyDBAdminBaseClient
      * Gets details of a single Instance.
      *
      * The async variant is {@see self::getInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -673,6 +696,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::listBackupsAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/list_backups.php
+     *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -696,6 +721,8 @@ abstract class AlloyDBAdminBaseClient
      * Lists Clusters in a given project and location.
      *
      * The async variant is {@see self::listClustersAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/list_clusters.php
      *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -721,6 +748,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::listInstancesAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/list_instances.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -744,6 +773,8 @@ abstract class AlloyDBAdminBaseClient
      * Lists SupportedDatabaseFlags for a given project and location.
      *
      * The async variant is {@see self::listSupportedDatabaseFlagsAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/list_supported_database_flags.php
      *
      * @param ListSupportedDatabaseFlagsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -769,6 +800,8 @@ abstract class AlloyDBAdminBaseClient
      * Imperative only.
      *
      * The async variant is {@see self::restartInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/restart_instance.php
      *
      * @param RestartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -796,6 +829,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::restoreClusterAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/restore_cluster.php
+     *
      * @param RestoreClusterRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -819,6 +854,8 @@ abstract class AlloyDBAdminBaseClient
      * Updates the parameters of a single Backup.
      *
      * The async variant is {@see self::updateBackupAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/update_backup.php
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -844,6 +881,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::updateClusterAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/update_cluster.php
+     *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -867,6 +906,8 @@ abstract class AlloyDBAdminBaseClient
      * Updates the parameters of a single Instance.
      *
      * The async variant is {@see self::updateInstanceAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -892,6 +933,8 @@ abstract class AlloyDBAdminBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/AlloyDBAdminClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -915,6 +958,8 @@ abstract class AlloyDBAdminBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

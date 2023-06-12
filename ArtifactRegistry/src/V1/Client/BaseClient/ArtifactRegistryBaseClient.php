@@ -558,6 +558,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::createRepositoryAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/create_repository.php
+     *
      * @param CreateRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -581,6 +583,8 @@ abstract class ArtifactRegistryBaseClient
      * Creates a tag.
      *
      * The async variant is {@see self::createTagAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/create_tag.php
      *
      * @param CreateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -606,6 +610,8 @@ abstract class ArtifactRegistryBaseClient
      * will complete once the package has been deleted.
      *
      * The async variant is {@see self::deletePackageAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/delete_package.php
      *
      * @param DeletePackageRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -633,6 +639,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::deleteRepositoryAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/delete_repository.php
+     *
      * @param DeleteRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -657,6 +665,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::deleteTagAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/delete_tag.php
+     *
      * @param DeleteTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -679,6 +689,8 @@ abstract class ArtifactRegistryBaseClient
      * complete once the version has been deleted.
      *
      * The async variant is {@see self::deleteVersionAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/delete_version.php
      *
      * @param DeleteVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -704,6 +716,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getDockerImageAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_docker_image.php
+     *
      * @param GetDockerImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -727,6 +741,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a file.
      *
      * The async variant is {@see self::getFileAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_file.php
      *
      * @param GetFileRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -752,6 +768,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -775,6 +793,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a maven artifact.
      *
      * The async variant is {@see self::getMavenArtifactAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_maven_artifact.php
      *
      * @param GetMavenArtifactRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -800,6 +820,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getNpmPackageAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_npm_package.php
+     *
      * @param GetNpmPackageRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -823,6 +845,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a package.
      *
      * The async variant is {@see self::getPackageAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_package.php
      *
      * @param GetPackageRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -848,6 +872,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getProjectSettingsAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_project_settings.php
+     *
      * @param GetProjectSettingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -871,6 +897,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a python package.
      *
      * The async variant is {@see self::getPythonPackageAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_python_package.php
      *
      * @param GetPythonPackageRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -896,6 +924,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getRepositoryAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_repository.php
+     *
      * @param GetRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -919,6 +949,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a tag.
      *
      * The async variant is {@see self::getTagAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_tag.php
      *
      * @param GetTagRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -944,6 +976,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getVPCSCConfigAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_vpcsc_config.php
+     *
      * @param GetVPCSCConfigRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -967,6 +1001,8 @@ abstract class ArtifactRegistryBaseClient
      * Gets a version
      *
      * The async variant is {@see self::getVersionAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/get_version.php
      *
      * @param GetVersionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -995,6 +1031,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::importAptArtifactsAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/import_apt_artifacts.php
+     *
      * @param ImportAptArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1022,6 +1060,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::importYumArtifactsAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/import_yum_artifacts.php
+     *
      * @param ImportYumArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1045,6 +1085,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists docker images.
      *
      * The async variant is {@see self::listDockerImagesAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_docker_images.php
      *
      * @param ListDockerImagesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1070,6 +1112,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::listFilesAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/list_files.php
+     *
      * @param ListFilesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1093,6 +1137,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists maven artifacts.
      *
      * The async variant is {@see self::listMavenArtifactsAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_maven_artifacts.php
      *
      * @param ListMavenArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1118,6 +1164,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::listNpmPackagesAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/list_npm_packages.php
+     *
      * @param ListNpmPackagesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1141,6 +1189,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists packages.
      *
      * The async variant is {@see self::listPackagesAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_packages.php
      *
      * @param ListPackagesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1166,6 +1216,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::listPythonPackagesAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/list_python_packages.php
+     *
      * @param ListPythonPackagesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1189,6 +1241,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists repositories.
      *
      * The async variant is {@see self::listRepositoriesAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_repositories.php
      *
      * @param ListRepositoriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1214,6 +1268,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::listTagsAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/list_tags.php
+     *
      * @param ListTagsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1237,6 +1293,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists versions.
      *
      * The async variant is {@see self::listVersionsAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_versions.php
      *
      * @param ListVersionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1262,6 +1320,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1285,6 +1345,8 @@ abstract class ArtifactRegistryBaseClient
      * Tests if the caller has a list of permissions on a resource.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1310,6 +1372,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::updateProjectSettingsAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/update_project_settings.php
+     *
      * @param UpdateProjectSettingsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1333,6 +1397,8 @@ abstract class ArtifactRegistryBaseClient
      * Updates a repository.
      *
      * The async variant is {@see self::updateRepositoryAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/update_repository.php
      *
      * @param UpdateRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1358,6 +1424,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::updateTagAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/update_tag.php
+     *
      * @param UpdateTagRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1381,6 +1449,8 @@ abstract class ArtifactRegistryBaseClient
      * Updates the VPCSC Config for the Project.
      *
      * The async variant is {@see self::updateVPCSCConfigAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/update_vpcsc_config.php
      *
      * @param UpdateVPCSCConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1406,6 +1476,8 @@ abstract class ArtifactRegistryBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ArtifactRegistryClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1429,6 +1501,8 @@ abstract class ArtifactRegistryBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

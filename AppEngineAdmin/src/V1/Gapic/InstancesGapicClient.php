@@ -81,6 +81,9 @@ use Google\LongRunning\Operation;
  *     $instancesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\InstancesClient} to use the new surface.
  */
 class InstancesGapicClient
 {

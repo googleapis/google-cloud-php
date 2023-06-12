@@ -98,7 +98,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\TensorboardServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -421,6 +423,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::batchCreateTensorboardRunsAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/batch_create_tensorboard_runs.php
+     *
      * @param BatchCreateTensorboardRunsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -444,6 +448,8 @@ abstract class TensorboardServiceBaseClient
      * Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
      *
      * The async variant is {@see self::batchCreateTensorboardTimeSeriesAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/batch_create_tensorboard_time_series.php
      *
      * @param BatchCreateTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -473,6 +479,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::batchReadTensorboardTimeSeriesDataAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/batch_read_tensorboard_time_series_data.php
+     *
      * @param BatchReadTensorboardTimeSeriesDataRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -496,6 +504,8 @@ abstract class TensorboardServiceBaseClient
      * Creates a Tensorboard.
      *
      * The async variant is {@see self::createTensorboardAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/create_tensorboard.php
      *
      * @param CreateTensorboardRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -521,6 +531,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::createTensorboardExperimentAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/create_tensorboard_experiment.php
+     *
      * @param CreateTensorboardExperimentRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -544,6 +556,8 @@ abstract class TensorboardServiceBaseClient
      * Creates a TensorboardRun.
      *
      * The async variant is {@see self::createTensorboardRunAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/create_tensorboard_run.php
      *
      * @param CreateTensorboardRunRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -569,6 +583,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::createTensorboardTimeSeriesAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/create_tensorboard_time_series.php
+     *
      * @param CreateTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -592,6 +608,8 @@ abstract class TensorboardServiceBaseClient
      * Deletes a Tensorboard.
      *
      * The async variant is {@see self::deleteTensorboardAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/delete_tensorboard.php
      *
      * @param DeleteTensorboardRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -617,6 +635,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::deleteTensorboardExperimentAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/delete_tensorboard_experiment.php
+     *
      * @param DeleteTensorboardExperimentRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -641,6 +661,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::deleteTensorboardRunAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/delete_tensorboard_run.php
+     *
      * @param DeleteTensorboardRunRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -664,6 +686,8 @@ abstract class TensorboardServiceBaseClient
      * Deletes a TensorboardTimeSeries.
      *
      * The async variant is {@see self::deleteTensorboardTimeSeriesAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/delete_tensorboard_time_series.php
      *
      * @param DeleteTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -690,6 +714,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::exportTensorboardTimeSeriesDataAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/export_tensorboard_time_series_data.php
+     *
      * @param ExportTensorboardTimeSeriesDataRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -713,6 +739,8 @@ abstract class TensorboardServiceBaseClient
      * Gets a Tensorboard.
      *
      * The async variant is {@see self::getTensorboardAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/get_tensorboard.php
      *
      * @param GetTensorboardRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -738,6 +766,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::getTensorboardExperimentAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/get_tensorboard_experiment.php
+     *
      * @param GetTensorboardExperimentRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -761,6 +791,8 @@ abstract class TensorboardServiceBaseClient
      * Gets a TensorboardRun.
      *
      * The async variant is {@see self::getTensorboardRunAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/get_tensorboard_run.php
      *
      * @param GetTensorboardRunRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -786,6 +818,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::getTensorboardTimeSeriesAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/get_tensorboard_time_series.php
+     *
      * @param GetTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -809,6 +843,8 @@ abstract class TensorboardServiceBaseClient
      * Lists TensorboardExperiments in a Location.
      *
      * The async variant is {@see self::listTensorboardExperimentsAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/list_tensorboard_experiments.php
      *
      * @param ListTensorboardExperimentsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -834,6 +870,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::listTensorboardRunsAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/list_tensorboard_runs.php
+     *
      * @param ListTensorboardRunsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -857,6 +895,8 @@ abstract class TensorboardServiceBaseClient
      * Lists TensorboardTimeSeries in a Location.
      *
      * The async variant is {@see self::listTensorboardTimeSeriesAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/list_tensorboard_time_series.php
      *
      * @param ListTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -882,6 +922,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::listTensorboardsAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/list_tensorboards.php
+     *
      * @param ListTensorboardsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -906,6 +948,8 @@ abstract class TensorboardServiceBaseClient
      * This is to allow reading blob data stored in consumer project's Cloud
      * Storage bucket without users having to obtain Cloud Storage access
      * permission.
+     *
+     * @example samples/V1/TensorboardServiceClient/read_tensorboard_blob_data.php
      *
      * @param ReadTensorboardBlobDataRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -933,6 +977,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::readTensorboardTimeSeriesDataAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/read_tensorboard_time_series_data.php
+     *
      * @param ReadTensorboardTimeSeriesDataRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -956,6 +1002,8 @@ abstract class TensorboardServiceBaseClient
      * Returns a list of monthly active users for a given TensorBoard instance.
      *
      * The async variant is {@see self::readTensorboardUsageAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/read_tensorboard_usage.php
      *
      * @param ReadTensorboardUsageRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -981,6 +1029,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::updateTensorboardAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/update_tensorboard.php
+     *
      * @param UpdateTensorboardRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1004,6 +1054,8 @@ abstract class TensorboardServiceBaseClient
      * Updates a TensorboardExperiment.
      *
      * The async variant is {@see self::updateTensorboardExperimentAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/update_tensorboard_experiment.php
      *
      * @param UpdateTensorboardExperimentRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1029,6 +1081,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::updateTensorboardRunAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/update_tensorboard_run.php
+     *
      * @param UpdateTensorboardRunRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1052,6 +1106,8 @@ abstract class TensorboardServiceBaseClient
      * Updates a TensorboardTimeSeries.
      *
      * The async variant is {@see self::updateTensorboardTimeSeriesAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/update_tensorboard_time_series.php
      *
      * @param UpdateTensorboardTimeSeriesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1078,6 +1134,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::writeTensorboardExperimentDataAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/write_tensorboard_experiment_data.php
+     *
      * @param WriteTensorboardExperimentDataRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -1103,6 +1161,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::writeTensorboardRunDataAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/write_tensorboard_run_data.php
+     *
      * @param WriteTensorboardRunDataRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1126,6 +1186,8 @@ abstract class TensorboardServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1151,6 +1213,8 @@ abstract class TensorboardServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/TensorboardServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1175,6 +1239,8 @@ abstract class TensorboardServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1203,6 +1269,8 @@ abstract class TensorboardServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1233,6 +1301,8 @@ abstract class TensorboardServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
