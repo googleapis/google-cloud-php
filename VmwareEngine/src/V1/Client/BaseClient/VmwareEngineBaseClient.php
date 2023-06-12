@@ -48,17 +48,21 @@ use Google\Cloud\VmwareEngine\V1\CreateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\Credentials;
 use Google\Cloud\VmwareEngine\V1\DeleteClusterRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\DeletePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\GetClusterRequest;
 use Google\Cloud\VmwareEngine\V1\GetHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest;
 use Google\Cloud\VmwareEngine\V1\GetPrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\GetPrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\GetSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\GetVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
 use Google\Cloud\VmwareEngine\V1\ListClustersRequest;
@@ -66,19 +70,25 @@ use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysRequest;
 use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesRequest;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesRequest;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsRequest;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsRequest;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 use Google\Cloud\VmwareEngine\V1\NodeType;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateConnection;
 use Google\Cloud\VmwareEngine\V1\ResetNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ResetVcenterCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowVcenterCredentialsRequest;
+use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\UndeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 use Google\LongRunning\Operation;
@@ -105,22 +115,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createHcxActivationKeyAsync(CreateHcxActivationKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createNetworkPolicyAsync(CreateNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPrivateCloudAsync(CreatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createVmwareEngineNetworkAsync(CreateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteNetworkPolicyAsync(DeleteNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePrivateCloudAsync(DeletePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteVmwareEngineNetworkAsync(DeleteVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getHcxActivationKeyAsync(GetHcxActivationKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNetworkPolicyAsync(GetNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNodeTypeAsync(GetNodeTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPrivateCloudAsync(GetPrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVmwareEngineNetworkAsync(GetVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listHcxActivationKeysAsync(ListHcxActivationKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNetworkPoliciesAsync(ListNetworkPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNodeTypesAsync(ListNodeTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPrivateCloudsAsync(ListPrivateCloudsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPrivateConnectionPeeringRoutesAsync(ListPrivateConnectionPeeringRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listVmwareEngineNetworksAsync(ListVmwareEngineNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetNsxCredentialsAsync(ResetNsxCredentialsRequest $request, array $optionalArgs = [])
@@ -131,6 +147,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateNetworkPolicyAsync(UpdateNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updatePrivateCloudAsync(UpdatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updatePrivateConnectionAsync(UpdatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateVmwareEngineNetworkAsync(UpdateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -345,6 +363,46 @@ abstract class VmwareEngineBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * private_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateConnection
+     *
+     * @return string The formatted private_connection resource.
+     */
+    public static function privateConnectionName(string $project, string $location, string $privateConnection): string
+    {
+        return self::getPathTemplate('privateConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'private_connection' => $privateConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a subnet
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $subnet
+     *
+     * @return string The formatted subnet resource.
+     */
+    public static function subnetName(string $project, string $location, string $privateCloud, string $subnet): string
+    {
+        return self::getPathTemplate('subnet')->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'subnet' => $subnet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * vmware_engine_network resource.
      *
      * @param string $project
@@ -373,6 +431,8 @@ abstract class VmwareEngineBaseClient
      * - networkPolicy: projects/{project}/locations/{location}/networkPolicies/{network_policy}
      * - nodeType: projects/{project}/locations/{location}/nodeTypes/{node_type}
      * - privateCloud: projects/{project}/locations/{location}/privateClouds/{private_cloud}
+     * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
+     * - subnet: projects/{project}/locations/{location}/privateClouds/{private_cloud}/subnets/{subnet}
      * - vmwareEngineNetwork: projects/{project}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -573,6 +633,31 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Creates a new private connection that can be used for accessing private
+     * Clouds.
+     *
+     * The async variant is {@see self::createPrivateConnectionAsync()} .
+     *
+     * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new VMware Engine network that can be used by a private cloud.
      *
      * The async variant is {@see self::createVmwareEngineNetworkAsync()} .
@@ -685,6 +770,32 @@ abstract class VmwareEngineBaseClient
     public function deletePrivateCloud(DeletePrivateCloudRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeletePrivateCloud', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a `PrivateConnection` resource. When a private connection is
+     * deleted for a VMware Engine network, the connected network becomes
+     * inaccessible to that VMware Engine network.
+     *
+     * The async variant is {@see self::deletePrivateConnectionAsync()} .
+     *
+     * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
     }
 
     /**
@@ -835,6 +946,56 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Retrieves a `PrivateConnection` resource by its resource name. The resource
+     * contains details of the private connection, such as connected
+     * network, routing mode and state.
+     *
+     * The async variant is {@see self::getPrivateConnectionAsync()} .
+     *
+     * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PrivateConnection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
+    {
+        return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single subnet.
+     *
+     * The async variant is {@see self::getSubnetAsync()} .
+     *
+     * @param GetSubnetRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Subnet
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSubnet(GetSubnetRequest $request, array $callOptions = []): Subnet
+    {
+        return $this->startApiCall('GetSubnet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `VmwareEngineNetwork` resource by its resource name. The
      * resource contains details of the VMware Engine network, such as its VMware
      * Engine network type, peered networks in a service project, and state
@@ -979,6 +1140,54 @@ abstract class VmwareEngineBaseClient
     public function listPrivateClouds(ListPrivateCloudsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListPrivateClouds', $request, $callOptions);
+    }
+
+    /**
+     * Lists the private connection routes exchanged over a peering connection.
+     *
+     * The async variant is {@see self::listPrivateConnectionPeeringRoutesAsync()} .
+     *
+     * @param ListPrivateConnectionPeeringRoutesRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPrivateConnectionPeeringRoutes(ListPrivateConnectionPeeringRoutesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPrivateConnectionPeeringRoutes', $request, $callOptions);
+    }
+
+    /**
+     * Lists `PrivateConnection` resources in a given project and location.
+     *
+     * The async variant is {@see self::listPrivateConnectionsAsync()} .
+     *
+     * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
     }
 
     /**
@@ -1247,6 +1456,61 @@ abstract class VmwareEngineBaseClient
     public function updatePrivateCloud(UpdatePrivateCloudRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdatePrivateCloud', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Modifies a `PrivateConnection` resource. Only `description` and
+     * `routing_mode` fields can be updated. Only fields specified in `updateMask`
+     * are applied.
+     *
+     * The async variant is {@see self::updatePrivateConnectionAsync()} .
+     *
+     * @param UpdatePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePrivateConnection(UpdatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdatePrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single subnet. Only fields specified in
+     * `update_mask` are applied.
+     *
+     * *Note*: This API is synchronous and always returns a successful
+     * `google.longrunning.Operation` (LRO). The returned LRO will only have
+     * `done` and `response` fields.
+     *
+     * The async variant is {@see self::updateSubnetAsync()} .
+     *
+     * @param UpdateSubnetRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSubnet(UpdateSubnetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateSubnet', $request, $callOptions)->wait();
     }
 
     /**
