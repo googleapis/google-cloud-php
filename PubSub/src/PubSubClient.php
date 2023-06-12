@@ -211,11 +211,20 @@ class PubSubClient
      * ```
      *
      * @param string $name The topic name
+     * @param array $options [optional] Configuration Options {
+     *        @type bool $enableCompression Flag to enable compression subject
+     *              tosize of the message. Set the flag to `true` to enable
+     *              compression. Defaults to `false`.
+     *        @type int $compressionBytesThreshold The threshold byte size above which messages
+     *              are compressed if their size is greater than this threshold. This only takes
+     *              effect if `enableCompression` is `true`. Defaults to `240`.
+     * }
+
      * @return Topic
      */
-    public function topic($name)
+    public function topic($name, $options = [])
     {
-        return $this->topicFactory($name);
+        return $this->topicFactory($name, $options);
     }
 
     /**

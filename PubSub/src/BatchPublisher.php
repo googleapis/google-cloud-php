@@ -65,10 +65,28 @@ class BatchPublisher
     private $client;
 
     /**
+     * @var bool
+     */
+    private $enableCompression;
+
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
+
+    /**
      * @param string $topicName The topic name.
-     * @param array $options [optional] Please see
-     *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
+     * @param array $options [optional] {
+     *        Please @see Google\Cloud\PubSub\Topic::batchPublisher() for
      *        configuration details.
+     *        @type bool $enableCompression Flag to enable compression
+     *              subject to size of the message. Set the flag to `true`
+     *              to enable compression.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed if their size is
+     *              greater than this threshold. This only takes effect
+     *              if `enableCompression` is `true`. Defaults to `240`.
+     * }
      */
     public function __construct($topicName, array $options = [])
     {
@@ -77,6 +95,11 @@ class BatchPublisher
             'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishDeferred'
         ]);
+        $this->enableCompression = $options['enableCompression'] ?? false;
+        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ?? null;
+    }
+
+    /**
     }
 
     /**
@@ -149,7 +172,14 @@ class BatchPublisher
                 $this->client = new PubSubClient($this->getUnwrappedClientConfig());
                 //@codeCoverageIgnoreEnd
             }
-            self::$topics[$this->identifier] = $this->client->topic($this->topicName);
+            $compressionOptions = [
+                'enableCompression' => $this->enableCompression,
+                'compressionBytesThreshold' => $this->compressionBytesThreshold
+            ];
+            self::$topics[$this->identifier] = $this->client->topic(
+                $this->topicName,
+                $compressionOptions
+            );
         }
 
         $topic = self::$topics[$this->identifier];
