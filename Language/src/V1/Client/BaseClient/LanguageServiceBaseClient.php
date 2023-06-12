@@ -54,7 +54,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Language\V1\LanguageServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -187,6 +188,8 @@ abstract class LanguageServiceBaseClient
      *
      * The async variant is {@see self::analyzeEntitiesAsync()} .
      *
+     * @example samples/V1/LanguageServiceClient/analyze_entities.php
+     *
      * @param AnalyzeEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -214,6 +217,8 @@ abstract class LanguageServiceBaseClient
      *
      * The async variant is {@see self::analyzeEntitySentimentAsync()} .
      *
+     * @example samples/V1/LanguageServiceClient/analyze_entity_sentiment.php
+     *
      * @param AnalyzeEntitySentimentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -237,6 +242,8 @@ abstract class LanguageServiceBaseClient
      * Analyzes the sentiment of the provided text.
      *
      * The async variant is {@see self::analyzeSentimentAsync()} .
+     *
+     * @example samples/V1/LanguageServiceClient/analyze_sentiment.php
      *
      * @param AnalyzeSentimentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -264,6 +271,8 @@ abstract class LanguageServiceBaseClient
      *
      * The async variant is {@see self::analyzeSyntaxAsync()} .
      *
+     * @example samples/V1/LanguageServiceClient/analyze_syntax.php
+     *
      * @param AnalyzeSyntaxRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -289,6 +298,8 @@ abstract class LanguageServiceBaseClient
      *
      * The async variant is {@see self::annotateTextAsync()} .
      *
+     * @example samples/V1/LanguageServiceClient/annotate_text.php
+     *
      * @param AnnotateTextRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -313,6 +324,8 @@ abstract class LanguageServiceBaseClient
      *
      * The async variant is {@see self::classifyTextAsync()} .
      *
+     * @example samples/V1/LanguageServiceClient/classify_text.php
+     *
      * @param ClassifyTextRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -336,6 +349,8 @@ abstract class LanguageServiceBaseClient
      * Moderates a document for harmful and sensitive categories.
      *
      * The async variant is {@see self::moderateTextAsync()} .
+     *
+     * @example samples/V1/LanguageServiceClient/moderate_text.php
      *
      * @param ModerateTextRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

@@ -412,6 +412,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::createEnvironmentAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/create_environment.php
+     *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -435,6 +437,8 @@ abstract class NotebookServiceBaseClient
      * Creates a new Execution in a given project and location.
      *
      * The async variant is {@see self::createExecutionAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/create_execution.php
      *
      * @param CreateExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -460,6 +464,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::createInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/create_instance.php
+     *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -483,6 +489,8 @@ abstract class NotebookServiceBaseClient
      * Creates a new Scheduled Notebook in a given project and location.
      *
      * The async variant is {@see self::createScheduleAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/create_schedule.php
      *
      * @param CreateScheduleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -508,6 +516,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::deleteEnvironmentAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/delete_environment.php
+     *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -531,6 +541,8 @@ abstract class NotebookServiceBaseClient
      * Deletes execution
      *
      * The async variant is {@see self::deleteExecutionAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/delete_execution.php
      *
      * @param DeleteExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -556,6 +568,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::deleteInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -579,6 +593,8 @@ abstract class NotebookServiceBaseClient
      * Deletes schedule and all underlying jobs
      *
      * The async variant is {@see self::deleteScheduleAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/delete_schedule.php
      *
      * @param DeleteScheduleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -604,6 +620,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::diagnoseInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/diagnose_instance.php
+     *
      * @param DiagnoseInstanceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -627,6 +645,8 @@ abstract class NotebookServiceBaseClient
      * Gets details of a single Environment.
      *
      * The async variant is {@see self::getEnvironmentAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_environment.php
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -652,6 +672,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::getExecutionAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/get_execution.php
+     *
      * @param GetExecutionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -675,6 +697,8 @@ abstract class NotebookServiceBaseClient
      * Gets details of a single Instance.
      *
      * The async variant is {@see self::getInstanceAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -700,6 +724,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::getInstanceHealthAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/get_instance_health.php
+     *
      * @param GetInstanceHealthRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -723,6 +749,8 @@ abstract class NotebookServiceBaseClient
      * Gets details of schedule
      *
      * The async variant is {@see self::getScheduleAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_schedule.php
      *
      * @param GetScheduleRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -748,6 +776,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::isInstanceUpgradeableAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/is_instance_upgradeable.php
+     *
      * @param IsInstanceUpgradeableRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -771,6 +801,8 @@ abstract class NotebookServiceBaseClient
      * Lists environments in a project.
      *
      * The async variant is {@see self::listEnvironmentsAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/list_environments.php
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -796,6 +828,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::listExecutionsAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/list_executions.php
+     *
      * @param ListExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -820,6 +854,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::listInstancesAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/list_instances.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -843,6 +879,8 @@ abstract class NotebookServiceBaseClient
      * Lists schedules in a given project and location.
      *
      * The async variant is {@see self::listSchedulesAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/list_schedules.php
      *
      * @param ListSchedulesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -871,6 +909,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::registerInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/register_instance.php
+     *
      * @param RegisterInstanceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -898,6 +938,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::reportInstanceInfoAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/report_instance_info.php
+     *
      * @param ReportInstanceInfoRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -921,6 +963,8 @@ abstract class NotebookServiceBaseClient
      * Resets a notebook instance.
      *
      * The async variant is {@see self::resetInstanceAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/reset_instance.php
      *
      * @param ResetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -946,6 +990,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::rollbackInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/rollback_instance.php
+     *
      * @param RollbackInstanceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -969,6 +1015,8 @@ abstract class NotebookServiceBaseClient
      * Updates the guest accelerators of a single Instance.
      *
      * The async variant is {@see self::setInstanceAcceleratorAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/set_instance_accelerator.php
      *
      * @param SetInstanceAcceleratorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -994,6 +1042,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::setInstanceLabelsAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/set_instance_labels.php
+     *
      * @param SetInstanceLabelsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1017,6 +1067,8 @@ abstract class NotebookServiceBaseClient
      * Updates the machine type of a single Instance.
      *
      * The async variant is {@see self::setInstanceMachineTypeAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/set_instance_machine_type.php
      *
      * @param SetInstanceMachineTypeRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1042,6 +1094,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::startInstanceAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/start_instance.php
+     *
      * @param StartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1065,6 +1119,8 @@ abstract class NotebookServiceBaseClient
      * Stops a notebook instance.
      *
      * The async variant is {@see self::stopInstanceAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/stop_instance.php
      *
      * @param StopInstanceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1090,6 +1146,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::triggerScheduleAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/trigger_schedule.php
+     *
      * @param TriggerScheduleRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1113,6 +1171,8 @@ abstract class NotebookServiceBaseClient
      * Update Notebook Instance configurations.
      *
      * The async variant is {@see self::updateInstanceConfigAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/update_instance_config.php
      *
      * @param UpdateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1138,6 +1198,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::updateInstanceMetadataItemsAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/update_instance_metadata_items.php
+     *
      * @param UpdateInstanceMetadataItemsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -1162,6 +1224,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::updateShieldedInstanceConfigAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/update_shielded_instance_config.php
+     *
      * @param UpdateShieldedInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -1185,6 +1249,8 @@ abstract class NotebookServiceBaseClient
      * Upgrades a notebook instance to the latest version.
      *
      * The async variant is {@see self::upgradeInstanceAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/upgrade_instance.php
      *
      * @param UpgradeInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1211,6 +1277,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::upgradeInstanceInternalAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/upgrade_instance_internal.php
+     *
      * @param UpgradeInstanceInternalRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1234,6 +1302,8 @@ abstract class NotebookServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1259,6 +1329,8 @@ abstract class NotebookServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/NotebookServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1283,6 +1355,8 @@ abstract class NotebookServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1311,6 +1385,8 @@ abstract class NotebookServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1341,6 +1417,8 @@ abstract class NotebookServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -354,6 +354,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::createAuthorizationPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/create_authorization_policy.php
+     *
      * @param CreateAuthorizationPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -377,6 +379,8 @@ abstract class NetworkSecurityBaseClient
      * Creates a new ClientTlsPolicy in a given project and location.
      *
      * The async variant is {@see self::createClientTlsPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_client_tls_policy.php
      *
      * @param CreateClientTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -402,6 +406,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::createServerTlsPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/create_server_tls_policy.php
+     *
      * @param CreateServerTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -425,6 +431,8 @@ abstract class NetworkSecurityBaseClient
      * Deletes a single AuthorizationPolicy.
      *
      * The async variant is {@see self::deleteAuthorizationPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_authorization_policy.php
      *
      * @param DeleteAuthorizationPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -450,6 +458,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::deleteClientTlsPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/delete_client_tls_policy.php
+     *
      * @param DeleteClientTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -473,6 +483,8 @@ abstract class NetworkSecurityBaseClient
      * Deletes a single ServerTlsPolicy.
      *
      * The async variant is {@see self::deleteServerTlsPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_server_tls_policy.php
      *
      * @param DeleteServerTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -498,6 +510,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::getAuthorizationPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/get_authorization_policy.php
+     *
      * @param GetAuthorizationPolicyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -521,6 +535,8 @@ abstract class NetworkSecurityBaseClient
      * Gets details of a single ClientTlsPolicy.
      *
      * The async variant is {@see self::getClientTlsPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_client_tls_policy.php
      *
      * @param GetClientTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -546,6 +562,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::getServerTlsPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/get_server_tls_policy.php
+     *
      * @param GetServerTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -569,6 +587,8 @@ abstract class NetworkSecurityBaseClient
      * Lists AuthorizationPolicies in a given project and location.
      *
      * The async variant is {@see self::listAuthorizationPoliciesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_authorization_policies.php
      *
      * @param ListAuthorizationPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -594,6 +614,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::listClientTlsPoliciesAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/list_client_tls_policies.php
+     *
      * @param ListClientTlsPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -617,6 +639,8 @@ abstract class NetworkSecurityBaseClient
      * Lists ServerTlsPolicies in a given project and location.
      *
      * The async variant is {@see self::listServerTlsPoliciesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_server_tls_policies.php
      *
      * @param ListServerTlsPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -642,6 +666,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::updateAuthorizationPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/update_authorization_policy.php
+     *
      * @param UpdateAuthorizationPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -665,6 +691,8 @@ abstract class NetworkSecurityBaseClient
      * Updates the parameters of a single ClientTlsPolicy.
      *
      * The async variant is {@see self::updateClientTlsPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_client_tls_policy.php
      *
      * @param UpdateClientTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -690,6 +718,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::updateServerTlsPolicyAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/update_server_tls_policy.php
+     *
      * @param UpdateServerTlsPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -713,6 +743,8 @@ abstract class NetworkSecurityBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -738,6 +770,8 @@ abstract class NetworkSecurityBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/NetworkSecurityClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -762,6 +796,8 @@ abstract class NetworkSecurityBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -790,6 +826,8 @@ abstract class NetworkSecurityBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -820,6 +858,8 @@ abstract class NetworkSecurityBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
