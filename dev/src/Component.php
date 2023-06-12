@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev;
 
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
+use RuntimeException;
 
 /**
  * @internal
