@@ -55,7 +55,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -269,6 +271,8 @@ abstract class MigrationServiceBaseClient
      *
      * The async variant is {@see self::createMigrationWorkflowAsync()} .
      *
+     * @example samples/V2/MigrationServiceClient/create_migration_workflow.php
+     *
      * @param CreateMigrationWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -293,6 +297,8 @@ abstract class MigrationServiceBaseClient
      *
      * The async variant is {@see self::deleteMigrationWorkflowAsync()} .
      *
+     * @example samples/V2/MigrationServiceClient/delete_migration_workflow.php
+     *
      * @param DeleteMigrationWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -314,6 +320,8 @@ abstract class MigrationServiceBaseClient
      * Gets a previously created migration subtask.
      *
      * The async variant is {@see self::getMigrationSubtaskAsync()} .
+     *
+     * @example samples/V2/MigrationServiceClient/get_migration_subtask.php
      *
      * @param GetMigrationSubtaskRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -339,6 +347,8 @@ abstract class MigrationServiceBaseClient
      *
      * The async variant is {@see self::getMigrationWorkflowAsync()} .
      *
+     * @example samples/V2/MigrationServiceClient/get_migration_workflow.php
+     *
      * @param GetMigrationWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -363,6 +373,8 @@ abstract class MigrationServiceBaseClient
      *
      * The async variant is {@see self::listMigrationSubtasksAsync()} .
      *
+     * @example samples/V2/MigrationServiceClient/list_migration_subtasks.php
+     *
      * @param ListMigrationSubtasksRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -386,6 +398,8 @@ abstract class MigrationServiceBaseClient
      * Lists previously created migration workflow.
      *
      * The async variant is {@see self::listMigrationWorkflowsAsync()} .
+     *
+     * @example samples/V2/MigrationServiceClient/list_migration_workflows.php
      *
      * @param ListMigrationWorkflowsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -413,6 +427,8 @@ abstract class MigrationServiceBaseClient
      * RUNNING.
      *
      * The async variant is {@see self::startMigrationWorkflowAsync()} .
+     *
+     * @example samples/V2/MigrationServiceClient/start_migration_workflow.php
      *
      * @param StartMigrationWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

@@ -98,6 +98,9 @@ use Google\Cloud\Compute\V1\XpnHostList;
  *     $projectsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\ProjectsClient} to use the new surface.
  */
 class ProjectsGapicClient
 {

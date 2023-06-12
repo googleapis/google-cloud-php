@@ -94,6 +94,9 @@ use Google\Cloud\Compute\V1\SetLabelsSecurityPolicyRequest;
  *     $securityPoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\SecurityPoliciesClient} to use the new surface.
  */
 class SecurityPoliciesGapicClient
 {

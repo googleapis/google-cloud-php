@@ -300,6 +300,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      *
      * The async variant is {@see self::createAttestorAsync()} .
      *
+     * @example samples/V1/BinauthzManagementServiceV1Client/create_attestor.php
+     *
      * @param CreateAttestorRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -325,6 +327,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      *
      * The async variant is {@see self::deleteAttestorAsync()} .
      *
+     * @example samples/V1/BinauthzManagementServiceV1Client/delete_attestor.php
+     *
      * @param DeleteAttestorRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -347,6 +351,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is {@see self::getAttestorAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/get_attestor.php
      *
      * @param GetAttestorRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -378,6 +384,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      *
      * The async variant is {@see self::getPolicyAsync()} .
      *
+     * @example samples/V1/BinauthzManagementServiceV1Client/get_policy.php
+     *
      * @param GetPolicyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -403,6 +411,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      *
      * The async variant is {@see self::listAttestorsAsync()} .
      *
+     * @example samples/V1/BinauthzManagementServiceV1Client/list_attestors.php
+     *
      * @param ListAttestorsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -427,6 +437,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is {@see self::updateAttestorAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/update_attestor.php
      *
      * @param UpdateAttestorRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -455,6 +467,8 @@ abstract class BinauthzManagementServiceV1BaseClient
      * if the request is malformed.
      *
      * The async variant is {@see self::updatePolicyAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/update_policy.php
      *
      * @param UpdatePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

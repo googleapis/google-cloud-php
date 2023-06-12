@@ -78,6 +78,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $resourcePoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\ResourcePoliciesClient} to use the new surface.
  */
 class ResourcePoliciesGapicClient
 {

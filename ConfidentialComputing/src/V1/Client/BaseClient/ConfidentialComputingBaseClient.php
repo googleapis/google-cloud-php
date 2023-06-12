@@ -53,7 +53,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -242,6 +244,8 @@ abstract class ConfidentialComputingBaseClient
      *
      * The async variant is {@see self::createChallengeAsync()} .
      *
+     * @example samples/V1/ConfidentialComputingClient/create_challenge.php
+     *
      * @param CreateChallengeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -265,6 +269,8 @@ abstract class ConfidentialComputingBaseClient
      * Verifies the provided attestation info, returning a signed OIDC token.
      *
      * The async variant is {@see self::verifyAttestationAsync()} .
+     *
+     * @example samples/V1/ConfidentialComputingClient/verify_attestation.php
      *
      * @param VerifyAttestationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -290,6 +296,8 @@ abstract class ConfidentialComputingBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ConfidentialComputingClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -313,6 +321,8 @@ abstract class ConfidentialComputingBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ConfidentialComputingClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

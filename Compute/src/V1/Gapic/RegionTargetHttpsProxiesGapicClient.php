@@ -87,6 +87,10 @@ use Google\Cloud\Compute\V1\UrlMapReference;
  *     $regionTargetHttpsProxiesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionTargetHttpsProxiesClient} to use the new
+ * surface.
  */
 class RegionTargetHttpsProxiesGapicClient
 {

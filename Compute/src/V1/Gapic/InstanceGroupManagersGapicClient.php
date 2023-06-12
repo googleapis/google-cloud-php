@@ -113,6 +113,10 @@ use Google\Cloud\Compute\V1\ZoneOperationsClient;
  *     $instanceGroupManagersClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient} to use the new
+ * surface.
  */
 class InstanceGroupManagersGapicClient
 {

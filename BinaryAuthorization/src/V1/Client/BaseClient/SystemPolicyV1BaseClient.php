@@ -243,6 +243,8 @@ abstract class SystemPolicyV1BaseClient
      *
      * The async variant is {@see self::getSystemPolicyAsync()} .
      *
+     * @example samples/V1/SystemPolicyV1Client/get_system_policy.php
+     *
      * @param GetSystemPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

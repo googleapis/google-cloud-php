@@ -101,6 +101,9 @@ use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
  *     $regionDisksClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionDisksClient} to use the new surface.
  */
 class RegionDisksGapicClient
 {

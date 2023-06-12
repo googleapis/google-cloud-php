@@ -85,6 +85,9 @@ use Google\Cloud\Compute\V1\SslPolicy;
  *     $regionSslPoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionSslPoliciesClient} to use the new surface.
  */
 class RegionSslPoliciesGapicClient
 {

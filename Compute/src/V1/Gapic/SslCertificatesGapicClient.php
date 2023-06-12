@@ -71,6 +71,9 @@ use Google\Cloud\Compute\V1\SslCertificateList;
  *     $sslCertificatesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\SslCertificatesClient} to use the new surface.
  */
 class SslCertificatesGapicClient
 {
