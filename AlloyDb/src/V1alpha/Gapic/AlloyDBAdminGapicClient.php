@@ -50,9 +50,11 @@ use Google\Cloud\AlloyDb\V1alpha\CreateInstanceRequest;
 use Google\Cloud\AlloyDb\V1alpha\CreateInstanceRequests;
 use Google\Cloud\AlloyDb\V1alpha\CreateSecondaryClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\CreateSecondaryInstanceRequest;
+use Google\Cloud\AlloyDb\V1alpha\CreateUserRequest;
 use Google\Cloud\AlloyDb\V1alpha\DeleteBackupRequest;
 use Google\Cloud\AlloyDb\V1alpha\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\DeleteInstanceRequest;
+use Google\Cloud\AlloyDb\V1alpha\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1alpha\FailoverInstanceRequest;
 use Google\Cloud\AlloyDb\V1alpha\GenerateClientCertificateRequest;
 use Google\Cloud\AlloyDb\V1alpha\GenerateClientCertificateResponse;
@@ -60,6 +62,9 @@ use Google\Cloud\AlloyDb\V1alpha\GetBackupRequest;
 use Google\Cloud\AlloyDb\V1alpha\GetClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1alpha\GetInstanceRequest;
+use Google\Cloud\AlloyDb\V1alpha\GetUserRequest;
+use Google\Cloud\AlloyDb\V1alpha\InjectFaultRequest;
+use Google\Cloud\AlloyDb\V1alpha\InjectFaultRequest\FaultType;
 use Google\Cloud\AlloyDb\V1alpha\Instance;
 use Google\Cloud\AlloyDb\V1alpha\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1alpha\ListBackupsResponse;
@@ -69,12 +74,16 @@ use Google\Cloud\AlloyDb\V1alpha\ListInstancesRequest;
 use Google\Cloud\AlloyDb\V1alpha\ListInstancesResponse;
 use Google\Cloud\AlloyDb\V1alpha\ListSupportedDatabaseFlagsRequest;
 use Google\Cloud\AlloyDb\V1alpha\ListSupportedDatabaseFlagsResponse;
+use Google\Cloud\AlloyDb\V1alpha\ListUsersRequest;
+use Google\Cloud\AlloyDb\V1alpha\ListUsersResponse;
 use Google\Cloud\AlloyDb\V1alpha\PromoteClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\RestartInstanceRequest;
 use Google\Cloud\AlloyDb\V1alpha\RestoreClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\UpdateBackupRequest;
 use Google\Cloud\AlloyDb\V1alpha\UpdateClusterRequest;
 use Google\Cloud\AlloyDb\V1alpha\UpdateInstanceRequest;
+use Google\Cloud\AlloyDb\V1alpha\UpdateUserRequest;
+use Google\Cloud\AlloyDb\V1alpha\User;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -82,6 +91,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -164,6 +174,8 @@ class AlloyDBAdminGapicClient
     private static $locationNameTemplate;
 
     private static $networkNameTemplate;
+
+    private static $userNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -260,6 +272,17 @@ class AlloyDBAdminGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getUserNameTemplate()
+    {
+        if (self::$userNameTemplate == null) {
+            self::$userNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/clusters/{cluster}/users/{user}'
+            );
+        }
+
+        return self::$userNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -270,6 +293,7 @@ class AlloyDBAdminGapicClient
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'user' => self::getUserNameTemplate(),
             ];
         }
 
@@ -414,6 +438,29 @@ class AlloyDBAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     * @param string $user
+     *
+     * @return string The formatted user resource.
+     *
+     * @experimental
+     */
+    public static function userName($project, $location, $cluster, $user)
+    {
+        return self::getUserNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -423,6 +470,7 @@ class AlloyDBAdminGapicClient
      * - instance: projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - user: projects/{project}/locations/{location}/clusters/{cluster}/users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -826,7 +874,7 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The name of the parent resource. For the required format, see the
+     * @param string  $parent       Required. The location of the new cluster. For the required format, see the
      *                              comment on the Cluster.name field.
      * @param string  $clusterId    Required. ID of the requesting object.
      * @param Cluster $cluster      Required. The resource being created
@@ -1051,8 +1099,8 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The name of the parent resource (the primary cluster). For the
-     *                              required format, see the comment on the Cluster.name field.
+     * @param string  $parent       Required. The location of the new cluster. For the required
+     *                              format, see the comment on the Cluster.name field.
      * @param string  $clusterId    Required. ID of the requesting object (the secondary cluster).
      * @param Cluster $cluster      Required. Configuration of the requesting object (the secondary cluster).
      * @param array   $optionalArgs {
@@ -1231,6 +1279,91 @@ class AlloyDBAdminGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new User in a given project, location, and cluster.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $userId = 'user_id';
+     *     $user = new User();
+     *     $response = $alloyDBAdminClient->createUser($formattedParent, $userId, $user);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Value for parent.
+     * @param string $userId       Required. ID of the requesting object.
+     * @param User   $user         Required. The resource being created
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set, the backend validates the request, but doesn't actually
+     *           execute it.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AlloyDb\V1alpha\User
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createUser(
+        $parent,
+        $userId,
+        $user,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateUserRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setUserId($userId);
+        $request->setUser($user);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateUser',
+            User::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1562,6 +1695,80 @@ class AlloyDBAdminGapicClient
     }
 
     /**
+     * Deletes a single User.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedName = $alloyDBAdminClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
+     *     $alloyDBAdminClient->deleteUser($formattedName);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the User.name field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set, the backend validates the request, but doesn't actually
+     *           execute it.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteUser($name, array $optionalArgs = [])
+    {
+        $request = new DeleteUserRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteUser',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Forces a Failover for a highly available instance.
      * Failover promotes the HA standby instance as the new primary.
      * Imperative only.
@@ -1709,6 +1916,8 @@ class AlloyDBAdminGapicClient
      *           24 hours. The endpoint may or may not honor the hint. If the hint is left
      *           unspecified or is not honored, then the endpoint will pick an appropriate
      *           default duration.
+     *     @type string $publicKey
+     *           Optional. The public key from the client.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1737,6 +1946,10 @@ class AlloyDBAdminGapicClient
 
         if (isset($optionalArgs['certDuration'])) {
             $request->setCertDuration($optionalArgs['certDuration']);
+        }
+
+        if (isset($optionalArgs['publicKey'])) {
+            $request->setPublicKey($optionalArgs['publicKey']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1822,6 +2035,10 @@ class AlloyDBAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $view
+     *           Optional. The view of the cluster to return. Returns all default fields if
+     *           not set.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1alpha\ClusterView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1840,6 +2057,10 @@ class AlloyDBAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1978,6 +2199,164 @@ class AlloyDBAdminGapicClient
             Instance::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single User.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedName = $alloyDBAdminClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
+     *     $response = $alloyDBAdminClient->getUser($formattedName);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the User.name field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AlloyDb\V1alpha\User
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getUser($name, array $optionalArgs = [])
+    {
+        $request = new GetUserRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetUser',
+            User::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Injects fault in an instance.
+     * Imperative only.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $operationResponse = $alloyDBAdminClient->injectFault($faultType, $formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $alloyDBAdminClient->injectFault($faultType, $formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'injectFault');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param int    $faultType    Required. The type of fault to be injected in an instance.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1alpha\InjectFaultRequest\FaultType}
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set, performs request validation (e.g. permission checks and
+     *           any other type of validation), but do not actually execute the fault
+     *           injection.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function injectFault($faultType, $name, array $optionalArgs = [])
+    {
+        $request = new InjectFaultRequest();
+        $requestParamHeaders = [];
+        $request->setFaultType($faultType);
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'InjectFault',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -2345,6 +2724,97 @@ class AlloyDBAdminGapicClient
             'ListSupportedDatabaseFlags',
             $optionalArgs,
             ListSupportedDatabaseFlagsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Users in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $alloyDBAdminClient->listUsers($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $alloyDBAdminClient->listUsers($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent value for ListUsersRequest
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Filtering results
+     *     @type string $orderBy
+     *           Optional. Hint for how to order the results
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listUsers($parent, array $optionalArgs = [])
+    {
+        $request = new ListUsersRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListUsers',
+            $optionalArgs,
+            ListUsersResponse::class,
             $request
         );
     }
@@ -3042,6 +3512,97 @@ class AlloyDBAdminGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single User.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $user = new User();
+     *     $response = $alloyDBAdminClient->updateUser($user);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param User  $user         Required. The resource being updated
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Field mask is used to specify the fields to be overwritten in the
+     *           User resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it is in the mask. If the
+     *           user does not provide a mask then all fields will be overwritten.
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $validateOnly
+     *           Optional. If set, the backend validates the request, but doesn't actually
+     *           execute it.
+     *     @type bool $allowMissing
+     *           Optional. Allow missing fields in the update mask.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AlloyDb\V1alpha\User
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateUser($user, array $optionalArgs = [])
+    {
+        $request = new UpdateUserRequest();
+        $requestParamHeaders = [];
+        $request->setUser($user);
+        $requestParamHeaders['user.name'] = $user->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateUser',
+            User::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 

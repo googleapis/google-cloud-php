@@ -89,6 +89,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $database_version = 0;
     /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_config = null;
+    /**
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
@@ -141,9 +145,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $automated_backup_policy = null;
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18 [deprecated = true];</code>
+     * @deprecated
      */
     protected $ssl_config = null;
     /**
@@ -229,6 +234,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. The database engine major version. This is an output-only
      *           field and it's populated at the Cluster creation time. This field cannot be
      *           changed after cluster creation.
+     *     @type \Google\Cloud\AlloyDb\V1beta\Cluster\NetworkConfig $network_config
      *     @type string $network
      *           Required. The resource link for the VPC network in which cluster resources
      *           are created and from which they are accessible via Private IP. The network
@@ -258,7 +264,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           For more information on the defaults, consult the
      *           documentation for the message type.
      *     @type \Google\Cloud\AlloyDb\V1beta\SslConfig $ssl_config
-     *           SSL configuration for this AlloyDB Cluster.
+     *           SSL configuration for this AlloyDB cluster.
      *     @type \Google\Cloud\AlloyDb\V1beta\EncryptionConfig $encryption_config
      *           Optional. The encryption config can be specified to encrypt the data disks
      *           and other persistent data resources of a cluster with a
@@ -657,6 +663,38 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1beta\Cluster\NetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1beta\Cluster\NetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\Cluster\NetworkConfig::class);
+        $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
@@ -865,35 +903,41 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @return \Google\Cloud\AlloyDb\V1beta\SslConfig|null
+     * @deprecated
      */
     public function getSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return $this->ssl_config;
     }
 
     public function hasSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->ssl_config);
     }
 
     public function clearSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         unset($this->ssl_config);
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @param \Google\Cloud\AlloyDb\V1beta\SslConfig $var
      * @return $this
+     * @deprecated
      */
     public function setSslConfig($var)
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\SslConfig::class);
         $this->ssl_config = $var;
 
