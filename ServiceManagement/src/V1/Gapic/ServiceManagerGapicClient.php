@@ -101,6 +101,10 @@ use Google\Protobuf\Any;
  *     $serviceManagerClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient} to use the new
+ * surface.
  */
 class ServiceManagerGapicClient
 {

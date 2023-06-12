@@ -230,6 +230,8 @@ abstract class PredictionServiceBaseClient
      *
      * The async variant is {@see self::predictAsync()} .
      *
+     * @example samples/V1beta1/PredictionServiceClient/predict.php
+     *
      * @param PredictRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.

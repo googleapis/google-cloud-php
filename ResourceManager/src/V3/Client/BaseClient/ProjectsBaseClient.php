@@ -63,7 +63,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\ProjectsClient} for the stable implementation
  *
  * @experimental
  *
@@ -274,6 +275,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::createProjectAsync()} .
      *
+     * @example samples/V3/ProjectsClient/create_project.php
+     *
      * @param CreateProjectRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -330,6 +333,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::deleteProjectAsync()} .
      *
+     * @example samples/V3/ProjectsClient/delete_project.php
+     *
      * @param DeleteProjectRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -355,6 +360,8 @@ abstract class ProjectsBaseClient
      * Permission is denied if the policy or the resource do not exist.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V3/ProjectsClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -384,6 +391,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::getProjectAsync()} .
      *
+     * @example samples/V3/ProjectsClient/get_project.php
+     *
      * @param GetProjectRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -412,6 +421,8 @@ abstract class ProjectsBaseClient
      * permission on the identified parent.
      *
      * The async variant is {@see self::listProjectsAsync()} .
+     *
+     * @example samples/V3/ProjectsClient/list_projects.php
      *
      * @param ListProjectsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -452,6 +463,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::moveProjectAsync()} .
      *
+     * @example samples/V3/ProjectsClient/move_project.php
+     *
      * @param MoveProjectRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -484,6 +497,8 @@ abstract class ProjectsBaseClient
      * [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
      *
      * The async variant is {@see self::searchProjectsAsync()} .
+     *
+     * @example samples/V3/ProjectsClient/search_projects.php
      *
      * @param SearchProjectsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -549,6 +564,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V3/ProjectsClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -573,6 +590,8 @@ abstract class ProjectsBaseClient
      * format `projects/{ProjectIdOrNumber}` e.g. projects/123..
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V3/ProjectsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -606,6 +625,8 @@ abstract class ProjectsBaseClient
      *
      * The async variant is {@see self::undeleteProjectAsync()} .
      *
+     * @example samples/V3/ProjectsClient/undelete_project.php
+     *
      * @param UndeleteProjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -634,6 +655,8 @@ abstract class ProjectsBaseClient
      * project.
      *
      * The async variant is {@see self::updateProjectAsync()} .
+     *
+     * @example samples/V3/ProjectsClient/update_project.php
      *
      * @param UpdateProjectRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
