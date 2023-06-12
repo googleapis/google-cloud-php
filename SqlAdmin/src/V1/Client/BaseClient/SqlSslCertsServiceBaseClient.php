@@ -176,6 +176,8 @@ abstract class SqlSslCertsServiceBaseClient
      *
      * The async variant is {@see self::deleteAsync()} .
      *
+     * @example samples/V1/SqlSslCertsServiceClient/delete.php
+     *
      * @param SqlSslCertsDeleteRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -201,6 +203,8 @@ abstract class SqlSslCertsServiceBaseClient
      * initial creation.
      *
      * The async variant is {@see self::getAsync()} .
+     *
+     * @example samples/V1/SqlSslCertsServiceClient/get.php
      *
      * @param SqlSslCertsGetRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -228,6 +232,8 @@ abstract class SqlSslCertsServiceBaseClient
      *
      * The async variant is {@see self::insertAsync()} .
      *
+     * @example samples/V1/SqlSslCertsServiceClient/insert.php
+     *
      * @param SqlSslCertsInsertRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -251,6 +257,8 @@ abstract class SqlSslCertsServiceBaseClient
      * Lists all of the current SSL certificates for the instance.
      *
      * The async variant is {@see self::listAsync()} .
+     *
+     * @example samples/V1/SqlSslCertsServiceClient/list.php
      *
      * @param SqlSslCertsListRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
