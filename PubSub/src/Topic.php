@@ -50,6 +50,12 @@ class Topic
     use ArrayTrait;
     use ResourceNameTrait;
 
+    private const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
+
+    private const DEFAULT_ENABLE_COMPRESSION = false;
+
+    private const GZIP_COMPRESSION = 'gzip';
+
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
      */
@@ -86,6 +92,16 @@ class Topic
     private $clientConfig;
 
     /**
+     * @var bool
+     */
+    private $enableCompression;
+
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
+
+    /**
      * Create a PubSub topic.
      *
      * @param ConnectionInterface $connection A connection to the Google Cloud
@@ -94,14 +110,20 @@ class Topic
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
      * @param array $info {
-     *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
+     *        A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
      *
-     *     @type string name The name of the topic.
-     *     @type array $labels Key value pairs used to organize your resources.
-     *     @type string $kmsKeyName The resource name of the Cloud KMS
-     *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is
-     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *        @type string name The name of the topic.
+     *        @type array $labels Key value pairs used to organize your resources.
+     *        @type string $kmsKeyName The resource name of the Cloud KMS
+     *              CryptoKey to be used to protect access to messages published on this
+     *              topic. The expected format is
+     *              `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *        @type bool $enableCompression Flag to enable compression subject
+     *              tosize of the message. Set the flag to `true` to enable
+     *              compression. Defaults to `false`.
+     *        @type int $compressionBytesThreshold The threshold byte size above which messages
+     *              are compressed if their size is greater than this threshold. This only takes
+     *              effect if `enableCompression` is `true`. Defaults to `240`.
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -124,6 +146,22 @@ class Topic
         $this->encode = (bool) $encode;
         $this->info = $info;
         $this->clientConfig = $clientConfig;
+
+        if (isset($info['enableCompression']) && $info['enableCompression'] === true) {
+            $this->enableCompression = true;
+            $this->compressionBytesThreshold = self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
+            if (isset($info['compressionBytesThreshold'])) {
+                if(!is_int($info['compressionBytesThreshold'])) {
+                    throw new InvalidArgumentException(
+                        '`compressionBytesThreshold` must be an integer'
+                    );
+                } else {
+                    $this->compressionBytesThreshold = $info['compressionBytesThreshold'];
+                }
+            }
+        } else {
+            $this->enableCompression = self::DEFAULT_ENABLE_COMPRESSION;
+        }
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('topic', $name)) {
@@ -486,8 +524,16 @@ class Topic
      */
     public function publishBatch(array $messages, array $options = [])
     {
+        $totalMessagesSize = 0;
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
+            $totalMessagesSize += strlen(serialize($message));
+        }
+
+        if ($this->enableCompression && $totalMessagesSize > $this->compressionBytesThreshold) {
+            $options['headers']['grpc-internal-encoding-request'][] = [
+                self::GZIP_COMPRESSION
+            ];
         }
 
         return $this->connection->publishMessage($options + [
