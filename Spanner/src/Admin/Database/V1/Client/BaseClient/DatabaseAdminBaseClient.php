@@ -86,7 +86,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient} for the stable
+ * implementation
  *
  * @experimental
  *

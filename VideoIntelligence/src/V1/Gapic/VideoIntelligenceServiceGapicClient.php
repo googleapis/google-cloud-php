@@ -85,6 +85,10 @@ use Google\LongRunning\Operation;
  *     $videoIntelligenceServiceClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient} to use
+ * the new surface.
  */
 class VideoIntelligenceServiceGapicClient
 {

@@ -172,6 +172,8 @@ abstract class SqlConnectServiceBaseClient
      *
      * The async variant is {@see self::generateEphemeralCertAsync()} .
      *
+     * @example samples/V1/SqlConnectServiceClient/generate_ephemeral_cert.php
+     *
      * @param GenerateEphemeralCertRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -195,6 +197,8 @@ abstract class SqlConnectServiceBaseClient
      * Retrieves connect settings about a Cloud SQL instance.
      *
      * The async variant is {@see self::getConnectSettingsAsync()} .
+     *
+     * @example samples/V1/SqlConnectServiceClient/get_connect_settings.php
      *
      * @param GetConnectSettingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

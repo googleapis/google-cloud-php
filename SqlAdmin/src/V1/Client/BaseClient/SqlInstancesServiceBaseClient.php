@@ -223,6 +223,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::addServerCaAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/add_server_ca.php
+     *
      * @param SqlInstancesAddServerCaRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -247,6 +249,8 @@ abstract class SqlInstancesServiceBaseClient
      * operation might cause your instance to restart.
      *
      * The async variant is {@see self::cloneAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/clone.php
      *
      * @param SqlInstancesCloneRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -275,6 +279,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::createEphemeralAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/create_ephemeral.php
+     *
      * @param SqlInstancesCreateEphemeralCertRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -298,6 +304,8 @@ abstract class SqlInstancesServiceBaseClient
      * Deletes a Cloud SQL instance.
      *
      * The async variant is {@see self::deleteAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/delete.php
      *
      * @param SqlInstancesDeleteRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -324,6 +332,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::demoteMasterAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/demote_master.php
+     *
      * @param SqlInstancesDemoteMasterRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -348,6 +358,8 @@ abstract class SqlInstancesServiceBaseClient
      * dump or CSV file.
      *
      * The async variant is {@see self::exportAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/export.php
      *
      * @param SqlInstancesExportRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -380,6 +392,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::failoverAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/failover.php
+     *
      * @param SqlInstancesFailoverRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -403,6 +417,8 @@ abstract class SqlInstancesServiceBaseClient
      * Retrieves a resource containing information about a Cloud SQL instance.
      *
      * The async variant is {@see self::getAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/get.php
      *
      * @param SqlInstancesGetRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -429,6 +445,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::importAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/import.php
+     *
      * @param SqlInstancesImportRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -453,6 +471,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::insertAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/insert.php
+     *
      * @param SqlInstancesInsertRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -476,6 +496,8 @@ abstract class SqlInstancesServiceBaseClient
      * Lists instances under a given project.
      *
      * The async variant is {@see self::listAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/list.php
      *
      * @param SqlInstancesListRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -505,6 +527,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::listServerCasAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/list_server_cas.php
+     *
      * @param SqlInstancesListServerCasRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -529,6 +553,8 @@ abstract class SqlInstancesServiceBaseClient
      * This method supports patch semantics.
      *
      * The async variant is {@see self::patchAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/patch.php
      *
      * @param SqlInstancesPatchRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -555,6 +581,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::promoteReplicaAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/promote_replica.php
+     *
      * @param SqlInstancesPromoteReplicaRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -578,6 +606,8 @@ abstract class SqlInstancesServiceBaseClient
      * Reschedules the maintenance on the given instance.
      *
      * The async variant is {@see self::rescheduleMaintenanceAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/reschedule_maintenance.php
      *
      * @param SqlInstancesRescheduleMaintenanceRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -604,6 +634,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::resetSslConfigAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/reset_ssl_config.php
+     *
      * @param SqlInstancesResetSslConfigRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -627,6 +659,8 @@ abstract class SqlInstancesServiceBaseClient
      * Restarts a Cloud SQL instance.
      *
      * The async variant is {@see self::restartAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/restart.php
      *
      * @param SqlInstancesRestartRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -653,6 +687,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::restoreBackupAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/restore_backup.php
+     *
      * @param SqlInstancesRestoreBackupRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -678,6 +714,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::rotateServerCaAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/rotate_server_ca.php
+     *
      * @param SqlInstancesRotateServerCaRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -701,6 +739,8 @@ abstract class SqlInstancesServiceBaseClient
      * Start External primary instance migration.
      *
      * The async variant is {@see self::startExternalSyncAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/start_external_sync.php
      *
      * @param SqlInstancesStartExternalSyncRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -726,6 +766,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::startReplicaAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/start_replica.php
+     *
      * @param SqlInstancesStartReplicaRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -749,6 +791,8 @@ abstract class SqlInstancesServiceBaseClient
      * Stops the replication in the read replica instance.
      *
      * The async variant is {@see self::stopReplicaAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/stop_replica.php
      *
      * @param SqlInstancesStopReplicaRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -775,6 +819,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::truncateLogAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/truncate_log.php
+     *
      * @param SqlInstancesTruncateLogRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -800,6 +846,8 @@ abstract class SqlInstancesServiceBaseClient
      *
      * The async variant is {@see self::updateAsync()} .
      *
+     * @example samples/V1/SqlInstancesServiceClient/update.php
+     *
      * @param SqlInstancesUpdateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -823,6 +871,8 @@ abstract class SqlInstancesServiceBaseClient
      * Verify External primary instance external sync settings.
      *
      * The async variant is {@see self::verifyExternalSyncSettingsAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/verify_external_sync_settings.php
      *
      * @param SqlInstancesVerifyExternalSyncSettingsRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {

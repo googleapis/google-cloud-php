@@ -177,6 +177,8 @@ abstract class SqlDatabasesServiceBaseClient
      *
      * The async variant is {@see self::deleteAsync()} .
      *
+     * @example samples/V1/SqlDatabasesServiceClient/delete.php
+     *
      * @param SqlDatabasesDeleteRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -201,6 +203,8 @@ abstract class SqlDatabasesServiceBaseClient
      * SQL instance.
      *
      * The async variant is {@see self::getAsync()} .
+     *
+     * @example samples/V1/SqlDatabasesServiceClient/get.php
      *
      * @param SqlDatabasesGetRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -227,6 +231,8 @@ abstract class SqlDatabasesServiceBaseClient
      *
      * The async variant is {@see self::insertAsync()} .
      *
+     * @example samples/V1/SqlDatabasesServiceClient/insert.php
+     *
      * @param SqlDatabasesInsertRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -250,6 +256,8 @@ abstract class SqlDatabasesServiceBaseClient
      * Lists databases in the specified Cloud SQL instance.
      *
      * The async variant is {@see self::listAsync()} .
+     *
+     * @example samples/V1/SqlDatabasesServiceClient/list.php
      *
      * @param SqlDatabasesListRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -276,6 +284,8 @@ abstract class SqlDatabasesServiceBaseClient
      *
      * The async variant is {@see self::patchAsync()} .
      *
+     * @example samples/V1/SqlDatabasesServiceClient/patch.php
+     *
      * @param SqlDatabasesUpdateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -300,6 +310,8 @@ abstract class SqlDatabasesServiceBaseClient
      * SQL instance.
      *
      * The async variant is {@see self::updateAsync()} .
+     *
+     * @example samples/V1/SqlDatabasesServiceClient/update.php
      *
      * @param SqlDatabasesUpdateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
