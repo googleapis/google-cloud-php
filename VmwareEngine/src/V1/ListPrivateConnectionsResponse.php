@@ -10,18 +10,18 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response message for
- * [VmwareEngine.ListSubnets][google.cloud.vmwareengine.v1.VmwareEngine.ListSubnets]
+ * [VmwareEngine.ListPrivateConnections][google.cloud.vmwareengine.v1.VmwareEngine.ListPrivateConnections]
  *
- * Generated from protobuf message <code>google.cloud.vmwareengine.v1.ListSubnetsResponse</code>
+ * Generated from protobuf message <code>google.cloud.vmwareengine.v1.ListPrivateConnectionsResponse</code>
  */
-class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
+class ListPrivateConnectionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of subnets.
+     * A list of private connections.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.Subnet subnets = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.PrivateConnection private_connections = 1;</code>
      */
-    private $subnets;
+    private $private_connections;
     /**
      * A token, which can be sent as `page_token` to retrieve the next page.
      * If this field is omitted, there are no subsequent pages.
@@ -30,8 +30,7 @@ class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
     /**
-     * Locations that could not be reached when making an aggregated query using
-     * wildcards.
+     * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      */
@@ -43,14 +42,13 @@ class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VmwareEngine\V1\Subnet>|\Google\Protobuf\Internal\RepeatedField $subnets
-     *           A list of subnets.
+     *     @type array<\Google\Cloud\VmwareEngine\V1\PrivateConnection>|\Google\Protobuf\Internal\RepeatedField $private_connections
+     *           A list of private connections.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Locations that could not be reached when making an aggregated query using
-     *           wildcards.
+     *           Unreachable resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,27 +57,27 @@ class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of subnets.
+     * A list of private connections.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.Subnet subnets = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.PrivateConnection private_connections = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getSubnets()
+    public function getPrivateConnections()
     {
-        return $this->subnets;
+        return $this->private_connections;
     }
 
     /**
-     * A list of subnets.
+     * A list of private connections.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.Subnet subnets = 1;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\Subnet>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.PrivateConnection private_connections = 1;</code>
+     * @param array<\Google\Cloud\VmwareEngine\V1\PrivateConnection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setSubnets($var)
+    public function setPrivateConnections($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VmwareEngine\V1\Subnet::class);
-        $this->subnets = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VmwareEngine\V1\PrivateConnection::class);
+        $this->private_connections = $arr;
 
         return $this;
     }
@@ -113,8 +111,7 @@ class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached when making an aggregated query using
-     * wildcards.
+     * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -125,8 +122,7 @@ class ListSubnetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached when making an aggregated query using
-     * wildcards.
+     * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
