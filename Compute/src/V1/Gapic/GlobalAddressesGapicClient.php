@@ -83,6 +83,9 @@ use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
  *     $globalAddressesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\GlobalAddressesClient} to use the new surface.
  */
 class GlobalAddressesGapicClient
 {

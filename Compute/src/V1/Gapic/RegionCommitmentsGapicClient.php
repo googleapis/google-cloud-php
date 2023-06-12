@@ -71,6 +71,9 @@ use Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest;
  *     $regionCommitmentsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionCommitmentsClient} to use the new surface.
  */
 class RegionCommitmentsGapicClient
 {

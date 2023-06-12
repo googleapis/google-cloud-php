@@ -88,6 +88,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $machineImagesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\MachineImagesClient} to use the new surface.
  */
 class MachineImagesGapicClient
 {

@@ -106,7 +106,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\CertificateManager\V1\CertificateManagerClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -451,6 +453,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::createCertificateAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/create_certificate.php
+     *
      * @param CreateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -474,6 +478,8 @@ abstract class CertificateManagerBaseClient
      * Creates a new CertificateIssuanceConfig in a given project and location.
      *
      * The async variant is {@see self::createCertificateIssuanceConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/create_certificate_issuance_config.php
      *
      * @param CreateCertificateIssuanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -499,6 +505,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::createCertificateMapAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/create_certificate_map.php
+     *
      * @param CreateCertificateMapRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -522,6 +530,8 @@ abstract class CertificateManagerBaseClient
      * Creates a new CertificateMapEntry in a given project and location.
      *
      * The async variant is {@see self::createCertificateMapEntryAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/create_certificate_map_entry.php
      *
      * @param CreateCertificateMapEntryRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -547,6 +557,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::createDnsAuthorizationAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/create_dns_authorization.php
+     *
      * @param CreateDnsAuthorizationRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -571,6 +583,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::deleteCertificateAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/delete_certificate.php
+     *
      * @param DeleteCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -594,6 +608,8 @@ abstract class CertificateManagerBaseClient
      * Deletes a single CertificateIssuanceConfig.
      *
      * The async variant is {@see self::deleteCertificateIssuanceConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/delete_certificate_issuance_config.php
      *
      * @param DeleteCertificateIssuanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -621,6 +637,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::deleteCertificateMapAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/delete_certificate_map.php
+     *
      * @param DeleteCertificateMapRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -644,6 +662,8 @@ abstract class CertificateManagerBaseClient
      * Deletes a single CertificateMapEntry.
      *
      * The async variant is {@see self::deleteCertificateMapEntryAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/delete_certificate_map_entry.php
      *
      * @param DeleteCertificateMapEntryRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -669,6 +689,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::deleteDnsAuthorizationAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/delete_dns_authorization.php
+     *
      * @param DeleteDnsAuthorizationRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -692,6 +714,8 @@ abstract class CertificateManagerBaseClient
      * Gets details of a single Certificate.
      *
      * The async variant is {@see self::getCertificateAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/get_certificate.php
      *
      * @param GetCertificateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -717,6 +741,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::getCertificateIssuanceConfigAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/get_certificate_issuance_config.php
+     *
      * @param GetCertificateIssuanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -740,6 +766,8 @@ abstract class CertificateManagerBaseClient
      * Gets details of a single CertificateMap.
      *
      * The async variant is {@see self::getCertificateMapAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/get_certificate_map.php
      *
      * @param GetCertificateMapRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -765,6 +793,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::getCertificateMapEntryAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/get_certificate_map_entry.php
+     *
      * @param GetCertificateMapEntryRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -788,6 +818,8 @@ abstract class CertificateManagerBaseClient
      * Gets details of a single DnsAuthorization.
      *
      * The async variant is {@see self::getDnsAuthorizationAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/get_dns_authorization.php
      *
      * @param GetDnsAuthorizationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -813,6 +845,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::listCertificateIssuanceConfigsAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/list_certificate_issuance_configs.php
+     *
      * @param ListCertificateIssuanceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -836,6 +870,8 @@ abstract class CertificateManagerBaseClient
      * Lists CertificateMapEntries in a given project and location.
      *
      * The async variant is {@see self::listCertificateMapEntriesAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/list_certificate_map_entries.php
      *
      * @param ListCertificateMapEntriesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -861,6 +897,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::listCertificateMapsAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/list_certificate_maps.php
+     *
      * @param ListCertificateMapsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -884,6 +922,8 @@ abstract class CertificateManagerBaseClient
      * Lists Certificates in a given project and location.
      *
      * The async variant is {@see self::listCertificatesAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/list_certificates.php
      *
      * @param ListCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -909,6 +949,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::listDnsAuthorizationsAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/list_dns_authorizations.php
+     *
      * @param ListDnsAuthorizationsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -932,6 +974,8 @@ abstract class CertificateManagerBaseClient
      * Updates a Certificate.
      *
      * The async variant is {@see self::updateCertificateAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/update_certificate.php
      *
      * @param UpdateCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -957,6 +1001,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::updateCertificateMapAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/update_certificate_map.php
+     *
      * @param UpdateCertificateMapRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -980,6 +1026,8 @@ abstract class CertificateManagerBaseClient
      * Updates a CertificateMapEntry.
      *
      * The async variant is {@see self::updateCertificateMapEntryAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/update_certificate_map_entry.php
      *
      * @param UpdateCertificateMapEntryRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1005,6 +1053,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::updateDnsAuthorizationAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/update_dns_authorization.php
+     *
      * @param UpdateDnsAuthorizationRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1029,6 +1079,8 @@ abstract class CertificateManagerBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/CertificateManagerClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1052,6 +1104,8 @@ abstract class CertificateManagerBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

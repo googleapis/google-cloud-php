@@ -78,6 +78,10 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $networkAttachmentsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient} to use the new
+ * surface.
  */
 class NetworkAttachmentsGapicClient
 {

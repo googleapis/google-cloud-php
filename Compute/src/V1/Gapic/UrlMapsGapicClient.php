@@ -78,6 +78,9 @@ use Google\Cloud\Compute\V1\ValidateUrlMapRequest;
  *     $urlMapsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\UrlMapsClient} to use the new surface.
  */
 class UrlMapsGapicClient
 {

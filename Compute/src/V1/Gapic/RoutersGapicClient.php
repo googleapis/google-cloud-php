@@ -79,6 +79,9 @@ use Google\Cloud\Compute\V1\VmEndpointNatMappingsList;
  *     $routersClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RoutersClient} to use the new surface.
  */
 class RoutersGapicClient
 {

@@ -82,6 +82,9 @@ use Google\Cloud\Compute\V1\TargetGrpcProxyList;
  *     $targetGrpcProxiesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\TargetGrpcProxiesClient} to use the new surface.
  */
 class TargetGrpcProxiesGapicClient
 {
