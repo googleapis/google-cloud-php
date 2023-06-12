@@ -88,7 +88,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\GkeBackup\V1\BackupForGKEClient} for the stable implementation
  *
  * @experimental
  *
@@ -488,6 +489,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::createBackupAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/create_backup.php
+     *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -511,6 +514,8 @@ abstract class BackupForGKEBaseClient
      * Creates a new BackupPlan in a given location.
      *
      * The async variant is {@see self::createBackupPlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/create_backup_plan.php
      *
      * @param CreateBackupPlanRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -536,6 +541,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::createRestoreAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/create_restore.php
+     *
      * @param CreateRestoreRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -559,6 +566,8 @@ abstract class BackupForGKEBaseClient
      * Creates a new RestorePlan in a given location.
      *
      * The async variant is {@see self::createRestorePlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/create_restore_plan.php
      *
      * @param CreateRestorePlanRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -584,6 +593,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::deleteBackupAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/delete_backup.php
+     *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -607,6 +618,8 @@ abstract class BackupForGKEBaseClient
      * Deletes an existing BackupPlan.
      *
      * The async variant is {@see self::deleteBackupPlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/delete_backup_plan.php
      *
      * @param DeleteBackupPlanRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -632,6 +645,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::deleteRestoreAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/delete_restore.php
+     *
      * @param DeleteRestoreRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -655,6 +670,8 @@ abstract class BackupForGKEBaseClient
      * Deletes an existing RestorePlan.
      *
      * The async variant is {@see self::deleteRestorePlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/delete_restore_plan.php
      *
      * @param DeleteRestorePlanRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -680,6 +697,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::getBackupAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/get_backup.php
+     *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -703,6 +722,8 @@ abstract class BackupForGKEBaseClient
      * Retrieve the details of a single BackupPlan.
      *
      * The async variant is {@see self::getBackupPlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_backup_plan.php
      *
      * @param GetBackupPlanRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -728,6 +749,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::getRestoreAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/get_restore.php
+     *
      * @param GetRestoreRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -751,6 +774,8 @@ abstract class BackupForGKEBaseClient
      * Retrieve the details of a single RestorePlan.
      *
      * The async variant is {@see self::getRestorePlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_restore_plan.php
      *
      * @param GetRestorePlanRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -776,6 +801,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::getVolumeBackupAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/get_volume_backup.php
+     *
      * @param GetVolumeBackupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -799,6 +826,8 @@ abstract class BackupForGKEBaseClient
      * Retrieve the details of a single VolumeRestore.
      *
      * The async variant is {@see self::getVolumeRestoreAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_volume_restore.php
      *
      * @param GetVolumeRestoreRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -824,6 +853,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::listBackupPlansAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/list_backup_plans.php
+     *
      * @param ListBackupPlansRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -847,6 +878,8 @@ abstract class BackupForGKEBaseClient
      * Lists the Backups for a given BackupPlan.
      *
      * The async variant is {@see self::listBackupsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_backups.php
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -872,6 +905,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::listRestorePlansAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/list_restore_plans.php
+     *
      * @param ListRestorePlansRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -895,6 +930,8 @@ abstract class BackupForGKEBaseClient
      * Lists the Restores for a given RestorePlan.
      *
      * The async variant is {@see self::listRestoresAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_restores.php
      *
      * @param ListRestoresRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -920,6 +957,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::listVolumeBackupsAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/list_volume_backups.php
+     *
      * @param ListVolumeBackupsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -943,6 +982,8 @@ abstract class BackupForGKEBaseClient
      * Lists the VolumeRestores for a given Restore.
      *
      * The async variant is {@see self::listVolumeRestoresAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_volume_restores.php
      *
      * @param ListVolumeRestoresRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -968,6 +1009,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::updateBackupAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/update_backup.php
+     *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -991,6 +1034,8 @@ abstract class BackupForGKEBaseClient
      * Update a BackupPlan.
      *
      * The async variant is {@see self::updateBackupPlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/update_backup_plan.php
      *
      * @param UpdateBackupPlanRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1016,6 +1061,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::updateRestoreAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/update_restore.php
+     *
      * @param UpdateRestoreRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1039,6 +1086,8 @@ abstract class BackupForGKEBaseClient
      * Update a RestorePlan.
      *
      * The async variant is {@see self::updateRestorePlanAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/update_restore_plan.php
      *
      * @param UpdateRestorePlanRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1064,6 +1113,8 @@ abstract class BackupForGKEBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/BackupForGKEClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1087,6 +1138,8 @@ abstract class BackupForGKEBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1112,6 +1165,8 @@ abstract class BackupForGKEBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1140,6 +1195,8 @@ abstract class BackupForGKEBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1170,6 +1227,8 @@ abstract class BackupForGKEBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

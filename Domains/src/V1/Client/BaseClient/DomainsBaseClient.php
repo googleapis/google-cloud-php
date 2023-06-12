@@ -302,6 +302,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::configureContactSettingsAsync()} .
      *
+     * @example samples/V1/DomainsClient/configure_contact_settings.php
+     *
      * @param ConfigureContactSettingsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -326,6 +328,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::configureDnsSettingsAsync()} .
      *
+     * @example samples/V1/DomainsClient/configure_dns_settings.php
+     *
      * @param ConfigureDnsSettingsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -349,6 +353,8 @@ abstract class DomainsBaseClient
      * Updates a `Registration`'s management settings.
      *
      * The async variant is {@see self::configureManagementSettingsAsync()} .
+     *
+     * @example samples/V1/DomainsClient/configure_management_settings.php
      *
      * @param ConfigureManagementSettingsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -392,6 +398,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::deleteRegistrationAsync()} .
      *
+     * @example samples/V1/DomainsClient/delete_registration.php
+     *
      * @param DeleteRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -424,6 +432,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::exportRegistrationAsync()} .
      *
+     * @example samples/V1/DomainsClient/export_registration.php
+     *
      * @param ExportRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -448,6 +458,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::getRegistrationAsync()} .
      *
+     * @example samples/V1/DomainsClient/get_registration.php
+     *
      * @param GetRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -471,6 +483,8 @@ abstract class DomainsBaseClient
      * Lists the `Registration` resources in a project.
      *
      * The async variant is {@see self::listRegistrationsAsync()} .
+     *
+     * @example samples/V1/DomainsClient/list_registrations.php
      *
      * @param ListRegistrationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -508,6 +522,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::registerDomainAsync()} .
      *
+     * @example samples/V1/DomainsClient/register_domain.php
+     *
      * @param RegisterDomainRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -534,6 +550,8 @@ abstract class DomainsBaseClient
      * domain registration.
      *
      * The async variant is {@see self::resetAuthorizationCodeAsync()} .
+     *
+     * @example samples/V1/DomainsClient/reset_authorization_code.php
      *
      * @param ResetAuthorizationCodeRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -563,6 +581,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::retrieveAuthorizationCodeAsync()} .
      *
+     * @example samples/V1/DomainsClient/retrieve_authorization_code.php
+     *
      * @param RetrieveAuthorizationCodeRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -587,6 +607,8 @@ abstract class DomainsBaseClient
      * up-to-date availability. Use the returned values to call `RegisterDomain`.
      *
      * The async variant is {@see self::retrieveRegisterParametersAsync()} .
+     *
+     * @example samples/V1/DomainsClient/retrieve_register_parameters.php
      *
      * @param RetrieveRegisterParametersRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -617,6 +639,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::retrieveTransferParametersAsync()} .
      *
+     * @example samples/V1/DomainsClient/retrieve_transfer_parameters.php
+     *
      * @param RetrieveTransferParametersRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -644,6 +668,8 @@ abstract class DomainsBaseClient
      * availability.
      *
      * The async variant is {@see self::searchDomainsAsync()} .
+     *
+     * @example samples/V1/DomainsClient/search_domains.php
      *
      * @param SearchDomainsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -689,6 +715,8 @@ abstract class DomainsBaseClient
      *
      * The async variant is {@see self::transferDomainAsync()} .
      *
+     * @example samples/V1/DomainsClient/transfer_domain.php
+     *
      * @param TransferDomainRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -717,6 +745,8 @@ abstract class DomainsBaseClient
      * * To update contact information, see `ConfigureContactSettings`
      *
      * The async variant is {@see self::updateRegistrationAsync()} .
+     *
+     * @example samples/V1/DomainsClient/update_registration.php
      *
      * @param UpdateRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

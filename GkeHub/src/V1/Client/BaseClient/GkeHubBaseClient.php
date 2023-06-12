@@ -327,6 +327,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::createFeatureAsync()} .
      *
+     * @example samples/V1/GkeHubClient/create_feature.php
+     *
      * @param CreateFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -355,6 +357,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::createMembershipAsync()} .
      *
+     * @example samples/V1/GkeHubClient/create_membership.php
+     *
      * @param CreateMembershipRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -378,6 +382,8 @@ abstract class GkeHubBaseClient
      * Removes a Feature.
      *
      * The async variant is {@see self::deleteFeatureAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_feature.php
      *
      * @param DeleteFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -407,6 +413,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::deleteMembershipAsync()} .
      *
+     * @example samples/V1/GkeHubClient/delete_membership.php
+     *
      * @param DeleteMembershipRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -434,6 +442,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::generateConnectManifestAsync()} .
      *
+     * @example samples/V1/GkeHubClient/generate_connect_manifest.php
+     *
      * @param GenerateConnectManifestRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -457,6 +467,8 @@ abstract class GkeHubBaseClient
      * Gets details of a single Feature.
      *
      * The async variant is {@see self::getFeatureAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_feature.php
      *
      * @param GetFeatureRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -482,6 +494,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::getMembershipAsync()} .
      *
+     * @example samples/V1/GkeHubClient/get_membership.php
+     *
      * @param GetMembershipRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -505,6 +519,8 @@ abstract class GkeHubBaseClient
      * Lists Features in a given project and location.
      *
      * The async variant is {@see self::listFeaturesAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_features.php
      *
      * @param ListFeaturesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -530,6 +546,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::listMembershipsAsync()} .
      *
+     * @example samples/V1/GkeHubClient/list_memberships.php
+     *
      * @param ListMembershipsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -554,6 +572,8 @@ abstract class GkeHubBaseClient
      *
      * The async variant is {@see self::updateFeatureAsync()} .
      *
+     * @example samples/V1/GkeHubClient/update_feature.php
+     *
      * @param UpdateFeatureRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -577,6 +597,8 @@ abstract class GkeHubBaseClient
      * Updates an existing Membership.
      *
      * The async variant is {@see self::updateMembershipAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_membership.php
      *
      * @param UpdateMembershipRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
