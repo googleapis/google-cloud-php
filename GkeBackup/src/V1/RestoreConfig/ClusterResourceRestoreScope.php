@@ -9,17 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Identifies the cluster-scoped resources to restore from the Backup.
+ * Defines the scope of cluster-scoped resources to restore.
+ * Some group kinds are not reasonable choices for a restore, and will cause
+ * an error if selected here. Any scope selection that would restore
+ * "all valid" resources automatically excludes these group kinds.
+ * - gkebackup.gke.io/BackupJob
+ * - gkebackup.gke.io/RestoreJob
+ * - metrics.k8s.io/NodeMetrics
+ * - migration.k8s.io/StorageState
+ * - migration.k8s.io/StorageVersionMigration
+ * - Node
+ * - snapshot.storage.k8s.io/VolumeSnapshotContent
+ * - storage.k8s.io/CSINode
+ * Some group kinds are driven by restore configuration elsewhere,
+ * and will cause an error if selected here.
+ * - Namespace
+ * - PersistentVolume
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope</code>
  */
 class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of "types" of cluster-scoped resources to be restored from the
-     * Backup.  An empty list means that NO cluster-scoped resources will be
-     * restored. Note that Namespaces and PersistentVolume restoration is
-     * handled separately and is not governed by this field.
+     * A list of cluster-scoped resource group kinds to restore from the
+     * backup. If specified, only the selected resources will be restored.
+     * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
      */
@@ -32,10 +46,9 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
-     *           A list of "types" of cluster-scoped resources to be restored from the
-     *           Backup.  An empty list means that NO cluster-scoped resources will be
-     *           restored. Note that Namespaces and PersistentVolume restoration is
-     *           handled separately and is not governed by this field.
+     *           A list of cluster-scoped resource group kinds to restore from the
+     *           backup. If specified, only the selected resources will be restored.
+     *           Mutually exclusive to any other field in the message.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,10 +57,9 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of "types" of cluster-scoped resources to be restored from the
-     * Backup.  An empty list means that NO cluster-scoped resources will be
-     * restored. Note that Namespaces and PersistentVolume restoration is
-     * handled separately and is not governed by this field.
+     * A list of cluster-scoped resource group kinds to restore from the
+     * backup. If specified, only the selected resources will be restored.
+     * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,10 +70,9 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of "types" of cluster-scoped resources to be restored from the
-     * Backup.  An empty list means that NO cluster-scoped resources will be
-     * restored. Note that Namespaces and PersistentVolume restoration is
-     * handled separately and is not governed by this field.
+     * A list of cluster-scoped resource group kinds to restore from the
+     * backup. If specified, only the selected resources will be restored.
+     * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var

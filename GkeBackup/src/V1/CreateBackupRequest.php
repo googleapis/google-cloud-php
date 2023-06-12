@@ -17,7 +17,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The BackupPlan within which to create the Backup.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                            $parent   Required. The BackupPlan within which to create the Backup.
-     *                                                    Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                                                    Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *                                                    Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
      * @param \Google\Cloud\GkeBackup\V1\Backup $backup   The Backup resource to create.
      * @param string                            $backupId The client-provided short name for the Backup resource.
@@ -75,7 +75,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The BackupPlan within which to create the Backup.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\Backup $backup
      *           The Backup resource to create.
      *     @type string $backup_id
@@ -95,7 +95,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The BackupPlan within which to create the Backup.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The BackupPlan within which to create the Backup.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

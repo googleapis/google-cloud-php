@@ -19,7 +19,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the Restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -51,10 +51,12 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
-     * will restore. Note that this Backup must be a sub-resource of the
-     * RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;.
+     * Required. Immutable. A reference to the
+     * [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+     * this Restore will restore. Note that this Backup must be a sub-resource of
+     * the RestorePlan's
+     * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,15 +64,17 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
-     * Inherited from parent RestorePlan's [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * Inherited from parent RestorePlan's
+     * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $cluster = '';
     /**
-     * Output only. Configuration of the Restore.  Inherited from parent RestorePlan's
+     * Output only. Configuration of the Restore.  Inherited from parent
+     * RestorePlan's
      * [restore_config][google.cloud.gkebackup.v1.RestorePlan.restore_config].
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig restore_config = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -89,7 +93,8 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Human-readable description of why the Restore is in its current state.
+     * Output only. Human-readable description of why the Restore is in its
+     * current state.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -113,8 +118,8 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     private $resources_excluded_count = 0;
     /**
-     * Output only. Number of resources that failed to be restored during the restore
-     * execution.
+     * Output only. Number of resources that failed to be restored during the
+     * restore execution.
      *
      * Generated from protobuf field <code>int32 resources_failed_count = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -126,8 +131,8 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     private $volumes_restored_count = 0;
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestore`,
@@ -147,7 +152,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the Restore resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -159,25 +164,30 @@ class Restore extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           User specified descriptive string for this Restore.
      *     @type string $backup
-     *           Required. Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
-     *           will restore. Note that this Backup must be a sub-resource of the
-     *           RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;.
+     *           Required. Immutable. A reference to the
+     *           [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+     *           this Restore will restore. Note that this Backup must be a sub-resource of
+     *           the RestorePlan's
+     *           [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
      *     @type string $cluster
      *           Output only. The target cluster into which this Restore will restore data.
      *           Valid formats:
-     *             - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *             - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
-     *           Inherited from parent RestorePlan's [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
+     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *           Inherited from parent RestorePlan's
+     *           [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig $restore_config
-     *           Output only. Configuration of the Restore.  Inherited from parent RestorePlan's
+     *           Output only. Configuration of the Restore.  Inherited from parent
+     *           RestorePlan's
      *           [restore_config][google.cloud.gkebackup.v1.RestorePlan.restore_config].
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           A set of custom labels supplied by user.
      *     @type int $state
      *           Output only. The current state of the Restore.
      *     @type string $state_reason
-     *           Output only. Human-readable description of why the Restore is in its current state.
+     *           Output only. Human-readable description of why the Restore is in its
+     *           current state.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Timestamp of when the restore operation completed.
      *     @type int $resources_restored_count
@@ -185,13 +195,13 @@ class Restore extends \Google\Protobuf\Internal\Message
      *     @type int $resources_excluded_count
      *           Output only. Number of resources excluded during the restore execution.
      *     @type int $resources_failed_count
-     *           Output only. Number of resources that failed to be restored during the restore
-     *           execution.
+     *           Output only. Number of resources that failed to be restored during the
+     *           restore execution.
      *     @type int $volumes_restored_count
      *           Output only. Number of volumes restored during the restore execution.
      *     @type string $etag
-     *           Output only. `etag` is used for optimistic concurrency control as a way to help
-     *           prevent simultaneous updates of a restore from overwriting each other.
+     *           Output only. `etag` is used for optimistic concurrency control as a way to
+     *           help prevent simultaneous updates of a restore from overwriting each other.
      *           It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform restore updates in order to avoid
      *           race conditions: An `etag` is returned in the response to `GetRestore`,
@@ -207,7 +217,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the Restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -219,7 +229,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the Restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -362,10 +372,12 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
-     * will restore. Note that this Backup must be a sub-resource of the
-     * RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;.
+     * Required. Immutable. A reference to the
+     * [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+     * this Restore will restore. Note that this Backup must be a sub-resource of
+     * the RestorePlan's
+     * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -376,10 +388,12 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
-     * will restore. Note that this Backup must be a sub-resource of the
-     * RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;.
+     * Required. Immutable. A reference to the
+     * [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+     * this Restore will restore. Note that this Backup must be a sub-resource of
+     * the RestorePlan's
+     * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -396,9 +410,10 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
-     * Inherited from parent RestorePlan's [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * Inherited from parent RestorePlan's
+     * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -411,9 +426,10 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
-     * Inherited from parent RestorePlan's [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * Inherited from parent RestorePlan's
+     * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -428,7 +444,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Configuration of the Restore.  Inherited from parent RestorePlan's
+     * Output only. Configuration of the Restore.  Inherited from parent
+     * RestorePlan's
      * [restore_config][google.cloud.gkebackup.v1.RestorePlan.restore_config].
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig restore_config = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -450,7 +467,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Configuration of the Restore.  Inherited from parent RestorePlan's
+     * Output only. Configuration of the Restore.  Inherited from parent
+     * RestorePlan's
      * [restore_config][google.cloud.gkebackup.v1.RestorePlan.restore_config].
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig restore_config = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -518,7 +536,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable description of why the Restore is in its current state.
+     * Output only. Human-readable description of why the Restore is in its
+     * current state.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -529,7 +548,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable description of why the Restore is in its current state.
+     * Output only. Human-readable description of why the Restore is in its
+     * current state.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -632,8 +652,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Number of resources that failed to be restored during the restore
-     * execution.
+     * Output only. Number of resources that failed to be restored during the
+     * restore execution.
      *
      * Generated from protobuf field <code>int32 resources_failed_count = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -644,8 +664,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Number of resources that failed to be restored during the restore
-     * execution.
+     * Output only. Number of resources that failed to be restored during the
+     * restore execution.
      *
      * Generated from protobuf field <code>int32 resources_failed_count = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -686,8 +706,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestore`,
@@ -704,8 +724,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a restore from overwriting each other.
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a restore from overwriting each other.
      * It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform restore updates in order to avoid
      * race conditions: An `etag` is returned in the response to `GetRestore`,

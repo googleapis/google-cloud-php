@@ -32,7 +32,7 @@ use Google\Cloud\GkeBackup\V1\RestorePlan;
  * Retrieve the details of a single RestorePlan.
  *
  * @param string $formattedName Fully qualified RestorePlan name.
- *                              Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                              Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                              Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
  */
 function get_restore_plan_sample(string $formattedName): void
