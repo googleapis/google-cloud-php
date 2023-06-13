@@ -71,7 +71,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\PipelineServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -541,6 +542,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::cancelPipelineJobAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/cancel_pipeline_job.php
+     *
      * @param CancelPipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -576,6 +579,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::cancelTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/cancel_training_pipeline.php
+     *
      * @param CancelTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -597,6 +602,8 @@ abstract class PipelineServiceBaseClient
      * Creates a PipelineJob. A PipelineJob will run immediately when created.
      *
      * The async variant is {@see self::createPipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/create_pipeline_job.php
      *
      * @param CreatePipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -623,6 +630,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::createTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/create_training_pipeline.php
+     *
      * @param CreateTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -646,6 +655,8 @@ abstract class PipelineServiceBaseClient
      * Deletes a PipelineJob.
      *
      * The async variant is {@see self::deletePipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/delete_pipeline_job.php
      *
      * @param DeletePipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -671,6 +682,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::deleteTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/delete_training_pipeline.php
+     *
      * @param DeleteTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -694,6 +707,8 @@ abstract class PipelineServiceBaseClient
      * Gets a PipelineJob.
      *
      * The async variant is {@see self::getPipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_pipeline_job.php
      *
      * @param GetPipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -719,6 +734,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::getTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/get_training_pipeline.php
+     *
      * @param GetTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -742,6 +759,8 @@ abstract class PipelineServiceBaseClient
      * Lists PipelineJobs in a Location.
      *
      * The async variant is {@see self::listPipelineJobsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/list_pipeline_jobs.php
      *
      * @param ListPipelineJobsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -767,6 +786,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::listTrainingPipelinesAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/list_training_pipelines.php
+     *
      * @param ListTrainingPipelinesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -790,6 +811,8 @@ abstract class PipelineServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -815,6 +838,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -839,6 +864,8 @@ abstract class PipelineServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -867,6 +894,8 @@ abstract class PipelineServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -897,6 +926,8 @@ abstract class PipelineServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

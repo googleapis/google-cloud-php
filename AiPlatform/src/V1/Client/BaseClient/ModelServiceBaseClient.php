@@ -79,7 +79,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\ModelServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -466,6 +467,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::batchImportEvaluatedAnnotationsAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/batch_import_evaluated_annotations.php
+     *
      * @param BatchImportEvaluatedAnnotationsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -489,6 +492,8 @@ abstract class ModelServiceBaseClient
      * Imports a list of externally generated ModelEvaluationSlice.
      *
      * The async variant is {@see self::batchImportModelEvaluationSlicesAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/batch_import_model_evaluation_slices.php
      *
      * @param BatchImportModelEvaluationSlicesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -518,6 +523,8 @@ abstract class ModelServiceBaseClient
      * depends on remain accessible.
      *
      * The async variant is {@see self::copyModelAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/copy_model.php
      *
      * @param CopyModelRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -550,6 +557,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::deleteModelAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/delete_model.php
+     *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -580,6 +589,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::deleteModelVersionAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/delete_model_version.php
+     *
      * @param DeleteModelVersionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -607,6 +618,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::exportModelAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/export_model.php
+     *
      * @param ExportModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -630,6 +643,8 @@ abstract class ModelServiceBaseClient
      * Gets a Model.
      *
      * The async variant is {@see self::getModelAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/get_model.php
      *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -655,6 +670,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::getModelEvaluationAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/get_model_evaluation.php
+     *
      * @param GetModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -678,6 +695,8 @@ abstract class ModelServiceBaseClient
      * Gets a ModelEvaluationSlice.
      *
      * The async variant is {@see self::getModelEvaluationSliceAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/get_model_evaluation_slice.php
      *
      * @param GetModelEvaluationSliceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -703,6 +722,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::importModelEvaluationAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/import_model_evaluation.php
+     *
      * @param ImportModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -726,6 +747,8 @@ abstract class ModelServiceBaseClient
      * Lists ModelEvaluationSlices in a ModelEvaluation.
      *
      * The async variant is {@see self::listModelEvaluationSlicesAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/list_model_evaluation_slices.php
      *
      * @param ListModelEvaluationSlicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -751,6 +774,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::listModelEvaluationsAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/list_model_evaluations.php
+     *
      * @param ListModelEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -774,6 +799,8 @@ abstract class ModelServiceBaseClient
      * Lists versions of the specified model.
      *
      * The async variant is {@see self::listModelVersionsAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/list_model_versions.php
      *
      * @param ListModelVersionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -799,6 +826,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::listModelsAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/list_models.php
+     *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -822,6 +851,8 @@ abstract class ModelServiceBaseClient
      * Merges a set of aliases for a Model version.
      *
      * The async variant is {@see self::mergeVersionAliasesAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/merge_version_aliases.php
      *
      * @param MergeVersionAliasesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -847,6 +878,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::updateModelAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/update_model.php
+     *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -870,6 +903,8 @@ abstract class ModelServiceBaseClient
      * Uploads a Model artifact into Vertex AI.
      *
      * The async variant is {@see self::uploadModelAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/upload_model.php
      *
      * @param UploadModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -895,6 +930,8 @@ abstract class ModelServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ModelServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -918,6 +955,8 @@ abstract class ModelServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -943,6 +982,8 @@ abstract class ModelServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -971,6 +1012,8 @@ abstract class ModelServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1001,6 +1044,8 @@ abstract class ModelServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

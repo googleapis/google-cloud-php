@@ -49,7 +49,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AdvisoryNotifications\V1\AdvisoryNotificationsServiceClient} for
+ * the stable implementation
  *
  * @experimental
  *
@@ -236,6 +238,8 @@ abstract class AdvisoryNotificationsServiceBaseClient
      *
      * The async variant is {@see self::getNotificationAsync()} .
      *
+     * @example samples/V1/AdvisoryNotificationsServiceClient/get_notification.php
+     *
      * @param GetNotificationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -259,6 +263,8 @@ abstract class AdvisoryNotificationsServiceBaseClient
      * Lists notifications under a given parent.
      *
      * The async variant is {@see self::listNotificationsAsync()} .
+     *
+     * @example samples/V1/AdvisoryNotificationsServiceClient/list_notifications.php
      *
      * @param ListNotificationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

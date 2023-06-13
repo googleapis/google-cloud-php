@@ -63,6 +63,10 @@ use Google\Cloud\AppEngine\V1\ListAuthorizedDomainsResponse;
  *     $authorizedDomainsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\AuthorizedDomainsClient} to use the new
+ * surface.
  */
 class AuthorizedDomainsGapicClient
 {
