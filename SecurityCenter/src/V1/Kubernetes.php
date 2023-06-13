@@ -16,42 +16,49 @@ use Google\Protobuf\Internal\GPBUtil;
 class Kubernetes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Kubernetes Pods associated with the finding. This field will contain Pod
-     * records for each container that is owned by a Pod.
+     * Kubernetes
+     * [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
+     * associated with the finding. This field contains Pod records for each
+     * container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Pod pods = 1;</code>
      */
     private $pods;
     /**
-     * Provides Kubernetes Node information.
+     * Provides Kubernetes
+     * [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes)
+     * information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
      */
     private $nodes;
     /**
-     * GKE Node Pools associated with the finding. This field will
-     * contain NodePool information for each Node, when it is available.
+     * GKE [node
+     * pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)
+     * associated with the finding. This field contains node pool information for
+     * each node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.NodePool node_pools = 3;</code>
      */
     private $node_pools;
     /**
-     * Provides Kubernetes role information for findings that involve
-     * Roles or ClusterRoles.
+     * Provides Kubernetes role information for findings that involve [Roles or
+     * ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Role roles = 4;</code>
      */
     private $roles;
     /**
      * Provides Kubernetes role binding information for findings that involve
-     * RoleBindings or ClusterRoleBindings.
+     * [RoleBindings or
+     * ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Binding bindings = 5;</code>
      */
     private $bindings;
     /**
-     * Provides information on any Kubernetes access reviews (i.e. privilege
-     * checks) relevant to the finding.
+     * Provides information on any Kubernetes access reviews (privilege checks)
+     * relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.AccessReview access_reviews = 6;</code>
      */
@@ -64,22 +71,29 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $pods
-     *           Kubernetes Pods associated with the finding. This field will contain Pod
-     *           records for each container that is owned by a Pod.
+     *           Kubernetes
+     *           [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
+     *           associated with the finding. This field contains Pod records for each
+     *           container that is owned by a Pod.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
-     *           Provides Kubernetes Node information.
+     *           Provides Kubernetes
+     *           [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes)
+     *           information.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
-     *           GKE Node Pools associated with the finding. This field will
-     *           contain NodePool information for each Node, when it is available.
+     *           GKE [node
+     *           pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)
+     *           associated with the finding. This field contains node pool information for
+     *           each node, when it is available.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $roles
-     *           Provides Kubernetes role information for findings that involve
-     *           Roles or ClusterRoles.
+     *           Provides Kubernetes role information for findings that involve [Roles or
+     *           ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
      *           Provides Kubernetes role binding information for findings that involve
-     *           RoleBindings or ClusterRoleBindings.
+     *           [RoleBindings or
+     *           ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $access_reviews
-     *           Provides information on any Kubernetes access reviews (i.e. privilege
-     *           checks) relevant to the finding.
+     *           Provides information on any Kubernetes access reviews (privilege checks)
+     *           relevant to the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,8 +102,10 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Pods associated with the finding. This field will contain Pod
-     * records for each container that is owned by a Pod.
+     * Kubernetes
+     * [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
+     * associated with the finding. This field contains Pod records for each
+     * container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Pod pods = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,8 +116,10 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Pods associated with the finding. This field will contain Pod
-     * records for each container that is owned by a Pod.
+     * Kubernetes
+     * [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
+     * associated with the finding. This field contains Pod records for each
+     * container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Pod pods = 1;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $var
@@ -116,7 +134,9 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides Kubernetes Node information.
+     * Provides Kubernetes
+     * [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes)
+     * information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -127,7 +147,9 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides Kubernetes Node information.
+     * Provides Kubernetes
+     * [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes)
+     * information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $var
@@ -142,8 +164,10 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GKE Node Pools associated with the finding. This field will
-     * contain NodePool information for each Node, when it is available.
+     * GKE [node
+     * pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)
+     * associated with the finding. This field contains node pool information for
+     * each node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.NodePool node_pools = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -154,8 +178,10 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GKE Node Pools associated with the finding. This field will
-     * contain NodePool information for each Node, when it is available.
+     * GKE [node
+     * pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)
+     * associated with the finding. This field contains node pool information for
+     * each node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.NodePool node_pools = 3;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $var
@@ -170,8 +196,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides Kubernetes role information for findings that involve
-     * Roles or ClusterRoles.
+     * Provides Kubernetes role information for findings that involve [Roles or
+     * ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Role roles = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -182,8 +208,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides Kubernetes role information for findings that involve
-     * Roles or ClusterRoles.
+     * Provides Kubernetes role information for findings that involve [Roles or
+     * ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Role roles = 4;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $var
@@ -199,7 +225,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
 
     /**
      * Provides Kubernetes role binding information for findings that involve
-     * RoleBindings or ClusterRoleBindings.
+     * [RoleBindings or
+     * ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Binding bindings = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -211,7 +238,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
 
     /**
      * Provides Kubernetes role binding information for findings that involve
-     * RoleBindings or ClusterRoleBindings.
+     * [RoleBindings or
+     * ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Binding bindings = 5;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $var
@@ -226,8 +254,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides information on any Kubernetes access reviews (i.e. privilege
-     * checks) relevant to the finding.
+     * Provides information on any Kubernetes access reviews (privilege checks)
+     * relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.AccessReview access_reviews = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -238,8 +266,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides information on any Kubernetes access reviews (i.e. privilege
-     * checks) relevant to the finding.
+     * Provides information on any Kubernetes access reviews (privilege checks)
+     * relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.AccessReview access_reviews = 6;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $var
