@@ -62,6 +62,10 @@ use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Security\PublicCA\V1beta1\Client\PublicCertificateAuthorityServiceClient}
+ * to use the new surface.
+ *
  * @experimental
  */
 class PublicCertificateAuthorityServiceGapicClient

@@ -86,6 +86,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient} to use the new
+ * surface.
  */
 class SecretManagerServiceGapicClient
 {

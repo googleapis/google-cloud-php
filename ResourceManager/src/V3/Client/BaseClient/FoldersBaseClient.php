@@ -65,7 +65,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\FoldersClient} for the stable implementation
  *
  * @experimental
  *
@@ -298,6 +299,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::createFolderAsync()} .
      *
+     * @example samples/V3/FoldersClient/create_folder.php
+     *
      * @param CreateFolderRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -332,6 +335,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::deleteFolderAsync()} .
      *
+     * @example samples/V3/FoldersClient/delete_folder.php
+     *
      * @param DeleteFolderRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -360,6 +365,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::getFolderAsync()} .
      *
+     * @example samples/V3/FoldersClient/get_folder.php
+     *
      * @param GetFolderRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -387,6 +394,8 @@ abstract class FoldersBaseClient
      * on the identified folder.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V3/FoldersClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -417,6 +426,8 @@ abstract class FoldersBaseClient
      * identified parent.
      *
      * The async variant is {@see self::listFoldersAsync()} .
+     *
+     * @example samples/V3/FoldersClient/list_folders.php
      *
      * @param ListFoldersRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -458,6 +469,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::moveFolderAsync()} .
      *
+     * @example samples/V3/FoldersClient/move_folder.php
+     *
      * @param MoveFolderRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -487,6 +500,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::searchFoldersAsync()} .
      *
+     * @example samples/V3/FoldersClient/search_folders.php
+     *
      * @param SearchFoldersRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -515,6 +530,8 @@ abstract class FoldersBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V3/FoldersClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -542,6 +559,8 @@ abstract class FoldersBaseClient
      * There are no permissions required for making this API call.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V3/FoldersClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -576,6 +595,8 @@ abstract class FoldersBaseClient
      * permission on the identified folder.
      *
      * The async variant is {@see self::undeleteFolderAsync()} .
+     *
+     * @example samples/V3/FoldersClient/undelete_folder.php
      *
      * @param UndeleteFolderRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -616,6 +637,8 @@ abstract class FoldersBaseClient
      * in the Status.details field.
      *
      * The async variant is {@see self::updateFolderAsync()} .
+     *
+     * @example samples/V3/FoldersClient/update_folder.php
      *
      * @param UpdateFolderRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
