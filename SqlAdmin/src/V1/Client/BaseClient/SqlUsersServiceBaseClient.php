@@ -173,6 +173,8 @@ abstract class SqlUsersServiceBaseClient
      *
      * The async variant is {@see self::deleteAsync()} .
      *
+     * @example samples/V1/SqlUsersServiceClient/delete.php
+     *
      * @param SqlUsersDeleteRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -196,6 +198,8 @@ abstract class SqlUsersServiceBaseClient
      * Creates a new user in a Cloud SQL instance.
      *
      * The async variant is {@see self::insertAsync()} .
+     *
+     * @example samples/V1/SqlUsersServiceClient/insert.php
      *
      * @param SqlUsersInsertRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -221,6 +225,8 @@ abstract class SqlUsersServiceBaseClient
      *
      * The async variant is {@see self::listAsync()} .
      *
+     * @example samples/V1/SqlUsersServiceClient/list.php
+     *
      * @param SqlUsersListRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -244,6 +250,8 @@ abstract class SqlUsersServiceBaseClient
      * Updates an existing user in a Cloud SQL instance.
      *
      * The async variant is {@see self::updateAsync()} .
+     *
+     * @example samples/V1/SqlUsersServiceClient/update.php
      *
      * @param SqlUsersUpdateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

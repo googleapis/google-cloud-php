@@ -174,6 +174,8 @@ abstract class SqlBackupRunsServiceBaseClient
      *
      * The async variant is {@see self::deleteAsync()} .
      *
+     * @example samples/V1/SqlBackupRunsServiceClient/delete.php
+     *
      * @param SqlBackupRunsDeleteRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -198,6 +200,8 @@ abstract class SqlBackupRunsServiceBaseClient
      *
      * The async variant is {@see self::getAsync()} .
      *
+     * @example samples/V1/SqlBackupRunsServiceClient/get.php
+     *
      * @param SqlBackupRunsGetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -221,6 +225,8 @@ abstract class SqlBackupRunsServiceBaseClient
      * Creates a new backup run on demand.
      *
      * The async variant is {@see self::insertAsync()} .
+     *
+     * @example samples/V1/SqlBackupRunsServiceClient/insert.php
      *
      * @param SqlBackupRunsInsertRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -247,6 +253,8 @@ abstract class SqlBackupRunsServiceBaseClient
      * initiation time.
      *
      * The async variant is {@see self::listAsync()} .
+     *
+     * @example samples/V1/SqlBackupRunsServiceClient/list.php
      *
      * @param SqlBackupRunsListRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
