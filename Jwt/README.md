@@ -51,9 +51,6 @@ print_r($decoded);
 $decoded = JWT::decode($jwt, new Key($key, 'HS256'), $headers = new stdClass());
 print_r($headers);
 
-print_r($decoded);
-print_r($headers);
-
 /*
  NOTE: This will now be an object instead of an associative array. To get
  an associative array, you will need to cast it as such:
