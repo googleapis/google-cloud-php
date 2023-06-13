@@ -335,11 +335,23 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $enable_k8s_beta_apis = null;
     /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig desired_security_posture_config = 124;</code>
+     */
+    private $desired_security_posture_config = null;
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      *
      * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
      */
     private $desired_enable_fqdn_network_policy = null;
+    /**
+     * The desired workload policy configuration for the autopilot cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
+     */
+    private $desired_autopilot_workload_policy_config = null;
     /**
      * Desired Beta APIs to be enabled for cluster.
      *
@@ -494,8 +506,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           'additional_pod_ranges_config' argument.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
      *           Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $desired_security_posture_config
+     *           Enable/Disable Security Posture API features for the cluster.
      *     @type bool $desired_enable_fqdn_network_policy
      *           Enable/Disable FQDN Network Policy for the cluster.
+     *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $desired_autopilot_workload_policy_config
+     *           The desired workload policy configuration for the autopilot cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
      *           Desired Beta APIs to be enabled for cluster.
      * }
@@ -2086,6 +2102,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig desired_security_posture_config = 124;</code>
+     * @return \Google\Cloud\Container\V1\SecurityPostureConfig|null
+     */
+    public function getDesiredSecurityPostureConfig()
+    {
+        return $this->desired_security_posture_config;
+    }
+
+    public function hasDesiredSecurityPostureConfig()
+    {
+        return isset($this->desired_security_posture_config);
+    }
+
+    public function clearDesiredSecurityPostureConfig()
+    {
+        unset($this->desired_security_posture_config);
+    }
+
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig desired_security_posture_config = 124;</code>
+     * @param \Google\Cloud\Container\V1\SecurityPostureConfig $var
+     * @return $this
+     */
+    public function setDesiredSecurityPostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecurityPostureConfig::class);
+        $this->desired_security_posture_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      *
      * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
@@ -2117,6 +2169,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->desired_enable_fqdn_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired workload policy configuration for the autopilot cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadPolicyConfig|null
+     */
+    public function getDesiredAutopilotWorkloadPolicyConfig()
+    {
+        return $this->desired_autopilot_workload_policy_config;
+    }
+
+    public function hasDesiredAutopilotWorkloadPolicyConfig()
+    {
+        return isset($this->desired_autopilot_workload_policy_config);
+    }
+
+    public function clearDesiredAutopilotWorkloadPolicyConfig()
+    {
+        unset($this->desired_autopilot_workload_policy_config);
+    }
+
+    /**
+     * The desired workload policy configuration for the autopilot cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadPolicyConfig $var
+     * @return $this
+     */
+    public function setDesiredAutopilotWorkloadPolicyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadPolicyConfig::class);
+        $this->desired_autopilot_workload_policy_config = $var;
 
         return $this;
     }
