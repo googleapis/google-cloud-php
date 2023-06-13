@@ -26,6 +26,8 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      */
@@ -61,6 +63,8 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *           [target_id][google.firestore.v1.ExistenceFilter.target_id].
      *           If different from the count of documents in the client that match, the
      *           client must manually determine which documents no longer match the target.
+     *           The client can use the `unchanged_names` bloom filter to assist with
+     *           this determination.
      *     @type \Google\Cloud\Firestore\V1\BloomFilter $unchanged_names
      *           A bloom filter that contains the UTF-8 byte encodings of the resource names
      *           of the documents that match
@@ -112,6 +116,8 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @return int
@@ -126,6 +132,8 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @param int $var
