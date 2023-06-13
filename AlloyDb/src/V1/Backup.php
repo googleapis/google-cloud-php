@@ -93,7 +93,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $cluster_uid = '';
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -191,7 +191,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           create this resource.
      *     @type string $cluster_name
      *           Required. The full resource name of the backup source cluster
-     *           (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     *           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *     @type bool $reconciling
      *           Output only. Reconciling (https://google.aip.dev/128#reconciliation), if
      *           true, indicates that the service is actively updating the resource. This
@@ -561,7 +561,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -573,7 +573,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

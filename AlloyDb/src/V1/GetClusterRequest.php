@@ -22,6 +22,13 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. The view of the cluster to return. Returns all default fields if
+     * not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ClusterView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $view = 0;
 
     /**
      * @param string $name Required. The name of the resource. For the required format, see the
@@ -47,6 +54,9 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the resource. For the required format, see the
      *           comment on the Cluster.name field.
+     *     @type int $view
+     *           Optional. The view of the cluster to return. Returns all default fields if
+     *           not set.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +88,34 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The view of the cluster to return. Returns all default fields if
+     * not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ClusterView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. The view of the cluster to return. Returns all default fields if
+     * not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ClusterView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\ClusterView::class);
+        $this->view = $var;
 
         return $this;
     }
