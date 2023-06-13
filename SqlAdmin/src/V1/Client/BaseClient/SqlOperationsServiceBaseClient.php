@@ -169,6 +169,8 @@ abstract class SqlOperationsServiceBaseClient
      *
      * The async variant is {@see self::getAsync()} .
      *
+     * @example samples/V1/SqlOperationsServiceClient/get.php
+     *
      * @param SqlOperationsGetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -193,6 +195,8 @@ abstract class SqlOperationsServiceBaseClient
      * SQL instance in the reverse chronological order of the start time.
      *
      * The async variant is {@see self::listAsync()} .
+     *
+     * @example samples/V1/SqlOperationsServiceClient/list.php
      *
      * @param SqlOperationsListRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
