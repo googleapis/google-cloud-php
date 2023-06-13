@@ -232,6 +232,8 @@ abstract class ReportErrorsServiceBaseClient
      *
      * The async variant is {@see self::reportErrorEventAsync()} .
      *
+     * @example samples/V1beta1/ReportErrorsServiceClient/report_error_event.php
+     *
      * @param ReportErrorEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.

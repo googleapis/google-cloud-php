@@ -223,6 +223,8 @@ abstract class ErrorGroupServiceBaseClient
      *
      * The async variant is {@see self::getGroupAsync()} .
      *
+     * @example samples/V1beta1/ErrorGroupServiceClient/get_group.php
+     *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -249,6 +251,8 @@ abstract class ErrorGroupServiceBaseClient
      * Fails if the group does not exist.
      *
      * The async variant is {@see self::updateGroupAsync()} .
+     *
+     * @example samples/V1beta1/ErrorGroupServiceClient/update_group.php
      *
      * @param UpdateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

@@ -177,6 +177,8 @@ abstract class GatewayServiceBaseClient
      *
      * The async variant is {@see self::deleteResourceAsync()} .
      *
+     * @example samples/V1beta1/GatewayServiceClient/delete_resource.php
+     *
      * @param HttpBody $request     A request to house fields associated with the call.
      * @param array    $callOptions {
      *     Optional.
@@ -202,6 +204,8 @@ abstract class GatewayServiceBaseClient
      * GetResource performs an HTTP GET request on the Kubernetes API Server.
      *
      * The async variant is {@see self::getResourceAsync()} .
+     *
+     * @example samples/V1beta1/GatewayServiceClient/get_resource.php
      *
      * @param HttpBody $request     A request to house fields associated with the call.
      * @param array    $callOptions {
@@ -229,6 +233,8 @@ abstract class GatewayServiceBaseClient
      *
      * The async variant is {@see self::patchResourceAsync()} .
      *
+     * @example samples/V1beta1/GatewayServiceClient/patch_resource.php
+     *
      * @param HttpBody $request     A request to house fields associated with the call.
      * @param array    $callOptions {
      *     Optional.
@@ -255,6 +261,8 @@ abstract class GatewayServiceBaseClient
      *
      * The async variant is {@see self::postResourceAsync()} .
      *
+     * @example samples/V1beta1/GatewayServiceClient/post_resource.php
+     *
      * @param HttpBody $request     A request to house fields associated with the call.
      * @param array    $callOptions {
      *     Optional.
@@ -280,6 +288,8 @@ abstract class GatewayServiceBaseClient
      * PutResource performs an HTTP PUT on the Kubernetes API Server.
      *
      * The async variant is {@see self::putResourceAsync()} .
+     *
+     * @example samples/V1beta1/GatewayServiceClient/put_resource.php
      *
      * @param HttpBody $request     A request to house fields associated with the call.
      * @param array    $callOptions {

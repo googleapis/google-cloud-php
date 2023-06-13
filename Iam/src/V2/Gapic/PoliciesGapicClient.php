@@ -84,6 +84,9 @@ use Google\LongRunning\Operation;
  *     $policiesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Iam\V2\Client\PoliciesClient} to use the new surface.
  */
 class PoliciesGapicClient
 {

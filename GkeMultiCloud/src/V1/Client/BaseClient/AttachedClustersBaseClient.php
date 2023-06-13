@@ -62,7 +62,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -311,6 +313,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::createAttachedClusterAsync()} .
      *
+     * @example samples/V1/AttachedClustersClient/create_attached_cluster.php
+     *
      * @param CreateAttachedClusterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -340,6 +344,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::deleteAttachedClusterAsync()} .
      *
+     * @example samples/V1/AttachedClustersClient/delete_attached_cluster.php
+     *
      * @param DeleteAttachedClusterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -364,6 +370,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::generateAttachedClusterInstallManifestAsync()}
      * .
+     *
+     * @example samples/V1/AttachedClustersClient/generate_attached_cluster_install_manifest.php
      *
      * @param GenerateAttachedClusterInstallManifestRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
@@ -390,6 +398,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::getAttachedClusterAsync()} .
      *
+     * @example samples/V1/AttachedClustersClient/get_attached_cluster.php
+     *
      * @param GetAttachedClusterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -414,6 +424,8 @@ abstract class AttachedClustersBaseClient
      * Google Cloud location.
      *
      * The async variant is {@see self::getAttachedServerConfigAsync()} .
+     *
+     * @example samples/V1/AttachedClustersClient/get_attached_server_config.php
      *
      * @param GetAttachedServerConfigRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -448,6 +460,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::importAttachedClusterAsync()} .
      *
+     * @example samples/V1/AttachedClustersClient/import_attached_cluster.php
+     *
      * @param ImportAttachedClusterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -473,6 +487,8 @@ abstract class AttachedClustersBaseClient
      *
      * The async variant is {@see self::listAttachedClustersAsync()} .
      *
+     * @example samples/V1/AttachedClustersClient/list_attached_clusters.php
+     *
      * @param ListAttachedClustersRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -497,6 +513,8 @@ abstract class AttachedClustersBaseClient
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster].
      *
      * The async variant is {@see self::updateAttachedClusterAsync()} .
+     *
+     * @example samples/V1/AttachedClustersClient/update_attached_cluster.php
      *
      * @param UpdateAttachedClusterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
