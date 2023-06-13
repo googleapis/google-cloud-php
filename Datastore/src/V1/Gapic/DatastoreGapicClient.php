@@ -80,6 +80,9 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
  *     $datastoreClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastore\V1\Client\DatastoreClient} to use the new surface.
  */
 class DatastoreGapicClient
 {

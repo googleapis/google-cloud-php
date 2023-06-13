@@ -60,7 +60,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Dataplex\V1\ContentServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -259,6 +260,8 @@ abstract class ContentServiceBaseClient
      *
      * The async variant is {@see self::createContentAsync()} .
      *
+     * @example samples/V1/ContentServiceClient/create_content.php
+     *
      * @param CreateContentRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -283,6 +286,8 @@ abstract class ContentServiceBaseClient
      *
      * The async variant is {@see self::deleteContentAsync()} .
      *
+     * @example samples/V1/ContentServiceClient/delete_content.php
+     *
      * @param DeleteContentRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -304,6 +309,8 @@ abstract class ContentServiceBaseClient
      * Get a content resource.
      *
      * The async variant is {@see self::getContentAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/get_content.php
      *
      * @param GetContentRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -334,6 +341,8 @@ abstract class ContentServiceBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V1/ContentServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -357,6 +366,8 @@ abstract class ContentServiceBaseClient
      * List content.
      *
      * The async variant is {@see self::listContentAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/list_content.php
      *
      * @param ListContentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -385,6 +396,8 @@ abstract class ContentServiceBaseClient
      * on the resource.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -419,6 +432,8 @@ abstract class ContentServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/ContentServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -442,6 +457,8 @@ abstract class ContentServiceBaseClient
      * Update a content. Only supports full resource update.
      *
      * The async variant is {@see self::updateContentAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/update_content.php
      *
      * @param UpdateContentRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -467,6 +484,8 @@ abstract class ContentServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ContentServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -490,6 +509,8 @@ abstract class ContentServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
