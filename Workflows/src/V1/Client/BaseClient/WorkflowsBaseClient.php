@@ -281,6 +281,8 @@ abstract class WorkflowsBaseClient
      *
      * The async variant is {@see self::createWorkflowAsync()} .
      *
+     * @example samples/V1/WorkflowsClient/create_workflow.php
+     *
      * @param CreateWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -307,6 +309,8 @@ abstract class WorkflowsBaseClient
      *
      * The async variant is {@see self::deleteWorkflowAsync()} .
      *
+     * @example samples/V1/WorkflowsClient/delete_workflow.php
+     *
      * @param DeleteWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -330,6 +334,8 @@ abstract class WorkflowsBaseClient
      * Gets details of a single Workflow.
      *
      * The async variant is {@see self::getWorkflowAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/get_workflow.php
      *
      * @param GetWorkflowRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -355,6 +361,8 @@ abstract class WorkflowsBaseClient
      * The default order is not specified.
      *
      * The async variant is {@see self::listWorkflowsAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/list_workflows.php
      *
      * @param ListWorkflowsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -383,6 +391,8 @@ abstract class WorkflowsBaseClient
      * in new workflow executions.
      *
      * The async variant is {@see self::updateWorkflowAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/update_workflow.php
      *
      * @param UpdateWorkflowRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
