@@ -307,6 +307,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::createRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/create_runtime.php
+     *
      * @param CreateRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -331,6 +333,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::deleteRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/delete_runtime.php
+     *
      * @param DeleteRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -354,6 +358,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Creates a Diagnostic File and runs Diagnostic Tool given a Runtime.
      *
      * The async variant is {@see self::diagnoseRuntimeAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/diagnose_runtime.php
      *
      * @param DiagnoseRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -380,6 +386,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::getRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/get_runtime.php
+     *
      * @param GetRuntimeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -403,6 +411,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Lists Runtimes in a given project and location.
      *
      * The async variant is {@see self::listRuntimesAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/list_runtimes.php
      *
      * @param ListRuntimesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -429,6 +439,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::refreshRuntimeTokenInternalAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/refresh_runtime_token_internal.php
+     *
      * @param RefreshRuntimeTokenInternalRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -453,6 +465,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::reportRuntimeEventAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/report_runtime_event.php
+     *
      * @param ReportRuntimeEventRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -476,6 +490,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Resets a Managed Notebook Runtime.
      *
      * The async variant is {@see self::resetRuntimeAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/reset_runtime.php
      *
      * @param ResetRuntimeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -505,6 +521,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::startRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/start_runtime.php
+     *
      * @param StartRuntimeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -533,6 +551,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::stopRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/stop_runtime.php
+     *
      * @param StopRuntimeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -556,6 +576,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Switch a Managed Notebook Runtime.
      *
      * The async variant is {@see self::switchRuntimeAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/switch_runtime.php
      *
      * @param SwitchRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -581,6 +603,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::updateRuntimeAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/update_runtime.php
+     *
      * @param UpdateRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -604,6 +628,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Upgrades a Managed Notebook Runtime to the latest version.
      *
      * The async variant is {@see self::upgradeRuntimeAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/upgrade_runtime.php
      *
      * @param UpgradeRuntimeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -629,6 +655,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ManagedNotebookServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -652,6 +680,8 @@ abstract class ManagedNotebookServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -677,6 +707,8 @@ abstract class ManagedNotebookServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -705,6 +737,8 @@ abstract class ManagedNotebookServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -735,6 +769,8 @@ abstract class ManagedNotebookServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ManagedNotebookServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

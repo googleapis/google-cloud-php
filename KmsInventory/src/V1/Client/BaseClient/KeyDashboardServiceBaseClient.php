@@ -47,7 +47,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Kms\Inventory\V1\KeyDashboardServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -212,6 +214,8 @@ abstract class KeyDashboardServiceBaseClient
      * completely reflect the actual state of key metadata at call time.
      *
      * The async variant is {@see self::listCryptoKeysAsync()} .
+     *
+     * @example samples/V1/KeyDashboardServiceClient/list_crypto_keys.php
      *
      * @param ListCryptoKeysRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
