@@ -166,6 +166,8 @@ abstract class SqlFlagsServiceBaseClient
      *
      * The async variant is {@see self::listAsync()} .
      *
+     * @example samples/V1/SqlFlagsServiceClient/list.php
+     *
      * @param SqlFlagsListRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
