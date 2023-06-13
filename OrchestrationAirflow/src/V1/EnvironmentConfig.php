@@ -157,6 +157,14 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.RecoveryConfig recovery_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $recovery_config = null;
+    /**
+     * Optional. Resilience mode of the Cloud Composer Environment.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.2.0-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.ResilienceMode resilience_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resilience_mode = 0;
 
     /**
      * Constructor.
@@ -238,6 +246,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The Recovery settings configuration of an environment.
      *           This field is supported for Cloud Composer environments in versions
      *           composer-2.*.*-airflow-*.*.* and newer.
+     *     @type int $resilience_mode
+     *           Optional. Resilience mode of the Cloud Composer Environment.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-2.2.0-airflow-*.*.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -873,6 +885,36 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\RecoveryConfig::class);
         $this->recovery_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resilience mode of the Cloud Composer Environment.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.2.0-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.ResilienceMode resilience_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getResilienceMode()
+    {
+        return $this->resilience_mode;
+    }
+
+    /**
+     * Optional. Resilience mode of the Cloud Composer Environment.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-2.2.0-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.ResilienceMode resilience_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResilienceMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig\ResilienceMode::class);
+        $this->resilience_mode = $var;
 
         return $this;
     }
