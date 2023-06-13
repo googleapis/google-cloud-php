@@ -40,11 +40,6 @@
                                 "createSecondaryInstance"
                             ]
                         },
-                        "CreateUser": {
-                            "methods": [
-                                "createUser"
-                            ]
-                        },
                         "DeleteBackup": {
                             "methods": [
                                 "deleteBackup"
@@ -58,11 +53,6 @@
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
-                            ]
-                        },
-                        "DeleteUser": {
-                            "methods": [
-                                "deleteUser"
                             ]
                         },
                         "FailoverInstance": {
@@ -95,16 +85,6 @@
                                 "getInstance"
                             ]
                         },
-                        "GetUser": {
-                            "methods": [
-                                "getUser"
-                            ]
-                        },
-                        "InjectFault": {
-                            "methods": [
-                                "injectFault"
-                            ]
-                        },
                         "ListBackups": {
                             "methods": [
                                 "listBackups"
@@ -123,11 +103,6 @@
                         "ListSupportedDatabaseFlags": {
                             "methods": [
                                 "listSupportedDatabaseFlags"
-                            ]
-                        },
-                        "ListUsers": {
-                            "methods": [
-                                "listUsers"
                             ]
                         },
                         "PromoteCluster": {
@@ -158,11 +133,6 @@
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"
-                            ]
-                        },
-                        "UpdateUser": {
-                            "methods": [
-                                "updateUser"
                             ]
                         },
                         "GetLocation": {
