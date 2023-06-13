@@ -73,6 +73,9 @@ use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
  *     $addressesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\AddressesClient} to use the new surface.
  */
 class AddressesGapicClient
 {

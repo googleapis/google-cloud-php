@@ -83,6 +83,9 @@ use Google\Cloud\Compute\V1\UpdateFirewallRequest;
  *     $firewallsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\FirewallsClient} to use the new surface.
  */
 class FirewallsGapicClient
 {

@@ -54,6 +54,10 @@ use Google\Cloud\Compute\V1\OperationList;
  *     $globalOrganizationOperationsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\GlobalOrganizationOperationsClient} to use the
+ * new surface.
  */
 class GlobalOrganizationOperationsGapicClient
 {

@@ -54,6 +54,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $licenseCodesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\LicenseCodesClient} to use the new surface.
  */
 class LicenseCodesGapicClient
 {

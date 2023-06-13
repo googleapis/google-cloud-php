@@ -86,6 +86,10 @@ use Google\Cloud\Compute\V1\TargetReference;
  *     $globalForwardingRulesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\GlobalForwardingRulesClient} to use the new
+ * surface.
  */
 class GlobalForwardingRulesGapicClient
 {

@@ -75,7 +75,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BeyondCorp\AppGateways\V1\AppGatewaysServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -301,6 +303,8 @@ abstract class AppGatewaysServiceBaseClient
      *
      * The async variant is {@see self::createAppGatewayAsync()} .
      *
+     * @example samples/V1/AppGatewaysServiceClient/create_app_gateway.php
+     *
      * @param CreateAppGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -324,6 +328,8 @@ abstract class AppGatewaysServiceBaseClient
      * Deletes a single AppGateway.
      *
      * The async variant is {@see self::deleteAppGatewayAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/delete_app_gateway.php
      *
      * @param DeleteAppGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -349,6 +355,8 @@ abstract class AppGatewaysServiceBaseClient
      *
      * The async variant is {@see self::getAppGatewayAsync()} .
      *
+     * @example samples/V1/AppGatewaysServiceClient/get_app_gateway.php
+     *
      * @param GetAppGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -372,6 +380,8 @@ abstract class AppGatewaysServiceBaseClient
      * Lists AppGateways in a given project and location.
      *
      * The async variant is {@see self::listAppGatewaysAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/list_app_gateways.php
      *
      * @param ListAppGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -397,6 +407,8 @@ abstract class AppGatewaysServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/AppGatewaysServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -420,6 +432,8 @@ abstract class AppGatewaysServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -445,6 +459,8 @@ abstract class AppGatewaysServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -473,6 +489,8 @@ abstract class AppGatewaysServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -503,6 +521,8 @@ abstract class AppGatewaysServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AppGatewaysServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
