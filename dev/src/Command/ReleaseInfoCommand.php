@@ -38,7 +38,7 @@ class ReleaseInfoCommand extends Command
     private Client $httpClient;
 
     /**
-     * @param string $rootPath The path to the repository root directory.
+     * @param Client $httpClient specify the HTTP client, useful for testing
      */
     public function __construct(Client $httpClient = null)
     {
