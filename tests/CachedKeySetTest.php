@@ -94,8 +94,6 @@ class CachedKeySetTest extends TestCase
         $this->expectExceptionMessage('HTTP Error: 404 URL not found');
         $this->expectExceptionCode(404);
 
-        $body = $this->prophesize('Psr\Http\Message\StreamInterface');
-
         $response = $this->prophesize('Psr\Http\Message\ResponseInterface');
         $response->getStatusCode()
             ->shouldBeCalled()
