@@ -26,7 +26,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * The minimum CPU platform.
      * See
      * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      */
@@ -71,7 +70,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           The minimum CPU platform.
      *           See
      *           https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
-     *           Not yet implemented.
      *     @type int $provisioning_model
      *           The provisioning model.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
@@ -120,7 +118,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * The minimum CPU platform.
      * See
      * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      * @return string
@@ -134,7 +131,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * The minimum CPU platform.
      * See
      * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      * @param string $var

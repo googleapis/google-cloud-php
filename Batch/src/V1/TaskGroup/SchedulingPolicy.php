@@ -61,6 +61,4 @@ class SchedulingPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchedulingPolicy::class, \Google\Cloud\Batch\V1\TaskGroup_SchedulingPolicy::class);
 
