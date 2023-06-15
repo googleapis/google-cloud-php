@@ -28,6 +28,7 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Channel\V1\ActivateEntitlementRequest;
+use Google\Cloud\Channel\V1\BillableSku;
 use Google\Cloud\Channel\V1\CancelEntitlementRequest;
 use Google\Cloud\Channel\V1\ChangeOfferRequest;
 use Google\Cloud\Channel\V1\ChangeParametersRequest;
@@ -76,6 +77,10 @@ use Google\Cloud\Channel\V1\ListPurchasableOffersRequest;
 use Google\Cloud\Channel\V1\ListPurchasableOffersResponse;
 use Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupsRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupsResponse;
 use Google\Cloud\Channel\V1\ListSkusRequest;
 use Google\Cloud\Channel\V1\ListSkusResponse;
 use Google\Cloud\Channel\V1\ListSubscribersRequest;
@@ -97,6 +102,7 @@ use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
 use Google\Cloud\Channel\V1\Sku;
+use Google\Cloud\Channel\V1\SkuGroup;
 use Google\Cloud\Channel\V1\StartPaidServiceRequest;
 use Google\Cloud\Channel\V1\SuspendEntitlementRequest;
 use Google\Cloud\Channel\V1\TransferEntitlementsRequest;
@@ -2690,6 +2696,150 @@ class CloudChannelServiceClientTest extends GeneratedTest
             ->setCustomer($formattedCustomer);
         try {
             $gapicClient->listPurchasableSkus($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupBillableSkusTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $billableSkusElement = new BillableSku();
+        $billableSkus = [
+            $billableSkusElement,
+        ];
+        $expectedResponse = new ListSkuGroupBillableSkusResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBillableSkus($billableSkus);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+        $request = (new ListSkuGroupBillableSkusRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listSkuGroupBillableSkus($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBillableSkus()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroupBillableSkus', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupBillableSkusExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+        $request = (new ListSkuGroupBillableSkusRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listSkuGroupBillableSkus($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $skuGroupsElement = new SkuGroup();
+        $skuGroups = [
+            $skuGroupsElement,
+        ];
+        $expectedResponse = new ListSkuGroupsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSkuGroups($skuGroups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListSkuGroupsRequest())
+            ->setParent($parent);
+        $response = $gapicClient->listSkuGroups($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSkuGroups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSkuGroupsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListSkuGroupsRequest())
+            ->setParent($parent);
+        try {
+            $gapicClient->listSkuGroups($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
