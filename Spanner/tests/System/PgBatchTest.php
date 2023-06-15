@@ -20,27 +20,24 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\KeyRange;
-use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
  * @group spanner-batch
+ * @group spanner-postgres
  */
 class PgBatchTest extends SpannerPgTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $tableName;
-    private static $dbRole;
-    private static $restrictiveDbRole;
 
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
-        self::$dbRole = 'readerRole';
-        self::$restrictiveDbRole = 'restrictiveReaderRole';
 
         self::$database->updateDdl(sprintf(
             'CREATE TABLE %s (
@@ -76,19 +73,6 @@ class PgBatchTest extends SpannerPgTestCase
         self::seedTable();
     }
 
-    private static function seedTable()
-    {
-        $decades = [1950,1960,1970,1980,1990,2000];
-        for ($i = 0; $i < 250; $i++) {
-            self::$database->insert(self::$tableName, [
-                'id' => self::randId(),
-                'decade' => array_rand($decades)
-            ], [
-                'timeoutMillis' => 50000
-            ]);
-        }
-    }
-
     public function testBatchWithDbRole()
     {
         // Emulator does not support FGAC
@@ -114,9 +98,9 @@ class PgBatchTest extends SpannerPgTestCase
             $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
 
             $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => $dbRole]);
-            $string = $batch->snapshot()->serialize();
+            $serializedSnapshot = $batch->snapshot()->serialize();
 
-            $snapshot = $batch->snapshotFromString($string);
+            $snapshot = $batch->snapshotFromString($serializedSnapshot);
 
             try {
                 $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
@@ -134,24 +118,29 @@ class PgBatchTest extends SpannerPgTestCase
         }
     }
 
-    private function dbProvider()
-    {
-        return [
-            [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
-            [self::$dbRole, null]
-        ];
-    }
-
     private function executePartitions(BatchClient $client, BatchSnapshot $snapshot, array $partitions)
     {
         $partitionResultSet = [];
         foreach ($partitions as $partition) {
-            $string = $partition->serialize();
+            $serializedPartition = $partition->serialize();
 
-            $hydrated = $client->partitionFromString($string);
-            $partitionResultSet += iterator_to_array($snapshot->executePartition($hydrated));
+            $partition = $client->partitionFromString($serializedPartition);
+            $partitionResultSet += iterator_to_array($snapshot->executePartition($partition));
         }
 
         return count($partitionResultSet);
+    }
+
+    private static function seedTable()
+    {
+        $decades = [1950,1960,1970,1980,1990,2000];
+        for ($i = 0; $i < 250; $i++) {
+            self::$database->insert(self::$tableName, [
+                'id' => self::randId(),
+                'decade' => array_rand($decades)
+            ], [
+                'timeoutMillis' => 50000
+            ]);
+        }
     }
 }

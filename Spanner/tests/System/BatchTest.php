@@ -30,17 +30,15 @@ use Google\Cloud\Core\Exception\ServiceException;
  */
 class BatchTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $tableName;
-    private static $dbRole;
-    private static $restrictiveDbRole;
 
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
-        self::$dbRole = 'readerRole';
-        self::$restrictiveDbRole = 'restrictiveReaderRole';
 
         self::$database->updateDdl(sprintf(
             'CREATE TABLE %s (
@@ -176,14 +174,6 @@ class BatchTest extends SpannerTestCase
             }
             $snapshot->close();
         }
-    }
-
-    private function dbProvider()
-    {
-        return [
-            [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
-            [self::$dbRole, null]
-        ];
     }
 
     public function testBatchWithDataBoostEnabled()

@@ -27,17 +27,19 @@ use Google\Cloud\Spanner\Date;
  */
 class PgOperationsTest extends SpannerPgTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $row = [];
 
-    private static $id1;
+    private static $id;
 
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
-        self::$id1 = rand(1000, 9999);
+        self::$id = rand(1000, 9999);
         self::$row = [
-            'id' => self::$id1,
+            'id' => self::$id,
             'name' => uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
@@ -78,7 +80,7 @@ class PgOperationsTest extends SpannerPgTestCase
             list($db, $expected) = $dbProvided;
             $error = null;
             $keySet = self::$client->keySet([
-                'keys' => [self::$id1]
+                'keys' => [self::$id]
             ]);
             $columns = ['id', 'name', 'birthday'];
 
@@ -90,42 +92,11 @@ class PgOperationsTest extends SpannerPgTestCase
             }
 
             if ($expected === null) {
-                $this->assertEquals(self::$id1, $row['id']);
+                $this->assertEquals(self::$id, $row['id']);
             } else {
                 $this->assertInstanceOf(ServiceException::class, $error);
                 $this->assertEquals($error->getServiceException()->getStatus(), $expected);
             }
         }
-    }
-
-    public function insertDbProvider()
-    {
-        return [
-            [
-                self::$dbWithRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime('2000-01-01'))
-                ],
-                'PERMISSION_DENIED'
-            ],
-            [
-                self::$dbWithSessionPoolRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX)
-                ],
-                null
-            ]
-        ];
-    }
-
-    public function readDbProvider()
-    {
-        return [
-            [self::$dbWithReaderRole, null],
-            [self::$dbWithRestrictiveRole, 'PERMISSION_DENIED']
-        ];
     }
 }

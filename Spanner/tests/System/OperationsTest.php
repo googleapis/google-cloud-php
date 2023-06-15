@@ -26,6 +26,8 @@ use Google\Cloud\Core\Exception\ServiceException;
  */
 class OperationsTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $id1;
     private static $id2;
     private static $name1;
@@ -243,37 +245,6 @@ class OperationsTest extends SpannerTestCase
                 $this->assertEquals($error->getServiceException()->getStatus(), $expected);
             }
         }
-    }
-
-    private function insertDbProvider()
-    {
-        return [
-            [
-                self::$dbWithRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime('2000-01-01'))
-                ],
-                'PERMISSION_DENIED'
-            ],
-            [
-                self::$dbWithSessionPoolRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX)
-                ],
-                null
-            ]
-        ];
-    }
-
-    private function readDbProvider()
-    {
-        return [
-            [self::$dbWithReaderRole, null],
-            [self::$dbWithRestrictiveRole, 'PERMISSION_DENIED']
-        ];
     }
 
     private function getRow()

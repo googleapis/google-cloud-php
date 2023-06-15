@@ -29,6 +29,8 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class PgTransactionTest extends SpannerPgTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $row = [];
 
     private static $tableName;
@@ -149,29 +151,6 @@ class PgTransactionTest extends SpannerPgTestCase
                 $this->assertEquals($error->getServiceException()->getStatus(), $expected);
             }
         }
-    }
-
-    private function insertDbProvider()
-    {
-        return [
-            [
-                self::$dbWithRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime('2000-01-01'))
-                ],
-                'PERMISSION_DENIED'
-            ],
-            [
-                self::$dbWithSessionPoolRestrictiveRole,
-                [
-                    'id' => rand(1, 346464),
-                    'name' => uniqid(self::TESTING_PREFIX)
-                ],
-                null
-            ]
-        ];
     }
 
     private function readArgs()

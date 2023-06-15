@@ -43,9 +43,9 @@ class SpannerTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-    protected static $dbWithReaderRole;
-    protected static $dbWithRestrictiveRole;
-    protected static $dbWithSessionPoolRestrictiveRole;
+    public static $dbWithReaderRole;
+    public static $dbWithRestrictiveRole;
+    public static $dbWithSessionPoolRestrictiveRole;
 
     private static $hasSetUp = false;
 
