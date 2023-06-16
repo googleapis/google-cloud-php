@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the delete processor method.
+ * Request message for the
+ * [DeleteProcessor][google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DeleteProcessorRequest</code>
  */

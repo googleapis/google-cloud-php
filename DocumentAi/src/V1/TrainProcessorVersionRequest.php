@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the create processor version method.
+ * Request message for the
+ * [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.TrainProcessorVersionRequest</code>
  */
@@ -36,7 +38,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      */
     private $document_schema = null;
     /**
-     * Optional. The input data used to train the `ProcessorVersion`.
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -83,7 +86,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
      *           Optional. The schema the processor version will be trained with.
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData $input_data
-     *           Optional. The input data used to train the `ProcessorVersion`.
+     *           Optional. The input data used to train the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *     @type string $base_processor_version
      *           Optional. The processor version to use as a base for training. This
      *           processor version must be a child of `parent`. Format:
@@ -198,7 +202,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input data used to train the `ProcessorVersion`.
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData|null
@@ -219,7 +224,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input data used to train the `ProcessorVersion`.
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData $var

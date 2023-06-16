@@ -61,6 +61,12 @@ class State
      * Generated from protobuf enum <code>FAILED = 7;</code>
      */
     const FAILED = 7;
+    /**
+     * The processor version is being imported.
+     *
+     * Generated from protobuf enum <code>IMPORTING = 8;</code>
+     */
+    const IMPORTING = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -71,6 +77,7 @@ class State
         self::CREATING => 'CREATING',
         self::DELETING => 'DELETING',
         self::FAILED => 'FAILED',
+        self::IMPORTING => 'IMPORTING',
     ];
 
     public static function name($value)

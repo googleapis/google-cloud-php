@@ -10,10 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A processor version is an implementation of a processor. Each processor
- * can have multiple versions, pre-trained by Google internally or up-trained
- * by the customer. At a time, a processor can only have one default version
- * version. So the processor's behavior (when processing documents) is defined
- * by a default version
+ * can have multiple versions, pretrained by Google internally or uptrained
+ * by the customer. A processor can only have one default version at a time.
+ * Its document-processing behavior is defined by that version.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessorVersion</code>
  */
@@ -70,7 +69,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_version_name = '';
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Denotes that this `ProcessorVersion` is managed by Google.
      *
      * Generated from protobuf field <code>bool google_managed = 11;</code>
      */
@@ -107,7 +106,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_version_name
      *           The KMS key version with which data is encrypted.
      *     @type bool $google_managed
-     *           Denotes that this ProcessorVersion is managed by google.
+     *           Denotes that this `ProcessorVersion` is managed by Google.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $deprecation_info
      *           If set, information about the eventual deprecation of this version.
      * }
@@ -360,7 +359,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Denotes that this `ProcessorVersion` is managed by Google.
      *
      * Generated from protobuf field <code>bool google_managed = 11;</code>
      * @return bool
@@ -371,7 +370,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Denotes that this `ProcessorVersion` is managed by Google.
      *
      * Generated from protobuf field <code>bool google_managed = 11;</code>
      * @param bool $var

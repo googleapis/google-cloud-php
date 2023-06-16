@@ -20,7 +20,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 font_size = 1;</code>
      */
-    protected $font_size = 0;
+    private $font_size = 0;
     /**
      * Font size in pixels, equal to _unrounded
      * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
@@ -28,19 +28,19 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      */
-    protected $pixel_font_size = 0.0;
+    private $pixel_font_size = 0.0;
     /**
      * Letter spacing in points.
      *
      * Generated from protobuf field <code>double letter_spacing = 3;</code>
      */
-    protected $letter_spacing = 0.0;
+    private $letter_spacing = 0.0;
     /**
      * Name or style of the font.
      *
      * Generated from protobuf field <code>string font_type = 4;</code>
      */
-    protected $font_type = '';
+    private $font_type = '';
     /**
      * Whether the text is bold (equivalent to
      * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
@@ -48,68 +48,68 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      */
-    protected $bold = false;
+    private $bold = false;
     /**
      * Whether the text is italic.
      *
      * Generated from protobuf field <code>bool italic = 6;</code>
      */
-    protected $italic = false;
+    private $italic = false;
     /**
      * Whether the text is underlined.
      *
      * Generated from protobuf field <code>bool underlined = 7;</code>
      */
-    protected $underlined = false;
+    private $underlined = false;
     /**
      * Whether the text is strikethrough.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      */
-    protected $strikeout = false;
+    private $strikeout = false;
     /**
      * Whether the text is a subscript.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      */
-    protected $subscript = false;
+    private $subscript = false;
     /**
      * Whether the text is a superscript.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      */
-    protected $superscript = false;
+    private $superscript = false;
     /**
      * Whether the text is in small caps.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      */
-    protected $smallcaps = false;
+    private $smallcaps = false;
     /**
      * TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy).
      * Normal is `400`, bold is `700`.
      *
      * Generated from protobuf field <code>int32 font_weight = 12;</code>
      */
-    protected $font_weight = 0;
+    private $font_weight = 0;
     /**
      * Whether the text is handwritten.
      *
      * Generated from protobuf field <code>bool handwritten = 13;</code>
      */
-    protected $handwritten = false;
+    private $handwritten = false;
     /**
      * Color of the text.
      *
      * Generated from protobuf field <code>.google.type.Color text_color = 14;</code>
      */
-    protected $text_color = null;
+    private $text_color = null;
     /**
      * Color of the background.
      *
      * Generated from protobuf field <code>.google.type.Color background_color = 15;</code>
      */
-    protected $background_color = null;
+    private $background_color = null;
 
     /**
      * Constructor.
@@ -581,6 +581,4 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StyleInfo::class, \Google\Cloud\DocumentAI\V1\Document_Page_Token_StyleInfo::class);
 

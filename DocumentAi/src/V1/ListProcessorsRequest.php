@@ -24,8 +24,8 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The maximum number of processors to return.
-     * If unspecified, at most 50 processors will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `50` processors will be returned.
+     * The maximum value is `100`. Values above `100` will be coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -64,8 +64,8 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
      *           Processors. Format: `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           The maximum number of processors to return.
-     *           If unspecified, at most 50 processors will be returned.
-     *           The maximum value is 100; values above 100 will be coerced to 100.
+     *           If unspecified, at most `50` processors will be returned.
+     *           The maximum value is `100`. Values above `100` will be coerced to `100`.
      *     @type string $page_token
      *           We will return the processors sorted by creation time. The page token
      *           will point to the next processor.
@@ -106,8 +106,8 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processors to return.
-     * If unspecified, at most 50 processors will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `50` processors will be returned.
+     * The maximum value is `100`. Values above `100` will be coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -119,8 +119,8 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processors to return.
-     * If unspecified, at most 50 processors will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `50` processors will be returned.
+     * The maximum value is `100`. Values above `100` will be coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

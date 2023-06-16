@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The long running operation metadata for set default processor version
+ * The long-running operation metadata for the
+ * [SetDefaultProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.SetDefaultProcessorVersion]
  * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.SetDefaultProcessorVersionMetadata</code>
@@ -17,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetDefaultProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      */
@@ -30,7 +31,7 @@ class SetDefaultProcessorVersionMetadata extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
-     *           The basic metadata of the long running operation.
+     *           The basic metadata of the long-running operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +40,7 @@ class SetDefaultProcessorVersionMetadata extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\CommonOperationMetadata|null
@@ -60,7 +61,7 @@ class SetDefaultProcessorVersionMetadata extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $var
