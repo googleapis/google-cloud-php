@@ -71,6 +71,8 @@ use Google\Cloud\Channel\V1\ListOffersRequest;
 use Google\Cloud\Channel\V1\ListProductsRequest;
 use Google\Cloud\Channel\V1\ListPurchasableOffersRequest;
 use Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupsRequest;
 use Google\Cloud\Channel\V1\ListSkusRequest;
 use Google\Cloud\Channel\V1\ListSubscribersRequest;
 use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
@@ -163,6 +165,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPurchasableOffersAsync(ListPurchasableOffersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPurchasableSkusAsync(ListPurchasableSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSkuGroupBillableSkusAsync(ListSkuGroupBillableSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSkuGroupsAsync(ListSkuGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSkusAsync(ListSkusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSubscribersAsync(ListSubscribersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTransferableOffersAsync(ListTransferableOffersRequest $request, array $optionalArgs = [])
@@ -376,6 +380,23 @@ abstract class CloudChannelServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a sku_group
+     * resource.
+     *
+     * @param string $account
+     * @param string $skuGroup
+     *
+     * @return string The formatted sku_group resource.
+     */
+    public static function skuGroupName(string $account, string $skuGroup): string
+    {
+        return self::getPathTemplate('skuGroup')->render([
+            'account' => $account,
+            'sku_group' => $skuGroup,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -386,6 +407,7 @@ abstract class CloudChannelServiceBaseClient
      * - entitlement: accounts/{account}/customers/{customer}/entitlements/{entitlement}
      * - offer: accounts/{account}/offers/{offer}
      * - product: products/{product}
+     * - skuGroup: accounts/{account}/skuGroups/{sku_group}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1714,6 +1736,90 @@ abstract class CloudChannelServiceBaseClient
     public function listPurchasableSkus(ListPurchasableSkusRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListPurchasableSkus', $request, $callOptions);
+    }
+
+    /**
+     * Lists the Billable SKUs in a given SKU group.
+     *
+     * Possible error codes:
+     * PERMISSION_DENIED: If the account making the request and the account
+     * being queried for are different, or the account doesn't exist.
+     * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * INTERNAL: Any non-user error related to technical issue in the
+     * backend. In this case, contact cloud channel support.
+     *
+     * Return Value:
+     * If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+     * resources. The data for each resource is displayed in the ascending order
+     * of:
+     *
+     * * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+     * * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * The async variant is {@see self::listSkuGroupBillableSkusAsync()} .
+     *
+     * @param ListSkuGroupBillableSkusRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSkuGroupBillableSkus(ListSkuGroupBillableSkusRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSkuGroupBillableSkus', $request, $callOptions);
+    }
+
+    /**
+     * Lists the Rebilling supported SKU groups the account is authorized to
+     * sell.
+     * Reference: https://cloud.google.com/skus/sku-groups
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the account making the request and the account
+     * being queried are different, or the account doesn't exist.
+     * * INTERNAL: Any non-user error related to technical issues in the
+     * backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+     * The data for each resource is displayed in the alphabetical order of SKU
+     * group display name.
+     * The data for each resource is displayed in the ascending order of
+     * [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * The async variant is {@see self::listSkuGroupsAsync()} .
+     *
+     * @param ListSkuGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSkuGroups(ListSkuGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSkuGroups', $request, $callOptions);
     }
 
     /**
