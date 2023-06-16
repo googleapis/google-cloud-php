@@ -28,7 +28,7 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
@@ -333,7 +333,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Utils::streamFor('test'))
+                Create::promiseFor(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
@@ -355,7 +355,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Utils::streamFor('test'))
+                Create::promiseFor(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
