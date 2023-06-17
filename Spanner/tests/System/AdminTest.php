@@ -132,6 +132,7 @@ class AdminTest extends SpannerTestCase
 
     public function testDatabaseDropProtection()
     {
+        $this->skipEmulatorTests();
         $instance = self::$instance;
 
         $dbName = uniqid(self::TESTING_PREFIX);
