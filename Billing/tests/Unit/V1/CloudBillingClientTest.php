@@ -278,8 +278,8 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setBillingEnabled($billingEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->getProjectBillingInfo($name);
+        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
+        $response = $gapicClient->getProjectBillingInfo($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -287,7 +287,7 @@ class CloudBillingClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/GetProjectBillingInfo', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -310,9 +310,9 @@ class CloudBillingClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
         try {
-            $gapicClient->getProjectBillingInfo($name);
+            $gapicClient->getProjectBillingInfo($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
