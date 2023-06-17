@@ -159,6 +159,4 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExtractiveContentSpec::class, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest_ContentSearchSpec_ExtractiveContentSpec::class);
 

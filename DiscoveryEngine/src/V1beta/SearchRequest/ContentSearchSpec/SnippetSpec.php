@@ -17,6 +17,8 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Max number of snippets returned in each search result.
+     * A snippet is an infomartive summary of a content with highlighting for
+     * UI rendering.
      * If the matching snippets is less than the max_snippet_count, return all
      * of the snippets; otherwise, return the max_snippet_count.
      * At most 5 snippets will be returned for each SearchResult.
@@ -39,6 +41,8 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type int $max_snippet_count
      *           Max number of snippets returned in each search result.
+     *           A snippet is an infomartive summary of a content with highlighting for
+     *           UI rendering.
      *           If the matching snippets is less than the max_snippet_count, return all
      *           of the snippets; otherwise, return the max_snippet_count.
      *           At most 5 snippets will be returned for each SearchResult.
@@ -53,6 +57,8 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of snippets returned in each search result.
+     * A snippet is an infomartive summary of a content with highlighting for
+     * UI rendering.
      * If the matching snippets is less than the max_snippet_count, return all
      * of the snippets; otherwise, return the max_snippet_count.
      * At most 5 snippets will be returned for each SearchResult.
@@ -67,6 +73,8 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of snippets returned in each search result.
+     * A snippet is an infomartive summary of a content with highlighting for
+     * UI rendering.
      * If the matching snippets is less than the max_snippet_count, return all
      * of the snippets; otherwise, return the max_snippet_count.
      * At most 5 snippets will be returned for each SearchResult.
