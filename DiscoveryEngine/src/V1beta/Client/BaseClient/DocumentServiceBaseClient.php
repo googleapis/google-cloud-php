@@ -45,7 +45,6 @@ use Google\Cloud\DiscoveryEngine\V1beta\ImportDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\PurgeDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateDocumentRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
