@@ -19,13 +19,14 @@ class GetProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the project for which billing information is
      * retrieved. For example, `projects/tokyo-rain-123`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
      * @param string $name Required. The resource name of the project for which billing information is
-     *                     retrieved. For example, `projects/tokyo-rain-123`.
+     *                     retrieved. For example, `projects/tokyo-rain-123`. Please see
+     *                     {@see CloudBillingClient::projectBillingInfoName()} for help formatting this field.
      *
      * @return \Google\Cloud\Billing\V1\GetProjectBillingInfoRequest
      *
@@ -57,7 +58,7 @@ class GetProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the project for which billing information is
      * retrieved. For example, `projects/tokyo-rain-123`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -69,7 +70,7 @@ class GetProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the project for which billing information is
      * retrieved. For example, `projects/tokyo-rain-123`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
