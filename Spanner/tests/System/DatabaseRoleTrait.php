@@ -27,19 +27,23 @@ trait DatabaseRoleTrait
     private static $restrictiveDbRole = 'restrictiveReaderRole';
     private static $dbRole = 'readerRole';
 
-    private function dbProvider()
+    abstract public static function setUpBeforeClass();
+
+    public function dbProvider()
     {
+        self::setUpBeforeClass();
         return [
             [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
             [self::$dbRole, null]
         ];
     }
 
-    private function insertDbProvider()
+    public function insertDbProvider()
     {
+        self::setUpBeforeClass();
         return [
             [
-                SpannerTestCase::$dbWithRestrictiveRole,
+                self::getDbWithRestrictiveRole(),
                 [
                     'id' => rand(1, 346464),
                     'name' => uniqid(SpannerTestCase::TESTING_PREFIX),
@@ -48,7 +52,7 @@ trait DatabaseRoleTrait
                 'PERMISSION_DENIED'
             ],
             [
-                SpannerTestCase::$dbWithSessionPoolRestrictiveRole,
+                self::getDbWithSessionPoolRestrictiveRole(),
                 [
                     'id' => rand(1, 346464),
                     'name' => uniqid(SpannerTestCase::TESTING_PREFIX)
@@ -58,11 +62,12 @@ trait DatabaseRoleTrait
         ];
     }
 
-    private function readDbProvider()
+    public function readDbProvider()
     {
+        self::setUpBeforeClass();
         return [
-            [SpannerTestCase::$dbWithReaderRole, null],
-            [SpannerTestCase::$dbWithRestrictiveRole, 'PERMISSION_DENIED']
+            [self::getDbWithReaderRole(), null],
+            [self::getDbWithRestrictiveRole(), 'PERMISSION_DENIED']
         ];
     }
 }

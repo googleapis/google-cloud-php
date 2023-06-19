@@ -32,71 +32,75 @@ class PgOperationsTest extends SpannerPgTestCase
     private static $row = [];
 
     private static $id;
+    private static $isSetup = false;
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
+        if (!self::$isSetup) {
+            parent::setUpBeforeClass();
 
-        self::$id = rand(1000, 9999);
-        self::$row = [
-            'id' => self::$id,
-            'name' => uniqid(self::TESTING_PREFIX),
-            'birthday' => new Date(new \DateTime('2000-01-01'))
-        ];
+            self::$id = rand(1000, 9999);
+            self::$row = [
+                'id' => self::$id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime('2000-01-01'))
+            ];
 
-        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
-    }
-
-    public function testInsertWithDbRole()
-    {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        foreach ($this->insertDbProvider() as $dbProvided) {
-            list($db, $values, $expected) = $dbProvided;
-            $error = null;
-
-            try {
-                $res = $db->insert(self::TEST_TABLE_NAME, $values);
-            } catch (ServiceException $e) {
-                $error = $e;
-            }
-
-            if ($expected === null) {
-                $this->assertEquals($error, $expected);
-            } else {
-                $this->assertInstanceOf(ServiceException::class, $error);
-                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
-            }
+            self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+            self::$isSetup = true;
         }
     }
 
-    public function testReadWithDbRole()
+    /**
+     * @dataProvider insertDbProvider
+     */
+    public function testInsertWithDbRole($db, $values, $expected)
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
-        foreach ($this->readDbProvider() as $dbProvided) {
-            list($db, $expected) = $dbProvided;
-            $error = null;
-            $keySet = self::$client->keySet([
-                'keys' => [self::$id]
-            ]);
-            $columns = ['id', 'name', 'birthday'];
+        $error = null;
 
-            try {
-                $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
-                $row = $res->rows()->current();
-            } catch (ServiceException $e) {
-                $error = $e;
-            }
+        try {
+            $res = $db->insert(self::TEST_TABLE_NAME, $values);
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
 
-            if ($expected === null) {
-                $this->assertEquals(self::$id, $row['id']);
-            } else {
-                $this->assertInstanceOf(ServiceException::class, $error);
-                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
-            }
+        if ($expected === null) {
+            $this->assertEquals($error, $expected);
+        } else {
+            $this->assertInstanceOf(ServiceException::class, $error);
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+        }
+    }
+
+    /**
+     * @dataProvider readDbProvider1
+     */
+    public function testReadWithDbRole($db, $expected)
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        $error = null;
+        $keySet = self::$client->keySet([
+            'keys' => [self::$id]
+        ]);
+        $columns = ['id', 'name', 'birthday'];
+
+        try {
+            $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
+            $row = $res->rows()->current();
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
+
+        if ($expected === null) {
+            $this->assertEquals(self::$id, $row['id']);
+        } else {
+            $this->assertInstanceOf(ServiceException::class, $error);
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }
 }

@@ -36,28 +36,32 @@ class TransactionTest extends SpannerTestCase
 
     private static $tableName;
     private static $id1;
+    private static $isSetup = false;
 
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
+        if (!self::$isSetup) {
+            parent::setUpBeforeClass();
 
-        self::$tableName = uniqid(self::TABLE_NAME);
-        self::$id1 = rand(1000, 9999);
+            self::$tableName = uniqid(self::TABLE_NAME);
+            self::$id1 = rand(1000, 9999);
 
-        self::$row = [
-            'id' => self::$id1,
-            'name' => uniqid(self::TESTING_PREFIX),
-            'birthday' => new Date(new \DateTime('2000-01-01'))
-        ];
+            self::$row = [
+                'id' => self::$id1,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime('2000-01-01'))
+            ];
 
-        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+            self::$database->insert(self::TEST_TABLE_NAME, self::$row);
 
-        self::$database->updateDdl(
-            'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                number INT64 NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
+            self::$database->updateDdl(
+                'CREATE TABLE ' . self::$tableName . ' (
+                    id INT64 NOT NULL,
+                    number INT64 NOT NULL
+                ) PRIMARY KEY (id)'
+            )->pollUntilComplete();
+            self::$isSetup = true;
+        }
     }
 
     public function testRunTransaction()
@@ -222,41 +226,41 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
-    public function testRunTransactionWithDbRole()
+    /**
+     * @dataProvider insertDbProvider
+     */
+    public function testRunTransactionWithDbRole($db, $values, $expected)
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
-        foreach ($this->insertDbProvider() as $dbProvided) {
-            list($db, $values, $expected) = $dbProvided;
-            $error = null;
-            $row = $this->getRow();
-            $row['name'] = 'Doug';
+        $error = null;
+        $row = $this->getRow();
+        $row['name'] = 'Doug';
 
-            $db->runTransaction(function ($t) use ($row) {
-                $t->update(self::TEST_TABLE_NAME, $row);
+        $db->runTransaction(function ($t) use ($row) {
+            $t->update(self::TEST_TABLE_NAME, $row);
+            $t->commit();
+        });
+        $row = $this->getRow();
+        $this->assertEquals('Doug', $row['name']);
+
+        try {
+            $db->runTransaction(function ($t) use ($values) {
+                $id = rand(1, 346464);
+                $t->insert(self::TEST_TABLE_NAME, $values);
+
                 $t->commit();
             });
-            $row = $this->getRow();
-            $this->assertEquals('Doug', $row['name']);
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
 
-            try {
-                $db->runTransaction(function ($t) use ($values) {
-                    $id = rand(1, 346464);
-                    $t->insert(self::TEST_TABLE_NAME, $values);
-
-                    $t->commit();
-                });
-            } catch (ServiceException $e) {
-                $error = $e;
-            }
-
-            if ($expected === null) {
-                $this->assertEquals($error, $expected);
-            } else {
-                $this->assertInstanceOf(ServiceException::class, $error);
-                $this->assertEquals($error->getServiceException()->getStatus(), $expected);
-            }
+        if ($expected === null) {
+            $this->assertEquals($error, $expected);
+        } else {
+            $this->assertInstanceOf(ServiceException::class, $error);
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }
 

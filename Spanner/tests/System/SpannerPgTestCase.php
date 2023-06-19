@@ -44,9 +44,6 @@ class SpannerPgTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-    protected static $dbWithReaderRole;
-    protected static $dbWithRestrictiveRole;
-    protected static $dbWithSessionPoolRestrictiveRole;
 
     private static $hasSetUp = false;
 
@@ -79,7 +76,7 @@ class SpannerPgTestCase extends SystemTestCase
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
 
-        $res = $db->updateDdlBatch(
+        $db->updateDdlBatch(
             [
                 'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                     id bigint PRIMARY KEY,
@@ -94,22 +91,6 @@ class SpannerPgTestCase extends SystemTestCase
                 . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
             ]
         )->pollUntilComplete();
-
-        self::$dbWithReaderRole = self::getDatabaseFromInstance(
-            self::INSTANCE_NAME,
-            self::$dbName,
-            ['databaseRole' => self::DATABASE_ROLE]
-        );
-
-        self::$dbWithRestrictiveRole = self::getDatabaseInstance(
-            self::$dbName,
-            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
-
-        self::$dbWithSessionPoolRestrictiveRole = self::getDatabaseWithSessionPool(
-            self::$dbName,
-            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
 
         self::$hasSetUp = true;
     }
@@ -149,6 +130,32 @@ class SpannerPgTestCase extends SystemTestCase
         if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
+    }
+
+    public static function getDbWithReaderRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithRestrictiveRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithSessionPoolRestrictiveRole()
+    {
+        return self::getDatabaseWithSessionPool(
+            self::$dbName,
+            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
     }
 
     private static function getClient()

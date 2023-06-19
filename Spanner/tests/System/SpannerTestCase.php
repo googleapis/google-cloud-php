@@ -43,9 +43,6 @@ class SpannerTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-    public static $dbWithReaderRole;
-    public static $dbWithRestrictiveRole;
-    public static $dbWithSessionPoolRestrictiveRole;
 
     private static $hasSetUp = false;
 
@@ -96,22 +93,6 @@ class SpannerTestCase extends SystemTestCase
                     . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
                 ]
             )->pollUntilComplete();
-
-            self::$dbWithReaderRole = self::getDatabaseFromInstance(
-                self::INSTANCE_NAME,
-                self::$dbName,
-                ['databaseRole' => self::DATABASE_ROLE]
-            );
-
-            self::$dbWithRestrictiveRole = self::getDatabaseInstance(
-                self::$dbName,
-                ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-            );
-
-            self::$dbWithSessionPoolRestrictiveRole = self::getDatabaseWithSessionPool(
-                self::$dbName,
-                ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-            );
         }
 
         self::$hasSetUp = true;
@@ -182,5 +163,31 @@ class SpannerTestCase extends SystemTestCase
         if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
+    }
+
+    public static function getDbWithReaderRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithRestrictiveRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithSessionPoolRestrictiveRole()
+    {
+        return self::getDatabaseWithSessionPool(
+            self::$dbName,
+            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
     }
 }
