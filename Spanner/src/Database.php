@@ -465,7 +465,7 @@ class Database
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type bool $enableDropProtection If true, delete operations for Database
+     *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
      * @return LongRunningOperation<Database>
@@ -479,9 +479,7 @@ class Database
         return $this->info = $this->connection->updateDatabase([
             'database' => [
                 'name' => $this->name,
-                'enableDropProtection' => isset($options['enableDropProtection'])
-                    ? $options['enableDropProtection']
-                    : false,
+                'enableDropProtection' => $options['enableDropProtection'] ?? false,
             ],
             'updateMask' => [
                 'paths' => $fieldMask

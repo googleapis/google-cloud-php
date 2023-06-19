@@ -686,8 +686,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabase(array $args)
     {
-        $database = $this->pluck('database', $args);
-        $databaseInfo = $this->serializer->decodeMessage(new Database(), $database);
+        $databaseInfo = $this->serializer->decodeMessage(new Database(), $this->pluck('database', $args));
         $databaseName = $databaseInfo->getName();
         $updateMask = $this->serializer->decodeMessage(new FieldMask(), $this->pluck('updateMask', $args));
         return $this->send([$this->getDatabaseAdminClient(), 'updateDatabase'], [
