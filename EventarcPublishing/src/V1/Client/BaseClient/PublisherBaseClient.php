@@ -35,7 +35,6 @@ use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
-use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

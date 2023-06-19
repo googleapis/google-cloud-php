@@ -44,7 +44,6 @@ use Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\EntityType;
-use Google\Cloud\Dialogflow\V2\EntityType\Entity;
 use Google\Cloud\Dialogflow\V2\GetEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\ListEntityTypesRequest;
 use Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest;

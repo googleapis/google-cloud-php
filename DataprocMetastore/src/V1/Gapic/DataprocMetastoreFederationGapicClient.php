@@ -53,7 +53,6 @@ use Google\Cloud\Metastore\V1\GetFederationRequest;
 use Google\Cloud\Metastore\V1\ListFederationsRequest;
 use Google\Cloud\Metastore\V1\ListFederationsResponse;
 use Google\Cloud\Metastore\V1\UpdateFederationRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

@@ -87,7 +87,6 @@ use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VerifyMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VmCreationConfig;
 use Google\Cloud\CloudDms\V1\VmSelectionConfig;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 

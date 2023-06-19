@@ -40,7 +40,6 @@ use Google\Cloud\Dataflow\V1beta3\CreateJobRequest;
 use Google\Cloud\Dataflow\V1beta3\GetJobRequest;
 use Google\Cloud\Dataflow\V1beta3\Job;
 use Google\Cloud\Dataflow\V1beta3\ListJobsRequest;
-use Google\Cloud\Dataflow\V1beta3\ListJobsRequest\Filter;
 use Google\Cloud\Dataflow\V1beta3\ListJobsResponse;
 use Google\Cloud\Dataflow\V1beta3\Snapshot;
 use Google\Cloud\Dataflow\V1beta3\SnapshotJobRequest;

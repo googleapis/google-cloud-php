@@ -55,7 +55,6 @@ use Google\Cloud\Metastore\V1alpha\GetFederationRequest;
 use Google\Cloud\Metastore\V1alpha\ListFederationsRequest;
 use Google\Cloud\Metastore\V1alpha\ListFederationsResponse;
 use Google\Cloud\Metastore\V1alpha\UpdateFederationRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

@@ -57,12 +57,10 @@ use Google\Cloud\Metastore\V1\ListBackupsRequest;
 use Google\Cloud\Metastore\V1\ListMetadataImportsRequest;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\MetadataImport;
-use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

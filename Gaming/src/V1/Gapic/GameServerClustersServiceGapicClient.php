@@ -48,7 +48,6 @@ use Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterRequest;
 use Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\UpdateGameServerClusterRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
