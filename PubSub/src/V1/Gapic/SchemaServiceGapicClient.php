@@ -44,7 +44,6 @@ use Google\Cloud\PubSub\V1\CommitSchemaRequest;
 use Google\Cloud\PubSub\V1\CreateSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
-use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\GetSchemaRequest;
 use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
 use Google\Cloud\PubSub\V1\ListSchemaRevisionsResponse;

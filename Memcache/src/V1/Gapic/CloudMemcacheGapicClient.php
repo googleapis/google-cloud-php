@@ -52,7 +52,6 @@ use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Memcache\V1\UpdateInstanceRequest;
 use Google\Cloud\Memcache\V1\UpdateParametersRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 

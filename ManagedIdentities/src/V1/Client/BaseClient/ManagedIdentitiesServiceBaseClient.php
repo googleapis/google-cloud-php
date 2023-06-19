@@ -47,7 +47,6 @@ use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordRequest;
 use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordResponse;
 use Google\Cloud\ManagedIdentities\V1\UpdateDomainRequest;
 use Google\Cloud\ManagedIdentities\V1\ValidateTrustRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

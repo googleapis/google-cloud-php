@@ -39,7 +39,6 @@ use Google\Cloud\Run\V2\DeleteRevisionRequest;
 use Google\Cloud\Run\V2\GetRevisionRequest;
 use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\Revision;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

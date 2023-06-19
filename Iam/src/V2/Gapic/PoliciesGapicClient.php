@@ -41,7 +41,6 @@ use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\ListPoliciesResponse;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Cloud\Iam\V2\UpdatePolicyRequest;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: An interface for managing Identity and Access Management (IAM) policies.

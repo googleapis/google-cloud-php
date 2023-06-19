@@ -47,7 +47,6 @@ use Google\Cloud\Memcache\V1\ListInstancesRequest;
 use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memcache\V1\UpdateInstanceRequest;
 use Google\Cloud\Memcache\V1\UpdateParametersRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

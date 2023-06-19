@@ -91,7 +91,6 @@ use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

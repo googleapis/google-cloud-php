@@ -46,7 +46,6 @@ use Google\Cloud\Run\V2\GetServiceRequest;
 use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
