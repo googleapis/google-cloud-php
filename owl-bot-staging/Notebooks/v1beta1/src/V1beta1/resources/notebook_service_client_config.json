@@ -1,0 +1,164 @@
+{
+    "interfaces": {
+        "google.cloud.notebooks.v1beta1.NotebookService": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_1_codes": [
+                    "UNAVAILABLE"
+                ],
+                "no_retry_1_codes": []
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                }
+            },
+            "methods": {
+                "CreateEnvironment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteEnvironment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetEnvironment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "IsInstanceUpgradeable": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "ListEnvironments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "ListInstances": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "RegisterInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "ReportInstanceInfo": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "ResetInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetInstanceAccelerator": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetInstanceLabels": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetInstanceMachineType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "StartInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "StopInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpgradeInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpgradeInstanceInternal": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetLocation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                }
+            }
+        }
+    }
+}
