@@ -61,7 +61,6 @@ use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

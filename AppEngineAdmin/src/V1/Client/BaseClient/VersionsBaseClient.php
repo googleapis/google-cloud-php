@@ -40,7 +40,6 @@ use Google\Cloud\AppEngine\V1\GetVersionRequest;
 use Google\Cloud\AppEngine\V1\ListVersionsRequest;
 use Google\Cloud\AppEngine\V1\UpdateVersionRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

@@ -94,7 +94,6 @@ use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 

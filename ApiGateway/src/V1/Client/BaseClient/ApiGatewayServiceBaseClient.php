@@ -53,7 +53,6 @@ use Google\Cloud\ApiGateway\V1\ListGatewaysRequest;
 use Google\Cloud\ApiGateway\V1\UpdateApiConfigRequest;
 use Google\Cloud\ApiGateway\V1\UpdateApiRequest;
 use Google\Cloud\ApiGateway\V1\UpdateGatewayRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

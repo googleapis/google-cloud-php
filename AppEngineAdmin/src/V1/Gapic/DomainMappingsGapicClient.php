@@ -41,7 +41,6 @@ use Google\Cloud\AppEngine\V1\GetDomainMappingRequest;
 use Google\Cloud\AppEngine\V1\ListDomainMappingsRequest;
 use Google\Cloud\AppEngine\V1\ListDomainMappingsResponse;
 use Google\Cloud\AppEngine\V1\UpdateDomainMappingRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
