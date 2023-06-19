@@ -49,7 +49,6 @@ use Google\Cloud\NetworkConnectivity\V1\ListSpokesResponse;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

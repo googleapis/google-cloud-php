@@ -40,7 +40,6 @@ use Google\Cloud\ResourceManager\V3\DeleteTagBindingRequest;
 use Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\TagBinding;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

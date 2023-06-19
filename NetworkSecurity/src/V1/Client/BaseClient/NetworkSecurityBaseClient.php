@@ -61,7 +61,6 @@ use Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy;
 use Google\Cloud\NetworkSecurity\V1\UpdateAuthorizationPolicyRequest;
 use Google\Cloud\NetworkSecurity\V1\UpdateClientTlsPolicyRequest;
 use Google\Cloud\NetworkSecurity\V1\UpdateServerTlsPolicyRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

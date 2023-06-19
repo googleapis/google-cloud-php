@@ -40,7 +40,6 @@ use Google\Cloud\Iam\V2\GetPolicyRequest;
 use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Cloud\Iam\V2\UpdatePolicyRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

@@ -48,7 +48,6 @@ use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\ListServicesResponse;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
