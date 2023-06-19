@@ -56,7 +56,6 @@ use Google\Cloud\Tpu\V2\RuntimeVersion;
 use Google\Cloud\Tpu\V2\StartNodeRequest;
 use Google\Cloud\Tpu\V2\StopNodeRequest;
 use Google\Cloud\Tpu\V2\UpdateNodeRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

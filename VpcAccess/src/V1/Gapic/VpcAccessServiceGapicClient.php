@@ -43,7 +43,6 @@ use Google\Cloud\VpcAccess\V1\DeleteConnectorRequest;
 use Google\Cloud\VpcAccess\V1\GetConnectorRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsResponse;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Serverless VPC Access API allows users to create and manage connectors for

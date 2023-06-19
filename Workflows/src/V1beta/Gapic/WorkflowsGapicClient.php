@@ -44,7 +44,6 @@ use Google\Cloud\Workflows\V1beta\ListWorkflowsRequest;
 use Google\Cloud\Workflows\V1beta\ListWorkflowsResponse;
 use Google\Cloud\Workflows\V1beta\UpdateWorkflowRequest;
 use Google\Cloud\Workflows\V1beta\Workflow;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

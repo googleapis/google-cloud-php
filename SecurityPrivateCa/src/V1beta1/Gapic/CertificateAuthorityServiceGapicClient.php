@@ -68,7 +68,6 @@ use Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig;
 use Google\Cloud\Security\PrivateCA\V1beta1\UpdateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1beta1\UpdateCertificateRequest;
 use Google\Cloud\Security\PrivateCA\V1beta1\UpdateCertificateRevocationListRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

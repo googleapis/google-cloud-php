@@ -41,7 +41,6 @@ use Google\Cloud\Workflows\V1\GetWorkflowRequest;
 use Google\Cloud\Workflows\V1\ListWorkflowsRequest;
 use Google\Cloud\Workflows\V1\UpdateWorkflowRequest;
 use Google\Cloud\Workflows\V1\Workflow;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
