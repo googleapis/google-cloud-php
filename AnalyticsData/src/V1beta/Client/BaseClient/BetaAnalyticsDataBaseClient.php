@@ -34,7 +34,6 @@ use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\GetMetadataRequest;
 use Google\Analytics\Data\V1beta\Metadata;
-use Google\Analytics\Data\V1beta\Metric;
 use Google\Analytics\Data\V1beta\Pivot;
 use Google\Analytics\Data\V1beta\RunPivotReportRequest;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;

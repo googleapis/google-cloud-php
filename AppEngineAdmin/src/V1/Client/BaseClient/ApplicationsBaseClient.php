@@ -38,7 +38,6 @@ use Google\Cloud\AppEngine\V1\CreateApplicationRequest;
 use Google\Cloud\AppEngine\V1\GetApplicationRequest;
 use Google\Cloud\AppEngine\V1\RepairApplicationRequest;
 use Google\Cloud\AppEngine\V1\UpdateApplicationRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

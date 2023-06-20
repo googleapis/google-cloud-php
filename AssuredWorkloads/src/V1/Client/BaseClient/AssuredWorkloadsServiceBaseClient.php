@@ -48,7 +48,6 @@ use Google\Cloud\AssuredWorkloads\V1\RestrictAllowedResourcesResponse;
 use Google\Cloud\AssuredWorkloads\V1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1\Violation;
 use Google\Cloud\AssuredWorkloads\V1\Workload;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
