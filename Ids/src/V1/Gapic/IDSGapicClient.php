@@ -41,7 +41,6 @@ use Google\Cloud\Ids\V1\Endpoint;
 use Google\Cloud\Ids\V1\GetEndpointRequest;
 use Google\Cloud\Ids\V1\ListEndpointsRequest;
 use Google\Cloud\Ids\V1\ListEndpointsResponse;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: The IDS Service

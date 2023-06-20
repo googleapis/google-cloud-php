@@ -66,7 +66,6 @@ use Google\Cloud\PubSub\V1\Snapshot;
 use Google\Cloud\PubSub\V1\StreamingPullRequest;
 use Google\Cloud\PubSub\V1\StreamingPullResponse;
 use Google\Cloud\PubSub\V1\Subscription;
-use Google\Cloud\PubSub\V1\Subscription\State;
 use Google\Cloud\PubSub\V1\UpdateSnapshotRequest;
 use Google\Cloud\PubSub\V1\UpdateSubscriptionRequest;
 use Google\Protobuf\Duration;

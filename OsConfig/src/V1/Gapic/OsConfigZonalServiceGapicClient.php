@@ -56,7 +56,6 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
 use Google\Cloud\OsConfig\V1\UpdateOSPolicyAssignmentRequest;
 use Google\Cloud\OsConfig\V1\VulnerabilityReport;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

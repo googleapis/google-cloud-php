@@ -44,7 +44,6 @@ use Google\Cloud\Retail\V2\PauseModelRequest;
 use Google\Cloud\Retail\V2\ResumeModelRequest;
 use Google\Cloud\Retail\V2\TuneModelRequest;
 use Google\Cloud\Retail\V2\UpdateModelRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

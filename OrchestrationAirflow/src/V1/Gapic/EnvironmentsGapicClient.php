@@ -53,7 +53,6 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

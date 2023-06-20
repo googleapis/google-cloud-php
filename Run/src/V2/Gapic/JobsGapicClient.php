@@ -50,7 +50,6 @@ use Google\Cloud\Run\V2\ListJobsRequest;
 use Google\Cloud\Run\V2\ListJobsResponse;
 use Google\Cloud\Run\V2\RunJobRequest;
 use Google\Cloud\Run\V2\UpdateJobRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

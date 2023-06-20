@@ -43,7 +43,6 @@ use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsResponse;
 use Google\Cloud\NetworkManagement\V1\RerunConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

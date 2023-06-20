@@ -84,7 +84,6 @@ use Google\Cloud\Notebooks\V1\UpdateInstanceMetadataItemsResponse;
 use Google\Cloud\Notebooks\V1\UpdateShieldedInstanceConfigRequest;
 use Google\Cloud\Notebooks\V1\UpgradeInstanceInternalRequest;
 use Google\Cloud\Notebooks\V1\UpgradeInstanceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
