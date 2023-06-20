@@ -107,7 +107,7 @@ class Gapic implements ConnectionInterface
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
                 : null,
-            $config['transport']
+            $config['transport'] ?? 'grpc'
         );
 
         $config += ['emulatorHost' => null];

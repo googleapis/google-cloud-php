@@ -24,7 +24,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Connection\Grpc;
+use Google\Cloud\PubSub\Connection\Gapic;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Schema;
@@ -66,14 +66,23 @@ class PubSubClientTest extends TestCase
         ]);
     }
 
-    public function testUsesGrpcConnectionByDefault()
+    public function testUsesGapicConnectionByDefault()
     {
         $this->checkAndSkipGrpcTests();
         $client = TestHelpers::stub(PubSubClient::class, [
             ['projectId' => self::PROJECT]
         ]);
 
-        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
+        $this->assertInstanceOf(Gapic::class, $client->___getProperty('connection'));
+    }
+
+    public function testGapicConnectionUsesGrpcByDefault()
+    {
+        $this->checkAndSkipGrpcTests();
+        $connection = TestHelpers::stub(Gapic::class);
+        $options = $connection->___getProperty('clientConfig');
+        $this->assertArrayHasKey('transport', $options);
+        $this->assertEquals('grpc', $options['transport']);
     }
 
     public function testCreateTopic()
