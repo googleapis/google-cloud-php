@@ -37,6 +37,12 @@ class ReportingAttributionModel
      */
     const CROSS_CHANNEL_LAST_CLICK = 2;
     /**
+     * Starting in June 2023, new properties can no longer use this model.
+     * See
+     * [Analytics
+     * Help](https://support.google.com/analytics/answer/9164320?hl=en#040623)
+     * for more details.
+     * Starting in September 2023, we will sunset this model for all properties.
      * Gives all credit for the conversion to the first channel that a customer
      * clicked (or engaged view through for YouTube) before converting.
      *
@@ -44,6 +50,12 @@ class ReportingAttributionModel
      */
     const CROSS_CHANNEL_FIRST_CLICK = 3;
     /**
+     * Starting in June 2023, new properties can no longer use this model.
+     * See
+     * [Analytics
+     * Help](https://support.google.com/analytics/answer/9164320?hl=en#040623)
+     * for more details.
+     * Starting in September 2023, we will sunset this model for all properties.
      * Distributes the credit for the conversion equally across all the channels
      * a customer clicked (or engaged view through for YouTube) before
      * converting.
@@ -52,6 +64,12 @@ class ReportingAttributionModel
      */
     const CROSS_CHANNEL_LINEAR = 4;
     /**
+     * Starting in June 2023, new properties can no longer use this model.
+     * See
+     * [Analytics
+     * Help](https://support.google.com/analytics/answer/9164320?hl=en#040623)
+     * for more details.
+     * Starting in September 2023, we will sunset this model for all properties.
      * Attributes 40% credit to the first and last interaction, and the
      * remaining 20% credit is distributed evenly to the middle interactions.
      *
@@ -59,6 +77,12 @@ class ReportingAttributionModel
      */
     const CROSS_CHANNEL_POSITION_BASED = 5;
     /**
+     * Starting in June 2023, new properties can no longer use this model.
+     * See
+     * [Analytics
+     * Help](https://support.google.com/analytics/answer/9164320?hl=en#040623)
+     * for more details.
+     * Starting in September 2023, we will sunset this model for all properties.
      * Gives more credit to the touchpoints that happened closer in time to
      * the conversion.
      *

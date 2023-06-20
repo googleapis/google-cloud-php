@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
 use Google\ApiCore\ApiException;
@@ -44,11 +45,14 @@ use Google\Protobuf\FieldMask;
  *                                                                         Changing the attribution model will apply to both historical and future
  *                                                                         data. These changes will be reflected in reports with conversion and
  *                                                                         revenue data. User and session data will be unaffected.
+ * @param int $attributionSettingsAdsWebConversionDataExportScope          The Conversion Export Scope for data exported to linked Ads
+ *                                                                         Accounts.
  */
 function update_attribution_settings_sample(
     int $attributionSettingsAcquisitionConversionEventLookbackWindow,
     int $attributionSettingsOtherConversionEventLookbackWindow,
-    int $attributionSettingsReportingAttributionModel
+    int $attributionSettingsReportingAttributionModel,
+    int $attributionSettingsAdsWebConversionDataExportScope
 ): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
@@ -59,7 +63,8 @@ function update_attribution_settings_sample(
             $attributionSettingsAcquisitionConversionEventLookbackWindow
         )
         ->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow)
-        ->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
+        ->setReportingAttributionModel($attributionSettingsReportingAttributionModel)
+        ->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
@@ -89,11 +94,13 @@ function callSample(): void
     $attributionSettingsAcquisitionConversionEventLookbackWindow = AcquisitionConversionEventLookbackWindow::ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
     $attributionSettingsOtherConversionEventLookbackWindow = OtherConversionEventLookbackWindow::OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
     $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
+    $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
 
     update_attribution_settings_sample(
         $attributionSettingsAcquisitionConversionEventLookbackWindow,
         $attributionSettingsOtherConversionEventLookbackWindow,
-        $attributionSettingsReportingAttributionModel
+        $attributionSettingsReportingAttributionModel,
+        $attributionSettingsAdsWebConversionDataExportScope
     );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAttributionSettings_sync]

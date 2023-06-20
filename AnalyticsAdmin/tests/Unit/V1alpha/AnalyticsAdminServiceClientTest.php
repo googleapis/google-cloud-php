@@ -31,6 +31,7 @@ use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
 use Google\Analytics\Admin\V1alpha\Audience;
@@ -6965,6 +6966,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
         $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
         $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
+        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
+        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -7006,6 +7009,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
         $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
         $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
+        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
+        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);

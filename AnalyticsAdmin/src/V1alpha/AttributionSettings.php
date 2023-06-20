@@ -48,6 +48,13 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.ReportingAttributionModel reporting_attribution_model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $reporting_attribution_model = 0;
+    /**
+     * Required. The Conversion Export Scope for data exported to linked Ads
+     * Accounts.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AdsWebConversionDataExportScope ads_web_conversion_data_export_scope = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $ads_web_conversion_data_export_scope = 0;
 
     /**
      * Constructor.
@@ -71,6 +78,9 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      *           Changing the attribution model will apply to both historical and future
      *           data. These changes will be reflected in reports with conversion and
      *           revenue data. User and session data will be unaffected.
+     *     @type int $ads_web_conversion_data_export_scope
+     *           Required. The Conversion Export Scope for data exported to linked Ads
+     *           Accounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +204,34 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel::class);
         $this->reporting_attribution_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The Conversion Export Scope for data exported to linked Ads
+     * Accounts.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AdsWebConversionDataExportScope ads_web_conversion_data_export_scope = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getAdsWebConversionDataExportScope()
+    {
+        return $this->ads_web_conversion_data_export_scope;
+    }
+
+    /**
+     * Required. The Conversion Export Scope for data exported to linked Ads
+     * Accounts.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AdsWebConversionDataExportScope ads_web_conversion_data_export_scope = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAdsWebConversionDataExportScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope::class);
+        $this->ads_web_conversion_data_export_scope = $var;
 
         return $this;
     }
