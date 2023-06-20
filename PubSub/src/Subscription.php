@@ -31,7 +31,7 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
-use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
@@ -184,7 +184,7 @@ class Subscription
         $encode,
         array $info = []
     ) {
-        $this->gapic = SubscriberGapicClient::class;
+        $this->gapic = SubscriberClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],
@@ -1446,7 +1446,7 @@ class Subscription
 
     /**
      * Helper function that sends an ack request for the given msgs.
-     * 
+     *
      * @param array $messages List of messages to ack.
      * @param array $options
      */
@@ -1463,7 +1463,7 @@ class Subscription
 
     /**
      * Helper function that sends a modack request for the given msgs.
-     * 
+     *
      * @param array $messages List of messages to ack.
      * @param int $seconds The new deadline in seconds.
      * @param array $options

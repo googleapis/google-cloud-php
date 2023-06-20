@@ -25,8 +25,8 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\V2\RequestHandler;
-use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
-use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
@@ -163,8 +163,8 @@ class PubSubClient
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
             [
-                PublisherGapicClient::class,
-                SubscriberGapicClient::class,
+                PublisherClient::class,
+                SubscriberClient::class,
                 SchemaServiceClient::class,
             ],
             $config + ['libVersion' => self::VERSION]
@@ -261,7 +261,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->reqHandler->sendReq(
-                        PublisherGapicClient::class,
+                        PublisherClient::class,
                         'listTopics',
                         [$projectId],
                         $options
@@ -372,7 +372,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->reqHandler->sendReq(
-                        SubscriberGapicClient::class,
+                        SubscriberClient::class,
                         'listSubscriptions',
                         [$projectId],
                         $options
@@ -474,7 +474,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->reqHandler->sendReq(
-                        SubscriberGapicClient::class,
+                        SubscriberClient::class,
                         'listSnapshots',
                         [$projectId],
                         $options

@@ -23,7 +23,7 @@ use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\PubSub\V1\Encoding;
-use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
+use Google\Cloud\PubSub\V1\PublisherClient;
 use InvalidArgumentException;
 use Google\Cloud\Core\GrpcTrait;
 use Google\ApiCore\Serializer;
@@ -127,7 +127,7 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = PublisherGapicClient::class;
+        $this->gapic = PublisherClient::class;
         $this->reqHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],

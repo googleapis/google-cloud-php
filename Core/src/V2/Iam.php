@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\V2;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubSerializer;
-use Google\Cloud\PubSub\RequestHandler;
+use Google\Cloud\Core\V2\RequestHandler;
 
 /**
  * IAM Manager
