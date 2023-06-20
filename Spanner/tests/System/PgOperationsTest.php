@@ -36,19 +36,20 @@ class PgOperationsTest extends SpannerPgTestCase
 
     public static function setUpBeforeClass(): void
     {
-        if (!self::$isSetup) {
-            parent::setUpBeforeClass();
-
-            self::$id = rand(1000, 9999);
-            self::$row = [
-                'id' => self::$id,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime('2000-01-01'))
-            ];
-
-            self::$database->insert(self::TEST_TABLE_NAME, self::$row);
-            self::$isSetup = true;
+        if (self::$isSetup) {
+            return;
         }
+        parent::setUpBeforeClass();
+
+        self::$id = rand(1000, 9999);
+        self::$row = [
+            'id' => self::$id,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ];
+
+        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+        self::$isSetup = true;
     }
 
     /**

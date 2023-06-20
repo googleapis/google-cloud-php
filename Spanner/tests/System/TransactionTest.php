@@ -40,28 +40,29 @@ class TransactionTest extends SpannerTestCase
 
     public static function setUpBeforeClass(): void
     {
-        if (!self::$isSetup) {
-            parent::setUpBeforeClass();
+        if (self::$isSetup) {
+            return;
+        }
+        parent::setUpBeforeClass();
 
-            self::$tableName = uniqid(self::TABLE_NAME);
-            self::$id1 = rand(1000, 9999);
+        self::$tableName = uniqid(self::TABLE_NAME);
+        self::$id1 = rand(1000, 9999);
 
-            self::$row = [
-                'id' => self::$id1,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime('2000-01-01'))
-            ];
+        self::$row = [
+            'id' => self::$id1,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ];
 
-            self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
 
-            self::$database->updateDdl(
-                'CREATE TABLE ' . self::$tableName . ' (
+        self::$database->updateDdl(
+            'CREATE TABLE ' . self::$tableName . ' (
                     id INT64 NOT NULL,
                     number INT64 NOT NULL
                 ) PRIMARY KEY (id)'
-            )->pollUntilComplete();
-            self::$isSetup = true;
-        }
+        )->pollUntilComplete();
+        self::$isSetup = true;
     }
 
     public function testRunTransaction()

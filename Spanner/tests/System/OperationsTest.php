@@ -36,21 +36,22 @@ class OperationsTest extends SpannerTestCase
 
     public static function setUpBeforeClass(): void
     {
-        if (!self::$isSetup) {
-            self::$id1 = rand(1000, 9999);
-            self::$id2 = rand(1, 999);
-            self::$name1 = uniqid(self::TESTING_PREFIX);
-            self::$name2 = uniqid(self::TESTING_PREFIX);
-
-            parent::setUpBeforeClass();
-
-            self::$database->insert(self::TEST_TABLE_NAME, [
-                'id' => self::$id1,
-                'name' => self::$name1,
-                'birthday' => new Date(new \DateTime('2000-01-01'))
-            ]);
-            self::$isSetup = true;
+        if (self::$isSetup) {
+            return;
         }
+        self::$id1 = rand(1000, 9999);
+        self::$id2 = rand(1, 999);
+        self::$name1 = uniqid(self::TESTING_PREFIX);
+        self::$name2 = uniqid(self::TESTING_PREFIX);
+
+        parent::setUpBeforeClass();
+
+        self::$database->insert(self::TEST_TABLE_NAME, [
+            'id' => self::$id1,
+            'name' => self::$name1,
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ]);
+        self::$isSetup = true;
     }
 
     public function testInsert()

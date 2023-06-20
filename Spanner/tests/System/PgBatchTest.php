@@ -36,45 +36,46 @@ class PgBatchTest extends SpannerPgTestCase
 
     public static function setUpBeforeClass(): void
     {
-        if (!self::$isSetup) {
-            parent::setUpBeforeClass();
+        if (self::$isSetup) {
+            return;
+        }
+        parent::setUpBeforeClass();
 
-            self::$tableName = uniqid(self::TESTING_PREFIX);
+        self::$tableName = uniqid(self::TESTING_PREFIX);
 
-            self::$database->updateDdl(sprintf(
-                'CREATE TABLE %s (
+        self::$database->updateDdl(sprintf(
+            'CREATE TABLE %s (
                     id INTEGER PRIMARY KEY,
                     decade INTEGER NOT NULL
                 )',
-                self::$tableName
-            ))->pollUntilComplete();
+            self::$tableName
+        ))->pollUntilComplete();
 
-            if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
-                self::$database->updateDdlBatch([
-                    sprintf(
-                        'CREATE ROLE %s',
-                        self::$dbRole
-                    ),
-                    sprintf(
-                        'CREATE ROLE %s',
-                        self::$restrictiveDbRole
-                    ),
-                    sprintf(
-                        'GRANT SELECT(id) ON TABLE %s TO %s',
-                        self::$tableName,
-                        self::$restrictiveDbRole
-                    ),
-                    sprintf(
-                        'GRANT SELECT ON TABLE %s TO %s',
-                        self::$tableName,
-                        self::$dbRole
-                    )
-                ])->pollUntilComplete();
-            }
-
-            self::seedTable();
-            self::$isSetup = true;
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
+            self::$database->updateDdlBatch([
+                sprintf(
+                    'CREATE ROLE %s',
+                    self::$dbRole
+                ),
+                sprintf(
+                    'CREATE ROLE %s',
+                    self::$restrictiveDbRole
+                ),
+                sprintf(
+                    'GRANT SELECT(id) ON TABLE %s TO %s',
+                    self::$tableName,
+                    self::$restrictiveDbRole
+                ),
+                sprintf(
+                    'GRANT SELECT ON TABLE %s TO %s',
+                    self::$tableName,
+                    self::$dbRole
+                )
+            ])->pollUntilComplete();
         }
+
+        self::seedTable();
+        self::$isSetup = true;
     }
 
     /**

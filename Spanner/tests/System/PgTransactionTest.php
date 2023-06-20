@@ -39,29 +39,30 @@ class PgTransactionTest extends SpannerPgTestCase
 
     public static function setUpBeforeClass(): void
     {
-        if (!self::$isSetup) {
-            parent::setUpBeforeClass();
+        if (self::$isSetup) {
+            return;
+        }
+        parent::setUpBeforeClass();
 
-            self::$tableName = "transactions_test";
+        self::$tableName = "transactions_test";
 
-            self::$database->updateDdlBatch([
-                'CREATE TABLE ' . self::$tableName . ' (
+        self::$database->updateDdlBatch([
+            'CREATE TABLE ' . self::$tableName . ' (
                     id bigint NOT NULL,
                     number bigint NOT NULL,
                     PRIMARY KEY (id)
                 )'
-            ])->pollUntilComplete();
+        ])->pollUntilComplete();
 
-            self::$id1 = rand(1000, 9999);
-            self::$row = [
-                'id' => self::$id1,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime('2000-01-01'))
-            ];
+        self::$id1 = rand(1000, 9999);
+        self::$row = [
+            'id' => self::$id1,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ];
 
-            self::$database->insert(self::TEST_TABLE_NAME, self::$row);
-            self::$isSetup = true;
-        }
+        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+        self::$isSetup = true;
     }
 
     public function testRunTransaction()
