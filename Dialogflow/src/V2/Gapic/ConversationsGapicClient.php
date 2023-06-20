@@ -1410,7 +1410,7 @@ class ConversationsGapicClient
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query.
+     *           Parameters for a human assist query. Only used for POC/demo purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
