@@ -56,7 +56,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * [GcsSource.data_schema][google.cloud.discoveryengine.v1beta.GcsSource.data_schema]
      * or
      * [BigQuerySource.data_schema][google.cloud.discoveryengine.v1beta.BigQuerySource.data_schema]
-     * is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>bool auto_generate_ids = 8;</code>
      */
@@ -134,7 +134,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           [GcsSource.data_schema][google.cloud.discoveryengine.v1beta.GcsSource.data_schema]
      *           or
      *           [BigQuerySource.data_schema][google.cloud.discoveryengine.v1beta.BigQuerySource.data_schema]
-     *           is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     *           is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      *     @type string $id_field
      *           The field in the Cloud Storage and BigQuery sources that indicates the
      *           unique IDs of the documents.
@@ -376,7 +376,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * [GcsSource.data_schema][google.cloud.discoveryengine.v1beta.GcsSource.data_schema]
      * or
      * [BigQuerySource.data_schema][google.cloud.discoveryengine.v1beta.BigQuerySource.data_schema]
-     * is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>bool auto_generate_ids = 8;</code>
      * @return bool
@@ -405,7 +405,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * [GcsSource.data_schema][google.cloud.discoveryengine.v1beta.GcsSource.data_schema]
      * or
      * [BigQuerySource.data_schema][google.cloud.discoveryengine.v1beta.BigQuerySource.data_schema]
-     * is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>bool auto_generate_ids = 8;</code>
      * @param bool $var
