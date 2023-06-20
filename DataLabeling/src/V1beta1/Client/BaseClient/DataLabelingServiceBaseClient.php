@@ -79,7 +79,6 @@ use Google\Cloud\DataLabeling\V1beta1\ResumeEvaluationJobRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchEvaluationsRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest;
 use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

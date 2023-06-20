@@ -45,7 +45,6 @@ use Google\Cloud\DataFusion\V1\ListInstancesRequest;
 use Google\Cloud\DataFusion\V1\ListInstancesResponse;
 use Google\Cloud\DataFusion\V1\RestartInstanceRequest;
 use Google\Cloud\DataFusion\V1\UpdateInstanceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

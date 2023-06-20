@@ -52,7 +52,6 @@ use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
-use Google\Cloud\Firestore\V1\Write;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
