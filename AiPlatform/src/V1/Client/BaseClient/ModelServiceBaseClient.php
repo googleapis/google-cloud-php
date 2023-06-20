@@ -55,6 +55,7 @@ use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
+use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetRequest;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -65,7 +66,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -101,6 +101,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listModelVersionsAsync(ListModelVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface mergeVersionAliasesAsync(MergeVersionAliasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateExplanationDatasetAsync(UpdateExplanationDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface uploadModelAsync(UploadModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -871,6 +872,32 @@ abstract class ModelServiceBaseClient
     public function mergeVersionAliases(MergeVersionAliasesRequest $request, array $callOptions = []): Model
     {
         return $this->startApiCall('MergeVersionAliases', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Incrementally update the dataset used for an examples model.
+     *
+     * The async variant is {@see self::updateExplanationDatasetAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/update_explanation_dataset.php
+     *
+     * @param UpdateExplanationDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateExplanationDataset(UpdateExplanationDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateExplanationDataset', $request, $callOptions)->wait();
     }
 
     /**

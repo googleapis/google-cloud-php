@@ -174,6 +174,18 @@ return [
                     ],
                 ],
             ],
+            'UpdateExplanationDataset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{model=projects/*/locations/*/models/*}:updateExplanationDataset',
+                'body' => '*',
+                'placeholders' => [
+                    'model' => [
+                        'getters' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateModel' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{model.name=projects/*/locations/*/models/*}',
