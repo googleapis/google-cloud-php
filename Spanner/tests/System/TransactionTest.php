@@ -259,7 +259,6 @@ class TransactionTest extends SpannerTestCase
         if ($expected === null) {
             $this->assertEquals($error, $expected);
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }

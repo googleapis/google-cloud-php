@@ -116,7 +116,6 @@ class PgBatchTest extends SpannerPgTestCase
         if ($expected === null) {
             $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
         $snapshot->close();

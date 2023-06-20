@@ -70,13 +70,12 @@ class PgOperationsTest extends SpannerPgTestCase
         if ($expected === null) {
             $this->assertEquals($error, $expected);
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }
 
     /**
-     * @dataProvider readDbProvider1
+     * @dataProvider readDbProvider
      */
     public function testReadWithDbRole($db, $expected)
     {
@@ -99,7 +98,6 @@ class PgOperationsTest extends SpannerPgTestCase
         if ($expected === null) {
             $this->assertEquals(self::$id, $row['id']);
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }

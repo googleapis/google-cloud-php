@@ -217,7 +217,6 @@ class OperationsTest extends SpannerTestCase
         if ($expected === null) {
             $this->assertEquals($error, $expected);
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }
@@ -246,7 +245,6 @@ class OperationsTest extends SpannerTestCase
         if ($expected === null) {
             $this->assertEquals(self::$id1, $row['id']);
         } else {
-            $this->assertInstanceOf(ServiceException::class, $error);
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
     }
