@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
-     * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The [BCP-47 language
+     * code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier),
+     * such as `en-US` or `sr-Latn`.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
@@ -37,9 +37,9 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
-     *           information, see
-     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *           The [BCP-47 language
+     *           code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier),
+     *           such as `en-US` or `sr-Latn`.
      *     @type float $confidence
      *           Confidence of detected language. Range `[0, 1]`.
      * }
@@ -50,9 +50,9 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
-     * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The [BCP-47 language
+     * code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier),
+     * such as `en-US` or `sr-Latn`.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @return string
@@ -63,9 +63,9 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
-     * information, see
-     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The [BCP-47 language
+     * code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier),
+     * such as `en-US` or `sr-Latn`.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @param string $var

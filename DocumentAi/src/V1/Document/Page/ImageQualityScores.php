@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Image Quality Scores for the page image
+ * Image quality scores for the page image.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.ImageQualityScores</code>
  */
 class ImageQualityScores extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      *
      * Generated from protobuf field <code>float quality_score = 1;</code>
      */
@@ -35,7 +35,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $quality_score
-     *           The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     *           The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect>|\Google\Protobuf\Internal\RepeatedField $detected_defects
      *           A list of detected defects.
      * }
@@ -46,7 +46,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      *
      * Generated from protobuf field <code>float quality_score = 1;</code>
      * @return float
@@ -57,7 +57,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      *
      * Generated from protobuf field <code>float quality_score = 1;</code>
      * @param float $var

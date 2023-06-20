@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The long running operation metadata for batch process method.
+ * The long-running operation metadata for
+ * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.BatchProcessMetadata</code>
  */

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the undeploy processor version method.
+ * Request message for the
+ * [UndeployProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.UndeployProcessorVersion]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.UndeployProcessorVersionRequest</code>
  */

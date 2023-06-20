@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The location id, currently must be one of [us, eu].
+     * The location ID. For supported locations, refer to [regional and
+     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      */
@@ -29,7 +30,8 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location_id
-     *           The location id, currently must be one of [us, eu].
+     *           The location ID. For supported locations, refer to [regional and
+     *           multi-regional support](https://cloud.google.com/document-ai/docs/regions).
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location id, currently must be one of [us, eu].
+     * The location ID. For supported locations, refer to [regional and
+     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      * @return string
@@ -49,7 +52,8 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location id, currently must be one of [us, eu].
+     * The location ID. For supported locations, refer to [regional and
+     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      * @param string $var

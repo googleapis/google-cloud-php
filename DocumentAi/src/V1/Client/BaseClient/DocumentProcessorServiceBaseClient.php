@@ -71,7 +71,7 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Service to call Cloud DocumentAI to process documents according to the
+ * Service Description: Service to call Document AI to process documents according to the
  * processor's definition. Processors are built using state-of-the-art Google
  * AI such as natural language, computer vision, and translation to extract
  * structured information from unstructured or semi-structured documents.
@@ -434,8 +434,9 @@ abstract class DocumentProcessorServiceBaseClient
     }
 
     /**
-     * Creates a processor from the type processor that the user chose.
-     * The processor will be at "ENABLED" state by default after its creation.
+     * Creates a processor from the
+     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
+     * processor will be at `ENABLED` state by default after its creation.
      *
      * The async variant is {@see self::createProcessorAsync()} .
      *
@@ -606,8 +607,9 @@ abstract class DocumentProcessorServiceBaseClient
     }
 
     /**
-     * Fetches processor types. Note that we do not use ListProcessorTypes here
-     * because it is not paginated.
+     * Fetches processor types. Note that we don't use
+     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * here, because it isn't paginated.
      *
      * The async variant is {@see self::fetchProcessorTypesAsync()} .
      *
@@ -902,7 +904,7 @@ abstract class DocumentProcessorServiceBaseClient
     /**
      * Trains a new processor version.
      * Operation metadata is returned as
-     * cloud_documentai_core.TrainProcessorVersionMetadata.
+     * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
      *
      * The async variant is {@see self::trainProcessorVersionAsync()} .
      *
