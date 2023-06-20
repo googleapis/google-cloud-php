@@ -28,15 +28,21 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class TransactionTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     const TABLE_NAME = 'Transactions';
 
     private static $row = [];
 
     private static $tableName;
     private static $id1;
+    private static $isSetup = false;
 
     public static function setUpBeforeClass(): void
     {
+        if (self::$isSetup) {
+            return;
+        }
         parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TABLE_NAME);
@@ -52,10 +58,11 @@ class TransactionTest extends SpannerTestCase
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                number INT64 NOT NULL
-            ) PRIMARY KEY (id)'
+                    id INT64 NOT NULL,
+                    number INT64 NOT NULL
+                ) PRIMARY KEY (id)'
         )->pollUntilComplete();
+        self::$isSetup = true;
     }
 
     public function testRunTransaction()
@@ -220,33 +227,29 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
-    public function testRunTransactionWithRestrictiveDatabaseRole()
+    /**
+     * @dataProvider insertDbProvider
+     */
+    public function testRunTransactionWithDbRole($db, $values, $expected)
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
         $error = null;
-        $db = self::$databaseWithRestrictiveDatabaseRole;
-
         $row = $this->getRow();
         $row['name'] = 'Doug';
 
         $db->runTransaction(function ($t) use ($row) {
-            $t->update('Users', $row);
-
+            $t->update(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
         $row = $this->getRow();
         $this->assertEquals('Doug', $row['name']);
 
         try {
-            $db->runTransaction(function ($t) {
+            $db->runTransaction(function ($t) use ($values) {
                 $id = rand(1, 346464);
-                $t->insert(self::TEST_TABLE_NAME, [
-                    'id' => $id,
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime)
-                ]);
+                $t->insert(self::TEST_TABLE_NAME, $values);
 
                 $t->commit();
             });
@@ -254,46 +257,11 @@ class TransactionTest extends SpannerTestCase
             $error = $e;
         }
 
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
-    }
-
-    public function testRunTransactionWithSessionPoolDatabaseRole()
-    {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        $error = null;
-        $db = self::$databaseWithSessionPoolRestrictiveDatabaseRole;
-
-        $row = $this->getRow();
-        $row['name'] = 'Doug';
-
-        $db->runTransaction(function ($t) use ($row) {
-            $t->update('Users', $row);
-
-            $t->commit();
-        });
-        $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
-
-        try {
-            $db->runTransaction(function ($t) {
-                $id = rand(1, 346464);
-                $t->insert(self::TEST_TABLE_NAME, [
-                    'id' => $id,
-                    'name' => uniqid(self::TESTING_PREFIX),
-                    'birthday' => new Date(new \DateTime)
-                ]);
-
-                $t->commit();
-            });
-        } catch (ServiceException $e) {
-            $error = $e;
+        if ($expected === null) {
+            $this->assertEquals($error, $expected);
+        } else {
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
-
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     private function readArgs()
