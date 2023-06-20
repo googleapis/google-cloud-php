@@ -66,7 +66,6 @@ use Google\Cloud\Speech\V2\UpdateConfigRequest;
 use Google\Cloud\Speech\V2\UpdateCustomClassRequest;
 use Google\Cloud\Speech\V2\UpdatePhraseSetRequest;
 use Google\Cloud\Speech\V2\UpdateRecognizerRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

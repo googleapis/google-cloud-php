@@ -38,7 +38,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoProgress;
 use Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoRequest;
 use Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoResponse;
-use Google\Cloud\VideoIntelligence\V1beta2\Feature;
 use Google\Cloud\VideoIntelligence\V1beta2\VideoContext;
 use Google\LongRunning\Operation;
 

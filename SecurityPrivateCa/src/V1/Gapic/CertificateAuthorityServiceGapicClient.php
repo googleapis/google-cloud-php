@@ -89,7 +89,6 @@ use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRevocationListRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateTemplateRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
