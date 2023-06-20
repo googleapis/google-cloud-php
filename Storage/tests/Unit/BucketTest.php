@@ -36,7 +36,7 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -135,7 +135,7 @@ class BucketTest extends TestCase
         $this->multipartUploader
             ->uploadAsync()
             ->willReturn(
-                Promise\promise_for([
+                Create::promiseFor([
                     'name' => $name,
                     'generation' => 'Bar'
                 ])

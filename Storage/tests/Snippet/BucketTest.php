@@ -37,7 +37,7 @@ use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -246,7 +246,7 @@ class BucketTest extends SnippetTestCase
         $uploader = $this->prophesize(MultipartUploader::class);
         $uploader->uploadAsync()
             ->shouldBeCalled()
-            ->willReturn(Promise\promise_for([
+            ->willReturn(Create::promiseFor([
                 'name' => 'Foo',
                 'generation' => 'Bar'
             ]));
@@ -276,7 +276,7 @@ class BucketTest extends SnippetTestCase
         $uploader = $this->prophesize(MultipartUploader::class);
         $uploader->uploadAsync()
             ->shouldBeCalledTimes(3)
-            ->willReturn(Promise\promise_for([
+            ->willReturn(Create::promiseFor([
                 'name' => 'Foo',
                 'generation' => 'Bar'
             ]));
