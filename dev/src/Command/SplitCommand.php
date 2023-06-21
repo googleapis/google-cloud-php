@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\Command;
 
 use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\GitHub;
+use Google\Cloud\Dev\Packagist;
 use Google\Cloud\Dev\ReleaseNotes;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\Split;
@@ -81,6 +82,24 @@ class SplitCommand extends Command
                 )
             )
             ->addOption(
+                'packagist-username',
+                '',
+                InputOption::VALUE_REQUIRED,
+                sprintf(
+                    'A packagist username. If provided, new packages will automatically be ' .
+                    'submitted via the packagist API.',
+                )
+            )
+            ->addOption(
+                'packagist-token',
+                '',
+                InputOption::VALUE_REQUIRED,
+                sprintf(
+                    'A Packagist API Auth Token. If provided, new packages will automatically be ' .
+                    'submitted via the packagist API.',
+                )
+            )
+            ->addOption(
                 'splitsh',
                 null,
                 InputOption::VALUE_OPTIONAL,
@@ -119,6 +138,14 @@ class SplitCommand extends Command
         $guzzle = $this->guzzleClient();
         $github = $this->githubClient($output, $shell, $guzzle, $token);
         $split = $this->splitWrapper($output, $shell);
+        $packagist = null;
+        if ($packagistUsername = $input->getOption('packagist-username')) {
+            if (!$packagistToken = $input->getOption('packagist-token')) {
+                throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
+            }
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken);
+        }
+
 
         @mkdir($execDir);
 
@@ -160,7 +187,8 @@ class SplitCommand extends Command
                 $component,
                 $splitBinaryPath,
                 $parentTagSource,
-                $input->getOption('update-release-notes')
+                $input->getOption('update-release-notes'),
+                $packagist
             );
             if (!$res) {
                 $errors[] = $component->getId();
@@ -194,6 +222,7 @@ class SplitCommand extends Command
      * @param array $component The component data.
      * @param string $splitBinaryPath The path to the splitsh binary.
      * @param string $parentTagSource The URI to the parent tag.
+     * @param string $packagistToken The API token for packagist.
      * @return bool
      */
     private function processComponent(
@@ -204,7 +233,8 @@ class SplitCommand extends Command
         Component $component,
         $splitBinaryPath,
         $parentTagSource,
-        $updateReleaseNotes
+        $updateReleaseNotes,
+        ?Packagist $packagist,
     ) {
         $output->writeln('');
         $tagName = 'v' . $component->getLocalVersion();
@@ -296,6 +326,21 @@ class SplitCommand extends Command
             $output->writeln(sprintf('<error>%s</error>: Tag failed.', $componentId));
 
             return false;
+        }
+
+        // This is the first release!
+        if ($tagName === 'v0.1.0' && $packagist) {
+            $output->writeln('<comment>[info]</comment> Creating Packagist package.');
+
+            $res = $packagist->createPackage('https://github.com/' . $repoName);
+
+            if ($res) {
+                $output->writeln(sprintf('<comment>%s</comment>: Packagist package succeeded.', $componentId));
+            } else {
+                $output->writeln(sprintf('<error>%s</error>: Packagist package failed.', $componentId));
+
+                return false;
+            }
         }
 
         return true;
