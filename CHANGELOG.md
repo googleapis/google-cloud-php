@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.209.1
+
+<details><summary>google/cloud-essential-contacts 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* Mark fields in Contacts message as REQUIRED ([#6380](https://github.com/googleapis/google-cloud-php/issues/6380)) ([4f509c3](https://github.com/googleapis/google-cloud-php/commit/4f509c3d3aed2b36ed41140f372400ec64f365ea))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.62.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** Do not update info for LRO request ([#6383](https://github.com/googleapis/google-cloud-php/issues/6383)) ([c76374e](https://github.com/googleapis/google-cloud-php/commit/c76374e6da33debd706445cb105c263fbe7e95ec))
+
+</details>
+
 ## 0.209.0
 
 <details><summary>google/cloud-access-approval 1.1.1</summary>
