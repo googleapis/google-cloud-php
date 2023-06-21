@@ -22,6 +22,7 @@ use Google\Cloud\Dev\Composer;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -43,10 +44,14 @@ class ReleaseInfoCommandTest extends TestCase
     public function testReleaseInfo()
     {
         $tag = 'v0.1000.0';
+        $body = $this->prophesize(StreamInterface::class);
+        $body->__toString()
+            ->shouldBeCalledOnce()
+            ->willReturn(json_encode(self::$mockResponse));
         $response = $this->prophesize(ResponseInterface::class);
         $response->getBody()
             ->shouldBeCalledOnce()
-            ->willReturn(json_encode(self::$mockResponse));
+            ->willReturn($body->reveal());
         $http = $this->prophesize(Client::class);
         $http->get(
             'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
