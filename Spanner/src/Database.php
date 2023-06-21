@@ -476,7 +476,7 @@ class Database
         if (isset($options['enableDropProtection'])) {
             $fieldMask[] = 'enable_drop_protection';
         }
-        return $this->info = $this->connection->updateDatabase([
+        return $this->connection->updateDatabase([
             'database' => [
                 'name' => $this->name,
                 'enableDropProtection' => $options['enableDropProtection'] ?? false,
