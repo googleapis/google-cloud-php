@@ -54,7 +54,7 @@ class ReleaseInfoCommandTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($response->reveal());
-;
+
         $commandTester = new CommandTester(new ReleaseInfoCommand($http->reveal()));
         $commandTester->execute(['tag' => $tag, '--format' => 'json']);
 
