@@ -43,7 +43,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      */
     private $context_size = 0;
     /**
-     * Parameters for a human assist query.
+     * Parameters for a human assist query. Only used for POC/demo purpose.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
      */
@@ -86,7 +86,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
-     *           Parameters for a human assist query.
+     *           Parameters for a human assist query. Only used for POC/demo purpose.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,7 +189,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Parameters for a human assist query.
+     * Parameters for a human assist query. Only used for POC/demo purpose.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
      * @return \Google\Cloud\Dialogflow\V2\AssistQueryParameters|null
@@ -210,7 +210,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Parameters for a human assist query.
+     * Parameters for a human assist query. Only used for POC/demo purpose.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
      * @param \Google\Cloud\Dialogflow\V2\AssistQueryParameters $var

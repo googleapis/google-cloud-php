@@ -829,7 +829,7 @@ class DocumentsGapicClient
      *     Optional.
      *
      *     @type GcsSources $gcsSource
-     *           The Google Cloud Storage location for the documents.
+     *           Optional. The Google Cloud Storage location for the documents.
      *           The path can include a wildcard.
      *
      *           These URIs may have the forms
