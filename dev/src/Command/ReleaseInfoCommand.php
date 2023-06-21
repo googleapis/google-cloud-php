@@ -30,7 +30,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * List component details
+ * List release details
  * @internal
  */
 class ReleaseInfoCommand extends Command
