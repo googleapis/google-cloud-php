@@ -20,7 +20,6 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
 use Google\Cloud\Dev\Composer;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
 
@@ -46,9 +45,7 @@ class ComponentInfoCommandTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        $application = new Application();
-        $application->add(new ComponentInfoCommand());
-        self::$commandTester = new CommandTester($application->get('component-info'));
+        self::$commandTester = new CommandTester(new ComponentInfoCommand());
     }
 
     public function testListAll()
