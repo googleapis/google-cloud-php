@@ -27,22 +27,39 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
 use Google\Cloud\EssentialContacts\V1\Contact;
 use Google\Cloud\EssentialContacts\V1\CreateContactRequest;
+use Google\Cloud\EssentialContacts\V1\NotificationCategory;
 
 /**
  * Adds a new contact for a resource.
  *
- * @param string $formattedParent The resource to save this contact for.
- *                                Format: organizations/{organization_id}, folders/{folder_id} or
- *                                projects/{project_id}
- *                                Please see {@see EssentialContactsServiceClient::projectName()} for help formatting this field.
+ * @param string $formattedParent                                 The resource to save this contact for.
+ *                                                                Format: organizations/{organization_id}, folders/{folder_id} or
+ *                                                                projects/{project_id}
+ *                                                                Please see {@see EssentialContactsServiceClient::projectName()} for help formatting this field.
+ * @param string $contactEmail                                    The email address to send notifications to. The email address
+ *                                                                does not need to be a Google Account.
+ * @param int    $contactNotificationCategorySubscriptionsElement The categories of notifications that the contact will receive
+ *                                                                communications for.
+ * @param string $contactLanguageTag                              The preferred language for notifications, as a ISO 639-1 language
+ *                                                                code. See [Supported
+ *                                                                languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
+ *                                                                for a list of supported languages.
  */
-function create_contact_sample(string $formattedParent): void
-{
+function create_contact_sample(
+    string $formattedParent,
+    string $contactEmail,
+    int $contactNotificationCategorySubscriptionsElement,
+    string $contactLanguageTag
+): void {
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
     // Prepare the request message.
-    $contact = new Contact();
+    $contactNotificationCategorySubscriptions = [$contactNotificationCategorySubscriptionsElement,];
+    $contact = (new Contact())
+        ->setEmail($contactEmail)
+        ->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions)
+        ->setLanguageTag($contactLanguageTag);
     $request = (new CreateContactRequest())
         ->setParent($formattedParent)
         ->setContact($contact);
@@ -69,7 +86,15 @@ function create_contact_sample(string $formattedParent): void
 function callSample(): void
 {
     $formattedParent = EssentialContactsServiceClient::projectName('[PROJECT]');
+    $contactEmail = '[EMAIL]';
+    $contactNotificationCategorySubscriptionsElement = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
+    $contactLanguageTag = '[LANGUAGE_TAG]';
 
-    create_contact_sample($formattedParent);
+    create_contact_sample(
+        $formattedParent,
+        $contactEmail,
+        $contactNotificationCategorySubscriptionsElement,
+        $contactLanguageTag
+    );
 }
 // [END essentialcontacts_v1_generated_EssentialContactsService_CreateContact_sync]
