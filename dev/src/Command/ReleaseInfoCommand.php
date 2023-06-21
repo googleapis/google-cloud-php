@@ -37,6 +37,8 @@ class ReleaseInfoCommand extends Command
 {
     private Client $httpClient;
 
+    private const REPO_ID = 'googleapis/google-cloud-php';
+
     /**
      * @param Client $httpClient specify the HTTP client, useful for testing
      */
@@ -65,7 +67,7 @@ class ReleaseInfoCommand extends Command
         );
 
         $changelog = $github->getChangelog(
-            'googleapis/google-cloud-php',
+            self::REPO_ID,
             $tag = $input->getArgument('tag')
         );
 
