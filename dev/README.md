@@ -14,5 +14,6 @@ for a list of all available commands:
 
 Additionally, there are scripts in the `sh` directory which are used in our CI:
 
-| Command          | Description                    |
+| Command             | Description                 |
+| ------------------- | --------------------------- |
 | `sh/static-analysis`| Run phpstan static ananlysis|
