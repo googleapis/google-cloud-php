@@ -85,19 +85,15 @@ class SplitCommand extends Command
                 'packagist-username',
                 '',
                 InputOption::VALUE_REQUIRED,
-                sprintf(
-                    'A packagist username. If provided, new packages will automatically be ' .
-                    'submitted via the packagist API.',
-                )
+                'A packagist username. If provided, new packages will automatically be submitted ' .
+                'via the packagist API.',
             )
             ->addOption(
                 'packagist-token',
                 '',
                 InputOption::VALUE_REQUIRED,
-                sprintf(
-                    'A Packagist API Auth Token. If provided, new packages will automatically be ' .
-                    'submitted via the packagist API.',
-                )
+                'A Packagist API Auth Token. If provided, new packages will automatically be ' .
+                'submitted via the packagist API.',
             )
             ->addOption(
                 'splitsh',
@@ -222,7 +218,7 @@ class SplitCommand extends Command
      * @param array $component The component data.
      * @param string $splitBinaryPath The path to the splitsh binary.
      * @param string $parentTagSource The URI to the parent tag.
-     * @param string $packagistToken The API token for packagist.
+     * @param ?Packagist $packagist The Packagist API object (if configured).
      * @return bool
      */
     private function processComponent(
@@ -335,9 +331,9 @@ class SplitCommand extends Command
             $res = $packagist->createPackage('https://github.com/' . $repoName);
 
             if ($res) {
-                $output->writeln(sprintf('<comment>%s</comment>: Packagist package succeeded.', $componentId));
+                $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
             } else {
-                $output->writeln(sprintf('<error>%s</error>: Packagist package failed.', $componentId));
+                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
 
                 return false;
             }

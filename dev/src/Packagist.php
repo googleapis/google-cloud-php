@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
 
 /**
- * Manages GitHub API calls for Subtree Split releases.
+ * Manages Packagist API calls
  *
  * @internal
  */
@@ -38,16 +38,12 @@ class Packagist
     }
 
     /**
-     * Create a tag on the given GitHub repository and sends a request to verify.
+     * Create Packagist package from the GitHub repository.
      *
-     * @param string $target The GitHub organization and repository ID separated
-     *        by a forward slash, i.e. `organization/repository'.
-     * @param string $tagName The name of the tag to create.
-     * @param string $display The tag display name.
-     * @param string $notes The tag release notes.
+     * @param string $url The full URL of the GitHub repository.
      * @return bool True if successful, false if failed.
      */
-    public function submitPackage($url)
+    public function submitPackage(string $url): bool
     {
         $requestBody = [
             'repository' => ['url' => $url],
