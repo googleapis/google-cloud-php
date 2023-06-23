@@ -166,6 +166,7 @@ class BatchPublisherTest extends TestCase
 
         $publisher = TestHelpers::stub(BatchPublisher::class, [
             self::TOPIC_NAME, [
+                'identifier' => uniqid(),
                 'enableCompression' => $enableCompression,
                 'compressionBytesThreshold' => $compressionBytesThreshold
             ]
@@ -177,66 +178,24 @@ class BatchPublisherTest extends TestCase
             'data' => 'foo'
         ]];
 
-        $arguments = [
-
-            Argument::type('array'),
-            Argument::withKey('messages')
-        ];
+        $compressionHeader = [];
         if($shouldCompress) {
-            $arguments[] = Argument::withEntry('headers', [
+            $compressionHeader = [
                 'grpc-internal-encoding-request' => [['gzip']]
-            ]);
+            ];
         }
 
-        $connection->publishMessage(call_user_func_array(
-            [Argument::class, 'allOf'], $arguments
-        ))->shouldBeCalled()->willReturn([]);
-
-        $client->___setProperty('connection', $connection->reveal());
-        $publisher->___setProperty('client', $client);
-        $publisher->publishDeferred($messages);
-    }
-
-    /**
-     * @dataProvider compressionDataProvide
-     */
-    public function testPublisherCompress(
-        $enableCompression,
-        $compressionBytesThreshold,
-        $shouldCompress
-    ) {
-        $client = TestHelpers::stub(PubSubClient::class, [
-            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
-        ], [
-            'encode', 'connection'
-        ]);
-        $client->___setProperty('encode', false);
-
-        $publisher = TestHelpers::stub(BatchPublisher::class, [
-            self::TOPIC_NAME, [
-                'enableCompression' => $enableCompression,
-                'compressionBytesThreshold' => $compressionBytesThreshold
-            ]
-        ], ['client', 'topics']);
-
-        $connection = $this->prophesize(ConnectionInterface::class);
-
-        $messages = [[
-            'data' => 'foo'
-        ]];
-
-        $arguments = [
-            Argument::type('array'),
-            Argument::withKey('messages')
-        ];
-        if($shouldCompress) {
-            $arguments[] = Argument::withEntry('headers', [
-                'grpc-internal-encoding-request' => [['gzip']]
-            ]);
-        }
-
-        $connection->publishMessage(call_user_func_array(
-            [Argument::class, 'allOf'], $arguments
+        $connection->publishMessage(Argument::that(
+            function ($args) use ($compressionHeader){
+                $result = is_array($args) && array_key_exists('messages', $args);
+                foreach ($compressionHeader as $key => $value) {
+                    $result = $result &&
+                        isset($args['headers']) &&
+                        array_key_exists($key, $args['headers']) &&
+                        $args['headers'][$key] == $value;
+                }
+                return $result;
+            }
         ))->shouldBeCalled()->willReturn([]);
 
         $client->___setProperty('connection', $connection->reveal());
@@ -246,21 +205,13 @@ class BatchPublisherTest extends TestCase
 
     public function compressionDataProvider()
     {
+        // Each data is of the form
+        // [$enableCompression, $compressionBytesThreshold, $shouldCompress]
         return [
             [false, 0, false],
-            // [false, 10000, false],
-            // [true, 0, true],
-            // [true, 10000, false],
-        ];
-    }
-
-    public function compressionDataProvide()
-    {
-        return [
-            // [false, 0, false],
-            // [false, 10000, false],
+            [false, 10000, false],
             [true, 0, true],
-            // [true, 10000, false],
+            [true, 10000, false],
         ];
     }
 }
