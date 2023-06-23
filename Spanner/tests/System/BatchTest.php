@@ -30,40 +30,53 @@ use Google\Cloud\Core\Exception\ServiceException;
  */
 class BatchTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $tableName;
-    private static $databaseRole;
+    private static $isSetup = false;
 
     public static function setUpBeforeClass(): void
     {
+        if (self::$isSetup) {
+            return;
+        }
         parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
-        self::$databaseRole = 'batchRole';
 
-        $db = self::$database;
-
-        $db->updateDdl(sprintf(
+        self::$database->updateDdl(sprintf(
             'CREATE TABLE %s (
-                id INT64 NOT NULL,
-                decade INT64 NOT NULL
-            ) PRIMARY KEY (id)',
+                    id INT64 NOT NULL,
+                    decade INT64 NOT NULL
+                ) PRIMARY KEY (id)',
             self::$tableName
         ))->pollUntilComplete();
 
-        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $db->updateDdl(sprintf(
-                'CREATE ROLE %s',
-                self::$databaseRole
-            ))->pollUntilComplete();
-
-            $db->updateDdl(sprintf(
-                'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
-                self::$tableName,
-                self::$databaseRole
-            ))->pollUntilComplete();
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            self::$database->updateDdlBatch([
+                sprintf(
+                    'CREATE ROLE %s',
+                    self::$dbRole
+                ),
+                sprintf(
+                    'CREATE ROLE %s',
+                    self::$restrictiveDbRole
+                ),
+                sprintf(
+                    'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
+                    self::$tableName,
+                    self::$restrictiveDbRole
+                ),
+                sprintf(
+                    'GRANT SELECT ON TABLE %s TO ROLE %s',
+                    self::$tableName,
+                    self::$dbRole
+                )
+            ])->pollUntilComplete();
         }
 
         self::seedTable();
+        self::$isSetup = true;
     }
 
     private static function seedTable()
@@ -123,20 +136,22 @@ class BatchTest extends SpannerTestCase
         $snapshot->close();
     }
 
-    public function testBatchWithRestrictiveDatabaseRole()
+    /**
+     * @dataProvider dbProvider
+     */
+    public function testBatchWithDbRole($dbRole, $expected)
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-
         $error = null;
         $query = 'SELECT
-                id,
-                decade
-            FROM ' . self::$tableName . '
-            WHERE
-                decade > @earlyBound
-            AND
-                decade < @lateBound';
+                    id,
+                    decade
+                FROM ' . self::$tableName . '
+                WHERE
+                    decade > @earlyBound
+                AND
+                    decade < @lateBound';
 
         $parameters = [
             'earlyBound' => 1960,
@@ -145,7 +160,7 @@ class BatchTest extends SpannerTestCase
 
         $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
 
-        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => self::$databaseRole]);
+        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => $dbRole]);
         $string = $batch->snapshot()->serialize();
 
         $snapshot = $batch->snapshotFromString($string);
@@ -156,47 +171,11 @@ class BatchTest extends SpannerTestCase
             $error = $e;
         }
 
-        $this->assertInstanceOf(ServiceException::class, $error);
-        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
-
-        $snapshot->close();
-    }
-
-    public function testBatchWithDatabaseRole()
-    {
-        // Emulator does not support FGAC
-        $this->skipEmulatorTests();
-
-        self::$database->updateDdl(sprintf(
-            'GRANT SELECT ON TABLE %s TO ROLE %s',
-            self::$tableName,
-            self::$databaseRole
-        ))->pollUntilComplete();
-
-        $query = 'SELECT
-                id,
-                decade
-            FROM ' . self::$tableName . '
-            WHERE
-                decade > @earlyBound
-            AND
-                decade < @lateBound';
-
-        $parameters = [
-            'earlyBound' => 1960,
-            'lateBound' => 1980
-        ];
-
-        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
-
-        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => self::$databaseRole]);
-        $string = $batch->snapshot()->serialize();
-
-        $snapshot = $batch->snapshotFromString($string);
-
-        $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
+        if ($expected === null) {
+            $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+        } else {
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+        }
         $snapshot->close();
     }
 

@@ -40,7 +40,6 @@ use Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsResponse;
 use Google\Cloud\ResourceManager\V3\TagHold;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Allow users to create and manage TagHolds for TagValues. TagHolds represent
@@ -92,6 +91,9 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagHoldsClient} to use the new surface.
  */
 class TagHoldsGapicClient
 {

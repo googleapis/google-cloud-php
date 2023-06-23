@@ -40,7 +40,6 @@ use Google\Cloud\Dataproc\V1\CreateBatchRequest;
 use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
 use Google\Cloud\Dataproc\V1\GetBatchRequest;
 use Google\Cloud\Dataproc\V1\ListBatchesRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -54,7 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Dataproc\V1\BatchControllerClient} for the stable implementation
  *
  * @experimental
  *

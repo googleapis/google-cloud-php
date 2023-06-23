@@ -43,7 +43,6 @@ use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\TimeSeries;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -58,7 +57,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Monitoring\V3\MetricServiceClient} for the stable implementation
  *
  * @internal
  *

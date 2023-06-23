@@ -39,7 +39,6 @@ use Google\Cloud\Run\V2\DeleteExecutionRequest;
 use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\GetExecutionRequest;
 use Google\Cloud\Run\V2\ListExecutionsRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -53,7 +52,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Run\V2\ExecutionsClient} for the stable implementation
  *
  * @experimental
  *
@@ -277,6 +277,8 @@ abstract class ExecutionsBaseClient
      *
      * The async variant is {@see self::deleteExecutionAsync()} .
      *
+     * @example samples/V2/ExecutionsClient/delete_execution.php
+     *
      * @param DeleteExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -301,6 +303,8 @@ abstract class ExecutionsBaseClient
      *
      * The async variant is {@see self::getExecutionAsync()} .
      *
+     * @example samples/V2/ExecutionsClient/get_execution.php
+     *
      * @param GetExecutionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -324,6 +328,8 @@ abstract class ExecutionsBaseClient
      * Lists Executions from a Job.
      *
      * The async variant is {@see self::listExecutionsAsync()} .
+     *
+     * @example samples/V2/ExecutionsClient/list_executions.php
      *
      * @param ListExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

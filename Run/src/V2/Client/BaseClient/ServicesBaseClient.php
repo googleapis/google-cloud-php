@@ -46,7 +46,6 @@ use Google\Cloud\Run\V2\GetServiceRequest;
 use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -60,7 +59,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Run\V2\ServicesClient} for the stable implementation
  *
  * @experimental
  *
@@ -387,6 +387,8 @@ abstract class ServicesBaseClient
      *
      * The async variant is {@see self::createServiceAsync()} .
      *
+     * @example samples/V2/ServicesClient/create_service.php
+     *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -413,6 +415,8 @@ abstract class ServicesBaseClient
      *
      * The async variant is {@see self::deleteServiceAsync()} .
      *
+     * @example samples/V2/ServicesClient/delete_service.php
+     *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -438,6 +442,8 @@ abstract class ServicesBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V2/ServicesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -461,6 +467,8 @@ abstract class ServicesBaseClient
      * Gets information about a Service.
      *
      * The async variant is {@see self::getServiceAsync()} .
+     *
+     * @example samples/V2/ServicesClient/get_service.php
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -486,6 +494,8 @@ abstract class ServicesBaseClient
      *
      * The async variant is {@see self::listServicesAsync()} .
      *
+     * @example samples/V2/ServicesClient/list_services.php
+     *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -510,6 +520,8 @@ abstract class ServicesBaseClient
      * any existing policy.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/ServicesClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -537,6 +549,8 @@ abstract class ServicesBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V2/ServicesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -560,6 +574,8 @@ abstract class ServicesBaseClient
      * Updates a Service.
      *
      * The async variant is {@see self::updateServiceAsync()} .
+     *
+     * @example samples/V2/ServicesClient/update_service.php
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

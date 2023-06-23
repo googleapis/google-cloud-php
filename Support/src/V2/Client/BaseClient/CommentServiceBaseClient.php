@@ -313,6 +313,8 @@ abstract class CommentServiceBaseClient
      *
      * The async variant is {@see self::createCommentAsync()} .
      *
+     * @example samples/V2/CommentServiceClient/create_comment.php
+     *
      * @param CreateCommentRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -336,6 +338,8 @@ abstract class CommentServiceBaseClient
      * Retrieve all Comments associated with the Case object.
      *
      * The async variant is {@see self::listCommentsAsync()} .
+     *
+     * @example samples/V2/CommentServiceClient/list_comments.php
      *
      * @param ListCommentsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

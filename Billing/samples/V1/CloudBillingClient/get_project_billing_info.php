@@ -34,10 +34,11 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
  * role.
  *
- * @param string $name The resource name of the project for which billing information is
- *                     retrieved. For example, `projects/tokyo-rain-123`.
+ * @param string $formattedName The resource name of the project for which billing information is
+ *                              retrieved. For example, `projects/tokyo-rain-123`. Please see
+ *                              {@see CloudBillingClient::projectBillingInfoName()} for help formatting this field.
  */
-function get_project_billing_info_sample(string $name): void
+function get_project_billing_info_sample(string $formattedName): void
 {
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
@@ -45,7 +46,7 @@ function get_project_billing_info_sample(string $name): void
     // Call the API and handle any network failures.
     try {
         /** @var ProjectBillingInfo $response */
-        $response = $cloudBillingClient->getProjectBillingInfo($name);
+        $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -63,8 +64,8 @@ function get_project_billing_info_sample(string $name): void
  */
 function callSample(): void
 {
-    $name = '[NAME]';
+    $formattedName = CloudBillingClient::projectBillingInfoName('[PROJECT]');
 
-    get_project_billing_info_sample($name);
+    get_project_billing_info_sample($formattedName);
 }
 // [END cloudbilling_v1_generated_CloudBilling_GetProjectBillingInfo_sync]

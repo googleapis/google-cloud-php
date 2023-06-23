@@ -37,7 +37,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\CompleteQueryRequest;
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
 use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -54,7 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Retail\V2\CompletionServiceClient} for the stable implementation
  *
  * @experimental
  *

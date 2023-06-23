@@ -56,7 +56,6 @@ use Google\Cloud\Tpu\V2\RuntimeVersion;
 use Google\Cloud\Tpu\V2\StartNodeRequest;
 use Google\Cloud\Tpu\V2\StopNodeRequest;
 use Google\Cloud\Tpu\V2\UpdateNodeRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -344,6 +343,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::createNodeAsync()} .
      *
+     * @example samples/V2/TpuClient/create_node.php
+     *
      * @param CreateNodeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -367,6 +368,8 @@ abstract class TpuBaseClient
      * Deletes a node.
      *
      * The async variant is {@see self::deleteNodeAsync()} .
+     *
+     * @example samples/V2/TpuClient/delete_node.php
      *
      * @param DeleteNodeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -392,6 +395,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::generateServiceIdentityAsync()} .
      *
+     * @example samples/V2/TpuClient/generate_service_identity.php
+     *
      * @param GenerateServiceIdentityRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -415,6 +420,8 @@ abstract class TpuBaseClient
      * Gets AcceleratorType.
      *
      * The async variant is {@see self::getAcceleratorTypeAsync()} .
+     *
+     * @example samples/V2/TpuClient/get_accelerator_type.php
      *
      * @param GetAcceleratorTypeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -440,6 +447,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::getGuestAttributesAsync()} .
      *
+     * @example samples/V2/TpuClient/get_guest_attributes.php
+     *
      * @param GetGuestAttributesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -463,6 +472,8 @@ abstract class TpuBaseClient
      * Gets the details of a node.
      *
      * The async variant is {@see self::getNodeAsync()} .
+     *
+     * @example samples/V2/TpuClient/get_node.php
      *
      * @param GetNodeRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -488,6 +499,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::getRuntimeVersionAsync()} .
      *
+     * @example samples/V2/TpuClient/get_runtime_version.php
+     *
      * @param GetRuntimeVersionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -511,6 +524,8 @@ abstract class TpuBaseClient
      * Lists accelerator types supported by this API.
      *
      * The async variant is {@see self::listAcceleratorTypesAsync()} .
+     *
+     * @example samples/V2/TpuClient/list_accelerator_types.php
      *
      * @param ListAcceleratorTypesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -536,6 +551,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::listNodesAsync()} .
      *
+     * @example samples/V2/TpuClient/list_nodes.php
+     *
      * @param ListNodesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -559,6 +576,8 @@ abstract class TpuBaseClient
      * Lists runtime versions supported by this API.
      *
      * The async variant is {@see self::listRuntimeVersionsAsync()} .
+     *
+     * @example samples/V2/TpuClient/list_runtime_versions.php
      *
      * @param ListRuntimeVersionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -584,6 +603,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::startNodeAsync()} .
      *
+     * @example samples/V2/TpuClient/start_node.php
+     *
      * @param StartNodeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -607,6 +628,8 @@ abstract class TpuBaseClient
      * Stops a node. This operation is only available with single TPU nodes.
      *
      * The async variant is {@see self::stopNodeAsync()} .
+     *
+     * @example samples/V2/TpuClient/stop_node.php
      *
      * @param StopNodeRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -632,6 +655,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::updateNodeAsync()} .
      *
+     * @example samples/V2/TpuClient/update_node.php
+     *
      * @param UpdateNodeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -656,6 +681,8 @@ abstract class TpuBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V2/TpuClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -679,6 +706,8 @@ abstract class TpuBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V2/TpuClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

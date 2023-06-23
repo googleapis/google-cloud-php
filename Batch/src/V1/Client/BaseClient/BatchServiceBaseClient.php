@@ -46,7 +46,6 @@ use Google\Cloud\Batch\V1\Task;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -62,7 +61,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Batch\V1\BatchServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -333,6 +333,8 @@ abstract class BatchServiceBaseClient
      *
      * The async variant is {@see self::createJobAsync()} .
      *
+     * @example samples/V1/BatchServiceClient/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -356,6 +358,8 @@ abstract class BatchServiceBaseClient
      * Delete a Job.
      *
      * The async variant is {@see self::deleteJobAsync()} .
+     *
+     * @example samples/V1/BatchServiceClient/delete_job.php
      *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -381,6 +385,8 @@ abstract class BatchServiceBaseClient
      *
      * The async variant is {@see self::getJobAsync()} .
      *
+     * @example samples/V1/BatchServiceClient/get_job.php
+     *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -404,6 +410,8 @@ abstract class BatchServiceBaseClient
      * Return a single Task.
      *
      * The async variant is {@see self::getTaskAsync()} .
+     *
+     * @example samples/V1/BatchServiceClient/get_task.php
      *
      * @param GetTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -429,6 +437,8 @@ abstract class BatchServiceBaseClient
      *
      * The async variant is {@see self::listJobsAsync()} .
      *
+     * @example samples/V1/BatchServiceClient/list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -452,6 +462,8 @@ abstract class BatchServiceBaseClient
      * List Tasks associated with a job.
      *
      * The async variant is {@see self::listTasksAsync()} .
+     *
+     * @example samples/V1/BatchServiceClient/list_tasks.php
      *
      * @param ListTasksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -477,6 +489,8 @@ abstract class BatchServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/BatchServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -500,6 +514,8 @@ abstract class BatchServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/BatchServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -39,7 +39,6 @@ use Google\Cloud\Run\V2\DeleteRevisionRequest;
 use Google\Cloud\Run\V2\GetRevisionRequest;
 use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\Revision;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -53,7 +52,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Run\V2\RevisionsClient} for the stable implementation
  *
  * @experimental
  *
@@ -277,6 +277,8 @@ abstract class RevisionsBaseClient
      *
      * The async variant is {@see self::deleteRevisionAsync()} .
      *
+     * @example samples/V2/RevisionsClient/delete_revision.php
+     *
      * @param DeleteRevisionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -301,6 +303,8 @@ abstract class RevisionsBaseClient
      *
      * The async variant is {@see self::getRevisionAsync()} .
      *
+     * @example samples/V2/RevisionsClient/get_revision.php
+     *
      * @param GetRevisionRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -324,6 +328,8 @@ abstract class RevisionsBaseClient
      * Lists Revisions from a given Service, or from a given location.
      *
      * The async variant is {@see self::listRevisionsAsync()} .
+     *
+     * @example samples/V2/RevisionsClient/list_revisions.php
      *
      * @param ListRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -79,7 +79,6 @@ use Google\Cloud\DataLabeling\V1beta1\ResumeEvaluationJobRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchEvaluationsRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest;
 use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -502,6 +501,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::createAnnotationSpecSetAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/create_annotation_spec_set.php
+     *
      * @param CreateAnnotationSpecSetRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -527,6 +528,8 @@ abstract class DataLabelingServiceBaseClient
      * Creates dataset. If success return a Dataset resource.
      *
      * The async variant is {@see self::createDatasetAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/create_dataset.php
      *
      * @param CreateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -554,6 +557,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::createEvaluationJobAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/create_evaluation_job.php
+     *
      * @param CreateEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -579,6 +584,8 @@ abstract class DataLabelingServiceBaseClient
      * Creates an instruction for how data should be labeled.
      *
      * The async variant is {@see self::createInstructionAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/create_instruction.php
      *
      * @param CreateInstructionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,6 +613,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::deleteAnnotatedDatasetAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/delete_annotated_dataset.php
+     *
      * @param DeleteAnnotatedDatasetRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -629,6 +638,8 @@ abstract class DataLabelingServiceBaseClient
      * Deletes an annotation spec set by resource name.
      *
      * The async variant is {@see self::deleteAnnotationSpecSetAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/delete_annotation_spec_set.php
      *
      * @param DeleteAnnotationSpecSetRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -654,6 +665,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::deleteDatasetAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/delete_dataset.php
+     *
      * @param DeleteDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -677,6 +690,8 @@ abstract class DataLabelingServiceBaseClient
      * Stops and deletes an evaluation job.
      *
      * The async variant is {@see self::deleteEvaluationJobAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/delete_evaluation_job.php
      *
      * @param DeleteEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -702,6 +717,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::deleteInstructionAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/delete_instruction.php
+     *
      * @param DeleteInstructionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -725,6 +742,8 @@ abstract class DataLabelingServiceBaseClient
      * Exports data and annotations from dataset.
      *
      * The async variant is {@see self::exportDataAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/export_data.php
      *
      * @param ExportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -752,6 +771,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::getAnnotatedDatasetAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_annotated_dataset.php
+     *
      * @param GetAnnotatedDatasetRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -777,6 +798,8 @@ abstract class DataLabelingServiceBaseClient
      * Gets an annotation spec set by resource name.
      *
      * The async variant is {@see self::getAnnotationSpecSetAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_annotation_spec_set.php
      *
      * @param GetAnnotationSpecSetRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -805,6 +828,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::getDataItemAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_data_item.php
+     *
      * @param GetDataItemRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -830,6 +855,8 @@ abstract class DataLabelingServiceBaseClient
      * Gets dataset by resource name.
      *
      * The async variant is {@see self::getDatasetAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_dataset.php
      *
      * @param GetDatasetRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -858,6 +885,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::getEvaluationAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_evaluation.php
+     *
      * @param GetEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -883,6 +912,8 @@ abstract class DataLabelingServiceBaseClient
      * Gets an evaluation job by resource name.
      *
      * The async variant is {@see self::getEvaluationJobAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_evaluation_job.php
      *
      * @param GetEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -910,6 +941,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::getExampleAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_example.php
+     *
      * @param GetExampleRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -935,6 +968,8 @@ abstract class DataLabelingServiceBaseClient
      * Gets an instruction by resource name.
      *
      * The async variant is {@see self::getInstructionAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/get_instruction.php
      *
      * @param GetInstructionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -966,6 +1001,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::importDataAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/import_data.php
+     *
      * @param ImportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -992,6 +1029,8 @@ abstract class DataLabelingServiceBaseClient
      * configured by feature in the request.
      *
      * The async variant is {@see self::labelImageAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/label_image.php
      *
      * @param LabelImageRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1020,6 +1059,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::labelTextAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/label_text.php
+     *
      * @param LabelTextRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1047,6 +1088,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::labelVideoAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/label_video.php
+     *
      * @param LabelVideoRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -1073,6 +1116,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::listAnnotatedDatasetsAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_annotated_datasets.php
+     *
      * @param ListAnnotatedDatasetsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1098,6 +1143,8 @@ abstract class DataLabelingServiceBaseClient
      * Lists annotation spec sets for a project. Pagination is supported.
      *
      * The async variant is {@see self::listAnnotationSpecSetsAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_annotation_spec_sets.php
      *
      * @param ListAnnotationSpecSetsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1126,6 +1173,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::listDataItemsAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_data_items.php
+     *
      * @param ListDataItemsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1151,6 +1200,8 @@ abstract class DataLabelingServiceBaseClient
      * Lists datasets under a project. Pagination is supported.
      *
      * The async variant is {@see self::listDatasetsAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_datasets.php
      *
      * @param ListDatasetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1179,6 +1230,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::listEvaluationJobsAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_evaluation_jobs.php
+     *
      * @param ListEvaluationJobsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1205,6 +1258,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::listExamplesAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_examples.php
+     *
      * @param ListExamplesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1230,6 +1285,8 @@ abstract class DataLabelingServiceBaseClient
      * Lists instructions for a project. Pagination is supported.
      *
      * The async variant is {@see self::listInstructionsAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/list_instructions.php
      *
      * @param ListInstructionsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1258,6 +1315,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::pauseEvaluationJobAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/pause_evaluation_job.php
+     *
      * @param PauseEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1283,6 +1342,8 @@ abstract class DataLabelingServiceBaseClient
      *
      * The async variant is {@see self::resumeEvaluationJobAsync()} .
      *
+     * @example samples/V1beta1/DataLabelingServiceClient/resume_evaluation_job.php
+     *
      * @param ResumeEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1306,6 +1367,8 @@ abstract class DataLabelingServiceBaseClient
      * Searches [evaluations][google.cloud.datalabeling.v1beta1.Evaluation] within a project.
      *
      * The async variant is {@see self::searchEvaluationsAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/search_evaluations.php
      *
      * @param SearchEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1334,6 +1397,8 @@ abstract class DataLabelingServiceBaseClient
      * a single input. Search by providing an evaluation ID.
      *
      * The async variant is {@see self::searchExampleComparisonsAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/search_example_comparisons.php
      *
      * @param SearchExampleComparisonsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1365,6 +1430,8 @@ abstract class DataLabelingServiceBaseClient
      * delete the job and create a new one.
      *
      * The async variant is {@see self::updateEvaluationJobAsync()} .
+     *
+     * @example samples/V1beta1/DataLabelingServiceClient/update_evaluation_job.php
      *
      * @param UpdateEvaluationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

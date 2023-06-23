@@ -43,7 +43,6 @@ use Google\Cloud\DiscoveryEngine\V1beta\GetSchemaRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListSchemasRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\Schema;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateSchemaRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -436,6 +435,8 @@ abstract class SchemaServiceBaseClient
      *
      * The async variant is {@see self::createSchemaAsync()} .
      *
+     * @example samples/V1beta/SchemaServiceClient/create_schema.php
+     *
      * @param CreateSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -467,6 +468,8 @@ abstract class SchemaServiceBaseClient
      * Deletes a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
      * The async variant is {@see self::deleteSchemaAsync()} .
+     *
+     * @example samples/V1beta/SchemaServiceClient/delete_schema.php
      *
      * @param DeleteSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -500,6 +503,8 @@ abstract class SchemaServiceBaseClient
      *
      * The async variant is {@see self::getSchemaAsync()} .
      *
+     * @example samples/V1beta/SchemaServiceClient/get_schema.php
+     *
      * @param GetSchemaRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -528,6 +533,8 @@ abstract class SchemaServiceBaseClient
      *
      * The async variant is {@see self::listSchemasAsync()} .
      *
+     * @example samples/V1beta/SchemaServiceClient/list_schemas.php
+     *
      * @param ListSchemasRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -555,6 +562,8 @@ abstract class SchemaServiceBaseClient
      * Updates a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
      * The async variant is {@see self::updateSchemaAsync()} .
+     *
+     * @example samples/V1beta/SchemaServiceClient/update_schema.php
      *
      * @param UpdateSchemaRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

@@ -124,6 +124,9 @@ use Google\Protobuf\Int64Value;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Kms\V1\Client\KeyManagementServiceClient} to use the new surface.
  */
 class KeyManagementServiceGapicClient
 {

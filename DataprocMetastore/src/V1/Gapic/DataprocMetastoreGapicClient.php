@@ -50,7 +50,6 @@ use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
 use Google\Cloud\Metastore\V1\CreateServiceRequest;
-use Google\Cloud\Metastore\V1\DatabaseDumpSpec\Type;
 use Google\Cloud\Metastore\V1\DeleteBackupRequest;
 use Google\Cloud\Metastore\V1\DeleteServiceRequest;
 use Google\Cloud\Metastore\V1\ExportMetadataRequest;
@@ -64,12 +63,10 @@ use Google\Cloud\Metastore\V1\ListMetadataImportsResponse;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\ListServicesResponse;
 use Google\Cloud\Metastore\V1\MetadataImport;
-use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -135,6 +132,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient} to use the new
+ * surface.
  */
 class DataprocMetastoreGapicClient
 {

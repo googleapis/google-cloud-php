@@ -87,7 +87,6 @@ use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VerifyMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VmCreationConfig;
 use Google\Cloud\CloudDms\V1\VmSelectionConfig;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
@@ -136,6 +135,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient} to use the new
+ * surface.
  */
 class DataMigrationServiceGapicClient
 {

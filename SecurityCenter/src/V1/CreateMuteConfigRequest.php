@@ -31,9 +31,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
     private $mute_config = null;
     /**
      * Required. Unique identifier provided by the client within the parent scope.
-     * It must consist of lower case letters, numbers, and hyphen, with the first
-     * character a letter, the last a letter or a number, and a 63 character
-     * maximum.
+     * It must consist of only lowercase letters, numbers, and hyphens, must start
+     * with a letter, must end with either a letter or a number, and must be 63
+     * characters or less.
      *
      * Generated from protobuf field <code>string mute_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,9 +64,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *                                                                 {@see SecurityCenterClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenter\V1\MuteConfig $muteConfig   Required. The mute config being created.
      * @param string                                     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
-     *                                                                 It must consist of lower case letters, numbers, and hyphen, with the first
-     *                                                                 character a letter, the last a letter or a number, and a 63 character
-     *                                                                 maximum.
+     *                                                                 It must consist of only lowercase letters, numbers, and hyphens, must start
+     *                                                                 with a letter, must end with either a letter or a number, and must be 63
+     *                                                                 characters or less.
      *
      * @return \Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest
      *
@@ -94,9 +94,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *           Required. The mute config being created.
      *     @type string $mute_config_id
      *           Required. Unique identifier provided by the client within the parent scope.
-     *           It must consist of lower case letters, numbers, and hyphen, with the first
-     *           character a letter, the last a letter or a number, and a 63 character
-     *           maximum.
+     *           It must consist of only lowercase letters, numbers, and hyphens, must start
+     *           with a letter, must end with either a letter or a number, and must be 63
+     *           characters or less.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,9 +172,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique identifier provided by the client within the parent scope.
-     * It must consist of lower case letters, numbers, and hyphen, with the first
-     * character a letter, the last a letter or a number, and a 63 character
-     * maximum.
+     * It must consist of only lowercase letters, numbers, and hyphens, must start
+     * with a letter, must end with either a letter or a number, and must be 63
+     * characters or less.
      *
      * Generated from protobuf field <code>string mute_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -186,9 +186,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique identifier provided by the client within the parent scope.
-     * It must consist of lower case letters, numbers, and hyphen, with the first
-     * character a letter, the last a letter or a number, and a 63 character
-     * maximum.
+     * It must consist of only lowercase letters, numbers, and hyphens, must start
+     * with a letter, must end with either a letter or a number, and must be 63
+     * characters or less.
      *
      * Generated from protobuf field <code>string mute_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

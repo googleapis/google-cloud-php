@@ -79,6 +79,25 @@ return [
                     ],
                 ],
             ],
+            'UpdateExplanationDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'UploadModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UploadModelResponse',

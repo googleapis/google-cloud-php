@@ -40,7 +40,6 @@ use Google\Cloud\AppEngine\V1\GetInstanceRequest;
 use Google\Cloud\AppEngine\V1\Instance;
 use Google\Cloud\AppEngine\V1\ListInstancesRequest;
 use Google\Cloud\AppEngine\V1\ListInstancesResponse;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Manages instances of a version.
@@ -81,6 +80,9 @@ use Google\LongRunning\Operation;
  *     $instancesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\InstancesClient} to use the new surface.
  */
 class InstancesGapicClient
 {

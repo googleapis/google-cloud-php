@@ -42,7 +42,6 @@ use Google\Cloud\Shell\V1\RemovePublicKeyRequest;
 use Google\Cloud\Shell\V1\StartEnvironmentMetadata;
 use Google\Cloud\Shell\V1\StartEnvironmentRequest;
 use Google\Cloud\Shell\V1\StartEnvironmentResponse;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -62,7 +61,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Shell\V1\CloudShellServiceClient} for the stable implementation
  *
  * @experimental
  *

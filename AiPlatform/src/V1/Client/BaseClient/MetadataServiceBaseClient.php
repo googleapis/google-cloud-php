@@ -86,7 +86,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -100,7 +99,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\MetadataServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -444,6 +444,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::addContextArtifactsAndExecutionsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/add_context_artifacts_and_executions.php
+     *
      * @param AddContextArtifactsAndExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -472,6 +474,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::addContextChildrenAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/add_context_children.php
+     *
      * @param AddContextChildrenRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -499,6 +503,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::addExecutionEventsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/add_execution_events.php
+     *
      * @param AddExecutionEventsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -522,6 +528,8 @@ abstract class MetadataServiceBaseClient
      * Creates an Artifact associated with a MetadataStore.
      *
      * The async variant is {@see self::createArtifactAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/create_artifact.php
      *
      * @param CreateArtifactRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -547,6 +555,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::createContextAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/create_context.php
+     *
      * @param CreateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -570,6 +580,8 @@ abstract class MetadataServiceBaseClient
      * Creates an Execution associated with a MetadataStore.
      *
      * The async variant is {@see self::createExecutionAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/create_execution.php
      *
      * @param CreateExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -595,6 +607,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::createMetadataSchemaAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/create_metadata_schema.php
+     *
      * @param CreateMetadataSchemaRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -618,6 +632,8 @@ abstract class MetadataServiceBaseClient
      * Initializes a MetadataStore, including allocation of resources.
      *
      * The async variant is {@see self::createMetadataStoreAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/create_metadata_store.php
      *
      * @param CreateMetadataStoreRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -643,6 +659,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::deleteArtifactAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/delete_artifact.php
+     *
      * @param DeleteArtifactRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -667,6 +685,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::deleteContextAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/delete_context.php
+     *
      * @param DeleteContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -690,6 +710,8 @@ abstract class MetadataServiceBaseClient
      * Deletes an Execution.
      *
      * The async variant is {@see self::deleteExecutionAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/delete_execution.php
      *
      * @param DeleteExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -716,6 +738,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::deleteMetadataStoreAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/delete_metadata_store.php
+     *
      * @param DeleteMetadataStoreRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -739,6 +763,8 @@ abstract class MetadataServiceBaseClient
      * Retrieves a specific Artifact.
      *
      * The async variant is {@see self::getArtifactAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_artifact.php
      *
      * @param GetArtifactRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -764,6 +790,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::getContextAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/get_context.php
+     *
      * @param GetContextRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -787,6 +815,8 @@ abstract class MetadataServiceBaseClient
      * Retrieves a specific Execution.
      *
      * The async variant is {@see self::getExecutionAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_execution.php
      *
      * @param GetExecutionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -812,6 +842,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::getMetadataSchemaAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/get_metadata_schema.php
+     *
      * @param GetMetadataSchemaRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -835,6 +867,8 @@ abstract class MetadataServiceBaseClient
      * Retrieves a specific MetadataStore.
      *
      * The async variant is {@see self::getMetadataStoreAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_metadata_store.php
      *
      * @param GetMetadataStoreRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -860,6 +894,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::listArtifactsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/list_artifacts.php
+     *
      * @param ListArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -883,6 +919,8 @@ abstract class MetadataServiceBaseClient
      * Lists Contexts on the MetadataStore.
      *
      * The async variant is {@see self::listContextsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/list_contexts.php
      *
      * @param ListContextsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -908,6 +946,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::listExecutionsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/list_executions.php
+     *
      * @param ListExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -931,6 +971,8 @@ abstract class MetadataServiceBaseClient
      * Lists MetadataSchemas.
      *
      * The async variant is {@see self::listMetadataSchemasAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/list_metadata_schemas.php
      *
      * @param ListMetadataSchemasRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -956,6 +998,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::listMetadataStoresAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/list_metadata_stores.php
+     *
      * @param ListMetadataStoresRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -979,6 +1023,8 @@ abstract class MetadataServiceBaseClient
      * Purges Artifacts.
      *
      * The async variant is {@see self::purgeArtifactsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/purge_artifacts.php
      *
      * @param PurgeArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1004,6 +1050,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::purgeContextsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/purge_contexts.php
+     *
      * @param PurgeContextsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1027,6 +1075,8 @@ abstract class MetadataServiceBaseClient
      * Purges Executions.
      *
      * The async variant is {@see self::purgeExecutionsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/purge_executions.php
      *
      * @param PurgeExecutionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1053,6 +1103,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::queryArtifactLineageSubgraphAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/query_artifact_lineage_subgraph.php
+     *
      * @param QueryArtifactLineageSubgraphRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -1077,6 +1129,8 @@ abstract class MetadataServiceBaseClient
      * by Event edges and returned as a LineageSubgraph.
      *
      * The async variant is {@see self::queryContextLineageSubgraphAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/query_context_lineage_subgraph.php
      *
      * @param QueryContextLineageSubgraphRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1104,6 +1158,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::queryExecutionInputsAndOutputsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/query_execution_inputs_and_outputs.php
+     *
      * @param QueryExecutionInputsAndOutputsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -1130,6 +1186,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::removeContextChildrenAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/remove_context_children.php
+     *
      * @param RemoveContextChildrenRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1153,6 +1211,8 @@ abstract class MetadataServiceBaseClient
      * Updates a stored Artifact.
      *
      * The async variant is {@see self::updateArtifactAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/update_artifact.php
      *
      * @param UpdateArtifactRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1178,6 +1238,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::updateContextAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/update_context.php
+     *
      * @param UpdateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1201,6 +1263,8 @@ abstract class MetadataServiceBaseClient
      * Updates a stored Execution.
      *
      * The async variant is {@see self::updateExecutionAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/update_execution.php
      *
      * @param UpdateExecutionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1226,6 +1290,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1249,6 +1315,8 @@ abstract class MetadataServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1274,6 +1342,8 @@ abstract class MetadataServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1302,6 +1372,8 @@ abstract class MetadataServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1332,6 +1404,8 @@ abstract class MetadataServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

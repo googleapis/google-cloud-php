@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Evaluates the given ProcessorVersion against the supplied documents.
+ * Evaluates the given
+ * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] against the
+ * supplied documents.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.EvaluateProcessorVersionRequest</code>
  */

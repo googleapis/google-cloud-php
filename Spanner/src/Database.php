@@ -451,6 +451,43 @@ class Database
     }
 
     /**
+     * Update an existing Cloud Spanner database.
+     *
+     * Example:
+     * ```
+     * $operation = $database->updateDatabase(['enableDropProtection' => true]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#updatedatabaserequest UpdateDatabaseRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type bool $enableDropProtection If `true`, delete operations for Database
+     *           and Instance will be blocked. **Defaults to** `false`.
+     * }
+     * @return LongRunningOperation<Database>
+     */
+    public function updateDatabase(array $options = [])
+    {
+        $fieldMask = [];
+        if (isset($options['enableDropProtection'])) {
+            $fieldMask[] = 'enable_drop_protection';
+        }
+        return $this->connection->updateDatabase([
+            'database' => [
+                'name' => $this->name,
+                'enableDropProtection' => $options['enableDropProtection'] ?? false,
+            ],
+            'updateMask' => [
+                'paths' => $fieldMask
+            ]
+        ] + $options);
+    }
+
+    /**
      * Update the Database schema by running a SQL statement.
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.

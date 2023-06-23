@@ -110,7 +110,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -285,6 +287,8 @@ abstract class DatastoreAdminBaseClient
      *
      * The async variant is {@see self::createIndexAsync()} .
      *
+     * @example samples/V1/DatastoreAdminClient/create_index.php
+     *
      * @param CreateIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -318,6 +322,8 @@ abstract class DatastoreAdminBaseClient
      *
      * The async variant is {@see self::deleteIndexAsync()} .
      *
+     * @example samples/V1/DatastoreAdminClient/delete_index.php
+     *
      * @param DeleteIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -349,6 +355,8 @@ abstract class DatastoreAdminBaseClient
      *
      * The async variant is {@see self::exportEntitiesAsync()} .
      *
+     * @example samples/V1/DatastoreAdminClient/export_entities.php
+     *
      * @param ExportEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -372,6 +380,8 @@ abstract class DatastoreAdminBaseClient
      * Gets an index.
      *
      * The async variant is {@see self::getIndexAsync()} .
+     *
+     * @example samples/V1/DatastoreAdminClient/get_index.php
      *
      * @param GetIndexRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -401,6 +411,8 @@ abstract class DatastoreAdminBaseClient
      *
      * The async variant is {@see self::importEntitiesAsync()} .
      *
+     * @example samples/V1/DatastoreAdminClient/import_entities.php
+     *
      * @param ImportEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -426,6 +438,8 @@ abstract class DatastoreAdminBaseClient
      * occasionally return stale results.
      *
      * The async variant is {@see self::listIndexesAsync()} .
+     *
+     * @example samples/V1/DatastoreAdminClient/list_indexes.php
      *
      * @param ListIndexesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

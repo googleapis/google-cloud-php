@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The long running operation metadata for review document method.
+ * The long-running operation metadata for the
+ * [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ReviewDocumentOperationMetadata</code>
  */
 class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      */
@@ -35,7 +37,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
-     *           The basic metadata of the long running operation.
+     *           The basic metadata of the long-running operation.
      *     @type string $question_id
      *           The Crowd Compute question ID.
      * }
@@ -46,7 +48,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      * @return \Google\Cloud\DocumentAI\V1\CommonOperationMetadata|null
@@ -67,7 +69,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      * @param \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $var

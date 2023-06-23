@@ -168,6 +168,8 @@ abstract class SqlTiersServiceBaseClient
      *
      * The async variant is {@see self::listAsync()} .
      *
+     * @example samples/V1/SqlTiersServiceClient/list.php
+     *
      * @param SqlTiersListRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.

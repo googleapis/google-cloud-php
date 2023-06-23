@@ -83,7 +83,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -101,7 +100,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Dataplex\V1\DataplexServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -470,6 +470,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::cancelJobAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/cancel_job.php
+     *
      * @param CancelJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -491,6 +493,8 @@ abstract class DataplexServiceBaseClient
      * Creates an asset resource.
      *
      * The async variant is {@see self::createAssetAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/create_asset.php
      *
      * @param CreateAssetRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -516,6 +520,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::createEnvironmentAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/create_environment.php
+     *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -539,6 +545,8 @@ abstract class DataplexServiceBaseClient
      * Creates a lake resource.
      *
      * The async variant is {@see self::createLakeAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/create_lake.php
      *
      * @param CreateLakeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -564,6 +572,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::createTaskAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/create_task.php
+     *
      * @param CreateTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -587,6 +597,8 @@ abstract class DataplexServiceBaseClient
      * Creates a zone resource within a lake.
      *
      * The async variant is {@see self::createZoneAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/create_zone.php
      *
      * @param CreateZoneRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -613,6 +625,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::deleteAssetAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/delete_asset.php
+     *
      * @param DeleteAssetRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -637,6 +651,8 @@ abstract class DataplexServiceBaseClient
      * deleted before environment deletion can be initiated.
      *
      * The async variant is {@see self::deleteEnvironmentAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/delete_environment.php
      *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -663,6 +679,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::deleteLakeAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/delete_lake.php
+     *
      * @param DeleteLakeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -686,6 +704,8 @@ abstract class DataplexServiceBaseClient
      * Delete the task resource.
      *
      * The async variant is {@see self::deleteTaskAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/delete_task.php
      *
      * @param DeleteTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -712,6 +732,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::deleteZoneAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/delete_zone.php
+     *
      * @param DeleteZoneRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -735,6 +757,8 @@ abstract class DataplexServiceBaseClient
      * Retrieves an asset resource.
      *
      * The async variant is {@see self::getAssetAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/get_asset.php
      *
      * @param GetAssetRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -760,6 +784,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::getEnvironmentAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/get_environment.php
+     *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -783,6 +809,8 @@ abstract class DataplexServiceBaseClient
      * Get job resource.
      *
      * The async variant is {@see self::getJobAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -808,6 +836,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::getLakeAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/get_lake.php
+     *
      * @param GetLakeRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -831,6 +861,8 @@ abstract class DataplexServiceBaseClient
      * Get task resource.
      *
      * The async variant is {@see self::getTaskAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/get_task.php
      *
      * @param GetTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -856,6 +888,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::getZoneAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/get_zone.php
+     *
      * @param GetZoneRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -879,6 +913,8 @@ abstract class DataplexServiceBaseClient
      * Lists action resources in an asset.
      *
      * The async variant is {@see self::listAssetActionsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_asset_actions.php
      *
      * @param ListAssetActionsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -904,6 +940,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::listAssetsAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/list_assets.php
+     *
      * @param ListAssetsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -927,6 +965,8 @@ abstract class DataplexServiceBaseClient
      * Lists environments under the given lake.
      *
      * The async variant is {@see self::listEnvironmentsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_environments.php
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -952,6 +992,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::listJobsAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -975,6 +1017,8 @@ abstract class DataplexServiceBaseClient
      * Lists action resources in a lake.
      *
      * The async variant is {@see self::listLakeActionsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_lake_actions.php
      *
      * @param ListLakeActionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1000,6 +1044,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::listLakesAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/list_lakes.php
+     *
      * @param ListLakesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1023,6 +1069,8 @@ abstract class DataplexServiceBaseClient
      * Lists session resources in an environment.
      *
      * The async variant is {@see self::listSessionsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_sessions.php
      *
      * @param ListSessionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1048,6 +1096,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::listTasksAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/list_tasks.php
+     *
      * @param ListTasksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1071,6 +1121,8 @@ abstract class DataplexServiceBaseClient
      * Lists action resources in a zone.
      *
      * The async variant is {@see self::listZoneActionsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_zone_actions.php
      *
      * @param ListZoneActionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1096,6 +1148,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::listZonesAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/list_zones.php
+     *
      * @param ListZonesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1119,6 +1173,8 @@ abstract class DataplexServiceBaseClient
      * Run an on demand execution of a Task.
      *
      * The async variant is {@see self::runTaskAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/run_task.php
      *
      * @param RunTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1144,6 +1200,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::updateAssetAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/update_asset.php
+     *
      * @param UpdateAssetRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1167,6 +1225,8 @@ abstract class DataplexServiceBaseClient
      * Update the environment resource.
      *
      * The async variant is {@see self::updateEnvironmentAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/update_environment.php
      *
      * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1192,6 +1252,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::updateLakeAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/update_lake.php
+     *
      * @param UpdateLakeRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -1215,6 +1277,8 @@ abstract class DataplexServiceBaseClient
      * Update the task resource.
      *
      * The async variant is {@see self::updateTaskAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/update_task.php
      *
      * @param UpdateTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1240,6 +1304,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::updateZoneAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/update_zone.php
+     *
      * @param UpdateZoneRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -1264,6 +1330,8 @@ abstract class DataplexServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1292,6 +1360,8 @@ abstract class DataplexServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1323,6 +1393,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1347,6 +1419,8 @@ abstract class DataplexServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/DataplexServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1370,6 +1444,8 @@ abstract class DataplexServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

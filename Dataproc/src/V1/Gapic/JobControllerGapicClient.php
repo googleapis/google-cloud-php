@@ -39,11 +39,9 @@ use Google\Cloud\Dataproc\V1\DeleteJobRequest;
 use Google\Cloud\Dataproc\V1\GetJobRequest;
 use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\ListJobsRequest;
-use Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -64,6 +62,9 @@ use Google\Protobuf\GPBEmpty;
  *     $jobControllerClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataproc\V1\Client\JobControllerClient} to use the new surface.
  */
 class JobControllerGapicClient
 {

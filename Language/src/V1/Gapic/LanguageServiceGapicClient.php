@@ -65,6 +65,9 @@ use Google\Cloud\Language\V1\ModerateTextResponse;
  *     $languageServiceClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Language\V1\Client\LanguageServiceClient} to use the new surface.
  */
 class LanguageServiceGapicClient
 {

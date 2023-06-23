@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the disable processor method.
+ * Request message for the
+ * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DisableProcessorRequest</code>
  */

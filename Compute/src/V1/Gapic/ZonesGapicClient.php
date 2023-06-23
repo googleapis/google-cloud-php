@@ -53,6 +53,9 @@ use Google\Cloud\Compute\V1\ZoneList;
  *     $zonesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\ZonesClient} to use the new surface.
  */
 class ZonesGapicClient
 {

@@ -45,7 +45,6 @@ use Google\Cloud\DataFusion\V1\ListInstancesRequest;
 use Google\Cloud\DataFusion\V1\ListInstancesResponse;
 use Google\Cloud\DataFusion\V1\RestartInstanceRequest;
 use Google\Cloud\DataFusion\V1\UpdateInstanceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -96,6 +95,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\DataFusion\V1\Client\DataFusionClient} to use the new surface.
  */
 class DataFusionGapicClient
 {

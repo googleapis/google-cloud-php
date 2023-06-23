@@ -118,7 +118,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $detected_barcodes;
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      */
@@ -180,7 +180,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedBarcode>|\Google\Protobuf\Internal\RepeatedField $detected_barcodes
      *           A list of detected barcodes.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $image_quality_scores
-     *           Image Quality Scores.
+     *           Image quality scores.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The history of this page.
      * }
@@ -635,7 +635,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores|null
@@ -656,7 +656,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $var

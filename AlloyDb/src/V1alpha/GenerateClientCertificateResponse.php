@@ -28,6 +28,12 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $pem_certificate_chain;
+    /**
+     * Optional. The pem-encoded cluster ca X.509 certificate.
+     *
+     * Generated from protobuf field <code>string ca_cert = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ca_cert = '';
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
      *           Output only. The pem-encoded chain that may be used to verify the X.509
      *           certificate. Expected to be in issuer-to-root order according to RFC 5246.
+     *     @type string $ca_cert
+     *           Optional. The pem-encoded cluster ca X.509 certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +105,32 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->pem_certificate_chain = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pem-encoded cluster ca X.509 certificate.
+     *
+     * Generated from protobuf field <code>string ca_cert = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCaCert()
+    {
+        return $this->ca_cert;
+    }
+
+    /**
+     * Optional. The pem-encoded cluster ca X.509 certificate.
+     *
+     * Generated from protobuf field <code>string ca_cert = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCaCert($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ca_cert = $var;
 
         return $this;
     }

@@ -79,7 +79,6 @@ use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRevocationListRequest;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateTemplateRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -95,7 +94,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient} for the
+ * stable implementation
  *
  * @experimental
  *

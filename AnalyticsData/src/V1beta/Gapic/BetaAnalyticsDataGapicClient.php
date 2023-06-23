@@ -33,7 +33,6 @@ use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
 use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\CohortSpec;
-use Google\Analytics\Data\V1beta\Compatibility;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\FilterExpression;
@@ -79,6 +78,10 @@ use Google\Auth\FetchAuthTokenInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient} to use the new
+ * surface.
  *
  * @experimental
  */

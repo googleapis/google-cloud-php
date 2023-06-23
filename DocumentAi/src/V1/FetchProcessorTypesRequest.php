@@ -9,26 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for fetch processor types.
+ * Request message for the
+ * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]
+ * method. Some processor types may require the project be added to an
+ * allowlist.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.FetchProcessorTypesRequest</code>
  */
 class FetchProcessorTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
 
     /**
-     * @param string $parent Required. The project of processor type to list.
-     *                       The available processor types may depend on the allow-listing on projects.
-     *                       Format: `projects/{project}/locations/{location}`
-     *                       Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The location of processor types to list.
+     *                       Format: `projects/{project}/locations/{location}`. Please see
+     *                       {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest
      *
@@ -47,9 +48,8 @@ class FetchProcessorTypesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project of processor type to list.
-     *           The available processor types may depend on the allow-listing on projects.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The location of processor types to list.
+     *           Format: `projects/{project}/locations/{location}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +58,8 @@ class FetchProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,9 +70,8 @@ class FetchProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

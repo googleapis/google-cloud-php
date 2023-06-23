@@ -18,7 +18,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,8 +45,9 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. The full name of the VolumeBackup from which the volume will be restored.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Output only. The full name of the VolumeBackup from which the volume will
+     * be restored. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,8 +59,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      */
     private $target_pvc = null;
     /**
-     * Output only. A storage system-specific opaque handler to the underlying volume created
-     * for the target PVC from the volume backup.
+     * Output only. A storage system-specific opaque handler to the underlying
+     * volume created for the target PVC from the volume backup.
      *
      * Generated from protobuf field <code>string volume_handle = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -84,15 +85,15 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. A human readable message explaining why the VolumeRestore is in its
-     * current state.
+     * Output only. A human readable message explaining why the VolumeRestore is
+     * in its current state.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_message = '';
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume restore from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume restore from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume restore updates in order to avoid
      * race conditions.
@@ -109,7 +110,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Full name of the VolumeRestore resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;.
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -120,13 +121,14 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when this VolumeRestore resource was last
      *           updated.
      *     @type string $volume_backup
-     *           Output only. The full name of the VolumeBackup from which the volume will be restored.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     *           Output only. The full name of the VolumeBackup from which the volume will
+     *           be restored. Format:
+     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *     @type \Google\Cloud\GkeBackup\V1\NamespacedName $target_pvc
      *           Output only. The reference to the target Kubernetes PVC to be restored.
      *     @type string $volume_handle
-     *           Output only. A storage system-specific opaque handler to the underlying volume created
-     *           for the target PVC from the volume backup.
+     *           Output only. A storage system-specific opaque handler to the underlying
+     *           volume created for the target PVC from the volume backup.
      *     @type int $volume_type
      *           Output only. The type of volume provisioned
      *     @type \Google\Protobuf\Timestamp $complete_time
@@ -135,11 +137,11 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state of this VolumeRestore.
      *     @type string $state_message
-     *           Output only. A human readable message explaining why the VolumeRestore is in its
-     *           current state.
+     *           Output only. A human readable message explaining why the VolumeRestore is
+     *           in its current state.
      *     @type string $etag
-     *           Output only. `etag` is used for optimistic concurrency control as a way to help
-     *           prevent simultaneous updates of a volume restore from overwriting each
+     *           Output only. `etag` is used for optimistic concurrency control as a way to
+     *           help prevent simultaneous updates of a volume restore from overwriting each
      *           other. It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform volume restore updates in order to avoid
      *           race conditions.
@@ -152,7 +154,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -164,7 +166,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -283,8 +285,9 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full name of the VolumeBackup from which the volume will be restored.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Output only. The full name of the VolumeBackup from which the volume will
+     * be restored. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -295,8 +298,9 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full name of the VolumeBackup from which the volume will be restored.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Output only. The full name of the VolumeBackup from which the volume will
+     * be restored. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -347,8 +351,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A storage system-specific opaque handler to the underlying volume created
-     * for the target PVC from the volume backup.
+     * Output only. A storage system-specific opaque handler to the underlying
+     * volume created for the target PVC from the volume backup.
      *
      * Generated from protobuf field <code>string volume_handle = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -359,8 +363,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A storage system-specific opaque handler to the underlying volume created
-     * for the target PVC from the volume backup.
+     * Output only. A storage system-specific opaque handler to the underlying
+     * volume created for the target PVC from the volume backup.
      *
      * Generated from protobuf field <code>string volume_handle = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -465,8 +469,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A human readable message explaining why the VolumeRestore is in its
-     * current state.
+     * Output only. A human readable message explaining why the VolumeRestore is
+     * in its current state.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -477,8 +481,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A human readable message explaining why the VolumeRestore is in its
-     * current state.
+     * Output only. A human readable message explaining why the VolumeRestore is
+     * in its current state.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -493,8 +497,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume restore from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume restore from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume restore updates in order to avoid
      * race conditions.
@@ -508,8 +512,8 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume restore from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume restore from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume restore updates in order to avoid
      * race conditions.

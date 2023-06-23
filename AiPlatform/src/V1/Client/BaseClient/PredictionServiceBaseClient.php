@@ -60,7 +60,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\PredictionServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -287,6 +289,8 @@ abstract class PredictionServiceBaseClient
      *
      * The async variant is {@see self::explainAsync()} .
      *
+     * @example samples/V1/PredictionServiceClient/explain.php
+     *
      * @param ExplainRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -310,6 +314,8 @@ abstract class PredictionServiceBaseClient
      * Perform an online prediction.
      *
      * The async variant is {@see self::predictAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/predict.php
      *
      * @param PredictRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -345,6 +351,8 @@ abstract class PredictionServiceBaseClient
      *
      * The async variant is {@see self::rawPredictAsync()} .
      *
+     * @example samples/V1/PredictionServiceClient/raw_predict.php
+     *
      * @param RawPredictRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -368,6 +376,8 @@ abstract class PredictionServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -393,6 +403,8 @@ abstract class PredictionServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/PredictionServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -417,6 +429,8 @@ abstract class PredictionServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -445,6 +459,8 @@ abstract class PredictionServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -475,6 +491,8 @@ abstract class PredictionServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

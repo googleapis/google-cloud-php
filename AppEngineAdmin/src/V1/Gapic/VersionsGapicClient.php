@@ -41,7 +41,6 @@ use Google\Cloud\AppEngine\V1\ListVersionsRequest;
 use Google\Cloud\AppEngine\V1\ListVersionsResponse;
 use Google\Cloud\AppEngine\V1\UpdateVersionRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -83,6 +82,9 @@ use Google\Protobuf\FieldMask;
  *     $versionsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\VersionsClient} to use the new surface.
  */
 class VersionsGapicClient
 {

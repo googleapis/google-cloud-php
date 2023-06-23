@@ -41,7 +41,6 @@ use Google\Cloud\AppEngine\V1\GetDomainMappingRequest;
 use Google\Cloud\AppEngine\V1\ListDomainMappingsRequest;
 use Google\Cloud\AppEngine\V1\ListDomainMappingsResponse;
 use Google\Cloud\AppEngine\V1\UpdateDomainMappingRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -83,6 +82,9 @@ use Google\Protobuf\FieldMask;
  *     $domainMappingsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\DomainMappingsClient} to use the new surface.
  */
 class DomainMappingsGapicClient
 {

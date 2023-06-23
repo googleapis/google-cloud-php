@@ -166,6 +166,8 @@ abstract class ValidationHelperV1BaseClient
      *
      * The async variant is {@see self::validateAttestationOccurrenceAsync()} .
      *
+     * @example samples/V1/ValidationHelperV1Client/validate_attestation_occurrence.php
+     *
      * @param ValidateAttestationOccurrenceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.

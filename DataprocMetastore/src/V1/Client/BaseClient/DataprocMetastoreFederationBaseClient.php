@@ -49,7 +49,6 @@ use Google\Cloud\Metastore\V1\Federation;
 use Google\Cloud\Metastore\V1\GetFederationRequest;
 use Google\Cloud\Metastore\V1\ListFederationsRequest;
 use Google\Cloud\Metastore\V1\UpdateFederationRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -75,7 +74,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Metastore\V1\DataprocMetastoreFederationClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -302,6 +303,8 @@ abstract class DataprocMetastoreFederationBaseClient
      *
      * The async variant is {@see self::createFederationAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreFederationClient/create_federation.php
+     *
      * @param CreateFederationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -325,6 +328,8 @@ abstract class DataprocMetastoreFederationBaseClient
      * Deletes a single federation.
      *
      * The async variant is {@see self::deleteFederationAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/delete_federation.php
      *
      * @param DeleteFederationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -350,6 +355,8 @@ abstract class DataprocMetastoreFederationBaseClient
      *
      * The async variant is {@see self::getFederationAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreFederationClient/get_federation.php
+     *
      * @param GetFederationRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -373,6 +380,8 @@ abstract class DataprocMetastoreFederationBaseClient
      * Lists federations in a project and location.
      *
      * The async variant is {@see self::listFederationsAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/list_federations.php
      *
      * @param ListFederationsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -398,6 +407,8 @@ abstract class DataprocMetastoreFederationBaseClient
      *
      * The async variant is {@see self::updateFederationAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreFederationClient/update_federation.php
+     *
      * @param UpdateFederationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -421,6 +432,8 @@ abstract class DataprocMetastoreFederationBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -446,6 +459,8 @@ abstract class DataprocMetastoreFederationBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreFederationClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -470,6 +485,8 @@ abstract class DataprocMetastoreFederationBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -498,6 +515,8 @@ abstract class DataprocMetastoreFederationBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -528,6 +547,8 @@ abstract class DataprocMetastoreFederationBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreFederationClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

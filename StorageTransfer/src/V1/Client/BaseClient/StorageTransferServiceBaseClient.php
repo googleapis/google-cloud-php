@@ -53,7 +53,6 @@ use Google\Cloud\StorageTransfer\V1\TransferJob;
 use Google\Cloud\StorageTransfer\V1\TransferOperation;
 use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -69,7 +68,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *

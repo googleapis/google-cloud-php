@@ -41,7 +41,6 @@ use Google\Cloud\Gaming\V1\GameServerConfig;
 use Google\Cloud\Gaming\V1\GetGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsResponse;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: The game server config configures the game servers in an Agones fleet.
@@ -90,6 +89,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Gaming\V1\Client\GameServerConfigsServiceClient} to use the new
+ * surface.
  */
 class GameServerConfigsServiceGapicClient
 {

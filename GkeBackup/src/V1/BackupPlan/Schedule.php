@@ -18,7 +18,10 @@ class Schedule extends \Google\Protobuf\Internal\Message
 {
     /**
      * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan.
+     * repeating schedule for creating Backups via this BackupPlan. If this is
+     * defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
      * Generated from protobuf field <code>string cron_schedule = 1;</code>
@@ -41,7 +44,10 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $cron_schedule
      *           A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     *           repeating schedule for creating Backups via this BackupPlan.
+     *           repeating schedule for creating Backups via this BackupPlan. If this is
+     *           defined, then
+     *           [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     *           must also be defined.
      *           Default (empty): no automatic backup creation will occur.
      *     @type bool $paused
      *           This flag denotes whether automatic Backup creation is paused for this
@@ -56,7 +62,10 @@ class Schedule extends \Google\Protobuf\Internal\Message
 
     /**
      * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan.
+     * repeating schedule for creating Backups via this BackupPlan. If this is
+     * defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
      * Generated from protobuf field <code>string cron_schedule = 1;</code>
@@ -69,7 +78,10 @@ class Schedule extends \Google\Protobuf\Internal\Message
 
     /**
      * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan.
+     * repeating schedule for creating Backups via this BackupPlan. If this is
+     * defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
      * Generated from protobuf field <code>string cron_schedule = 1;</code>

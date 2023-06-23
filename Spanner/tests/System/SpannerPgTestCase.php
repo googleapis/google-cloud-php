@@ -21,6 +21,8 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
+use Google\Auth\Cache\MemoryCacheItemPool;
 
 /**
  * @group spanner
@@ -33,6 +35,9 @@ class SpannerPgTestCase extends SystemTestCase
 
     const TEST_TABLE_NAME = 'Users';
     const TEST_INDEX_NAME = 'uniqueIndex';
+
+    const DATABASE_ROLE = 'Reader';
+    const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
 
     protected static $client;
     protected static $instance;
@@ -71,7 +76,86 @@ class SpannerPgTestCase extends SystemTestCase
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
 
+        $db->updateDdlBatch(
+            [
+                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id bigint PRIMARY KEY,
+                    name varchar(1024) NOT NULL,
+                    birthday date
+                )',
+                'CREATE ROLE ' . self::DATABASE_ROLE,
+                'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                ' TO ' . self::DATABASE_ROLE,
+                'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+            ]
+        )->pollUntilComplete();
+
         self::$hasSetUp = true;
+    }
+
+    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
+    {
+        $instance = self::$client->instance($instance);
+        return $instance->database($dbName, $options);
+    }
+
+    public static function getDatabaseWithSessionPool($dbName, $options = [])
+    {
+        $sessionCache = new MemoryCacheItemPool;
+        $sessionPool = new CacheSessionPool(
+            $sessionCache,
+            $options
+        );
+
+        return self::$client->connect(
+            self::INSTANCE_NAME,
+            $dbName,
+            [
+                'sessionPool' => $sessionPool
+            ]
+        );
+    }
+
+    public static function getDatabaseInstance($dbName)
+    {
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+
+        return self::$client->connect(self::INSTANCE_NAME, $dbName);
+    }
+
+    public static function skipEmulatorTests()
+    {
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
+    }
+
+    public static function getDbWithReaderRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithRestrictiveRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithSessionPoolRestrictiveRole()
+    {
+        return self::getDatabaseWithSessionPool(
+            self::$dbName,
+            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
     }
 
     private static function getClient()
@@ -104,19 +188,5 @@ class SpannerPgTestCase extends SystemTestCase
         self::$client = new SpannerClient($clientConfig);
 
         return self::$client;
-    }
-
-    public static function getDatabaseInstance($dbName)
-    {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        return self::$client->connect(self::INSTANCE_NAME, $dbName);
-    }
-
-    public static function skipEmulatorTests()
-    {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            self::markTestSkipped('This test is not supported by the emulator.');
-        }
     }
 }

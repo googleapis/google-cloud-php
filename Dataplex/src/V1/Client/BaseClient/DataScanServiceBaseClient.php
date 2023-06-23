@@ -54,7 +54,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -70,7 +69,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Dataplex\V1\DataScanServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -346,6 +346,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::createDataScanAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/create_data_scan.php
+     *
      * @param CreateDataScanRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -369,6 +371,8 @@ abstract class DataScanServiceBaseClient
      * Deletes a DataScan resource.
      *
      * The async variant is {@see self::deleteDataScanAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/delete_data_scan.php
      *
      * @param DeleteDataScanRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -394,6 +398,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::getDataScanAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/get_data_scan.php
+     *
      * @param GetDataScanRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -417,6 +423,8 @@ abstract class DataScanServiceBaseClient
      * Gets a DataScanJob resource.
      *
      * The async variant is {@see self::getDataScanJobAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/get_data_scan_job.php
      *
      * @param GetDataScanJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -442,6 +450,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::listDataScanJobsAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/list_data_scan_jobs.php
+     *
      * @param ListDataScanJobsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -465,6 +475,8 @@ abstract class DataScanServiceBaseClient
      * Lists DataScans.
      *
      * The async variant is {@see self::listDataScansAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/list_data_scans.php
      *
      * @param ListDataScansRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -490,6 +502,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::runDataScanAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/run_data_scan.php
+     *
      * @param RunDataScanRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -513,6 +527,8 @@ abstract class DataScanServiceBaseClient
      * Updates a DataScan resource.
      *
      * The async variant is {@see self::updateDataScanAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/update_data_scan.php
      *
      * @param UpdateDataScanRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -538,6 +554,8 @@ abstract class DataScanServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -566,6 +584,8 @@ abstract class DataScanServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -597,6 +617,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -621,6 +643,8 @@ abstract class DataScanServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/DataScanServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -644,6 +668,8 @@ abstract class DataScanServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -60,7 +60,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * value does not match this expression. If this field is NOT specified,
      * then ALL fields matched by the target_json_path expression will undergo
      * substitution. Note that an empty (e.g., "", rather than unspecified)
-     * value for for this field will only match empty fields.
+     * value for this field will only match empty fields.
      *
      * Generated from protobuf field <code>string original_value_pattern = 4;</code>
      */
@@ -111,7 +111,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *           value does not match this expression. If this field is NOT specified,
      *           then ALL fields matched by the target_json_path expression will undergo
      *           substitution. Note that an empty (e.g., "", rather than unspecified)
-     *           value for for this field will only match empty fields.
+     *           value for this field will only match empty fields.
      *     @type string $new_value
      *           This is the new value to set for any fields that pass the filtering and
      *           selection criteria. To remove a value from a Kubernetes resource, either
@@ -242,7 +242,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * value does not match this expression. If this field is NOT specified,
      * then ALL fields matched by the target_json_path expression will undergo
      * substitution. Note that an empty (e.g., "", rather than unspecified)
-     * value for for this field will only match empty fields.
+     * value for this field will only match empty fields.
      *
      * Generated from protobuf field <code>string original_value_pattern = 4;</code>
      * @return string
@@ -261,7 +261,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * value does not match this expression. If this field is NOT specified,
      * then ALL fields matched by the target_json_path expression will undergo
      * substitution. Note that an empty (e.g., "", rather than unspecified)
-     * value for for this field will only match empty fields.
+     * value for this field will only match empty fields.
      *
      * Generated from protobuf field <code>string original_value_pattern = 4;</code>
      * @param string $var

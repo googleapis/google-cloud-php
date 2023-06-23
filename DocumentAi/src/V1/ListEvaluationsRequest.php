@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Retrieves a list of evaluations for a given ProcessorVersion.
+ * Retrieves a list of evaluations for a given
+ * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListEvaluationsRequest</code>
  */
@@ -26,8 +27,8 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The standard list page size.
-     * If unspecified, at most 5 evaluations will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `5` evaluations are returned.
+     * The maximum value is `100`. Values above `100` are coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -70,8 +71,8 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type int $page_size
      *           The standard list page size.
-     *           If unspecified, at most 5 evaluations will be returned.
-     *           The maximum value is 100; values above 100 will be coerced to 100.
+     *           If unspecified, at most `5` evaluations are returned.
+     *           The maximum value is `100`. Values above `100` are coerced to `100`.
      *     @type string $page_token
      *           A page token, received from a previous `ListEvaluations` call.
      *           Provide this to retrieve the subsequent page.
@@ -116,8 +117,8 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The standard list page size.
-     * If unspecified, at most 5 evaluations will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `5` evaluations are returned.
+     * The maximum value is `100`. Values above `100` are coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -129,8 +130,8 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The standard list page size.
-     * If unspecified, at most 5 evaluations will be returned.
-     * The maximum value is 100; values above 100 will be coerced to 100.
+     * If unspecified, at most `5` evaluations are returned.
+     * The maximum value is `100`. Values above `100` are coerced to `100`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

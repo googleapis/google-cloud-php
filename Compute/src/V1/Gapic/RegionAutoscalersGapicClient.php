@@ -84,6 +84,9 @@ use Google\Cloud\Compute\V1\UpdateRegionAutoscalerRequest;
  *     $regionAutoscalersClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionAutoscalersClient} to use the new surface.
  */
 class RegionAutoscalersGapicClient
 {

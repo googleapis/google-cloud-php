@@ -45,7 +45,6 @@ use Google\Cloud\Retail\V2\PauseModelRequest;
 use Google\Cloud\Retail\V2\ResumeModelRequest;
 use Google\Cloud\Retail\V2\TuneModelRequest;
 use Google\Cloud\Retail\V2\UpdateModelRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -106,6 +105,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Retail\V2\Client\ModelServiceClient} to use the new surface.
  */
 class ModelServiceGapicClient
 {

@@ -40,7 +40,6 @@ use Google\Cloud\Run\V2\GetRevisionRequest;
 use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\ListRevisionsResponse;
 use Google\Cloud\Run\V2\Revision;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Cloud Run Revision Control Plane API.
@@ -87,6 +86,9 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Run\V2\Client\RevisionsClient} to use the new surface.
  */
 class RevisionsGapicClient
 {

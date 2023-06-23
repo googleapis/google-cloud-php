@@ -50,7 +50,6 @@ use Google\Cloud\RapidMigrationAssessment\V1\PauseCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\RegisterCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\ResumeCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\UpdateCollectorRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -341,6 +340,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::createAnnotationAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/create_annotation.php
+     *
      * @param CreateAnnotationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -372,6 +373,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::createCollectorAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/create_collector.php
+     *
      * @param CreateCollectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -401,6 +404,8 @@ abstract class RapidMigrationAssessmentBaseClient
      * Deletes a single Collector - changes state of collector to "Deleting".
      *
      * The async variant is {@see self::deleteCollectorAsync()} .
+     *
+     * @example samples/V1/RapidMigrationAssessmentClient/delete_collector.php
      *
      * @param DeleteCollectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -432,6 +437,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::getAnnotationAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/get_annotation.php
+     *
      * @param GetAnnotationRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -461,6 +468,8 @@ abstract class RapidMigrationAssessmentBaseClient
      * Gets details of a single Collector.
      *
      * The async variant is {@see self::getCollectorAsync()} .
+     *
+     * @example samples/V1/RapidMigrationAssessmentClient/get_collector.php
      *
      * @param GetCollectorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -492,6 +501,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::listCollectorsAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/list_collectors.php
+     *
      * @param ListCollectorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -517,6 +528,8 @@ abstract class RapidMigrationAssessmentBaseClient
      * Pauses the given collector.
      *
      * The async variant is {@see self::pauseCollectorAsync()} .
+     *
+     * @example samples/V1/RapidMigrationAssessmentClient/pause_collector.php
      *
      * @param PauseCollectorRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -548,6 +561,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::registerCollectorAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/register_collector.php
+     *
      * @param RegisterCollectorRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -577,6 +592,8 @@ abstract class RapidMigrationAssessmentBaseClient
      * Resumes the given collector.
      *
      * The async variant is {@see self::resumeCollectorAsync()} .
+     *
+     * @example samples/V1/RapidMigrationAssessmentClient/resume_collector.php
      *
      * @param ResumeCollectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -608,6 +625,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::updateCollectorAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/update_collector.php
+     *
      * @param UpdateCollectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -638,6 +657,8 @@ abstract class RapidMigrationAssessmentBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/RapidMigrationAssessmentClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -667,6 +688,8 @@ abstract class RapidMigrationAssessmentBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/RapidMigrationAssessmentClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -39,7 +39,6 @@ use Google\Cloud\AppEngine\V1\GetServiceRequest;
 use Google\Cloud\AppEngine\V1\ListServicesRequest;
 use Google\Cloud\AppEngine\V1\Service;
 use Google\Cloud\AppEngine\V1\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -48,7 +47,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AppEngine\V1\ServicesClient} for the stable implementation
  *
  * @experimental
  *

@@ -53,7 +53,6 @@ use Google\Cloud\Metastore\V1\GetFederationRequest;
 use Google\Cloud\Metastore\V1\ListFederationsRequest;
 use Google\Cloud\Metastore\V1\ListFederationsResponse;
 use Google\Cloud\Metastore\V1\UpdateFederationRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -115,6 +114,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Metastore\V1\Client\DataprocMetastoreFederationClient} to use the
+ * new surface.
  */
 class DataprocMetastoreFederationGapicClient
 {

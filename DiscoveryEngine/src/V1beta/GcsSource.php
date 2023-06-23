@@ -41,6 +41,10 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
      *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
      *   data store. This can only be used by the GENERIC Data Store vertical.
+     * * `csv`: A CSV file with header conforming the defined
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
+     *   data store. Each entry after the header will be imported as a Document.
+     *   This can only be used by the GENERIC Data Store vertical.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -77,6 +81,10 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           * `custom`: One custom data JSON per row in arbitrary format that conforms
      *             the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
      *             data store. This can only be used by the GENERIC Data Store vertical.
+     *           * `csv`: A CSV file with header conforming the defined
+     *           [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
+     *             data store. Each entry after the header will be imported as a Document.
+     *             This can only be used by the GENERIC Data Store vertical.
      *           Supported values for user even imports:
      *           * `user_event` (default): One JSON
      *           [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -139,6 +147,10 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
      *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
      *   data store. This can only be used by the GENERIC Data Store vertical.
+     * * `csv`: A CSV file with header conforming the defined
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
+     *   data store. Each entry after the header will be imported as a Document.
+     *   This can only be used by the GENERIC Data Store vertical.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -165,6 +177,10 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
      *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
      *   data store. This can only be used by the GENERIC Data Store vertical.
+     * * `csv`: A CSV file with header conforming the defined
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
+     *   data store. Each entry after the header will be imported as a Document.
+     *   This can only be used by the GENERIC Data Store vertical.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.

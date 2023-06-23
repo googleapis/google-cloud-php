@@ -43,7 +43,6 @@ use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesResponse;
 use Google\Cloud\ServiceUsage\V1\Service;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Enables services that service consumers want to use on Google Cloud Platform,
@@ -88,6 +87,9 @@ use Google\LongRunning\Operation;
  *     $serviceUsageClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient} to use the new surface.
  */
 class ServiceUsageGapicClient
 {

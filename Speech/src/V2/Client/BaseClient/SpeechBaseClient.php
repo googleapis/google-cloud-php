@@ -66,7 +66,6 @@ use Google\Cloud\Speech\V2\UpdateConfigRequest;
 use Google\Cloud\Speech\V2\UpdateCustomClassRequest;
 use Google\Cloud\Speech\V2\UpdatePhraseSetRequest;
 use Google\Cloud\Speech\V2\UpdateRecognizerRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -80,7 +79,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Speech\V2\SpeechClient} for the stable implementation
  *
  * @experimental
  *

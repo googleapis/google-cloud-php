@@ -61,7 +61,6 @@ use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -82,7 +81,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -421,6 +422,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::detachLunAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/detach_lun.php
+     *
      * @param DetachLunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -444,6 +447,8 @@ abstract class BareMetalSolutionBaseClient
      * Get details about a single server.
      *
      * The async variant is {@see self::getInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -469,6 +474,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::getLunAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/get_lun.php
+     *
      * @param GetLunRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -492,6 +499,8 @@ abstract class BareMetalSolutionBaseClient
      * Get details of a single network.
      *
      * The async variant is {@see self::getNetworkAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_network.php
      *
      * @param GetNetworkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -517,6 +526,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::getNfsShareAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/get_nfs_share.php
+     *
      * @param GetNfsShareRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -540,6 +551,8 @@ abstract class BareMetalSolutionBaseClient
      * Get details of a single storage volume.
      *
      * The async variant is {@see self::getVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_volume.php
      *
      * @param GetVolumeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -565,6 +578,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::listInstancesAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/list_instances.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -588,6 +603,8 @@ abstract class BareMetalSolutionBaseClient
      * List storage volume luns for given storage volume.
      *
      * The async variant is {@see self::listLunsAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_luns.php
      *
      * @param ListLunsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -614,6 +631,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::listNetworkUsageAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/list_network_usage.php
+     *
      * @param ListNetworkUsageRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -637,6 +656,8 @@ abstract class BareMetalSolutionBaseClient
      * List network in a given project and location.
      *
      * The async variant is {@see self::listNetworksAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_networks.php
      *
      * @param ListNetworksRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -662,6 +683,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::listNfsSharesAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/list_nfs_shares.php
+     *
      * @param ListNfsSharesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -685,6 +708,8 @@ abstract class BareMetalSolutionBaseClient
      * List storage volumes in a given project and location.
      *
      * The async variant is {@see self::listVolumesAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_volumes.php
      *
      * @param ListVolumesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -711,6 +736,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::resetInstanceAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/reset_instance.php
+     *
      * @param ResetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -734,6 +761,8 @@ abstract class BareMetalSolutionBaseClient
      * Emergency Volume resize.
      *
      * The async variant is {@see self::resizeVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/resize_volume.php
      *
      * @param ResizeVolumeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -759,6 +788,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::startInstanceAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/start_instance.php
+     *
      * @param StartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -782,6 +813,8 @@ abstract class BareMetalSolutionBaseClient
      * Stop a running server.
      *
      * The async variant is {@see self::stopInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/stop_instance.php
      *
      * @param StopInstanceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -807,6 +840,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::updateInstanceAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/update_instance.php
+     *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -830,6 +865,8 @@ abstract class BareMetalSolutionBaseClient
      * Update details of a single network.
      *
      * The async variant is {@see self::updateNetworkAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/update_network.php
      *
      * @param UpdateNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -855,6 +892,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::updateNfsShareAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/update_nfs_share.php
+     *
      * @param UpdateNfsShareRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -878,6 +917,8 @@ abstract class BareMetalSolutionBaseClient
      * Update details of a single storage volume.
      *
      * The async variant is {@see self::updateVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/update_volume.php
      *
      * @param UpdateVolumeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

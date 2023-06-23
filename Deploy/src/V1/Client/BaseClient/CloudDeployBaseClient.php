@@ -82,7 +82,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -97,7 +96,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Deploy\V1\CloudDeployClient} for the stable implementation
  *
  * @experimental
  *
@@ -555,6 +555,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::abandonReleaseAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/abandon_release.php
+     *
      * @param AbandonReleaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -578,6 +580,8 @@ abstract class CloudDeployBaseClient
      * Advances a Rollout in a given project and location.
      *
      * The async variant is {@see self::advanceRolloutAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/advance_rollout.php
      *
      * @param AdvanceRolloutRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -603,6 +607,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::approveRolloutAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/approve_rollout.php
+     *
      * @param ApproveRolloutRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -626,6 +632,8 @@ abstract class CloudDeployBaseClient
      * Cancels a Rollout in a given project and location.
      *
      * The async variant is {@see self::cancelRolloutAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/cancel_rollout.php
      *
      * @param CancelRolloutRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -651,6 +659,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::createDeliveryPipelineAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/create_delivery_pipeline.php
+     *
      * @param CreateDeliveryPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -674,6 +684,8 @@ abstract class CloudDeployBaseClient
      * Creates a new Release in a given project and location.
      *
      * The async variant is {@see self::createReleaseAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/create_release.php
      *
      * @param CreateReleaseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -699,6 +711,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::createRolloutAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/create_rollout.php
+     *
      * @param CreateRolloutRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -722,6 +736,8 @@ abstract class CloudDeployBaseClient
      * Creates a new Target in a given project and location.
      *
      * The async variant is {@see self::createTargetAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/create_target.php
      *
      * @param CreateTargetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -747,6 +763,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::deleteDeliveryPipelineAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/delete_delivery_pipeline.php
+     *
      * @param DeleteDeliveryPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -770,6 +788,8 @@ abstract class CloudDeployBaseClient
      * Deletes a single Target.
      *
      * The async variant is {@see self::deleteTargetAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/delete_target.php
      *
      * @param DeleteTargetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -795,6 +815,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::getConfigAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/get_config.php
+     *
      * @param GetConfigRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -818,6 +840,8 @@ abstract class CloudDeployBaseClient
      * Gets details of a single DeliveryPipeline.
      *
      * The async variant is {@see self::getDeliveryPipelineAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_delivery_pipeline.php
      *
      * @param GetDeliveryPipelineRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -843,6 +867,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::getJobRunAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/get_job_run.php
+     *
      * @param GetJobRunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -866,6 +892,8 @@ abstract class CloudDeployBaseClient
      * Gets details of a single Release.
      *
      * The async variant is {@see self::getReleaseAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_release.php
      *
      * @param GetReleaseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -891,6 +919,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::getRolloutAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/get_rollout.php
+     *
      * @param GetRolloutRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -914,6 +944,8 @@ abstract class CloudDeployBaseClient
      * Gets details of a single Target.
      *
      * The async variant is {@see self::getTargetAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_target.php
      *
      * @param GetTargetRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -939,6 +971,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::ignoreJobAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/ignore_job.php
+     *
      * @param IgnoreJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -962,6 +996,8 @@ abstract class CloudDeployBaseClient
      * Lists DeliveryPipelines in a given project and location.
      *
      * The async variant is {@see self::listDeliveryPipelinesAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_delivery_pipelines.php
      *
      * @param ListDeliveryPipelinesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -987,6 +1023,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::listJobRunsAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/list_job_runs.php
+     *
      * @param ListJobRunsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1010,6 +1048,8 @@ abstract class CloudDeployBaseClient
      * Lists Releases in a given project and location.
      *
      * The async variant is {@see self::listReleasesAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_releases.php
      *
      * @param ListReleasesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1035,6 +1075,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::listRolloutsAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/list_rollouts.php
+     *
      * @param ListRolloutsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1058,6 +1100,8 @@ abstract class CloudDeployBaseClient
      * Lists Targets in a given project and location.
      *
      * The async variant is {@see self::listTargetsAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_targets.php
      *
      * @param ListTargetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1083,6 +1127,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::retryJobAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/retry_job.php
+     *
      * @param RetryJobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1106,6 +1152,8 @@ abstract class CloudDeployBaseClient
      * Terminates a Job Run in a given project and location.
      *
      * The async variant is {@see self::terminateJobRunAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/terminate_job_run.php
      *
      * @param TerminateJobRunRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1131,6 +1179,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::updateDeliveryPipelineAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/update_delivery_pipeline.php
+     *
      * @param UpdateDeliveryPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1154,6 +1204,8 @@ abstract class CloudDeployBaseClient
      * Updates the parameters of a single Target.
      *
      * The async variant is {@see self::updateTargetAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/update_target.php
      *
      * @param UpdateTargetRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1179,6 +1231,8 @@ abstract class CloudDeployBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/CloudDeployClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1202,6 +1256,8 @@ abstract class CloudDeployBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1227,6 +1283,8 @@ abstract class CloudDeployBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1255,6 +1313,8 @@ abstract class CloudDeployBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1285,6 +1345,8 @@ abstract class CloudDeployBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

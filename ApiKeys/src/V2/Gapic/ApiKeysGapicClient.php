@@ -47,7 +47,6 @@ use Google\Cloud\ApiKeys\V2\LookupKeyRequest;
 use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
 use Google\Cloud\ApiKeys\V2\UndeleteKeyRequest;
 use Google\Cloud\ApiKeys\V2\UpdateKeyRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -96,6 +95,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ApiKeys\V2\Client\ApiKeysClient} to use the new surface.
  */
 class ApiKeysGapicClient
 {

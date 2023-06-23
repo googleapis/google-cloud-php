@@ -49,7 +49,6 @@ use Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutRequest;
 use Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutResponse;
 use Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRequest;
 use Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRolloutRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
@@ -101,6 +100,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Gaming\V1\Client\GameServerDeploymentsServiceClient} to use the
+ * new surface.
  */
 class GameServerDeploymentsServiceGapicClient
 {

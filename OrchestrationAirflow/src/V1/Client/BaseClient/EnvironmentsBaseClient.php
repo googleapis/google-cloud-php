@@ -36,14 +36,22 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\GetEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -57,18 +65,25 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient} for the
+ * stable implementation
  *
  * @experimental
  *
  * @internal
  *
  * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface databaseFailoverAsync(DatabaseFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface executeAirflowCommandAsync(ExecuteAirflowCommandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchDatabasePropertiesAsync(FetchDatabasePropertiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface loadSnapshotAsync(LoadSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface pollAirflowCommandAsync(PollAirflowCommandRequest $request, array $optionalArgs = [])
  * @method PromiseInterface saveSnapshotAsync(SaveSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface stopAirflowCommandAsync(StopAirflowCommandRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
  */
 abstract class EnvironmentsBaseClient
@@ -283,6 +298,30 @@ abstract class EnvironmentsBaseClient
     }
 
     /**
+     * Triggers database failover (only for highly resilient environments).
+     *
+     * The async variant is {@see self::databaseFailoverAsync()} .
+     *
+     * @param DatabaseFailoverRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function databaseFailover(DatabaseFailoverRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DatabaseFailover', $request, $callOptions)->wait();
+    }
+
+    /**
      * Delete an environment.
      *
      * The async variant is {@see self::deleteEnvironmentAsync()} .
@@ -304,6 +343,54 @@ abstract class EnvironmentsBaseClient
     public function deleteEnvironment(DeleteEnvironmentRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteEnvironment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Executes Airflow CLI command.
+     *
+     * The async variant is {@see self::executeAirflowCommandAsync()} .
+     *
+     * @param ExecuteAirflowCommandRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteAirflowCommandResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeAirflowCommand(ExecuteAirflowCommandRequest $request, array $callOptions = []): ExecuteAirflowCommandResponse
+    {
+        return $this->startApiCall('ExecuteAirflowCommand', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches database properties.
+     *
+     * The async variant is {@see self::fetchDatabasePropertiesAsync()} .
+     *
+     * @param FetchDatabasePropertiesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchDatabasePropertiesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchDatabaseProperties(FetchDatabasePropertiesRequest $request, array $callOptions = []): FetchDatabasePropertiesResponse
+    {
+        return $this->startApiCall('FetchDatabaseProperties', $request, $callOptions)->wait();
     }
 
     /**
@@ -382,6 +469,30 @@ abstract class EnvironmentsBaseClient
     }
 
     /**
+     * Polls Airflow CLI command execution and fetches logs.
+     *
+     * The async variant is {@see self::pollAirflowCommandAsync()} .
+     *
+     * @param PollAirflowCommandRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PollAirflowCommandResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function pollAirflowCommand(PollAirflowCommandRequest $request, array $callOptions = []): PollAirflowCommandResponse
+    {
+        return $this->startApiCall('PollAirflowCommand', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a snapshots of a Cloud Composer environment.
      *
      * As a result of this operation, snapshot of environment's state is stored
@@ -406,6 +517,30 @@ abstract class EnvironmentsBaseClient
     public function saveSnapshot(SaveSnapshotRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SaveSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops Airflow CLI command execution.
+     *
+     * The async variant is {@see self::stopAirflowCommandAsync()} .
+     *
+     * @param StopAirflowCommandRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return StopAirflowCommandResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopAirflowCommand(StopAirflowCommandRequest $request, array $callOptions = []): StopAirflowCommandResponse
+    {
+        return $this->startApiCall('StopAirflowCommand', $request, $callOptions)->wait();
     }
 
     /**

@@ -61,7 +61,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Billing\V1\CloudBillingClient} for the stable implementation
  *
  * @experimental
  *
@@ -137,10 +138,26 @@ abstract class CloudBillingBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_billing_info resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_billing_info resource.
+     */
+    public static function projectBillingInfoName(string $project): string
+    {
+        return self::getPathTemplate('projectBillingInfo')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

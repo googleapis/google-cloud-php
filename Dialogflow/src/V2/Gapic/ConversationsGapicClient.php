@@ -75,6 +75,9 @@ use Google\Cloud\Location\Location;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\ConversationsClient} to use the new surface.
  */
 class ConversationsGapicClient
 {
@@ -1407,7 +1410,7 @@ class ConversationsGapicClient
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query.
+     *           Parameters for a human assist query. Only used for POC/demo purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

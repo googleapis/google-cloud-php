@@ -39,7 +39,6 @@ use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioRequest;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Service that implements Google Cloud Text-to-Speech API.
@@ -87,6 +86,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\TextToSpeech\V1\Client\TextToSpeechLongAudioSynthesizeClient} to
+ * use the new surface.
  */
 class TextToSpeechLongAudioSynthesizeGapicClient
 {

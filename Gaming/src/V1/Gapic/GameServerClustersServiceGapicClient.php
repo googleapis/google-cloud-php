@@ -48,7 +48,6 @@ use Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterRequest;
 use Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\UpdateGameServerClusterRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
@@ -100,6 +99,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Gaming\V1\Client\GameServerClustersServiceClient} to use the new
+ * surface.
  */
 class GameServerClustersServiceGapicClient
 {

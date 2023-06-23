@@ -9,24 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for list processor types.
+ * Request message for the
+ * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+ * method. Some processor types may require the project be added to an
+ * allowlist.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListProcessorTypesRequest</code>
  */
 class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The location of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * The maximum number of processor types to return.
-     * If unspecified, at most 100 processor types will be returned.
-     * The maximum value is 500; values above 500 will be coerced to 500.
+     * If unspecified, at most `100` processor types will be returned.
+     * The maximum value is `500`. Values above `500` will be coerced to `500`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -39,10 +41,9 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The location of processor type to list.
-     *                       The available processor types may depend on the allow-listing on projects.
-     *                       Format: `projects/{project}/locations/{location}`
-     *                       Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The location of processor types to list.
+     *                       Format: `projects/{project}/locations/{location}`. Please see
+     *                       {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest
      *
@@ -61,13 +62,12 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The location of processor type to list.
-     *           The available processor types may depend on the allow-listing on projects.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The location of processor types to list.
+     *           Format: `projects/{project}/locations/{location}`.
      *     @type int $page_size
      *           The maximum number of processor types to return.
-     *           If unspecified, at most 100 processor types will be returned.
-     *           The maximum value is 500; values above 500 will be coerced to 500.
+     *           If unspecified, at most `100` processor types will be returned.
+     *           The maximum value is `500`. Values above `500` will be coerced to `500`.
      *     @type string $page_token
      *           Used to retrieve the next page of results, empty if at the end of the list.
      * }
@@ -78,9 +78,8 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The location of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,9 +90,8 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The location of processor type to list.
-     * The available processor types may depend on the allow-listing on projects.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The location of processor types to list.
+     * Format: `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,8 +107,8 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processor types to return.
-     * If unspecified, at most 100 processor types will be returned.
-     * The maximum value is 500; values above 500 will be coerced to 500.
+     * If unspecified, at most `100` processor types will be returned.
+     * The maximum value is `500`. Values above `500` will be coerced to `500`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -122,8 +120,8 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processor types to return.
-     * If unspecified, at most 100 processor types will be returned.
-     * The maximum value is 500; values above 500 will be coerced to 500.
+     * If unspecified, at most `100` processor types will be returned.
+     * The maximum value is `500`. Values above `500` will be coerced to `500`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

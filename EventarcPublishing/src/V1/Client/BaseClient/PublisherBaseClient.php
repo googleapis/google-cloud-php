@@ -35,7 +35,6 @@ use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
-use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -67,7 +66,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Eventarc\Publishing\V1\PublisherClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -192,6 +193,8 @@ abstract class PublisherBaseClient
      *
      * The async variant is {@see self::publishChannelConnectionEventsAsync()} .
      *
+     * @example samples/V1/PublisherClient/publish_channel_connection_events.php
+     *
      * @param PublishChannelConnectionEventsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -215,6 +218,8 @@ abstract class PublisherBaseClient
      * Publish events to a subscriber's channel.
      *
      * The async variant is {@see self::publishEventsAsync()} .
+     *
+     * @example samples/V1/PublisherClient/publish_events.php
      *
      * @param PublishEventsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

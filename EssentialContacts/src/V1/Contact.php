@@ -16,33 +16,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class Contact extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The identifier for the contact.
+     * Output only. The identifier for the contact.
      * Format: {resource_type}/{resource_id}/contacts/{contact_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required. The email address to send notifications to. This does not need to
-     * be a Google account.
+     * Required. The email address to send notifications to. The email address
+     * does not need to be a Google Account.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $email = '';
     /**
-     * The categories of notifications that the contact will receive
+     * Required. The categories of notifications that the contact will receive
      * communications for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $notification_category_subscriptions;
     /**
-     * The preferred language for notifications, as a ISO 639-1 language code. See
-     * [Supported
+     * Required. The preferred language for notifications, as a ISO 639-1 language
+     * code. See [Supported
      * languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
      * for a list of supported languages.
      *
-     * Generated from protobuf field <code>string language_tag = 4;</code>
+     * Generated from protobuf field <code>string language_tag = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_tag = '';
     /**
@@ -68,17 +68,17 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The identifier for the contact.
+     *           Output only. The identifier for the contact.
      *           Format: {resource_type}/{resource_id}/contacts/{contact_id}
      *     @type string $email
-     *           Required. The email address to send notifications to. This does not need to
-     *           be a Google account.
+     *           Required. The email address to send notifications to. The email address
+     *           does not need to be a Google Account.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_category_subscriptions
-     *           The categories of notifications that the contact will receive
+     *           Required. The categories of notifications that the contact will receive
      *           communications for.
      *     @type string $language_tag
-     *           The preferred language for notifications, as a ISO 639-1 language code. See
-     *           [Supported
+     *           Required. The preferred language for notifications, as a ISO 639-1 language
+     *           code. See [Supported
      *           languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
      *           for a list of supported languages.
      *     @type int $validation_state
@@ -96,10 +96,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identifier for the contact.
+     * Output only. The identifier for the contact.
      * Format: {resource_type}/{resource_id}/contacts/{contact_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -108,10 +108,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identifier for the contact.
+     * Output only. The identifier for the contact.
      * Format: {resource_type}/{resource_id}/contacts/{contact_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -124,10 +124,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The email address to send notifications to. This does not need to
-     * be a Google account.
+     * Required. The email address to send notifications to. The email address
+     * does not need to be a Google Account.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getEmail()
@@ -136,10 +136,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The email address to send notifications to. This does not need to
-     * be a Google account.
+     * Required. The email address to send notifications to. The email address
+     * does not need to be a Google Account.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -152,10 +152,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The categories of notifications that the contact will receive
+     * Required. The categories of notifications that the contact will receive
      * communications for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNotificationCategorySubscriptions()
@@ -164,10 +164,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The categories of notifications that the contact will receive
+     * Required. The categories of notifications that the contact will receive
      * communications for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -180,12 +180,12 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The preferred language for notifications, as a ISO 639-1 language code. See
-     * [Supported
+     * Required. The preferred language for notifications, as a ISO 639-1 language
+     * code. See [Supported
      * languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
      * for a list of supported languages.
      *
-     * Generated from protobuf field <code>string language_tag = 4;</code>
+     * Generated from protobuf field <code>string language_tag = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageTag()
@@ -194,12 +194,12 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The preferred language for notifications, as a ISO 639-1 language code. See
-     * [Supported
+     * Required. The preferred language for notifications, as a ISO 639-1 language
+     * code. See [Supported
      * languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
      * for a list of supported languages.
      *
-     * Generated from protobuf field <code>string language_tag = 4;</code>
+     * Generated from protobuf field <code>string language_tag = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

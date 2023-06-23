@@ -23,10 +23,10 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
     private $backup_plans;
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token] in a subsequent
-     * `ListBackupPlans` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token]
+     * in a subsequent `ListBackupPlans` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -48,10 +48,10 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      *           The list of BackupPlans matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
-     *           [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token] in a subsequent
-     *           `ListBackupPlans` call to retrieve the next page of results.
-     *           If this field is omitted or empty, then there are no more results to
-     *           return.
+     *           [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token]
+     *           in a subsequent `ListBackupPlans` call to retrieve the next page of
+     *           results. If this field is omitted or empty, then there are no more results
+     *           to return.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
@@ -89,10 +89,10 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token] in a subsequent
-     * `ListBackupPlans` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token]
+     * in a subsequent `ListBackupPlans` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -104,10 +104,10 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token which may be sent as
-     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token] in a subsequent
-     * `ListBackupPlans` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * [page_token][google.cloud.gkebackup.v1.ListBackupPlansRequest.page_token]
+     * in a subsequent `ListBackupPlans` call to retrieve the next page of
+     * results. If this field is omitted or empty, then there are no more results
+     * to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

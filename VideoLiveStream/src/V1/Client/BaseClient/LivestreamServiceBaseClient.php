@@ -57,7 +57,6 @@ use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -75,7 +74,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -373,6 +374,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::createChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/create_channel.php
+     *
      * @param CreateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -396,6 +399,8 @@ abstract class LivestreamServiceBaseClient
      * Creates an event with the provided unique ID in the specified channel.
      *
      * The async variant is {@see self::createEventAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_event.php
      *
      * @param CreateEventRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -421,6 +426,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::createInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/create_input.php
+     *
      * @param CreateInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -444,6 +451,8 @@ abstract class LivestreamServiceBaseClient
      * Deletes the specified channel.
      *
      * The async variant is {@see self::deleteChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_channel.php
      *
      * @param DeleteChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -469,6 +478,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::deleteEventAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/delete_event.php
+     *
      * @param DeleteEventRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -490,6 +501,8 @@ abstract class LivestreamServiceBaseClient
      * Deletes the specified input.
      *
      * The async variant is {@see self::deleteInputAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_input.php
      *
      * @param DeleteInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -515,6 +528,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::getChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/get_channel.php
+     *
      * @param GetChannelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -538,6 +553,8 @@ abstract class LivestreamServiceBaseClient
      * Returns the specified event.
      *
      * The async variant is {@see self::getEventAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_event.php
      *
      * @param GetEventRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -563,6 +580,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::getInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/get_input.php
+     *
      * @param GetInputRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -586,6 +605,8 @@ abstract class LivestreamServiceBaseClient
      * Returns a list of all channels in the specified region.
      *
      * The async variant is {@see self::listChannelsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_channels.php
      *
      * @param ListChannelsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -611,6 +632,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::listEventsAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/list_events.php
+     *
      * @param ListEventsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -634,6 +657,8 @@ abstract class LivestreamServiceBaseClient
      * Returns a list of all inputs in the specified region.
      *
      * The async variant is {@see self::listInputsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_inputs.php
      *
      * @param ListInputsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -660,6 +685,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::startChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/start_channel.php
+     *
      * @param StartChannelRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -685,6 +712,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::stopChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/stop_channel.php
+     *
      * @param StopChannelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -708,6 +737,8 @@ abstract class LivestreamServiceBaseClient
      * Updates the specified channel.
      *
      * The async variant is {@see self::updateChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/update_channel.php
      *
      * @param UpdateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -733,6 +764,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::updateInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/update_input.php
+     *
      * @param UpdateInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -757,6 +790,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -780,6 +815,8 @@ abstract class LivestreamServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -40,7 +40,6 @@ use Google\Cloud\Iam\V2\GetPolicyRequest;
 use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Cloud\Iam\V2\UpdatePolicyRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -49,7 +48,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Iam\V2\PoliciesClient} for the stable implementation
  *
  * @experimental
  *
@@ -209,6 +209,8 @@ abstract class PoliciesBaseClient
      *
      * The async variant is {@see self::createPolicyAsync()} .
      *
+     * @example samples/V2/PoliciesClient/create_policy.php
+     *
      * @param CreatePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -233,6 +235,8 @@ abstract class PoliciesBaseClient
      *
      * The async variant is {@see self::deletePolicyAsync()} .
      *
+     * @example samples/V2/PoliciesClient/delete_policy.php
+     *
      * @param DeletePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -256,6 +260,8 @@ abstract class PoliciesBaseClient
      * Gets a policy.
      *
      * The async variant is {@see self::getPolicyAsync()} .
+     *
+     * @example samples/V2/PoliciesClient/get_policy.php
      *
      * @param GetPolicyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -284,6 +290,8 @@ abstract class PoliciesBaseClient
      * omitted.
      *
      * The async variant is {@see self::listPoliciesAsync()} .
+     *
+     * @example samples/V2/PoliciesClient/list_policies.php
      *
      * @param ListPoliciesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -318,6 +326,8 @@ abstract class PoliciesBaseClient
      * This pattern helps prevent conflicts between concurrent updates.
      *
      * The async variant is {@see self::updatePolicyAsync()} .
+     *
+     * @example samples/V2/PoliciesClient/update_policy.php
      *
      * @param UpdatePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

@@ -47,7 +47,6 @@ use Google\Cloud\Memcache\V1\ListInstancesRequest;
 use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memcache\V1\UpdateInstanceRequest;
 use Google\Cloud\Memcache\V1\UpdateParametersRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -75,7 +74,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Memcache\V1\CloudMemcacheClient} for the stable implementation
  *
  * @experimental
  *

@@ -7,7 +7,7 @@ namespace Google\Cloud\SecurityCenter\V1\Kubernetes\Subject;
 use UnexpectedValueException;
 
 /**
- * Auth types that can be used for Subject's kind field.
+ * Auth types that can be used for the subject's kind field.
  *
  * Protobuf type <code>google.cloud.securitycenter.v1.Kubernetes.Subject.AuthType</code>
  */
@@ -26,7 +26,7 @@ class AuthType
      */
     const USER = 1;
     /**
-     * Users managed by Kubernetes API with credentials stored as Secrets.
+     * Users managed by Kubernetes API with credentials stored as secrets.
      *
      * Generated from protobuf enum <code>SERVICEACCOUNT = 2;</code>
      */

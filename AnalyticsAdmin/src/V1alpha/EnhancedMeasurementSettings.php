@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Singleton resource under a WebDataStream, configuring measurement of
+ * Singleton resource under a web DataStream, configuring measurement of
  * additional site interactions and content.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.EnhancedMeasurementSettings</code>

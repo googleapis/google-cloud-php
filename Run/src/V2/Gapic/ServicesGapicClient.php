@@ -48,7 +48,6 @@ use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\ListServicesResponse;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -98,6 +97,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Run\V2\Client\ServicesClient} to use the new surface.
  */
 class ServicesGapicClient
 {

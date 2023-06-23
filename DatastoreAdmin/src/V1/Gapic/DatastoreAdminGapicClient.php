@@ -145,6 +145,10 @@ use Google\LongRunning\Operation;
  *     $datastoreAdminClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient} to use the new
+ * surface.
  */
 class DatastoreAdminGapicClient
 {

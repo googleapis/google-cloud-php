@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for get processor.
+ * Request message for the
+ * [GetProcessorType][google.cloud.documentai.v1.DocumentProcessorService.GetProcessorType]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.GetProcessorTypeRequest</code>
  */

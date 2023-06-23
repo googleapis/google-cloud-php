@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for batch process document method.
+ * Response message for
+ * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.BatchProcessResponse</code>
  */

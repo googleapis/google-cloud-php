@@ -249,6 +249,8 @@ abstract class CaseAttachmentServiceBaseClient
      *
      * The async variant is {@see self::listAttachmentsAsync()} .
      *
+     * @example samples/V2/CaseAttachmentServiceClient/list_attachments.php
+     *
      * @param ListAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

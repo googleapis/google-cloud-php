@@ -33,7 +33,7 @@ use Google\Cloud\GkeBackup\V1\Restore;
  * Lists the Restores for a given RestorePlan.
  *
  * @param string $formattedParent The RestorePlan that contains the Restores to list.
- *                                Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                                Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                                Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
  */
 function list_restores_sample(string $formattedParent): void

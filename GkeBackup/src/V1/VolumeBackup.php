@@ -20,7 +20,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -47,14 +47,15 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. A reference to the source Kubernetes PVC from which this VolumeBackup
-     * was created.
+     * Output only. A reference to the source Kubernetes PVC from which this
+     * VolumeBackup was created.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.NamespacedName source_pvc = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $source_pvc = null;
     /**
-     * Output only. A storage system-specific opaque handle to the underlying volume backup.
+     * Output only. A storage system-specific opaque handle to the underlying
+     * volume backup.
      *
      * Generated from protobuf field <code>string volume_backup_handle = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -66,8 +67,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      */
     private $format = 0;
     /**
-     * Output only. The aggregate size of the underlying artifacts associated with this
-     * VolumeBackup in the backup storage. This may change over time when
+     * Output only. The aggregate size of the underlying artifacts associated with
+     * this VolumeBackup in the backup storage. This may change over time when
      * multiple backups of the same volume share the same backup storage
      * location. In particular, this is likely to increase in size when
      * the immediately preceding backup of the same volume is deleted.
@@ -76,7 +77,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      */
     private $storage_bytes = 0;
     /**
-     * Output only. The minimum size of the disk to which this VolumeBackup can be restored.
+     * Output only. The minimum size of the disk to which this VolumeBackup can be
+     * restored.
      *
      * Generated from protobuf field <code>int64 disk_size_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -95,15 +97,15 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. A human readable message explaining why the VolumeBackup is in its current
-     * state.
+     * Output only. A human readable message explaining why the VolumeBackup is in
+     * its current state.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_message = '';
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume backup from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume backup from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume backup updates in order to avoid
      * race conditions.
@@ -120,7 +122,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the VolumeBackup resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -131,31 +133,33 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when this VolumeBackup resource was last
      *           updated.
      *     @type \Google\Cloud\GkeBackup\V1\NamespacedName $source_pvc
-     *           Output only. A reference to the source Kubernetes PVC from which this VolumeBackup
-     *           was created.
+     *           Output only. A reference to the source Kubernetes PVC from which this
+     *           VolumeBackup was created.
      *     @type string $volume_backup_handle
-     *           Output only. A storage system-specific opaque handle to the underlying volume backup.
+     *           Output only. A storage system-specific opaque handle to the underlying
+     *           volume backup.
      *     @type int $format
      *           Output only. The format used for the volume backup.
      *     @type int|string $storage_bytes
-     *           Output only. The aggregate size of the underlying artifacts associated with this
-     *           VolumeBackup in the backup storage. This may change over time when
+     *           Output only. The aggregate size of the underlying artifacts associated with
+     *           this VolumeBackup in the backup storage. This may change over time when
      *           multiple backups of the same volume share the same backup storage
      *           location. In particular, this is likely to increase in size when
      *           the immediately preceding backup of the same volume is deleted.
      *     @type int|string $disk_size_bytes
-     *           Output only. The minimum size of the disk to which this VolumeBackup can be restored.
+     *           Output only. The minimum size of the disk to which this VolumeBackup can be
+     *           restored.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. The timestamp when the associated underlying volume backup
      *           operation completed.
      *     @type int $state
      *           Output only. The current state of this VolumeBackup.
      *     @type string $state_message
-     *           Output only. A human readable message explaining why the VolumeBackup is in its current
-     *           state.
+     *           Output only. A human readable message explaining why the VolumeBackup is in
+     *           its current state.
      *     @type string $etag
-     *           Output only. `etag` is used for optimistic concurrency control as a way to help
-     *           prevent simultaneous updates of a volume backup from overwriting each
+     *           Output only. `etag` is used for optimistic concurrency control as a way to
+     *           help prevent simultaneous updates of a volume backup from overwriting each
      *           other. It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform volume backup updates in order to avoid
      *           race conditions.
@@ -168,7 +172,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -180,7 +184,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -299,8 +303,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A reference to the source Kubernetes PVC from which this VolumeBackup
-     * was created.
+     * Output only. A reference to the source Kubernetes PVC from which this
+     * VolumeBackup was created.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.NamespacedName source_pvc = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\GkeBackup\V1\NamespacedName|null
@@ -321,8 +325,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A reference to the source Kubernetes PVC from which this VolumeBackup
-     * was created.
+     * Output only. A reference to the source Kubernetes PVC from which this
+     * VolumeBackup was created.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.NamespacedName source_pvc = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\GkeBackup\V1\NamespacedName $var
@@ -337,7 +341,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A storage system-specific opaque handle to the underlying volume backup.
+     * Output only. A storage system-specific opaque handle to the underlying
+     * volume backup.
      *
      * Generated from protobuf field <code>string volume_backup_handle = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -348,7 +353,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A storage system-specific opaque handle to the underlying volume backup.
+     * Output only. A storage system-specific opaque handle to the underlying
+     * volume backup.
      *
      * Generated from protobuf field <code>string volume_backup_handle = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -389,8 +395,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The aggregate size of the underlying artifacts associated with this
-     * VolumeBackup in the backup storage. This may change over time when
+     * Output only. The aggregate size of the underlying artifacts associated with
+     * this VolumeBackup in the backup storage. This may change over time when
      * multiple backups of the same volume share the same backup storage
      * location. In particular, this is likely to increase in size when
      * the immediately preceding backup of the same volume is deleted.
@@ -404,8 +410,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The aggregate size of the underlying artifacts associated with this
-     * VolumeBackup in the backup storage. This may change over time when
+     * Output only. The aggregate size of the underlying artifacts associated with
+     * this VolumeBackup in the backup storage. This may change over time when
      * multiple backups of the same volume share the same backup storage
      * location. In particular, this is likely to increase in size when
      * the immediately preceding backup of the same volume is deleted.
@@ -423,7 +429,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The minimum size of the disk to which this VolumeBackup can be restored.
+     * Output only. The minimum size of the disk to which this VolumeBackup can be
+     * restored.
      *
      * Generated from protobuf field <code>int64 disk_size_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -434,7 +441,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The minimum size of the disk to which this VolumeBackup can be restored.
+     * Output only. The minimum size of the disk to which this VolumeBackup can be
+     * restored.
      *
      * Generated from protobuf field <code>int64 disk_size_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -513,8 +521,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A human readable message explaining why the VolumeBackup is in its current
-     * state.
+     * Output only. A human readable message explaining why the VolumeBackup is in
+     * its current state.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -525,8 +533,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A human readable message explaining why the VolumeBackup is in its current
-     * state.
+     * Output only. A human readable message explaining why the VolumeBackup is in
+     * its current state.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -541,8 +549,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume backup from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume backup from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume backup updates in order to avoid
      * race conditions.
@@ -556,8 +564,8 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a volume backup from overwriting each
+     * Output only. `etag` is used for optimistic concurrency control as a way to
+     * help prevent simultaneous updates of a volume backup from overwriting each
      * other. It is strongly suggested that systems make use of the `etag` in the
      * read-modify-write cycle to perform volume backup updates in order to avoid
      * race conditions.

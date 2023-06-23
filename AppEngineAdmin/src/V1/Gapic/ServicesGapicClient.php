@@ -40,7 +40,6 @@ use Google\Cloud\AppEngine\V1\ListServicesRequest;
 use Google\Cloud\AppEngine\V1\ListServicesResponse;
 use Google\Cloud\AppEngine\V1\Service;
 use Google\Cloud\AppEngine\V1\UpdateServiceRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -80,6 +79,9 @@ use Google\Protobuf\FieldMask;
  *     $servicesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\ServicesClient} to use the new surface.
  */
 class ServicesGapicClient
 {

@@ -40,7 +40,6 @@ use Google\Cloud\Gaming\V1\DeleteGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\GameServerConfig;
 use Google\Cloud\Gaming\V1\GetGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -54,7 +53,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Gaming\V1\GameServerConfigsServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *

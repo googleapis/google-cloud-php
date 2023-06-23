@@ -125,6 +125,7 @@ return [
             ],
             'templateMap' => [
                 'billingAccount' => 'billingAccounts/{billing_account}',
+                'projectBillingInfo' => 'projects/{project}/billingInfo',
             ],
         ],
     ],

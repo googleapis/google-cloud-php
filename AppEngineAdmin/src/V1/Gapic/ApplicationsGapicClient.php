@@ -39,7 +39,6 @@ use Google\Cloud\AppEngine\V1\CreateApplicationRequest;
 use Google\Cloud\AppEngine\V1\GetApplicationRequest;
 use Google\Cloud\AppEngine\V1\RepairApplicationRequest;
 use Google\Cloud\AppEngine\V1\UpdateApplicationRequest;
-use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -81,6 +80,9 @@ use Google\Protobuf\FieldMask;
  *     $applicationsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\ApplicationsClient} to use the new surface.
  */
 class ApplicationsGapicClient
 {

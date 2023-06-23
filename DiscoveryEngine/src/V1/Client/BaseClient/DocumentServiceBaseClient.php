@@ -43,7 +43,6 @@ use Google\Cloud\DiscoveryEngine\V1\ImportDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\UpdateDocumentRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -440,6 +439,8 @@ abstract class DocumentServiceBaseClient
      *
      * The async variant is {@see self::createDocumentAsync()} .
      *
+     * @example samples/V1/DocumentServiceClient/create_document.php
+     *
      * @param CreateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -470,6 +471,8 @@ abstract class DocumentServiceBaseClient
      *
      * The async variant is {@see self::deleteDocumentAsync()} .
      *
+     * @example samples/V1/DocumentServiceClient/delete_document.php
+     *
      * @param DeleteDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -493,6 +496,8 @@ abstract class DocumentServiceBaseClient
      * Gets a [Document][google.cloud.discoveryengine.v1.Document].
      *
      * The async variant is {@see self::getDocumentAsync()} .
+     *
+     * @example samples/V1/DocumentServiceClient/get_document.php
      *
      * @param GetDocumentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -530,6 +535,8 @@ abstract class DocumentServiceBaseClient
      *
      * The async variant is {@see self::importDocumentsAsync()} .
      *
+     * @example samples/V1/DocumentServiceClient/import_documents.php
+     *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -559,6 +566,8 @@ abstract class DocumentServiceBaseClient
      * Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
      *
      * The async variant is {@see self::listDocumentsAsync()} .
+     *
+     * @example samples/V1/DocumentServiceClient/list_documents.php
      *
      * @param ListDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -601,6 +610,8 @@ abstract class DocumentServiceBaseClient
      *
      * The async variant is {@see self::purgeDocumentsAsync()} .
      *
+     * @example samples/V1/DocumentServiceClient/purge_documents.php
+     *
      * @param PurgeDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -630,6 +641,8 @@ abstract class DocumentServiceBaseClient
      * Updates a [Document][google.cloud.discoveryengine.v1.Document].
      *
      * The async variant is {@see self::updateDocumentAsync()} .
+     *
+     * @example samples/V1/DocumentServiceClient/update_document.php
      *
      * @param UpdateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

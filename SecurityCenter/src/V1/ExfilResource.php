@@ -9,23 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Resource that has been exfiltrated or exfiltrated_to.
+ * Resource where data was exfiltrated from or exfiltrated to.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.ExfilResource</code>
  */
 class ExfilResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     * The resource's [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Subcomponents of the asset that is exfiltrated - these could be
-     * URIs used during exfiltration, table names, databases, filenames, etc.
-     * For example, multiple tables may be exfiltrated from the same CloudSQL
-     * instance, or multiple files from the same Cloud Storage bucket.
+     * Subcomponents of the asset that was exfiltrated, like URIs used during
+     * exfiltration, table names, databases, and filenames. For example, multiple
+     * tables might have been exfiltrated from the same Cloud SQL instance, or
+     * multiple files might have been exfiltrated from the same Cloud Storage
+     * bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
      */
@@ -38,12 +40,14 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource's URI (https://google.aip.dev/122#full-resource-names)
+     *           The resource's [full resource
+     *           name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $components
-     *           Subcomponents of the asset that is exfiltrated - these could be
-     *           URIs used during exfiltration, table names, databases, filenames, etc.
-     *           For example, multiple tables may be exfiltrated from the same CloudSQL
-     *           instance, or multiple files from the same Cloud Storage bucket.
+     *           Subcomponents of the asset that was exfiltrated, like URIs used during
+     *           exfiltration, table names, databases, and filenames. For example, multiple
+     *           tables might have been exfiltrated from the same Cloud SQL instance, or
+     *           multiple files might have been exfiltrated from the same Cloud Storage
+     *           bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +56,8 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     * The resource's [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -63,7 +68,8 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     * The resource's [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -78,10 +84,11 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subcomponents of the asset that is exfiltrated - these could be
-     * URIs used during exfiltration, table names, databases, filenames, etc.
-     * For example, multiple tables may be exfiltrated from the same CloudSQL
-     * instance, or multiple files from the same Cloud Storage bucket.
+     * Subcomponents of the asset that was exfiltrated, like URIs used during
+     * exfiltration, table names, databases, and filenames. For example, multiple
+     * tables might have been exfiltrated from the same Cloud SQL instance, or
+     * multiple files might have been exfiltrated from the same Cloud Storage
+     * bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,10 +99,11 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subcomponents of the asset that is exfiltrated - these could be
-     * URIs used during exfiltration, table names, databases, filenames, etc.
-     * For example, multiple tables may be exfiltrated from the same CloudSQL
-     * instance, or multiple files from the same Cloud Storage bucket.
+     * Subcomponents of the asset that was exfiltrated, like URIs used during
+     * exfiltration, table names, databases, and filenames. For example, multiple
+     * tables might have been exfiltrated from the same Cloud SQL instance, or
+     * multiple files might have been exfiltrated from the same Cloud Storage
+     * bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

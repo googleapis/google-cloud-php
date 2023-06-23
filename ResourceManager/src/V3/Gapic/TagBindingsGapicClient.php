@@ -42,7 +42,6 @@ use Google\Cloud\ResourceManager\V3\ListEffectiveTagsResponse;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsResponse;
 use Google\Cloud\ResourceManager\V3\TagBinding;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Allow users to create and manage TagBindings between TagValues and
@@ -90,6 +89,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagBindingsClient} to use the new
+ * surface.
  */
 class TagBindingsGapicClient
 {

@@ -44,7 +44,6 @@ use Google\Cloud\PubSub\V1\CommitSchemaRequest;
 use Google\Cloud\PubSub\V1\CreateSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
-use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\GetSchemaRequest;
 use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
 use Google\Cloud\PubSub\V1\ListSchemaRevisionsResponse;
@@ -80,6 +79,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PubSub\V1\Client\SchemaServiceClient} to use the new surface.
  */
 class SchemaServiceGapicClient
 {

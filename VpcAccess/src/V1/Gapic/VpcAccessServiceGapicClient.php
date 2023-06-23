@@ -43,7 +43,6 @@ use Google\Cloud\VpcAccess\V1\DeleteConnectorRequest;
 use Google\Cloud\VpcAccess\V1\GetConnectorRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsResponse;
-use Google\LongRunning\Operation;
 
 /**
  * Service Description: Serverless VPC Access API allows users to create and manage connectors for
@@ -94,6 +93,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\VpcAccess\V1\Client\VpcAccessServiceClient} to use the new
+ * surface.
  */
 class VpcAccessServiceGapicClient
 {

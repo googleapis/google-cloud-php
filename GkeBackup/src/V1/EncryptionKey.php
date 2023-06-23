@@ -18,7 +18,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Google Cloud KMS encryption key. Format:
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
      *
      *     @type string $gcp_kms_encryption_key
      *           Google Cloud KMS encryption key. Format:
-     *           projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Google Cloud KMS encryption key. Format:
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -54,7 +54,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Google Cloud KMS encryption key. Format:
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

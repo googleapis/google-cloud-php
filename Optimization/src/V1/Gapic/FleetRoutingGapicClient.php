@@ -101,6 +101,9 @@ use Google\Protobuf\Duration;
  *     $fleetRoutingClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Optimization\V1\Client\FleetRoutingClient} to use the new surface.
  */
 class FleetRoutingGapicClient
 {

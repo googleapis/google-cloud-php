@@ -59,6 +59,10 @@ use Google\Cloud\Dataflow\V1beta3\RuntimeEnvironment;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataflow\V1beta3\Client\TemplatesServiceClient} to use the new
+ * surface.
+ *
  * @experimental
  */
 class TemplatesServiceGapicClient

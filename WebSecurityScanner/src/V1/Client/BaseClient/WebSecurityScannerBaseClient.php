@@ -195,6 +195,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::createScanConfigAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/create_scan_config.php
+     *
      * @param CreateScanConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -219,6 +221,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::deleteScanConfigAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/delete_scan_config.php
+     *
      * @param DeleteScanConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -240,6 +244,8 @@ abstract class WebSecurityScannerBaseClient
      * Gets a Finding.
      *
      * The async variant is {@see self::getFindingAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/get_finding.php
      *
      * @param GetFindingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -265,6 +271,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::getScanConfigAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/get_scan_config.php
+     *
      * @param GetScanConfigRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -288,6 +296,8 @@ abstract class WebSecurityScannerBaseClient
      * Gets a ScanRun.
      *
      * The async variant is {@see self::getScanRunAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/get_scan_run.php
      *
      * @param GetScanRunRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -313,6 +323,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::listCrawledUrlsAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/list_crawled_urls.php
+     *
      * @param ListCrawledUrlsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -336,6 +348,8 @@ abstract class WebSecurityScannerBaseClient
      * List all FindingTypeStats under a given ScanRun.
      *
      * The async variant is {@see self::listFindingTypeStatsAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/list_finding_type_stats.php
      *
      * @param ListFindingTypeStatsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -361,6 +375,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::listFindingsAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/list_findings.php
+     *
      * @param ListFindingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -384,6 +400,8 @@ abstract class WebSecurityScannerBaseClient
      * Lists ScanConfigs under a given project.
      *
      * The async variant is {@see self::listScanConfigsAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/list_scan_configs.php
      *
      * @param ListScanConfigsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -410,6 +428,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::listScanRunsAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/list_scan_runs.php
+     *
      * @param ListScanRunsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -433,6 +453,8 @@ abstract class WebSecurityScannerBaseClient
      * Start a ScanRun according to the given ScanConfig.
      *
      * The async variant is {@see self::startScanRunAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/start_scan_run.php
      *
      * @param StartScanRunRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -458,6 +480,8 @@ abstract class WebSecurityScannerBaseClient
      *
      * The async variant is {@see self::stopScanRunAsync()} .
      *
+     * @example samples/V1/WebSecurityScannerClient/stop_scan_run.php
+     *
      * @param StopScanRunRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -481,6 +505,8 @@ abstract class WebSecurityScannerBaseClient
      * Updates a ScanConfig. This method support partial update of a ScanConfig.
      *
      * The async variant is {@see self::updateScanConfigAsync()} .
+     *
+     * @example samples/V1/WebSecurityScannerClient/update_scan_config.php
      *
      * @param UpdateScanConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

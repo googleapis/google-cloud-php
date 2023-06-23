@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes an existing BackupPlan.
  *
  * @param string $formattedName Fully qualified BackupPlan name.
- *                              Format: projects/&#42;/locations/&#42;/backupPlans/*
+ *                              Format: `projects/&#42;/locations/&#42;/backupPlans/*`
  *                              Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
  */
 function delete_backup_plan_sample(string $formattedName): void

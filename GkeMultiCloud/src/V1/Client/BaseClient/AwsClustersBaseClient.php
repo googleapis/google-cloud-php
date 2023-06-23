@@ -66,7 +66,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\GkeMultiCloud\V1\AwsClustersClient} for the stable implementation
  *
  * @experimental
  *
@@ -340,6 +341,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::createAwsClusterAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/create_aws_cluster.php
+     *
      * @param CreateAwsClusterRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -368,6 +371,8 @@ abstract class AwsClustersBaseClient
      * described to track the status of the operation.
      *
      * The async variant is {@see self::createAwsNodePoolAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/create_aws_node_pool.php
      *
      * @param CreateAwsNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -401,6 +406,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::deleteAwsClusterAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/delete_aws_cluster.php
+     *
      * @param DeleteAwsClusterRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -430,6 +437,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::deleteAwsNodePoolAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/delete_aws_node_pool.php
+     *
      * @param DeleteAwsNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -454,6 +463,8 @@ abstract class AwsClustersBaseClient
      * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
      *
      * The async variant is {@see self::generateAwsAccessTokenAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/generate_aws_access_token.php
      *
      * @param GenerateAwsAccessTokenRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -480,6 +491,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::getAwsClusterAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/get_aws_cluster.php
+     *
      * @param GetAwsClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -504,6 +517,8 @@ abstract class AwsClustersBaseClient
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
      * The async variant is {@see self::getAwsNodePoolAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/get_aws_node_pool.php
      *
      * @param GetAwsNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -530,6 +545,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::getAwsServerConfigAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/get_aws_server_config.php
+     *
      * @param GetAwsServerConfigRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -554,6 +571,8 @@ abstract class AwsClustersBaseClient
      * on a given Google Cloud project and region.
      *
      * The async variant is {@see self::listAwsClustersAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/list_aws_clusters.php
      *
      * @param ListAwsClustersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -581,6 +600,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::listAwsNodePoolsAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/list_aws_node_pools.php
+     *
      * @param ListAwsNodePoolsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -605,6 +626,8 @@ abstract class AwsClustersBaseClient
      *
      * The async variant is {@see self::updateAwsClusterAsync()} .
      *
+     * @example samples/V1/AwsClustersClient/update_aws_cluster.php
+     *
      * @param UpdateAwsClusterRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -628,6 +651,8 @@ abstract class AwsClustersBaseClient
      * Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      *
      * The async variant is {@see self::updateAwsNodePoolAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/update_aws_node_pool.php
      *
      * @param UpdateAwsNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

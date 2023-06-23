@@ -54,7 +54,6 @@ use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
-use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -71,7 +70,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\DataCatalog\Lineage\V1\LineageClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -363,6 +364,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::batchSearchLinkProcessesAsync()} .
      *
+     * @example samples/V1/LineageClient/batch_search_link_processes.php
+     *
      * @param BatchSearchLinkProcessesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -386,6 +389,8 @@ abstract class LineageBaseClient
      * Creates a new lineage event.
      *
      * The async variant is {@see self::createLineageEventAsync()} .
+     *
+     * @example samples/V1/LineageClient/create_lineage_event.php
      *
      * @param CreateLineageEventRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -411,6 +416,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::createProcessAsync()} .
      *
+     * @example samples/V1/LineageClient/create_process.php
+     *
      * @param CreateProcessRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -434,6 +441,8 @@ abstract class LineageBaseClient
      * Creates a new run.
      *
      * The async variant is {@see self::createRunAsync()} .
+     *
+     * @example samples/V1/LineageClient/create_run.php
      *
      * @param CreateRunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -459,6 +468,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::deleteLineageEventAsync()} .
      *
+     * @example samples/V1/LineageClient/delete_lineage_event.php
+     *
      * @param DeleteLineageEventRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -480,6 +491,8 @@ abstract class LineageBaseClient
      * Deletes the process with the specified name.
      *
      * The async variant is {@see self::deleteProcessAsync()} .
+     *
+     * @example samples/V1/LineageClient/delete_process.php
      *
      * @param DeleteProcessRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -505,6 +518,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::deleteRunAsync()} .
      *
+     * @example samples/V1/LineageClient/delete_run.php
+     *
      * @param DeleteRunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -528,6 +543,8 @@ abstract class LineageBaseClient
      * Gets details of a specified lineage event.
      *
      * The async variant is {@see self::getLineageEventAsync()} .
+     *
+     * @example samples/V1/LineageClient/get_lineage_event.php
      *
      * @param GetLineageEventRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -553,6 +570,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::getProcessAsync()} .
      *
+     * @example samples/V1/LineageClient/get_process.php
+     *
      * @param GetProcessRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -576,6 +595,8 @@ abstract class LineageBaseClient
      * Gets the details of the specified run.
      *
      * The async variant is {@see self::getRunAsync()} .
+     *
+     * @example samples/V1/LineageClient/get_run.php
      *
      * @param GetRunRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -602,6 +623,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::listLineageEventsAsync()} .
      *
+     * @example samples/V1/LineageClient/list_lineage_events.php
+     *
      * @param ListLineageEventsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -627,6 +650,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::listProcessesAsync()} .
      *
+     * @example samples/V1/LineageClient/list_processes.php
+     *
      * @param ListProcessesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -651,6 +676,8 @@ abstract class LineageBaseClient
      * `start_time`.
      *
      * The async variant is {@see self::listRunsAsync()} .
+     *
+     * @example samples/V1/LineageClient/list_runs.php
      *
      * @param ListRunsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -684,6 +711,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::searchLinksAsync()} .
      *
+     * @example samples/V1/LineageClient/search_links.php
+     *
      * @param SearchLinksRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -708,6 +737,8 @@ abstract class LineageBaseClient
      *
      * The async variant is {@see self::updateProcessAsync()} .
      *
+     * @example samples/V1/LineageClient/update_process.php
+     *
      * @param UpdateProcessRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -731,6 +762,8 @@ abstract class LineageBaseClient
      * Updates a run.
      *
      * The async variant is {@see self::updateRunAsync()} .
+     *
+     * @example samples/V1/LineageClient/update_run.php
      *
      * @param UpdateRunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
