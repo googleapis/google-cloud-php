@@ -196,7 +196,7 @@ class BatchPublisherTest extends TestCase
                 }
                 return $result;
             }
-        ))->shouldBeCalled()->willReturn([]);
+        ))->shouldBeCalled(1)->willReturn([]);
 
         $client->___setProperty('connection', $connection->reveal());
         $publisher->___setProperty('client', $client);
