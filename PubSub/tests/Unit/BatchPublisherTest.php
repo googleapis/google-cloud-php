@@ -179,14 +179,14 @@ class BatchPublisherTest extends TestCase
         ]];
 
         $compressionHeader = [];
-        if($shouldCompress) {
+        if ($shouldCompress) {
             $compressionHeader = [
                 'grpc-internal-encoding-request' => [['gzip']]
             ];
         }
 
         $connection->publishMessage(Argument::that(
-            function ($args) use ($compressionHeader){
+            function ($args) use ($compressionHeader) {
                 $result = is_array($args) && array_key_exists('messages', $args);
                 foreach ($compressionHeader as $key => $value) {
                     $result = $result &&

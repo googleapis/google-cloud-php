@@ -151,7 +151,7 @@ class Topic
             $this->enableCompression = true;
             $this->compressionBytesThreshold = self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
             if (isset($info['compressionBytesThreshold'])) {
-                if(!is_int($info['compressionBytesThreshold'])) {
+                if (!is_int($info['compressionBytesThreshold'])) {
                     throw new InvalidArgumentException(
                         '`compressionBytesThreshold` must be an integer'
                     );
