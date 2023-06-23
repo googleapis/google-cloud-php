@@ -84,8 +84,8 @@ class BatchPublisher
      *              to enable compression.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed if their size is
-     *              greater than this threshold. This only takes effect
-     *              if `enableCompression` is `true`. Defaults to `240`.
+     *              greater than this threshold. This only takes effect if
+     *              `enableCompression` is set to `true`. Defaults to `240`.
      * }
      */
     public function __construct($topicName, array $options = [])

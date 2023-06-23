@@ -121,9 +121,10 @@ class Topic
      *        @type bool $enableCompression Flag to enable compression subject
      *              tosize of the message. Set the flag to `true` to enable
      *              compression. Defaults to `false`.
-     *        @type int $compressionBytesThreshold The threshold byte size above which messages
-     *              are compressed if their size is greater than this threshold. This only takes
-     *              effect if `enableCompression` is `true`. Defaults to `240`.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed if their size is
+     *              greater than this threshold. This only takes effect if
+     *              `enableCompression` is set to `true`. Defaults to `240`.
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -593,10 +594,10 @@ class Topic
      *     @type bool $enableCompression Flag to enable compression
      *           subject to size of the message. Set the flag to `true`
      *           to enable compression. Defaults to `false`.
-    *      @type int $compressionBytesThreshold The threshold byte size
-    *            above which messages are compressed if their size is
-    *            greater than this threshold. This only takes effect
-    *            if `enableCompression` is `true`. Defaults to `240`.
+     *     @type int $compressionBytesThreshold The threshold byte size
+     *           above which messages are compressed if their size is
+     *           greater than this threshold. This only takes effect if
+     *           `enableCompression` is set to `true`. Defaults to `240`.
      * }
      * @return BatchPublisher
      * @experimental The experimental flag means that while we believe this method

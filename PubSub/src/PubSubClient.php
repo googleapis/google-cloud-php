@@ -215,9 +215,10 @@ class PubSubClient
      *        @type bool $enableCompression Flag to enable compression subject
      *              tosize of the message. Set the flag to `true` to enable
      *              compression. Defaults to `false`.
-     *        @type int $compressionBytesThreshold The threshold byte size above which messages
-     *              are compressed if their size is greater than this threshold. This only takes
-     *              effect if `enableCompression` is `true`. Defaults to `240`.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed if their size is
+     *              greater than this threshold. This only takes effect if
+     *              `enableCompression` is set to `true`. Defaults to `240`.
      * }
 
      * @return Topic
