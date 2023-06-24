@@ -50,11 +50,11 @@ class Topic
     use ArrayTrait;
     use ResourceNameTrait;
 
-    private const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
+    const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
 
-    private const DEFAULT_ENABLE_COMPRESSION = false;
+    const DEFAULT_ENABLE_COMPRESSION = false;
 
-    private const GZIP_COMPRESSION = 'gzip';
+    const GZIP_COMPRESSION = 'gzip';
 
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
@@ -521,24 +521,13 @@ class Topic
             $message = $this->formatMessage($message);
         }
 
-        $enableCompression = $this->enableCompression;
-        $compressionBytesThreshold = $this->compressionBytesThreshold;
-        $call = function ($totalMessagesSize) use ($enableCompression, $compressionBytesThreshold) {
-            if ($enableCompression &&
-                $totalMessagesSize >= $compressionBytesThreshold) {
-                return [
-                    'headers' => [
-                        'grpc-internal-encoding-request' => [self::GZIP_COMPRESSION]
-                    ]
-                ];
-            }
-            return [];
-        };
-
         return $this->connection->publishMessage($options + [
             'topic' => $this->name,
             'messages' => $messages,
-            'compressionListener' => $call
+            'compressionOptions' => [
+                'enableCompression' => $this->enableCompression,
+                'compressionBytesThreshold' => $this->compressionBytesThreshold
+            ]
         ]);
     }
 
