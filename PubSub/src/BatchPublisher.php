@@ -77,7 +77,7 @@ class BatchPublisher
     /**
      * @param string $topicName The topic name.
      * @param array $options [optional] {
-     *        Please @see Google\Cloud\PubSub\Topic::batchPublisher() for
+     *        Please {@see PubSub\Topic::batchPublisher()} for
      *        configuration details.
      *        @type bool $enableCompression Flag to enable compression
      *              subject to size of the message. Set the flag to `true`
