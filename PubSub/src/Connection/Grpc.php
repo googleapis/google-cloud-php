@@ -249,11 +249,6 @@ class Grpc implements ConnectionInterface
         $pbMessages = [];
         $messages = $this->pluck('messages', $args);
 
-        // This method(publishMessage) is always called through the publishBatch
-        // method of the `Topic::class`, thus the $args would always have a
-        // compression listener.
-        $compressionListener = $this->pluck('compressionListener', $args);
-
         $totalMessagesSize = 0;
         foreach ($messages as $message) {
             $message = $this->buildMessage($message);
@@ -261,7 +256,11 @@ class Grpc implements ConnectionInterface
             $pbMessages[] = $message;
         }
 
-        $args += $compressionListener($totalMessagesSize, $args);
+        if (isset($args['compressionListener'])) {
+            $compressionListener = $this->pluck('compressionListener', $args);
+            $args += $compressionListener($totalMessagesSize);
+        }
+
         return $this->send([$this->getPublisherClient(), 'publish'], [
             $this->pluck('topic', $args),
             $pbMessages,
