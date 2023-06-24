@@ -184,12 +184,20 @@ class PubSubClient
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options. For available
      *        configuration options, refer to
-     *        {@see Google\Cloud\PubSub\Topic::create()}.
+     *        {@see Google\Cloud\PubSub\Topic::create()} {
+     *        @type bool $enableCompression Flag to enable compression of the messasge.
+     *              Messages get compressed only if their size >= compressionBytesThreshold.
+     *              Set the flag to `true` for enabling compression. Defaults to `false`.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
+     * }.
      * @return Topic
      */
     public function createTopic($name, array $options = [])
     {
-        $topic = $this->topicFactory($name);
+        $topic = $this->topicFactory($name, $options);
         $topic->create($options);
 
         return $topic;
@@ -212,12 +220,13 @@ class PubSubClient
      *
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options {
-     *        @type bool $enableCompression Flag to enable compression subject
-     *              tosize of the message. Set the flag to `true` to enable
-     *              compression. Defaults to `false`.
+     *        @type bool $enableCompression Flag to enable compression of the messasge.
+     *              Messages get compressed only if their size >= compressionBytesThreshold.
+     *              Set the flag to `true` for enabling compression. Defaults to `false`.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed. This only takes effect
      *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
      * }
 
      * @return Topic

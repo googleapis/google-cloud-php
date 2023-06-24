@@ -118,12 +118,13 @@ class Topic
      *              CryptoKey to be used to protect access to messages published on this
      *              topic. The expected format is
      *              `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *        @type bool $enableCompression Flag to enable compression subject
-     *              tosize of the message. Set the flag to `true` to enable
-     *              compression. Defaults to `false`.
+     *        @type bool $enableCompression Flag to enable compression of the messasge.
+     *              Messages get compressed only if their size >= compressionBytesThreshold.
+     *              Set the flag to `true` for enabling compression. Defaults to `false`.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed. This only takes effect
      *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -149,16 +150,8 @@ class Topic
 
         if (isset($info['enableCompression']) && $info['enableCompression'] === true) {
             $this->enableCompression = true;
-            $this->compressionBytesThreshold = self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
-            if (isset($info['compressionBytesThreshold'])) {
-                if (!is_int($info['compressionBytesThreshold'])) {
-                    throw new InvalidArgumentException(
-                        '`compressionBytesThreshold` must be an integer'
-                    );
-                } else {
-                    $this->compressionBytesThreshold = $info['compressionBytesThreshold'];
-                }
-            }
+            $this->compressionBytesThreshold = $info['compressionBytesThreshold'] ??
+                self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         } else {
             $this->enableCompression = self::DEFAULT_ENABLE_COMPRESSION;
         }
@@ -524,21 +517,28 @@ class Topic
      */
     public function publishBatch(array $messages, array $options = [])
     {
-        $totalMessagesSize = 0;
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
-            $totalMessagesSize += strlen(serialize($message));
         }
 
-        if ($this->enableCompression && $totalMessagesSize >= $this->compressionBytesThreshold) {
-            $options['headers']['grpc-internal-encoding-request'][] = [
-                self::GZIP_COMPRESSION
-            ];
-        }
+        $enableCompression = $this->enableCompression;
+        $compressionBytesThreshold = $this->compressionBytesThreshold;
+        $call = function ($totalMessagesSize) use ($enableCompression, $compressionBytesThreshold) {
+            if ($enableCompression &&
+                $totalMessagesSize >= $compressionBytesThreshold) {
+                return [
+                    'headers' => [
+                        'grpc-internal-encoding-request' => [self::GZIP_COMPRESSION]
+                    ]
+                ];
+            }
+            return [];
+        };
 
         return $this->connection->publishMessage($options + [
             'topic' => $this->name,
-            'messages' => $messages
+            'messages' => $messages,
+            'compressionListener' => $call
         ]);
     }
 
@@ -590,12 +590,13 @@ class Topic
      *           batch daemon. **Defaults to**
      *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
-     *     @type bool $enableCompression Flag to enable compression
-     *           subject to size of the message. Set the flag to `true`
-     *           to enable compression. Defaults to `false`.
+     *     @type bool $enableCompression Flag to enable compression of the messasge.
+     *           Messages get compressed only if their size >= compressionBytesThreshold.
+     *           Set the flag to `true` for enabling compression. Defaults to `false`.
      *     @type int $compressionBytesThreshold The threshold byte size
      *           above which messages are compressed. This only takes effect
      *           if `enableCompression` is set to `true`. Defaults to `240`.
+     *           (This value is experiementally derived after performance evaluations.)
      * }
      * @return BatchPublisher
      * @experimental The experimental flag means that while we believe this method
