@@ -23,6 +23,7 @@ use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -150,12 +151,13 @@ class BatchPublisherTest extends TestCase
     }
 
     /**
-     * @dataProvider compressionDataProvider
+     * @dataProvider compressionOptionsProvider
      */
     public function testPublisherCompression(
         $enableCompression,
         $compressionBytesThreshold,
-        $shouldCompress
+        $processedEnableCompression,
+        $processedCompressionBytesThreshold
     ) {
         $client = TestHelpers::stub(PubSubClient::class, [
             ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
@@ -178,23 +180,24 @@ class BatchPublisherTest extends TestCase
             'data' => 'foo'
         ]];
 
-        $compressionHeader = [];
-        if ($shouldCompress) {
-            $compressionHeader = [
-                'grpc-internal-encoding-request' => [['gzip']]
-            ];
-        }
-
         $connection->publishMessage(Argument::that(
-            function ($args) use ($compressionHeader) {
-                $result = is_array($args) && array_key_exists('messages', $args);
-                foreach ($compressionHeader as $key => $value) {
-                    $result = $result &&
-                        isset($args['headers']) &&
-                        array_key_exists($key, $args['headers']) &&
-                        $args['headers'][$key] == $value;
+            function ($args) use (
+                $processedEnableCompression,
+                $processedCompressionBytesThreshold
+            ) {
+                $result = is_array($args) &&
+                    array_key_exists('messages', $args) &&
+                    array_key_exists('topic', $args) &&
+                    array_key_exists('compressionOptions', $args);
+
+                if ($result &&
+                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
+                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
+                ) {
+                    return true;
                 }
-                return $result;
+
+                return false;
             }
         ))->shouldBeCalled(1)->willReturn([]);
 
@@ -203,15 +206,21 @@ class BatchPublisherTest extends TestCase
         $publisher->publishDeferred($messages);
     }
 
-    public function compressionDataProvider()
+    public function compressionOptionsProvider()
     {
         // Each data is of the form
-        // [$enableCompression, $compressionBytesThreshold, $shouldCompress]
+        // [
+        //  $enableCompression                      Input option
+        //  $compressionBytesThreshold              Input option
+        //  $processedEnableCompression             Expected set option
+        //  $processedCompressionBytesThreshold     Expected set option
+        // ]
         return [
-            [false, 0, false],
-            [false, 10000, false],
-            [true, 0, true],
-            [true, 10000, false],
+            [null, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, 10000, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, null, true, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, 10000, true, 10000],
         ];
     }
 }

@@ -39,7 +39,7 @@ use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Cloud\PubSub\V1\SchemaView;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
-use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
