@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\PubSub\Topic;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.
@@ -64,15 +65,9 @@ class BatchPublisher
      */
     private $client;
 
-    /**
-     * @var bool
-     */
-    private $enableCompression;
+    private bool $enableCompression;
 
-    /**
-     * @var int
-     */
-    private $compressionBytesThreshold;
+    private int $compressionBytesThreshold;
 
     /**
      * @param string $topicName The topic name.
@@ -95,7 +90,8 @@ class BatchPublisher
             'batchMethod' => 'publishDeferred'
         ]);
         $this->enableCompression = $options['enableCompression'] ?? false;
-        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ?? null;
+        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ??
+            Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
     }
 
     /**
