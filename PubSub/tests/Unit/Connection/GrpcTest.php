@@ -65,7 +65,7 @@ class GrpcTest extends TestCase
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
-        $this->serializer = new Serializer;
+        $this->serializer = new Serializer();
     }
 
     public function testApiEndpoint()
@@ -79,7 +79,7 @@ class GrpcTest extends TestCase
 
     public function testUpdateTopic()
     {
-        $topic = new Topic;
+        $topic = new Topic();
         $topic->setLabels(['foo' => 'bar']);
         $topic->setName($this->topicName);
         $topicFieldMask = new FieldMask([
@@ -107,7 +107,7 @@ class GrpcTest extends TestCase
             'dead_letter_topic' => $this->topicName
         ]);
 
-        $subscription = new Subscription;
+        $subscription = new Subscription();
         $subscription->setName($this->subscriptionName);
         $subscription->setRetainAckedMessages(true);
         $subscription->setDeadLetterPolicy($deadLetterPolicy);
@@ -169,7 +169,7 @@ class GrpcTest extends TestCase
 
     public function testSeek()
     {
-        $time = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
+        $time = (new \DateTime())->format('Y-m-d\TH:i:s.u\Z');
         $timestamp = $this->serializer->decodeMessage(new Timestamp(), $this->formatTimestampForApi($time));
 
         $args = [
@@ -247,6 +247,40 @@ class GrpcTest extends TestCase
         $expected = [$this->topicName, [$message], []];
 
         $this->sendAndAssert('publishMessage', $args, $expected);
+    }
+
+    /**
+     * @dataProvider compressionDataProvider
+     */
+    public function testPublishMessageWithPublisherCompression($compressionOptions, $expectedHeaders)
+    {
+        $requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+        $grpc = new Grpc();
+
+        $successMessage = ['successful' => 'message'];
+        $requestWrapper->send(
+            Argument::type('callable'),
+            Argument::that(function ($args) use ($expectedHeaders) {
+                foreach ($expectedHeaders as $key => $value) {
+                    if ($args[2]['headers'][$key] != $value) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)->willReturn($successMessage);
+
+        $grpc->setRequestWrapper($requestWrapper->reveal());
+
+        $this->assertEquals(
+            $successMessage,
+            $grpc->publishMessage([
+                'messages' => [['data' => 'This is a test message']],
+                'topic' => 'test-topic',
+                'compressionOptions' => $compressionOptions
+            ])
+        );
     }
 
     public function testListSubscriptionsByTopic()
@@ -469,6 +503,28 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('detachSubscription', [
             'subscription' => $this->subscriptionName
         ], [$this->subscriptionName, []]);
+    }
+
+    public function compressionDataProvider()
+    {
+        // Each data is of the form
+        // [$compressionOptions, $expectedHeaders]
+        return [
+            [
+                ['enableCompression' => false, 'compressionBytesThreshold' => 0],
+                []
+            ],[
+                ['enableCompression' => false, 'compressionBytesThreshold' => 10000],
+                []
+            ],
+            [
+                ['enableCompression' => true, 'compressionBytesThreshold' => 0],
+                [Grpc::COMPRESSION_HEADER_KEY => ['gzip']]
+            ],[
+                ['enableCompression' => true, 'compressionBytesThreshold' => 10000],
+                []
+            ],
+        ];
     }
 
     private function sendAndAssert($method, array $args, array $expectedArgs, Grpc $connection = null)

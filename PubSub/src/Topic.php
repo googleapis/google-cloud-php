@@ -54,8 +54,6 @@ class Topic
 
     const DEFAULT_ENABLE_COMPRESSION = false;
 
-    const GZIP_COMPRESSION = 'gzip';
-
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
      */
@@ -154,6 +152,7 @@ class Topic
                 self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         } else {
             $this->enableCompression = self::DEFAULT_ENABLE_COMPRESSION;
+            $this->compressionBytesThreshold = self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         }
 
         // Accept either a simple name or a fully-qualified name.

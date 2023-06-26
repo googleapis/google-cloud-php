@@ -354,58 +354,75 @@ class TopicTest extends TestCase
     }
 
     /**
-     * @dataProvider compressionDataProvider
+     * @dataProvider compressionOptionsProvider
      */
-    public function testPublisherCompression(
+    public function testCompressionOptionsSetup(
         $enableCompression,
         $compressionBytesThreshold,
-        $shouldCompress
+        $processedEnableCompression,
+        $processedCompressionBytesThreshold
     ) {
-        $messages = [
-            [
-                'data' => 'hello world',
-                'attributes' => [
-                    'key' => 'value'
-                ]
-            ]
-        ];
-
-        $compressionHeader = [];
-        if ($shouldCompress) {
-            $compressionHeader = [
-                'grpc-internal-encoding-request' => [['gzip']]
-            ];
+        $info = [];
+        if (isset($enableCompression)) {
+            $info['enableCompression'] = $enableCompression;
+        }
+        if (isset($compressionBytesThreshold)) {
+            $info['compressionBytesThreshold'] = $compressionBytesThreshold;
         }
 
+        $topic = TestHelpers::stub(
+            Topic::class,
+            [
+                $this->connection->reveal(),
+                'project-name',
+                'topic-name',
+                true,
+                $info
+            ],
+            ['connection']
+        );
+        $messages = [['data' => 'hello world']];
+
         $this->connection->publishMessage(Argument::that(
-            function ($args) use ($compressionHeader) {
-                $result = is_array($args) && array_key_exists('messages', $args);
-                foreach ($compressionHeader as $key => $value) {
-                    $result = $result &&
-                        isset($args['headers']) &&
-                        array_key_exists($key, $args['headers']) &&
-                        $args['headers'][$key] == $value;
+            function ($args) use (
+                $processedEnableCompression,
+                $processedCompressionBytesThreshold
+            ) {
+                $result = is_array($args) &&
+                    array_key_exists('messages', $args) &&
+                    array_key_exists('topic', $args) &&
+                    array_key_exists('compressionOptions', $args);
+
+                if ($result &&
+                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
+                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
+                ) {
+                    return true;
                 }
-                return $result;
+
+                return false;
             }
         ))->shouldBeCalled(1)->willReturn([]);
 
-        $this->topic->___setProperty('connection', $this->connection->reveal());
-        $this->topic->___setProperty('enableCompression', $enableCompression);
-        $this->topic->___setProperty('compressionBytesThreshold', $compressionBytesThreshold);
-
-        $this->topic->publishBatch($messages);
+        $topic->___setProperty('connection', $this->connection->reveal());
+        $topic->publishBatch($messages);
     }
 
-    public function compressionDataProvider()
+    public function compressionOptionsProvider()
     {
         // Each data is of the form
-        // [$enableCompression, $compressionBytesThreshold, $shouldCompress]
+        // [
+        //  $enableCompression                      Input option
+        //  $compressionBytesThreshold              Input option
+        //  $processedEnableCompression             Expected set option
+        //  $processedCompressionBytesThreshold     Expected set option
+        // ]
         return [
-            [false, 0, false],
-            [false, 10000, false],
-            [true, 0, true],
-            [true, 10000, false],
+            [null, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, 10000, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, null, true, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, 10000, true, 10000],
         ];
     }
 }

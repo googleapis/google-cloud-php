@@ -55,6 +55,10 @@ class Grpc implements ConnectionInterface
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
+    const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
+
+    const GZIP_COMPRESSION = 'gzip';
+
     /**
      * @var PublisherClient
      */
@@ -262,7 +266,7 @@ class Grpc implements ConnectionInterface
 
             if ($enableCompression &&
                 $totalMessagesSize >= $compressionBytesThreshold) {
-                $args['headers']['grpc-internal-encoding-request'] = [Topic::GZIP_COMPRESSION];
+                $args['headers'][self::COMPRESSION_HEADER_KEY] = [self::GZIP_COMPRESSION];
             }
         }
 
