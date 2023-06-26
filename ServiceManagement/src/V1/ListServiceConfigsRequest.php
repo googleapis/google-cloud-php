@@ -17,8 +17,8 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +39,8 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $serviceName Required. The name of the service.  See the
-     *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     *                            example: `example.googleapis.com`.
+     *                            [overview](https://cloud.google.com/service-management/overview) for naming
+     *                            requirements.  For example: `example.googleapis.com`.
      *
      * @return \Google\Cloud\ServiceManagement\V1\ListServiceConfigsRequest
      *
@@ -60,8 +60,8 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_name
      *           Required. The name of the service.  See the
-     *           [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     *           example: `example.googleapis.com`.
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
      *     @type string $page_token
      *           The token of the page to retrieve.
      *     @type int $page_size
@@ -76,8 +76,8 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -89,8 +89,8 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
