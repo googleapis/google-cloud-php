@@ -57,6 +57,18 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.v2.ReadRowsRequest.RequestStatsView request_stats_view = 6;</code>
      */
     private $request_stats_view = 0;
+    /**
+     * Experimental API - Please note that this API is currently experimental
+     * and can change in the future.
+     * Return rows in lexiographical descending order of the row keys. The row
+     * contents will not be affected by this flag.
+     * Example result set: [
+     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
+     * "f:col2": "v2"} ].
+     *
+     * Generated from protobuf field <code>bool reversed = 7;</code>
+     */
+    private $reversed = false;
 
     /**
      * @param string $tableName Required. The unique name of the table from which to read.
@@ -117,6 +129,14 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           default (zero) is to return all results.
      *     @type int $request_stats_view
      *           The view into RequestStats, as described above.
+     *     @type bool $reversed
+     *           Experimental API - Please note that this API is currently experimental
+     *           and can change in the future.
+     *           Return rows in lexiographical descending order of the row keys. The row
+     *           contents will not be affected by this flag.
+     *           Example result set: [
+     *           {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
+     *           "f:col2": "v2"} ].
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +328,44 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView::class);
         $this->request_stats_view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Experimental API - Please note that this API is currently experimental
+     * and can change in the future.
+     * Return rows in lexiographical descending order of the row keys. The row
+     * contents will not be affected by this flag.
+     * Example result set: [
+     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
+     * "f:col2": "v2"} ].
+     *
+     * Generated from protobuf field <code>bool reversed = 7;</code>
+     * @return bool
+     */
+    public function getReversed()
+    {
+        return $this->reversed;
+    }
+
+    /**
+     * Experimental API - Please note that this API is currently experimental
+     * and can change in the future.
+     * Return rows in lexiographical descending order of the row keys. The row
+     * contents will not be affected by this flag.
+     * Example result set: [
+     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
+     * "f:col2": "v2"} ].
+     *
+     * Generated from protobuf field <code>bool reversed = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReversed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reversed = $var;
 
         return $this;
     }
