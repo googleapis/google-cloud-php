@@ -66,6 +66,4 @@ class RepositoryType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RepositoryType::class, \Google\Cloud\Build\V1\RepositoryEventConfig_RepositoryType::class);
 

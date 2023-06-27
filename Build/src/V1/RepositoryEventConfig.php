@@ -21,13 +21,13 @@ class RepositoryEventConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository = 1 [(.google.api.resource_reference) = {</code>
      */
-    protected $repository = '';
+    private $repository = '';
     /**
      * Output only. The type of the SCM vendor the repository points to.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig.RepositoryType repository_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $repository_type = 0;
+    private $repository_type = 0;
     protected $filter;
 
     /**
