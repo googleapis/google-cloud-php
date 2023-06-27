@@ -222,9 +222,11 @@ class PubSubClient
      *
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options {
-     *        @type bool $enableCompression Flag to enable compression of the messasge.
-     *              Messages get compressed only if their size >= compressionBytesThreshold.
-     *              Set the flag to `true` for enabling compression. Defaults to `false`.
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed. This only takes effect
      *              if `enableCompression` is set to `true`. Defaults to `240`.
