@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -40,8 +40,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool  Required. The agent pool to update. `agent_pool` is expected to specify following
-     *                                                               fields:
+     * @param \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool  Required. The agent pool to update. `agent_pool` is expected to specify
+     *                                                               following fields:
      *
      *                                                               *  [name][google.storagetransfer.v1.AgentPool.name]
      *
@@ -77,8 +77,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\StorageTransfer\V1\AgentPool $agent_pool
-     *           Required. The agent pool to update. `agent_pool` is expected to specify following
-     *           fields:
+     *           Required. The agent pool to update. `agent_pool` is expected to specify
+     *           following fields:
      *           *  [name][google.storagetransfer.v1.AgentPool.name]
      *           *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      *           *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -99,8 +99,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -126,8 +126,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
