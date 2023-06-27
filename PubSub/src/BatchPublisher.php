@@ -75,8 +75,11 @@ class BatchPublisher
      *        Please {@see PubSub\Topic::batchPublisher()} for
      *        configuration details.
      *        @type bool $enableCompression Flag to enable compression
-     *              subject to size of the message. Set the flag to `true`
-     *              to enable compression. Defaults to `false`.
+     *              of the message. Set the flag to `true` to enable
+     *              compression. Defaults to `false`. Messsages are
+     *              compressed only if their size >= `compressionBytesThreshold`
+     *              whose default value has been experimentally derived after
+     *              performance evaluations.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed. This only takes effect
      *              if `enableCompression` is set to `true`. Defaults to `240`.
