@@ -111,11 +111,11 @@ class Topic
      *              CryptoKey to be used to protect access to messages published on this
      *              topic. The expected format is
      *              `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *        @type bool $enableCompression Flag to enable compression of the message.
-     *              Set the flag to `true` to enable compression. Defaults to `false`.
-     *              Messsages are compressed only if their size >= `compressionBytesThreshold`
-     *              whose default value has been experimentally derived after
-     *              performance evaluations.
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
      *        @type int $compressionBytesThreshold The threshold byte size
      *              above which messages are compressed. This only takes effect
      *              if `enableCompression` is set to `true`. Defaults to `240`.
@@ -575,11 +575,11 @@ class Topic
      *           batch daemon. **Defaults to**
      *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
-     *     @type bool $enableCompression Flag to enable compression of the message.
-     *           Set the flag to `true` to enable compression. Defaults to `false`.
-     *           Messsages are compressed only if their size >= `compressionBytesThreshold`
-     *           whose default value has been experimentally derived after
-     *           performance evaluations.
+     *     @type bool $enableCompression Flag to enable compression of messages
+     *           before publishing. Set the flag to `true` to enable compression.
+     *           Defaults to `false`. Messsages are compressed if their total
+     *           size >= `compressionBytesThreshold`, whose default value has
+     *           been experimentally derived after performance evaluations.
      *     @type int $compressionBytesThreshold The threshold byte size
      *           above which messages are compressed. This only takes effect
      *           if `enableCompression` is set to `true`. Defaults to `240`.
