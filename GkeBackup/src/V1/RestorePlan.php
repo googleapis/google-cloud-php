@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The configuration of a potential series of Restore operations to be performed
  * against Backups belong to a particular BackupPlan.
- * Next id: 11
+ * Next id: 13
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.RestorePlan</code>
  */
@@ -95,6 +95,21 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $etag = '';
+    /**
+     * Output only. State of the RestorePlan. This State field reflects the
+     * various stages a RestorePlan can be in
+     * during the Create operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestorePlan.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
+    /**
+     * Output only. Human-readable description of why RestorePlan is in the
+     * current `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state_reason = '';
 
     /**
      * Constructor.
@@ -140,6 +155,13 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           and systems are expected to put that etag in the request to
      *           `UpdateRestorePlan` or `DeleteRestorePlan` to ensure that their change
      *           will be applied to the same version of the resource.
+     *     @type int $state
+     *           Output only. State of the RestorePlan. This State field reflects the
+     *           various stages a RestorePlan can be in
+     *           during the Create operation.
+     *     @type string $state_reason
+     *           Output only. Human-readable description of why RestorePlan is in the
+     *           current `state`
      * }
      */
     public function __construct($data = NULL) {
@@ -469,6 +491,64 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. State of the RestorePlan. This State field reflects the
+     * various stages a RestorePlan can be in
+     * during the Create operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestorePlan.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. State of the RestorePlan. This State field reflects the
+     * various stages a RestorePlan can be in
+     * during the Create operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestorePlan.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeBackup\V1\RestorePlan\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Human-readable description of why RestorePlan is in the
+     * current `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStateReason()
+    {
+        return $this->state_reason;
+    }
+
+    /**
+     * Output only. Human-readable description of why RestorePlan is in the
+     * current `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStateReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->state_reason = $var;
 
         return $this;
     }

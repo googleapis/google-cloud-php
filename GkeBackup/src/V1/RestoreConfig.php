@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration of a restore.
- * Next id: 9
+ * Next id: 12
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.RestoreConfig</code>
  */
@@ -59,6 +59,16 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8;</code>
      */
     private $substitution_rules;
+    /**
+     * A list of transformation rules to be applied against Kubernetes resources
+     * as they are selected for restoration from a Backup. Rules are executed in
+     * order defined - this order matters, as changes made by a rule may impact
+     * the filtering logic of subsequent rules. An empty list means no
+     * transformation will occur.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     */
+    private $transformation_rules;
     protected $namespaced_resource_restore_scope;
 
     /**
@@ -94,12 +104,24 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *           A list of selected ProtectedApplications to restore. The listed
      *           ProtectedApplications and all the resources to which they refer will be
      *           restored.
+     *     @type bool $no_namespaces
+     *           Do not restore any namespaced resources if set to "True".
+     *           Specifying this field to "False" is not allowed.
+     *     @type \Google\Cloud\GkeBackup\V1\Namespaces $excluded_namespaces
+     *           A list of selected namespaces excluded from restoration. All
+     *           namespaces except those in this list will be restored.
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
      *           A list of transformation rules to be applied against Kubernetes resources
      *           as they are selected for restoration from a Backup. Rules are executed in
      *           order defined - this order matters, as changes made by a rule may impact
      *           the filtering logic of subsequent rules. An empty list means no
      *           substitution will occur.
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $transformation_rules
+     *           A list of transformation rules to be applied against Kubernetes resources
+     *           as they are selected for restoration from a Backup. Rules are executed in
+     *           order defined - this order matters, as changes made by a rule may impact
+     *           the filtering logic of subsequent rules. An empty list means no
+     *           transformation will occur.
      * }
      */
     public function __construct($data = NULL) {
@@ -341,6 +363,72 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Do not restore any namespaced resources if set to "True".
+     * Specifying this field to "False" is not allowed.
+     *
+     * Generated from protobuf field <code>bool no_namespaces = 9;</code>
+     * @return bool
+     */
+    public function getNoNamespaces()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasNoNamespaces()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Do not restore any namespaced resources if set to "True".
+     * Specifying this field to "False" is not allowed.
+     *
+     * Generated from protobuf field <code>bool no_namespaces = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setNoNamespaces($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * A list of selected namespaces excluded from restoration. All
+     * namespaces except those in this list will be restored.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Namespaces excluded_namespaces = 10;</code>
+     * @return \Google\Cloud\GkeBackup\V1\Namespaces|null
+     */
+    public function getExcludedNamespaces()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasExcludedNamespaces()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * A list of selected namespaces excluded from restoration. All
+     * namespaces except those in this list will be restored.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Namespaces excluded_namespaces = 10;</code>
+     * @param \Google\Cloud\GkeBackup\V1\Namespaces $var
+     * @return $this
+     */
+    public function setExcludedNamespaces($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\Namespaces::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
      * A list of transformation rules to be applied against Kubernetes resources
      * as they are selected for restoration from a Backup. Rules are executed in
      * order defined - this order matters, as changes made by a rule may impact
@@ -370,6 +458,40 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule::class);
         $this->substitution_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of transformation rules to be applied against Kubernetes resources
+     * as they are selected for restoration from a Backup. Rules are executed in
+     * order defined - this order matters, as changes made by a rule may impact
+     * the filtering logic of subsequent rules. An empty list means no
+     * transformation will occur.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTransformationRules()
+    {
+        return $this->transformation_rules;
+    }
+
+    /**
+     * A list of transformation rules to be applied against Kubernetes resources
+     * as they are selected for restoration from a Backup. Rules are executed in
+     * order defined - this order matters, as changes made by a rule may impact
+     * the filtering logic of subsequent rules. An empty list means no
+     * transformation will occur.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTransformationRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule::class);
+        $this->transformation_rules = $arr;
 
         return $this;
     }
