@@ -1793,6 +1793,8 @@ abstract class SecurityCenterBaseClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function groupAssets(GroupAssetsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -1847,6 +1849,8 @@ abstract class SecurityCenterBaseClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAssets(ListAssetsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -2083,6 +2087,8 @@ abstract class SecurityCenterBaseClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function runAssetDiscovery(RunAssetDiscoveryRequest $request, array $callOptions = []): OperationResponse
     {
