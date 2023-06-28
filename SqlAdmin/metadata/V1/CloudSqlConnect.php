@@ -15,32 +15,35 @@ class CloudSqlConnect
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
+        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-’
-+google/cloud/sql/v1/cloud_sql_connect.protogoogle.cloud.sql.v1google/api/field_behavior.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/timestamp.protogoogle/api/client.proto"r
+ø
++google/cloud/sql/v1/cloud_sql_connect.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"r
 GetConnectSettingsRequest
 instance (	
 project (	2
-	read_time (2.google.protobuf.TimestampB‡A"ô
+	read_time (2.google.protobuf.TimestampB‡A"´
 ConnectSettings
 kind (	4
 server_ca_cert (2.google.cloud.sql.v1.SslCert4
 ip_addresses (2.google.cloud.sql.v1.IpMapping
 region (	A
 database_version (2\'.google.cloud.sql.v1.SqlDatabaseVersion9
-backend_type  (2#.google.cloud.sql.v1.SqlBackendType"§
+backend_type  (2#.google.cloud.sql.v1.SqlBackendType
+dns_name" (	"‹
 GenerateEphemeralCertRequest
 instance (	
 project (	
 
 public_key (	
 access_token (	B‡A2
-	read_time (2.google.protobuf.TimestampB‡A"U
+	read_time (2.google.protobuf.TimestampB‡A6
+valid_duration (2.google.protobuf.DurationB‡A"U
 GenerateEphemeralCertResponse4
 ephemeral_cert (2.google.cloud.sql.v1.SslCert2í
 SqlConnectServiceØ

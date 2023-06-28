@@ -33,9 +33,11 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlUsersDeleteRequest;
+use Google\Cloud\Sql\V1\SqlUsersGetRequest;
 use Google\Cloud\Sql\V1\SqlUsersInsertRequest;
 use Google\Cloud\Sql\V1\SqlUsersListRequest;
 use Google\Cloud\Sql\V1\SqlUsersUpdateRequest;
+use Google\Cloud\Sql\V1\User;
 use Google\Cloud\Sql\V1\UsersListResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -52,6 +54,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @internal
  *
  * @method PromiseInterface deleteAsync(SqlUsersDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAsync(SqlUsersGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(SqlUsersInsertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(SqlUsersListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(SqlUsersUpdateRequest $request, array $optionalArgs = [])
@@ -192,6 +195,32 @@ abstract class SqlUsersServiceBaseClient
     public function delete(SqlUsersDeleteRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a resource containing information about a user.
+     *
+     * The async variant is {@see self::getAsync()} .
+     *
+     * @example samples/V1/SqlUsersServiceClient/get.php
+     *
+     * @param SqlUsersGetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function get(SqlUsersGetRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**

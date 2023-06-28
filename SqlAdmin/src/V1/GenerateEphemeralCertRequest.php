@@ -40,11 +40,18 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
      */
     private $access_token = '';
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $read_time = null;
+    /**
+     * Optional. If set, it will contain the cert valid duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration valid_duration = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $valid_duration = null;
 
     /**
      * Constructor.
@@ -61,7 +68,10 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
      *     @type string $access_token
      *           Optional. Access token to include in the signed certificate.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *           Optional. Optional snapshot read timestamp to trade freshness for
+     *           performance.
+     *     @type \Google\Protobuf\Duration $valid_duration
+     *           Optional. If set, it will contain the cert valid duration.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,7 +184,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -195,7 +206,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -205,6 +217,42 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->read_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, it will contain the cert valid duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration valid_duration = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getValidDuration()
+    {
+        return $this->valid_duration;
+    }
+
+    public function hasValidDuration()
+    {
+        return isset($this->valid_duration);
+    }
+
+    public function clearValidDuration()
+    {
+        unset($this->valid_duration);
+    }
+
+    /**
+     * Optional. If set, it will contain the cert valid duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration valid_duration = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setValidDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->valid_duration = $var;
 
         return $this;
     }

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#instancesList**.
+     * This is always `sql#instancesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -48,7 +48,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#instancesList**.
+     *           This is always `sql#instancesList`.
      *     @type array<\Google\Cloud\Sql\V1\ApiWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           List of warnings that occurred while handling the request.
      *     @type array<\Google\Cloud\Sql\V1\DatabaseInstance>|\Google\Protobuf\Internal\RepeatedField $items
@@ -64,7 +64,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#instancesList**.
+     * This is always `sql#instancesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -75,7 +75,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#instancesList**.
+     * This is always `sql#instancesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

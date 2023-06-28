@@ -5,6 +5,13 @@
     "protoPackage": "google.cloud.sql.v1",
     "libraryPackage": "Google\\Cloud\\Sql\\V1",
     "services": {
+        "SqlAvailableDatabaseVersionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlAvailableDatabaseVersionsServiceGapicClient"
+                }
+            }
+        },
         "SqlBackupRunsService": {
             "clients": {
                 "grpc": {
@@ -92,6 +99,13 @@
                 }
             }
         },
+        "SqlEventsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlEventsServiceGapicClient"
+                }
+            }
+        },
         "SqlFlagsService": {
             "clients": {
                 "grpc": {
@@ -103,6 +117,13 @@
                             ]
                         }
                     }
+                }
+            }
+        },
+        "SqlIamPoliciesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlIamPoliciesServiceGapicClient"
                 }
             }
         },
@@ -158,6 +179,11 @@
                                 "get"
                             ]
                         },
+                        "GetDiskShrinkConfig": {
+                            "methods": [
+                                "getDiskShrinkConfig"
+                            ]
+                        },
                         "Import": {
                             "methods": [
                                 "import"
@@ -183,14 +209,29 @@
                                 "patch"
                             ]
                         },
+                        "PerformDiskShrink": {
+                            "methods": [
+                                "performDiskShrink"
+                            ]
+                        },
                         "PromoteReplica": {
                             "methods": [
                                 "promoteReplica"
                             ]
                         },
+                        "Reencrypt": {
+                            "methods": [
+                                "reencrypt"
+                            ]
+                        },
                         "RescheduleMaintenance": {
                             "methods": [
                                 "rescheduleMaintenance"
+                            ]
+                        },
+                        "ResetReplicaSize": {
+                            "methods": [
+                                "resetReplicaSize"
                             ]
                         },
                         "ResetSslConfig": {
@@ -252,6 +293,11 @@
                 "grpc": {
                     "libraryClient": "SqlOperationsServiceGapicClient",
                     "rpcs": {
+                        "Cancel": {
+                            "methods": [
+                                "cancel"
+                            ]
+                        },
                         "Get": {
                             "methods": [
                                 "get"
@@ -263,6 +309,13 @@
                             ]
                         }
                     }
+                }
+            }
+        },
+        "SqlRegionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlRegionsServiceGapicClient"
                 }
             }
         },
@@ -317,6 +370,11 @@
                         "Delete": {
                             "methods": [
                                 "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
                             ]
                         },
                         "Insert": {

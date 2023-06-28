@@ -26,7 +26,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      */
     private $active_version = '';
     /**
-     * This is always **sql#instancesListServerCas**.
+     * This is always `sql#instancesListServerCas`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -42,7 +42,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      *           List of server CA certificates for the instance.
      *     @type string $active_version
      *     @type string $kind
-     *           This is always **sql#instancesListServerCas**.
+     *           This is always `sql#instancesListServerCas`.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +99,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#instancesListServerCas**.
+     * This is always `sql#instancesListServerCas`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -110,7 +110,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#instancesListServerCas**.
+     * This is always `sql#instancesListServerCas`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var

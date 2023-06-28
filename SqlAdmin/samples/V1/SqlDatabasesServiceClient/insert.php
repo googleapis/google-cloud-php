@@ -32,6 +32,8 @@ use Google\Cloud\Sql\V1\SqlDatabasesInsertRequest;
  * Inserts a resource containing information about a database inside a Cloud
  * SQL instance.
  *
+ * **Note:** You can't modify the default character set and collation.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

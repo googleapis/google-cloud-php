@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class OperationsListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#operationsList**.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -42,7 +42,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#operationsList**.
+     *           This is always `sql#operationsList`.
      *     @type array<\Google\Cloud\Sql\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of operation resources.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#operationsList**.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -67,7 +67,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#operationsList**.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class OperationErrors extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#operationErrors**.
+     * This is always `sql#operationErrors`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -35,7 +35,7 @@ class OperationErrors extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#operationErrors**.
+     *           This is always `sql#operationErrors`.
      *     @type array<\Google\Cloud\Sql\V1\OperationError>|\Google\Protobuf\Internal\RepeatedField $errors
      *           The list of errors encountered while processing this operation.
      * }
@@ -46,7 +46,7 @@ class OperationErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#operationErrors**.
+     * This is always `sql#operationErrors`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class OperationErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#operationErrors**.
+     * This is always `sql#operationErrors`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

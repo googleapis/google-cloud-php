@@ -24,7 +24,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * The time when this access control entry expires in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2;</code>
      */
@@ -36,7 +36,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * This is always **sql#aclEntry**.
+     * This is always `sql#aclEntry`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
@@ -53,11 +53,11 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $expiration_time
      *           The time when this access control entry expires in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**.
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type string $name
      *           Optional. A label to identify this entry.
      *     @type string $kind
-     *           This is always **sql#aclEntry**.
+     *           This is always `sql#aclEntry`.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * The time when this access control entry expires in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -117,7 +117,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * The time when this access control entry expires in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -158,7 +158,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#aclEntry**.
+     * This is always `sql#aclEntry`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @return string
@@ -169,7 +169,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#aclEntry**.
+     * This is always `sql#aclEntry`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @param string $var

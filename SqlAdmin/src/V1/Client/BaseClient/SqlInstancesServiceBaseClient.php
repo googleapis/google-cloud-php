@@ -42,14 +42,19 @@ use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
+use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
+use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigResponse;
 use Google\Cloud\Sql\V1\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesInsertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesListRequest;
 use Google\Cloud\Sql\V1\SqlInstancesListServerCasRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPatchRequest;
+use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRescheduleMaintenanceRequest;
+use Google\Cloud\Sql\V1\SqlInstancesResetReplicaSizeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRestartRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRestoreBackupRequest;
@@ -84,13 +89,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
@@ -440,6 +449,32 @@ abstract class SqlInstancesServiceBaseClient
     }
 
     /**
+     * Get Disk Shrink Config for a given instance.
+     *
+     * The async variant is {@see self::getDiskShrinkConfigAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/get_disk_shrink_config.php
+     *
+     * @param SqlInstancesGetDiskShrinkConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesGetDiskShrinkConfigResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDiskShrinkConfig(SqlInstancesGetDiskShrinkConfigRequest $request, array $callOptions = []): SqlInstancesGetDiskShrinkConfigResponse
+    {
+        return $this->startApiCall('GetDiskShrinkConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
      * Cloud Storage.
      *
@@ -549,8 +584,8 @@ abstract class SqlInstancesServiceBaseClient
     }
 
     /**
-     * Updates settings of a Cloud SQL instance.
-     * This method supports patch semantics.
+     * Partially updates settings of a Cloud SQL instance by merging the request
+     * with the current configuration. This method supports patch semantics.
      *
      * The async variant is {@see self::patchAsync()} .
      *
@@ -573,6 +608,32 @@ abstract class SqlInstancesServiceBaseClient
     public function patch(SqlInstancesPatchRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Perform Disk Shrink on primary instance.
+     *
+     * The async variant is {@see self::performDiskShrinkAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/perform_disk_shrink.php
+     *
+     * @param SqlInstancesPerformDiskShrinkRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function performDiskShrink(SqlInstancesPerformDiskShrinkRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('PerformDiskShrink', $request, $callOptions)->wait();
     }
 
     /**
@@ -603,6 +664,32 @@ abstract class SqlInstancesServiceBaseClient
     }
 
     /**
+     * Reencrypt CMEK instance with latest key version.
+     *
+     * The async variant is {@see self::reencryptAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/reencrypt.php
+     *
+     * @param SqlInstancesReencryptRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reencrypt(SqlInstancesReencryptRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('Reencrypt', $request, $callOptions)->wait();
+    }
+
+    /**
      * Reschedules the maintenance on the given instance.
      *
      * The async variant is {@see self::rescheduleMaintenanceAsync()} .
@@ -626,6 +713,32 @@ abstract class SqlInstancesServiceBaseClient
     public function rescheduleMaintenance(SqlInstancesRescheduleMaintenanceRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Reset Replica Size to primary instance disk size.
+     *
+     * The async variant is {@see self::resetReplicaSizeAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/reset_replica_size.php
+     *
+     * @param SqlInstancesResetReplicaSizeRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resetReplicaSize(SqlInstancesResetReplicaSizeRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('ResetReplicaSize', $request, $callOptions)->wait();
     }
 
     /**

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#replicaConfiguration**.
+     * This is always `sql#replicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -27,14 +27,14 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * **master.info** in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.MySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      */
     private $mysql_replica_configuration = null;
     /**
      * Specifies if the replica is the failover target. If the field is set to
-     * **true** the replica will be designated as a failover replica. In case the
+     * `true`, the replica will be designated as a failover replica. In case the
      * primary instance fails, the replica instance will be promoted as the new
      * primary instance. Only one replica can be specified as failover target, and
      * the replica has to be in different zone with the primary instance.
@@ -50,17 +50,17 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#replicaConfiguration**.
+     *           This is always `sql#replicaConfiguration`.
      *     @type \Google\Cloud\Sql\V1\MySqlReplicaConfiguration $mysql_replica_configuration
      *           MySQL specific configuration when replicating from a MySQL on-premises
      *           primary instance. Replication configuration information such as the
      *           username, password, certificates, and keys are not stored in the instance
      *           metadata. The configuration information is used only to set up the
      *           replication connection and is stored by MySQL in a file named
-     *           **master.info** in the data directory.
+     *           `master.info` in the data directory.
      *     @type \Google\Protobuf\BoolValue $failover_target
      *           Specifies if the replica is the failover target. If the field is set to
-     *           **true** the replica will be designated as a failover replica. In case the
+     *           `true`, the replica will be designated as a failover replica. In case the
      *           primary instance fails, the replica instance will be promoted as the new
      *           primary instance. Only one replica can be specified as failover target, and
      *           the replica has to be in different zone with the primary instance.
@@ -72,7 +72,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#replicaConfiguration**.
+     * This is always `sql#replicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -83,7 +83,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#replicaConfiguration**.
+     * This is always `sql#replicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -103,7 +103,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * **master.info** in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.MySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      * @return \Google\Cloud\Sql\V1\MySqlReplicaConfiguration|null
@@ -129,7 +129,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * **master.info** in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.MySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      * @param \Google\Cloud\Sql\V1\MySqlReplicaConfiguration $var
@@ -145,7 +145,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies if the replica is the failover target. If the field is set to
-     * **true** the replica will be designated as a failover replica. In case the
+     * `true`, the replica will be designated as a failover replica. In case the
      * primary instance fails, the replica instance will be promoted as the new
      * primary instance. Only one replica can be specified as failover target, and
      * the replica has to be in different zone with the primary instance.
@@ -172,7 +172,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getFailoverTarget()</code>
 
      * Specifies if the replica is the failover target. If the field is set to
-     * **true** the replica will be designated as a failover replica. In case the
+     * `true`, the replica will be designated as a failover replica. In case the
      * primary instance fails, the replica instance will be promoted as the new
      * primary instance. Only one replica can be specified as failover target, and
      * the replica has to be in different zone with the primary instance.
@@ -187,7 +187,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies if the replica is the failover target. If the field is set to
-     * **true** the replica will be designated as a failover replica. In case the
+     * `true`, the replica will be designated as a failover replica. In case the
      * primary instance fails, the replica instance will be promoted as the new
      * primary instance. Only one replica can be specified as failover target, and
      * the replica has to be in different zone with the primary instance.
@@ -208,7 +208,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
      * Specifies if the replica is the failover target. If the field is set to
-     * **true** the replica will be designated as a failover replica. In case the
+     * `true`, the replica will be designated as a failover replica. In case the
      * primary instance fails, the replica instance will be promoted as the new
      * primary instance. Only one replica can be specified as failover target, and
      * the replica has to be in different zone with the primary instance.

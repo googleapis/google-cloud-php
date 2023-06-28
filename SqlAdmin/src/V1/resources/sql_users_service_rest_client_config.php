@@ -19,6 +19,27 @@ return [
                     ],
                 ],
             ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/users/{name}',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Insert' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/users',

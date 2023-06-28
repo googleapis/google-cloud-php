@@ -15,12 +15,12 @@ class CloudSqlSslCerts
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
         $pool->internalAddGeneratedFile(
             '
 Ñ
--google/cloud/sql/v1/cloud_sql_ssl_certs.protogoogle.cloud.sql.v1-google/cloud/sql/v1/cloud_sql_resources.protogoogle/api/client.proto"W
+-google/cloud/sql/v1/cloud_sql_ssl_certs.protogoogle.cloud.sql.v1google/api/client.proto-google/cloud/sql/v1/cloud_sql_resources.proto"W
 SqlSslCertsDeleteRequest
 instance (	
 project (	

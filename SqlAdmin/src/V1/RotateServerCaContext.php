@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RotateServerCaContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#rotateServerCaContext**.
+     * This is always `sql#rotateServerCaContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -36,7 +36,7 @@ class RotateServerCaContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#rotateServerCaContext**.
+     *           This is always `sql#rotateServerCaContext`.
      *     @type string $next_version
      *           The fingerprint of the next version to be rotated to. If left unspecified,
      *           will be rotated to the most recently added server CA version.
@@ -48,7 +48,7 @@ class RotateServerCaContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#rotateServerCaContext**.
+     * This is always `sql#rotateServerCaContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -59,7 +59,7 @@ class RotateServerCaContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#rotateServerCaContext**.
+     * This is always `sql#rotateServerCaContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
