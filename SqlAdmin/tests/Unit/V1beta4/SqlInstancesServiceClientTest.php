@@ -30,6 +30,7 @@ use Google\Cloud\Sql\V1beta4\DatabaseInstance;
 use Google\Cloud\Sql\V1beta4\InstancesListResponse;
 use Google\Cloud\Sql\V1beta4\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1beta4\Operation;
+use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigResponse;
 use Google\Cloud\Sql\V1beta4\SqlInstancesServiceClient;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1beta4\SslCert;
@@ -609,6 +610,64 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getDiskShrinkConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $minimalTargetSizeGb = 1076246647;
+        $message = 'message954925063';
+        $expectedResponse = new SqlInstancesGetDiskShrinkConfigResponse();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setMinimalTargetSizeGb($minimalTargetSizeGb);
+        $expectedResponse->setMessage($message);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getDiskShrinkConfig();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1beta4.SqlInstancesService/GetDiskShrinkConfig', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDiskShrinkConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getDiskShrinkConfig();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function importTest()
     {
         $transport = $this->createTransport();
@@ -919,6 +978,72 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function performDiskShrinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->performDiskShrink();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1beta4.SqlInstancesService/PerformDiskShrink', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function performDiskShrinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->performDiskShrink();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function promoteReplicaTest()
     {
         $transport = $this->createTransport();
@@ -985,6 +1110,72 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function reencryptTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->reencrypt();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1beta4.SqlInstancesService/Reencrypt', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reencryptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->reencrypt();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function rescheduleMaintenanceTest()
     {
         $transport = $this->createTransport();
@@ -1039,6 +1230,72 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         try {
             $gapicClient->rescheduleMaintenance();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resetReplicaSizeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->resetReplicaSize();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1beta4.SqlInstancesService/ResetReplicaSize', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resetReplicaSizeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->resetReplicaSize();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

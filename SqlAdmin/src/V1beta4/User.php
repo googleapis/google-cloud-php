@@ -80,6 +80,12 @@ class User extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.UserPasswordValidationPolicy password_policy = 12;</code>
      */
     private $password_policy = null;
+    /**
+     * Dual password status for the user.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.User.DualPasswordType dual_password_type = 13;</code>
+     */
+    private $dual_password_type = null;
     protected $user_details;
 
     /**
@@ -118,6 +124,8 @@ class User extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1beta4\SqlServerUserDetails $sqlserver_user_details
      *     @type \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy $password_policy
      *           User level password validation policy.
+     *     @type int $dual_password_type
+     *           Dual password status for the user.
      * }
      */
     public function __construct($data = NULL) {
@@ -414,6 +422,42 @@ class User extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy::class);
         $this->password_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Dual password status for the user.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.User.DualPasswordType dual_password_type = 13;</code>
+     * @return int
+     */
+    public function getDualPasswordType()
+    {
+        return isset($this->dual_password_type) ? $this->dual_password_type : 0;
+    }
+
+    public function hasDualPasswordType()
+    {
+        return isset($this->dual_password_type);
+    }
+
+    public function clearDualPasswordType()
+    {
+        unset($this->dual_password_type);
+    }
+
+    /**
+     * Dual password status for the user.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.User.DualPasswordType dual_password_type = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDualPasswordType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\User\DualPasswordType::class);
+        $this->dual_password_type = $var;
 
         return $this;
     }

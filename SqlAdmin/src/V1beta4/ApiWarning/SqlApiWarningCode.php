@@ -24,10 +24,18 @@ class SqlApiWarningCode
      * Generated from protobuf enum <code>REGION_UNREACHABLE = 1;</code>
      */
     const REGION_UNREACHABLE = 1;
+    /**
+     * Warning when user provided maxResults parameter exceeds the limit.  The
+     * returned result set may be incomplete.
+     *
+     * Generated from protobuf enum <code>MAX_RESULTS_EXCEEDS_LIMIT = 2;</code>
+     */
+    const MAX_RESULTS_EXCEEDS_LIMIT = 2;
 
     private static $valueToName = [
         self::SQL_API_WARNING_CODE_UNSPECIFIED => 'SQL_API_WARNING_CODE_UNSPECIFIED',
         self::REGION_UNREACHABLE => 'REGION_UNREACHABLE',
+        self::MAX_RESULTS_EXCEEDS_LIMIT => 'MAX_RESULTS_EXCEEDS_LIMIT',
     ];
 
     public static function name($value)

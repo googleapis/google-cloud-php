@@ -73,6 +73,12 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      */
     private $offload = null;
+    /**
+     * Options for exporting data as BAK files.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlBakExportOptions bak_export_options = 9;</code>
+     */
+    private $bak_export_options = null;
 
     /**
      * Constructor.
@@ -110,6 +116,8 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *           The file type for the specified uri.
      *     @type \Google\Protobuf\BoolValue $offload
      *           Option for export offload.
+     *     @type \Google\Cloud\Sql\V1beta4\ExportContext\SqlBakExportOptions $bak_export_options
+     *           Options for exporting data as BAK files.
      * }
      */
     public function __construct($data = NULL) {
@@ -387,6 +395,42 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("offload", $var);
         return $this;}
+
+    /**
+     * Options for exporting data as BAK files.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlBakExportOptions bak_export_options = 9;</code>
+     * @return \Google\Cloud\Sql\V1beta4\ExportContext\SqlBakExportOptions|null
+     */
+    public function getBakExportOptions()
+    {
+        return $this->bak_export_options;
+    }
+
+    public function hasBakExportOptions()
+    {
+        return isset($this->bak_export_options);
+    }
+
+    public function clearBakExportOptions()
+    {
+        unset($this->bak_export_options);
+    }
+
+    /**
+     * Options for exporting data as BAK files.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlBakExportOptions bak_export_options = 9;</code>
+     * @param \Google\Cloud\Sql\V1beta4\ExportContext\SqlBakExportOptions $var
+     * @return $this
+     */
+    public function setBakExportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\ExportContext\SqlBakExportOptions::class);
+        $this->bak_export_options = $var;
+
+        return $this;
+    }
 
 }
 

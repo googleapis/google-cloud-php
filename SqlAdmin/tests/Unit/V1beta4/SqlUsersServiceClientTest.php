@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\SqlUsersServiceClient;
+use Google\Cloud\Sql\V1beta4\User;
 use Google\Cloud\Sql\V1beta4\UsersListResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -115,6 +116,72 @@ class SqlUsersServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         try {
             $gapicClient->delete();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $password = 'password1216985755';
+        $etag = 'etag3123477';
+        $name2 = 'name2-1052831874';
+        $host2 = 'host2-1211484325';
+        $instance2 = 'instance2902024968';
+        $project2 = 'project2-894831476';
+        $expectedResponse = new User();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setPassword($password);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setHost($host2);
+        $expectedResponse->setInstance($instance2);
+        $expectedResponse->setProject($project2);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->get();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1beta4.SqlUsersService/Get', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

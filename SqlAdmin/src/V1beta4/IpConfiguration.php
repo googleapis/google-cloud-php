@@ -45,7 +45,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      */
     private $authorized_networks;
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
@@ -55,6 +55,13 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      */
     private $allocated_ip_range = '';
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     */
+    private $enable_private_path_for_google_cloud_services = null;
 
     /**
      * Constructor.
@@ -76,12 +83,15 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           using the IP. In 'CIDR' notation, also known as 'slash' notation (for
      *           example: `157.197.200.0/24`).
      *     @type string $allocated_ip_range
-     *           The name of the allocated ip range for the private ip CloudSQL instance.
+     *           The name of the allocated ip range for the private ip Cloud SQL instance.
      *           For example: "google-managed-services-default". If set, the instance ip
      *           will be created in the allocated range. The range name must comply with
      *           [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
      *           must be 1-63 characters long and match the regular expression
      *           `[a-z]([-a-z0-9]*[a-z0-9])?.`
+     *     @type \Google\Protobuf\BoolValue $enable_private_path_for_google_cloud_services
+     *           Controls connectivity to private IP instances from Google services,
+     *           such as BigQuery.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,7 +288,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
@@ -294,7 +304,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
@@ -312,6 +322,73 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnablePrivatePathForGoogleCloudServices()
+    {
+        return $this->enable_private_path_for_google_cloud_services;
+    }
+
+    public function hasEnablePrivatePathForGoogleCloudServices()
+    {
+        return isset($this->enable_private_path_for_google_cloud_services);
+    }
+
+    public function clearEnablePrivatePathForGoogleCloudServices()
+    {
+        unset($this->enable_private_path_for_google_cloud_services);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnablePrivatePathForGoogleCloudServices()</code>
+
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @return bool|null
+     */
+    public function getEnablePrivatePathForGoogleCloudServicesValue()
+    {
+        return $this->readWrapperValue("enable_private_path_for_google_cloud_services");
+    }
+
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnablePrivatePathForGoogleCloudServices($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_private_path_for_google_cloud_services = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnablePrivatePathForGoogleCloudServicesValue($var)
+    {
+        $this->writeWrapperValue("enable_private_path_for_google_cloud_services", $var);
+        return $this;}
 
 }
 

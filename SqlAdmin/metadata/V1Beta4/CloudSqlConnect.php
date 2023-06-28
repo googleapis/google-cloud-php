@@ -22,19 +22,20 @@ class CloudSqlConnect
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-…
+—
 0google/cloud/sql/v1beta4/cloud_sql_connect.protogoogle.cloud.sql.v1beta4google/api/client.protogoogle/api/field_behavior.proto2google/cloud/sql/v1beta4/cloud_sql_resources.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"r
 GetConnectSettingsRequest
 instance (	
 project (	2
-	read_time (2.google.protobuf.TimestampBàA"­
+	read_time (2.google.protobuf.TimestampBàA"¿
 ConnectSettings
 kind (	9
 server_ca_cert (2!.google.cloud.sql.v1beta4.SslCert9
 ip_addresses (2#.google.cloud.sql.v1beta4.IpMapping
 region (	F
 database_version (2,.google.cloud.sql.v1beta4.SqlDatabaseVersion>
-backend_type  (2(.google.cloud.sql.v1beta4.SqlBackendType"Ü
+backend_type  (2(.google.cloud.sql.v1beta4.SqlBackendType
+dns_name" (	"Ü
 GenerateEphemeralCertRequest
 instance (	
 project (	

@@ -42,11 +42,13 @@ use Google\Cloud\Sql\V1beta4\InstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\InstancesImportRequest;
 use Google\Cloud\Sql\V1beta4\InstancesListResponse;
 use Google\Cloud\Sql\V1beta4\InstancesListServerCasResponse;
+use Google\Cloud\Sql\V1beta4\InstancesReencryptRequest;
 use Google\Cloud\Sql\V1beta4\InstancesRestoreBackupRequest;
 use Google\Cloud\Sql\V1beta4\InstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1beta4\InstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\MySqlSyncConfig;
 use Google\Cloud\Sql\V1beta4\Operation;
+use Google\Cloud\Sql\V1beta4\PerformDiskShrinkContext;
 use Google\Cloud\Sql\V1beta4\SqlInstancesAddServerCaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCreateEphemeralCertRequest;
@@ -54,15 +56,20 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesFailoverRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigResponse;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesInsertRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesListRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesListServerCasRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesPatchRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesPromoteReplicaRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesReencryptRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRescheduleMaintenanceRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRescheduleMaintenanceRequestBody;
+use Google\Cloud\Sql\V1beta4\SqlInstancesResetReplicaSizeRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesResetSslConfigRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRestartRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRestoreBackupRequest;
@@ -730,6 +737,66 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
+     * Get Disk Shrink Config for a given instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->getDiskShrinkConfig();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL instance ID. This does not include the project ID.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getDiskShrinkConfig(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesGetDiskShrinkConfigRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDiskShrinkConfig',
+            SqlInstancesGetDiskShrinkConfigResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
      * Cloud Storage.
      *
@@ -881,7 +948,10 @@ class SqlInstancesServiceGapicClient
      *           expression is an AND expression. However, you can include AND and OR
      *           expressions explicitly.
      *     @type int $maxResults
-     *           The maximum number of results to return per response.
+     *           The maximum number of instances to return. The service may return fewer
+     *           than this value.
+     *           If unspecified, at most 500 instances are returned.
+     *           The maximum value is 1000; values above 1000 are coerced to 1000.
      *     @type string $pageToken
      *           A previously-returned page token representing part of the larger set of
      *           results to view.
@@ -999,8 +1069,8 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Updates settings of a Cloud SQL instance.
-     * This method supports patch semantics.
+     * Partially updates settings of a Cloud SQL instance by merging the request
+     * with the current configuration. This method supports patch semantics.
      *
      * Sample code:
      * ```
@@ -1058,6 +1128,72 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'Patch',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Perform Disk Shrink on primary instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->performDiskShrink();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL instance ID. This does not include the project ID.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type PerformDiskShrinkContext $body
+     *           Perform disk shrink context.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function performDiskShrink(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesPerformDiskShrinkRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PerformDiskShrink',
             Operation::class,
             $optionalArgs,
             $request
@@ -1126,6 +1262,72 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
+     * Reencrypt CMEK instance with latest key version.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->reencrypt();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL instance ID. This does not include the project ID.
+     *     @type string $project
+     *           ID of the project that contains the instance.
+     *     @type InstancesReencryptRequest $body
+     *           Reencrypt body that users request
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function reencrypt(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesReencryptRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Reencrypt',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Reschedules the maintenance on the given instance.
      *
      * Sample code:
@@ -1184,6 +1386,66 @@ class SqlInstancesServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'RescheduleMaintenance',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Reset Replica Size to primary instance disk size.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->resetReplicaSize();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL read replica instance name.
+     *     @type string $project
+     *           ID of the project that contains the read replica.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\Operation
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function resetReplicaSize(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesResetReplicaSizeRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ResetReplicaSize',
             Operation::class,
             $optionalArgs,
             $request
@@ -1470,6 +1732,10 @@ class SqlInstancesServiceGapicClient
      *           Whether to skip the verification step (VESS).
      *     @type MySqlSyncConfig $mysqlSyncConfig
      *           MySQL-specific settings for start external sync.
+     *     @type int $syncParallelLevel
+     *           Optional. Parallel level for initial data sync. Currently only applicable
+     *           for MySQL.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesStartExternalSyncRequest\ExternalSyncParallelLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1506,6 +1772,10 @@ class SqlInstancesServiceGapicClient
 
         if (isset($optionalArgs['mysqlSyncConfig'])) {
             $request->setMysqlSyncConfig($optionalArgs['mysqlSyncConfig']);
+        }
+
+        if (isset($optionalArgs['syncParallelLevel'])) {
+            $request->setSyncParallelLevel($optionalArgs['syncParallelLevel']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
