@@ -200,6 +200,15 @@ trait GapicClientTrait
             $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
         }
 
+        // If an API endpoint is set, ensure the "audience" does not conflict
+        // with the custom endpoint by setting "user defined" scopes.
+        if ($options['apiEndpoint'] != $defaultOptions['apiEndpoint']
+            && empty($options['credentialsConfig']['scopes'])
+            && !empty($options['credentialsConfig']['defaultScopes'])
+        ) {
+            $options['credentialsConfig']['scopes'] = $options['credentialsConfig']['defaultScopes'];
+        }
+
         if (extension_loaded('sysvshm')
                 && isset($options['gcpApiConfigPath'])
                 && file_exists($options['gcpApiConfigPath'])

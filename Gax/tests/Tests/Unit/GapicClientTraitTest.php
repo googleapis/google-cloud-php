@@ -1389,6 +1389,16 @@ class GapicClientTraitTest extends TestCase
         $defaultOptions = $client->call('buildClientOptions', [[]]);
         $this->assertArrayNotHasKey('scopes', $defaultOptions['credentialsConfig']);
 
+        // verify scopes are set when a custom api endpoint is used
+        $defaultOptions = $client->call('buildClientOptions', [[
+            'apiEndpoint' => 'www.someotherendpoint.com',
+        ]]);
+        $this->assertArrayHasKey('scopes', $defaultOptions['credentialsConfig']);
+        $this->assertEquals(
+            $client::$serviceScopes,
+            $defaultOptions['credentialsConfig']['scopes']
+        );
+
         // verify user-defined scopes override default scopes
         $defaultOptions = $client->call('buildClientOptions', [[
             'credentialsConfig' => ['scopes' => ['user-scope-1']],
@@ -1448,36 +1458,6 @@ class GapicClientTraitTest extends TestCase
 
         $client->call('startCall', ['method.name', 'decodeType', [
             'audience' => 'custom-audience',
-        ]]);
-    }
-
-    public function testDefaultAudienceWithCustomApiEndpoint()
-    {
-        $retrySettings = $this->prophesize(RetrySettings::class);
-        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
-            ->reveal();
-        $transport = $this->prophesize(TransportInterface::class);
-        $transport
-            ->startUnaryCall(
-                Argument::any(),
-                [
-                    'audience' => 'https://service-address/',
-                    'headers' => [],
-                    'credentialsWrapper' => $credentialsWrapper,
-                ]
-            )
-            ->shouldBeCalledOnce();
-
-        $client = new GapicClientTraitDefaultScopeAndAudienceStub();
-        $client->set('credentialsWrapper', $credentialsWrapper);
-        $client->set('agentHeader', []);
-        $client->set(
-            'retrySettings',
-            ['method.name' => $retrySettings->reveal()]
-        );
-        $client->set('transport', $transport->reveal());
-        $client->call('startCall', ['method.name', 'decodeType', [
-            'apiEndpoint' => 'www.someotherendpoint.com',
         ]]);
     }
 
