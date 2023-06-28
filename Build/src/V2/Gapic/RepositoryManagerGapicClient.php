@@ -42,6 +42,8 @@ use Google\Cloud\Build\V2\CreateConnectionRequest;
 use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\DeleteConnectionRequest;
 use Google\Cloud\Build\V2\DeleteRepositoryRequest;
+use Google\Cloud\Build\V2\FetchGitRefsRequest;
+use Google\Cloud\Build\V2\FetchGitRefsResponse;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesRequest;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesResponse;
 use Google\Cloud\Build\V2\FetchReadTokenRequest;
@@ -65,7 +67,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Manages connections to source code repostiories.
+ * Service Description: Manages connections to source code repositories.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -831,6 +833,53 @@ class RepositoryManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteRepository', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Fetch the list of branches or tags for a given repository.
+     *
+     * Sample code:
+     * ```
+     * $repositoryManagerClient = new RepositoryManagerClient();
+     * try {
+     *     $formattedRepository = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->fetchGitRefs($formattedRepository);
+     * } finally {
+     *     $repositoryManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $repository   Required. The resource name of the repository in the format
+     *                             `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $refType
+     *           Type of refs to fetch
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Build\V2\FetchGitRefsRequest\RefType}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Build\V2\FetchGitRefsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchGitRefs($repository, array $optionalArgs = [])
+    {
+        $request = new FetchGitRefsRequest();
+        $requestParamHeaders = [];
+        $request->setRepository($repository);
+        $requestParamHeaders['repository'] = $repository;
+        if (isset($optionalArgs['refType'])) {
+            $request->setRefType($optionalArgs['refType']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('FetchGitRefs', FetchGitRefsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

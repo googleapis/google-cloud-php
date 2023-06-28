@@ -41,6 +41,8 @@ use Google\Cloud\Build\V2\CreateConnectionRequest;
 use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\DeleteConnectionRequest;
 use Google\Cloud\Build\V2\DeleteRepositoryRequest;
+use Google\Cloud\Build\V2\FetchGitRefsRequest;
+use Google\Cloud\Build\V2\FetchGitRefsResponse;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesRequest;
 use Google\Cloud\Build\V2\FetchReadTokenRequest;
 use Google\Cloud\Build\V2\FetchReadTokenResponse;
@@ -60,7 +62,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Manages connections to source code repostiories.
+ * Service Description: Manages connections to source code repositories.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -82,6 +84,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchGitRefsAsync(FetchGitRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchLinkableRepositoriesAsync(FetchLinkableRepositoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchReadTokenAsync(FetchReadTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchReadWriteTokenAsync(FetchReadWriteTokenRequest $request, array $optionalArgs = [])
@@ -491,6 +494,32 @@ abstract class RepositoryManagerBaseClient
     public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch the list of branches or tags for a given repository.
+     *
+     * The async variant is {@see self::fetchGitRefsAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/fetch_git_refs.php
+     *
+     * @param FetchGitRefsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchGitRefsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRefs(FetchGitRefsRequest $request, array $callOptions = []): FetchGitRefsResponse
+    {
+        return $this->startApiCall('FetchGitRefs', $request, $callOptions)->wait();
     }
 
     /**
