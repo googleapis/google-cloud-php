@@ -541,9 +541,10 @@ abstract class StorageTransferServiceBaseClient
     }
 
     /**
-     * Attempts to start a new TransferOperation for the current TransferJob. A
-     * TransferJob has a maximum of one active TransferOperation. If this method
-     * is called while a TransferOperation is active, an error will be returned.
+     * Starts a new operation for the specified transfer job.
+     * A `TransferJob` has a maximum of one active `TransferOperation`. If this
+     * method is called while a `TransferOperation` is active, an error is
+     * returned.
      *
      * The async variant is {@see self::runTransferJobAsync()} .
      *
@@ -594,8 +595,8 @@ abstract class StorageTransferServiceBaseClient
      * Updates a transfer job. Updating a job's transfer spec does not affect
      * transfer operations that are running already.
      *
-     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status] field can be modified
-     * using this RPC (for example, to set a job's status to
+     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
+     * field can be modified using this RPC (for example, to set a job's status to
      * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
      * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
      * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
