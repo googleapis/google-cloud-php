@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.1](https://github.com/googleapis/gax-php/compare/v1.21.0...v1.21.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* Revert "chore: remove unnecessary api endpoint check" ([#476](https://github.com/googleapis/gax-php/issues/476)) ([13e773f](https://github.com/googleapis/gax-php/commit/13e773f5b09f9a99b8425835815746d37e9c1da3))
+
 ## [1.21.0](https://github.com/googleapis/gax-php/compare/v1.20.2...v1.21.0) (2023-06-09)
 
 
