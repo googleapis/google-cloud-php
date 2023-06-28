@@ -33,6 +33,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\OperationsListResponse;
+use Google\Cloud\Sql\V1\SqlOperationsCancelRequest;
 use Google\Cloud\Sql\V1\SqlOperationsGetRequest;
 use Google\Cloud\Sql\V1\SqlOperationsListRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -49,6 +50,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @internal
  *
+ * @method PromiseInterface cancelAsync(SqlOperationsCancelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(SqlOperationsGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(SqlOperationsListRequest $request, array $optionalArgs = [])
  */
@@ -162,6 +164,30 @@ abstract class SqlOperationsServiceBaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Cancels an instance operation that has been performed on an instance.
+     *
+     * The async variant is {@see self::cancelAsync()} .
+     *
+     * @example samples/V1/SqlOperationsServiceClient/cancel.php
+     *
+     * @param SqlOperationsCancelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancel(SqlOperationsCancelRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('Cancel', $request, $callOptions)->wait();
     }
 
     /**

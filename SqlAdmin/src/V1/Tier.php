@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Tier extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
      * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
@@ -29,7 +29,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      */
     private $RAM = 0;
     /**
-     * This is always **sql#tier**.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -54,12 +54,12 @@ class Tier extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $tier
-     *           An identifier for the machine type, for example, db-custom-1-3840. For
+     *           An identifier for the machine type, for example, `db-custom-1-3840`. For
      *           related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *     @type int|string $RAM
      *           The maximum RAM usage of this tier in bytes.
      *     @type string $kind
-     *           This is always **sql#tier**.
+     *           This is always `sql#tier`.
      *     @type int|string $Disk_Quota
      *           The maximum disk size of this tier in bytes.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region
@@ -72,7 +72,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
      * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
@@ -84,7 +84,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
      * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
@@ -126,7 +126,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#tier**.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -137,7 +137,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#tier**.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var

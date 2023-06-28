@@ -16,14 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class MysqlExportOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Option to include SQL statement required to set up replication.
-     * *  If set to **1**, the dump file includes
-     *  a CHANGE MASTER TO statement with the binary log coordinates,
-     *  and --set-gtid-purged is set to ON.
-     * *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *  a SQL comment and has no effect.
-     * *  If set to any value other than **1**, --set-gtid-purged is set
-     * to OFF.
+     * Option to include SQL statement required to set up replication. If set
+     * to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     * binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     * `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     * has no effect. If set to any value other than `1`, --set-gtid-purged
+     * is set to OFF.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      */
@@ -36,14 +34,12 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Int32Value $master_data
-     *           Option to include SQL statement required to set up replication.
-     *           *  If set to **1**, the dump file includes
-     *            a CHANGE MASTER TO statement with the binary log coordinates,
-     *            and --set-gtid-purged is set to ON.
-     *           *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *            a SQL comment and has no effect.
-     *           *  If set to any value other than **1**, --set-gtid-purged is set
-     *           to OFF.
+     *           Option to include SQL statement required to set up replication. If set
+     *           to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     *           binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     *           `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     *           has no effect. If set to any value other than `1`, --set-gtid-purged
+     *           is set to OFF.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,14 +48,12 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to include SQL statement required to set up replication.
-     * *  If set to **1**, the dump file includes
-     *  a CHANGE MASTER TO statement with the binary log coordinates,
-     *  and --set-gtid-purged is set to ON.
-     * *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *  a SQL comment and has no effect.
-     * *  If set to any value other than **1**, --set-gtid-purged is set
-     * to OFF.
+     * Option to include SQL statement required to set up replication. If set
+     * to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     * binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     * `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     * has no effect. If set to any value other than `1`, --set-gtid-purged
+     * is set to OFF.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      * @return \Google\Protobuf\Int32Value|null
@@ -82,14 +76,12 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getMasterData()</code>
 
-     * Option to include SQL statement required to set up replication.
-     * *  If set to **1**, the dump file includes
-     *  a CHANGE MASTER TO statement with the binary log coordinates,
-     *  and --set-gtid-purged is set to ON.
-     * *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *  a SQL comment and has no effect.
-     * *  If set to any value other than **1**, --set-gtid-purged is set
-     * to OFF.
+     * Option to include SQL statement required to set up replication. If set
+     * to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     * binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     * `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     * has no effect. If set to any value other than `1`, --set-gtid-purged
+     * is set to OFF.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      * @return int|null
@@ -100,14 +92,12 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to include SQL statement required to set up replication.
-     * *  If set to **1**, the dump file includes
-     *  a CHANGE MASTER TO statement with the binary log coordinates,
-     *  and --set-gtid-purged is set to ON.
-     * *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *  a SQL comment and has no effect.
-     * *  If set to any value other than **1**, --set-gtid-purged is set
-     * to OFF.
+     * Option to include SQL statement required to set up replication. If set
+     * to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     * binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     * `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     * has no effect. If set to any value other than `1`, --set-gtid-purged
+     * is set to OFF.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      * @param \Google\Protobuf\Int32Value $var
@@ -124,14 +114,12 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
 
-     * Option to include SQL statement required to set up replication.
-     * *  If set to **1**, the dump file includes
-     *  a CHANGE MASTER TO statement with the binary log coordinates,
-     *  and --set-gtid-purged is set to ON.
-     * *  If set to **2**, the CHANGE MASTER TO statement is written as
-     *  a SQL comment and has no effect.
-     * *  If set to any value other than **1**, --set-gtid-purged is set
-     * to OFF.
+     * Option to include SQL statement required to set up replication. If set
+     * to `1`, the dump file includes a CHANGE MASTER TO statement with the
+     * binary log coordinates, and --set-gtid-purged is set to ON. If set to
+     * `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+     * has no effect. If set to any value other than `1`, --set-gtid-purged
+     * is set to OFF.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      * @param int|null $var

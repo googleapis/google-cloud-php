@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class DemoteMasterContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#demoteMasterContext**.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
     private $kind = '';
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * **True**. Setting this flag to false enables you to bypass GTID consistency
-     * check between on-premises primary instance and Cloud SQL instance during
-     * the demotion operation but also exposes you to the risk of future
-     * replication failures. Change the value only if you know the reason for the
-     * GTID divergence and are confident that doing so will not cause any
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
      * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
@@ -61,14 +61,14 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#demoteMasterContext**.
+     *           This is always `sql#demoteMasterContext`.
      *     @type \Google\Protobuf\BoolValue $verify_gtid_consistency
-     *           Verify GTID consistency for demote operation. Default value:
-     *           **True**. Setting this flag to false enables you to bypass GTID consistency
-     *           check between on-premises primary instance and Cloud SQL instance during
-     *           the demotion operation but also exposes you to the risk of future
-     *           replication failures. Change the value only if you know the reason for the
-     *           GTID divergence and are confident that doing so will not cause any
+     *           Verify the GTID consistency for demote operation. Default value:
+     *           `True`. Setting this flag to `false` enables you to bypass the GTID
+     *           consistency check between on-premises primary instance and Cloud SQL
+     *           instance during the demotion operation but also exposes you to the risk of
+     *           future replication failures. Change the value only if you know the reason
+     *           for the GTID divergence and are confident that doing so will not cause any
      *           replication issues.
      *     @type string $master_instance_name
      *           The name of the instance which will act as on-premises primary instance
@@ -86,7 +86,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#demoteMasterContext**.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -97,7 +97,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#demoteMasterContext**.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -112,12 +112,12 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * **True**. Setting this flag to false enables you to bypass GTID consistency
-     * check between on-premises primary instance and Cloud SQL instance during
-     * the demotion operation but also exposes you to the risk of future
-     * replication failures. Change the value only if you know the reason for the
-     * GTID divergence and are confident that doing so will not cause any
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
      * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
@@ -141,12 +141,12 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getVerifyGtidConsistency()</code>
 
-     * Verify GTID consistency for demote operation. Default value:
-     * **True**. Setting this flag to false enables you to bypass GTID consistency
-     * check between on-premises primary instance and Cloud SQL instance during
-     * the demotion operation but also exposes you to the risk of future
-     * replication failures. Change the value only if you know the reason for the
-     * GTID divergence and are confident that doing so will not cause any
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
      * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
@@ -158,12 +158,12 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * **True**. Setting this flag to false enables you to bypass GTID consistency
-     * check between on-premises primary instance and Cloud SQL instance during
-     * the demotion operation but also exposes you to the risk of future
-     * replication failures. Change the value only if you know the reason for the
-     * GTID divergence and are confident that doing so will not cause any
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
      * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
@@ -181,12 +181,12 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Verify GTID consistency for demote operation. Default value:
-     * **True**. Setting this flag to false enables you to bypass GTID consistency
-     * check between on-premises primary instance and Cloud SQL instance during
-     * the demotion operation but also exposes you to the risk of future
-     * replication failures. Change the value only if you know the reason for the
-     * GTID divergence and are confident that doing so will not cause any
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
      * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>

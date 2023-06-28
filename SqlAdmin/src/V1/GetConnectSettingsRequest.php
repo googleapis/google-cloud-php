@@ -28,7 +28,8 @@ class GetConnectSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,7 +46,8 @@ class GetConnectSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID of the project that contains the instance.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *           Optional. Optional snapshot read timestamp to trade freshness for
+     *           performance.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +108,8 @@ class GetConnectSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -127,7 +130,8 @@ class GetConnectSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var

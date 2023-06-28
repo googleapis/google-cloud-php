@@ -163,7 +163,7 @@ abstract class SqlTiersServiceBaseClient
 
     /**
      * Lists all available machine types (tiers) for Cloud SQL, for example,
-     * db-custom-1-3840. For more information, see
+     * `db-custom-1-3840`. For more information, see
      * https://cloud.google.com/sql/pricing.
      *
      * The async variant is {@see self::listAsync()} .

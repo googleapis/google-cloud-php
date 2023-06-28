@@ -29,7 +29,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     private $day = null;
     /**
-     * Maintenance timing setting: **canary** (Earlier) or **stable** (Later).
+     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
      * [Learn
      * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
      *
@@ -37,7 +37,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     private $update_track = 0;
     /**
-     * This is always **sql#maintenanceWindow**.
+     * This is always `sql#maintenanceWindow`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
@@ -54,11 +54,11 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Int32Value $day
      *           day of week (1-7), starting on Monday.
      *     @type int $update_track
-     *           Maintenance timing setting: **canary** (Earlier) or **stable** (Later).
+     *           Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
      *           [Learn
      *           more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
      *     @type string $kind
-     *           This is always **sql#maintenanceWindow**.
+     *           This is always `sql#maintenanceWindow`.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,7 +193,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Maintenance timing setting: **canary** (Earlier) or **stable** (Later).
+     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
      * [Learn
      * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
      *
@@ -206,7 +206,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maintenance timing setting: **canary** (Earlier) or **stable** (Later).
+     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
      * [Learn
      * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
      *
@@ -223,7 +223,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#maintenanceWindow**.
+     * This is always `sql#maintenanceWindow`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @return string
@@ -234,7 +234,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#maintenanceWindow**.
+     * This is always `sql#maintenanceWindow`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @param string $var

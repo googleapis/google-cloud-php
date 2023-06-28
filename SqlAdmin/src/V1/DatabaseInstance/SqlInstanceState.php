@@ -57,10 +57,9 @@ class SqlInstanceState
      */
     const FAILED = 6;
     /**
-     * The instance is under maintenance operations and the database is
-     * available.
+     * Deprecated
      *
-     * Generated from protobuf enum <code>ONLINE_MAINTENANCE = 7;</code>
+     * Generated from protobuf enum <code>ONLINE_MAINTENANCE = 7 [deprecated = true];</code>
      */
     const ONLINE_MAINTENANCE = 7;
 

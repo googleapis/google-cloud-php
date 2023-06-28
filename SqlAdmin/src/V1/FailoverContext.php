@@ -23,7 +23,7 @@ class FailoverContext extends \Google\Protobuf\Internal\Message
      */
     private $settings_version = 0;
     /**
-     * This is always **sql#failoverContext**.
+     * This is always `sql#failoverContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
@@ -39,7 +39,7 @@ class FailoverContext extends \Google\Protobuf\Internal\Message
      *           The current settings version of this instance. Request will be rejected if
      *           this version doesn't match the current settings version.
      *     @type string $kind
-     *           This is always **sql#failoverContext**.
+     *           This is always `sql#failoverContext`.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class FailoverContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#failoverContext**.
+     * This is always `sql#failoverContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class FailoverContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#failoverContext**.
+     * This is always `sql#failoverContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @param string $var

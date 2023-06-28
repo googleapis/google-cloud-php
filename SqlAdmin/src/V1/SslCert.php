@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslCert extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#sslCert**.
+     * This is always `sql#sslCert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -36,7 +36,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate was created in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**
+     * `2012-11-15T16:19:00.094Z`
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
@@ -50,7 +50,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate expires in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
      */
@@ -81,7 +81,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#sslCert**.
+     *           This is always `sql#sslCert`.
      *     @type string $cert_serial_number
      *           Serial number, as extracted from the certificate.
      *     @type string $cert
@@ -89,13 +89,13 @@ class SslCert extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time when the certificate was created in [RFC
      *           3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**
+     *           `2012-11-15T16:19:00.094Z`
      *     @type string $common_name
      *           User supplied name.  Constrained to [a-zA-Z.-_ ]+.
      *     @type \Google\Protobuf\Timestamp $expiration_time
      *           The time when the certificate expires in [RFC
      *           3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**.
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type string $sha1_fingerprint
      *           Sha1 Fingerprint.
      *     @type string $instance
@@ -110,7 +110,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#sslCert**.
+     * This is always `sql#sslCert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -121,7 +121,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#sslCert**.
+     * This is always `sql#sslCert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -190,7 +190,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate was created in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**
+     * `2012-11-15T16:19:00.094Z`
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -213,7 +213,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate was created in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**
+     * `2012-11-15T16:19:00.094Z`
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -256,7 +256,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate expires in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -279,7 +279,7 @@ class SslCert extends \Google\Protobuf\Internal\Message
     /**
      * The time when the certificate expires in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var

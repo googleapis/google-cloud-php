@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackupRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#backupRun**.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -30,7 +30,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the run was enqueued in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      */
@@ -45,7 +45,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation actually started in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
@@ -53,7 +53,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation completed in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
@@ -66,8 +66,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      */
     private $error = null;
     /**
-     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND". This field
-     * defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
+     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL".
+     * This field defaults to "ON_DEMAND" and is ignored, when specified for
+     * insert requests.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupRunType type = 8;</code>
      */
@@ -81,7 +82,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The start time of the backup window during which this the backup was
      * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
-     * example **2012-11-15T16:19:00.094Z**.
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      */
@@ -122,6 +123,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupKind backup_kind = 19;</code>
      */
     private $backup_kind = 0;
+    /**
+     * Backup time zone to prevent restores to an instance with
+     * a different time zone. Now relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 23;</code>
+     */
+    private $time_zone = '';
 
     /**
      * Constructor.
@@ -130,36 +138,37 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#backupRun**.
+     *           This is always `sql#backupRun`.
      *     @type int $status
      *           The status of this run.
      *     @type \Google\Protobuf\Timestamp $enqueued_time
      *           The time the run was enqueued in UTC timezone in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**.
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type int|string $id
      *           The identifier for this backup run. Unique only for a specific Cloud SQL
      *           instance.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time the backup operation actually started in UTC timezone in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**.
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The time the backup operation completed in UTC timezone in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     *           **2012-11-15T16:19:00.094Z**.
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Cloud\Sql\V1\OperationError $error
      *           Information about why the backup operation failed. This is only present if
      *           the run has the FAILED status.
      *     @type int $type
-     *           The type of this run; can be either "AUTOMATED" or "ON_DEMAND". This field
-     *           defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
+     *           The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL".
+     *           This field defaults to "ON_DEMAND" and is ignored, when specified for
+     *           insert requests.
      *     @type string $description
      *           The description of this run, only applicable to on-demand backups.
      *     @type \Google\Protobuf\Timestamp $window_start_time
      *           The start time of the backup window during which this the backup was
      *           attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
-     *           example **2012-11-15T16:19:00.094Z**.
+     *           example `2012-11-15T16:19:00.094Z`.
      *     @type string $instance
      *           Name of the database instance.
      *     @type string $self_link
@@ -172,6 +181,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *           Encryption status specific to a backup.
      *     @type int $backup_kind
      *           Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.
+     *     @type string $time_zone
+     *           Backup time zone to prevent restores to an instance with
+     *           a different time zone. Now relevant only for SQL Server.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,7 +192,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#backupRun**.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -191,7 +203,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#backupRun**.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -234,7 +246,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the run was enqueued in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -257,7 +269,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the run was enqueued in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -302,7 +314,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation actually started in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -325,7 +337,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation actually started in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -342,7 +354,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation completed in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -365,7 +377,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The time the backup operation completed in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-     * **2012-11-15T16:19:00.094Z**.
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -418,8 +430,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND". This field
-     * defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
+     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL".
+     * This field defaults to "ON_DEMAND" and is ignored, when specified for
+     * insert requests.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupRunType type = 8;</code>
      * @return int
@@ -430,8 +443,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND". This field
-     * defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
+     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL".
+     * This field defaults to "ON_DEMAND" and is ignored, when specified for
+     * insert requests.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupRunType type = 8;</code>
      * @param int $var
@@ -474,7 +488,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The start time of the backup window during which this the backup was
      * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
-     * example **2012-11-15T16:19:00.094Z**.
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -497,7 +511,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     /**
      * The start time of the backup window during which this the backup was
      * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
-     * example **2012-11-15T16:19:00.094Z**.
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -683,6 +697,34 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlBackupKind::class);
         $this->backup_kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Backup time zone to prevent restores to an instance with
+     * a different time zone. Now relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 23;</code>
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->time_zone;
+    }
+
+    /**
+     * Backup time zone to prevent restores to an instance with
+     * a different time zone. Now relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTimeZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->time_zone = $var;
 
         return $this;
     }

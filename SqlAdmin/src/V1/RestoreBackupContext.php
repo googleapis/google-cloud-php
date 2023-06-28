@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RestoreBackupContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#restoreBackupContext**.
+     * This is always `sql#restoreBackupContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -48,7 +48,7 @@ class RestoreBackupContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#restoreBackupContext**.
+     *           This is always `sql#restoreBackupContext`.
      *     @type int|string $backup_run_id
      *           The ID of the backup run to restore from.
      *     @type string $instance_id
@@ -63,7 +63,7 @@ class RestoreBackupContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#restoreBackupContext**.
+     * This is always `sql#restoreBackupContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -74,7 +74,7 @@ class RestoreBackupContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#restoreBackupContext**.
+     * This is always `sql#restoreBackupContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

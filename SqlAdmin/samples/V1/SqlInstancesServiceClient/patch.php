@@ -29,8 +29,8 @@ use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlInstancesPatchRequest;
 
 /**
- * Updates settings of a Cloud SQL instance.
- * This method supports patch semantics.
+ * Partially updates settings of a Cloud SQL instance by merging the request
+ * with the current configuration. This method supports patch semantics.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
