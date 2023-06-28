@@ -290,6 +290,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $deactivated = true;
         $protectedPodCount = 1494678716;
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -298,6 +299,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
+        $expectedResponse->setStateReason($stateReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -599,6 +601,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $backupPlan = 'backupPlan1119623046';
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -606,6 +609,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setStateReason($stateReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1323,6 +1327,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $deactivated = true;
         $protectedPodCount = 1494678716;
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1331,6 +1336,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
+        $expectedResponse->setStateReason($stateReason);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -1482,6 +1488,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $backupPlan = 'backupPlan1119623046';
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1489,6 +1496,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setStateReason($stateReason);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
@@ -2304,6 +2312,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $deactivated = true;
         $protectedPodCount = 1494678716;
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2312,6 +2321,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
+        $expectedResponse->setStateReason($stateReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2589,6 +2599,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $backupPlan = 'backupPlan1119623046';
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
+        $stateReason = 'stateReason282113458';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2596,6 +2607,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setStateReason($stateReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

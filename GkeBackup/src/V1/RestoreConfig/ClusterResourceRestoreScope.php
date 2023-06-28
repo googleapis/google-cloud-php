@@ -38,6 +38,30 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
      */
     private $selected_group_kinds;
+    /**
+     * A list of cluster-scoped resource group kinds to NOT restore from the
+     * backup. If specified, all valid cluster-scoped resources will be
+     * restored except for those specified in the list.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     */
+    private $excluded_group_kinds;
+    /**
+     * If True, all valid cluster-scoped resources will be restored.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     */
+    private $all_group_kinds = false;
+    /**
+     * If True, no cluster-scoped resources will be restored.
+     * This has the same restore scope as if the message is not defined.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     */
+    private $no_group_kinds = false;
 
     /**
      * Constructor.
@@ -48,6 +72,18 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
      *           A list of cluster-scoped resource group kinds to restore from the
      *           backup. If specified, only the selected resources will be restored.
+     *           Mutually exclusive to any other field in the message.
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $excluded_group_kinds
+     *           A list of cluster-scoped resource group kinds to NOT restore from the
+     *           backup. If specified, all valid cluster-scoped resources will be
+     *           restored except for those specified in the list.
+     *           Mutually exclusive to any other field in the message.
+     *     @type bool $all_group_kinds
+     *           If True, all valid cluster-scoped resources will be restored.
+     *           Mutually exclusive to any other field in the message.
+     *     @type bool $no_group_kinds
+     *           If True, no cluster-scoped resources will be restored.
+     *           This has the same restore scope as if the message is not defined.
      *           Mutually exclusive to any other field in the message.
      * }
      */
@@ -82,6 +118,96 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind::class);
         $this->selected_group_kinds = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of cluster-scoped resource group kinds to NOT restore from the
+     * backup. If specified, all valid cluster-scoped resources will be
+     * restored except for those specified in the list.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExcludedGroupKinds()
+    {
+        return $this->excluded_group_kinds;
+    }
+
+    /**
+     * A list of cluster-scoped resource group kinds to NOT restore from the
+     * backup. If specified, all valid cluster-scoped resources will be
+     * restored except for those specified in the list.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExcludedGroupKinds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind::class);
+        $this->excluded_group_kinds = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If True, all valid cluster-scoped resources will be restored.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     * @return bool
+     */
+    public function getAllGroupKinds()
+    {
+        return $this->all_group_kinds;
+    }
+
+    /**
+     * If True, all valid cluster-scoped resources will be restored.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllGroupKinds($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->all_group_kinds = $var;
+
+        return $this;
+    }
+
+    /**
+     * If True, no cluster-scoped resources will be restored.
+     * This has the same restore scope as if the message is not defined.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     * @return bool
+     */
+    public function getNoGroupKinds()
+    {
+        return $this->no_group_kinds;
+    }
+
+    /**
+     * If True, no cluster-scoped resources will be restored.
+     * This has the same restore scope as if the message is not defined.
+     * Mutually exclusive to any other field in the message.
+     *
+     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setNoGroupKinds($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->no_group_kinds = $var;
 
         return $this;
     }
