@@ -45,12 +45,16 @@ class TopicTest extends TestCase
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->topic = TestHelpers::stub(Topic::class, [
-            $this->connection->reveal(),
-            'project-name',
-            'topic-name',
-            true
-        ]);
+        $this->topic = TestHelpers::stub(
+            Topic::class,
+            [
+                $this->connection->reveal(),
+                'project-name',
+                'topic-name',
+                true
+            ],
+            ['connection', 'enableCompression', 'compressionBytesThreshold']
+        );
     }
 
     public function testName()
@@ -347,5 +351,78 @@ class TopicTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->topic->iam());
+    }
+
+    /**
+     * @dataProvider compressionOptionsProvider
+     */
+    public function testCompressionOptionsSetup(
+        $enableCompression,
+        $compressionBytesThreshold,
+        $processedEnableCompression,
+        $processedCompressionBytesThreshold
+    ) {
+        $info = [];
+        if (isset($enableCompression)) {
+            $info['enableCompression'] = $enableCompression;
+        }
+        if (isset($compressionBytesThreshold)) {
+            $info['compressionBytesThreshold'] = $compressionBytesThreshold;
+        }
+
+        $topic = TestHelpers::stub(
+            Topic::class,
+            [
+                $this->connection->reveal(),
+                'project-name',
+                'topic-name',
+                true,
+                $info
+            ],
+            ['connection']
+        );
+        $messages = [['data' => 'hello world']];
+
+        $this->connection->publishMessage(Argument::that(
+            function ($args) use (
+                $processedEnableCompression,
+                $processedCompressionBytesThreshold
+            ) {
+                $result = is_array($args) &&
+                    array_key_exists('messages', $args) &&
+                    array_key_exists('topic', $args) &&
+                    array_key_exists('compressionOptions', $args);
+
+                if ($result &&
+                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
+                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
+                ) {
+                    return true;
+                }
+
+                return false;
+            }
+        ))->shouldBeCalled(1)->willReturn([]);
+
+        $topic->___setProperty('connection', $this->connection->reveal());
+        $topic->publishBatch($messages);
+    }
+
+    public function compressionOptionsProvider()
+    {
+        // Each data is of the form
+        // [
+        //  $enableCompression                      Input option
+        //  $compressionBytesThreshold              Input option
+        //  $processedEnableCompression             Expected set option
+        //  $processedCompressionBytesThreshold     Expected set option
+        // ]
+        return [
+            [null, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, null, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [false, 10000, false, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, null, true, Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD],
+            [true, 10000, true, 10000],
+        ];
     }
 }
