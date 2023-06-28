@@ -39,6 +39,13 @@ class UserPasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.PasswordStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status = null;
+    /**
+     * If true, the user must specify the current password before changing the
+     * password. This flag is supported only for MySQL.
+     *
+     * Generated from protobuf field <code>bool enable_password_verification = 5;</code>
+     */
+    private $enable_password_verification = false;
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class UserPasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *           If true, failed login attempts check will be enabled.
      *     @type \Google\Cloud\Sql\V1beta4\PasswordStatus $status
      *           Output only. Read-only password status.
+     *     @type bool $enable_password_verification
+     *           If true, the user must specify the current password before changing the
+     *           password. This flag is supported only for MySQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +191,34 @@ class UserPasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\PasswordStatus::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the user must specify the current password before changing the
+     * password. This flag is supported only for MySQL.
+     *
+     * Generated from protobuf field <code>bool enable_password_verification = 5;</code>
+     * @return bool
+     */
+    public function getEnablePasswordVerification()
+    {
+        return $this->enable_password_verification;
+    }
+
+    /**
+     * If true, the user must specify the current password before changing the
+     * password. This flag is supported only for MySQL.
+     *
+     * Generated from protobuf field <code>bool enable_password_verification = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnablePasswordVerification($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_password_verification = $var;
 
         return $this;
     }

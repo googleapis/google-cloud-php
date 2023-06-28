@@ -132,6 +132,11 @@
                                 "get"
                             ]
                         },
+                        "GetDiskShrinkConfig": {
+                            "methods": [
+                                "getDiskShrinkConfig"
+                            ]
+                        },
                         "Import": {
                             "methods": [
                                 "import"
@@ -157,14 +162,29 @@
                                 "patch"
                             ]
                         },
+                        "PerformDiskShrink": {
+                            "methods": [
+                                "performDiskShrink"
+                            ]
+                        },
                         "PromoteReplica": {
                             "methods": [
                                 "promoteReplica"
                             ]
                         },
+                        "Reencrypt": {
+                            "methods": [
+                                "reencrypt"
+                            ]
+                        },
                         "RescheduleMaintenance": {
                             "methods": [
                                 "rescheduleMaintenance"
+                            ]
+                        },
+                        "ResetReplicaSize": {
+                            "methods": [
+                                "resetReplicaSize"
                             ]
                         },
                         "ResetSslConfig": {
@@ -226,6 +246,11 @@
                 "grpc": {
                     "libraryClient": "SqlOperationsServiceGapicClient",
                     "rpcs": {
+                        "Cancel": {
+                            "methods": [
+                                "cancel"
+                            ]
+                        },
                         "Get": {
                             "methods": [
                                 "get"
@@ -288,6 +313,13 @@
                 }
             }
         },
+        "SqlIamPoliciesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlIamPoliciesServiceGapicClient"
+                }
+            }
+        },
         "SqlTiersService": {
             "clients": {
                 "grpc": {
@@ -310,6 +342,11 @@
                         "Delete": {
                             "methods": [
                                 "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
                             ]
                         },
                         "Insert": {
