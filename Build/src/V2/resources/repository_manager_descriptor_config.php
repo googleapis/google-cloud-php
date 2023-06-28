@@ -118,6 +118,18 @@ return [
                     ],
                 ],
             ],
+            'FetchGitRefs' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Build\V2\FetchGitRefsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'repository',
+                        'fieldAccessors' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'FetchLinkableRepositories' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

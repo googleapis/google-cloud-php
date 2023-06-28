@@ -67,6 +67,17 @@ return [
                     ],
                 ],
             ],
+            'FetchGitRefs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{repository=projects/*/locations/*/connections/*/repositories/*}:fetchGitRefs',
+                'placeholders' => [
+                    'repository' => [
+                        'getters' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'FetchLinkableRepositories' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{connection=projects/*/locations/*/connections/*}:fetchLinkableRepositories',
