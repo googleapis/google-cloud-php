@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,39 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START servicemanagement_v1_generated_ServiceManager_CreateServiceConfig_sync]
+// [START servicemanagement_v1_generated_ServiceManager_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Api\Service;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
- * Creates a new service configuration (version) for a managed service.
- * This method only stores the service configuration. To roll out the service
- * configuration to backend systems please call
- * [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+ * Returns permissions that a caller has on the specified resource. If the
+resource does not exist, this will return an empty set of
+permissions, not a `NOT_FOUND` error.
+
+Note: This operation is designed to be used for building
+permission-aware UIs and command-line tools, not for authorization
+checking. This operation may "fail open" without warning.
  *
- * Only the 100 most recent service configurations and ones referenced by
- * existing rollouts are kept for each service. The rest will be deleted
- * eventually.
- *
- * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-management/overview) for naming
- *                            requirements.  For example: `example.googleapis.com`.
+ * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
+ *                                   See the operation documentation for the appropriate value for this field.
+ * @param string $permissionsElement The set of permissions to check for the `resource`. Permissions with
+ *                                   wildcards (such as '*' or 'storage.*') are not allowed. For more
+ *                                   information see
+ *                                   [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
  */
-function create_service_config_sample(string $serviceName): void
+function test_iam_permissions_sample(string $resource, string $permissionsElement): void
 {
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $serviceConfig = new Service();
+    $permissions = [$permissionsElement,];
 
     // Call the API and handle any network failures.
     try {
-        /** @var Service $response */
-        $response = $serviceManagerClient->createServiceConfig($serviceName, $serviceConfig);
+        /** @var TestIamPermissionsResponse $response */
+        $response = $serviceManagerClient->testIamPermissions($resource, $permissions);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -70,8 +72,9 @@ function create_service_config_sample(string $serviceName): void
  */
 function callSample(): void
 {
-    $serviceName = '[SERVICE_NAME]';
+    $resource = '[RESOURCE]';
+    $permissionsElement = '[PERMISSIONS]';
 
-    create_service_config_sample($serviceName);
+    test_iam_permissions_sample($resource, $permissionsElement);
 }
-// [END servicemanagement_v1_generated_ServiceManager_CreateServiceConfig_sync]
+// [END servicemanagement_v1_generated_ServiceManager_TestIamPermissions_sync]

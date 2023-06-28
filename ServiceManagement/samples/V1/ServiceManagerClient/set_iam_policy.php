@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START servicemanagement_v1_generated_ServiceManager_ListServiceConfigs_sync]
+// [START servicemanagement_v1_generated_ServiceManager_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
-use Google\Api\Service;
+use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
- * Lists the history of the service configuration for a managed service,
- * from the newest to the oldest.
+ * Sets the access control policy on the specified resource. Replaces
+any existing policy.
+
+Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+errors.
  *
- * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-management/overview) for naming
- *                            requirements.  For example: `example.googleapis.com`.
+ * @param string $resource REQUIRED: The resource for which the policy is being specified.
+ *                         See the operation documentation for the appropriate value for this field.
  */
-function list_service_configs_sample(string $serviceName): void
+function set_iam_policy_sample(string $resource): void
 {
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $policy = new Policy();
+
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $serviceManagerClient->listServiceConfigs($serviceName);
-
-        /** @var Service $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var Policy $response */
+        $response = $serviceManagerClient->setIamPolicy($resource, $policy);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -66,8 +66,8 @@ function list_service_configs_sample(string $serviceName): void
  */
 function callSample(): void
 {
-    $serviceName = '[SERVICE_NAME]';
+    $resource = '[RESOURCE]';
 
-    list_service_configs_sample($serviceName);
+    set_iam_policy_sample($resource);
 }
-// [END servicemanagement_v1_generated_ServiceManager_ListServiceConfigs_sync]
+// [END servicemanagement_v1_generated_ServiceManager_SetIamPolicy_sync]

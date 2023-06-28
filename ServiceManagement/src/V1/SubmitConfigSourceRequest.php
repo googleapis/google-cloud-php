@@ -17,8 +17,8 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,8 +40,8 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $serviceName  Required. The name of the service.  See the
-     *                                                                      [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     *                                                                      example: `example.googleapis.com`.
+     *                                                                      [overview](https://cloud.google.com/service-management/overview) for naming
+     *                                                                      requirements.  For example: `example.googleapis.com`.
      * @param \Google\Cloud\ServiceManagement\V1\ConfigSource $configSource Required. The source configuration for the service.
      * @param bool                                            $validateOnly Optional. If set, this will result in the generation of a
      *                                                                      `google.api.Service` configuration based on the `ConfigSource` provided,
@@ -67,8 +67,8 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_name
      *           Required. The name of the service.  See the
-     *           [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     *           example: `example.googleapis.com`.
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
      *     @type \Google\Cloud\ServiceManagement\V1\ConfigSource $config_source
      *           Required. The source configuration for the service.
      *     @type bool $validate_only
@@ -84,8 +84,8 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -97,8 +97,8 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
-     * example: `example.googleapis.com`.
+     * [overview](https://cloud.google.com/service-management/overview) for naming
+     * requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
