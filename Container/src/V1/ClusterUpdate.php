@@ -341,6 +341,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_security_posture_config = null;
     /**
+     * The desired network performance config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig desired_network_performance_config = 125;</code>
+     */
+    private $desired_network_performance_config = null;
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      *
      * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
@@ -508,6 +514,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Kubernetes open source beta apis enabled on the cluster. Only beta apis
      *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $desired_security_posture_config
      *           Enable/Disable Security Posture API features for the cluster.
+     *     @type \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $desired_network_performance_config
+     *           The desired network performance config.
      *     @type bool $desired_enable_fqdn_network_policy
      *           Enable/Disable FQDN Network Policy for the cluster.
      *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $desired_autopilot_workload_policy_config
@@ -2133,6 +2141,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecurityPostureConfig::class);
         $this->desired_security_posture_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired network performance config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig desired_network_performance_config = 125;</code>
+     * @return \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig|null
+     */
+    public function getDesiredNetworkPerformanceConfig()
+    {
+        return $this->desired_network_performance_config;
+    }
+
+    public function hasDesiredNetworkPerformanceConfig()
+    {
+        return isset($this->desired_network_performance_config);
+    }
+
+    public function clearDesiredNetworkPerformanceConfig()
+    {
+        unset($this->desired_network_performance_config);
+    }
+
+    /**
+     * The desired network performance config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig desired_network_performance_config = 125;</code>
+     * @param \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setDesiredNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig::class);
+        $this->desired_network_performance_config = $var;
 
         return $this;
     }
