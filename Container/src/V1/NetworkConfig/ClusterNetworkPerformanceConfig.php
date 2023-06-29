@@ -20,7 +20,7 @@ class ClusterNetworkPerformanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig.Tier total_egress_bandwidth_tier = 1;</code>
      */
-    protected $total_egress_bandwidth_tier = null;
+    private $total_egress_bandwidth_tier = null;
 
     /**
      * Constructor.
