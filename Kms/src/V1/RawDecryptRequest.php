@@ -10,73 +10,72 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for
- * [KeyManagementService.RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt].
+ * [KeyManagementService.RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
  *
- * Generated from protobuf message <code>google.cloud.kms.v1.RawEncryptRequest</code>
+ * Generated from protobuf message <code>google.cloud.kms.v1.RawDecryptRequest</code>
  */
-class RawEncryptRequest extends \Google\Protobuf\Internal\Message
+class RawDecryptRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * encryption.
+     * decryption.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Required. The encrypted data originally returned in
+     * [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $plaintext = '';
+    private $ciphertext = '';
     /**
-     * Optional. Optional data that, if specified, must also be provided during
-     * decryption through
-     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
-     * This field may only be used in conjunction with an
-     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm] that accepts
-     * additional authenticated data (for example, AES-GCM).
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Optional. Optional data that must match the data originally supplied in
+     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $additional_authenticated_data = '';
+    private $additional_authenticated_data = '';
+    /**
+     * Required. The initialization vector (IV) used during encryption, which must
+     * match the data originally provided in
+     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     *
+     * Generated from protobuf field <code>bytes initialization_vector = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $initialization_vector = '';
+    /**
+     * The length of the authentication tag that is appended to the end of
+     * the ciphertext. If unspecified (0), the default value for the key's
+     * algorithm will be used (for AES-GCM, the default value is 16).
+     *
+     * Generated from protobuf field <code>int32 tag_length = 5;</code>
+     */
+    private $tag_length = 0;
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     * verify the integrity of the received plaintext using this checksum.
+     * verify the integrity of the received ciphertext using this checksum.
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * report an error if the checksum verification fails. If you receive a
-     * checksum error, your client should verify that CRC32C(plaintext) is equal
-     * to plaintext_crc32c, and if so, perform a limited number of retries. A
+     * checksum error, your client should verify that CRC32C(ciphertext) is equal
+     * to ciphertext_crc32c, and if so, perform a limited number of retries. A
      * persistent mismatch may indicate an issue in your computation of the CRC32C
      * checksum. Note: This field is defined as int64 for reasons of compatibility
      * across different languages. However, it is a non-negative integer, which
      * will never exceed 2^32-1, and can be safely downconverted to uint32 in
      * languages that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $plaintext_crc32c = null;
+    private $ciphertext_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received additional_authenticated_data using
@@ -93,39 +92,29 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $additional_authenticated_data_crc32c = null;
-    /**
-     * Optional. A customer-supplied initialization vector that will be used for
-     * encryption. If it is not provided for AES-CBC and AES-CTR, one will be
-     * generated. It will be returned in
-     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
-     *
-     * Generated from protobuf field <code>bytes initialization_vector = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $initialization_vector = '';
+    private $additional_authenticated_data_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received initialization_vector using this
      * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      * will report an error if the checksum verification fails. If you receive a
      * checksum error, your client should verify that
-     * CRC32C(initialization_vector) is equal to
-     * initialization_vector_crc32c, and if so, perform
-     * a limited number of retries. A persistent mismatch may indicate an issue in
-     * your computation of the CRC32C checksum.
+     * CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     * if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $initialization_vector_crc32c = null;
+    private $initialization_vector_crc32c = null;
 
     /**
      * Constructor.
@@ -136,40 +125,31 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           encryption.
-     *     @type string $plaintext
-     *           Required. The data to encrypt. Must be no larger than 64KiB.
-     *           The maximum size depends on the key version's
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     *           plaintext must be no larger than 64KiB. For
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     *           the plaintext and additional_authenticated_data fields must be no larger
-     *           than 8KiB.
+     *           decryption.
+     *     @type string $ciphertext
+     *           Required. The encrypted data originally returned in
+     *           [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *     @type string $additional_authenticated_data
-     *           Optional. Optional data that, if specified, must also be provided during
-     *           decryption through
-     *           [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
-     *           This field may only be used in conjunction with an
-     *           [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm] that accepts
-     *           additional authenticated data (for example, AES-GCM).
-     *           The maximum size depends on the key version's
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     *           plaintext must be no larger than 64KiB. For
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     *           the plaintext and additional_authenticated_data fields must be no larger
-     *           than 8KiB.
-     *     @type \Google\Protobuf\Int64Value $plaintext_crc32c
+     *           Optional. Optional data that must match the data originally supplied in
+     *           [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     *     @type string $initialization_vector
+     *           Required. The initialization vector (IV) used during encryption, which must
+     *           match the data originally provided in
+     *           [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     *     @type int $tag_length
+     *           The length of the authentication tag that is appended to the end of
+     *           the ciphertext. If unspecified (0), the default value for the key's
+     *           algorithm will be used (for AES-GCM, the default value is 16).
+     *     @type \Google\Protobuf\Int64Value $ciphertext_crc32c
      *           Optional. An optional CRC32C checksum of the
-     *           [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     *           [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      *           If specified,
      *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     *           verify the integrity of the received plaintext using this checksum.
+     *           verify the integrity of the received ciphertext using this checksum.
      *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      *           report an error if the checksum verification fails. If you receive a
-     *           checksum error, your client should verify that CRC32C(plaintext) is equal
-     *           to plaintext_crc32c, and if so, perform a limited number of retries. A
+     *           checksum error, your client should verify that CRC32C(ciphertext) is equal
+     *           to ciphertext_crc32c, and if so, perform a limited number of retries. A
      *           persistent mismatch may indicate an issue in your computation of the CRC32C
      *           checksum. Note: This field is defined as int64 for reasons of compatibility
      *           across different languages. However, it is a non-negative integer, which
@@ -177,7 +157,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *           languages that support this type.
      *     @type \Google\Protobuf\Int64Value $additional_authenticated_data_crc32c
      *           Optional. An optional CRC32C checksum of the
-     *           [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     *           [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      *           If specified,
      *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      *           verify the integrity of the received additional_authenticated_data using
@@ -193,24 +173,18 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *     @type string $initialization_vector
-     *           Optional. A customer-supplied initialization vector that will be used for
-     *           encryption. If it is not provided for AES-CBC and AES-CTR, one will be
-     *           generated. It will be returned in
-     *           [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
      *     @type \Google\Protobuf\Int64Value $initialization_vector_crc32c
      *           Optional. An optional CRC32C checksum of the
-     *           [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     *           [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      *           If specified,
      *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      *           verify the integrity of the received initialization_vector using this
      *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      *           will report an error if the checksum verification fails. If you receive a
      *           checksum error, your client should verify that
-     *           CRC32C(initialization_vector) is equal to
-     *           initialization_vector_crc32c, and if so, perform
-     *           a limited number of retries. A persistent mismatch may indicate an issue in
-     *           your computation of the CRC32C checksum.
+     *           CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     *           if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum.
      *           Note: This field is defined as int64 for reasons of compatibility across
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
@@ -225,7 +199,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * encryption.
+     * decryption.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -238,7 +212,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * encryption.
+     * decryption.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -253,59 +227,36 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Required. The encrypted data originally returned in
+     * [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getPlaintext()
+    public function getCiphertext()
     {
-        return $this->plaintext;
+        return $this->ciphertext;
     }
 
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Required. The encrypted data originally returned in
+     * [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setPlaintext($var)
+    public function setCiphertext($var)
     {
         GPBUtil::checkString($var, False);
-        $this->plaintext = $var;
+        $this->ciphertext = $var;
 
         return $this;
     }
 
     /**
-     * Optional. Optional data that, if specified, must also be provided during
-     * decryption through
-     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
-     * This field may only be used in conjunction with an
-     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm] that accepts
-     * additional authenticated data (for example, AES-GCM).
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Optional. Optional data that must match the data originally supplied in
+     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -316,19 +267,8 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional data that, if specified, must also be provided during
-     * decryption through
-     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
-     * This field may only be used in conjunction with an
-     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm] that accepts
-     * additional authenticated data (for example, AES-GCM).
-     * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Optional. Optional data that must match the data originally supplied in
+     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -343,89 +283,149 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The initialization vector (IV) used during encryption, which must
+     * match the data originally provided in
+     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     *
+     * Generated from protobuf field <code>bytes initialization_vector = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getInitializationVector()
+    {
+        return $this->initialization_vector;
+    }
+
+    /**
+     * Required. The initialization vector (IV) used during encryption, which must
+     * match the data originally provided in
+     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     *
+     * Generated from protobuf field <code>bytes initialization_vector = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInitializationVector($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->initialization_vector = $var;
+
+        return $this;
+    }
+
+    /**
+     * The length of the authentication tag that is appended to the end of
+     * the ciphertext. If unspecified (0), the default value for the key's
+     * algorithm will be used (for AES-GCM, the default value is 16).
+     *
+     * Generated from protobuf field <code>int32 tag_length = 5;</code>
+     * @return int
+     */
+    public function getTagLength()
+    {
+        return $this->tag_length;
+    }
+
+    /**
+     * The length of the authentication tag that is appended to the end of
+     * the ciphertext. If unspecified (0), the default value for the key's
+     * algorithm will be used (for AES-GCM, the default value is 16).
+     *
+     * Generated from protobuf field <code>int32 tag_length = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTagLength($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->tag_length = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     * verify the integrity of the received plaintext using this checksum.
+     * verify the integrity of the received ciphertext using this checksum.
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * report an error if the checksum verification fails. If you receive a
-     * checksum error, your client should verify that CRC32C(plaintext) is equal
-     * to plaintext_crc32c, and if so, perform a limited number of retries. A
+     * checksum error, your client should verify that CRC32C(ciphertext) is equal
+     * to ciphertext_crc32c, and if so, perform a limited number of retries. A
      * persistent mismatch may indicate an issue in your computation of the CRC32C
      * checksum. Note: This field is defined as int64 for reasons of compatibility
      * across different languages. However, it is a non-negative integer, which
      * will never exceed 2^32-1, and can be safely downconverted to uint32 in
      * languages that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
      */
-    public function getPlaintextCrc32C()
+    public function getCiphertextCrc32C()
     {
-        return $this->plaintext_crc32c;
+        return $this->ciphertext_crc32c;
     }
 
-    public function hasPlaintextCrc32C()
+    public function hasCiphertextCrc32C()
     {
-        return isset($this->plaintext_crc32c);
+        return isset($this->ciphertext_crc32c);
     }
 
-    public function clearPlaintextCrc32C()
+    public function clearCiphertextCrc32C()
     {
-        unset($this->plaintext_crc32c);
+        unset($this->ciphertext_crc32c);
     }
 
     /**
-     * Returns the unboxed value from <code>getPlaintextCrc32C()</code>
+     * Returns the unboxed value from <code>getCiphertextCrc32C()</code>
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     * verify the integrity of the received plaintext using this checksum.
+     * verify the integrity of the received ciphertext using this checksum.
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * report an error if the checksum verification fails. If you receive a
-     * checksum error, your client should verify that CRC32C(plaintext) is equal
-     * to plaintext_crc32c, and if so, perform a limited number of retries. A
+     * checksum error, your client should verify that CRC32C(ciphertext) is equal
+     * to ciphertext_crc32c, and if so, perform a limited number of retries. A
      * persistent mismatch may indicate an issue in your computation of the CRC32C
      * checksum. Note: This field is defined as int64 for reasons of compatibility
      * across different languages. However, it is a non-negative integer, which
      * will never exceed 2^32-1, and can be safely downconverted to uint32 in
      * languages that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getPlaintextCrc32CUnwrapped()
+    public function getCiphertextCrc32CValue()
     {
-        return $this->readWrapperValue("plaintext_crc32c");
+        return $this->readWrapperValue("ciphertext_crc32c");
     }
 
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     * verify the integrity of the received plaintext using this checksum.
+     * verify the integrity of the received ciphertext using this checksum.
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * report an error if the checksum verification fails. If you receive a
-     * checksum error, your client should verify that CRC32C(plaintext) is equal
-     * to plaintext_crc32c, and if so, perform a limited number of retries. A
+     * checksum error, your client should verify that CRC32C(ciphertext) is equal
+     * to ciphertext_crc32c, and if so, perform a limited number of retries. A
      * persistent mismatch may indicate an issue in your computation of the CRC32C
      * checksum. Note: This field is defined as int64 for reasons of compatibility
      * across different languages. However, it is a non-negative integer, which
      * will never exceed 2^32-1, and can be safely downconverted to uint32 in
      * languages that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
      * @return $this
      */
-    public function setPlaintextCrc32C($var)
+    public function setCiphertextCrc32C($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
-        $this->plaintext_crc32c = $var;
+        $this->ciphertext_crc32c = $var;
 
         return $this;
     }
@@ -434,32 +434,32 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
-     * verify the integrity of the received plaintext using this checksum.
+     * verify the integrity of the received ciphertext using this checksum.
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * report an error if the checksum verification fails. If you receive a
-     * checksum error, your client should verify that CRC32C(plaintext) is equal
-     * to plaintext_crc32c, and if so, perform a limited number of retries. A
+     * checksum error, your client should verify that CRC32C(ciphertext) is equal
+     * to ciphertext_crc32c, and if so, perform a limited number of retries. A
      * persistent mismatch may indicate an issue in your computation of the CRC32C
      * checksum. Note: This field is defined as int64 for reasons of compatibility
      * across different languages. However, it is a non-negative integer, which
      * will never exceed 2^32-1, and can be safely downconverted to uint32 in
      * languages that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var
      * @return $this
      */
-    public function setPlaintextCrc32CUnwrapped($var)
+    public function setCiphertextCrc32CValue($var)
     {
-        $this->writeWrapperValue("plaintext_crc32c", $var);
+        $this->writeWrapperValue("ciphertext_crc32c", $var);
         return $this;}
 
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received additional_authenticated_data using
@@ -476,7 +476,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
      */
     public function getAdditionalAuthenticatedDataCrc32C()
@@ -498,7 +498,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getAdditionalAuthenticatedDataCrc32C()</code>
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received additional_authenticated_data using
@@ -515,17 +515,17 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getAdditionalAuthenticatedDataCrc32CUnwrapped()
+    public function getAdditionalAuthenticatedDataCrc32CValue()
     {
         return $this->readWrapperValue("additional_authenticated_data_crc32c");
     }
 
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received additional_authenticated_data using
@@ -542,7 +542,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
      * @return $this
      */
@@ -558,7 +558,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received additional_authenticated_data using
@@ -575,66 +575,33 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var
      * @return $this
      */
-    public function setAdditionalAuthenticatedDataCrc32CUnwrapped($var)
+    public function setAdditionalAuthenticatedDataCrc32CValue($var)
     {
         $this->writeWrapperValue("additional_authenticated_data_crc32c", $var);
         return $this;}
 
     /**
-     * Optional. A customer-supplied initialization vector that will be used for
-     * encryption. If it is not provided for AES-CBC and AES-CTR, one will be
-     * generated. It will be returned in
-     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
-     *
-     * Generated from protobuf field <code>bytes initialization_vector = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getInitializationVector()
-    {
-        return $this->initialization_vector;
-    }
-
-    /**
-     * Optional. A customer-supplied initialization vector that will be used for
-     * encryption. If it is not provided for AES-CBC and AES-CTR, one will be
-     * generated. It will be returned in
-     * [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
-     *
-     * Generated from protobuf field <code>bytes initialization_vector = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setInitializationVector($var)
-    {
-        GPBUtil::checkString($var, False);
-        $this->initialization_vector = $var;
-
-        return $this;
-    }
-
-    /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received initialization_vector using this
      * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      * will report an error if the checksum verification fails. If you receive a
      * checksum error, your client should verify that
-     * CRC32C(initialization_vector) is equal to
-     * initialization_vector_crc32c, and if so, perform
-     * a limited number of retries. A persistent mismatch may indicate an issue in
-     * your computation of the CRC32C checksum.
+     * CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     * if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
      */
     public function getInitializationVectorCrc32C()
@@ -656,49 +623,47 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getInitializationVectorCrc32C()</code>
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received initialization_vector using this
      * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      * will report an error if the checksum verification fails. If you receive a
      * checksum error, your client should verify that
-     * CRC32C(initialization_vector) is equal to
-     * initialization_vector_crc32c, and if so, perform
-     * a limited number of retries. A persistent mismatch may indicate an issue in
-     * your computation of the CRC32C checksum.
+     * CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     * if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getInitializationVectorCrc32CUnwrapped()
+    public function getInitializationVectorCrc32CValue()
     {
         return $this->readWrapperValue("initialization_vector_crc32c");
     }
 
     /**
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received initialization_vector using this
      * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      * will report an error if the checksum verification fails. If you receive a
      * checksum error, your client should verify that
-     * CRC32C(initialization_vector) is equal to
-     * initialization_vector_crc32c, and if so, perform
-     * a limited number of retries. A persistent mismatch may indicate an issue in
-     * your computation of the CRC32C checksum.
+     * CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     * if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
      * @return $this
      */
@@ -714,27 +679,26 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Optional. An optional CRC32C checksum of the
-     * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
      * If specified,
      * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
      * verify the integrity of the received initialization_vector using this
      * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
      * will report an error if the checksum verification fails. If you receive a
      * checksum error, your client should verify that
-     * CRC32C(initialization_vector) is equal to
-     * initialization_vector_crc32c, and if so, perform
-     * a limited number of retries. A persistent mismatch may indicate an issue in
-     * your computation of the CRC32C checksum.
+     * CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     * if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var
      * @return $this
      */
-    public function setInitializationVectorCrc32CUnwrapped($var)
+    public function setInitializationVectorCrc32CValue($var)
     {
         $this->writeWrapperValue("initialization_vector_crc32c", $var);
         return $this;}

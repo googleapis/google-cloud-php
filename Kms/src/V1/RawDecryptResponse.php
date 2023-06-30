@@ -21,7 +21,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
-    protected $plaintext = '';
+    private $plaintext = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [RawDecryptResponse.plaintext][google.cloud.kms.v1.RawDecryptResponse.plaintext].
@@ -41,7 +41,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      */
-    protected $plaintext_crc32c = null;
+    private $plaintext_crc32c = null;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
@@ -49,7 +49,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 3;</code>
      */
-    protected $protection_level = 0;
+    private $protection_level = 0;
     /**
      * Integrity verification field. A flag indicating whether
      * [RawDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.RawDecryptRequest.ciphertext_crc32c]
@@ -67,7 +67,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_ciphertext_crc32c = 4;</code>
      */
-    protected $verified_ciphertext_crc32c = false;
+    private $verified_ciphertext_crc32c = false;
     /**
      * Integrity verification field. A flag indicating whether
      * [RawDecryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data_crc32c]
@@ -85,7 +85,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_additional_authenticated_data_crc32c = 5;</code>
      */
-    protected $verified_additional_authenticated_data_crc32c = false;
+    private $verified_additional_authenticated_data_crc32c = false;
     /**
      * Integrity verification field. A flag indicating whether
      * [RawDecryptRequest.initialization_vector_crc32c][google.cloud.kms.v1.RawDecryptRequest.initialization_vector_crc32c]
@@ -103,7 +103,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_initialization_vector_crc32c = 6;</code>
      */
-    protected $verified_initialization_vector_crc32c = false;
+    private $verified_initialization_vector_crc32c = false;
 
     /**
      * Constructor.
@@ -265,7 +265,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return int|string|null
      */
-    public function getPlaintextCrc32CUnwrapped()
+    public function getPlaintextCrc32CValue()
     {
         return $this->readWrapperValue("plaintext_crc32c");
     }
@@ -322,7 +322,7 @@ class RawDecryptResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setPlaintextCrc32CUnwrapped($var)
+    public function setPlaintextCrc32CValue($var)
     {
         $this->writeWrapperValue("plaintext_crc32c", $var);
         return $this;}

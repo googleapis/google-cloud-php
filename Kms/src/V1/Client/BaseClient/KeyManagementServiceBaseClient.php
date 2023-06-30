@@ -72,6 +72,10 @@ use Google\Cloud\Kms\V1\MacSignResponse;
 use Google\Cloud\Kms\V1\MacVerifyRequest;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
 use Google\Cloud\Kms\V1\PublicKey;
+use Google\Cloud\Kms\V1\RawDecryptRequest;
+use Google\Cloud\Kms\V1\RawDecryptResponse;
+use Google\Cloud\Kms\V1\RawEncryptRequest;
+use Google\Cloud\Kms\V1\RawEncryptResponse;
 use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
@@ -132,6 +136,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listKeyRingsAsync(ListKeyRingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface macSignAsync(MacSignRequest $request, array $optionalArgs = [])
  * @method PromiseInterface macVerifyAsync(MacVerifyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface rawDecryptAsync(RawDecryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface rawEncryptAsync(RawEncryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreCryptoKeyVersionAsync(RestoreCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCryptoKeyAsync(UpdateCryptoKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCryptoKeyPrimaryVersionAsync(UpdateCryptoKeyPrimaryVersionRequest $request, array $optionalArgs = [])
@@ -980,6 +986,62 @@ abstract class KeyManagementServiceBaseClient
     public function macVerify(MacVerifyRequest $request, array $callOptions = []): MacVerifyResponse
     {
         return $this->startApiCall('MacVerify', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Decrypts data that was originally encrypted using a raw cryptographic
+     * mechanism. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * must be
+     * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
+     *
+     * The async variant is {@see self::rawDecryptAsync()} .
+     *
+     * @param RawDecryptRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RawDecryptResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rawDecrypt(RawDecryptRequest $request, array $callOptions = []): RawDecryptResponse
+    {
+        return $this->startApiCall('RawDecrypt', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Encrypts data using portable cryptographic primitives. Most users should
+     * choose [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
+     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt] rather than
+     * their raw counterparts. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
+     *
+     * The async variant is {@see self::rawEncryptAsync()} .
+     *
+     * @param RawEncryptRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RawEncryptResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rawEncrypt(RawEncryptRequest $request, array $callOptions = []): RawEncryptResponse
+    {
+        return $this->startApiCall('RawEncrypt', $request, $callOptions)->wait();
     }
 
     /**
