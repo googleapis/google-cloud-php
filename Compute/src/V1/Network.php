@@ -52,7 +52,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $firewall_policy = null;
     /**
-     * [Output Only] The gateway address for default routing out of the network, selected by GCP.
+     * [Output Only] The gateway address for default routing out of the network, selected by Google Cloud.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      */
@@ -144,7 +144,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $firewall_policy
      *           [Output Only] URL of the firewall policy the network is associated with.
      *     @type string $gateway_i_pv4
-     *           [Output Only] The gateway address for default routing out of the network, selected by GCP.
+     *           [Output Only] The gateway address for default routing out of the network, selected by Google Cloud.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $internal_ipv6_range
@@ -392,7 +392,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The gateway address for default routing out of the network, selected by GCP.
+     * [Output Only] The gateway address for default routing out of the network, selected by Google Cloud.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      * @return string
@@ -413,7 +413,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The gateway address for default routing out of the network, selected by GCP.
+     * [Output Only] The gateway address for default routing out of the network, selected by Google Cloud.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      * @param string $var
