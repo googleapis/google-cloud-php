@@ -35,6 +35,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddResourcePoliciesDiskRequest;
 use Google\Cloud\Compute\V1\AggregatedListDisksRequest;
+use Google\Cloud\Compute\V1\BulkInsertDiskRequest;
 use Google\Cloud\Compute\V1\CreateSnapshotDiskRequest;
 use Google\Cloud\Compute\V1\DeleteDiskRequest;
 use Google\Cloud\Compute\V1\Disk;
@@ -47,6 +48,9 @@ use Google\Cloud\Compute\V1\RemoveResourcePoliciesDiskRequest;
 use Google\Cloud\Compute\V1\ResizeDiskRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyDiskRequest;
 use Google\Cloud\Compute\V1\SetLabelsDiskRequest;
+use Google\Cloud\Compute\V1\StartAsyncReplicationDiskRequest;
+use Google\Cloud\Compute\V1\StopAsyncReplicationDiskRequest;
+use Google\Cloud\Compute\V1\StopGroupAsyncReplicationDiskRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateDiskRequest;
@@ -68,6 +72,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface addResourcePoliciesAsync(AddResourcePoliciesDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface aggregatedListAsync(AggregatedListDisksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface bulkInsertAsync(BulkInsertDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSnapshotAsync(CreateSnapshotDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetDiskRequest $request, array $optionalArgs = [])
@@ -78,6 +83,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface resizeAsync(ResizeDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setLabelsAsync(SetLabelsDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface startAsyncReplicationAsync(StartAsyncReplicationDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface stopAsyncReplicationAsync(StopAsyncReplicationDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface stopGroupAsyncReplicationAsync(StopGroupAsyncReplicationDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(UpdateDiskRequest $request, array $optionalArgs = [])
  */
@@ -302,6 +310,30 @@ abstract class DisksBaseClient
     public function aggregatedList(AggregatedListDisksRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
+    }
+
+    /**
+     * Bulk create a set of disks.
+     *
+     * The async variant is {@see self::bulkInsertAsync()} .
+     *
+     * @param BulkInsertDiskRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkInsert(BulkInsertDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkInsert', $request, $callOptions)->wait();
     }
 
     /**
@@ -542,6 +574,78 @@ abstract class DisksBaseClient
     public function setLabels(SetLabelsDiskRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Starts asynchronous replication. Must be invoked on the primary disk.
+     *
+     * The async variant is {@see self::startAsyncReplicationAsync()} .
+     *
+     * @param StartAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startAsyncReplication(StartAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartAsyncReplication', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
+     *
+     * The async variant is {@see self::stopAsyncReplicationAsync()} .
+     *
+     * @param StopAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopAsyncReplication(StopAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopAsyncReplication', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
+     *
+     * The async variant is {@see self::stopGroupAsyncReplicationAsync()} .
+     *
+     * @param StopGroupAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopGroupAsyncReplication(StopGroupAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopGroupAsyncReplication', $request, $callOptions)->wait();
     }
 
     /**

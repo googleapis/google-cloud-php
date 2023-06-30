@@ -165,6 +165,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $max_stream_duration = null;
     /**
+     * Deployment metadata associated with the resource to be set by a GKE hub controller and read by the backend RCTH
+     *
+     * Generated from protobuf field <code>map<string, string> metadatas = 8514340;</code>
+     */
+    private $metadatas;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -306,6 +312,8 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver.
      *     @type \Google\Cloud\Compute\V1\Duration $max_stream_duration
      *           Specifies the default maximum duration (timeout) for streams to this service. Duration is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed. If not specified, there will be no timeout limit, i.e. the maximum duration is infinite. This value can be overridden in the PathMatcher configuration of the UrlMap that references this backend service. This field is only allowed when the loadBalancingScheme of the backend service is INTERNAL_SELF_MANAGED.
+     *     @type array|\Google\Protobuf\Internal\MapField $metadatas
+     *           Deployment metadata associated with the resource to be set by a GKE hub controller and read by the backend RCTH
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
@@ -1186,6 +1194,32 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
         $this->max_stream_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deployment metadata associated with the resource to be set by a GKE hub controller and read by the backend RCTH
+     *
+     * Generated from protobuf field <code>map<string, string> metadatas = 8514340;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getMetadatas()
+    {
+        return $this->metadatas;
+    }
+
+    /**
+     * Deployment metadata associated with the resource to be set by a GKE hub controller and read by the backend RCTH
+     *
+     * Generated from protobuf field <code>map<string, string> metadatas = 8514340;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setMetadatas($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->metadatas = $arr;
 
         return $this;
     }

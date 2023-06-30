@@ -197,6 +197,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
@@ -207,6 +208,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);

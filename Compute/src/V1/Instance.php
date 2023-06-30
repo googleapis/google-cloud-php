@@ -92,6 +92,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
+     * Encrypts suspended data for an instance with a customer-managed encryption key. If you are creating a new instance, this field will encrypt the local SSD and in-memory contents of the instance during the suspend operation. If you do not provide an encryption key when creating the instance, then the local SSD and in-memory contents will be encrypted using an automatically generated key during the suspend operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey instance_encryption_key = 64741517;</code>
+     */
+    private $instance_encryption_key = null;
+    /**
      * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
      * Check the KeyRevocationActionType enum for the list of possible values.
      *
@@ -306,6 +312,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Specifies the hostname of the instance. The specified hostname must be RFC1035 compliant. If hostname is not specified, the default hostname is [INSTANCE_NAME].c.[PROJECT_ID].internal when using the global DNS, and [INSTANCE_NAME].[ZONE].c.[PROJECT_ID].internal when using zonal DNS.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $instance_encryption_key
+     *           Encrypts suspended data for an instance with a customer-managed encryption key. If you are creating a new instance, this field will encrypt the local SSD and in-memory contents of the instance during the suspend operation. If you do not provide an encryption key when creating the instance, then the local SSD and in-memory contents will be encrypted using an automatically generated key during the suspend operation.
      *     @type string $key_revocation_action_type
      *           KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
      *           Check the KeyRevocationActionType enum for the list of possible values.
@@ -815,6 +823,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Encrypts suspended data for an instance with a customer-managed encryption key. If you are creating a new instance, this field will encrypt the local SSD and in-memory contents of the instance during the suspend operation. If you do not provide an encryption key when creating the instance, then the local SSD and in-memory contents will be encrypted using an automatically generated key during the suspend operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey instance_encryption_key = 64741517;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
+     */
+    public function getInstanceEncryptionKey()
+    {
+        return $this->instance_encryption_key;
+    }
+
+    public function hasInstanceEncryptionKey()
+    {
+        return isset($this->instance_encryption_key);
+    }
+
+    public function clearInstanceEncryptionKey()
+    {
+        unset($this->instance_encryption_key);
+    }
+
+    /**
+     * Encrypts suspended data for an instance with a customer-managed encryption key. If you are creating a new instance, this field will encrypt the local SSD and in-memory contents of the instance during the suspend operation. If you do not provide an encryption key when creating the instance, then the local SSD and in-memory contents will be encrypted using an automatically generated key during the suspend operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey instance_encryption_key = 64741517;</code>
+     * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
+     * @return $this
+     */
+    public function setInstanceEncryptionKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
+        $this->instance_encryption_key = $var;
 
         return $this;
     }

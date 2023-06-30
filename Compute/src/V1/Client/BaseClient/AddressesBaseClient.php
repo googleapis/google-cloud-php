@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\DeleteAddressRequest;
 use Google\Cloud\Compute\V1\GetAddressRequest;
 use Google\Cloud\Compute\V1\InsertAddressRequest;
 use Google\Cloud\Compute\V1\ListAddressesRequest;
+use Google\Cloud\Compute\V1\MoveAddressRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -61,6 +62,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getAsync(GetAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveAsync(MoveAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setLabelsAsync(SetLabelsAddressRequest $request, array $optionalArgs = [])
  */
 abstract class AddressesBaseClient
@@ -356,6 +358,30 @@ abstract class AddressesBaseClient
     public function list(ListAddressesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Moves the specified address resource.
+     *
+     * The async variant is {@see self::moveAsync()} .
+     *
+     * @param MoveAddressRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function move(MoveAddressRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Move', $request, $callOptions)->wait();
     }
 
     /**
