@@ -108,7 +108,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Source commitment to be splitted into a new commitment.
+     * Source commitment to be split into a new commitment.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      */
@@ -179,7 +179,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $split_source_commitment
-     *           Source commitment to be splitted into a new commitment.
+     *           Source commitment to be split into a new commitment.
      *     @type string $start_timestamp
      *           [Output Only] Commitment start time in RFC3339 text format.
      *     @type string $status
@@ -712,7 +712,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source commitment to be splitted into a new commitment.
+     * Source commitment to be split into a new commitment.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      * @return string
@@ -733,7 +733,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source commitment to be splitted into a new commitment.
+     * Source commitment to be split into a new commitment.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      * @param string $var

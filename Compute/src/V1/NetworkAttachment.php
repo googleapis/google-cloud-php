@@ -41,7 +41,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * [Output Only] Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
@@ -65,7 +65,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * [Output Only] The URL of the network which the Network Attachment belongs to.
+     * [Output Only] The URL of the network which the Network Attachment belongs to. Practically it is inferred by fetching the network of the first subnetwork associated. Because it is required that all the subnetworks must be from the same network, it is assured that the Network Attachment belongs to the same network as all the subnetworks.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
@@ -123,7 +123,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $fingerprint
-     *           [Output Only] Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *     @type string $kind
@@ -131,7 +131,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
-     *           [Output Only] The URL of the network which the Network Attachment belongs to.
+     *           [Output Only] The URL of the network which the Network Attachment belongs to. Practically it is inferred by fetching the network of the first subnetwork associated. Because it is required that all the subnetworks must be from the same network, it is assured that the Network Attachment belongs to the same network as all the subnetworks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_accept_lists
      *           Projects that are allowed to connect to this network attachment. The project can be specified using its id or number.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_reject_lists
@@ -288,7 +288,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -309,7 +309,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. An up-to-date fingerprint must be provided in order to patch.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -432,7 +432,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the network which the Network Attachment belongs to.
+     * [Output Only] The URL of the network which the Network Attachment belongs to. Practically it is inferred by fetching the network of the first subnetwork associated. Because it is required that all the subnetworks must be from the same network, it is assured that the Network Attachment belongs to the same network as all the subnetworks.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
@@ -453,7 +453,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the network which the Network Attachment belongs to.
+     * [Output Only] The URL of the network which the Network Attachment belongs to. Practically it is inferred by fetching the network of the first subnetwork associated. Because it is required that all the subnetworks must be from the same network, it is assured that the Network Attachment belongs to the same network as all the subnetworks.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var

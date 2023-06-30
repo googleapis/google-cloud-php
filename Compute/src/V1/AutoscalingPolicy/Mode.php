@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\AutoscalingPolicy;
 use UnexpectedValueException;
 
 /**
- * Defines operating mode for this policy.
+ * Defines the operating mode for this policy. The following modes are available: - OFF: Disables the autoscaler but maintains its configuration. - ONLY_SCALE_OUT: Restricts the autoscaler to add VM instances only. - ON: Enables all autoscaler activities according to its policy. For more information, see "Turning off or restricting an autoscaler"
  *
  * Protobuf type <code>google.cloud.compute.v1.AutoscalingPolicy.Mode</code>
  */
