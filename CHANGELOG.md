@@ -1,5 +1,151 @@
 # Changelog
 
+## 0.210.0
+
+<details><summary>google/cloud-bigquery-storage 1.5.0</summary>
+
+
+
+### Features
+
+* Add estimated physical file sizes to ReadAPI v1 ([#6384](https://github.com/googleapis/google-cloud-php/issues/6384)) ([8079404](https://github.com/googleapis/google-cloud-php/commit/807940486c11fe1bb60fd7f0fd4e25d4c4233f74))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.25.0</summary>
+
+
+
+### Features
+
+* Add experimental reverse scan for public preview ([#6392](https://github.com/googleapis/google-cloud-php/issues/6392)) ([b16b30c](https://github.com/googleapis/google-cloud-php/commit/b16b30ca631ce3524ba1ada51c3d84c9908817cf))
+
+</details>
+
+<details><summary>google/cloud-build 0.8.0</summary>
+
+
+
+### Features
+
+* Add GitLabConfig and fetchGitRefs for Cloud Build Repositories ([#6400](https://github.com/googleapis/google-cloud-php/issues/6400)) ([8dbe0cb](https://github.com/googleapis/google-cloud-php/commit/8dbe0cbfdd995d79529d8995c97c8ae029ddb45c))
+* Add repositoryevent to buildtrigger ([#6395](https://github.com/googleapis/google-cloud-php/issues/6395)) ([3dcf068](https://github.com/googleapis/google-cloud-php/commit/3dcf068a20bdbb9db1fefb2d435a80d180344a8b))
+
+</details>
+
+<details><summary>google/cloud-compute 1.10.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20230610 ([#6403](https://github.com/googleapis/google-cloud-php/issues/6403)) ([b39358a](https://github.com/googleapis/google-cloud-php/commit/b39358a8795e59a93a93d36caed2bb53672e359b))
+
+</details>
+
+<details><summary>google/cloud-container 1.17.0</summary>
+
+
+
+### Features
+
+* Add `KUBE_DNS` option to `DNSConfig.cluster_dns` ([#6401](https://github.com/googleapis/google-cloud-php/issues/6401)) ([2235f1b](https://github.com/googleapis/google-cloud-php/commit/2235f1b7b7692b57205600abbc6668f6943cd481))
+* Add Tier 1 cluster-level API network_performance_config ([2235f1b](https://github.com/googleapis/google-cloud-php/commit/2235f1b7b7692b57205600abbc6668f6943cd481))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.4.0</summary>
+
+
+
+### Features
+
+* Added BackupPlan and RestorePlan state information ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+* Added new restore scope options ([#6394](https://github.com/googleapis/google-cloud-php/issues/6394)) ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+* Added transformation rules for restore ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.2.0</summary>
+
+
+
+### Features
+
+* Add forwarding_rule field to Connectivity Test Endpoint proto ([#6389](https://github.com/googleapis/google-cloud-php/issues/6389)) ([ca569cd](https://github.com/googleapis/google-cloud-php/commit/ca569cd955c274161ad934c0c95d02fc91f3ab40))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.44.0</summary>
+
+
+
+### Features
+
+* **PubSub:** Enable publisher compression ([#6388](https://github.com/googleapis/google-cloud-php/issues/6388)) ([97a4d77](https://github.com/googleapis/google-cloud-php/commit/97a4d7727e66bec346a23a5dffb9b87e7c853faf))
+
+
+### Documentation
+
+* Tightened requirements on cloud storage subscription filename suffixes ([#6390](https://github.com/googleapis/google-cloud-php/issues/6390)) ([135efa5](https://github.com/googleapis/google-cloud-php/commit/135efa5988f537a27ecca71e87b39fd7a756bbe3))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.18.0</summary>
+
+
+
+### Features
+
+* Mark the Asset APIs as deprecated in client libraries ([#6387](https://github.com/googleapis/google-cloud-php/issues/6387)) ([9a06f58](https://github.com/googleapis/google-cloud-php/commit/9a06f58aad20fc7fc38e81e050d4692dc97f61f2))
+
+</details>
+
+<details><summary>google/cloud-service-management 1.2.0</summary>
+
+
+
+### Features
+
+* Add IAM policy methods ([#6391](https://github.com/googleapis/google-cloud-php/issues/6391)) ([e02fda0](https://github.com/googleapis/google-cloud-php/commit/e02fda0198efde779fc217e8391a69c978876877))
+
+
+### Documentation
+
+* Update docs to existing services ([e02fda0](https://github.com/googleapis/google-cloud-php/commit/e02fda0198efde779fc217e8391a69c978876877))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.4.0</summary>
+
+
+
+### Features
+
+* Added Cancel rpc in SqlOperationsService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Cancel rpc in SqlOperationsService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added Get rpc in SqlUsersService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Get rpc in SqlUsersService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added Reencrypt, PerformDiskShrink, GetDiskShrinkConfig and ResetReplicaSize rpc in SqlInstancesService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Reencrypt, PerformDiskShrink, GetDiskShrinkConfig and ResetReplicaSize rpc in SqlInstancesService service ([#6398](https://github.com/googleapis/google-cloud-php/issues/6398)) ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added SqlAvailableDatabaseVersionsService service ([#6399](https://github.com/googleapis/google-cloud-php/issues/6399)) ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlEventsService ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlIamPoliciesService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlIamPoliciesService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added SqlRegionsService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.2.0</summary>
+
+
+
+### Features
+
+* Add event driven transfer configuration ([#6393](https://github.com/googleapis/google-cloud-php/issues/6393)) ([11b622c](https://github.com/googleapis/google-cloud-php/commit/11b622cad38888363081358b5f8f1b92e53ccf42))
+
+</details>
+
 ## 0.209.1
 
 <details><summary>google/cloud-essential-contacts 0.3.2</summary>
