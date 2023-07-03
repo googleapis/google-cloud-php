@@ -648,7 +648,8 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      *     @type string $matchGlob A glob pattern to filter results. The string
-     *           value must be UTF-8 encoded. See: https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob
+     *           value must be UTF-8 encoded. See:
+     *           https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob
      * }
      * @return ObjectIterator<StorageObject>
      */
