@@ -39,7 +39,7 @@ class WriteTest extends StreamWrapperTestCase
 
     public function testFilePutContents()
     {
-        $this->assertFileNotExists($this->fileUrl);
+        $this->assertFileDoesNotExist($this->fileUrl);
 
         $output = 'This is a test';
         $this->assertEquals(strlen($output), file_put_contents($this->fileUrl, $output));
@@ -49,7 +49,7 @@ class WriteTest extends StreamWrapperTestCase
 
     public function testFwrite()
     {
-        $this->assertFileNotExists($this->fileUrl);
+        $this->assertFileDoesNotExist($this->fileUrl);
 
         $output = 'This is a test';
         $fd = fopen($this->fileUrl, 'w');
@@ -61,7 +61,7 @@ class WriteTest extends StreamWrapperTestCase
 
     public function testStreamingWrite()
     {
-        $this->assertFileNotExists($this->fileUrl);
+        $this->assertFileDoesNotExist($this->fileUrl);
 
         $fp = fopen($this->fileUrl, 'w');
         for ($i = 0; $i < 20000; $i++) {
