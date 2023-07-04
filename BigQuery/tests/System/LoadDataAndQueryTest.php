@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Exception\BadRequestException;
@@ -35,11 +36,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     private static $expectedRows = 0;
     private $row;
+    private $legacyRow;
     private $geographyPattern;
 
     public function setUp(): void
     {
-        $this->row = [
+        $this->legacyRow = [
             'Name' => 'Dave',
             'Age' => 101,
             'Weight' => 100.5,
@@ -70,6 +72,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ],
             'Location' => new Geography('POINT(12 34)'),
         ];
+        $this->row = $this->legacyRow;
+        $this->row['Json'] = new Json([
+            'City' => 'Bangalore',
+            'HouseNumber' => 1234
+        ]);
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
     }
 
@@ -77,11 +84,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         self::$expectedRows++;
         $insertResponse = self::$table->insertRow($this->row);
+        $insertResponseLegacy = self::$legacyTable->insertRow($this->legacyRow);
         sleep(1);
         $rows = iterator_to_array(self::$table->rows());
-        $actualRow = $rows[0];
+        $actualRow = $rows[self::$expectedRows-1];
 
         $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertTrue($insertResponseLegacy->isSuccessful());
         $this->assertCount(self::$expectedRows, $rows);
 
         $expectedRow = $this->row;
@@ -89,6 +98,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualBytes = $actualRow['Spells'][0]['Icon'];
         unset($expectedRow['Spells'][0]['Icon']);
         unset($actualRow['Spells'][0]['Icon']);
+        unset($actualRow['CreatedTimestamp']);
         $actualGeography = $actualRow['Location'];
         unset($expectedRow['Location'], $actualRow['Location']);
 
@@ -103,10 +113,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testRunQuery($useLegacySql)
     {
-        $queryString =  sprintf(
-            $useLegacySql
-                ? 'SELECT Name, Age, Weight, IsMagic, Spells.*, Location FROM [%s.%s]'
-                : 'SELECT Name, Age, Weight, IsMagic, Spells, Location FROM `%s.%s`',
+        $queryString = $useLegacySql ?
+        sprintf(
+            'SELECT Name, Age, Weight, IsMagic, Spells.*, Location FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$legacyTable->id()
+        ) : sprintf(
+            'SELECT Name, Age, Weight, IsMagic, Spells, Location, Json FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -179,7 +192,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertTrue($insertResponse->isSuccessful());
         $this->assertCount(self::$expectedRows, $rows);
 
-        $actualRow = $rows[0];
+        $actualRow = $rows[self::$expectedRows-1];
 
         $expectedRow = $this->row;
         // default values from schema
@@ -215,10 +228,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testStartQuery($useLegacySql)
     {
-        $queryString = sprintf(
-            $useLegacySql
-                ? 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]'
-                : 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
+        $queryString = $useLegacySql ? sprintf(
+            'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$legacyTable->id()
+        ) : sprintf(
+            'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -820,5 +835,34 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $qr = self::$client->runQuery($q);
         $rows = iterator_to_array($qr->rows());
         $this->assertEquals(50, $rows[0]['ct']);
+    }
+
+    /**
+     * @depends testInsertRowToTable
+     */
+    public function testJsonDatatype()
+    {
+        $rows = iterator_to_array(self::$table->rows());
+        $actualRow = $rows[self::$expectedRows-1];
+
+        $this->assertEquals(
+            json_decode($this->row['Json'], true)['HouseNumber'],
+            json_decode($actualRow['Json']->get(), true)['HouseNumber']
+        );
+        $this->assertEquals(
+            json_decode($this->row['Json'], true)['City'],
+            json_decode($actualRow['Json']->get(), true)['City']
+        );
+    }
+
+    public function testInsertFaultyJsonToTable()
+    {
+        $row = $this->row;
+        $row['Json'] = '{';
+        $insertResponse = self::$table->insertRow($row);
+        $this->assertEquals(
+            $insertResponse->info()['insertErrors'][0]['errors'][0]['reason'],
+            "invalid"
+        );
     }
 }

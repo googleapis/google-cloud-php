@@ -31,6 +31,7 @@ class BigQueryTestCase extends SystemTestCase
     protected static $storageClient;
     protected static $client;
     protected static $dataset;
+    protected static $legacyTable;
     protected static $table;
     private static $hasSetUp = false;
 
@@ -52,7 +53,10 @@ class BigQueryTestCase extends SystemTestCase
             'keyFilePath' => $keyFilePath
         ]);
         self::$dataset = self::createDataset(self::$client, uniqid(self::TESTING_PREFIX));
-        self::$table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX));
+        $options['schemaFile'] = '/data/table-schema.json';
+        self::$table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX), $options);
+        $options['schemaFile'] = '/data/legacy-table-schema.json';
+        self::$legacyTable = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX), $options);
 
         self::$hasSetUp = true;
     }
@@ -60,7 +64,18 @@ class BigQueryTestCase extends SystemTestCase
     protected static function createTable(Dataset $dataset, $name = null, array $options = [])
     {
         if (!isset($options['schema'])) {
-            $options['schema']['fields'] = json_decode(file_get_contents(__DIR__ . '/data/table-schema.json'), true);
+            if (isset($options['schemaFile'])) {
+                $options['schema']['fields'] = json_decode(
+                    file_get_contents(__DIR__ . $options['schemaFile']),
+                    true
+                );
+            } else {
+                $options['schema']['fields'] = json_decode(
+                    file_get_contents(__DIR__ . '/data/table-schema.json'),
+                    true
+                );
+            }
+            unset($options['schemaFile']);
         }
         return $dataset->createTable($name ?: uniqid(self::TESTING_PREFIX), $options);
     }

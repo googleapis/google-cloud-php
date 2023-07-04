@@ -317,10 +317,10 @@ class ManageTablesTest extends BigQueryTestCase
     public function testUpdateClone($table)
     {
         $row = ['Name' => 'Yash', 'Age' => 22];
+        $expectedRowCount = count(iterator_to_array($table->rows())) + 1;
         self::$table->insertRow($row);
         $insertResponse = $table->insertRow($row);
 
-        $expectedRowCount = 1;
         $actualRowCount = count(iterator_to_array($table->rows()));
         $this->assertTrue($insertResponse->isSuccessful());
         $this->assertEquals($expectedRowCount, $actualRowCount);

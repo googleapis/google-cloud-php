@@ -857,6 +857,29 @@ class BigQueryClient
     }
 
     /**
+     * Create a Json object.
+     *
+     * Json represents a value with a data type of
+     * [JSON](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#json_type)
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\BigQuery\BigQueryClient;
+     *
+     * $bigQuery = new BigQueryClient();
+     * $json = $bigQuery->json('{}');
+     * ```
+     *
+     * @param string|JsonSerializable|int|null $value The JSON string value.
+     * @return Json
+     * @throws \InvalidArgumentException
+     */
+    public function json($value)
+    {
+        return new Json($value);
+    }
+
+    /**
      * Get a service account for the KMS integration.
      *
      * Example:
