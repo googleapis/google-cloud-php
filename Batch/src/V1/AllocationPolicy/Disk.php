@@ -69,6 +69,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           * "batch-debian": use Batch Debian images.
      *           * "batch-centos": use Batch CentOS images.
      *           * "batch-cos": use Batch Container-Optimized images.
+     *           * "batch-hpc-centos": use Batch HPC CentOS images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
      *           Snapshot is not supported as boot disk now.
@@ -110,6 +111,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * * "batch-debian": use Batch Debian images.
      * * "batch-centos": use Batch CentOS images.
      * * "batch-cos": use Batch Container-Optimized images.
+     * * "batch-hpc-centos": use Batch HPC CentOS images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @return string
@@ -136,6 +138,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * * "batch-debian": use Batch Debian images.
      * * "batch-centos": use Batch CentOS images.
      * * "batch-cos": use Batch Container-Optimized images.
+     * * "batch-hpc-centos": use Batch HPC CentOS images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @param string $var
