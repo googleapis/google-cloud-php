@@ -89,10 +89,15 @@ class Topic
      */
     private $clientConfig;
 
-    private bool $enableCompression;
+    /**
+     * @var bool
+     */
+    private $enableCompression;
 
-
-    private int $compressionBytesThreshold;
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
 
     /**
      * Create a PubSub topic.
