@@ -43,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Metastore\V1\AlterMetadataResourceLocationRequest;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
@@ -57,6 +58,8 @@ use Google\Cloud\Metastore\V1\ListBackupsRequest;
 use Google\Cloud\Metastore\V1\ListMetadataImportsRequest;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\MoveTableToDatabaseRequest;
+use Google\Cloud\Metastore\V1\QueryMetadataRequest;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
@@ -98,6 +101,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @internal
  *
+ * @method PromiseInterface alterMetadataResourceLocationAsync(AlterMetadataResourceLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createMetadataImportAsync(CreateMetadataImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
@@ -110,6 +114,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMetadataImportsAsync(ListMetadataImportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveTableToDatabaseAsync(MoveTableToDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryMetadataAsync(QueryMetadataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreServiceAsync(RestoreServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMetadataImportAsync(UpdateMetadataImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
@@ -404,6 +410,35 @@ abstract class DataprocMetastoreBaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Alter metadata resource location. The metadata resource can be a database,
+     * table, or partition. This functionality only updates the parent directory
+     * for the respective metadata resource and does not transfer any existing
+     * data to the new location.
+     *
+     * The async variant is {@see self::alterMetadataResourceLocationAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/alter_metadata_resource_location.php
+     *
+     * @param AlterMetadataResourceLocationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function alterMetadataResourceLocation(AlterMetadataResourceLocationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AlterMetadataResourceLocation', $request, $callOptions)->wait();
     }
 
     /**
@@ -716,6 +751,58 @@ abstract class DataprocMetastoreBaseClient
     public function listServices(ListServicesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListServices', $request, $callOptions);
+    }
+
+    /**
+     * Move a table to another database.
+     *
+     * The async variant is {@see self::moveTableToDatabaseAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/move_table_to_database.php
+     *
+     * @param MoveTableToDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moveTableToDatabase(MoveTableToDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MoveTableToDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Query DPMS metadata.
+     *
+     * The async variant is {@see self::queryMetadataAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/query_metadata.php
+     *
+     * @param QueryMetadataRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryMetadata(QueryMetadataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('QueryMetadata', $request, $callOptions)->wait();
     }
 
     /**
