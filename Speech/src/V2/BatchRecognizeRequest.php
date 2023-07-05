@@ -18,7 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the recognizer to be used for ASR.
+     * Required. The name of the Recognizer to use during recognition. The
+     * expected format is
+     * `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     * {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *
      * Generated from protobuf field <code>string recognizer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -73,7 +76,10 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     private $processing_strategy = 0;
 
     /**
-     * @param string                                               $recognizer Required. Resource name of the recognizer to be used for ASR. Please see
+     * @param string                                               $recognizer Required. The name of the Recognizer to use during recognition. The
+     *                                                                         expected format is
+     *                                                                         `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     *                                                                         {recognizer} segment may be set to `_` to use an empty implicit Recognizer. Please see
      *                                                                         {@see SpeechClient::recognizerName()} for help formatting this field.
      * @param \Google\Cloud\Speech\V2\RecognitionConfig            $config     Features and audio metadata to use for the Automatic Speech Recognition.
      *                                                                         This field in combination with the
@@ -117,7 +123,10 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $recognizer
-     *           Required. Resource name of the recognizer to be used for ASR.
+     *           Required. The name of the Recognizer to use during recognition. The
+     *           expected format is
+     *           `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     *           {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *     @type \Google\Cloud\Speech\V2\RecognitionConfig $config
      *           Features and audio metadata to use for the Automatic Speech Recognition.
      *           This field in combination with the
@@ -154,7 +163,10 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the recognizer to be used for ASR.
+     * Required. The name of the Recognizer to use during recognition. The
+     * expected format is
+     * `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     * {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *
      * Generated from protobuf field <code>string recognizer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -165,7 +177,10 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the recognizer to be used for ASR.
+     * Required. The name of the Recognizer to use during recognition. The
+     * expected format is
+     * `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     * {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *
      * Generated from protobuf field <code>string recognizer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -33,7 +33,8 @@ use Google\Cloud\Speech\V2\SpeechClient;
  *
  * @param string $formattedRecognizer The name of the Recognizer to use during recognition. The
  *                                    expected format is
- *                                    `projects/{project}/locations/{location}/recognizers/{recognizer}`. Please see
+ *                                    `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+ *                                    {recognizer} segment may be set to `_` to use an empty implicit Recognizer. Please see
  *                                    {@see SpeechClient::recognizerName()} for help formatting this field.
  */
 function recognize_sample(string $formattedRecognizer): void
