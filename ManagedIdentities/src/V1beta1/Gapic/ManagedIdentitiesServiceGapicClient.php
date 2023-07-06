@@ -51,6 +51,7 @@ use Google\Cloud\ManagedIdentities\V1beta1\ResetAdminPasswordResponse;
 use Google\Cloud\ManagedIdentities\V1beta1\Trust;
 use Google\Cloud\ManagedIdentities\V1beta1\UpdateDomainRequest;
 use Google\Cloud\ManagedIdentities\V1beta1\ValidateTrustRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
