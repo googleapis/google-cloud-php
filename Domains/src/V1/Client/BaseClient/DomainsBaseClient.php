@@ -55,6 +55,7 @@ use Google\Cloud\Domains\V1\SearchDomainsRequest;
 use Google\Cloud\Domains\V1\SearchDomainsResponse;
 use Google\Cloud\Domains\V1\TransferDomainRequest;
 use Google\Cloud\Domains\V1\UpdateRegistrationRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

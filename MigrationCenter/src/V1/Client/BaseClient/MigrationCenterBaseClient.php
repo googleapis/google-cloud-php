@@ -99,6 +99,7 @@ use Google\Cloud\MigrationCenter\V1\UpdatePreferenceSetRequest;
 use Google\Cloud\MigrationCenter\V1\UpdateSettingsRequest;
 use Google\Cloud\MigrationCenter\V1\UpdateSourceRequest;
 use Google\Cloud\MigrationCenter\V1\ValidateImportJobRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
