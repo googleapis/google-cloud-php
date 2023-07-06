@@ -61,6 +61,7 @@ use Google\Cloud\Domains\V1alpha2\SearchDomainsRequest;
 use Google\Cloud\Domains\V1alpha2\SearchDomainsResponse;
 use Google\Cloud\Domains\V1alpha2\TransferDomainRequest;
 use Google\Cloud\Domains\V1alpha2\UpdateRegistrationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Type\Money;
 
