@@ -103,6 +103,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'InjectFault' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1alpha\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1alpha\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'PromoteCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1alpha\Cluster',
@@ -201,6 +211,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getSupportedDatabaseFlags',
+                ],
+            ],
+            'ListUsers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUsers',
                 ],
             ],
             'GetLocation' => [

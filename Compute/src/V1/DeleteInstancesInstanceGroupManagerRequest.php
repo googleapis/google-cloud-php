@@ -47,6 +47,25 @@ class DeleteInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
     private $zone = '';
 
     /**
+     * @param string                                                               $project                                             Project ID for this request.
+     * @param string                                                               $zone                                                The name of the zone where the managed instance group is located.
+     * @param string                                                               $instanceGroupManager                                The name of the managed instance group.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest $instanceGroupManagersDeleteInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteInstancesInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, \Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest $instanceGroupManagersDeleteInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersDeleteInstancesRequestResource($instanceGroupManagersDeleteInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

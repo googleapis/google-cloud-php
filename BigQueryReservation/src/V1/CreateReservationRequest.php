@@ -39,6 +39,27 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
     private $reservation = null;
 
     /**
+     * @param string                                            $parent        Required. Project, location. E.g.,
+     *                                                                         `projects/myproject/locations/US`
+     *                                                                         Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation   Definition of the new reservation to create.
+     * @param string                                            $reservationId The reservation ID. It must only contain lower case alphanumeric
+     *                                                                         characters or dashes. It must start with a letter and must not end
+     *                                                                         with a dash. Its maximum length is 64 characters.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation, string $reservationId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setReservation($reservation)
+            ->setReservationId($reservationId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

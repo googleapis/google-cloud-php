@@ -41,6 +41,23 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     private $url_map = '';
 
     /**
+     * @param string                                         $project                       Project ID for this request.
+     * @param string                                         $urlMap                        Name of the UrlMap scoping this request.
+     * @param \Google\Cloud\Compute\V1\CacheInvalidationRule $cacheInvalidationRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InvalidateCacheUrlMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $urlMap, \Google\Cloud\Compute\V1\CacheInvalidationRule $cacheInvalidationRuleResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setUrlMap($urlMap)
+            ->setCacheInvalidationRuleResource($cacheInvalidationRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

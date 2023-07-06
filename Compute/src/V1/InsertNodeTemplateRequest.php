@@ -41,6 +41,23 @@ class InsertNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param string                                $region               The name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\NodeTemplate $nodeTemplateResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertNodeTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\NodeTemplate $nodeTemplateResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNodeTemplateResource($nodeTemplateResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

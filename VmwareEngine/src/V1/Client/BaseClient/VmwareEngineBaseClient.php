@@ -48,17 +48,21 @@ use Google\Cloud\VmwareEngine\V1\CreateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\Credentials;
 use Google\Cloud\VmwareEngine\V1\DeleteClusterRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\DeletePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\GetClusterRequest;
 use Google\Cloud\VmwareEngine\V1\GetHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest;
 use Google\Cloud\VmwareEngine\V1\GetPrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\GetPrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\GetSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\GetVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
 use Google\Cloud\VmwareEngine\V1\ListClustersRequest;
@@ -66,19 +70,25 @@ use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysRequest;
 use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesRequest;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesRequest;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsRequest;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsRequest;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 use Google\Cloud\VmwareEngine\V1\NodeType;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateConnection;
 use Google\Cloud\VmwareEngine\V1\ResetNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ResetVcenterCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowVcenterCredentialsRequest;
+use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\UndeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 use Google\LongRunning\Operation;
@@ -95,7 +105,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\VmwareEngine\V1\VmwareEngineClient} for the stable implementation
  *
  * @experimental
  *
@@ -105,22 +116,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createHcxActivationKeyAsync(CreateHcxActivationKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createNetworkPolicyAsync(CreateNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPrivateCloudAsync(CreatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createVmwareEngineNetworkAsync(CreateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteNetworkPolicyAsync(DeleteNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePrivateCloudAsync(DeletePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteVmwareEngineNetworkAsync(DeleteVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getHcxActivationKeyAsync(GetHcxActivationKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNetworkPolicyAsync(GetNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNodeTypeAsync(GetNodeTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPrivateCloudAsync(GetPrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVmwareEngineNetworkAsync(GetVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listHcxActivationKeysAsync(ListHcxActivationKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNetworkPoliciesAsync(ListNetworkPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNodeTypesAsync(ListNodeTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPrivateCloudsAsync(ListPrivateCloudsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPrivateConnectionPeeringRoutesAsync(ListPrivateConnectionPeeringRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listVmwareEngineNetworksAsync(ListVmwareEngineNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetNsxCredentialsAsync(ResetNsxCredentialsRequest $request, array $optionalArgs = [])
@@ -131,6 +148,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateNetworkPolicyAsync(UpdateNetworkPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updatePrivateCloudAsync(UpdatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updatePrivateConnectionAsync(UpdatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateVmwareEngineNetworkAsync(UpdateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -345,6 +364,46 @@ abstract class VmwareEngineBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * private_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateConnection
+     *
+     * @return string The formatted private_connection resource.
+     */
+    public static function privateConnectionName(string $project, string $location, string $privateConnection): string
+    {
+        return self::getPathTemplate('privateConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'private_connection' => $privateConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a subnet
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $subnet
+     *
+     * @return string The formatted subnet resource.
+     */
+    public static function subnetName(string $project, string $location, string $privateCloud, string $subnet): string
+    {
+        return self::getPathTemplate('subnet')->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'subnet' => $subnet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * vmware_engine_network resource.
      *
      * @param string $project
@@ -373,6 +432,8 @@ abstract class VmwareEngineBaseClient
      * - networkPolicy: projects/{project}/locations/{location}/networkPolicies/{network_policy}
      * - nodeType: projects/{project}/locations/{location}/nodeTypes/{node_type}
      * - privateCloud: projects/{project}/locations/{location}/privateClouds/{private_cloud}
+     * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
+     * - subnet: projects/{project}/locations/{location}/privateClouds/{private_cloud}/subnets/{subnet}
      * - vmwareEngineNetwork: projects/{project}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -473,6 +534,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::createClusterAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/create_cluster.php
+     *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -496,6 +559,8 @@ abstract class VmwareEngineBaseClient
      * Creates a new HCX activation key in a given private cloud.
      *
      * The async variant is {@see self::createHcxActivationKeyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/create_hcx_activation_key.php
      *
      * @param CreateHcxActivationKeyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -522,6 +587,8 @@ abstract class VmwareEngineBaseClient
      * another network policy already exists in the same scope.
      *
      * The async variant is {@see self::createNetworkPolicyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/create_network_policy.php
      *
      * @param CreateNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -553,6 +620,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::createPrivateCloudAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/create_private_cloud.php
+     *
      * @param CreatePrivateCloudRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -573,9 +642,38 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Creates a new private connection that can be used for accessing private
+     * Clouds.
+     *
+     * The async variant is {@see self::createPrivateConnectionAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/create_private_connection.php
+     *
+     * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new VMware Engine network that can be used by a private cloud.
      *
      * The async variant is {@see self::createVmwareEngineNetworkAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/create_vmware_engine_network.php
      *
      * @param CreateVmwareEngineNetworkRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -604,6 +702,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::deleteClusterAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/delete_cluster.php
+     *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -629,6 +729,8 @@ abstract class VmwareEngineBaseClient
      * IP or internet access service.
      *
      * The async variant is {@see self::deleteNetworkPolicyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/delete_network_policy.php
      *
      * @param DeleteNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -668,6 +770,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::deletePrivateCloudAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/delete_private_cloud.php
+     *
      * @param DeletePrivateCloudRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -688,12 +792,42 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Deletes a `PrivateConnection` resource. When a private connection is
+     * deleted for a VMware Engine network, the connected network becomes
+     * inaccessible to that VMware Engine network.
+     *
+     * The async variant is {@see self::deletePrivateConnectionAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/delete_private_connection.php
+     *
+     * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a `VmwareEngineNetwork` resource. You can only delete a VMware
      * Engine network after all resources that refer to it are deleted. For
      * example, a private cloud, a network peering, and a network policy can all
      * refer to the same VMware Engine network.
      *
      * The async variant is {@see self::deleteVmwareEngineNetworkAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/delete_vmware_engine_network.php
      *
      * @param DeleteVmwareEngineNetworkRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -719,6 +853,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::getClusterAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/get_cluster.php
+     *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -742,6 +878,8 @@ abstract class VmwareEngineBaseClient
      * Retrieves a `HcxActivationKey` resource by its resource name.
      *
      * The async variant is {@see self::getHcxActivationKeyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_hcx_activation_key.php
      *
      * @param GetHcxActivationKeyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -767,6 +905,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::getNetworkPolicyAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/get_network_policy.php
+     *
      * @param GetNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -790,6 +930,8 @@ abstract class VmwareEngineBaseClient
      * Gets details of a single `NodeType`.
      *
      * The async variant is {@see self::getNodeTypeAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_node_type.php
      *
      * @param GetNodeTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -815,6 +957,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::getPrivateCloudAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/get_private_cloud.php
+     *
      * @param GetPrivateCloudRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -835,12 +979,68 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Retrieves a `PrivateConnection` resource by its resource name. The resource
+     * contains details of the private connection, such as connected
+     * network, routing mode and state.
+     *
+     * The async variant is {@see self::getPrivateConnectionAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_private_connection.php
+     *
+     * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PrivateConnection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
+    {
+        return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single subnet.
+     *
+     * The async variant is {@see self::getSubnetAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_subnet.php
+     *
+     * @param GetSubnetRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Subnet
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSubnet(GetSubnetRequest $request, array $callOptions = []): Subnet
+    {
+        return $this->startApiCall('GetSubnet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `VmwareEngineNetwork` resource by its resource name. The
      * resource contains details of the VMware Engine network, such as its VMware
      * Engine network type, peered networks in a service project, and state
      * (for example, `CREATING`, `ACTIVE`, `DELETING`).
      *
      * The async variant is {@see self::getVmwareEngineNetworkAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_vmware_engine_network.php
      *
      * @param GetVmwareEngineNetworkRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -866,6 +1066,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::listClustersAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/list_clusters.php
+     *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -889,6 +1091,8 @@ abstract class VmwareEngineBaseClient
      * Lists `HcxActivationKey` resources in a given private cloud.
      *
      * The async variant is {@see self::listHcxActivationKeysAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_hcx_activation_keys.php
      *
      * @param ListHcxActivationKeysRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -914,6 +1118,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::listNetworkPoliciesAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/list_network_policies.php
+     *
      * @param ListNetworkPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -937,6 +1143,8 @@ abstract class VmwareEngineBaseClient
      * Lists node types
      *
      * The async variant is {@see self::listNodeTypesAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_node_types.php
      *
      * @param ListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -962,6 +1170,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::listPrivateCloudsAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/list_private_clouds.php
+     *
      * @param ListPrivateCloudsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -982,9 +1192,63 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Lists the private connection routes exchanged over a peering connection.
+     *
+     * The async variant is {@see self::listPrivateConnectionPeeringRoutesAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_private_connection_peering_routes.php
+     *
+     * @param ListPrivateConnectionPeeringRoutesRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPrivateConnectionPeeringRoutes(ListPrivateConnectionPeeringRoutesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPrivateConnectionPeeringRoutes', $request, $callOptions);
+    }
+
+    /**
+     * Lists `PrivateConnection` resources in a given project and location.
+     *
+     * The async variant is {@see self::listPrivateConnectionsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_private_connections.php
+     *
+     * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
+    }
+
+    /**
      * Lists subnets in a given private cloud.
      *
      * The async variant is {@see self::listSubnetsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_subnets.php
      *
      * @param ListSubnetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1010,6 +1274,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::listVmwareEngineNetworksAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/list_vmware_engine_networks.php
+     *
      * @param ListVmwareEngineNetworksRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1033,6 +1299,8 @@ abstract class VmwareEngineBaseClient
      * Resets credentials of the NSX appliance.
      *
      * The async variant is {@see self::resetNsxCredentialsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/reset_nsx_credentials.php
      *
      * @param ResetNsxCredentialsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1058,6 +1326,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::resetVcenterCredentialsAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/reset_vcenter_credentials.php
+     *
      * @param ResetVcenterCredentialsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1082,6 +1352,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::showNsxCredentialsAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/show_nsx_credentials.php
+     *
      * @param ShowNsxCredentialsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1105,6 +1377,8 @@ abstract class VmwareEngineBaseClient
      * Gets details of credentials for Vcenter appliance.
      *
      * The async variant is {@see self::showVcenterCredentialsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/show_vcenter_credentials.php
      *
      * @param ShowVcenterCredentialsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1132,6 +1406,8 @@ abstract class VmwareEngineBaseClient
      * the time when deletion can no longer be reversed.
      *
      * The async variant is {@see self::undeletePrivateCloudAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/undelete_private_cloud.php
      *
      * @param UndeletePrivateCloudRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1163,6 +1439,8 @@ abstract class VmwareEngineBaseClient
      * processing fully completes.
      *
      * The async variant is {@see self::updateClusterAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/update_cluster.php
      *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1199,6 +1477,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::updateNetworkPolicyAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/update_network_policy.php
+     *
      * @param UpdateNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1230,6 +1510,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::updatePrivateCloudAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/update_private_cloud.php
+     *
      * @param UpdatePrivateCloudRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1250,11 +1532,72 @@ abstract class VmwareEngineBaseClient
     }
 
     /**
+     * Modifies a `PrivateConnection` resource. Only `description` and
+     * `routing_mode` fields can be updated. Only fields specified in `updateMask`
+     * are applied.
+     *
+     * The async variant is {@see self::updatePrivateConnectionAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/update_private_connection.php
+     *
+     * @param UpdatePrivateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePrivateConnection(UpdatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdatePrivateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single subnet. Only fields specified in
+     * `update_mask` are applied.
+     *
+     * *Note*: This API is synchronous and always returns a successful
+     * `google.longrunning.Operation` (LRO). The returned LRO will only have
+     * `done` and `response` fields.
+     *
+     * The async variant is {@see self::updateSubnetAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/update_subnet.php
+     *
+     * @param UpdateSubnetRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSubnet(UpdateSubnetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateSubnet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Modifies a VMware Engine network resource. Only the following fields can be
      * updated: `description`. Only fields specified in `updateMask` are
      * applied.
      *
      * The async variant is {@see self::updateVmwareEngineNetworkAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/update_vmware_engine_network.php
      *
      * @param UpdateVmwareEngineNetworkRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1280,6 +1623,8 @@ abstract class VmwareEngineBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/VmwareEngineClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1303,6 +1648,8 @@ abstract class VmwareEngineBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1328,6 +1675,8 @@ abstract class VmwareEngineBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1356,6 +1705,8 @@ abstract class VmwareEngineBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1386,6 +1737,8 @@ abstract class VmwareEngineBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/VmwareEngineClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

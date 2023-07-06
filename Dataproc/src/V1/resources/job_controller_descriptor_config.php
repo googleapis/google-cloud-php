@@ -12,6 +12,93 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\Job',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'job_id',
+                        'fieldAccessors' => [
+                            'getJobId',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'job_id',
+                        'fieldAccessors' => [
+                            'getJobId',
+                        ],
+                    ],
+                ],
+            ],
+            'GetJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\Job',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'job_id',
+                        'fieldAccessors' => [
+                            'getJobId',
+                        ],
+                    ],
+                ],
             ],
             'ListJobs' => [
                 'pageStreaming' => [
@@ -21,6 +108,64 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getJobs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\ListJobsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'SubmitJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\Job',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\Job',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'job_id',
+                        'fieldAccessors' => [
+                            'getJobId',
+                        ],
+                    ],
                 ],
             ],
         ],

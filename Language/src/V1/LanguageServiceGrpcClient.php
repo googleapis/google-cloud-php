@@ -116,6 +116,21 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Moderates a document for harmful and sensitive categories.
+     * @param \Google\Cloud\Language\V1\ModerateTextRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ModerateText(\Google\Cloud\Language\V1\ModerateTextRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.language.v1.LanguageService/ModerateText',
+        $argument,
+        ['\Google\Cloud\Language\V1\ModerateTextResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * A convenience method that provides all the features that analyzeSentiment,
      * analyzeEntities, and analyzeSyntax provide in one call.
      * @param \Google\Cloud\Language\V1\AnnotateTextRequest $argument input argument

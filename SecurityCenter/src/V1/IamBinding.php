@@ -30,8 +30,8 @@ class IamBinding extends \Google\Protobuf\Internal\Message
      */
     private $role = '';
     /**
-     * A single identity requesting access for a Cloud Platform resource,
-     * e.g. "foo&#64;google.com".
+     * A single identity requesting access for a Cloud Platform resource, for
+     * example, "foo&#64;google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      */
@@ -49,8 +49,8 @@ class IamBinding extends \Google\Protobuf\Internal\Message
      *           Role that is assigned to "members".
      *           For example, "roles/viewer", "roles/editor", or "roles/owner".
      *     @type string $member
-     *           A single identity requesting access for a Cloud Platform resource,
-     *           e.g. "foo&#64;google.com".
+     *           A single identity requesting access for a Cloud Platform resource, for
+     *           example, "foo&#64;google.com".
      * }
      */
     public function __construct($data = NULL) {
@@ -113,8 +113,8 @@ class IamBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A single identity requesting access for a Cloud Platform resource,
-     * e.g. "foo&#64;google.com".
+     * A single identity requesting access for a Cloud Platform resource, for
+     * example, "foo&#64;google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      * @return string
@@ -125,8 +125,8 @@ class IamBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A single identity requesting access for a Cloud Platform resource,
-     * e.g. "foo&#64;google.com".
+     * A single identity requesting access for a Cloud Platform resource, for
+     * example, "foo&#64;google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      * @param string $var

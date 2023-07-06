@@ -1,4 +1,5 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-container",
     "release_level": "stable",
     "codeowner_team": "@googleapis/cicd",

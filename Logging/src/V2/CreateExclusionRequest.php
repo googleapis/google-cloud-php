@@ -37,6 +37,33 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
     private $exclusion = null;
 
     /**
+     * @param string                                $parent    Required. The parent resource in which to create the exclusion:
+     *
+     *                                                         "projects/[PROJECT_ID]"
+     *                                                         "organizations/[ORGANIZATION_ID]"
+     *                                                         "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *                                                         "folders/[FOLDER_ID]"
+     *
+     *                                                         For examples:
+     *
+     *                                                         `"projects/my-logging-project"`
+     *                                                         `"organizations/123456789"`
+     *                                                         Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\LogExclusion $exclusion Required. The new exclusion, whose `name` parameter is an exclusion name
+     *                                                         that is not already used in the parent resource.
+     *
+     * @return \Google\Cloud\Logging\V2\CreateExclusionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Logging\V2\LogExclusion $exclusion): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setExclusion($exclusion);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

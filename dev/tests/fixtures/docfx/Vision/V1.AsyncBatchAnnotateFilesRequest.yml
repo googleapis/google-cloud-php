@@ -1,0 +1,125 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    name: AsyncBatchAnnotateFilesRequest
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: AsyncBatchAnnotateFilesRequest
+    summary: |-
+      Multiple async file annotation requests are batched into a single service
+      call.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateFilesRequest</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getRequests()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setRequests()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setParent()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ requests'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          description: 'Required. Individual async file annotation requests for this batch.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getRequests()'
+    name: getRequests
+    id: getRequests
+    summary: 'Required. Individual async file annotation requests for this batch.'
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setRequests()'
+    name: setRequests
+    id: setRequests
+    summary: 'Required. Individual async file annotation requests for this batch.'
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |-
+      Optional. Target project and location to make a call.
+
+      Format: `projects/{project-id}/locations/{location-id}`.
+      If no parent is specified, a region will be chosen automatically.
+      Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+      Example: `projects/project-A/locations/eu`.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |-
+      Optional. Target project and location to make a call.
+
+      Format: `projects/{project-id}/locations/{location-id}`.
+      If no parent is specified, a region will be chosen automatically.
+      Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+      Example: `projects/project-A/locations/eu`.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this

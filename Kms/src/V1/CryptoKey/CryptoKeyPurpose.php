@@ -53,6 +53,16 @@ class CryptoKeyPurpose
     const ASYMMETRIC_DECRYPT = 6;
     /**
      * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with [RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt]
+     * and [RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
+     * This purpose is meant to be used for interoperable symmetric
+     * encryption and does not support automatic CryptoKey rotation.
+     *
+     * Generated from protobuf enum <code>RAW_ENCRYPT_DECRYPT = 7;</code>
+     */
+    const RAW_ENCRYPT_DECRYPT = 7;
+    /**
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
      * with [MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
      *
      * Generated from protobuf enum <code>MAC = 9;</code>
@@ -64,6 +74,7 @@ class CryptoKeyPurpose
         self::ENCRYPT_DECRYPT => 'ENCRYPT_DECRYPT',
         self::ASYMMETRIC_SIGN => 'ASYMMETRIC_SIGN',
         self::ASYMMETRIC_DECRYPT => 'ASYMMETRIC_DECRYPT',
+        self::RAW_ENCRYPT_DECRYPT => 'RAW_ENCRYPT_DECRYPT',
         self::MAC => 'MAC',
     ];
 

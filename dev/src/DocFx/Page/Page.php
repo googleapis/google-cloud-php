@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Page;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\MethodNode;
 
 /**
  * Class to output the DocFX array before exporting to YAML.
@@ -94,6 +95,7 @@ class Page
             'summary' => $this->classNode->getContent(),
             'status' => $this->classNode->getStatus(),
             'type' => 'class',
+            'namespace' => implode(' \ ', explode('\\', ltrim($this->classNode->getNamespace(), '\\'))),
             'langs' => ['php'],
             'implements' => $this->classNode->getImplements(),
         ]);
@@ -110,35 +112,33 @@ class Page
      * the existing inline sample and return a version of the sample from the
      * external file.
      *
-     * TODO(dsupplee): utilize the example annotation in the generated client
-     * method docblocks to link out to the generated samples and remove the
-     * inline ones.
-     *
+     * @param MethodNode $method
      * @param string $methodDocContent
-     * @param string $methodName
      */
-    private function handleSample(string $methodDocContent, string $methodName): array
+    private function handleSample(MethodNode $method, string $methodDocContent): array
     {
         $sample = null;
-        $path = sprintf(
-            '%s/samples/%s/%s.php',
-            $this->componentPath,
-            substr($this->filePath, 0, -4),
-            $this->toSnakeCase($methodName)
-        );
-        $sampleContents = @file_get_contents($path);
+        if (!$path = $method->getExample()) {
+            $path = sprintf(
+                'samples/%s/%s.php',
+                substr($this->filePath, 0, -4),
+                $this->toSnakeCase($method->getName())
+            );
+        }
+        $sampleContents = @file_get_contents($this->componentPath . '/' . $path);
         if ($sampleContents) {
             // Finds the relevant code between the region tags in the generated sample.
             if (preg_match('/\/\/ \[START\N*\n(.*?)\/\/ \[END/s', $sampleContents, $match) === 1) {
                 // Generated samples include the method description, which is redundant on the doc
                 // site. This removes the description.
                 $sample = preg_replace(
-                    '/(\/\*\*\n)(.*?)(@param|This sample has been automatically)/s',
+                    '/(\/\*\*\n)(.*?)(@param|This sample has been automatically generated|\n \*\/)/s',
                     '$1 * $3',
-                    $match[1]
+                    $match[1],
+                    1 // only replace the first occurrence
                 );
                 $sample = '```php' . PHP_EOL . $sample . '```';
-                // Removes the existing inline snippet.
+                // Removes the existing inline snippet (if it exists).
                 $methodDocContent = preg_replace(
                     '/Sample code:\n```php.*```/s',
                     '',
@@ -152,49 +152,52 @@ class Page
     private function getMethodItems(): array
     {
         $methods = [];
-        $isServiceClass = $this->classNode->isServiceClass();
-
         foreach ($this->classNode->getMethods() as $method) {
-            $content = $method->getContent();
-            $name = $method->getName();
-            $sample = null;
-            if ($isServiceClass) {
-                list($content, $sample) = $this->handleSample($content, $name);
-            }
-            $methodItem = array_filter([
-                'uid' => $method->getFullname(),
-                'name' => $name,
-                'id' => $name,
-                'summary' => $content,
-                'parent'  => $this->classNode->getFullname(),
-                'type' => 'method',
-                'langs' => ['php'],
-                'example' => $sample
-                    ? [$sample]
-                    : null
-            ]);
-            if ($parameters = $method->getParameters()) {
-                $methodItem['syntax']['parameters'] = [];
-                foreach ($parameters as $parameter) {
-                    $methodItem['syntax']['parameters'][] = [
-                        'id' => $parameter->getName(),
-                        'var_type' => $parameter->getType(),
-                        'description' => $parameter->getDescription(),
-                    ];
-                }
-            }
-            if ($returnType = $method->getReturnType()) {
-                $methodItem['syntax']['returns'] = [];
-                $methodItem['syntax']['returns'][] = array_filter([
-                    'var_type' => $returnType,
-                    'description' => $method->getReturnDescription(),
-                ]);
-            }
-
+            $methodItem = $this->getMethodItem($method);
             $methods[$methodItem['uid']] = $methodItem;
         }
 
         return $methods;
+    }
+
+    private function getMethodItem(MethodNode $method): array
+    {
+        $content = $method->getContent();
+        $name = $method->getName();
+        $sample = null;
+        if ($this->classNode->isServiceClass()) {
+            list($content, $sample) = $this->handleSample($method, $content);
+        }
+        $methodItem = array_filter([
+            'uid' => $method->getFullname(),
+            'name' => $method->getDisplayName(),
+            'id' => $name,
+            'summary' => $content,
+            'parent'  => $this->classNode->getFullname(),
+            'type' => 'method',
+            'langs' => ['php'],
+            'example' => $sample
+                ? [$sample]
+                : null
+        ]);
+        if ($parameters = $method->getParameters()) {
+            $methodItem['syntax']['parameters'] = [];
+            foreach ($parameters as $parameter) {
+                $methodItem['syntax']['parameters'][] = [
+                    'id' => $parameter->getName(),
+                    'var_type' => $parameter->getType(),
+                    'description' => $parameter->getDescription(),
+                ];
+            }
+        }
+        if ($returnType = $method->getReturnType()) {
+            $methodItem['syntax']['returns'] = [];
+            $methodItem['syntax']['returns'][] = array_filter([
+                'var_type' => $returnType,
+                'description' => $method->getReturnDescription(),
+            ]);
+        }
+        return $methodItem;
     }
 
     private function getConstantItems(): array

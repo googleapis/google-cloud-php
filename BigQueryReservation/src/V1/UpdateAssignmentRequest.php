@@ -30,6 +30,21 @@ class UpdateAssignmentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment Content of the assignment to update.
+     * @param \Google\Protobuf\FieldMask                       $updateMask Standard field mask for the set of fields to be updated.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAssignment($assignment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

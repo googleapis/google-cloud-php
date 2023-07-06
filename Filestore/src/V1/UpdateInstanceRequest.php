@@ -34,6 +34,27 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param \Google\Cloud\Filestore\V1\Instance $instance   Only fields specified in update_mask are updated.
+     * @param \Google\Protobuf\FieldMask          $updateMask Mask of fields to update.  At least one path must be supplied in this
+     *                                                        field.  The elements of the repeated paths field may only include these
+     *                                                        fields:
+     *
+     *                                                        * "description"
+     *                                                        * "file_shares"
+     *                                                        * "labels"
+     *
+     * @return \Google\Cloud\Filestore\V1\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Filestore\V1\Instance $instance, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

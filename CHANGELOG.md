@@ -1,5 +1,2595 @@
 # Changelog
 
+## 0.210.0
+
+<details><summary>google/cloud-bigquery-storage 1.5.0</summary>
+
+
+
+### Features
+
+* Add estimated physical file sizes to ReadAPI v1 ([#6384](https://github.com/googleapis/google-cloud-php/issues/6384)) ([8079404](https://github.com/googleapis/google-cloud-php/commit/807940486c11fe1bb60fd7f0fd4e25d4c4233f74))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.25.0</summary>
+
+
+
+### Features
+
+* Add experimental reverse scan for public preview ([#6392](https://github.com/googleapis/google-cloud-php/issues/6392)) ([b16b30c](https://github.com/googleapis/google-cloud-php/commit/b16b30ca631ce3524ba1ada51c3d84c9908817cf))
+
+</details>
+
+<details><summary>google/cloud-build 0.8.0</summary>
+
+
+
+### Features
+
+* Add GitLabConfig and fetchGitRefs for Cloud Build Repositories ([#6400](https://github.com/googleapis/google-cloud-php/issues/6400)) ([8dbe0cb](https://github.com/googleapis/google-cloud-php/commit/8dbe0cbfdd995d79529d8995c97c8ae029ddb45c))
+* Add repositoryevent to buildtrigger ([#6395](https://github.com/googleapis/google-cloud-php/issues/6395)) ([3dcf068](https://github.com/googleapis/google-cloud-php/commit/3dcf068a20bdbb9db1fefb2d435a80d180344a8b))
+
+</details>
+
+<details><summary>google/cloud-compute 1.10.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20230610 ([#6403](https://github.com/googleapis/google-cloud-php/issues/6403)) ([b39358a](https://github.com/googleapis/google-cloud-php/commit/b39358a8795e59a93a93d36caed2bb53672e359b))
+
+</details>
+
+<details><summary>google/cloud-container 1.17.0</summary>
+
+
+
+### Features
+
+* Add `KUBE_DNS` option to `DNSConfig.cluster_dns` ([#6401](https://github.com/googleapis/google-cloud-php/issues/6401)) ([2235f1b](https://github.com/googleapis/google-cloud-php/commit/2235f1b7b7692b57205600abbc6668f6943cd481))
+* Add Tier 1 cluster-level API network_performance_config ([2235f1b](https://github.com/googleapis/google-cloud-php/commit/2235f1b7b7692b57205600abbc6668f6943cd481))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.4.0</summary>
+
+
+
+### Features
+
+* Added BackupPlan and RestorePlan state information ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+* Added new restore scope options ([#6394](https://github.com/googleapis/google-cloud-php/issues/6394)) ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+* Added transformation rules for restore ([83d1e02](https://github.com/googleapis/google-cloud-php/commit/83d1e021561973a03466d48fafccad089cc8ae73))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.2.0</summary>
+
+
+
+### Features
+
+* Add forwarding_rule field to Connectivity Test Endpoint proto ([#6389](https://github.com/googleapis/google-cloud-php/issues/6389)) ([ca569cd](https://github.com/googleapis/google-cloud-php/commit/ca569cd955c274161ad934c0c95d02fc91f3ab40))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.44.0</summary>
+
+
+
+### Features
+
+* **PubSub:** Enable publisher compression ([#6388](https://github.com/googleapis/google-cloud-php/issues/6388)) ([97a4d77](https://github.com/googleapis/google-cloud-php/commit/97a4d7727e66bec346a23a5dffb9b87e7c853faf))
+
+
+### Documentation
+
+* Tightened requirements on cloud storage subscription filename suffixes ([#6390](https://github.com/googleapis/google-cloud-php/issues/6390)) ([135efa5](https://github.com/googleapis/google-cloud-php/commit/135efa5988f537a27ecca71e87b39fd7a756bbe3))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.18.0</summary>
+
+
+
+### Features
+
+* Mark the Asset APIs as deprecated in client libraries ([#6387](https://github.com/googleapis/google-cloud-php/issues/6387)) ([9a06f58](https://github.com/googleapis/google-cloud-php/commit/9a06f58aad20fc7fc38e81e050d4692dc97f61f2))
+
+</details>
+
+<details><summary>google/cloud-service-management 1.2.0</summary>
+
+
+
+### Features
+
+* Add IAM policy methods ([#6391](https://github.com/googleapis/google-cloud-php/issues/6391)) ([e02fda0](https://github.com/googleapis/google-cloud-php/commit/e02fda0198efde779fc217e8391a69c978876877))
+
+
+### Documentation
+
+* Update docs to existing services ([e02fda0](https://github.com/googleapis/google-cloud-php/commit/e02fda0198efde779fc217e8391a69c978876877))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.4.0</summary>
+
+
+
+### Features
+
+* Added Cancel rpc in SqlOperationsService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Cancel rpc in SqlOperationsService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added Get rpc in SqlUsersService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Get rpc in SqlUsersService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added Reencrypt, PerformDiskShrink, GetDiskShrinkConfig and ResetReplicaSize rpc in SqlInstancesService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added Reencrypt, PerformDiskShrink, GetDiskShrinkConfig and ResetReplicaSize rpc in SqlInstancesService service ([#6398](https://github.com/googleapis/google-cloud-php/issues/6398)) ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added SqlAvailableDatabaseVersionsService service ([#6399](https://github.com/googleapis/google-cloud-php/issues/6399)) ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlEventsService ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlIamPoliciesService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+* Added SqlIamPoliciesService service ([391b59b](https://github.com/googleapis/google-cloud-php/commit/391b59bb171ba4e65c3e9c7604233eda8c8be33b))
+* Added SqlRegionsService service ([3860ab1](https://github.com/googleapis/google-cloud-php/commit/3860ab1545fe56d1c6cf9d68ee79ec98d99eb888))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.2.0</summary>
+
+
+
+### Features
+
+* Add event driven transfer configuration ([#6393](https://github.com/googleapis/google-cloud-php/issues/6393)) ([11b622c](https://github.com/googleapis/google-cloud-php/commit/11b622cad38888363081358b5f8f1b92e53ccf42))
+
+</details>
+
+## 0.209.1
+
+<details><summary>google/cloud-essential-contacts 0.3.2</summary>
+
+
+
+### Bug Fixes
+
+* Mark fields in Contacts message as REQUIRED ([#6380](https://github.com/googleapis/google-cloud-php/issues/6380)) ([4f509c3](https://github.com/googleapis/google-cloud-php/commit/4f509c3d3aed2b36ed41140f372400ec64f365ea))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.62.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** Do not update info for LRO request ([#6383](https://github.com/googleapis/google-cloud-php/issues/6383)) ([c76374e](https://github.com/googleapis/google-cloud-php/commit/c76374e6da33debd706445cb105c263fbe7e95ec))
+
+</details>
+
+## 0.209.0
+
+<details><summary>google/cloud-access-approval 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/access-context-manager 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.19.0</summary>
+
+
+
+### Features
+
+* Add UpdateExplanationDataset ([#6369](https://github.com/googleapis/google-cloud-php/issues/6369)) ([6803a61](https://github.com/googleapis/google-cloud-php/commit/6803a6183a770f77c484725628b5799852f13f8a))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.3.0</summary>
+
+
+
+### Features
+
+* Added fault injection API ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+* Added new SSL modes ALLOW_UNENCRYPTED_AND_ENCRYPTED, ENCRYPTED_ONLY ([#6357](https://github.com/googleapis/google-cloud-php/issues/6357)) ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+* Added support for continuous backups ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+* Added support for cross-region replication (secondary clusters/instances and promotion) ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+* Added users API ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+
+
+### Bug Fixes
+
+* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([277075e](https://github.com/googleapis/google-cloud-php/commit/277075e699d47a18e02c94d94583944a34e6867b))
+
+</details>
+
+<details><summary>google/analytics-admin 0.15.0</summary>
+
+
+
+### Features
+
+* Add `AdsWebConversionDataExportScope` enum to the Admin API v1alpha ([06ea38c](https://github.com/googleapis/google-cloud-php/commit/06ea38c2cdcdcae8ed0d1fd55bffdcd764b55b3b))
+* Add the `ads_web_conversion_data_export_scope` field to the `ReportingAttributionModel` type ([06ea38c](https://github.com/googleapis/google-cloud-php/commit/06ea38c2cdcdcae8ed0d1fd55bffdcd764b55b3b))
+* Update the `default_uri` field of the `WebStreamData` type to be mutable ([06ea38c](https://github.com/googleapis/google-cloud-php/commit/06ea38c2cdcdcae8ed0d1fd55bffdcd764b55b3b))
+
+
+### Documentation
+
+* Announce the deprecation of first-click, linear, time-decay and position-based attribution models ([#6375](https://github.com/googleapis/google-cloud-php/issues/6375)) ([06ea38c](https://github.com/googleapis/google-cloud-php/commit/06ea38c2cdcdcae8ed0d1fd55bffdcd764b55b3b))
+
+</details>
+
+<details><summary>google/analytics-data 0.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 1.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 0.8.0</summary>
+
+
+
+### Features
+
+* **v1:** Add support for scheduling_policy ([#6362](https://github.com/googleapis/google-cloud-php/issues/6362)) ([a14aa9a](https://github.com/googleapis/google-cloud-php/commit/a14aa9a9e1fb5de83db1c690c5a9a646381a375c))
+
+
+### Documentation
+
+* **v1:** Minor clarifications for TaskGroup and min_cpu_platform ([a14aa9a](https://github.com/googleapis/google-cloud-php/commit/a14aa9a9e1fb5de83db1c690c5a9a646381a375c))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.24.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 1.7.0</summary>
+
+
+
+### Features
+
+* Added resource_reference for name in GetProjectBillingInfoRequest message ([#6368](https://github.com/googleapis/google-cloud-php/issues/6368)) ([dc4d754](https://github.com/googleapis/google-cloud-php/commit/dc4d7549c40ec3e7a5e9ee3999e1fb1ee8be4c94))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.12</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 1.6.0</summary>
+
+
+
+### Features
+
+* Add support for ListSkuGroups and ListSkuGroupBillableSkus APIs in Cloud Channel APIs ([#6365](https://github.com/googleapis/google-cloud-php/issues/6365)) ([1d38e43](https://github.com/googleapis/google-cloud-php/commit/1d38e432a4c7be88930a22daf2a6d74e895a00c8))
+
+</details>
+
+<details><summary>google/cloud-compute 1.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.16.0</summary>
+
+
+
+### Features
+
+* Added cluster network config ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+* Added ClusterView supporting more granular view of continuous backups ([#6346](https://github.com/googleapis/google-cloud-php/issues/6346)) ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+* Added fault injection API ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+* Added instance update policy ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+* Added new SSL modes ALLOW_UNENCRYPTED_AND_ENCRYPTED, ENCRYPTED_ONLY ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+* Added users API ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+
+
+### Bug Fixes
+
+* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([10f30d2](https://github.com/googleapis/google-cloud-php/commit/10f30d2d038e148554253d615b032d64eb939f40))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.52.0</summary>
+
+
+
+### Features
+
+* Enable the usage of `"psr/http-message": "^1.0|^2.0"` ([#6338](https://github.com/googleapis/google-cloud-php/issues/6338)) ([b3967d3](https://github.com/googleapis/google-cloud-php/commit/b3967d3f111d573ab6639d585c98f0769e5dbc8e))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 1.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastream 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.6.0</summary>
+
+
+
+### Features
+
+* Enable the usage of `"psr/http-message": "^1.0|^2.0"` ([#6338](https://github.com/googleapis/google-cloud-php/issues/6338)) ([b3967d3](https://github.com/googleapis/google-cloud-php/commit/b3967d3f111d573ab6639d585c98f0769e5dbc8e))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.9.0</summary>
+
+
+
+### Features
+
+* Add deploy parameters for cloud deploy ([#6378](https://github.com/googleapis/google-cloud-php/issues/6378)) ([249e84e](https://github.com/googleapis/google-cloud-php/commit/249e84e8a8f4f18c2e7dd184f24ded484827d71f))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.6.0</summary>
+
+
+
+### Features
+
+* Added dialogflow_assist_answer ([#6376](https://github.com/googleapis/google-cloud-php/issues/6376)) ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+* Added human_agent_side_config ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+* Added session_ttl ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+* Added suggest_dialogflow_assists_response ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+* Added suggest_entity_extraction_response ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+* Added suggestion_input ([159d778](https://github.com/googleapis/google-cloud-php/commit/159d778402d3dc1ea5c8ac7357584ada86ff6d84))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.4.0</summary>
+
+
+
+### Features
+
+* Support extractive content in search ([#6367](https://github.com/googleapis/google-cloud-php/issues/6367)) ([b770026](https://github.com/googleapis/google-cloud-php/commit/b7700265337801ffe52abd0c07be71bd5847b6fb))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.10.0</summary>
+
+
+
+### Features
+
+* **dev:** Add release-info command ([#6363](https://github.com/googleapis/google-cloud-php/issues/6363)) ([efa915f](https://github.com/googleapis/google-cloud-php/commit/efa915f368fd1f4df3b480f50c0dee6cce057d99))
+
+</details>
+
+<details><summary>google/cloud-dms 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.4.0</summary>
+
+
+
+### Features
+
+* Add StyleInfo to document.proto ([#6366](https://github.com/googleapis/google-cloud-php/issues/6366)) ([61a0373](https://github.com/googleapis/google-cloud-php/commit/61a0373845cf143e4a479a62a9b5eec1acc5b348))
+
+</details>
+
+<details><summary>google/cloud-domains 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.20.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.35.0</summary>
+
+
+
+### Features
+
+* Added ClusterView supporting more granular view of continuous backups ([#6345](https://github.com/googleapis/google-cloud-php/issues/6345)) ([c6fd145](https://github.com/googleapis/google-cloud-php/commit/c6fd1450ced3ead620e163631978dec10da79918))
+
+</details>
+
+<details><summary>google/cloud-functions 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.3.1</summary>
+
+
+
+### Documentation
+
+* Minor documentation fixes ([#6344](https://github.com/googleapis/google-cloud-php/issues/6344)) ([1a7d64f](https://github.com/googleapis/google-cloud-php/commit/1a7d64f32d696d46a558a7c6571cdf44796f91f6))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/grafeas 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iap 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ids 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iot 1.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 1.18.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 0.30.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.27.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managed-identities 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memcache 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce MigrationCenter ([#6359](https://github.com/googleapis/google-cloud-php/issues/6359)) ([d16ba10](https://github.com/googleapis/google-cloud-php/commit/d16ba1053a760566c507d30f6a1f899b092e2319))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-optimization 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.3.0</summary>
+
+
+
+### Features
+
+* Added RPCs StopAirflowCommand, ExecuteAirflowCommand, PollAirflowCommand, DatabaseFailover, FetchDatabaseProperties ([#6360](https://github.com/googleapis/google-cloud-php/issues/6360)) ([2e2b3a5](https://github.com/googleapis/google-cloud-php/commit/2e2b3a56bf5116b48f3b12b34cd4762a24b4d1fc))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-osconfig 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-profiler 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.43.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommender 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-retail 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 1.17.0</summary>
+
+
+
+### Features
+
+* Added cluster network config ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+* Added ClusterView supporting more granular view of continuous backups ([#6347](https://github.com/googleapis/google-cloud-php/issues/6347)) ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+* Added fault injection API ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+* Added instance update policy ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+* Added new SSL modes ALLOW_UNENCRYPTED_AND_ENCRYPTED, ENCRYPTED_ONLY ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+* Added users API ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+
+
+### Bug Fixes
+
+* Deprecated SSL modes SSL_MODE_ALLOW, SSL_MODE_REQUIRE, SSL_MODE_VERIFY_CA ([099fb7b](https://github.com/googleapis/google-cloud-php/commit/099fb7b8b85133f574c7722f88265b1972daaaf0))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-control 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.62.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Enable drop db protection ([#6008](https://github.com/googleapis/google-cloud-php/issues/6008)) ([d97c721](https://github.com/googleapis/google-cloud-php/commit/d97c721d6f4c83bf230d216cac4687b924312197))
+
+</details>
+
+<details><summary>google/cloud-speech 1.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.32.0</summary>
+
+
+
+### Features
+
+* Enable the usage of `"psr/http-message": "^1.0|^2.0"` ([#6338](https://github.com/googleapis/google-cloud-php/issues/6338)) ([b3967d3](https://github.com/googleapis/google-cloud-php/commit/b3967d3f111d573ab6639d585c98f0769e5dbc8e))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-talent 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 1.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.3.0</summary>
+
+
+
+### Features
+
+* Adding private connection CRUD, updating management subnets and time-limited PC features ([#6343](https://github.com/googleapis/google-cloud-php/issues/6343)) ([61a5b31](https://github.com/googleapis/google-cloud-php/commit/61a5b311e572dc27779940670ad872830e4fbb07))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.16</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.17</summary>
+
+
+
+</details>
+
+## 0.208.0
+
+<details><summary>google/cloud-billing-budgets 1.2.0</summary>
+
+
+
+### Features
+
+* Add resource_ancestors field to support filtering by folders & organizations ([#6320](https://github.com/googleapis/google-cloud-php/issues/6320)) ([3751ae5](https://github.com/googleapis/google-cloud-php/commit/3751ae50bac3315f7d518a596b10fa5cf6909302))
+
+</details>
+
+<details><summary>google/cloud-build 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.15.0</summary>
+
+
+
+### Features
+
+* Add a API field to enable FQDN Network Policy on clusters ([#6323](https://github.com/googleapis/google-cloud-php/issues/6323)) ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+* Add CheckAutopilotCompatibility API to get autopilot compatibility issues for a given standard cluster ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+* Turn on public visibility for best effort provision ([5f55fad](https://github.com/googleapis/google-cloud-php/commit/5f55fadcaf6d365c73d9593bcac4048a3fca25d5))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.5.1</summary>
+
+
+
+### Bug Fixes
+
+* Allow using the key file path configuration in the new Firebase connection ([#6334](https://github.com/googleapis/google-cloud-php/issues/6334)) ([b219b68](https://github.com/googleapis/google-cloud-php/commit/b219b686f9af32a262a26b49b13c2bc4194d76af))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.8.0</summary>
+
+
+
+### Features
+
+* Add support for disabling Pod overprovisioning in the progressive deployment strategy configuration for a Kubernetes Target ([#6318](https://github.com/googleapis/google-cloud-php/issues/6318)) ([99cfa68](https://github.com/googleapis/google-cloud-php/commit/99cfa6857f29f307326b3eb7c4f7f097af5121cf))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.3.0</summary>
+
+
+
+### Features
+
+* Introduce DiscoveryEngine v1 ([a2dbd1e](https://github.com/googleapis/google-cloud-php/commit/a2dbd1e4b506abc24b39363256a69cb7b842abf4))
+
+
+### Bug Fixes
+
+* Remove the summarization feature from v1 version ([a2dbd1e](https://github.com/googleapis/google-cloud-php/commit/a2dbd1e4b506abc24b39363256a69cb7b842abf4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.43.1</summary>
+
+
+
+### Bug Fixes
+
+* **Pub/Sub:** Ensure uniqueness of batch publishers under a topic ([#6324](https://github.com/googleapis/google-cloud-php/issues/6324)) ([85f2dfd](https://github.com/googleapis/google-cloud-php/commit/85f2dfd9653bbf138166d09a6fa16474d5401fa7))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce RapidMigrationAssessment ([#6311](https://github.com/googleapis/google-cloud-php/issues/6311)) ([91152c9](https://github.com/googleapis/google-cloud-php/commit/91152c9b2da4b05bd4cb83cc58d82a8f3240b81e))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.61.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Federation M2 ([#6300](https://github.com/googleapis/google-cloud-php/issues/6300)) ([64f4ebc](https://github.com/googleapis/google-cloud-php/commit/64f4ebcae2eb9c14f0c90eab5ab905655bcad3f2))
+
+</details>
+
+## 0.207.0
+
+<details><summary>google/cloud-access-approval 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/access-context-manager 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.18.0</summary>
+
+
+
+### Features
+
+* Add blocking_operation_ids to ImportFeatureValuesOperationMetadata ([52a617e](https://github.com/googleapis/google-cloud-php/commit/52a617ef803229244d472684e2a72089fb11c10f))
+* Add NVIDIA_A100_80GB to AcceleratorType ([#6307](https://github.com/googleapis/google-cloud-php/issues/6307)) ([52a617e](https://github.com/googleapis/google-cloud-php/commit/52a617ef803229244d472684e2a72089fb11c10f))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+* Support for Model Garden -- A single place to search, discover, and interact with a wide variety of foundation models from Google and Google partners, available on Vertex AI ([#6303](https://github.com/googleapis/google-cloud-php/issues/6303)) ([43c323d](https://github.com/googleapis/google-cloud-php/commit/43c323d7f79a8de187f21878689f77c241132ba6))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.4.0</summary>
+
+
+
+### Features
+
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+* Release new client surface ([#6251](https://github.com/googleapis/google-cloud-php/issues/6251)) ([2cf504e](https://github.com/googleapis/google-cloud-php/commit/2cf504e46d98c5bb1f1027ec19b76dd92d970f3e))
+
+</details>
+
+<details><summary>google/cloud-asset 1.12.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+* Release new client surface ([#6251](https://github.com/googleapis/google-cloud-php/issues/6251)) ([2cf504e](https://github.com/googleapis/google-cloud-php/commit/2cf504e46d98c5bb1f1027ec19b76dd92d970f3e))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.9.0</summary>
+
+
+
+### Features
+
+* Release new client surface ([#6251](https://github.com/googleapis/google-cloud-php/issues/6251)) ([2cf504e](https://github.com/googleapis/google-cloud-php/commit/2cf504e46d98c5bb1f1027ec19b76dd92d970f3e))
+
+</details>
+
+<details><summary>google/cloud-automl 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.25.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add ability to specify types of empty arrays ([#6275](https://github.com/googleapis/google-cloud-php/issues/6275)) ([ea115d4](https://github.com/googleapis/google-cloud-php/commit/ea115d4b00fabcb90d9cb234c3a80f424b8f5792))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6258](https://github.com/googleapis/google-cloud-php/issues/6258)) ([ebeca55](https://github.com/googleapis/google-cloud-php/commit/ebeca55115ed529ccabb5c5aa07deec2a7692c28))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.24.0</summary>
+
+
+
+### Features
+
+* Add new client surface for bigtable and bigtable admin ([#6265](https://github.com/googleapis/google-cloud-php/issues/6265)) ([a628843](https://github.com/googleapis/google-cloud-php/commit/a62884377177cb5029c1b45e0134657d51f30774))
+
+</details>
+
+<details><summary>google/cloud-billing 1.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.11</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-compute 1.9.0</summary>
+
+
+
+### Features
+
+* Add new PHP surface for compute v1 ([#807](https://github.com/googleapis/google-cloud-php/issues/807)) ([#6309](https://github.com/googleapis/google-cloud-php/issues/6309)) ([25fe81e](https://github.com/googleapis/google-cloud-php/commit/25fe81e5bd159df4203119029bad8be31326bc40))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-container 1.14.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+* Add SoleTenantConfig API ([31c0dcf](https://github.com/googleapis/google-cloud-php/commit/31c0dcf5b118431dd2b3d197f568a58efe042120))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+* Add support for entries associated with Spanner and ClougBigTable ([#6285](https://github.com/googleapis/google-cloud-php/issues/6285)) ([7e087aa](https://github.com/googleapis/google-cloud-php/commit/7e087aaac08b35d3c600ac8da7bffe81ea7e8ce9))
+* Expand SearchCatalogResponse with totalSize ([7e087aa](https://github.com/googleapis/google-cloud-php/commit/7e087aaac08b35d3c600ac8da7bffe81ea7e8ce9))
+* Extend ImportApiRequest with jobId parameter ([7e087aa](https://github.com/googleapis/google-cloud-php/commit/7e087aaac08b35d3c600ac8da7bffe81ea7e8ce9))
+* Modify documentation for FQN support ([7e087aa](https://github.com/googleapis/google-cloud-php/commit/7e087aaac08b35d3c600ac8da7bffe81ea7e8ce9))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.7.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.8.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.22.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.7.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-datastream 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+* Support snapshot debugger via Firebase connection ([#6281](https://github.com/googleapis/google-cloud-php/issues/6281)) ([d742f02](https://github.com/googleapis/google-cloud-php/commit/d742f0287cbfded9331bda6909d3727af4e83816))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.7.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6267](https://github.com/googleapis/google-cloud-php/issues/6267)) ([5864589](https://github.com/googleapis/google-cloud-php/commit/58645899fdc6ad5e70b9e6154572dca0c3a9aefd))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.2.0</summary>
+
+
+
+### Features
+
+* Add LRO API for schema service ([2329f4c](https://github.com/googleapis/google-cloud-php/commit/2329f4c637f08cc79c6f223d96e9191c52400fcf))
+* Allow users to specify id field in documents gcs import ([#6266](https://github.com/googleapis/google-cloud-php/issues/6266)) ([2329f4c](https://github.com/googleapis/google-cloud-php/commit/2329f4c637f08cc79c6f223d96e9191c52400fcf))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([2329f4c](https://github.com/googleapis/google-cloud-php/commit/2329f4c637f08cc79c6f223d96e9191c52400fcf))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.9.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-dms 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-domains 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6260](https://github.com/googleapis/google-cloud-php/issues/6260)) ([ac453bd](https://github.com/googleapis/google-cloud-php/commit/ac453bd36fcc78b8d21405863347738b04428548))
+* Add new surface to Domains, add FeatureSpec to GkeHub ([#6254](https://github.com/googleapis/google-cloud-php/issues/6254)) ([7aa8542](https://github.com/googleapis/google-cloud-php/commit/7aa8542a93b82ae1f8af90b42cc97e57f200b5a0))
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-filestore 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.34.0</summary>
+
+
+
+### Features
+
+* Add CreateDatabase API ([#6313](https://github.com/googleapis/google-cloud-php/issues/6313)) ([b58d456](https://github.com/googleapis/google-cloud-php/commit/b58d4561f59313979cd6e51ef00969b3f730fba1))
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+* Add new client surface ([#6301](https://github.com/googleapis/google-cloud-php/issues/6301)) ([3f7a463](https://github.com/googleapis/google-cloud-php/commit/3f7a46362915e1f6bb264f53672609abdca6273b))
+
+</details>
+
+<details><summary>google/cloud-functions 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+* ListFunctions now include metadata which indicates whether a function is a `GEN_1` or `GEN_2` function ([#6276](https://github.com/googleapis/google-cloud-php/issues/6276)) ([be3a980](https://github.com/googleapis/google-cloud-php/commit/be3a9807bc87885aacd4fa1dadfd69efae5fdc2f))
+
+
+### Bug Fixes
+
+* Release new client surface for functions:v2 instead of functions:v1 ([#6279](https://github.com/googleapis/google-cloud-php/issues/6279)) ([c7f6662](https://github.com/googleapis/google-cloud-php/commit/c7f66629af0f1a4be03bdd24c34857498423456b))
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.7.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+* Add new surface to Domains, add FeatureSpec to GkeHub ([#6254](https://github.com/googleapis/google-cloud-php/issues/6254)) ([7aa8542](https://github.com/googleapis/google-cloud-php/commit/7aa8542a93b82ae1f8af90b42cc97e57f200b5a0))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-iam 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-iap 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-ids 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-iot 1.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-kms 1.18.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-language 0.30.0</summary>
+
+
+
+### Features
+
+* Added client library support for ModerateText in the Natural Language API (V1) ([#6271](https://github.com/googleapis/google-cloud-php/issues/6271)) ([c8cd9d5](https://github.com/googleapis/google-cloud-php/commit/c8cd9d55b7d35849e8eb2c949b6039e6748a93cf))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-logging 1.27.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-memcache 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+* Add new client surface ([#6255](https://github.com/googleapis/google-cloud-php/issues/6255)) ([7c2533e](https://github.com/googleapis/google-cloud-php/commit/7c2533ef39b71276b5dbc9edac5f0948b9e028b0))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+* Add new client surface ([#6255](https://github.com/googleapis/google-cloud-php/issues/6255)) ([7c2533e](https://github.com/googleapis/google-cloud-php/commit/7c2533ef39b71276b5dbc9edac5f0948b9e028b0))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+* Add new client surface ([#6255](https://github.com/googleapis/google-cloud-php/issues/6255)) ([7c2533e](https://github.com/googleapis/google-cloud-php/commit/7c2533ef39b71276b5dbc9edac5f0948b9e028b0))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+
+</details>
+
+<details><summary>google/cloud-osconfig 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6268](https://github.com/googleapis/google-cloud-php/issues/6268)) ([4f6fd0f](https://github.com/googleapis/google-cloud-php/commit/4f6fd0f550a7fd3e7fc9323bee1ed10930e90ad7))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.5.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-profiler 1.2.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.43.0</summary>
+
+
+
+### Features
+
+* Add push config wrapper fields ([#6272](https://github.com/googleapis/google-cloud-php/issues/6272)) ([76fcb6c](https://github.com/googleapis/google-cloud-php/commit/76fcb6cf5ca836ffe401aa19848f57bd0e3c7a00))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.8.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-redis 1.8.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface  ([#6261](https://github.com/googleapis/google-cloud-php/issues/6261)) ([96a73f6](https://github.com/googleapis/google-cloud-php/commit/96a73f6c1dd99e66999daf3ae1b46e87247aa23b))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-retail 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-run 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.9.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.12.0</summary>
+
+
+
+### Features
+
+* add new client surface ([#6256](https://github.com/googleapis/google-cloud-php/issues/6256)) ([0e93bfa](https://github.com/googleapis/google-cloud-php/commit/0e93bfac1336656eee5b9cb06baa3ad42d348d23))
+* Add previously missing resource name helpers ([#6304](https://github.com/googleapis/google-cloud-php/issues/6304)) ([7691b50](https://github.com/googleapis/google-cloud-php/commit/7691b5003fecc34fa280bc6859169f8bfb424751))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.16.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.3.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-service-control 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-service-management 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-shell 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.60.0</summary>
+
+
+
+### Features
+
+* Add DdlStatementActionInfo and add actions to UpdateDatabaseDdlMetadata ([f74e1c3](https://github.com/googleapis/google-cloud-php/commit/f74e1c39aa2ee9aa189a52125b73be4ace821ca9))
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+* **php:** Add new client surface for spanner admin ([#6312](https://github.com/googleapis/google-cloud-php/issues/6312)) ([d8f78a9](https://github.com/googleapis/google-cloud-php/commit/d8f78a9010484c50dd22c5982f7fea53e5054f42))
+
+</details>
+
+<details><summary>google/cloud-speech 1.13.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+* release new client service for speech:v2 ([#6278](https://github.com/googleapis/google-cloud-php/issues/6278)) ([63808d6](https://github.com/googleapis/google-cloud-php/commit/63808d6ff11e2da311bddc74af8531ae1af7b0ca))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.3.0</summary>
+
+
+
+### Features
+
+* add new client surface ([#6256](https://github.com/googleapis/google-cloud-php/issues/6256)) ([0e93bfa](https://github.com/googleapis/google-cloud-php/commit/0e93bfac1336656eee5b9cb06baa3ad42d348d23))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6269](https://github.com/googleapis/google-cloud-php/issues/6269)) ([6c9be65](https://github.com/googleapis/google-cloud-php/commit/6c9be655fae793ea6bb80baf5752afaf0f574621))
+
+</details>
+
+<details><summary>google/cloud-talent 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+* Release new client surface for talent:v4 ([#6277](https://github.com/googleapis/google-cloud-php/issues/6277)) ([1aac339](https://github.com/googleapis/google-cloud-php/commit/1aac33931fab3e9f33118b8c9cb74b8d0bba8f08))
+
+
+### Documentation
+
+* Add three per company option to diversification levels ([87e8198](https://github.com/googleapis/google-cloud-php/commit/87e81981ca82c4099f3497cafcce503633987f2b))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.12.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-tpu 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+* Add new client surface to tpu:v2 ([#6305](https://github.com/googleapis/google-cloud-php/issues/6305)) ([c9f9d15](https://github.com/googleapis/google-cloud-php/commit/c9f9d152ae156559174949b313f7b7af883aaf06))
+
+</details>
+
+<details><summary>google/cloud-trace 1.6.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-translate 1.14.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.13.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.7.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.1.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.4.0</summary>
+
+
+
+### Features
+
+* Add new client surface ([#6270](https://github.com/googleapis/google-cloud-php/issues/6270)) ([a9a7577](https://github.com/googleapis/google-cloud-php/commit/a9a7577333672ae26d61b7eb3163f0e46aa9e80e))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.15</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.16</summary>
+
+
+
+</details>
+
+## 0.206.0
+
+<details><summary>google/cloud-ai-platform 0.17.0</summary>
+
+
+
+### Features
+
+* Add match service in aiplatform v1 ([#6228](https://github.com/googleapis/google-cloud-php/issues/6228)) ([e55a092](https://github.com/googleapis/google-cloud-php/commit/e55a092d8a9d2f59ed9339cc622cdbebe26f9915))
+
+</details>
+
+<details><summary>google/analytics-admin 0.14.0</summary>
+
+
+
+### Features
+
+* Add `AdSenseLink` type to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `audience`, `event_create_rule` fields to the `ChangeHistoryResource.resource` oneof field ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `AUDIENCE`, `EVENT_CREATE_RULE` options to the `ChangeHistoryResourceType` enum ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `CreateEventCreateRule`, `UpdateEventCreateRule`,`DeleteEventCreateRule`, `ListEventCreateRules` methods to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `EventCreateRule`, `MatchingCondition` types to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `FetchConnectedGa4Property` method to the Admin API v1alpha ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+* Add `GetAdSenseLink`, `CreateAdSenseLink`, `DeleteAdSenseLink`, `ListAdSenseLinks` methods to the Admin API v1alpha ([#6222](https://github.com/googleapis/google-cloud-php/issues/6222)) ([d3e9f48](https://github.com/googleapis/google-cloud-php/commit/d3e9f48f16097b591be8a4af43da3996928ae97d))
+
+</details>
+
+<details><summary>google/cloud-batch 0.7.0</summary>
+
+
+
+### Features
+
+* Add support for placement policies ([#6231](https://github.com/googleapis/google-cloud-php/issues/6231)) ([a5e03eb](https://github.com/googleapis/google-cloud-php/commit/a5e03eb347bab6f4cdb12d9562102398834b2264))
+* Per-Runnable labels ([a5e03eb](https://github.com/googleapis/google-cloud-php/commit/a5e03eb347bab6f4cdb12d9562102398834b2264))
+
+</details>
+
+<details><summary>google/cloud-channel 1.4.0</summary>
+
+
+
+### Features
+
+* Added partition_keys field to filter results from FetchReportResults ([#6227](https://github.com/googleapis/google-cloud-php/issues/6227)) ([fd42477](https://github.com/googleapis/google-cloud-php/commit/fd424774de1dd9b21c38b110588e7ccd59b9f869))
+
+
+### Documentation
+
+* Change references from GCP to Google Cloud ([fd42477](https://github.com/googleapis/google-cloud-php/commit/fd424774de1dd9b21c38b110588e7ccd59b9f869))
+
+</details>
+
+<details><summary>google/cloud-container 1.13.1</summary>
+
+
+
+### Documentation
+
+* Clarified release channel defaulting behavior for create cluster requests when release channel is unspecified ([#6233](https://github.com/googleapis/google-cloud-php/issues/6233)) ([18c4755](https://github.com/googleapis/google-cloud-php/commit/18c475523d78fc25b6511e96c7a101a1d9fb76a1))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.8.0 ([#6220](https://github.com/googleapis/google-cloud-php/issues/6220)) ([a24654d](https://github.com/googleapis/google-cloud-php/commit/a24654d026cb602bb6fb2cc0ea1e125294801db3))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* Fix the field name typo for search service user_labels ([#6232](https://github.com/googleapis/google-cloud-php/issues/6232)) ([9361d63](https://github.com/googleapis/google-cloud-php/commit/9361d630530c2c3f8be5c7cc9211dc5eaf12f630))
+
+</details>
+
+<details><summary>google/cloud-dms 1.1.0</summary>
+
+
+
+### Features
+
+* Add Oracle to PostgreSQL migration APIs ([#6237](https://github.com/googleapis/google-cloud-php/issues/6237)) ([1a931d2](https://github.com/googleapis/google-cloud-php/commit/1a931d26e9ddbd931b73b486657b9eaa94694442))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.33.0</summary>
+
+
+
+### Features
+
+* Add ApiScope and COLLECTION_RECURSIVE query_scope for Firestore index ([#6236](https://github.com/googleapis/google-cloud-php/issues/6236)) ([cb902e9](https://github.com/googleapis/google-cloud-php/commit/cb902e9d4de741f9ac2b0ce6911b851117e59626))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* Add missing protos to PHP assembly ([#6240](https://github.com/googleapis/google-cloud-php/issues/6240)) ([e51616e](https://github.com/googleapis/google-cloud-php/commit/e51616eb10b22c3c8ffe8cb572d9f54f567f39dc))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **docs:** Fix reference docs for new clients ([#6226](https://github.com/googleapis/google-cloud-php/issues/6226)) ([0e3418d](https://github.com/googleapis/google-cloud-php/commit/0e3418d1d0bececf4a66da0cdbd42bf3837c3ad4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.42.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.3.0</summary>
+
+
+
+### Features
+
+* Add SubmitUri endpoint ([#6239](https://github.com/googleapis/google-cloud-php/issues/6239)) ([4ba0217](https://github.com/googleapis/google-cloud-php/commit/4ba0217a3cf0d452734f39a32f78336a06359b13))
+
+</details>
+
 ## 0.205.0
 
 <details><summary>google/cloud-api-keys 0.2.0</summary>

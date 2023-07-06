@@ -56,6 +56,24 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
     private $view = 0;
 
     /**
+     * @param string $parent Required. Resource name of the parent containing the listed SLOs, either a
+     *                       project or a Monitoring Workspace. The formats are:
+     *
+     *                       projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
+     *                       Please see {@see ServiceMonitoringServiceClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

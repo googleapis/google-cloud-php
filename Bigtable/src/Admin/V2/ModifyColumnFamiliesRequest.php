@@ -35,6 +35,27 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     private $modifications;
 
     /**
+     * @param string                                                                     $name          Required. The unique name of the table whose families should be modified.
+     *                                                                                                  Values are of the form
+     *                                                                                                  `projects/{project}/instances/{instance}/tables/{table}`. Please see
+     *                                                                                                  {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     * @param \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[] $modifications Required. Modifications to be atomically applied to the specified table's families.
+     *                                                                                                  Entries are applied in order, meaning that earlier modifications can be
+     *                                                                                                  masked by later ones (in the case of repeated updates to the same family,
+     *                                                                                                  for example).
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $modifications): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setModifications($modifications);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

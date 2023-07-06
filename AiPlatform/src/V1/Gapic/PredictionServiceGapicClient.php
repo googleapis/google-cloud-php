@@ -75,6 +75,10 @@ use Google\Protobuf\Value;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient} to use the new
+ * surface.
  */
 class PredictionServiceGapicClient
 {
@@ -361,8 +365,7 @@ class PredictionServiceGapicClient
      * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
      * is not specified, all DeployedModels must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. Only deployed AutoML tabular Models have
-     * explanation_spec.
+     * populated.
      *
      * Sample code:
      * ```

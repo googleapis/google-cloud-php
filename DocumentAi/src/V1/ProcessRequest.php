@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the process document method.
+ * Request message for the
+ * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessRequest</code>
  */
@@ -31,21 +33,44 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      */
     private $skip_human_review = false;
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
     private $field_mask = null;
     protected $source;
+
+    /**
+     * @param string $name Required. The resource name of the
+     *                     [Processor][google.cloud.documentai.v1.Processor] or
+     *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
+     *                     to use for processing. If a
+     *                     [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *                     will use its [default
+     *                     version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                     or
+     *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -69,12 +94,13 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           or
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type bool $skip_human_review
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Specifies which fields to include in ProcessResponse's document.
-     *           Only supports top level document and pages field so it must be in the form
-     *           of `{document_field_name}` or `pages.{page_field_name}`.
+     *           Specifies which fields to include in the
+     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           output. Only supports top-level document and pages field, so it must be in
+     *           the form of `{document_field_name}` or `pages.{page_field_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,8 +215,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      * @return bool
@@ -201,8 +227,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      * @param bool $var
@@ -217,9 +243,10 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -240,9 +267,10 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -82,6 +82,10 @@ use Google\Cloud\Compute\V1\SslCertificateList;
  *     $regionSslCertificatesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionSslCertificatesClient} to use the new
+ * surface.
  */
 class RegionSslCertificatesGapicClient
 {

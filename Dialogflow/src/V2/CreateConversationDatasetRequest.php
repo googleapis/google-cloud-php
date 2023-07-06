@@ -31,6 +31,22 @@ class CreateConversationDatasetRequest extends \Google\Protobuf\Internal\Message
     private $conversation_dataset = null;
 
     /**
+     * @param string                                          $parent              Required. The project to create conversation dataset for. Format:
+     *                                                                             `projects/<Project ID>/locations/<Location ID>`
+     * @param \Google\Cloud\Dialogflow\V2\ConversationDataset $conversationDataset Required. The conversation dataset to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateConversationDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\ConversationDataset $conversationDataset): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversationDataset($conversationDataset);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

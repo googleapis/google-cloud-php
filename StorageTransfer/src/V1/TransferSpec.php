@@ -82,7 +82,11 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData $aws_s3_compatible_data_source
      *           An AWS S3 compatible data source.
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_intermediate_data_location
-     *           Cloud Storage intermediate data location.
+     *           For transfers between file systems, specifies a Cloud Storage bucket
+     *           to be used as an intermediate location through which to transfer data.
+     *           See [Transfer data between file
+     *           systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for
+     *           more information.
      *     @type \Google\Cloud\StorageTransfer\V1\ObjectConditions $object_conditions
      *           Only objects that satisfy these object conditions are included in the set
      *           of data source and data sink objects.  Object conditions based on
@@ -359,7 +363,11 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage intermediate data location.
+     * For transfers between file systems, specifies a Cloud Storage bucket
+     * to be used as an intermediate location through which to transfer data.
+     * See [Transfer data between file
+     * systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for
+     * more information.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.GcsData gcs_intermediate_data_location = 16;</code>
      * @return \Google\Cloud\StorageTransfer\V1\GcsData|null
@@ -375,7 +383,11 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage intermediate data location.
+     * For transfers between file systems, specifies a Cloud Storage bucket
+     * to be used as an intermediate location through which to transfer data.
+     * See [Transfer data between file
+     * systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for
+     * more information.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.GcsData gcs_intermediate_data_location = 16;</code>
      * @param \Google\Cloud\StorageTransfer\V1\GcsData $var

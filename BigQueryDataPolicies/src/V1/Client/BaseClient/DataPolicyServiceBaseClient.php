@@ -58,7 +58,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -254,6 +256,8 @@ abstract class DataPolicyServiceBaseClient
      *
      * The async variant is {@see self::createDataPolicyAsync()} .
      *
+     * @example samples/V1/DataPolicyServiceClient/create_data_policy.php
+     *
      * @param CreateDataPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -278,6 +282,8 @@ abstract class DataPolicyServiceBaseClient
      *
      * The async variant is {@see self::deleteDataPolicyAsync()} .
      *
+     * @example samples/V1/DataPolicyServiceClient/delete_data_policy.php
+     *
      * @param DeleteDataPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -299,6 +305,8 @@ abstract class DataPolicyServiceBaseClient
      * Gets the data policy specified by its resource name.
      *
      * The async variant is {@see self::getDataPolicyAsync()} .
+     *
+     * @example samples/V1/DataPolicyServiceClient/get_data_policy.php
      *
      * @param GetDataPolicyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -324,6 +332,8 @@ abstract class DataPolicyServiceBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V1/DataPolicyServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -347,6 +357,8 @@ abstract class DataPolicyServiceBaseClient
      * List all of the data policies in the specified parent project.
      *
      * The async variant is {@see self::listDataPoliciesAsync()} .
+     *
+     * @example samples/V1/DataPolicyServiceClient/list_data_policies.php
      *
      * @param ListDataPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -372,6 +384,8 @@ abstract class DataPolicyServiceBaseClient
      *
      * The async variant is {@see self::renameDataPolicyAsync()} .
      *
+     * @example samples/V1/DataPolicyServiceClient/rename_data_policy.php
+     *
      * @param RenameDataPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -395,6 +409,8 @@ abstract class DataPolicyServiceBaseClient
      * Sets the IAM policy for the specified data policy.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataPolicyServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -420,6 +436,8 @@ abstract class DataPolicyServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DataPolicyServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -444,6 +462,8 @@ abstract class DataPolicyServiceBaseClient
      * can be specified by the resource name.
      *
      * The async variant is {@see self::updateDataPolicyAsync()} .
+     *
+     * @example samples/V1/DataPolicyServiceClient/update_data_policy.php
      *
      * @param UpdateDataPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

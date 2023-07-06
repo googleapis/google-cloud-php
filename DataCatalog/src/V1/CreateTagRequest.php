@@ -34,6 +34,28 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
     private $tag = null;
 
     /**
+     * @param string                           $parent Required. The name of the resource to attach this tag to.
+     *
+     *                                                 Tags can be attached to entries or entry groups. An entry can have up to
+     *                                                 1000 attached tags.
+     *
+     *                                                 Note: The tag and its child resources might not be stored in
+     *                                                 the location specified in its name. Please see
+     *                                                 {@see DataCatalogClient::entryName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\V1\Tag $tag    Required. The tag to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateTagRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\V1\Tag $tag): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTag($tag);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

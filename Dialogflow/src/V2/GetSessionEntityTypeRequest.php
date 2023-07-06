@@ -30,6 +30,26 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the session entity type. Format:
+     *                     `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *                     Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                     ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                     Name>`.
+     *                     If `Environment ID` is not specified, we assume default 'draft'
+     *                     environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                     {@see SessionEntityTypesClient::sessionEntityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

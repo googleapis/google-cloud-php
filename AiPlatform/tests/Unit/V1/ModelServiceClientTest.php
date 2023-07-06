@@ -40,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
 use Google\Cloud\AIPlatform\V1\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetResponse;
 use Google\Cloud\AIPlatform\V1\UploadModelResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
@@ -703,6 +704,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -714,6 +716,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
@@ -1255,6 +1258,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -1266,6 +1270,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
@@ -1322,6 +1327,123 @@ class ModelServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateExplanationDatasetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateExplanationDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new UpdateExplanationDatasetResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateExplanationDatasetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->updateExplanationDataset($formattedModel);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.ModelService/UpdateExplanationDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getModel();
+        $this->assertProtobufEquals($formattedModel, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateExplanationDatasetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateExplanationDatasetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateExplanationDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->updateExplanationDataset($formattedModel);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateExplanationDatasetTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateModelTest()
     {
         $transport = $this->createTransport();
@@ -1337,6 +1459,7 @@ class ModelServiceClientTest extends GeneratedTest
         $versionDescription = 'versionDescription1423604501';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
+        $pipelineJob = 'pipelineJob361059488';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
@@ -1348,6 +1471,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersionDescription($versionDescription);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
+        $expectedResponse->setPipelineJob($pipelineJob);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);

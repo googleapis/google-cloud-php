@@ -89,6 +89,10 @@ use Google\Cloud\PrivateCatalog\V1beta1\SearchVersionsResponse;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PrivateCatalog\V1beta1\Client\PrivateCatalogClient} to use the new
+ * surface.
+ *
  * @experimental
  */
 class PrivateCatalogGapicClient

@@ -18,8 +18,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The source cluster from which this Backup was created.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
@@ -49,8 +49,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $cluster
      *           The source cluster from which this Backup was created.
      *           Valid formats:
-     *             - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *             - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *           This is inherited from the parent BackupPlan's
      *           [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *     @type string $k8s_version
@@ -71,8 +71,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The source cluster from which this Backup was created.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
@@ -87,8 +87,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The source cluster from which this Backup was created.
      * Valid formats:
-     *   - projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;
-     *   - projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;
+     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
+     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *

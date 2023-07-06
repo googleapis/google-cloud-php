@@ -30,6 +30,20 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Monitoring\V3\Group $group Required. The new definition of the group.  All fields of the existing group,
+     *                                                 excepting `name`, are replaced with the corresponding fields of this group.
+     *
+     * @return \Google\Cloud\Monitoring\V3\UpdateGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Monitoring\V3\Group $group): self
+    {
+        return (new self())
+            ->setGroup($group);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

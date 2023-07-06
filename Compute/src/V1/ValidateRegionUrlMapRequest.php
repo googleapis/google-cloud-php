@@ -41,6 +41,25 @@ class ValidateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     private $url_map = '';
 
     /**
+     * @param string                                                $project                              Project ID for this request.
+     * @param string                                                $region                               Name of the region scoping this request.
+     * @param string                                                $urlMap                               Name of the UrlMap resource to be validated as.
+     * @param \Google\Cloud\Compute\V1\RegionUrlMapsValidateRequest $regionUrlMapsValidateRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ValidateRegionUrlMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $urlMap, \Google\Cloud\Compute\V1\RegionUrlMapsValidateRequest $regionUrlMapsValidateRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setUrlMap($urlMap)
+            ->setRegionUrlMapsValidateRequestResource($regionUrlMapsValidateRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

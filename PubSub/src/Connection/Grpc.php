@@ -55,6 +55,10 @@ class Grpc implements ConnectionInterface
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
+    const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
+
+    const GZIP_COMPRESSION = 'gzip';
+
     /**
      * @var PublisherClient
      */
@@ -157,7 +161,7 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['messageStoragePolicy'])) {
             $args['messageStoragePolicy'] = $this->serializer->decodeMessage(
-                new MessageStoragePolicy,
+                new MessageStoragePolicy(),
                 $args['messageStoragePolicy']
             );
         }
@@ -218,7 +222,7 @@ class Grpc implements ConnectionInterface
         }
 
         $topic = $this->serializer->decodeMessage(
-            new Topic,
+            new Topic(),
             $this->pluck('topic', $args)
         );
 
@@ -249,8 +253,21 @@ class Grpc implements ConnectionInterface
         $pbMessages = [];
         $messages = $this->pluck('messages', $args);
 
+        $totalMessagesSize = 0;
         foreach ($messages as $message) {
-            $pbMessages[] = $this->buildMessage($message);
+            $message = $this->buildMessage($message);
+            $totalMessagesSize += strlen($message->serializeToString());
+            $pbMessages[] = $message;
+        }
+
+        if (isset($args['compressionOptions'])) {
+            $enableCompression = $args['compressionOptions']['enableCompression'];
+            $compressionBytesThreshold = $args['compressionOptions']['compressionBytesThreshold'];
+
+            if ($enableCompression &&
+                $totalMessagesSize >= $compressionBytesThreshold) {
+                $args['headers'][self::COMPRESSION_HEADER_KEY] = [self::GZIP_COMPRESSION];
+            }
         }
 
         return $this->send([$this->getPublisherClient(), 'publish'], [
@@ -282,7 +299,7 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['expirationPolicy'])) {
             $args['expirationPolicy'] = $this->serializer->decodeMessage(
-                new ExpirationPolicy,
+                new ExpirationPolicy(),
                 $args['expirationPolicy']
             );
         }
@@ -295,14 +312,14 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['retryPolicy'])) {
             $args['retryPolicy'] = $this->serializer->decodeMessage(
-                new RetryPolicy,
+                new RetryPolicy(),
                 $args['retryPolicy']
             );
         }
 
         if (isset($args['deadLetterPolicy'])) {
             $args['deadLetterPolicy'] = $this->serializer->decodeMessage(
-                new DeadLetterPolicy,
+                new DeadLetterPolicy(),
                 $args['deadLetterPolicy']
             );
         }
@@ -329,7 +346,7 @@ class Grpc implements ConnectionInterface
         ]);
 
         $subscription = $this->serializer->decodeMessage(
-            new Subscription,
+            new Subscription(),
             $this->pluck('subscription', $args)
         );
 

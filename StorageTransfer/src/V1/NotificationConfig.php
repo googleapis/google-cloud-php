@@ -12,16 +12,22 @@ use Google\Protobuf\Internal\GPBUtil;
  * Specification to configure notifications published to Pub/Sub.
  * Notifications are published to the customer-provided topic using the
  * following `PubsubMessage.attributes`:
- * * `"eventType"`: one of the [EventType][google.storagetransfer.v1.NotificationConfig.EventType] values
- * * `"payloadFormat"`: one of the [PayloadFormat][google.storagetransfer.v1.NotificationConfig.PayloadFormat] values
- * * `"projectId"`: the [project_id][google.storagetransfer.v1.TransferOperation.project_id] of the
+ * * `"eventType"`: one of the
+ * [EventType][google.storagetransfer.v1.NotificationConfig.EventType] values
+ * * `"payloadFormat"`: one of the
+ * [PayloadFormat][google.storagetransfer.v1.NotificationConfig.PayloadFormat]
+ * values
+ * * `"projectId"`: the
+ * [project_id][google.storagetransfer.v1.TransferOperation.project_id] of the
  * `TransferOperation`
  * * `"transferJobName"`: the
- * [transfer_job_name][google.storagetransfer.v1.TransferOperation.transfer_job_name] of the
+ * [transfer_job_name][google.storagetransfer.v1.TransferOperation.transfer_job_name]
+ * of the `TransferOperation`
+ * * `"transferOperationName"`: the
+ * [name][google.storagetransfer.v1.TransferOperation.name] of the
  * `TransferOperation`
- * * `"transferOperationName"`: the [name][google.storagetransfer.v1.TransferOperation.name] of the
- * `TransferOperation`
- * The `PubsubMessage.data` contains a [TransferOperation][google.storagetransfer.v1.TransferOperation] resource
+ * The `PubsubMessage.data` contains a
+ * [TransferOperation][google.storagetransfer.v1.TransferOperation] resource
  * formatted according to the specified `PayloadFormat`.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.NotificationConfig</code>

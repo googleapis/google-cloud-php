@@ -66,7 +66,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Dataplex\V1\MetadataServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -299,6 +300,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::createEntityAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/create_entity.php
+     *
      * @param CreateEntityRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -322,6 +325,8 @@ abstract class MetadataServiceBaseClient
      * Create a metadata partition.
      *
      * The async variant is {@see self::createPartitionAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/create_partition.php
      *
      * @param CreatePartitionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -347,6 +352,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::deleteEntityAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/delete_entity.php
+     *
      * @param DeleteEntityRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -369,6 +376,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::deletePartitionAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/delete_partition.php
+     *
      * @param DeletePartitionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -390,6 +399,8 @@ abstract class MetadataServiceBaseClient
      * Get a metadata entity.
      *
      * The async variant is {@see self::getEntityAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_entity.php
      *
      * @param GetEntityRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -415,6 +426,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::getPartitionAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/get_partition.php
+     *
      * @param GetPartitionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -438,6 +451,8 @@ abstract class MetadataServiceBaseClient
      * List metadata entities in a zone.
      *
      * The async variant is {@see self::listEntitiesAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/list_entities.php
      *
      * @param ListEntitiesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -463,6 +478,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::listPartitionsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/list_partitions.php
+     *
      * @param ListPartitionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -486,6 +503,8 @@ abstract class MetadataServiceBaseClient
      * Update a metadata entity. Only supports full resource update.
      *
      * The async variant is {@see self::updateEntityAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/update_entity.php
      *
      * @param UpdateEntityRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -511,6 +530,8 @@ abstract class MetadataServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -539,6 +560,8 @@ abstract class MetadataServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -570,6 +593,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -594,6 +619,8 @@ abstract class MetadataServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/MetadataServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -617,6 +644,8 @@ abstract class MetadataServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/MetadataServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

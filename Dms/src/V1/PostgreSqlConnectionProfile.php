@@ -29,16 +29,18 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      */
     private $port = 0;
     /**
-     * Required. The username that Database Migration Service will use to connect to the
-     * database. The value is encrypted when stored in Database Migration Service.
+     * Required. The username that Database Migration Service will use to connect
+     * to the database. The value is encrypted when stored in Database Migration
+     * Service.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $username = '';
     /**
-     * Required. Input only. The password for the user that Database Migration Service will be using to
-     * connect to the database. This field is not returned on request, and the
-     * value is encrypted when stored in Database Migration Service.
+     * Required. Input only. The password for the user that Database Migration
+     * Service will be using to connect to the database. This field is not
+     * returned on request, and the value is encrypted when stored in Database
+     * Migration Service.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,6 +64,14 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cloud_sql_id = 7;</code>
      */
     private $cloud_sql_id = '';
+    /**
+     * Output only. If the source is a Cloud SQL database, this field indicates
+     * the network architecture it's associated with.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.NetworkArchitecture network_architecture = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $network_architecture = 0;
+    protected $connectivity;
 
     /**
      * Constructor.
@@ -74,12 +84,14 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *     @type int $port
      *           Required. The network port of the source PostgreSQL database.
      *     @type string $username
-     *           Required. The username that Database Migration Service will use to connect to the
-     *           database. The value is encrypted when stored in Database Migration Service.
+     *           Required. The username that Database Migration Service will use to connect
+     *           to the database. The value is encrypted when stored in Database Migration
+     *           Service.
      *     @type string $password
-     *           Required. Input only. The password for the user that Database Migration Service will be using to
-     *           connect to the database. This field is not returned on request, and the
-     *           value is encrypted when stored in Database Migration Service.
+     *           Required. Input only. The password for the user that Database Migration
+     *           Service will be using to connect to the database. This field is not
+     *           returned on request, and the value is encrypted when stored in Database
+     *           Migration Service.
      *     @type bool $password_set
      *           Output only. Indicates If this connection profile password is stored.
      *     @type \Google\Cloud\CloudDms\V1\SslConfig $ssl
@@ -87,6 +99,13 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *     @type string $cloud_sql_id
      *           If the source is a Cloud SQL database, use this field to
      *           provide the Cloud SQL instance ID of the source.
+     *     @type int $network_architecture
+     *           Output only. If the source is a Cloud SQL database, this field indicates
+     *           the network architecture it's associated with.
+     *     @type \Google\Cloud\CloudDms\V1\StaticIpConnectivity $static_ip_connectivity
+     *           Static ip connectivity data (default, no additional details needed).
+     *     @type \Google\Cloud\CloudDms\V1\PrivateServiceConnectConnectivity $private_service_connect_connectivity
+     *           Private service connect connectivity.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,8 +166,9 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The username that Database Migration Service will use to connect to the
-     * database. The value is encrypted when stored in Database Migration Service.
+     * Required. The username that Database Migration Service will use to connect
+     * to the database. The value is encrypted when stored in Database Migration
+     * Service.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -159,8 +179,9 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The username that Database Migration Service will use to connect to the
-     * database. The value is encrypted when stored in Database Migration Service.
+     * Required. The username that Database Migration Service will use to connect
+     * to the database. The value is encrypted when stored in Database Migration
+     * Service.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -175,9 +196,10 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. The password for the user that Database Migration Service will be using to
-     * connect to the database. This field is not returned on request, and the
-     * value is encrypted when stored in Database Migration Service.
+     * Required. Input only. The password for the user that Database Migration
+     * Service will be using to connect to the database. This field is not
+     * returned on request, and the value is encrypted when stored in Database
+     * Migration Service.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -188,9 +210,10 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. The password for the user that Database Migration Service will be using to
-     * connect to the database. This field is not returned on request, and the
-     * value is encrypted when stored in Database Migration Service.
+     * Required. Input only. The password for the user that Database Migration
+     * Service will be using to connect to the database. This field is not
+     * returned on request, and the value is encrypted when stored in Database
+     * Migration Service.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -292,6 +315,104 @@ class PostgreSqlConnectionProfile extends \Google\Protobuf\Internal\Message
         $this->cloud_sql_id = $var;
 
         return $this;
+    }
+
+    /**
+     * Output only. If the source is a Cloud SQL database, this field indicates
+     * the network architecture it's associated with.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.NetworkArchitecture network_architecture = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getNetworkArchitecture()
+    {
+        return $this->network_architecture;
+    }
+
+    /**
+     * Output only. If the source is a Cloud SQL database, this field indicates
+     * the network architecture it's associated with.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.NetworkArchitecture network_architecture = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNetworkArchitecture($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CloudDms\V1\NetworkArchitecture::class);
+        $this->network_architecture = $var;
+
+        return $this;
+    }
+
+    /**
+     * Static ip connectivity data (default, no additional details needed).
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.StaticIpConnectivity static_ip_connectivity = 100;</code>
+     * @return \Google\Cloud\CloudDms\V1\StaticIpConnectivity|null
+     */
+    public function getStaticIpConnectivity()
+    {
+        return $this->readOneof(100);
+    }
+
+    public function hasStaticIpConnectivity()
+    {
+        return $this->hasOneof(100);
+    }
+
+    /**
+     * Static ip connectivity data (default, no additional details needed).
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.StaticIpConnectivity static_ip_connectivity = 100;</code>
+     * @param \Google\Cloud\CloudDms\V1\StaticIpConnectivity $var
+     * @return $this
+     */
+    public function setStaticIpConnectivity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\StaticIpConnectivity::class);
+        $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * Private service connect connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.PrivateServiceConnectConnectivity private_service_connect_connectivity = 101;</code>
+     * @return \Google\Cloud\CloudDms\V1\PrivateServiceConnectConnectivity|null
+     */
+    public function getPrivateServiceConnectConnectivity()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasPrivateServiceConnectConnectivity()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Private service connect connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.PrivateServiceConnectConnectivity private_service_connect_connectivity = 101;</code>
+     * @param \Google\Cloud\CloudDms\V1\PrivateServiceConnectConnectivity $var
+     * @return $this
+     */
+    public function setPrivateServiceConnectConnectivity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\PrivateServiceConnectConnectivity::class);
+        $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConnectivity()
+    {
+        return $this->whichOneof("connectivity");
     }
 
 }

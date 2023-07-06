@@ -178,6 +178,8 @@ abstract class TemplatesServiceBaseClient
      *
      * The async variant is {@see self::createJobFromTemplateAsync()} .
      *
+     * @example samples/V1beta3/TemplatesServiceClient/create_job_from_template.php
+     *
      * @param CreateJobFromTemplateRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -204,6 +206,8 @@ abstract class TemplatesServiceBaseClient
      *
      * The async variant is {@see self::getTemplateAsync()} .
      *
+     * @example samples/V1beta3/TemplatesServiceClient/get_template.php
+     *
      * @param GetTemplateRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -229,6 +233,8 @@ abstract class TemplatesServiceBaseClient
      * Launch a template.
      *
      * The async variant is {@see self::launchTemplateAsync()} .
+     *
+     * @example samples/V1beta3/TemplatesServiceClient/launch_template.php
      *
      * @param LaunchTemplateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

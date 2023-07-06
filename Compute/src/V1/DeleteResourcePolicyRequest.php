@@ -41,6 +41,23 @@ class DeleteResourcePolicyRequest extends \Google\Protobuf\Internal\Message
     private $resource_policy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region for this request.
+     * @param string $resourcePolicy Name of the resource policy to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteResourcePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $resourcePolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResourcePolicy($resourcePolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

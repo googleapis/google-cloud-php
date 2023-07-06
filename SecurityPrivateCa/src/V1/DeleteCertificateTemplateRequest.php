@@ -42,6 +42,22 @@ class DeleteCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string $name Required. The resource name for this
+     *                     [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *                     in the format `projects/&#42;/locations/&#42;/certificateTemplates/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateTemplateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\DeleteCertificateTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

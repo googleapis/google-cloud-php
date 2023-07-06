@@ -26,6 +26,22 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the intent to delete. If this intent has direct or
+     *                     indirect followup intents, we also delete them.
+     *                     Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
+     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

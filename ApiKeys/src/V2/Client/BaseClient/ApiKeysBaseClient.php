@@ -60,7 +60,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ApiKeys\V2\ApiKeysClient} for the stable implementation
  *
  * @experimental
  *
@@ -289,6 +290,8 @@ abstract class ApiKeysBaseClient
      *
      * The async variant is {@see self::createKeyAsync()} .
      *
+     * @example samples/V2/ApiKeysClient/create_key.php
+     *
      * @param CreateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -316,6 +319,8 @@ abstract class ApiKeysBaseClient
      * location is `global`.
      *
      * The async variant is {@see self::deleteKeyAsync()} .
+     *
+     * @example samples/V2/ApiKeysClient/delete_key.php
      *
      * @param DeleteKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -345,6 +350,8 @@ abstract class ApiKeysBaseClient
      *
      * The async variant is {@see self::getKeyAsync()} .
      *
+     * @example samples/V2/ApiKeysClient/get_key.php
+     *
      * @param GetKeyRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -371,6 +378,8 @@ abstract class ApiKeysBaseClient
      * location is `global`.
      *
      * The async variant is {@see self::getKeyStringAsync()} .
+     *
+     * @example samples/V2/ApiKeysClient/get_key_string.php
      *
      * @param GetKeyStringRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -400,6 +409,8 @@ abstract class ApiKeysBaseClient
      *
      * The async variant is {@see self::listKeysAsync()} .
      *
+     * @example samples/V2/ApiKeysClient/list_keys.php
+     *
      * @param ListKeysRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -428,6 +439,8 @@ abstract class ApiKeysBaseClient
      *
      * The async variant is {@see self::lookupKeyAsync()} .
      *
+     * @example samples/V2/ApiKeysClient/lookup_key.php
+     *
      * @param LookupKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -454,6 +467,8 @@ abstract class ApiKeysBaseClient
      * location is `global`.
      *
      * The async variant is {@see self::undeleteKeyAsync()} .
+     *
+     * @example samples/V2/ApiKeysClient/undelete_key.php
      *
      * @param UndeleteKeyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -482,6 +497,8 @@ abstract class ApiKeysBaseClient
      * location is `global`.
      *
      * The async variant is {@see self::updateKeyAsync()} .
+     *
+     * @example samples/V2/ApiKeysClient/update_key.php
      *
      * @param UpdateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

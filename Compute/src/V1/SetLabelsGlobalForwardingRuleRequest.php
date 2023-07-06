@@ -35,6 +35,23 @@ class SetLabelsGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Mes
     private $resource = '';
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $resource                       Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetLabelsGlobalForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $resource, \Google\Cloud\Compute\V1\GlobalSetLabelsRequest $globalSetLabelsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

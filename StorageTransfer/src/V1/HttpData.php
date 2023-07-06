@@ -36,7 +36,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * * Storage Transfer Service obeys `robots.txt` rules and requires the source
  * HTTP server to support `Range` requests and to return a `Content-Length`
  * header in each response.
- * * [ObjectConditions][google.storagetransfer.v1.ObjectConditions] have no effect when filtering objects to transfer.
+ * * [ObjectConditions][google.storagetransfer.v1.ObjectConditions] have no
+ * effect when filtering objects to transfer.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.HttpData</code>
  */

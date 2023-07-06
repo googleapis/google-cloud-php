@@ -29,6 +29,22 @@ class CreateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     private $ssh_public_key = null;
 
     /**
+     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
+     *                                                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
+     *
+     * @return \Google\Cloud\OsLogin\V1\CreateSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSshPublicKey($sshPublicKey);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

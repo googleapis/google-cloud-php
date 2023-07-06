@@ -26,10 +26,12 @@ use Google\Analytics\Admin\V1alpha\AccessBinding;
 use Google\Analytics\Admin\V1alpha\Account;
 use Google\Analytics\Admin\V1alpha\AccountSummary;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionResponse;
+use Google\Analytics\Admin\V1alpha\AdSenseLink;
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
 use Google\Analytics\Admin\V1alpha\Audience;
@@ -59,6 +61,7 @@ use Google\Analytics\Admin\V1alpha\DataStream\DataStreamType;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
+use Google\Analytics\Admin\V1alpha\EventCreateRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
@@ -69,6 +72,7 @@ use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
 use Google\Analytics\Admin\V1alpha\ListAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
+use Google\Analytics\Admin\V1alpha\ListAdSenseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
@@ -79,6 +83,7 @@ use Google\Analytics\Admin\V1alpha\ListCustomMetricsResponse;
 use Google\Analytics\Admin\V1alpha\ListDataStreamsResponse;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsResponse;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListEventCreateRulesResponse;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksResponse;
@@ -1125,6 +1130,72 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAdSenseLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $adClientCode = 'adClientCode-1866307643';
+        $expectedResponse = new AdSenseLink();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAdClientCode($adClientCode);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $adsenseLink = new AdSenseLink();
+        $response = $gapicClient->createAdSenseLink($formattedParent, $adsenseLink);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAdSenseLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAdsenseLink();
+        $this->assertProtobufEquals($adsenseLink, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAdSenseLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $adsenseLink = new AdSenseLink();
+        try {
+            $gapicClient->createAdSenseLink($formattedParent, $adsenseLink);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createAudienceTest()
     {
         $transport = $this->createTransport();
@@ -1805,6 +1876,82 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createEventCreateRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $destinationEvent = 'destinationEvent-1300408535';
+        $sourceCopyParameters = true;
+        $expectedResponse = new EventCreateRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationEvent($destinationEvent);
+        $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventCreateRule = new EventCreateRule();
+        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
+        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
+        $eventCreateRuleEventConditions = [];
+        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
+        $response = $gapicClient->createEventCreateRule($formattedParent, $eventCreateRule);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventCreateRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEventCreateRule();
+        $this->assertProtobufEquals($eventCreateRule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createEventCreateRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventCreateRule = new EventCreateRule();
+        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
+        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
+        $eventCreateRuleEventConditions = [];
+        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
+        try {
+            $gapicClient->createEventCreateRule($formattedParent, $eventCreateRule);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -2411,6 +2558,63 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteAdSenseLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+        $gapicClient->deleteAdSenseLink($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAdSenseLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAdSenseLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+        try {
+            $gapicClient->deleteAdSenseLink($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteChannelGroupTest()
     {
         $transport = $this->createTransport();
@@ -2735,6 +2939,63 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
         try {
             $gapicClient->deleteDisplayVideo360AdvertiserLinkProposal($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteEventCreateRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+        $gapicClient->deleteEventCreateRule($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventCreateRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteEventCreateRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+        try {
+            $gapicClient->deleteEventCreateRule($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3395,6 +3656,68 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->accountName('[ACCOUNT]');
         try {
             $gapicClient->getAccount($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAdSenseLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $adClientCode = 'adClientCode-1866307643';
+        $expectedResponse = new AdSenseLink();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setAdClientCode($adClientCode);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+        $response = $gapicClient->getAdSenseLink($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAdSenseLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAdSenseLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
+        try {
+            $gapicClient->getAdSenseLink($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4275,6 +4598,70 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getEventCreateRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $destinationEvent = 'destinationEvent-1300408535';
+        $sourceCopyParameters = true;
+        $expectedResponse = new EventCreateRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDestinationEvent($destinationEvent);
+        $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+        $response = $gapicClient->getEventCreateRule($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventCreateRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEventCreateRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
+        try {
+            $gapicClient->getEventCreateRule($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -4901,6 +5288,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         try {
             $gapicClient->listAccounts();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdSenseLinksTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $adsenseLinksElement = new AdSenseLink();
+        $adsenseLinks = [
+            $adsenseLinksElement,
+        ];
+        $expectedResponse = new ListAdSenseLinksResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAdsenseLinks($adsenseLinks);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $response = $gapicClient->listAdSenseLinks($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAdsenseLinks()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAdSenseLinks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAdSenseLinksExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        try {
+            $gapicClient->listAdSenseLinks($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5565,6 +6020,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
             $gapicClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEventCreateRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $eventCreateRulesElement = new EventCreateRule();
+        $eventCreateRules = [
+            $eventCreateRulesElement,
+        ];
+        $expectedResponse = new ListEventCreateRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEventCreateRules($eventCreateRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $response = $gapicClient->listEventCreateRules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEventCreateRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventCreateRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEventCreateRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        try {
+            $gapicClient->listEventCreateRules($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6443,6 +6966,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
         $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
         $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
+        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
+        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -6484,6 +7009,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
         $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
         $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
+        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
+        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);
@@ -7067,6 +7594,82 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateEventCreateRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $destinationEvent = 'destinationEvent-1300408535';
+        $sourceCopyParameters = true;
+        $expectedResponse = new EventCreateRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationEvent($destinationEvent);
+        $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $eventCreateRule = new EventCreateRule();
+        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
+        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
+        $eventCreateRuleEventConditions = [];
+        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateEventCreateRule($eventCreateRule, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventCreateRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEventCreateRule();
+        $this->assertProtobufEquals($eventCreateRule, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateEventCreateRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $eventCreateRule = new EventCreateRule();
+        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
+        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
+        $eventCreateRuleEventConditions = [];
+        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateEventCreateRule($eventCreateRule, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

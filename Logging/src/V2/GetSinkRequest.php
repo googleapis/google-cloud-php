@@ -29,6 +29,29 @@ class GetSinkRequest extends \Google\Protobuf\Internal\Message
     private $sink_name = '';
 
     /**
+     * @param string $sinkName Required. The resource name of the sink:
+     *
+     *                         "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *                         "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *                         "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *                         "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *                         For example:
+     *
+     *                         `"projects/my-project/sinks/my-sink"`
+     *                         Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\GetSinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $sinkName): self
+    {
+        return (new self())
+            ->setSinkName($sinkName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

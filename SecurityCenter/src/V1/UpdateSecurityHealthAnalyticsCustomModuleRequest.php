@@ -29,6 +29,21 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The SecurityHealthAnalytics custom module to update.
+     * @param \Google\Protobuf\FieldMask                                          $updateMask                          The list of fields to update.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -75,6 +75,9 @@ use Google\Protobuf\Duration;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataflow\V1beta3\Client\JobsV1Beta3Client} to use the new surface.
+ *
  * @experimental
  */
 class JobsV1Beta3GapicClient

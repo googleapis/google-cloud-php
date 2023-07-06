@@ -47,6 +47,25 @@ class SetTargetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     private $target_reference_resource = null;
 
     /**
+     * @param string                                   $project                 Project ID for this request.
+     * @param string                                   $region                  Name of the region scoping this request.
+     * @param string                                   $forwardingRule          Name of the ForwardingRule resource in which target is to be set.
+     * @param \Google\Cloud\Compute\V1\TargetReference $targetReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetTargetForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $forwardingRule, \Google\Cloud\Compute\V1\TargetReference $targetReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setForwardingRule($forwardingRule)
+            ->setTargetReferenceResource($targetReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

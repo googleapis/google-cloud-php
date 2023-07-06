@@ -30,6 +30,24 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
     private $input_config = null;
 
     /**
+     * @param string                                               $parent      Required. The project in which the ProductSets should be imported.
+     *
+     *                                                                          Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+     *                                                                          {@see ProductSearchClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Vision\V1\ImportProductSetsInputConfig $inputConfig Required. The input content for the list of requests.
+     *
+     * @return \Google\Cloud\Vision\V1\ImportProductSetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Vision\V1\ImportProductSetsInputConfig $inputConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInputConfig($inputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

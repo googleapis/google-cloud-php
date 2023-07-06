@@ -41,6 +41,23 @@ class PatchImageRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                         $project       Project ID for this request.
+     * @param string                         $image         Name of the image resource to patch.
+     * @param \Google\Cloud\Compute\V1\Image $imageResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $image, \Google\Cloud\Compute\V1\Image $imageResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setImage($image)
+            ->setImageResource($imageResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

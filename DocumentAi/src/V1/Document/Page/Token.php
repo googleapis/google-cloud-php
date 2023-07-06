@@ -42,6 +42,12 @@ class Token extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $provenance = null;
+    /**
+     * Text style attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.StyleInfo style_info = 5;</code>
+     */
+    private $style_info = null;
 
     /**
      * Constructor.
@@ -59,6 +65,8 @@ class Token extends \Google\Protobuf\Internal\Message
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The history of this annotation.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Token\StyleInfo $style_info
+     *           Text style attributes.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,6 +214,42 @@ class Token extends \Google\Protobuf\Internal\Message
         @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
         $this->provenance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Text style attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.StyleInfo style_info = 5;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\Page\Token\StyleInfo|null
+     */
+    public function getStyleInfo()
+    {
+        return $this->style_info;
+    }
+
+    public function hasStyleInfo()
+    {
+        return isset($this->style_info);
+    }
+
+    public function clearStyleInfo()
+    {
+        unset($this->style_info);
+    }
+
+    /**
+     * Text style attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.StyleInfo style_info = 5;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Token\StyleInfo $var
+     * @return $this
+     */
+    public function setStyleInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Page\Token\StyleInfo::class);
+        $this->style_info = $var;
 
         return $this;
     }

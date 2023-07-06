@@ -24,6 +24,21 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
     private $topic = '';
 
     /**
+     * @param string $topic Required. The name of the topic to get.
+     *                      Format is `projects/{project}/topics/{topic}`. Please see
+     *                      {@see PublisherClient::topicName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\GetTopicRequest
+     *
+     * @experimental
+     */
+    public static function build(string $topic): self
+    {
+        return (new self())
+            ->setTopic($topic);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

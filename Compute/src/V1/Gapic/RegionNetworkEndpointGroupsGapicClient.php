@@ -82,6 +82,10 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  *     $regionNetworkEndpointGroupsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient} to use the
+ * new surface.
  */
 class RegionNetworkEndpointGroupsGapicClient
 {

@@ -34,6 +34,29 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     private $queue = null;
 
     /**
+     * @param string                       $parent Required. The location name in which the queue will be created.
+     *                                             For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     *
+     *                                             The list of allowed locations can be obtained by calling Cloud
+     *                                             Tasks' implementation of
+     *                                             [ListLocations][google.cloud.location.Locations.ListLocations]. Please see
+     *                                             {@see CloudTasksClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Tasks\V2\Queue $queue  Required. The queue to create.
+     *
+     *                                             [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     *
+     * @return \Google\Cloud\Tasks\V2\CreateQueueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Tasks\V2\Queue $queue): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setQueue($queue);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

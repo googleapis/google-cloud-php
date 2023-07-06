@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use Google\Cloud\Dev\DocFx\Page\Page;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use SimpleXMLElement;
@@ -80,5 +81,40 @@ class PageTest extends TestCase
             ['google.cloud.vision.v1' => 'Google\Cloud\Vision\V1'],
             $protoPackagesProperty->getValue($classNode)
         );
+    }
+
+    public function testOverviewPage()
+    {
+        $overview1 = new OverviewPage("# Not beta\n\n", $beta = false);
+        $this->assertEquals("# Not beta\n\n", $overview1->getContents());
+
+        $overview2 = new OverviewPage("No header\n\n", $beta = true);
+        $this->assertEquals("No header\n\n", $overview2->getContents());
+
+        $overview3 = new OverviewPage("# No newline", $beta = true);
+        $this->assertEquals('# No newline', $overview3->getContents());
+
+        $overview4 = new OverviewPage("# Yes beta\nend.", $beta = true);
+        $this->assertStringContainsString('pre-GA', $overview4->getContents());
+        $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
+        $this->assertStringEndsWith("\nend.", $overview4->getContents());
+    }
+
+    public function testHandleSample()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
+        $componentPath = __DIR__ . '/../../fixtures/component/ClientSnippets';
+        $pageTree = new PageTree($structureXml, 'Google\Cloud\ClientSnippets', '', $componentPath);
+
+        $pages = $pageTree->getPages();
+        $this->assertCount(1, $pages);
+        $items = array_pop($pages)->getItems();
+        $this->assertCount(2, $items);
+        $rpcMethod = $items[1];
+        $this->assertArrayHasKey('example', $rpcMethod);
+        $this->assertNotEmpty($rpcMethod['example']);
+        $this->assertCount(1, $rpcMethod['example']);
+        $this->assertStringContainsString('function an_rpc_method_sample', $rpcMethod['example'][0]);
+
     }
 }

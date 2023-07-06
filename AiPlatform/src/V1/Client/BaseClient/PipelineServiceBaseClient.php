@@ -71,7 +71,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\PipelineServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -166,6 +167,27 @@ abstract class PipelineServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a artifact
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $artifact
+     *
+     * @return string The formatted artifact resource.
+     */
+    public static function artifactName(string $project, string $location, string $metadataStore, string $artifact): string
+    {
+        return self::getPathTemplate('artifact')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'artifact' => $artifact,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a context
      * resource.
      *
@@ -225,6 +247,27 @@ abstract class PipelineServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName(string $project, string $location, string $metadataStore, string $execution): string
+    {
+        return self::getPathTemplate('execution')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'execution' => $execution,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -238,6 +281,25 @@ abstract class PipelineServiceBaseClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     *
+     * @return string The formatted metadata_store resource.
+     */
+    public static function metadataStoreName(string $project, string $location, string $metadataStore): string
+    {
+        return self::getPathTemplate('metadataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
         ]);
     }
 
@@ -359,10 +421,13 @@ abstract class PipelineServiceBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - artifact: projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}
      * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
      * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - execution: projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}
      * - location: projects/{project}/locations/{location}
+     * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
@@ -477,6 +542,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::cancelPipelineJobAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/cancel_pipeline_job.php
+     *
      * @param CancelPipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -512,6 +579,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::cancelTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/cancel_training_pipeline.php
+     *
      * @param CancelTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -533,6 +602,8 @@ abstract class PipelineServiceBaseClient
      * Creates a PipelineJob. A PipelineJob will run immediately when created.
      *
      * The async variant is {@see self::createPipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/create_pipeline_job.php
      *
      * @param CreatePipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -559,6 +630,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::createTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/create_training_pipeline.php
+     *
      * @param CreateTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -582,6 +655,8 @@ abstract class PipelineServiceBaseClient
      * Deletes a PipelineJob.
      *
      * The async variant is {@see self::deletePipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/delete_pipeline_job.php
      *
      * @param DeletePipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -607,6 +682,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::deleteTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/delete_training_pipeline.php
+     *
      * @param DeleteTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -630,6 +707,8 @@ abstract class PipelineServiceBaseClient
      * Gets a PipelineJob.
      *
      * The async variant is {@see self::getPipelineJobAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_pipeline_job.php
      *
      * @param GetPipelineJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -655,6 +734,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::getTrainingPipelineAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/get_training_pipeline.php
+     *
      * @param GetTrainingPipelineRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -678,6 +759,8 @@ abstract class PipelineServiceBaseClient
      * Lists PipelineJobs in a Location.
      *
      * The async variant is {@see self::listPipelineJobsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/list_pipeline_jobs.php
      *
      * @param ListPipelineJobsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -703,6 +786,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::listTrainingPipelinesAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/list_training_pipelines.php
+     *
      * @param ListTrainingPipelinesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -726,6 +811,8 @@ abstract class PipelineServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -751,6 +838,8 @@ abstract class PipelineServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/PipelineServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -775,6 +864,8 @@ abstract class PipelineServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -803,6 +894,8 @@ abstract class PipelineServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -833,6 +926,8 @@ abstract class PipelineServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

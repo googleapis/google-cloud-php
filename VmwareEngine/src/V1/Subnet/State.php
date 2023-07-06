@@ -43,6 +43,19 @@ class State
      * Generated from protobuf enum <code>DELETING = 4;</code>
      */
     const DELETING = 4;
+    /**
+     * Changes requested in the last operation are being propagated.
+     *
+     * Generated from protobuf enum <code>RECONCILING = 5;</code>
+     */
+    const RECONCILING = 5;
+    /**
+     * Last operation on the subnet did not succeed. Subnet's payload is
+     * reverted back to its most recent working state.
+     *
+     * Generated from protobuf enum <code>FAILED = 6;</code>
+     */
+    const FAILED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +63,8 @@ class State
         self::CREATING => 'CREATING',
         self::UPDATING => 'UPDATING',
         self::DELETING => 'DELETING',
+        self::RECONCILING => 'RECONCILING',
+        self::FAILED => 'FAILED',
     ];
 
     public static function name($value)

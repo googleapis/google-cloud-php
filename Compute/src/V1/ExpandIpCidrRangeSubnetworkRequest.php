@@ -47,6 +47,25 @@ class ExpandIpCidrRangeSubnetworkRequest extends \Google\Protobuf\Internal\Messa
     private $subnetworks_expand_ip_cidr_range_request_resource = null;
 
     /**
+     * @param string                                                       $project                                     Project ID for this request.
+     * @param string                                                       $region                                      Name of the region scoping this request.
+     * @param string                                                       $subnetwork                                  Name of the Subnetwork resource to update.
+     * @param \Google\Cloud\Compute\V1\SubnetworksExpandIpCidrRangeRequest $subnetworksExpandIpCidrRangeRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ExpandIpCidrRangeSubnetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $subnetwork, \Google\Cloud\Compute\V1\SubnetworksExpandIpCidrRangeRequest $subnetworksExpandIpCidrRangeRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksExpandIpCidrRangeRequestResource($subnetworksExpandIpCidrRangeRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

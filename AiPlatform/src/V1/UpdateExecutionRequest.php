@@ -27,7 +27,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
     private $execution = null;
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,7 +46,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
      *                                                          field is used to identify the Execution to be updated. Format:
      *                                                          `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      * @param \Google\Protobuf\FieldMask            $updateMask Optional. A FieldMask indicating which fields should be updated.
-     *                                                          Functionality of this field is not yet supported.
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateExecutionRequest
      *
@@ -73,7 +71,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allow_missing
      *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
      *           is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
@@ -129,7 +126,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -151,7 +147,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

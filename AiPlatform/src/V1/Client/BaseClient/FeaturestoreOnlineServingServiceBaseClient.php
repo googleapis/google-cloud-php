@@ -60,7 +60,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\FeaturestoreOnlineServingServiceClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -238,6 +240,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
      *
      * The async variant is {@see self::readFeatureValuesAsync()} .
      *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/read_feature_values.php
+     *
      * @param ReadFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -261,6 +265,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
      * Reads Feature values for multiple entities. Depending on their size, data
      * for different entities may be broken
      * up across multiple responses.
+     *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/streaming_read_feature_values.php
      *
      * @param StreamingReadFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -288,6 +294,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
      *
      * The async variant is {@see self::writeFeatureValuesAsync()} .
      *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/write_feature_values.php
+     *
      * @param WriteFeatureValuesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -311,6 +319,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -336,6 +346,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -360,6 +372,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -388,6 +402,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -418,6 +434,8 @@ abstract class FeaturestoreOnlineServingServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/FeaturestoreOnlineServingServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

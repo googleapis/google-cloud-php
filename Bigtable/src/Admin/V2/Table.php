@@ -58,6 +58,14 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     private $restore_info = null;
     /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     */
+    private $change_stream_config = null;
+    /**
      * Set to true to make the table protected against data loss. i.e. deleting
      * the following resources through Admin APIs are prohibited:
      *   - The table.
@@ -96,6 +104,10 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $restore_info
      *           Output only. If this table was restored from another data source (e.g. a backup), this
      *           field will be populated with information about the restore.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig $change_stream_config
+     *           If specified, enable the change stream on this table.
+     *           Otherwise, the change stream is disabled and the change stream is not
+     *           retained.
      *     @type bool $deletion_protection
      *           Set to true to make the table protected against data loss. i.e. deleting
      *           the following resources through Admin APIs are prohibited:
@@ -268,6 +280,46 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\RestoreInfo::class);
         $this->restore_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig|null
+     */
+    public function getChangeStreamConfig()
+    {
+        return $this->change_stream_config;
+    }
+
+    public function hasChangeStreamConfig()
+    {
+        return isset($this->change_stream_config);
+    }
+
+    public function clearChangeStreamConfig()
+    {
+        unset($this->change_stream_config);
+    }
+
+    /**
+     * If specified, enable the change stream on this table.
+     * Otherwise, the change stream is disabled and the change stream is not
+     * retained.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig $var
+     * @return $this
+     */
+    public function setChangeStreamConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\ChangeStreamConfig::class);
+        $this->change_stream_config = $var;
 
         return $this;
     }

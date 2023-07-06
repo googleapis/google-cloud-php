@@ -14,8 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSecondaryClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent resource (the primary cluster). For the
-     * required format, see the comment on the Cluster.name field.
+     * Required. The location of the new cluster. For the required
+     * format, see the comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -64,8 +64,8 @@ class CreateSecondaryClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent resource (the primary cluster). For the
-     *           required format, see the comment on the Cluster.name field.
+     *           Required. The location of the new cluster. For the required
+     *           format, see the comment on the Cluster.name field.
      *     @type string $cluster_id
      *           Required. ID of the requesting object (the secondary cluster).
      *     @type \Google\Cloud\AlloyDb\V1beta\Cluster $cluster
@@ -94,8 +94,8 @@ class CreateSecondaryClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource (the primary cluster). For the
-     * required format, see the comment on the Cluster.name field.
+     * Required. The location of the new cluster. For the required
+     * format, see the comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,8 +106,8 @@ class CreateSecondaryClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource (the primary cluster). For the
-     * required format, see the comment on the Cluster.name field.
+     * Required. The location of the new cluster. For the required
+     * format, see the comment on the Cluster.name field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

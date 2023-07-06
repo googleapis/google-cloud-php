@@ -59,6 +59,55 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
     private $parameters;
 
     /**
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                     * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     *                     of the template has the following format:
+     *                     `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                     * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *                     of the template has the following format:
+     *                     `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     *                     Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\InstantiateWorkflowTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
+     * @param string $name       Required. The resource name of the workflow template, as described
+     *                           in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                           * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     *                           of the template has the following format:
+     *                           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                           * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *                           of the template has the following format:
+     *                           `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     *                           Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
+     * @param array  $parameters Optional. Map from parameter names to values that should be used for those
+     *                           parameters. Values may not exceed 1000 characters.
+     *
+     * @return \Google\Cloud\Dataproc\V1\InstantiateWorkflowTemplateRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameParameters(string $name, array $parameters): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setParameters($parameters);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

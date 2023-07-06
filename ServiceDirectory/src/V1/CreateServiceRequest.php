@@ -42,6 +42,30 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     private $service = null;
 
     /**
+     * @param string                                    $parent    Required. The resource name of the namespace this service will belong to. Please see
+     *                                                             {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
+     * @param \Google\Cloud\ServiceDirectory\V1\Service $service   Required. A service  with initial fields set.
+     * @param string                                    $serviceId Required. The Resource ID must be 1-63 characters long, and comply with
+     *                                                             <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *                                                             Specifically, the name must be 1-63 characters long and match the regular
+     *                                                             expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *                                                             character must be a lowercase letter, and all following characters must
+     *                                                             be a dash, lowercase letter, or digit, except the last character, which
+     *                                                             cannot be a dash.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\CreateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ServiceDirectory\V1\Service $service, string $serviceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setService($service)
+            ->setServiceId($serviceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

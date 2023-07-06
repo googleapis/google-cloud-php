@@ -38,6 +38,23 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. Resource name of the project under which the tenant is created.
+     *
+     *                       The format is "projects/{project_id}", for example,
+     *                       "projects/foo". Please see
+     *                       {@see TenantServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Talent\V4\ListTenantsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

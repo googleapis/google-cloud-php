@@ -143,6 +143,13 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 33 [(.google.api.resource_reference) = {</code>
      */
     private $service_account = '';
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     */
+    private $repository_event_config = null;
     protected $build_template;
 
     /**
@@ -227,6 +234,9 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      *           If no service account is set, then the standard Cloud Build service account
      *           ([PROJECT_NUM]&#64;system.gserviceaccount.com) will be used instead.
      *           Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`
+     *     @type \Google\Cloud\Build\V1\RepositoryEventConfig $repository_event_config
+     *           The configuration of a trigger that creates a build whenever an event from
+     *           Repo API is received.
      * }
      */
     public function __construct($data = NULL) {
@@ -865,6 +875,44 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     * @return \Google\Cloud\Build\V1\RepositoryEventConfig|null
+     */
+    public function getRepositoryEventConfig()
+    {
+        return $this->repository_event_config;
+    }
+
+    public function hasRepositoryEventConfig()
+    {
+        return isset($this->repository_event_config);
+    }
+
+    public function clearRepositoryEventConfig()
+    {
+        unset($this->repository_event_config);
+    }
+
+    /**
+     * The configuration of a trigger that creates a build whenever an event from
+     * Repo API is received.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepositoryEventConfig repository_event_config = 39;</code>
+     * @param \Google\Cloud\Build\V1\RepositoryEventConfig $var
+     * @return $this
+     */
+    public function setRepositoryEventConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\RepositoryEventConfig::class);
+        $this->repository_event_config = $var;
 
         return $this;
     }

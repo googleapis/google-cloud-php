@@ -63,7 +63,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -80,7 +80,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -118,6 +118,10 @@ class SpeechGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $customClassNameTemplate;
+
+    private static $locationNameTemplate;
+
     private static $phraseSetNameTemplate;
 
     private static $pathTemplateMap;
@@ -143,6 +147,24 @@ class SpeechGapicClient
         ];
     }
 
+    private static function getCustomClassNameTemplate()
+    {
+        if (self::$customClassNameTemplate == null) {
+            self::$customClassNameTemplate = new PathTemplate('projects/{project}/locations/{location}/customClasses/{custom_class}');
+        }
+
+        return self::$customClassNameTemplate;
+    }
+
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getPhraseSetNameTemplate()
     {
         if (self::$phraseSetNameTemplate == null) {
@@ -156,11 +178,53 @@ class SpeechGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'customClass' => self::getCustomClassNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'phraseSet' => self::getPhraseSetNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_class
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $customClass
+     *
+     * @return string The formatted custom_class resource.
+     *
+     * @experimental
+     */
+    public static function customClassName($project, $location, $customClass)
+    {
+        return self::getCustomClassNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'custom_class' => $customClass,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     *
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -188,6 +252,8 @@ class SpeechGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - customClass: projects/{project}/locations/{location}/customClasses/{custom_class}
+     * - location: projects/{project}/locations/{location}
      * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -341,7 +407,7 @@ class SpeechGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -358,7 +424,7 @@ class SpeechGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

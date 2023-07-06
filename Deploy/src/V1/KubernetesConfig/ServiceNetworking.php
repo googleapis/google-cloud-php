@@ -28,6 +28,15 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deployment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $deployment = '';
+    /**
+     * Optional. Whether to disable Pod overprovisioning. If Pod
+     * overprovisioning is disabled then Cloud Deploy will limit the number of
+     * total Pods used for the deployment strategy to the number of Pods the
+     * Deployment has on the cluster.
+     *
+     * Generated from protobuf field <code>bool disable_pod_overprovisioning = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disable_pod_overprovisioning = false;
 
     /**
      * Constructor.
@@ -40,6 +49,11 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      *     @type string $deployment
      *           Required. Name of the Kubernetes Deployment whose traffic is managed by
      *           the specified Service.
+     *     @type bool $disable_pod_overprovisioning
+     *           Optional. Whether to disable Pod overprovisioning. If Pod
+     *           overprovisioning is disabled then Cloud Deploy will limit the number of
+     *           total Pods used for the deployment strategy to the number of Pods the
+     *           Deployment has on the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +111,38 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to disable Pod overprovisioning. If Pod
+     * overprovisioning is disabled then Cloud Deploy will limit the number of
+     * total Pods used for the deployment strategy to the number of Pods the
+     * Deployment has on the cluster.
+     *
+     * Generated from protobuf field <code>bool disable_pod_overprovisioning = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisablePodOverprovisioning()
+    {
+        return $this->disable_pod_overprovisioning;
+    }
+
+    /**
+     * Optional. Whether to disable Pod overprovisioning. If Pod
+     * overprovisioning is disabled then Cloud Deploy will limit the number of
+     * total Pods used for the deployment strategy to the number of Pods the
+     * Deployment has on the cluster.
+     *
+     * Generated from protobuf field <code>bool disable_pod_overprovisioning = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisablePodOverprovisioning($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_pod_overprovisioning = $var;
 
         return $this;
     }

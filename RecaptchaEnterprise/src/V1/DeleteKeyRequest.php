@@ -24,6 +24,21 @@ class DeleteKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the key to be deleted, in the format
+     *                     "projects/{project}/keys/{key}". Please see
+     *                     {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

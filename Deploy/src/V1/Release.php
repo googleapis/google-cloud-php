@@ -159,6 +159,12 @@ class Release extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseCondition condition = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $condition = null;
+    /**
+     * Optional. The deploy parameters to use for all targets in this release.
+     *
+     * Generated from protobuf field <code>map<string, string> deploy_parameters = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $deploy_parameters;
 
     /**
      * Constructor.
@@ -228,6 +234,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *           target.
      *     @type \Google\Cloud\Deploy\V1\Release\ReleaseCondition $condition
      *           Output only. Information around the state of the Release.
+     *     @type array|\Google\Protobuf\Internal\MapField $deploy_parameters
+     *           Optional. The deploy parameters to use for all targets in this release.
      * }
      */
     public function __construct($data = NULL) {
@@ -845,6 +853,32 @@ class Release extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Release\ReleaseCondition::class);
         $this->condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deploy parameters to use for all targets in this release.
+     *
+     * Generated from protobuf field <code>map<string, string> deploy_parameters = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getDeployParameters()
+    {
+        return $this->deploy_parameters;
+    }
+
+    /**
+     * Optional. The deploy parameters to use for all targets in this release.
+     *
+     * Generated from protobuf field <code>map<string, string> deploy_parameters = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setDeployParameters($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->deploy_parameters = $arr;
 
         return $this;
     }

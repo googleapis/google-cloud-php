@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateRestoreRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A new version of the Restore resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the Restore resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Restore restore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,8 +37,8 @@ class UpdateRestoreRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\GkeBackup\V1\Restore $restore    Required. A new version of the Restore resource that contains updated fields.
-     *                                                       This may be sparsely populated if an `update_mask` is provided.
+     * @param \Google\Cloud\GkeBackup\V1\Restore $restore    Required. A new version of the Restore resource that contains updated
+     *                                                       fields. This may be sparsely populated if an `update_mask` is provided.
      * @param \Google\Protobuf\FieldMask         $updateMask This is used to specify the fields to be overwritten in the
      *                                                       Restore targeted for update. The values for each of these
      *                                                       updated fields will be taken from the `restore` provided
@@ -66,8 +66,8 @@ class UpdateRestoreRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GkeBackup\V1\Restore $restore
-     *           Required. A new version of the Restore resource that contains updated fields.
-     *           This may be sparsely populated if an `update_mask` is provided.
+     *           Required. A new version of the Restore resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           This is used to specify the fields to be overwritten in the
      *           Restore targeted for update. The values for each of these
@@ -85,8 +85,8 @@ class UpdateRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new version of the Restore resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the Restore resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Restore restore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeBackup\V1\Restore|null
@@ -107,8 +107,8 @@ class UpdateRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new version of the Restore resource that contains updated fields.
-     * This may be sparsely populated if an `update_mask` is provided.
+     * Required. A new version of the Restore resource that contains updated
+     * fields. This may be sparsely populated if an `update_mask` is provided.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Restore restore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeBackup\V1\Restore $var

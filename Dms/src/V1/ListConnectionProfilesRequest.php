@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns this collection of connection profiles.
+     * Required. The parent which owns this collection of connection profiles.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -24,7 +24,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of connection profiles to return. The service may return
      * fewer than this value. If unspecified, at most 50 connection profiles will
-     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * be returned. The maximum value is 1000; values above 1000 are coerced
      * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -54,11 +54,25 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * the order by fields for the result.
+     * A comma-separated list of fields to order results according to.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The parent which owns this collection of connection profiles. Please see
+     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -67,11 +81,11 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns this collection of connection profiles.
+     *           Required. The parent which owns this collection of connection profiles.
      *     @type int $page_size
      *           The maximum number of connection profiles to return. The service may return
      *           fewer than this value. If unspecified, at most 50 connection profiles will
-     *           be returned. The maximum value is 1000; values above 1000 will be coerced
+     *           be returned. The maximum value is 1000; values above 1000 are coerced
      *           to 1000.
      *     @type string $page_token
      *           A page token, received from a previous `ListConnectionProfiles` call.
@@ -89,7 +103,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
      *           = %lt;my_username%gt;** to list all connection profiles configured to
      *           connect with a specific username.
      *     @type string $order_by
-     *           the order by fields for the result.
+     *           A comma-separated list of fields to order results according to.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,7 +112,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of connection profiles.
+     * Required. The parent which owns this collection of connection profiles.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,7 +123,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of connection profiles.
+     * Required. The parent which owns this collection of connection profiles.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -126,7 +140,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of connection profiles to return. The service may return
      * fewer than this value. If unspecified, at most 50 connection profiles will
-     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * be returned. The maximum value is 1000; values above 1000 are coerced
      * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -140,7 +154,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of connection profiles to return. The service may return
      * fewer than this value. If unspecified, at most 50 connection profiles will
-     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * be returned. The maximum value is 1000; values above 1000 are coerced
      * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -230,7 +244,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the order by fields for the result.
+     * A comma-separated list of fields to order results according to.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @return string
@@ -241,7 +255,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the order by fields for the result.
+     * A comma-separated list of fields to order results according to.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @param string $var

@@ -184,6 +184,8 @@ class DocFxCommand extends Command
     {
         $process = new Process([
             'phpdoc',
+            '--visibility',
+            'public,protected,private,internal',
             '-d',
             sprintf('%s/src', $componentPath),
             '--template',

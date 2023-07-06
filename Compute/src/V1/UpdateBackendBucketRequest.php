@@ -41,6 +41,23 @@ class UpdateBackendBucketRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                 $project               Project ID for this request.
+     * @param string                                 $backendBucket         Name of the BackendBucket resource to update.
+     * @param \Google\Cloud\Compute\V1\BackendBucket $backendBucketResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateBackendBucketRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendBucket, \Google\Cloud\Compute\V1\BackendBucket $backendBucketResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendBucket($backendBucket)
+            ->setBackendBucketResource($backendBucketResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

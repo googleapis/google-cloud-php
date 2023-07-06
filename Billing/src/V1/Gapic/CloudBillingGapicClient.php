@@ -73,6 +73,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Billing\V1\Client\CloudBillingClient} to use the new surface.
  */
 class CloudBillingGapicClient
 {
@@ -98,6 +101,8 @@ class CloudBillingGapicClient
     ];
 
     private static $billingAccountNameTemplate;
+
+    private static $projectBillingInfoNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -137,11 +142,23 @@ class CloudBillingGapicClient
         return self::$billingAccountNameTemplate;
     }
 
+    private static function getProjectBillingInfoNameTemplate()
+    {
+        if (self::$projectBillingInfoNameTemplate == null) {
+            self::$projectBillingInfoNameTemplate = new PathTemplate(
+                'projects/{project}/billingInfo'
+            );
+        }
+
+        return self::$projectBillingInfoNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'billingAccount' => self::getBillingAccountNameTemplate(),
+                'projectBillingInfo' => self::getProjectBillingInfoNameTemplate(),
             ];
         }
 
@@ -164,10 +181,26 @@ class CloudBillingGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_billing_info resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_billing_info resource.
+     */
+    public static function projectBillingInfoName($project)
+    {
+        return self::getProjectBillingInfoNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -448,8 +481,8 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $name = 'name';
-     *     $response = $cloudBillingClient->getProjectBillingInfo($name);
+     *     $formattedName = $cloudBillingClient->projectBillingInfoName('[PROJECT]');
+     *     $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
      * } finally {
      *     $cloudBillingClient->close();
      * }

@@ -30,6 +30,21 @@ class UpdateConversationProfileRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile Required. The conversation profile to update.
+     * @param \Google\Protobuf\FieldMask                      $updateMask          Required. The mask to control which fields to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateConversationProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConversationProfile($conversationProfile)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

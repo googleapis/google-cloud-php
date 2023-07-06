@@ -86,6 +86,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient} to use the new
+ * surface.
  */
 class PipelineServiceGapicClient
 {
@@ -108,13 +112,19 @@ class PipelineServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $artifactNameTemplate;
+
     private static $contextNameTemplate;
 
     private static $customJobNameTemplate;
 
     private static $endpointNameTemplate;
 
+    private static $executionNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $metadataStoreNameTemplate;
 
     private static $modelNameTemplate;
 
@@ -158,6 +168,17 @@ class PipelineServiceGapicClient
         ];
     }
 
+    private static function getArtifactNameTemplate()
+    {
+        if (self::$artifactNameTemplate == null) {
+            self::$artifactNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}'
+            );
+        }
+
+        return self::$artifactNameTemplate;
+    }
+
     private static function getContextNameTemplate()
     {
         if (self::$contextNameTemplate == null) {
@@ -191,6 +212,17 @@ class PipelineServiceGapicClient
         return self::$endpointNameTemplate;
     }
 
+    private static function getExecutionNameTemplate()
+    {
+        if (self::$executionNameTemplate == null) {
+            self::$executionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}'
+            );
+        }
+
+        return self::$executionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -200,6 +232,17 @@ class PipelineServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getMetadataStoreNameTemplate()
+    {
+        if (self::$metadataStoreNameTemplate == null) {
+            self::$metadataStoreNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}'
+            );
+        }
+
+        return self::$metadataStoreNameTemplate;
     }
 
     private static function getModelNameTemplate()
@@ -272,10 +315,13 @@ class PipelineServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'artifact' => self::getArtifactNameTemplate(),
                 'context' => self::getContextNameTemplate(),
                 'customJob' => self::getCustomJobNameTemplate(),
                 'endpoint' => self::getEndpointNameTemplate(),
+                'execution' => self::getExecutionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'metadataStore' => self::getMetadataStoreNameTemplate(),
                 'model' => self::getModelNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'pipelineJob' => self::getPipelineJobNameTemplate(),
@@ -286,6 +332,31 @@ class PipelineServiceGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a artifact
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $artifact
+     *
+     * @return string The formatted artifact resource.
+     */
+    public static function artifactName(
+        $project,
+        $location,
+        $metadataStore,
+        $artifact
+    ) {
+        return self::getArtifactNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'artifact' => $artifact,
+        ]);
     }
 
     /**
@@ -352,6 +423,31 @@ class PipelineServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName(
+        $project,
+        $location,
+        $metadataStore,
+        $execution
+    ) {
+        return self::getExecutionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'execution' => $execution,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -365,6 +461,28 @@ class PipelineServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     *
+     * @return string The formatted metadata_store resource.
+     */
+    public static function metadataStoreName(
+        $project,
+        $location,
+        $metadataStore
+    ) {
+        return self::getMetadataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
         ]);
     }
 
@@ -496,10 +614,13 @@ class PipelineServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - artifact: projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}
      * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
      * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - execution: projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}
      * - location: projects/{project}/locations/{location}
+     * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}

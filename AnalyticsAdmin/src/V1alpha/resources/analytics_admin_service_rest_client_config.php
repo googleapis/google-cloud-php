@@ -261,6 +261,18 @@ return [
                     ],
                 ],
             ],
+            'CreateAdSenseLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/adSenseLinks',
+                'body' => 'adsense_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAudience' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
@@ -354,6 +366,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
                 'body' => 'display_video_360_advertiser_link_proposal',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateEventCreateRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules',
+                'body' => 'event_create_rule',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -474,6 +498,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteAdSenseLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/adSenseLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteChannelGroup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/channelGroups/*}',
@@ -526,6 +561,17 @@ return [
             'DeleteDisplayVideo360AdvertiserLinkProposal' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteEventCreateRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -646,6 +692,17 @@ return [
             'GetAccount' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAdSenseLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/adSenseLinks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -797,6 +854,17 @@ return [
                     ],
                 ],
             ],
+            'GetEventCreateRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetExpandedDataSet' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -905,6 +973,17 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accounts',
             ],
+            'ListAdSenseLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/adSenseLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListAudiences' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
@@ -1001,6 +1080,17 @@ return [
             'ListDisplayVideo360AdvertiserLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEventCreateRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1301,6 +1391,22 @@ return [
                     'enhanced_measurement_settings.name' => [
                         'getters' => [
                             'getEnhancedMeasurementSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateEventCreateRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{event_create_rule.name=properties/*/dataStreams/*/eventCreateRules/*}',
+                'body' => 'event_create_rule',
+                'placeholders' => [
+                    'event_create_rule.name' => [
+                        'getters' => [
+                            'getEventCreateRule',
                             'getName',
                         ],
                     ],

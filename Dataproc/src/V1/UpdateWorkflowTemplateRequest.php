@@ -24,6 +24,21 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     private $template = null;
 
     /**
+     * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate $template Required. The updated workflow template.
+     *
+     *                                                             The `template.version` field must match the current version.
+     *
+     * @return \Google\Cloud\Dataproc\V1\UpdateWorkflowTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataproc\V1\WorkflowTemplate $template): self
+    {
+        return (new self())
+            ->setTemplate($template);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

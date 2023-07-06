@@ -99,7 +99,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\JobServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -526,6 +527,27 @@ abstract class JobServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a trial
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $study
+     * @param string $trial
+     *
+     * @return string The formatted trial resource.
+     */
+    public static function trialName(string $project, string $location, string $study, string $trial): string
+    {
+        return self::getPathTemplate('trial')->render([
+            'project' => $project,
+            'location' => $location,
+            'study' => $study,
+            'trial' => $trial,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -545,6 +567,7 @@ abstract class JobServiceBaseClient
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}
+     * - trial: projects/{project}/locations/{location}/studies/{study}/trials/{trial}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -652,6 +675,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::cancelBatchPredictionJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/cancel_batch_prediction_job.php
+     *
      * @param CancelBatchPredictionJobRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -686,6 +711,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::cancelCustomJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/cancel_custom_job.php
+     *
      * @param CancelCustomJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -707,6 +734,8 @@ abstract class JobServiceBaseClient
      * Cancels a DataLabelingJob. Success of cancellation is not guaranteed.
      *
      * The async variant is {@see self::cancelDataLabelingJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/cancel_data_labeling_job.php
      *
      * @param CancelDataLabelingJobRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -743,6 +772,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::cancelHyperparameterTuningJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/cancel_hyperparameter_tuning_job.php
+     *
      * @param CancelHyperparameterTuningJobRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -777,6 +808,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::cancelNasJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/cancel_nas_job.php
+     *
      * @param CancelNasJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -799,6 +832,8 @@ abstract class JobServiceBaseClient
      * right away be attempted to start.
      *
      * The async variant is {@see self::createBatchPredictionJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/create_batch_prediction_job.php
      *
      * @param CreateBatchPredictionJobRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -825,6 +860,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::createCustomJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/create_custom_job.php
+     *
      * @param CreateCustomJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -849,6 +886,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::createDataLabelingJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/create_data_labeling_job.php
+     *
      * @param CreateDataLabelingJobRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -872,6 +911,8 @@ abstract class JobServiceBaseClient
      * Creates a HyperparameterTuningJob
      *
      * The async variant is {@see self::createHyperparameterTuningJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/create_hyperparameter_tuning_job.php
      *
      * @param CreateHyperparameterTuningJobRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -898,6 +939,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::createModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/create_model_deployment_monitoring_job.php
+     *
      * @param CreateModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -921,6 +964,8 @@ abstract class JobServiceBaseClient
      * Creates a NasJob
      *
      * The async variant is {@see self::createNasJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/create_nas_job.php
      *
      * @param CreateNasJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -947,6 +992,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::deleteBatchPredictionJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/delete_batch_prediction_job.php
+     *
      * @param DeleteBatchPredictionJobRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -970,6 +1017,8 @@ abstract class JobServiceBaseClient
      * Deletes a CustomJob.
      *
      * The async variant is {@see self::deleteCustomJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/delete_custom_job.php
      *
      * @param DeleteCustomJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -995,6 +1044,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::deleteDataLabelingJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/delete_data_labeling_job.php
+     *
      * @param DeleteDataLabelingJobRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1018,6 +1069,8 @@ abstract class JobServiceBaseClient
      * Deletes a HyperparameterTuningJob.
      *
      * The async variant is {@see self::deleteHyperparameterTuningJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/delete_hyperparameter_tuning_job.php
      *
      * @param DeleteHyperparameterTuningJobRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1043,6 +1096,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::deleteModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/delete_model_deployment_monitoring_job.php
+     *
      * @param DeleteModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -1066,6 +1121,8 @@ abstract class JobServiceBaseClient
      * Deletes a NasJob.
      *
      * The async variant is {@see self::deleteNasJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/delete_nas_job.php
      *
      * @param DeleteNasJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1091,6 +1148,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::getBatchPredictionJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/get_batch_prediction_job.php
+     *
      * @param GetBatchPredictionJobRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1114,6 +1173,8 @@ abstract class JobServiceBaseClient
      * Gets a CustomJob.
      *
      * The async variant is {@see self::getCustomJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/get_custom_job.php
      *
      * @param GetCustomJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1139,6 +1200,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::getDataLabelingJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/get_data_labeling_job.php
+     *
      * @param GetDataLabelingJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1162,6 +1225,8 @@ abstract class JobServiceBaseClient
      * Gets a HyperparameterTuningJob
      *
      * The async variant is {@see self::getHyperparameterTuningJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/get_hyperparameter_tuning_job.php
      *
      * @param GetHyperparameterTuningJobRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1187,6 +1252,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::getModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/get_model_deployment_monitoring_job.php
+     *
      * @param GetModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -1210,6 +1277,8 @@ abstract class JobServiceBaseClient
      * Gets a NasJob
      *
      * The async variant is {@see self::getNasJobAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/get_nas_job.php
      *
      * @param GetNasJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1235,6 +1304,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::getNasTrialDetailAsync()} .
      *
+     * @example samples/V1/JobServiceClient/get_nas_trial_detail.php
+     *
      * @param GetNasTrialDetailRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1258,6 +1329,8 @@ abstract class JobServiceBaseClient
      * Lists BatchPredictionJobs in a Location.
      *
      * The async variant is {@see self::listBatchPredictionJobsAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/list_batch_prediction_jobs.php
      *
      * @param ListBatchPredictionJobsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1283,6 +1356,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::listCustomJobsAsync()} .
      *
+     * @example samples/V1/JobServiceClient/list_custom_jobs.php
+     *
      * @param ListCustomJobsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1306,6 +1381,8 @@ abstract class JobServiceBaseClient
      * Lists DataLabelingJobs in a Location.
      *
      * The async variant is {@see self::listDataLabelingJobsAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/list_data_labeling_jobs.php
      *
      * @param ListDataLabelingJobsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1331,6 +1408,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::listHyperparameterTuningJobsAsync()} .
      *
+     * @example samples/V1/JobServiceClient/list_hyperparameter_tuning_jobs.php
+     *
      * @param ListHyperparameterTuningJobsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -1354,6 +1433,8 @@ abstract class JobServiceBaseClient
      * Lists ModelDeploymentMonitoringJobs in a Location.
      *
      * The async variant is {@see self::listModelDeploymentMonitoringJobsAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/list_model_deployment_monitoring_jobs.php
      *
      * @param ListModelDeploymentMonitoringJobsRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -1379,6 +1460,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::listNasJobsAsync()} .
      *
+     * @example samples/V1/JobServiceClient/list_nas_jobs.php
+     *
      * @param ListNasJobsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1402,6 +1485,8 @@ abstract class JobServiceBaseClient
      * List top NasTrialDetails of a NasJob.
      *
      * The async variant is {@see self::listNasTrialDetailsAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/list_nas_trial_details.php
      *
      * @param ListNasTrialDetailsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1430,6 +1515,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::pauseModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/pause_model_deployment_monitoring_job.php
+     *
      * @param PauseModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -1454,6 +1541,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::resumeModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/resume_model_deployment_monitoring_job.php
+     *
      * @param ResumeModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -1476,6 +1565,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is
      * {@see self::searchModelDeploymentMonitoringStatsAnomaliesAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/search_model_deployment_monitoring_stats_anomalies.php
      *
      * @param SearchModelDeploymentMonitoringStatsAnomaliesRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {
@@ -1501,6 +1592,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::updateModelDeploymentMonitoringJobAsync()} .
      *
+     * @example samples/V1/JobServiceClient/update_model_deployment_monitoring_job.php
+     *
      * @param UpdateModelDeploymentMonitoringJobRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -1524,6 +1617,8 @@ abstract class JobServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1549,6 +1644,8 @@ abstract class JobServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/JobServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1573,6 +1670,8 @@ abstract class JobServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1601,6 +1700,8 @@ abstract class JobServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1631,6 +1732,8 @@ abstract class JobServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/JobServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

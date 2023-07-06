@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Address;
 use UnexpectedValueException;
 
 /**
- * The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
+ * The IP version that will be used by this address. Valid options are IPV4 or IPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.Address.IpVersion</code>
  */

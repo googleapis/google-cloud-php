@@ -23,6 +23,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureFlags extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     */
+    private $reverse_scans = false;
+    /**
      * Notify the server that the client enables batch write flow control by
      * requesting RateLimitInfo from MutateRowsResponse.
      *
@@ -36,6 +43,9 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $reverse_scans
+     *           Notify the server that the client supports reverse scans. The server will
+     *           reject ReadRowsRequests with the reverse bit set when this is absent.
      *     @type bool $mutate_rows_rate_limit
      *           Notify the server that the client enables batch write flow control by
      *           requesting RateLimitInfo from MutateRowsResponse.
@@ -44,6 +54,34 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\FeatureFlags::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     * @return bool
+     */
+    public function getReverseScans()
+    {
+        return $this->reverse_scans;
+    }
+
+    /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReverseScans($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reverse_scans = $var;
+
+        return $this;
     }
 
     /**

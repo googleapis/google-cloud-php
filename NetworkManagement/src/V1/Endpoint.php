@@ -37,6 +37,17 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $instance = '';
     /**
+     * A forwarding rule and its corresponding IP address represent the frontend
+     * configuration of a Google Cloud load balancer. Forwarding rules are also
+     * used for protocol forwarding, Private Service Connect and other network
+     * services to provide forwarding information in the control plane. Format:
+     *  projects/{project}/global/forwardingRules/{id} or
+     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 13;</code>
+     */
+    private $forwarding_rule = '';
+    /**
      * A cluster URI for [Google Kubernetes Engine
      * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
@@ -93,6 +104,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Only applicable when protocol is TCP or UDP.
      *     @type string $instance
      *           A Compute Engine instance URI.
+     *     @type string $forwarding_rule
+     *           A forwarding rule and its corresponding IP address represent the frontend
+     *           configuration of a Google Cloud load balancer. Forwarding rules are also
+     *           used for protocol forwarding, Private Service Connect and other network
+     *           services to provide forwarding information in the control plane. Format:
+     *            projects/{project}/global/forwardingRules/{id} or
+     *            projects/{project}/regions/{region}/forwardingRules/{id}
      *     @type string $gke_master_cluster
      *           A cluster URI for [Google Kubernetes Engine
      *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
@@ -201,6 +219,42 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A forwarding rule and its corresponding IP address represent the frontend
+     * configuration of a Google Cloud load balancer. Forwarding rules are also
+     * used for protocol forwarding, Private Service Connect and other network
+     * services to provide forwarding information in the control plane. Format:
+     *  projects/{project}/global/forwardingRules/{id} or
+     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 13;</code>
+     * @return string
+     */
+    public function getForwardingRule()
+    {
+        return $this->forwarding_rule;
+    }
+
+    /**
+     * A forwarding rule and its corresponding IP address represent the frontend
+     * configuration of a Google Cloud load balancer. Forwarding rules are also
+     * used for protocol forwarding, Private Service Connect and other network
+     * services to provide forwarding information in the control plane. Format:
+     *  projects/{project}/global/forwardingRules/{id} or
+     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule = $var;
 
         return $this;
     }

@@ -42,6 +42,31 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     private $backup = null;
 
     /**
+     * @param string                                 $parent   Required. This must be one of the clusters in the instance in which this
+     *                                                         table is located. The backup will be stored in this cluster. Values are
+     *                                                         of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
+     *                                                         {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
+     * @param string                                 $backupId Required. The id of the backup to be created. The `backup_id` along with
+     *                                                         the parent `parent` are combined as {parent}/backups/{backup_id} to create
+     *                                                         the full backup name, of the form:
+     *                                                         `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
+     *                                                         This string must be between 1 and 50 characters in length and match the
+     *                                                         regex [_a-zA-Z0-9][-_.a-zA-Z0-9]*.
+     * @param \Google\Cloud\Bigtable\Admin\V2\Backup $backup   Required. The backup to create.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $backupId, \Google\Cloud\Bigtable\Admin\V2\Backup $backup): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

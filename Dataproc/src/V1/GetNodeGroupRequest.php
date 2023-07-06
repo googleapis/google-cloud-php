@@ -25,6 +25,22 @@ class GetNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the node group to retrieve.
+     *                     Format:
+     *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+     *                     Please see {@see NodeGroupControllerClient::nodeGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\GetNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

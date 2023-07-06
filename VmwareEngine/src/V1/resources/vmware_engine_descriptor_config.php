@@ -79,6 +79,25 @@ return [
                     ],
                 ],
             ],
+            'CreatePrivateConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\PrivateConnection',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateVmwareEngineNetwork' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork',
@@ -139,6 +158,25 @@ return [
             'DeletePrivateCloud' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\PrivateCloud',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePrivateConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -291,6 +329,46 @@ return [
                     ],
                 ],
             ],
+            'UpdatePrivateConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\PrivateConnection',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'private_connection.name',
+                        'fieldAccessors' => [
+                            'getPrivateConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSubnet' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\Subnet',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'subnet.name',
+                        'fieldAccessors' => [
+                            'getSubnet',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateVmwareEngineNetwork' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork',
@@ -362,6 +440,30 @@ return [
             'GetPrivateCloud' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\PrivateCloud',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPrivateConnection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\PrivateConnection',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubnet' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\Subnet',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -474,6 +576,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\ListPrivateCloudsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPrivateConnectionPeeringRoutes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPeeringRoutes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPrivateConnections' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPrivateConnections',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -628,6 +770,8 @@ return [
                 'networkPolicy' => 'projects/{project}/locations/{location}/networkPolicies/{network_policy}',
                 'nodeType' => 'projects/{project}/locations/{location}/nodeTypes/{node_type}',
                 'privateCloud' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}',
+                'privateConnection' => 'projects/{project}/locations/{location}/privateConnections/{private_connection}',
+                'subnet' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/subnets/{subnet}',
                 'vmwareEngineNetwork' => 'projects/{project}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network}',
             ],
         ],

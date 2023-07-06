@@ -220,6 +220,31 @@ class SqlOperationType
      * Generated from protobuf enum <code>START_EXTERNAL_SYNC = 35;</code>
      */
     const START_EXTERNAL_SYNC = 35;
+    /**
+     * Recovers logs from an instance's old data disk.
+     *
+     * Generated from protobuf enum <code>LOG_CLEANUP = 36;</code>
+     */
+    const LOG_CLEANUP = 36;
+    /**
+     * Performs auto-restart of an HA-enabled Cloud SQL database for auto
+     * recovery.
+     *
+     * Generated from protobuf enum <code>AUTO_RESTART = 37;</code>
+     */
+    const AUTO_RESTART = 37;
+    /**
+     * Re-encrypts CMEK instances with latest key version.
+     *
+     * Generated from protobuf enum <code>REENCRYPT = 38;</code>
+     */
+    const REENCRYPT = 38;
+    /**
+     * Switches over to replica instance from primary.
+     *
+     * Generated from protobuf enum <code>SWITCHOVER = 39;</code>
+     */
+    const SWITCHOVER = 39;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -257,6 +282,10 @@ class SqlOperationType
         self::CREATE_CLONE => 'CREATE_CLONE',
         self::RESCHEDULE_MAINTENANCE => 'RESCHEDULE_MAINTENANCE',
         self::START_EXTERNAL_SYNC => 'START_EXTERNAL_SYNC',
+        self::LOG_CLEANUP => 'LOG_CLEANUP',
+        self::AUTO_RESTART => 'AUTO_RESTART',
+        self::REENCRYPT => 'REENCRYPT',
+        self::SWITCHOVER => 'SWITCHOVER',
     ];
 
     public static function name($value)

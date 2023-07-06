@@ -35,32 +35,61 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\CloudDms\V1\ApplyConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\CommitConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
+use Google\Cloud\CloudDms\V1\ConversionWorkspace;
+use Google\Cloud\CloudDms\V1\ConvertConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\CreateConnectionProfileRequest;
+use Google\Cloud\CloudDms\V1\CreateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\CreateMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\DeleteConnectionProfileRequest;
+use Google\Cloud\CloudDms\V1\DeleteConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\DeleteMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\DeletePrivateConnectionRequest;
+use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsRequest;
+use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
+use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest;
+use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
+use Google\Cloud\CloudDms\V1\FetchStaticIpsRequest;
+use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
 use Google\Cloud\CloudDms\V1\GenerateSshScriptRequest;
 use Google\Cloud\CloudDms\V1\GetConnectionProfileRequest;
+use Google\Cloud\CloudDms\V1\GetConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\GetMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest;
+use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest;
+use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesResponse;
+use Google\Cloud\CloudDms\V1\ListConversionWorkspacesRequest;
+use Google\Cloud\CloudDms\V1\ListConversionWorkspacesResponse;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsRequest;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsResponse;
+use Google\Cloud\CloudDms\V1\ListPrivateConnectionsRequest;
+use Google\Cloud\CloudDms\V1\ListPrivateConnectionsResponse;
 use Google\Cloud\CloudDms\V1\MigrationJob;
+use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Cloud\CloudDms\V1\PromoteMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\RestartMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\ResumeMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\RollbackConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\SearchBackgroundJobsRequest;
+use Google\Cloud\CloudDms\V1\SearchBackgroundJobsResponse;
+use Google\Cloud\CloudDms\V1\SeedConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\SshScript;
 use Google\Cloud\CloudDms\V1\StartMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\StopMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
+use Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VerifyMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VmCreationConfig;
 use Google\Cloud\CloudDms\V1\VmSelectionConfig;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Database Migration service
@@ -71,31 +100,29 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataMigrationServiceClient = new DataMigrationServiceClient();
  * try {
- *     $formattedParent = $dataMigrationServiceClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
- *     $connectionProfileId = 'connection_profile_id';
- *     $connectionProfile = new ConnectionProfile();
- *     $operationResponse = $dataMigrationServiceClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+ *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+ *     $operationResponse = $dataMigrationServiceClient->applyConversionWorkspace($formattedName);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataMigrationServiceClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+ *     $operationResponse = $dataMigrationServiceClient->applyConversionWorkspace($formattedName);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'createConnectionProfile');
+ *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'applyConversionWorkspace');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -109,6 +136,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient} to use the new
+ * surface.
  */
 class DataMigrationServiceGapicClient
 {
@@ -133,9 +164,15 @@ class DataMigrationServiceGapicClient
 
     private static $connectionProfileNameTemplate;
 
+    private static $conversionWorkspaceNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $migrationJobNameTemplate;
+
+    private static $networksNameTemplate;
+
+    private static $privateConnectionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -169,6 +206,15 @@ class DataMigrationServiceGapicClient
         return self::$connectionProfileNameTemplate;
     }
 
+    private static function getConversionWorkspaceNameTemplate()
+    {
+        if (self::$conversionWorkspaceNameTemplate == null) {
+            self::$conversionWorkspaceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}');
+        }
+
+        return self::$conversionWorkspaceNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -187,13 +233,34 @@ class DataMigrationServiceGapicClient
         return self::$migrationJobNameTemplate;
     }
 
+    private static function getNetworksNameTemplate()
+    {
+        if (self::$networksNameTemplate == null) {
+            self::$networksNameTemplate = new PathTemplate('projects/{project}/global/networks/{network}');
+        }
+
+        return self::$networksNameTemplate;
+    }
+
+    private static function getPrivateConnectionNameTemplate()
+    {
+        if (self::$privateConnectionNameTemplate == null) {
+            self::$privateConnectionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/privateConnections/{private_connection}');
+        }
+
+        return self::$privateConnectionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'connectionProfile' => self::getConnectionProfileNameTemplate(),
+                'conversionWorkspace' => self::getConversionWorkspaceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'migrationJob' => self::getMigrationJobNameTemplate(),
+                'networks' => self::getNetworksNameTemplate(),
+                'privateConnection' => self::getPrivateConnectionNameTemplate(),
             ];
         }
 
@@ -216,6 +283,25 @@ class DataMigrationServiceGapicClient
             'project' => $project,
             'location' => $location,
             'connection_profile' => $connectionProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversion_workspace resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversionWorkspace
+     *
+     * @return string The formatted conversion_workspace resource.
+     */
+    public static function conversionWorkspaceName($project, $location, $conversionWorkspace)
+    {
+        return self::getConversionWorkspaceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversion_workspace' => $conversionWorkspace,
         ]);
     }
 
@@ -256,12 +342,51 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a networks
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted networks resource.
+     */
+    public static function networksName($project, $network)
+    {
+        return self::getNetworksNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * private_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateConnection
+     *
+     * @return string The formatted private_connection resource.
+     */
+    public static function privateConnectionName($project, $location, $privateConnection)
+    {
+        return self::getPrivateConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_connection' => $privateConnection,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
+     * - conversionWorkspace: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}
      * - location: projects/{project}/locations/{location}
      * - migrationJob: projects/{project}/locations/{location}/migrationJobs/{migration_job}
+     * - networks: projects/{project}/global/networks/{network}
+     * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -389,6 +514,237 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Applies draft tree onto a specific destination database.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $operationResponse = $dataMigrationServiceClient->applyConversionWorkspace($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->applyConversionWorkspace($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'applyConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the conversion workspace resource for which to apply
+     *                             the draft tree. Must be in the form of:
+     *                             projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Filter which entities to apply. Leaving this field empty will apply all of
+     *           the entities. Supports Google AIP 160 based filtering.
+     *     @type string $connectionProfile
+     *           Fully qualified (Uri) name of the destination connection profile.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function applyConversionWorkspace($name, array $optionalArgs = [])
+    {
+        $request = new ApplyConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['connectionProfile'])) {
+            $request->setConnectionProfile($optionalArgs['connectionProfile']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ApplyConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Marks all the data in the conversion workspace as committed.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $operationResponse = $dataMigrationServiceClient->commitConversionWorkspace($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->commitConversionWorkspace($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'commitConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the conversion workspace resource to commit.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $commitName
+     *           Optional. Optional name of the commit.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function commitConversionWorkspace($name, array $optionalArgs = [])
+    {
+        $request = new CommitConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['commitName'])) {
+            $request->setCommitName($optionalArgs['commitName']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CommitConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a draft tree schema for the destination database.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $operationResponse = $dataMigrationServiceClient->convertConversionWorkspace();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->convertConversionWorkspace();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'convertConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Name of the conversion workspace resource to convert in the form of:
+     *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     *     @type bool $autoCommit
+     *           Specifies whether the conversion workspace is to be committed automatically
+     *           after the conversion.
+     *     @type string $filter
+     *           Filter the entities to convert. Leaving this field empty will convert all
+     *           of the entities. Supports Google AIP-160 style filtering.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function convertConversionWorkspace(array $optionalArgs = [])
+    {
+        $request = new ConvertConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['autoCommit'])) {
+            $request->setAutoCommit($optionalArgs['autoCommit']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ConvertConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Creates a new connection profile in a given project and location.
      *
      * Sample code:
@@ -402,7 +758,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -419,7 +775,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -429,20 +785,28 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param string            $parent              Required. The parent, which owns this collection of connection profiles.
+     * @param string            $parent              Required. The parent which owns this collection of connection profiles.
      * @param string            $connectionProfileId Required. The connection profile identifier.
      * @param ConnectionProfile $connectionProfile   Required. The create request body including the connection profile data
      * @param array             $optionalArgs        {
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $validateOnly
+     *           Optional. Only validate the connection profile, but don't create any
+     *           resources. The default is false. Only supported for Oracle connection
+     *           profiles.
+     *     @type bool $skipValidation
+     *           Optional. Create the connection profile without validating it.
+     *           The default is false.
+     *           Only supported for Oracle connection profiles.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -465,9 +829,99 @@ class DataMigrationServiceGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['skipValidation'])) {
+            $request->setSkipValidation($optionalArgs['skipValidation']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateConnectionProfile', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a new conversion workspace in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $conversionWorkspaceId = 'conversion_workspace_id';
+     *     $conversionWorkspace = new ConversionWorkspace();
+     *     $operationResponse = $dataMigrationServiceClient->createConversionWorkspace($formattedParent, $conversionWorkspaceId, $conversionWorkspace);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->createConversionWorkspace($formattedParent, $conversionWorkspaceId, $conversionWorkspace);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'createConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string              $parent                Required. The parent which owns this collection of conversion workspaces.
+     * @param string              $conversionWorkspaceId Required. The ID of the conversion workspace to create.
+     * @param ConversionWorkspace $conversionWorkspace   Required. Represents a conversion workspace object.
+     * @param array               $optionalArgs          {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createConversionWorkspace($parent, $conversionWorkspaceId, $conversionWorkspace, array $optionalArgs = [])
+    {
+        $request = new CreateConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setConversionWorkspaceId($conversionWorkspaceId);
+        $request->setConversionWorkspace($conversionWorkspace);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -484,7 +938,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -501,7 +955,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -511,7 +965,7 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The parent, which owns this collection of migration jobs.
+     * @param string       $parent         Required. The parent which owns this collection of migration jobs.
      * @param string       $migrationJobId Required. The ID of the instance to create.
      * @param MigrationJob $migrationJob   Required. Represents a [migration
      *                                     job](https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs)
@@ -520,12 +974,12 @@ class DataMigrationServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -552,6 +1006,94 @@ class DataMigrationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateMigrationJob', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a new private connection in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $privateConnectionId = 'private_connection_id';
+     *     $privateConnection = new PrivateConnection();
+     *     $operationResponse = $dataMigrationServiceClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'createPrivateConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent              Required. The parent that owns the collection of PrivateConnections.
+     * @param string            $privateConnectionId Required. The private connection identifier.
+     * @param PrivateConnection $privateConnection   Required. The private connection resource to create.
+     * @param array             $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $skipValidation
+     *           Optional. If set to true, will skip validations.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createPrivateConnection($parent, $privateConnectionId, $privateConnection, array $optionalArgs = [])
+    {
+        $request = new CreatePrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setPrivateConnectionId($privateConnectionId);
+        $request->setPrivateConnection($privateConnection);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['skipValidation'])) {
+            $request->setSkipValidation($optionalArgs['skipValidation']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreatePrivateConnection', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -598,12 +1140,12 @@ class DataMigrationServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      *     @type bool $force
      *           In case of force delete, the CloudSQL replica database is also deleted
@@ -635,6 +1177,80 @@ class DataMigrationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteConnectionProfile', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes a single conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $operationResponse = $dataMigrationServiceClient->deleteConversionWorkspace($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->deleteConversionWorkspace($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'deleteConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the conversion workspace resource to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteConversionWorkspace($name, array $optionalArgs = [])
+    {
+        $request = new DeleteConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -679,12 +1295,12 @@ class DataMigrationServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      *     @type bool $force
      *           The destination CloudSQL connection profile is always deleted with the
@@ -720,6 +1336,300 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Deletes a single Database Migration Service private connection.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+     *     $operationResponse = $dataMigrationServiceClient->deletePrivateConnection($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->deletePrivateConnection($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'deletePrivateConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the private connection to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deletePrivateConnection($name, array $optionalArgs = [])
+    {
+        $request = new DeletePrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeletePrivateConnection', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Retrieves a list of committed revisions of a specific conversion
+     * workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedConversionWorkspace = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $response = $dataMigrationServiceClient->describeConversionWorkspaceRevisions($formattedConversionWorkspace);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $conversionWorkspace Required. Name of the conversion workspace resource whose revisions are
+     *                                    listed. Must be in the form of:
+     *                                    projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $commitId
+     *           Optional. Optional filter to request a specific commit ID.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function describeConversionWorkspaceRevisions($conversionWorkspace, array $optionalArgs = [])
+    {
+        $request = new DescribeConversionWorkspaceRevisionsRequest();
+        $requestParamHeaders = [];
+        $request->setConversionWorkspace($conversionWorkspace);
+        $requestParamHeaders['conversion_workspace'] = $conversionWorkspace;
+        if (isset($optionalArgs['commitId'])) {
+            $request->setCommitId($optionalArgs['commitId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DescribeConversionWorkspaceRevisions', DescribeConversionWorkspaceRevisionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Describes the database entities tree for a specific conversion workspace
+     * and a specific tree type.
+     *
+     * Database entities are not resources like conversion workspaces or mapping
+     * rules, and they can't be created, updated or deleted. Instead, they are
+     * simple data objects describing the structure of the client database.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedConversionWorkspace = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataMigrationServiceClient->describeDatabaseEntities($formattedConversionWorkspace);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataMigrationServiceClient->describeDatabaseEntities($formattedConversionWorkspace);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $conversionWorkspace Required. Name of the conversion workspace resource whose database entities
+     *                                    are described. Must be in the form of:
+     *                                    projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs        {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $tree
+     *           The tree to fetch.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest\DBTreeType}
+     *     @type bool $uncommitted
+     *           Whether to retrieve the latest committed version of the entities or the
+     *           latest version. This field is ignored if a specific commit_id is specified.
+     *     @type string $commitId
+     *           Request a specific commit ID. If not specified, the entities from the
+     *           latest commit are returned.
+     *     @type string $filter
+     *           Filter the returned entities based on AIP-160 standard.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function describeDatabaseEntities($conversionWorkspace, array $optionalArgs = [])
+    {
+        $request = new DescribeDatabaseEntitiesRequest();
+        $requestParamHeaders = [];
+        $request->setConversionWorkspace($conversionWorkspace);
+        $requestParamHeaders['conversion_workspace'] = $conversionWorkspace;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['tree'])) {
+            $request->setTree($optionalArgs['tree']);
+        }
+
+        if (isset($optionalArgs['uncommitted'])) {
+            $request->setUncommitted($optionalArgs['uncommitted']);
+        }
+
+        if (isset($optionalArgs['commitId'])) {
+            $request->setCommitId($optionalArgs['commitId']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('DescribeDatabaseEntities', $optionalArgs, DescribeDatabaseEntitiesResponse::class, $request);
+    }
+
+    /**
+     * Fetches a set of static IP addresses that need to be allowlisted by the
+     * customer when using the static-IP connectivity method.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataMigrationServiceClient->fetchStaticIps($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataMigrationServiceClient->fetchStaticIps($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name for the location for which static IPs should be
+     *                             returned. Must be in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchStaticIps($name, array $optionalArgs = [])
+    {
+        $request = new FetchStaticIpsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('FetchStaticIps', $optionalArgs, FetchStaticIpsResponse::class, $request);
+    }
+
+    /**
      * Generate a SSH configuration script to configure the reverse SSH
      * connectivity.
      *
@@ -745,7 +1655,7 @@ class DataMigrationServiceGapicClient
      *     @type VmSelectionConfig $vmSelectionConfig
      *           The VM selection configuration
      *     @type int $vmPort
-     *           The port that will be open on the bastion host
+     *           The port that will be open on the bastion host.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -823,6 +1733,45 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Gets details of a single conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $response = $dataMigrationServiceClient->getConversionWorkspace($formattedName);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the conversion workspace resource to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\ConversionWorkspace
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getConversionWorkspace($name, array $optionalArgs = [])
+    {
+        $request = new GetConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetConversionWorkspace', ConversionWorkspace::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets details of a single migration job.
      *
      * Sample code:
@@ -862,7 +1811,134 @@ class DataMigrationServiceGapicClient
     }
 
     /**
-     * Retrieve a list of all connection profiles in a given project and location.
+     * Gets details of a single private connection.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+     *     $response = $dataMigrationServiceClient->getPrivateConnection($formattedName);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the private connection to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\PrivateConnection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getPrivateConnection($name, array $optionalArgs = [])
+    {
+        $request = new GetPrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetPrivateConnection', PrivateConnection::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Imports the mapping rules for a given conversion workspace.
+     * Supports various formats of external rules files.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'importMappingRules');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the conversion workspace resource to import the rules to
+     *                             in the form of:
+     *                             projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $rulesFormat
+     *           The format of the rules content file.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\ImportRulesFileFormat}
+     *     @type RulesFile[] $rulesFiles
+     *           One or more rules files.
+     *     @type bool $autoCommit
+     *           Should the conversion workspace be committed automatically after the
+     *           import operation.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importMappingRules($parent, array $optionalArgs = [])
+    {
+        $request = new ImportMappingRulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['rulesFormat'])) {
+            $request->setRulesFormat($optionalArgs['rulesFormat']);
+        }
+
+        if (isset($optionalArgs['rulesFiles'])) {
+            $request->setRulesFiles($optionalArgs['rulesFiles']);
+        }
+
+        if (isset($optionalArgs['autoCommit'])) {
+            $request->setAutoCommit($optionalArgs['autoCommit']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportMappingRules', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Retrieves a list of all connection profiles in a given project and
+     * location.
      *
      * Sample code:
      * ```
@@ -887,7 +1963,7 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of connection profiles.
+     * @param string $parent       Required. The parent which owns this collection of connection profiles.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -911,7 +1987,7 @@ class DataMigrationServiceGapicClient
      *           = %lt;my_username%gt;** to list all connection profiles configured to
      *           connect with a specific username.
      *     @type string $orderBy
-     *           the order by fields for the result.
+     *           A comma-separated list of fields to order results according to.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -950,6 +2026,88 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Lists conversion workspaces in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataMigrationServiceClient->listConversionWorkspaces($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataMigrationServiceClient->listConversionWorkspaces($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent which owns this collection of conversion workspaces.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that filters conversion workspaces listed in the
+     *           response. The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value must
+     *           be a string, a number, or a boolean. The comparison operator must be either
+     *           =, !=, >, or <. For example, list conversion workspaces created this year
+     *           by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can
+     *           also filter nested fields. For example, you could specify
+     *           **source.version = "12.c.1"** to select all conversion workspaces with
+     *           source database version equal to 12.c.1.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listConversionWorkspaces($parent, array $optionalArgs = [])
+    {
+        $request = new ListConversionWorkspacesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListConversionWorkspaces', $optionalArgs, ListConversionWorkspacesResponse::class, $request);
+    }
+
+    /**
      * Lists migration jobs in a given project and location.
      *
      * Sample code:
@@ -975,7 +2133,7 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of migrationJobs.
+     * @param string $parent       Required. The parent which owns this collection of migrationJobs.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1039,6 +2197,91 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Retrieves a list of private connections in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedParent = $dataMigrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataMigrationServiceClient->listPrivateConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataMigrationServiceClient->listPrivateConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent that owns the collection of private connections.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that filters private connections listed in the
+     *           response. The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value must
+     *           be a string, a number, or a boolean. The comparison operator must be either
+     *           =, !=, >, or <. For example, list private connections created this year by
+     *           specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
+     *     @type string $orderBy
+     *           Order by fields for the result.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listPrivateConnections($parent, array $optionalArgs = [])
+    {
+        $request = new ListPrivateConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListPrivateConnections', $optionalArgs, ListPrivateConnectionsResponse::class, $request);
+    }
+
+    /**
      * Promote a migration job, stopping replication to the destination and
      * promoting the destination to be a standalone database.
      *
@@ -1050,7 +2293,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1067,7 +2310,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1119,7 +2362,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1136,7 +2379,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1187,7 +2430,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1204,7 +2447,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1244,6 +2487,227 @@ class DataMigrationServiceGapicClient
     }
 
     /**
+     * Rolls back a conversion workspace to the last committed snapshot.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedName = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $operationResponse = $dataMigrationServiceClient->rollbackConversionWorkspace($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->rollbackConversionWorkspace($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'rollbackConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the conversion workspace resource to roll back to.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rollbackConversionWorkspace($name, array $optionalArgs = [])
+    {
+        $request = new RollbackConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RollbackConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Searches/lists the background jobs for a specific
+     * conversion workspace.
+     *
+     * The background jobs are not resources like conversion workspaces or
+     * mapping rules, and they can't be created, updated or deleted.
+     * Instead, they are a way to expose the data plane jobs log.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $formattedConversionWorkspace = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+     *     $response = $dataMigrationServiceClient->searchBackgroundJobs($formattedConversionWorkspace);
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $conversionWorkspace Required. Name of the conversion workspace resource whose jobs are listed,
+     *                                    in the form of:
+     *                                    projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs        {
+     *     Optional.
+     *
+     *     @type bool $returnMostRecentPerJobType
+     *           Optional. Whether or not to return just the most recent job per job type,
+     *     @type int $maxSize
+     *           Optional. The maximum number of jobs to return. The service may return
+     *           fewer than this value. If unspecified, at most 100 jobs are
+     *           returned. The maximum value is 100; values above 100 are coerced to
+     *           100.
+     *     @type Timestamp $completedUntilTime
+     *           Optional. If provided, only returns jobs that completed until (not
+     *           including) the given timestamp.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CloudDms\V1\SearchBackgroundJobsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchBackgroundJobs($conversionWorkspace, array $optionalArgs = [])
+    {
+        $request = new SearchBackgroundJobsRequest();
+        $requestParamHeaders = [];
+        $request->setConversionWorkspace($conversionWorkspace);
+        $requestParamHeaders['conversion_workspace'] = $conversionWorkspace;
+        if (isset($optionalArgs['returnMostRecentPerJobType'])) {
+            $request->setReturnMostRecentPerJobType($optionalArgs['returnMostRecentPerJobType']);
+        }
+
+        if (isset($optionalArgs['maxSize'])) {
+            $request->setMaxSize($optionalArgs['maxSize']);
+        }
+
+        if (isset($optionalArgs['completedUntilTime'])) {
+            $request->setCompletedUntilTime($optionalArgs['completedUntilTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SearchBackgroundJobs', SearchBackgroundJobsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Imports a snapshot of the source database into the
+     * conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $operationResponse = $dataMigrationServiceClient->seedConversionWorkspace();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->seedConversionWorkspace();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'seedConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Name of the conversion workspace resource to seed with new database
+     *           structure, in the form of:
+     *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     *     @type bool $autoCommit
+     *           Should the conversion workspace be committed automatically after the
+     *           seed operation.
+     *     @type string $sourceConnectionProfile
+     *           Fully qualified (Uri) name of the source connection profile.
+     *     @type string $destinationConnectionProfile
+     *           Fully qualified (Uri) name of the destination connection profile.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function seedConversionWorkspace(array $optionalArgs = [])
+    {
+        $request = new SeedConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['autoCommit'])) {
+            $request->setAutoCommit($optionalArgs['autoCommit']);
+        }
+
+        if (isset($optionalArgs['sourceConnectionProfile'])) {
+            $request->setSourceConnectionProfile($optionalArgs['sourceConnectionProfile']);
+        }
+
+        if (isset($optionalArgs['destinationConnectionProfile'])) {
+            $request->setDestinationConnectionProfile($optionalArgs['destinationConnectionProfile']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SeedConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Start an already created migration job.
      *
      * Sample code:
@@ -1254,7 +2718,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1271,7 +2735,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1321,7 +2785,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1338,7 +2802,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1390,7 +2854,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1407,7 +2871,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1417,20 +2881,28 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask         $updateMask        Required. Field mask is used to specify the fields to be overwritten in the
-     *                                             connection profile resource by the update.
+     * @param FieldMask         $updateMask        Required. Field mask is used to specify the fields to be overwritten by the
+     *                                             update in the conversion workspace resource.
      * @param ConnectionProfile $connectionProfile Required. The connection profile parameters to update.
      * @param array             $optionalArgs      {
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type bool $validateOnly
+     *           Optional. Only validate the connection profile, but don't update any
+     *           resources. The default is false. Only supported for Oracle connection
+     *           profiles.
+     *     @type bool $skipValidation
+     *           Optional. Update the connection profile without validating it.
+     *           The default is false.
+     *           Only supported for Oracle connection profiles.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1452,9 +2924,97 @@ class DataMigrationServiceGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['skipValidation'])) {
+            $request->setSkipValidation($optionalArgs['skipValidation']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateConnectionProfile', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Updates the parameters of a single conversion workspace.
+     *
+     * Sample code:
+     * ```
+     * $dataMigrationServiceClient = new DataMigrationServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $conversionWorkspace = new ConversionWorkspace();
+     *     $operationResponse = $dataMigrationServiceClient->updateConversionWorkspace($updateMask, $conversionWorkspace);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataMigrationServiceClient->updateConversionWorkspace($updateMask, $conversionWorkspace);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'updateConversionWorkspace');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataMigrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask           $updateMask          Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                 update in the conversion workspace resource.
+     * @param ConversionWorkspace $conversionWorkspace Required. The conversion workspace parameters to update.
+     * @param array               $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
+     *
+     *           It is recommended to always set this value to a UUID.
+     *
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateConversionWorkspace($updateMask, $conversionWorkspace, array $optionalArgs = [])
+    {
+        $request = new UpdateConversionWorkspaceRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setConversionWorkspace($conversionWorkspace);
+        $requestParamHeaders['conversion_workspace.name'] = $conversionWorkspace->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateConversionWorkspace', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1470,7 +3030,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1487,7 +3047,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1497,19 +3057,19 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask    $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                   migration job resource by the update.
+     * @param FieldMask    $updateMask   Required. Field mask is used to specify the fields to be overwritten by the
+     *                                   update in the conversion workspace resource.
      * @param MigrationJob $migrationJob Required. The migration job parameters to update.
      * @param array        $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *
      *           It is recommended to always set this value to a UUID.
      *
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1549,7 +3109,7 @@ class DataMigrationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1566,7 +3126,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -53,6 +53,24 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                     $parent  Required. The parent resource. Please see
+     *                                                            {@see HubServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkConnectivity\V1\Spoke $spoke   Required. The initial values for a new spoke.
+     * @param string                                     $spokeId Required. Unique id for the spoke to create.
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkConnectivity\V1\Spoke $spoke, string $spokeId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSpoke($spoke)
+            ->setSpokeId($spokeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

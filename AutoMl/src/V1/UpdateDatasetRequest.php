@@ -29,6 +29,21 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AutoMl\V1\Dataset $dataset    Required. The dataset which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask      $updateMask Required. The update mask applies to the resource.
+     *
+     * @return \Google\Cloud\AutoMl\V1\UpdateDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AutoMl\V1\Dataset $dataset, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataset($dataset)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

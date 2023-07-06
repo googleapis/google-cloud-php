@@ -27,7 +27,10 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * The maximum number of results to return per response.
+     * The maximum number of instances to return. The service may return fewer
+     * than this value.
+     * If unspecified, at most 500 instances are returned.
+     * The maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>uint32 max_results = 2;</code>
      */
@@ -62,7 +65,10 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      *           expression is an AND expression. However, you can include AND and OR
      *           expressions explicitly.
      *     @type int $max_results
-     *           The maximum number of results to return per response.
+     *           The maximum number of instances to return. The service may return fewer
+     *           than this value.
+     *           If unspecified, at most 500 instances are returned.
+     *           The maximum value is 1000; values above 1000 are coerced to 1000.
      *     @type string $page_token
      *           A previously-returned page token representing part of the larger set of
      *           results to view.
@@ -116,7 +122,10 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results to return per response.
+     * The maximum number of instances to return. The service may return fewer
+     * than this value.
+     * If unspecified, at most 500 instances are returned.
+     * The maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>uint32 max_results = 2;</code>
      * @return int
@@ -127,7 +136,10 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results to return per response.
+     * The maximum number of instances to return. The service may return fewer
+     * than this value.
+     * If unspecified, at most 500 instances are returned.
+     * The maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>uint32 max_results = 2;</code>
      * @param int $var

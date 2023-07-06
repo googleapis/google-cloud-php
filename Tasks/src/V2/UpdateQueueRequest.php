@@ -34,6 +34,29 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Tasks\V2\Queue $queue      Required. The queue to create or update.
+     *
+     *                                                 The queue's [name][google.cloud.tasks.v2.Queue.name] must be specified.
+     *
+     *                                                 Output only fields cannot be modified using UpdateQueue.
+     *                                                 Any value specified for an output only field will be ignored.
+     *                                                 The queue's [name][google.cloud.tasks.v2.Queue.name] cannot be changed.
+     * @param \Google\Protobuf\FieldMask   $updateMask A mask used to specify which fields of the queue are being updated.
+     *
+     *                                                 If empty, then all fields will be updated.
+     *
+     * @return \Google\Cloud\Tasks\V2\UpdateQueueRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Tasks\V2\Queue $queue, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setQueue($queue)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

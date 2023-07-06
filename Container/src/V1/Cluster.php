@@ -273,7 +273,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $shielded_nodes = null;
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      */
@@ -520,6 +525,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.Fleet fleet = 140;</code>
      */
     private $fleet = null;
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     */
+    private $security_posture_config = null;
+    /**
+     * Beta APIs Config
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
+     */
+    private $enable_k8s_beta_apis = null;
 
     /**
      * Constructor.
@@ -659,7 +676,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ShieldedNodes $shielded_nodes
      *           Shielded Nodes configuration.
      *     @type \Google\Cloud\Container\V1\ReleaseChannel $release_channel
-     *           Release channel configuration.
+     *           Release channel configuration. If left unspecified on cluster creation and
+     *           a version is specified, the cluster is enrolled in the most mature release
+     *           channel where the version is available (first checking STABLE, then
+     *           REGULAR, and finally RAPID). Otherwise, if no release channel
+     *           configuration and no version is specified, the cluster is enrolled in the
+     *           REGULAR channel with its default version.
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $workload_identity_config
      *           Configuration for the use of Kubernetes Service Accounts in GCP IAM
      *           policies.
@@ -769,6 +791,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           up-to-date value before proceeding.
      *     @type \Google\Cloud\Container\V1\Fleet $fleet
      *           Fleet information for the cluster.
+     *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $security_posture_config
+     *           Enable/Disable Security Posture API features for the cluster.
+     *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
+     *           Beta APIs Config
      * }
      */
     public function __construct($data = NULL) {
@@ -1911,7 +1937,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      * @return \Google\Cloud\Container\V1\ReleaseChannel|null
@@ -1932,7 +1963,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and
+     * a version is specified, the cluster is enrolled in the most mature release
+     * channel where the version is available (first checking STABLE, then
+     * REGULAR, and finally RAPID). Otherwise, if no release channel
+     * configuration and no version is specified, the cluster is enrolled in the
+     * REGULAR channel with its default version.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      * @param \Google\Cloud\Container\V1\ReleaseChannel $var
@@ -3004,6 +3040,78 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\Fleet::class);
         $this->fleet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * @return \Google\Cloud\Container\V1\SecurityPostureConfig|null
+     */
+    public function getSecurityPostureConfig()
+    {
+        return $this->security_posture_config;
+    }
+
+    public function hasSecurityPostureConfig()
+    {
+        return isset($this->security_posture_config);
+    }
+
+    public function clearSecurityPostureConfig()
+    {
+        unset($this->security_posture_config);
+    }
+
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * @param \Google\Cloud\Container\V1\SecurityPostureConfig $var
+     * @return $this
+     */
+    public function setSecurityPostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecurityPostureConfig::class);
+        $this->security_posture_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Beta APIs Config
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
+     * @return \Google\Cloud\Container\V1\K8sBetaAPIConfig|null
+     */
+    public function getEnableK8SBetaApis()
+    {
+        return $this->enable_k8s_beta_apis;
+    }
+
+    public function hasEnableK8SBetaApis()
+    {
+        return isset($this->enable_k8s_beta_apis);
+    }
+
+    public function clearEnableK8SBetaApis()
+    {
+        unset($this->enable_k8s_beta_apis);
+    }
+
+    /**
+     * Beta APIs Config
+     *
+     * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
+     * @param \Google\Cloud\Container\V1\K8sBetaAPIConfig $var
+     * @return $this
+     */
+    public function setEnableK8SBetaApis($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
+        $this->enable_k8s_beta_apis = $var;
 
         return $this;
     }

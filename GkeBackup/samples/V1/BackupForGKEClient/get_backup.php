@@ -32,7 +32,7 @@ use Google\Cloud\GkeBackup\V1\GetBackupRequest;
  * Retrieve the details of a single Backup.
  *
  * @param string $formattedName Full name of the Backup resource.
- *                              Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+ *                              Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
  *                              Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
  */
 function get_backup_sample(string $formattedName): void

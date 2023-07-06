@@ -35,6 +35,23 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $forwardingRule Name of the ForwardingRule resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $forwardingRule): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setForwardingRule($forwardingRule);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

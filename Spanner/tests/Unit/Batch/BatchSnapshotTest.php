@@ -87,7 +87,10 @@ class BatchSnapshotTest extends TestCase
         $this->snapshot->close();
     }
 
-    public function testPartitionRead()
+    /**
+     * @dataProvider partitionReadAndQueryOptions
+     */
+    public function testPartitionRead($testCaseOptions)
     {
         $table = 'table';
         $keySet = new KeySet(['all' =>  true]);
@@ -96,20 +99,28 @@ class BatchSnapshotTest extends TestCase
             'index' => 'foo',
             'maxPartitions' => 10,
             'partitionSizeBytes' => 1
-        ];
+        ] + $testCaseOptions;
 
-        $this->connection->partitionRead(Argument::allOf(
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('table', $table),
-            Argument::withEntry('columns', $columns),
-            Argument::withEntry('keySet', $keySet->keySetObject()),
-            Argument::withEntry('index', $opts['index']),
-            Argument::withEntry('partitionOptions', [
+        $expectedArguments = [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'table' => $table,
+            'columns' => $columns,
+            'keySet' => $keySet->keySetObject(),
+            'index' => $opts['index'],
+            'partitionOptions' => [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
-            ])
+            ]
+        ];
+
+        $expectedArguments += $testCaseOptions;
+
+        $this->connection->partitionRead(Argument::that(
+            function ($actualArguments) use ($expectedArguments) {
+                return $actualArguments == $expectedArguments;
+            }
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
@@ -131,7 +142,10 @@ class BatchSnapshotTest extends TestCase
         $this->assertEquals($opts, $partitions[0]->options());
     }
 
-    public function testPartitionQuery()
+    /**
+     * @dataProvider partitionReadAndQueryOptions
+     */
+    public function testPartitionQuery(array $testCaseOptions)
     {
         $sql = 'SELECT 1=1';
         $opts = [
@@ -140,19 +154,27 @@ class BatchSnapshotTest extends TestCase
             ],
             'maxPartitions' => 10,
             'partitionSizeBytes' => 1
-        ];
+        ] + $testCaseOptions;
 
-        $this->connection->partitionQuery(Argument::allOf(
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('params', $opts['parameters']),
-            Argument::withEntry('paramTypes', ['foo' => ['code' => 6]]),
-            Argument::withEntry('partitionOptions', [
+        $expectedArguments = [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'sql' => $sql,
+            'params' => $opts['parameters'],
+            'paramTypes' => ['foo' => ['code' => 6]],
+            'partitionOptions' => [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
-            ])
+            ]
+        ];
+
+        $expectedArguments += $testCaseOptions;
+
+        $this->connection->partitionQuery(Argument::that(
+            function ($actualArguments) use ($expectedArguments) {
+                return $actualArguments == $expectedArguments;
+            }
         ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
@@ -253,6 +275,14 @@ class BatchSnapshotTest extends TestCase
 
         $dummy = new DummyPartition;
         $this->snapshot->executePartition($dummy);
+    }
+
+    public function partitionReadAndQueryOptions()
+    {
+        return [
+            [['dataBoostEnabled' => false]],
+            [['dataBoostEnabled' => true]]
+        ];
     }
 }
 

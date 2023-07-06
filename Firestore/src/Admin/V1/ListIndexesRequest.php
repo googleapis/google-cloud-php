@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes].
+ * The request for
+ * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ListIndexesRequest</code>
  */
@@ -36,12 +37,27 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. A parent name of the form
+     *                       `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *                       Please see {@see FirestoreAdminClient::collectionGroupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ListIndexesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -58,8 +74,8 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
      *           The number of results to return.
      *     @type string $page_token
      *           A page token, returned from a previous call to
-     *           [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes], that may be used to get the next
-     *           page of results.
+     *           [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes],
+     *           that may be used to get the next page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,8 +165,8 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -162,8 +178,8 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, returned from a previous call to
-     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes], that may be used to get the next
-     * page of results.
+     * [FirestoreAdmin.ListIndexes][google.firestore.admin.v1.FirestoreAdmin.ListIndexes],
+     * that may be used to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

@@ -56,6 +56,17 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     protected $attribution_token = '';
     /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     */
+    protected $redirect_uri = '';
+    /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
@@ -112,6 +123,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] logs resulting
      *           from this search, which enables accurate attribution of search model
      *           performance.
+     *     @type string $redirect_uri
+     *           The URI of a customer-defined redirect page. If redirect action is
+     *           triggered, no search is performed, and only
+     *           [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     *           and
+     *           [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     *           are set in the response.
      *     @type string $next_page_token
      *           A token that can be sent as
      *           [SearchRequest.page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
@@ -287,6 +305,42 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->attribution_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @return string
+     */
+    public function getRedirectUri()
+    {
+        return $this->redirect_uri;
+    }
+
+    /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedirectUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redirect_uri = $var;
 
         return $this;
     }

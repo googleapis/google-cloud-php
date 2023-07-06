@@ -35,6 +35,23 @@ class GetNetworkAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project           Project ID for this request.
+     * @param string $region            Name of the region of this request.
+     * @param string $networkAttachment Name of the NetworkAttachment resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNetworkAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $networkAttachment): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkAttachment($networkAttachment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

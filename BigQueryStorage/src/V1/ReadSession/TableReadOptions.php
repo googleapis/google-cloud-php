@@ -72,6 +72,17 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string row_restriction = 2;</code>
      */
     private $row_restriction = '';
+    /**
+     * Optional. Specifies a table sampling percentage. Specifically, the query
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
+     *
+     * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sample_percentage = null;
     protected $output_format_serialization_options;
 
     /**
@@ -133,6 +144,13 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           Optional. Options specific to the Apache Arrow output format.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions $avro_serialization_options
      *           Optional. Options specific to the Apache Avro output format
+     *     @type float $sample_percentage
+     *           Optional. Specifies a table sampling percentage. Specifically, the query
+     *           planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     *           sampling percentage is applied at the data block granularity. It will
+     *           randomly choose for each data block whether to read the rows in that data
+     *           block. For more details, see
+     *           https://cloud.google.com/bigquery/docs/table-sampling)
      * }
      */
     public function __construct($data = NULL) {
@@ -340,6 +358,52 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies a table sampling percentage. Specifically, the query
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
+     *
+     * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getSamplePercentage()
+    {
+        return isset($this->sample_percentage) ? $this->sample_percentage : 0.0;
+    }
+
+    public function hasSamplePercentage()
+    {
+        return isset($this->sample_percentage);
+    }
+
+    public function clearSamplePercentage()
+    {
+        unset($this->sample_percentage);
+    }
+
+    /**
+     * Optional. Specifies a table sampling percentage. Specifically, the query
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
+     *
+     * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSamplePercentage($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->sample_percentage = $var;
 
         return $this;
     }

@@ -31,6 +31,22 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     private $output_config = null;
 
     /**
+     * @param string                                          $name         Required. The resource name of the model to export. Please see
+     *                                                                      {@see AutoMlClient::modelName()} for help formatting this field.
+     * @param \Google\Cloud\AutoMl\V1\ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
+     *
+     * @return \Google\Cloud\AutoMl\V1\ExportModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\AutoMl\V1\ModelExportOutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setOutputConfig($outputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

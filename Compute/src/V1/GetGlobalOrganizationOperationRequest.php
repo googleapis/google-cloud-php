@@ -29,6 +29,19 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     private $parent_id = null;
 
     /**
+     * @param string $operation Name of the Operations resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $operation): self
+    {
+        return (new self())
+            ->setOperation($operation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

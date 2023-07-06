@@ -59,6 +59,18 @@ class CryptoKeyVersionAlgorithm
      */
     const GOOGLE_SYMMETRIC_ENCRYPTION = 1;
     /**
+     * AES-GCM (Galois Counter Mode) using 128-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_128_GCM = 41;</code>
+     */
+    const AES_128_GCM = 41;
+    /**
+     * AES-GCM (Galois Counter Mode) using 256-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_256_GCM = 19;</code>
+     */
+    const AES_256_GCM = 19;
+    /**
      * RSASSA-PSS 2048 bit key with a SHA256 digest.
      *
      * Generated from protobuf enum <code>RSA_SIGN_PSS_2048_SHA256 = 2;</code>
@@ -231,6 +243,8 @@ class CryptoKeyVersionAlgorithm
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
         self::GOOGLE_SYMMETRIC_ENCRYPTION => 'GOOGLE_SYMMETRIC_ENCRYPTION',
+        self::AES_128_GCM => 'AES_128_GCM',
+        self::AES_256_GCM => 'AES_256_GCM',
         self::RSA_SIGN_PSS_2048_SHA256 => 'RSA_SIGN_PSS_2048_SHA256',
         self::RSA_SIGN_PSS_3072_SHA256 => 'RSA_SIGN_PSS_3072_SHA256',
         self::RSA_SIGN_PSS_4096_SHA256 => 'RSA_SIGN_PSS_4096_SHA256',

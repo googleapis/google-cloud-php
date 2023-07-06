@@ -22,11 +22,29 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $threat_types;
+
+    /**
+     * @param string $uri         Required. The URI to be checked for matches.
+     * @param int[]  $threatTypes Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *                            specified.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
+     *
+     * @return \Google\Cloud\WebRisk\V1\SearchUrisRequest
+     *
+     * @experimental
+     */
+    public static function build(string $uri, array $threatTypes): self
+    {
+        return (new self())
+            ->setUri($uri)
+            ->setThreatTypes($threatTypes);
+    }
 
     /**
      * Constructor.
@@ -37,7 +55,8 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Required. The URI to be checked for matches.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
-     *           Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     *           Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *           specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +91,8 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,7 +103,8 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
+     * Required. The ThreatLists to search in. Multiple ThreatLists may be
+     * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

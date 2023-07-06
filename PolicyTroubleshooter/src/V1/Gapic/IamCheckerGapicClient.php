@@ -51,6 +51,10 @@ use Google\Cloud\PolicyTroubleshooter\V1\TroubleshootIamPolicyResponse;
  *     $iamCheckerClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PolicyTroubleshooter\V1\Client\IamCheckerClient} to use the new
+ * surface.
  */
 class IamCheckerGapicClient
 {

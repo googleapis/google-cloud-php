@@ -35,6 +35,23 @@ class GetRegionInstanceGroupRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project       Project ID for this request.
+     * @param string $region        Name of the region scoping this request.
+     * @param string $instanceGroup Name of the instance group resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionInstanceGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroup($instanceGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

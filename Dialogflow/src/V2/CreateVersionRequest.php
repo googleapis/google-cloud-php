@@ -33,6 +33,26 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
     private $version = null;
 
     /**
+     * @param string                              $parent  Required. The agent to create a version for.
+     *                                                     Supported formats:
+     *
+     *                                                     - `projects/<Project ID>/agent`
+     *                                                     - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                                                     Please see {@see VersionsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Version $version Required. The version to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Version $version): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setVersion($version);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

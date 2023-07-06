@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the undeploy processor version method.
+ * Request message for the
+ * [UndeployProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.UndeployProcessorVersion]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.UndeployProcessorVersionRequest</code>
  */
@@ -21,6 +23,20 @@ class UndeployProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The processor version resource name to be undeployed. Please see
+     *                     {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -32,6 +32,41 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
     private $app_profile_id = '';
 
     /**
+     * @param string $name Required. The unique name of the instance to check permissions for as well
+     *                     as respond. Values are of the form
+     *                     `projects/<project>/instances/<instance>`. Please see
+     *                     {@see BigtableClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\V2\PingAndWarmRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
+     * @param string $name         Required. The unique name of the instance to check permissions for as well
+     *                             as respond. Values are of the form
+     *                             `projects/<project>/instances/<instance>`. Please see
+     *                             {@see BigtableClient::instanceName()} for help formatting this field.
+     * @param string $appProfileId This value specifies routing for replication. If not specified, the
+     *                             "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\PingAndWarmRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameAppProfileId(string $name, string $appProfileId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setAppProfileId($appProfileId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

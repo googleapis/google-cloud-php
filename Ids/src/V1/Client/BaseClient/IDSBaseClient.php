@@ -54,7 +54,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Ids\V1\IDSClient} for the stable implementation
  *
  * @experimental
  *
@@ -275,6 +276,8 @@ abstract class IDSBaseClient
      *
      * The async variant is {@see self::createEndpointAsync()} .
      *
+     * @example samples/V1/IDSClient/create_endpoint.php
+     *
      * @param CreateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -298,6 +301,8 @@ abstract class IDSBaseClient
      * Deletes a single Endpoint.
      *
      * The async variant is {@see self::deleteEndpointAsync()} .
+     *
+     * @example samples/V1/IDSClient/delete_endpoint.php
      *
      * @param DeleteEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -323,6 +328,8 @@ abstract class IDSBaseClient
      *
      * The async variant is {@see self::getEndpointAsync()} .
      *
+     * @example samples/V1/IDSClient/get_endpoint.php
+     *
      * @param GetEndpointRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -346,6 +353,8 @@ abstract class IDSBaseClient
      * Lists Endpoints in a given project and location.
      *
      * The async variant is {@see self::listEndpointsAsync()} .
+     *
+     * @example samples/V1/IDSClient/list_endpoints.php
      *
      * @param ListEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

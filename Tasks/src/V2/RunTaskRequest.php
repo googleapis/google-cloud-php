@@ -40,6 +40,21 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
     private $response_view = 0;
 
     /**
+     * @param string $name Required. The task name. For example:
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *                     Please see {@see CloudTasksClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Tasks\V2\RunTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

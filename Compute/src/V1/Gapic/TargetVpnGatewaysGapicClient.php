@@ -73,6 +73,9 @@ use Google\Cloud\Compute\V1\TargetVpnGatewayList;
  *     $targetVpnGatewaysClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient} to use the new surface.
  */
 class TargetVpnGatewaysGapicClient
 {

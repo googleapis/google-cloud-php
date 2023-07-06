@@ -43,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Metastore\V1\AlterMetadataResourceLocationRequest;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
@@ -57,6 +58,9 @@ use Google\Cloud\Metastore\V1\ListBackupsRequest;
 use Google\Cloud\Metastore\V1\ListMetadataImportsRequest;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\MoveTableToDatabaseRequest;
+use Google\Cloud\Metastore\V1\QueryMetadataRequest;
+use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
@@ -91,12 +95,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Metastore\V1\DataprocMetastoreClient} for the stable
+ * implementation
  *
  * @experimental
  *
  * @internal
  *
+ * @method PromiseInterface alterMetadataResourceLocationAsync(AlterMetadataResourceLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createMetadataImportAsync(CreateMetadataImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
@@ -109,6 +116,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMetadataImportsAsync(ListMetadataImportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveTableToDatabaseAsync(MoveTableToDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryMetadataAsync(QueryMetadataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreServiceAsync(RestoreServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMetadataImportAsync(UpdateMetadataImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
@@ -406,9 +415,40 @@ abstract class DataprocMetastoreBaseClient
     }
 
     /**
+     * Alter metadata resource location. The metadata resource can be a database,
+     * table, or partition. This functionality only updates the parent directory
+     * for the respective metadata resource and does not transfer any existing
+     * data to the new location.
+     *
+     * The async variant is {@see self::alterMetadataResourceLocationAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/alter_metadata_resource_location.php
+     *
+     * @param AlterMetadataResourceLocationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function alterMetadataResourceLocation(AlterMetadataResourceLocationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AlterMetadataResourceLocation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new backup in a given project and location.
      *
      * The async variant is {@see self::createBackupAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/create_backup.php
      *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -434,6 +474,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::createMetadataImportAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/create_metadata_import.php
+     *
      * @param CreateMetadataImportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -457,6 +499,8 @@ abstract class DataprocMetastoreBaseClient
      * Creates a metastore service in a project and location.
      *
      * The async variant is {@see self::createServiceAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/create_service.php
      *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -482,6 +526,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::deleteBackupAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/delete_backup.php
+     *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -505,6 +551,8 @@ abstract class DataprocMetastoreBaseClient
      * Deletes a single service.
      *
      * The async variant is {@see self::deleteServiceAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/delete_service.php
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -530,6 +578,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::exportMetadataAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/export_metadata.php
+     *
      * @param ExportMetadataRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -553,6 +603,8 @@ abstract class DataprocMetastoreBaseClient
      * Gets details of a single backup.
      *
      * The async variant is {@see self::getBackupAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -578,6 +630,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::getMetadataImportAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/get_metadata_import.php
+     *
      * @param GetMetadataImportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -601,6 +655,8 @@ abstract class DataprocMetastoreBaseClient
      * Gets the details of a single service.
      *
      * The async variant is {@see self::getServiceAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/get_service.php
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -626,6 +682,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::listBackupsAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/list_backups.php
+     *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -649,6 +707,8 @@ abstract class DataprocMetastoreBaseClient
      * Lists imports in a service.
      *
      * The async variant is {@see self::listMetadataImportsAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/list_metadata_imports.php
      *
      * @param ListMetadataImportsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -674,6 +734,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::listServicesAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/list_services.php
+     *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -694,9 +756,63 @@ abstract class DataprocMetastoreBaseClient
     }
 
     /**
+     * Move a table to another database.
+     *
+     * The async variant is {@see self::moveTableToDatabaseAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/move_table_to_database.php
+     *
+     * @param MoveTableToDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moveTableToDatabase(MoveTableToDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MoveTableToDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Query DPMS metadata.
+     *
+     * The async variant is {@see self::queryMetadataAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/query_metadata.php
+     *
+     * @param QueryMetadataRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryMetadata(QueryMetadataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('QueryMetadata', $request, $callOptions)->wait();
+    }
+
+    /**
      * Restores a service from a backup.
      *
      * The async variant is {@see self::restoreServiceAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/restore_service.php
      *
      * @param RestoreServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -723,6 +839,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::updateMetadataImportAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/update_metadata_import.php
+     *
      * @param UpdateMetadataImportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -746,6 +864,8 @@ abstract class DataprocMetastoreBaseClient
      * Updates the parameters of a single service.
      *
      * The async variant is {@see self::updateServiceAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/update_service.php
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -771,6 +891,8 @@ abstract class DataprocMetastoreBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/DataprocMetastoreClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -794,6 +916,8 @@ abstract class DataprocMetastoreBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -819,6 +943,8 @@ abstract class DataprocMetastoreBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -847,6 +973,8 @@ abstract class DataprocMetastoreBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -877,6 +1005,8 @@ abstract class DataprocMetastoreBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/DataprocMetastoreClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

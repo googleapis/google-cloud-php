@@ -41,6 +41,8 @@ use Google\Cloud\Build\V2\CreateConnectionRequest;
 use Google\Cloud\Build\V2\CreateRepositoryRequest;
 use Google\Cloud\Build\V2\DeleteConnectionRequest;
 use Google\Cloud\Build\V2\DeleteRepositoryRequest;
+use Google\Cloud\Build\V2\FetchGitRefsRequest;
+use Google\Cloud\Build\V2\FetchGitRefsResponse;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesRequest;
 use Google\Cloud\Build\V2\FetchReadTokenRequest;
 use Google\Cloud\Build\V2\FetchReadTokenResponse;
@@ -61,7 +63,7 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Manages connections to source code repostiories.
+ * Service Description: Manages connections to source code repositories.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -71,7 +73,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Build\V2\RepositoryManagerClient} for the stable implementation
  *
  * @experimental
  *
@@ -82,6 +85,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchGitRefsAsync(FetchGitRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchLinkableRepositoriesAsync(FetchLinkableRepositoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchReadTokenAsync(FetchReadTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchReadWriteTokenAsync(FetchReadWriteTokenRequest $request, array $optionalArgs = [])
@@ -368,6 +372,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::batchCreateRepositoriesAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/batch_create_repositories.php
+     *
      * @param BatchCreateRepositoriesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -391,6 +397,8 @@ abstract class RepositoryManagerBaseClient
      * Creates a Connection.
      *
      * The async variant is {@see self::createConnectionAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/create_connection.php
      *
      * @param CreateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -416,6 +424,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::createRepositoryAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/create_repository.php
+     *
      * @param CreateRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -439,6 +449,8 @@ abstract class RepositoryManagerBaseClient
      * Deletes a single connection.
      *
      * The async variant is {@see self::deleteConnectionAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/delete_connection.php
      *
      * @param DeleteConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -464,6 +476,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::deleteRepositoryAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/delete_repository.php
+     *
      * @param DeleteRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -484,10 +498,38 @@ abstract class RepositoryManagerBaseClient
     }
 
     /**
+     * Fetch the list of branches or tags for a given repository.
+     *
+     * The async variant is {@see self::fetchGitRefsAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/fetch_git_refs.php
+     *
+     * @param FetchGitRefsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchGitRefsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRefs(FetchGitRefsRequest $request, array $callOptions = []): FetchGitRefsResponse
+    {
+        return $this->startApiCall('FetchGitRefs', $request, $callOptions)->wait();
+    }
+
+    /**
      * FetchLinkableRepositories get repositories from SCM that are
      * accessible and could be added to the connection.
      *
      * The async variant is {@see self::fetchLinkableRepositoriesAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/fetch_linkable_repositories.php
      *
      * @param FetchLinkableRepositoriesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -513,6 +555,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::fetchReadTokenAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/fetch_read_token.php
+     *
      * @param FetchReadTokenRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -536,6 +580,8 @@ abstract class RepositoryManagerBaseClient
      * Fetches read/write token of a given repository.
      *
      * The async variant is {@see self::fetchReadWriteTokenAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/fetch_read_write_token.php
      *
      * @param FetchReadWriteTokenRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -561,6 +607,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::getConnectionAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/get_connection.php
+     *
      * @param GetConnectionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -584,6 +632,8 @@ abstract class RepositoryManagerBaseClient
      * Gets details of a single repository.
      *
      * The async variant is {@see self::getRepositoryAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/get_repository.php
      *
      * @param GetRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -609,6 +659,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::listConnectionsAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/list_connections.php
+     *
      * @param ListConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -632,6 +684,8 @@ abstract class RepositoryManagerBaseClient
      * Lists Repositories in a given connection.
      *
      * The async variant is {@see self::listRepositoriesAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/list_repositories.php
      *
      * @param ListRepositoriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -657,6 +711,8 @@ abstract class RepositoryManagerBaseClient
      *
      * The async variant is {@see self::updateConnectionAsync()} .
      *
+     * @example samples/V2/RepositoryManagerClient/update_connection.php
+     *
      * @param UpdateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -681,6 +737,8 @@ abstract class RepositoryManagerBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -709,6 +767,8 @@ abstract class RepositoryManagerBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -739,6 +799,8 @@ abstract class RepositoryManagerBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/RepositoryManagerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

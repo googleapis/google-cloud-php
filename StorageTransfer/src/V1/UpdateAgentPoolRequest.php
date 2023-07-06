@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -40,14 +40,45 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool  Required. The agent pool to update. `agent_pool` is expected to specify
+     *                                                               following fields:
+     *
+     *                                                               *  [name][google.storagetransfer.v1.AgentPool.name]
+     *
+     *                                                               *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
+     *
+     *                                                               *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+     *                                                               An `UpdateAgentPoolRequest` with any other fields is rejected
+     *                                                               with the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     * @param \Google\Protobuf\FieldMask                 $updateMask The [field mask]
+     *                                                               (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
+     *                                                               of the fields in `agentPool` to update in this request.
+     *                                                               The following `agentPool` fields can be updated:
+     *
+     *                                                               *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
+     *
+     *                                                               *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\StorageTransfer\V1\AgentPool $agentPool, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAgentPool($agentPool)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\StorageTransfer\V1\AgentPool $agent_pool
-     *           Required. The agent pool to update. `agent_pool` is expected to specify following
-     *           fields:
+     *           Required. The agent pool to update. `agent_pool` is expected to specify
+     *           following fields:
      *           *  [name][google.storagetransfer.v1.AgentPool.name]
      *           *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      *           *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -68,8 +99,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
@@ -95,8 +126,8 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent pool to update. `agent_pool` is expected to specify following
-     * fields:
+     * Required. The agent pool to update. `agent_pool` is expected to specify
+     * following fields:
      * *  [name][google.storagetransfer.v1.AgentPool.name]
      * *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
      * *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]

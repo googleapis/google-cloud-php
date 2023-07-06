@@ -61,7 +61,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\TagKeysClient} for the stable implementation
  *
  * @experimental
  *
@@ -269,6 +270,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::createTagKeyAsync()} .
      *
+     * @example samples/V3/TagKeysClient/create_tag_key.php
+     *
      * @param CreateTagKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -293,6 +296,8 @@ abstract class TagKeysBaseClient
      * TagValues.
      *
      * The async variant is {@see self::deleteTagKeyAsync()} .
+     *
+     * @example samples/V3/TagKeysClient/delete_tag_key.php
      *
      * @param DeleteTagKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -323,6 +328,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V3/TagKeysClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -349,6 +356,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::getNamespacedTagKeyAsync()} .
      *
+     * @example samples/V3/TagKeysClient/get_namespaced_tag_key.php
+     *
      * @param GetNamespacedTagKeyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -374,6 +383,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::getTagKeyAsync()} .
      *
+     * @example samples/V3/TagKeysClient/get_tag_key.php
+     *
      * @param GetTagKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -397,6 +408,8 @@ abstract class TagKeysBaseClient
      * Lists all TagKeys for a parent resource.
      *
      * The async variant is {@see self::listTagKeysAsync()} .
+     *
+     * @example samples/V3/TagKeysClient/list_tag_keys.php
      *
      * @param ListTagKeysRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -426,6 +439,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V3/TagKeysClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -454,6 +469,8 @@ abstract class TagKeysBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V3/TagKeysClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -477,6 +494,8 @@ abstract class TagKeysBaseClient
      * Updates the attributes of the TagKey resource.
      *
      * The async variant is {@see self::updateTagKeyAsync()} .
+     *
+     * @example samples/V3/TagKeysClient/update_tag_key.php
      *
      * @param UpdateTagKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

@@ -65,6 +65,41 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
     private $page_token = '';
 
     /**
+     * @param string $scope      Required. The organization to scope the request. Only organization
+     *                           policies within the scope will be analyzed. The output assets will
+     *                           also be limited to the ones governed by those in-scope organization
+     *                           policies.
+     *
+     *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint Required. The name of the constraint to analyze governed assets for. The
+     *                           analysis only contains analyzed organization policies for the provided
+     *                           constraint.
+     * @param string $filter     The expression to filter the governed assets in result. The only supported
+     *                           fields for governed resources are `governed_resource.project` and
+     *                           `governed_resource.folders`. The only supported fields for governed iam
+     *                           policies are `governed_iam_policy.project` and
+     *                           `governed_iam_policy.folders`. The only supported operator is `=`.
+     *
+     *                           Example 1: governed_resource.project="projects/12345678" filter will return
+     *                           all governed resources under projects/12345678 including the project
+     *                           ifself, if applicable.
+     *
+     *                           Example 2: governed_iam_policy.folders="folders/12345678" filter will
+     *                           return all governed iam policies under folders/12345678, if applicable.
+     *
+     * @return \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $constraint, string $filter): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setConstraint($constraint)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

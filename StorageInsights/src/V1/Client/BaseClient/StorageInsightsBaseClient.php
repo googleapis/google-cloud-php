@@ -58,7 +58,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\StorageInsights\V1\StorageInsightsClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -274,6 +276,8 @@ abstract class StorageInsightsBaseClient
      *
      * The async variant is {@see self::createReportConfigAsync()} .
      *
+     * @example samples/V1/StorageInsightsClient/create_report_config.php
+     *
      * @param CreateReportConfigRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -298,6 +302,8 @@ abstract class StorageInsightsBaseClient
      *
      * The async variant is {@see self::deleteReportConfigAsync()} .
      *
+     * @example samples/V1/StorageInsightsClient/delete_report_config.php
+     *
      * @param DeleteReportConfigRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -319,6 +325,8 @@ abstract class StorageInsightsBaseClient
      * Gets details of a single ReportConfig.
      *
      * The async variant is {@see self::getReportConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/get_report_config.php
      *
      * @param GetReportConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -344,6 +352,8 @@ abstract class StorageInsightsBaseClient
      *
      * The async variant is {@see self::getReportDetailAsync()} .
      *
+     * @example samples/V1/StorageInsightsClient/get_report_detail.php
+     *
      * @param GetReportDetailRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -367,6 +377,8 @@ abstract class StorageInsightsBaseClient
      * Lists ReportConfigs in a given project and location.
      *
      * The async variant is {@see self::listReportConfigsAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/list_report_configs.php
      *
      * @param ListReportConfigsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -392,6 +404,8 @@ abstract class StorageInsightsBaseClient
      *
      * The async variant is {@see self::listReportDetailsAsync()} .
      *
+     * @example samples/V1/StorageInsightsClient/list_report_details.php
+     *
      * @param ListReportDetailsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -415,6 +429,8 @@ abstract class StorageInsightsBaseClient
      * Updates the parameters of a single ReportConfig.
      *
      * The async variant is {@see self::updateReportConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/update_report_config.php
      *
      * @param UpdateReportConfigRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -440,6 +456,8 @@ abstract class StorageInsightsBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/StorageInsightsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -463,6 +481,8 @@ abstract class StorageInsightsBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

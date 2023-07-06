@@ -44,6 +44,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      */
     private $attributes;
     protected $authentication_method;
+    protected $wrapper;
 
     /**
      * Constructor.
@@ -74,6 +75,12 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\PushConfig\OidcToken $oidc_token
      *           If specified, Pub/Sub will generate and attach an OIDC JWT token as an
      *           `Authorization` header in the HTTP request for every pushed message.
+     *     @type \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper $pubsub_wrapper
+     *           When set, the payload to the push endpoint is in the form of the JSON
+     *           representation of a PubsubMessage
+     *           (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     *     @type \Google\Cloud\PubSub\V1\PushConfig\NoWrapper $no_wrapper
+     *           When set, the payload to the push endpoint is not wrapped.
      * }
      */
     public function __construct($data = NULL) {
@@ -199,11 +206,85 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * When set, the payload to the push endpoint is in the form of the JSON
+     * representation of a PubsubMessage
+     * (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4;</code>
+     * @return \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper|null
+     */
+    public function getPubsubWrapper()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasPubsubWrapper()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * When set, the payload to the push endpoint is in the form of the JSON
+     * representation of a PubsubMessage
+     * (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4;</code>
+     * @param \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper $var
+     * @return $this
+     */
+    public function setPubsubWrapper($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * When set, the payload to the push endpoint is not wrapped.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5;</code>
+     * @return \Google\Cloud\PubSub\V1\PushConfig\NoWrapper|null
+     */
+    public function getNoWrapper()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasNoWrapper()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * When set, the payload to the push endpoint is not wrapped.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5;</code>
+     * @param \Google\Cloud\PubSub\V1\PushConfig\NoWrapper $var
+     * @return $this
+     */
+    public function setNoWrapper($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig\NoWrapper::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getAuthenticationMethod()
     {
         return $this->whichOneof("authentication_method");
+    }
+
+    /**
+     * @return string
+     */
+    public function getWrapper()
+    {
+        return $this->whichOneof("wrapper");
     }
 
 }

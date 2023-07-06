@@ -26,7 +26,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this filter matches events that match both the
      * single event name and the parameter filter expressions. AudienceEventFilter
-     * inside the parameter filter expression cannot be set (i.e., nested
+     * inside the parameter filter expression cannot be set (For example, nested
      * event filters are not supported). This should be a single and_group of
      * dimension_or_metric_filter or not_expression; ANDs of ORs are not
      * supported. Also, if it includes a filter for "eventCount", only that one
@@ -47,7 +47,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $event_parameter_filter_expression
      *           Optional. If specified, this filter matches events that match both the
      *           single event name and the parameter filter expressions. AudienceEventFilter
-     *           inside the parameter filter expression cannot be set (i.e., nested
+     *           inside the parameter filter expression cannot be set (For example, nested
      *           event filters are not supported). This should be a single and_group of
      *           dimension_or_metric_filter or not_expression; ANDs of ORs are not
      *           supported. Also, if it includes a filter for "eventCount", only that one
@@ -88,7 +88,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this filter matches events that match both the
      * single event name and the parameter filter expressions. AudienceEventFilter
-     * inside the parameter filter expression cannot be set (i.e., nested
+     * inside the parameter filter expression cannot be set (For example, nested
      * event filters are not supported). This should be a single and_group of
      * dimension_or_metric_filter or not_expression; ANDs of ORs are not
      * supported. Also, if it includes a filter for "eventCount", only that one
@@ -115,7 +115,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this filter matches events that match both the
      * single event name and the parameter filter expressions. AudienceEventFilter
-     * inside the parameter filter expression cannot be set (i.e., nested
+     * inside the parameter filter expression cannot be set (For example, nested
      * event filters are not supported). This should be a single and_group of
      * dimension_or_metric_filter or not_expression; ANDs of ORs are not
      * supported. Also, if it includes a filter for "eventCount", only that one

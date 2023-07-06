@@ -43,6 +43,25 @@ class BulkAnalyzeConversationsRequest extends \Google\Protobuf\Internal\Message
     private $annotator_selector = null;
 
     /**
+     * @param string $parent             Required. The parent resource to create analyses in. Please see
+     *                                   {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param string $filter             Required. Filter used to select the subset of conversations to analyze.
+     * @param float  $analysisPercentage Required. Percentage of selected conversation to analyze, between
+     *                                   [0, 100].
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter, float $analysisPercentage): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter)
+            ->setAnalysisPercentage($analysisPercentage);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

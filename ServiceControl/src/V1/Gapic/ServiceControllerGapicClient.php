@@ -55,6 +55,10 @@ use Google\Cloud\ServiceControl\V1\ReportResponse;
  *     $serviceControllerClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ServiceControl\V1\Client\ServiceControllerClient} to use the new
+ * surface.
  */
 class ServiceControllerGapicClient
 {

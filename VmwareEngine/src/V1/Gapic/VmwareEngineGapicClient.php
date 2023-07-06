@@ -51,17 +51,21 @@ use Google\Cloud\VmwareEngine\V1\CreateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\Credentials;
 use Google\Cloud\VmwareEngine\V1\DeleteClusterRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\DeletePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\GetClusterRequest;
 use Google\Cloud\VmwareEngine\V1\GetHcxActivationKeyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest;
 use Google\Cloud\VmwareEngine\V1\GetPrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\GetPrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\GetSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\GetVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
 use Google\Cloud\VmwareEngine\V1\ListClustersRequest;
@@ -74,6 +78,10 @@ use Google\Cloud\VmwareEngine\V1\ListNodeTypesRequest;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesResponse;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsResponse;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesResponse;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsRequest;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsResponse;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsRequest;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsResponse;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest;
@@ -81,14 +89,18 @@ use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksResponse;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 use Google\Cloud\VmwareEngine\V1\NodeType;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
+use Google\Cloud\VmwareEngine\V1\PrivateConnection;
 use Google\Cloud\VmwareEngine\V1\ResetNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ResetVcenterCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowVcenterCredentialsRequest;
+use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\UndeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateClusterRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest;
+use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 use Google\LongRunning\Operation;
@@ -110,7 +122,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -127,7 +139,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -141,6 +153,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient} to use the new surface.
  */
 class VmwareEngineGapicClient
 {
@@ -176,6 +191,10 @@ class VmwareEngineGapicClient
     private static $nodeTypeNameTemplate;
 
     private static $privateCloudNameTemplate;
+
+    private static $privateConnectionNameTemplate;
+
+    private static $subnetNameTemplate;
 
     private static $vmwareEngineNetworkNameTemplate;
 
@@ -285,6 +304,28 @@ class VmwareEngineGapicClient
         return self::$privateCloudNameTemplate;
     }
 
+    private static function getPrivateConnectionNameTemplate()
+    {
+        if (self::$privateConnectionNameTemplate == null) {
+            self::$privateConnectionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateConnections/{private_connection}'
+            );
+        }
+
+        return self::$privateConnectionNameTemplate;
+    }
+
+    private static function getSubnetNameTemplate()
+    {
+        if (self::$subnetNameTemplate == null) {
+            self::$subnetNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/subnets/{subnet}'
+            );
+        }
+
+        return self::$subnetNameTemplate;
+    }
+
     private static function getVmwareEngineNetworkNameTemplate()
     {
         if (self::$vmwareEngineNetworkNameTemplate == null) {
@@ -307,6 +348,8 @@ class VmwareEngineGapicClient
                 'networkPolicy' => self::getNetworkPolicyNameTemplate(),
                 'nodeType' => self::getNodeTypeNameTemplate(),
                 'privateCloud' => self::getPrivateCloudNameTemplate(),
+                'privateConnection' => self::getPrivateConnectionNameTemplate(),
+                'subnet' => self::getSubnetNameTemplate(),
                 'vmwareEngineNetwork' => self::getVmwareEngineNetworkNameTemplate(),
             ];
         }
@@ -460,6 +503,53 @@ class VmwareEngineGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * private_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateConnection
+     *
+     * @return string The formatted private_connection resource.
+     */
+    public static function privateConnectionName(
+        $project,
+        $location,
+        $privateConnection
+    ) {
+        return self::getPrivateConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_connection' => $privateConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a subnet
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $subnet
+     *
+     * @return string The formatted subnet resource.
+     */
+    public static function subnetName(
+        $project,
+        $location,
+        $privateCloud,
+        $subnet
+    ) {
+        return self::getSubnetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'subnet' => $subnet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * vmware_engine_network resource.
      *
      * @param string $project
@@ -491,6 +581,8 @@ class VmwareEngineGapicClient
      * - networkPolicy: projects/{project}/locations/{location}/networkPolicies/{network_policy}
      * - nodeType: projects/{project}/locations/{location}/nodeTypes/{node_type}
      * - privateCloud: projects/{project}/locations/{location}/privateClouds/{private_cloud}
+     * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
+     * - subnet: projects/{project}/locations/{location}/privateClouds/{private_cloud}/subnets/{subnet}
      * - vmwareEngineNetwork: projects/{project}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -645,7 +737,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -662,7 +754,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -756,7 +848,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -773,7 +865,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -875,7 +967,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -892,7 +984,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -999,7 +1091,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1016,7 +1108,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1097,6 +1189,123 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Creates a new private connection that can be used for accessing private
+     * Clouds.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $privateConnectionId = 'private_connection_id';
+     *     $privateConnection = new PrivateConnection();
+     *     $operationResponse = $vmwareEngineClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createPrivateConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent              Required. The resource name of the location to create the new private
+     *                                               connection in. Private connection is a regional resource.
+     *                                               Resource names are schemeless URIs that follow the conventions in
+     *                                               https://cloud.google.com/apis/design/resource_names. For example:
+     *                                               `projects/my-project/locations/us-central1`
+     * @param string            $privateConnectionId Required. The user-provided identifier of the new private connection.
+     *                                               This identifier must be unique among private connection resources
+     *                                               within the parent and becomes the final token in the name URI. The
+     *                                               identifier must meet the following requirements:
+     *
+     *                                               * Only contains 1-63 alphanumeric characters and hyphens
+     *                                               * Begins with an alphabetical character
+     *                                               * Ends with a non-hyphen character
+     *                                               * Not formatted as a UUID
+     *                                               * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                               (section 3.5)
+     * @param PrivateConnection $privateConnection   Required. The initial description of the new private connection.
+     * @param array             $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createPrivateConnection(
+        $parent,
+        $privateConnectionId,
+        $privateConnection,
+        array $optionalArgs = []
+    ) {
+        $request = new CreatePrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setPrivateConnectionId($privateConnectionId);
+        $request->setPrivateConnection($privateConnection);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreatePrivateConnection',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a new VMware Engine network that can be used by a private cloud.
      *
      * Sample code:
@@ -1110,7 +1319,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1127,7 +1336,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1424,7 +1633,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1441,7 +1650,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1513,6 +1722,102 @@ class VmwareEngineGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeletePrivateCloud',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a `PrivateConnection` resource. When a private connection is
+     * deleted for a VMware Engine network, the connected network becomes
+     * inaccessible to that VMware Engine network.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+     *     $operationResponse = $vmwareEngineClient->deletePrivateConnection($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deletePrivateConnection($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deletePrivateConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the private connection to be deleted.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1/privateConnections/my-connection`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deletePrivateConnection($name, array $optionalArgs = [])
+    {
+        $request = new DeletePrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeletePrivateConnection',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -1880,6 +2185,112 @@ class VmwareEngineGapicClient
         return $this->startCall(
             'GetPrivateCloud',
             PrivateCloud::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a `PrivateConnection` resource by its resource name. The resource
+     * contains details of the private connection, such as connected
+     * network, routing mode and state.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+     *     $response = $vmwareEngineClient->getPrivateConnection($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the private connection to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1/privateConnections/my-connection`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\PrivateConnection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getPrivateConnection($name, array $optionalArgs = [])
+    {
+        $request = new GetPrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetPrivateConnection',
+            PrivateConnection::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single subnet.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->subnetName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[SUBNET]');
+     *     $response = $vmwareEngineClient->getSubnet($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the subnet to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\Subnet
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSubnet($name, array $optionalArgs = [])
+    {
+        $request = new GetSubnetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSubnet',
+            Subnet::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2486,6 +2897,208 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Lists the private connection routes exchanged over a peering connection.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listPrivateConnectionPeeringRoutes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listPrivateConnectionPeeringRoutes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the private connection to retrieve peering
+     *                             routes from. Resource names are schemeless URIs that follow the conventions
+     *                             in https://cloud.google.com/apis/design/resource_names. For example:
+     *                             `projects/my-project/locations/us-west1/privateConnections/my-connection`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listPrivateConnectionPeeringRoutes(
+        $parent,
+        array $optionalArgs = []
+    ) {
+        $request = new ListPrivateConnectionPeeringRoutesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListPrivateConnectionPeeringRoutes',
+            $optionalArgs,
+            ListPrivateConnectionPeeringRoutesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists `PrivateConnection` resources in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listPrivateConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listPrivateConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the location to query for
+     *                             private connections. Resource names are schemeless URIs that follow the
+     *                             conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                             example: `projects/my-project/locations/us-central1`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of private connections, you can
+     *           exclude the ones named `example-connection` by specifying
+     *           `name != "example-connection"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-connection")
+     *           (createTime > "2022-09-22T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-connection-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-connection-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listPrivateConnections($parent, array $optionalArgs = [])
+    {
+        $request = new ListPrivateConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListPrivateConnections',
+            $optionalArgs,
+            ListPrivateConnectionsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists subnets in a given private cloud.
      *
      * Sample code:
@@ -2699,7 +3312,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2716,7 +3329,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2796,7 +3409,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2813,7 +3426,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3006,7 +3619,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3023,7 +3636,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3098,7 +3711,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3115,7 +3728,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3206,7 +3819,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3223,7 +3836,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3315,7 +3928,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3332,7 +3945,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3393,6 +4006,197 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Modifies a `PrivateConnection` resource. Only `description` and
+     * `routing_mode` fields can be updated. Only fields specified in `updateMask`
+     * are applied.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $privateConnection = new PrivateConnection();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $vmwareEngineClient->updatePrivateConnection($privateConnection, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updatePrivateConnection($privateConnection, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updatePrivateConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param PrivateConnection $privateConnection Required. Private connection description.
+     * @param FieldMask         $updateMask        Required. Field mask is used to specify the fields to be overwritten in the
+     *                                             `PrivateConnection` resource by the update.
+     *                                             The fields specified in the `update_mask` are relative to the resource, not
+     *                                             the full request. A field will be overwritten if it is in the mask. If the
+     *                                             user does not provide a mask then all fields will be overwritten.
+     * @param array             $optionalArgs      {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updatePrivateConnection(
+        $privateConnection,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdatePrivateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setPrivateConnection($privateConnection);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'private_connection.name'
+        ] = $privateConnection->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdatePrivateConnection',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single subnet. Only fields specified in
+     * `update_mask` are applied.
+     *
+     * *Note*: This API is synchronous and always returns a successful
+     * `google.longrunning.Operation` (LRO). The returned LRO will only have
+     * `done` and `response` fields.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $subnet = new Subnet();
+     *     $operationResponse = $vmwareEngineClient->updateSubnet($updateMask, $subnet);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateSubnet($updateMask, $subnet);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateSubnet');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
+     *                                `Subnet` resource by the update.
+     *                                The fields specified in the `update_mask` are relative to the resource, not
+     *                                the full request. A field will be overwritten if it is in the mask. If the
+     *                                user does not provide a mask then all fields will be overwritten.
+     * @param Subnet    $subnet       Required. Subnet description.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateSubnet($updateMask, $subnet, array $optionalArgs = [])
+    {
+        $request = new UpdateSubnetRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setSubnet($subnet);
+        $requestParamHeaders['subnet.name'] = $subnet->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateSubnet',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Modifies a VMware Engine network resource. Only the following fields can be
      * updated: `description`. Only fields specified in `updateMask` are
      * applied.
@@ -3407,7 +4211,7 @@ class VmwareEngineGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3424,7 +4228,7 @@ class VmwareEngineGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

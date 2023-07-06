@@ -38,6 +38,25 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                            $name  Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     *                                                 which to create the group. The format is:
+     *
+     *                                                 projects/[PROJECT_ID_OR_NUMBER]
+     * @param \Google\Cloud\Monitoring\V3\Group $group Required. A group definition. It is an error to define the `name` field because
+     *                                                 the system assigns the name.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Monitoring\V3\Group $group): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setGroup($group);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -1,0 +1,1069 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    name: ImageAnnotatorClient
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: ImageAnnotatorClient
+    summary: |-
+      Service Description: Service that performs Google Cloud Vision API detection tasks over client
+      images, such as face, landmark, logo, label, and text detection. The
+      ImageAnnotator service returns detected entities from the images.
+
+      This class provides the ability to make remote calls to the backing service through method
+      calls that map to API methods. Sample code to get started:
+
+      ```php
+      $imageAnnotatorClient = new ImageAnnotatorClient();
+      try {
+          $requests = [];
+          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+          $operationResponse->pollUntilComplete();
+          if ($operationResponse->operationSucceeded()) {
+              $result = $operationResponse->getResult();
+          // doSomethingWith($result)
+          } else {
+              $error = $operationResponse->getError();
+              // handleError($error)
+          }
+          // Alternatively:
+          // start the operation, keep the operation name, and resume later
+          $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+          $operationName = $operationResponse->getName();
+          // ... do other work
+          $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
+          while (!$newOperationResponse->isDone()) {
+              // ... do other work
+              $newOperationResponse->reload();
+          }
+          if ($newOperationResponse->operationSucceeded()) {
+              $result = $newOperationResponse->getResult();
+          // doSomethingWith($result)
+          } else {
+              $error = $newOperationResponse->getError();
+              // handleError($error)
+          }
+      } finally {
+          $imageAnnotatorClient->close();
+      }
+      ```
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::createImageObject()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateImage()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::faceDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::landmarkDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::logoDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::labelDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::textDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::documentTextDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::safeSearchDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::imagePropertiesDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::cropHintsDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::__construct()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateFiles()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateImages()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateFiles()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateImages()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_ADDRESS'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::DEFAULT_SERVICE_PORT'
+      - '\Google\Cloud\Vision\V1\ImageAnnotatorClient::CODEGEN_NAME'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::createImageObject()'
+    name: createImageObject
+    id: createImageObject
+    summary: |-
+      Creates an Image object that can be used as part of an image annotation request.
+
+      Example:
+      ```php
+      $imageResource = fopen('path/to/image.jpg', 'r');
+      $image = $imageAnnotatorClient->createImageObject($imageResource);
+      $response = $imageAnnotatorClient->faceDetection($image);
+      ```
+
+      ```
+      $imageData = file_get_contents('path/to/image.jpg');
+      $image = $imageAnnotatorClient->createImageObject($imageData);
+      $response = $imageAnnotatorClient->faceDetection($image);
+      ```
+
+      ```
+      $imageUri = "gs://my-bucket/image.jpg";
+      $image = $imageAnnotatorClient->createImageObject($imageUri);
+      $response = $imageAnnotatorClient->faceDetection($image);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: imageInput
+          var_type: resource|string
+          description: |-
+            An image to configure with
+            the given settings. This parameter will accept a resource, a
+            string of bytes, or the URI of an image in a publicly-accessible
+            web location.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateImage()'
+    name: annotateImage
+    id: annotateImage
+    summary: |-
+      Run image detection and annotation for an image.
+
+      Example:
+      ```php
+      use Google\Cloud\Vision\V1\Feature;
+      use Google\Cloud\Vision\V1\Feature\Type;
+
+      $imageResource = fopen('path/to/image.jpg', 'r');
+      $features = [Type::FACE_DETECTION];
+      $response = $imageAnnotatorClient->annotateImage($imageResource, $features);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: features
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;|int[]'
+          description: 'Requested features.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::faceDetection()'
+    name: faceDetection
+    id: faceDetection
+    summary: |-
+      Run face detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->faceDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::landmarkDetection()'
+    name: landmarkDetection
+    id: landmarkDetection
+    summary: |-
+      Run landmark detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->landmarkDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::logoDetection()'
+    name: logoDetection
+    id: logoDetection
+    summary: |-
+      Run logo detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->logoDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::labelDetection()'
+    name: labelDetection
+    id: labelDetection
+    summary: |-
+      Run label detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->labelDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::textDetection()'
+    name: textDetection
+    id: textDetection
+    summary: |-
+      Run text detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->textDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::documentTextDetection()'
+    name: documentTextDetection
+    id: documentTextDetection
+    summary: |-
+      Run document text detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->documentTextDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::safeSearchDetection()'
+    name: safeSearchDetection
+    id: safeSearchDetection
+    summary: |-
+      Run safe search detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->safeSearchDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::imagePropertiesDetection()'
+    name: imagePropertiesDetection
+    id: imagePropertiesDetection
+    summary: |-
+      Run image properties detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->imagePropertiesDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::cropHintsDetection()'
+    name: cropHintsDetection
+    id: cropHintsDetection
+    summary: |-
+      Run crop hints detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->cropHintsDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()'
+    name: webDetection
+    id: webDetection
+    summary: |-
+      Run web detection for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->webDetection($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()'
+    name: objectLocalization
+    id: objectLocalization
+    summary: |-
+      Run object localization for an image.
+
+      Example:
+      ```php
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $response = $imageAnnotatorClient->objectLocalization($imageContent);
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()'
+    name: productSearch
+    id: productSearch
+    summary: |-
+      Run product search for an image.
+
+      Example:
+      ```php
+      use Google\Cloud\Vision\V1\ProductSearchClient;
+      use Google\Cloud\Vision\V1\ProductSearchParams;
+
+      $imageContent = file_get_contents('path/to/image.jpg');
+      $productSetName = ProductSearchClient::productSetName('PROJECT_ID', 'LOC_ID', 'PRODUCT_SET_ID');
+      $productSearchParams = (new ProductSearchParams)
+          ->setProductSet($productSetName);
+      $response = $imageAnnotatorClient->productSearch(
+          $imageContent,
+          $productSearchParams
+      );
+      ```
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: image
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: productSearchParams
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          description: |-
+            Parameters for a product search request. Please note, this
+            value will override the <xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref> in the
+            <xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref> instance if provided.
+        -
+          id: optionalArgs
+          var_type: array
+          description: 'Configuration Options.'
+        -
+          id: '↳ imageContext'
+          var_type: ImageContext
+          description: 'Additional context that may accompany the image.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: options
+          var_type: array
+          description: 'Optional. Options for configuring the service API wrapper.'
+        -
+          id: '↳ apiEndpoint'
+          var_type: string
+          description: 'The address of the API remote host. May optionally include the port, formatted as "<uri>:<port>". Default ''vision.googleapis.com:443''.'
+        -
+          id: '↳ credentials'
+          var_type: string|array|FetchAuthTokenInterface|CredentialsWrapper
+          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper">Google\ApiCore\CredentialsWrapper</a> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
+        -
+          id: '↳ credentialsConfig'
+          var_type: array
+          description: 'Options used to configure credentials, including auth token caching, for the client. For a full list of supporting configuration options, see <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper#method_build">Google\ApiCore\CredentialsWrapper::build()</a> .'
+        -
+          id: '↳ disableRetries'
+          var_type: bool
+          description: 'Determines whether or not retries defined by the client configuration should be disabled. Defaults to `false`.'
+        -
+          id: '↳ clientConfig'
+          var_type: string|array
+          description: 'Client method configuration, including retry settings. This option can be either a path to a JSON file, or a PHP array containing the decoded JSON data. By default this settings points to the default client config file, which is provided in the resources folder.'
+        -
+          id: '↳ transport'
+          var_type: string|TransportInterface
+          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
+        -
+          id: '↳ transportConfig'
+          var_type: array
+          description: 'Configuration options that will be used to construct the transport. Options for each supported transport type should be passed in a key for that transport. For example: $transportConfig = [ ''grpc'' => [...], ''rest'' => [...], ]; See the <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/GrpcTransport#method_build">Google\ApiCore\Transport\GrpcTransport::build()</a> and <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/RestTransport#method_build">Google\ApiCore\Transport\RestTransport::build()</a> methods for the supported options.'
+        -
+          id: '↳ clientCertSource'
+          var_type: callable
+          description: 'A callable which returns the client cert as a string. This can be used to provide a certificate and private key to the transport layer for mTLS.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateFiles()'
+    name: asyncBatchAnnotateFiles
+    id: asyncBatchAnnotateFiles
+    summary: |+
+      Run asynchronous image detection and annotation for a list of generic
+      files, such as PDF files, which may contain multiple pages and multiple
+      images per page. Progress and results can be retrieved through the
+      `google.longrunning.Operations` interface.
+
+      `Operation.metadata` contains `OperationMetadata` (metadata).
+      `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AsyncAnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateFilesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          description: 'Required. Individual async file annotation requests for this batch.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: Optional.
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateImages()'
+    name: asyncBatchAnnotateImages
+    id: asyncBatchAnnotateImages
+    summary: |+
+      Run asynchronous image detection and annotation for a list of images.
+
+      Progress and results can be retrieved through the
+      `google.longrunning.Operations` interface.
+      `Operation.metadata` contains `OperationMetadata` (metadata).
+      `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+
+      This service will write image annotation outputs to json files in customer
+      GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Cloud\Vision\V1\OutputConfig;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+            $outputConfig = new OutputConfig();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateImagesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          description: 'Required. Individual image annotation requests for this batch.'
+        -
+          id: outputConfig
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'Required. The desired output location and metadata (e.g. format).'
+        -
+          id: optionalArgs
+          var_type: array
+          description: Optional.
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateFiles()'
+    name: batchAnnotateFiles
+    id: batchAnnotateFiles
+    summary: |+
+      Service that performs image detection and annotation for a batch of files.
+
+      Now only "application/pdf", "image/tiff" and "image/gif" are supported.
+
+      This service will extract at most 5 (customers can specify which 5 in
+      AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+      file provided and perform detection and annotation for each image
+      extracted.
+
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateFileRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateFilesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          description: |-
+            Required. The list of file annotation requests. Right now we support only one
+            AnnotateFileRequest in BatchAnnotateFilesRequest.
+        -
+          id: optionalArgs
+          var_type: array
+          description: Optional.
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse">Google\Cloud\Vision\V1\BatchAnnotateFilesResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateImages()'
+    name: batchAnnotateImages
+    id: batchAnnotateImages
+    summary: |+
+      Run image detection and annotation for a batch of images.
+
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateImagesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          description: 'Required. Individual image annotation requests for this batch.'
+        -
+          id: optionalArgs
+          var_type: array
+          description: Optional.
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ retrySettings'
+          var_type: RetrySettings|array
+          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
+    name: getOperationsClient
+    id: getOperationsClient
+    summary: 'Return an OperationsClient object with the same endpoint as $this.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
+    name: resumeOperation
+    id: resumeOperation
+    summary: |-
+      Resume an existing long running operation that was previously started by a long
+      running API method. If $methodName is not provided, or does not match a long
+      running API method, then the operation can still be resumed, but the
+      OperationResponse object will not deserialize the final response.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: operationName
+          var_type: string
+          description: 'The name of the long running operation'
+        -
+          id: methodName
+          var_type: string
+          description: 'The name of the method used to start the operation'
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
+    name: SERVICE_NAME
+    id: SERVICE_NAME
+    summary: 'The name of the service.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: const
+    langs:
+      - php
+    syntax:
+      content: "Value: 'google.cloud.vision.v1.ImageAnnotator'"
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_ADDRESS'
+    name: SERVICE_ADDRESS
+    id: SERVICE_ADDRESS
+    summary: 'The default address of the service.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: const
+    langs:
+      - php
+    syntax:
+      content: "Value: 'vision.googleapis.com'"
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::DEFAULT_SERVICE_PORT'
+    name: DEFAULT_SERVICE_PORT
+    id: DEFAULT_SERVICE_PORT
+    summary: 'The default port of the service.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 443'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::CODEGEN_NAME'
+    name: CODEGEN_NAME
+    id: CODEGEN_NAME
+    summary: 'The name of the code generator, to be included in the agent header.'
+    parent: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+    type: const
+    langs:
+      - php
+    syntax:
+      content: "Value: 'gapic'"

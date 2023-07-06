@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7Dd
 use UnexpectedValueException;
 
 /**
- * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.
+ * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
  *
  * Protobuf type <code>google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility</code>
  */

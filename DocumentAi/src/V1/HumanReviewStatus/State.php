@@ -21,7 +21,7 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * Human review is skipped for the document. This can happen because human
-     * review is not enabled on the processor or the processing request has
+     * review isn't enabled on the processor or the processing request has
      * been set to skip this document.
      *
      * Generated from protobuf enum <code>SKIPPED = 1;</code>
@@ -41,7 +41,8 @@ class State
     const IN_PROGRESS = 3;
     /**
      * Some error happened during triggering human review, see the
-     * [state_message] for details.
+     * [state_message][google.cloud.documentai.v1.HumanReviewStatus.state_message]
+     * for details.
      *
      * Generated from protobuf enum <code>ERROR = 4;</code>
      */

@@ -41,6 +41,23 @@ class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Interna
     private $security_policy_reference_resource = null;
 
     /**
+     * @param string                                           $project                         Project ID for this request.
+     * @param string                                           $backendBucket                   Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendBucketRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendBucket, \Google\Cloud\Compute\V1\SecurityPolicyReference $securityPolicyReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendBucket($backendBucket)
+            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

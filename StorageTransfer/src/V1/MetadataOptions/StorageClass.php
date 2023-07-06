@@ -27,7 +27,9 @@ class StorageClass
     const STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT = 1;
     /**
      * Preserve the object's original storage class. This is only supported for
-     * transfers from Google Cloud Storage buckets.
+     * transfers from Google Cloud Storage buckets. REGIONAL and MULTI_REGIONAL
+     * storage classes will be mapped to STANDARD to ensure they can be written
+     * to the destination bucket.
      *
      * Generated from protobuf enum <code>STORAGE_CLASS_PRESERVE = 2;</code>
      */

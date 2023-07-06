@@ -197,7 +197,8 @@ class SqlConnectServiceGapicClient
      *     @type string $accessToken
      *           Optional. Access token to include in the signed certificate.
      *     @type Timestamp $readTime
-     *           Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *           Optional. Optional snapshot read timestamp to trade freshness for
+     *           performance.
      *     @type Duration $validDuration
      *           Optional. If set, it will contain the cert valid duration.
      *     @type RetrySettings|array $retrySettings
@@ -277,7 +278,8 @@ class SqlConnectServiceGapicClient
      *     @type string $project
      *           Project ID of the project that contains the instance.
      *     @type Timestamp $readTime
-     *           Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *           Optional. Optional snapshot read timestamp to trade freshness for
+     *           performance.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

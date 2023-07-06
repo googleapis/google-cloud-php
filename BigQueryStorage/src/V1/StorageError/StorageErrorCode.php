@@ -77,6 +77,37 @@ class StorageErrorCode
      * Generated from protobuf enum <code>OFFSET_OUT_OF_RANGE = 9;</code>
      */
     const OFFSET_OUT_OF_RANGE = 9;
+    /**
+     * Customer-managed encryption key (CMEK) not provided for CMEK-enabled
+     * data.
+     *
+     * Generated from protobuf enum <code>CMEK_NOT_PROVIDED = 10;</code>
+     */
+    const CMEK_NOT_PROVIDED = 10;
+    /**
+     * Customer-managed encryption key (CMEK) was incorrectly provided.
+     *
+     * Generated from protobuf enum <code>INVALID_CMEK_PROVIDED = 11;</code>
+     */
+    const INVALID_CMEK_PROVIDED = 11;
+    /**
+     * There is an encryption error while using customer-managed encryption key.
+     *
+     * Generated from protobuf enum <code>CMEK_ENCRYPTION_ERROR = 12;</code>
+     */
+    const CMEK_ENCRYPTION_ERROR = 12;
+    /**
+     * Key Management Service (KMS) service returned an error.
+     *
+     * Generated from protobuf enum <code>KMS_SERVICE_ERROR = 13;</code>
+     */
+    const KMS_SERVICE_ERROR = 13;
+    /**
+     * Permission denied while using customer-managed encryption key.
+     *
+     * Generated from protobuf enum <code>KMS_PERMISSION_DENIED = 14;</code>
+     */
+    const KMS_PERMISSION_DENIED = 14;
 
     private static $valueToName = [
         self::STORAGE_ERROR_CODE_UNSPECIFIED => 'STORAGE_ERROR_CODE_UNSPECIFIED',
@@ -89,6 +120,11 @@ class StorageErrorCode
         self::SCHEMA_MISMATCH_EXTRA_FIELDS => 'SCHEMA_MISMATCH_EXTRA_FIELDS',
         self::OFFSET_ALREADY_EXISTS => 'OFFSET_ALREADY_EXISTS',
         self::OFFSET_OUT_OF_RANGE => 'OFFSET_OUT_OF_RANGE',
+        self::CMEK_NOT_PROVIDED => 'CMEK_NOT_PROVIDED',
+        self::INVALID_CMEK_PROVIDED => 'INVALID_CMEK_PROVIDED',
+        self::CMEK_ENCRYPTION_ERROR => 'CMEK_ENCRYPTION_ERROR',
+        self::KMS_SERVICE_ERROR => 'KMS_SERVICE_ERROR',
+        self::KMS_PERMISSION_DENIED => 'KMS_PERMISSION_DENIED',
     ];
 
     public static function name($value)

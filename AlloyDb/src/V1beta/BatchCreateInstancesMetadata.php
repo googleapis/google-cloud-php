@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Message for metadata that is specific to BatchCreateInstances API.
+ * NEXT_ID: 3
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1beta.BatchCreateInstancesMetadata</code>
  */

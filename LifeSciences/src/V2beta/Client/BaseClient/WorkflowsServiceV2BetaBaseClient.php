@@ -232,6 +232,8 @@ abstract class WorkflowsServiceV2BetaBaseClient
      *
      * The async variant is {@see self::runPipelineAsync()} .
      *
+     * @example samples/V2beta/WorkflowsServiceV2BetaClient/run_pipeline.php
+     *
      * @param RunPipelineRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -258,6 +260,8 @@ abstract class WorkflowsServiceV2BetaBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V2beta/WorkflowsServiceV2BetaClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -283,6 +287,8 @@ abstract class WorkflowsServiceV2BetaBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V2beta/WorkflowsServiceV2BetaClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

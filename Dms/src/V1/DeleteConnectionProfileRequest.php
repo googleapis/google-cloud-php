@@ -22,10 +22,10 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 2;</code>
@@ -40,6 +40,20 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. Name of the connection profile resource to delete. Please see
+     *                     {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CloudDms\V1\DeleteConnectionProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -48,10 +62,10 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the connection profile resource to delete.
      *     @type string $request_id
-     *           A unique id used to identify the request. If the server receives two
-     *           requests with the same id, then the second request will be ignored.
+     *           A unique ID used to identify the request. If the server receives two
+     *           requests with the same ID, then the second request is ignored.
      *           It is recommended to always set this value to a UUID.
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      *           (_), and hyphens (-). The maximum length is 40 characters.
      *     @type bool $force
      *           In case of force delete, the CloudSQL replica database is also deleted
@@ -90,10 +104,10 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 2;</code>
@@ -105,10 +119,10 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id used to identify the request. If the server receives two
-     * requests with the same id, then the second request will be ignored.
+     * A unique ID used to identify the request. If the server receives two
+     * requests with the same ID, then the second request is ignored.
      * It is recommended to always set this value to a UUID.
-     * The id must contain only letters (a-z, A-Z), numbers (0-9), underscores
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores
      * (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 2;</code>

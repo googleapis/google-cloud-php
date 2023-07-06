@@ -79,20 +79,20 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      */
     private $environment_variables;
     /**
-     * Optional. Docker Registry to use for this deployment. This configuration is
-     * only applicable to 1st Gen functions, 2nd Gen functions can only use
-     * Artifact Registry.
+     * Docker Registry to use for this deployment. This configuration is only
+     * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
+     * Registry.
      * If `docker_repository` field is specified, this field will be automatically
      * set as `ARTIFACT_REGISTRY`.
      * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
      * This field may be overridden by the backend for eligible deployments.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
      */
     private $docker_registry = 0;
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. This is the repository to which the
+     * User managed repository created in Artifact Registry optionally
+     * with a customer managed encryption key. This is the repository to which the
      * function docker image will be pushed after it is built by Cloud Build.
      * If unspecified, GCF will create and use a repository named 'gcf-artifacts'
      * for every deployed region.
@@ -147,16 +147,16 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $environment_variables
      *           User-provided build-time environment variables for the function
      *     @type int $docker_registry
-     *           Optional. Docker Registry to use for this deployment. This configuration is
-     *           only applicable to 1st Gen functions, 2nd Gen functions can only use
-     *           Artifact Registry.
+     *           Docker Registry to use for this deployment. This configuration is only
+     *           applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
+     *           Registry.
      *           If `docker_repository` field is specified, this field will be automatically
      *           set as `ARTIFACT_REGISTRY`.
      *           If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
      *           This field may be overridden by the backend for eligible deployments.
      *     @type string $docker_repository
-     *           User managed repository created in Artifact Registry optionally with a
-     *           customer managed encryption key. This is the repository to which the
+     *           User managed repository created in Artifact Registry optionally
+     *           with a customer managed encryption key. This is the repository to which the
      *           function docker image will be pushed after it is built by Cloud Build.
      *           If unspecified, GCF will create and use a repository named 'gcf-artifacts'
      *           for every deployed region.
@@ -415,15 +415,15 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Docker Registry to use for this deployment. This configuration is
-     * only applicable to 1st Gen functions, 2nd Gen functions can only use
-     * Artifact Registry.
+     * Docker Registry to use for this deployment. This configuration is only
+     * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
+     * Registry.
      * If `docker_repository` field is specified, this field will be automatically
      * set as `ARTIFACT_REGISTRY`.
      * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
      * This field may be overridden by the backend for eligible deployments.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
      * @return int
      */
     public function getDockerRegistry()
@@ -432,15 +432,15 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Docker Registry to use for this deployment. This configuration is
-     * only applicable to 1st Gen functions, 2nd Gen functions can only use
-     * Artifact Registry.
+     * Docker Registry to use for this deployment. This configuration is only
+     * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
+     * Registry.
      * If `docker_repository` field is specified, this field will be automatically
      * set as `ARTIFACT_REGISTRY`.
      * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
      * This field may be overridden by the backend for eligible deployments.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
      * @param int $var
      * @return $this
      */
@@ -453,8 +453,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. This is the repository to which the
+     * User managed repository created in Artifact Registry optionally
+     * with a customer managed encryption key. This is the repository to which the
      * function docker image will be pushed after it is built by Cloud Build.
      * If unspecified, GCF will create and use a repository named 'gcf-artifacts'
      * for every deployed region.
@@ -473,8 +473,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. This is the repository to which the
+     * User managed repository created in Artifact Registry optionally
+     * with a customer managed encryption key. This is the repository to which the
      * function docker image will be pushed after it is built by Cloud Build.
      * If unspecified, GCF will create and use a repository named 'gcf-artifacts'
      * for every deployed region.

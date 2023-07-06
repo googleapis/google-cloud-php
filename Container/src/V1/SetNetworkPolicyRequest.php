@@ -57,6 +57,47 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string                                   $projectId     Deprecated. The Google Developers Console [project ID or project
+     *                                                                number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                                                                This field has been deprecated and replaced by the name field.
+     * @param string                                   $zone          Deprecated. The name of the Google Compute Engine
+     *                                                                [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                                                                cluster resides. This field has been deprecated and replaced by the name
+     *                                                                field.
+     * @param string                                   $clusterId     Deprecated. The name of the cluster.
+     *                                                                This field has been deprecated and replaced by the name field.
+     * @param \Google\Cloud\Container\V1\NetworkPolicy $networkPolicy Required. Configuration options for the NetworkPolicy feature.
+     *
+     * @return \Google\Cloud\Container\V1\SetNetworkPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $clusterId, \Google\Cloud\Container\V1\NetworkPolicy $networkPolicy): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setClusterId($clusterId)
+            ->setNetworkPolicy($networkPolicy);
+    }
+
+    /**
+     * @param string                                   $name          The name (project, location, cluster name) of the cluster to set networking
+     *                                                                policy. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     * @param \Google\Cloud\Container\V1\NetworkPolicy $networkPolicy Required. Configuration options for the NetworkPolicy feature.
+     *
+     * @return \Google\Cloud\Container\V1\SetNetworkPolicyRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameNetworkPolicy(string $name, \Google\Cloud\Container\V1\NetworkPolicy $networkPolicy): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNetworkPolicy($networkPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

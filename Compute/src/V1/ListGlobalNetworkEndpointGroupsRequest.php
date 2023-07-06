@@ -53,6 +53,19 @@ class ListGlobalNetworkEndpointGroupsRequest extends \Google\Protobuf\Internal\M
     private $return_partial_success = null;
 
     /**
+     * @param string $project Project ID for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\ListGlobalNetworkEndpointGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project): self
+    {
+        return (new self())
+            ->setProject($project);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

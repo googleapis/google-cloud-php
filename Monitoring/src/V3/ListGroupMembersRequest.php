@@ -59,6 +59,22 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     private $interval = null;
 
     /**
+     * @param string $name Required. The group whose members are listed. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *                     Please see {@see GroupServiceClient::groupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListGroupMembersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

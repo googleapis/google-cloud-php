@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebStreamData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Analytics "Measurement ID", without the "G-" prefix.
-     * Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     * Output only. Analytics Measurement ID.
+     * Example: "G-1A2BCD345E"
      *
      * Generated from protobuf field <code>string measurement_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,10 +30,10 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
      */
     private $firebase_app_id = '';
     /**
-     * Immutable. Domain name of the web app being measured, or empty.
+     * Domain name of the web app being measured, or empty.
      * Example: "http://www.google.com", "https://www.google.com"
      *
-     * Generated from protobuf field <code>string default_uri = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string default_uri = 3;</code>
      */
     private $default_uri = '';
 
@@ -44,13 +44,13 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $measurement_id
-     *           Output only. Analytics "Measurement ID", without the "G-" prefix.
-     *           Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     *           Output only. Analytics Measurement ID.
+     *           Example: "G-1A2BCD345E"
      *     @type string $firebase_app_id
      *           Output only. ID of the corresponding web app in Firebase, if any.
      *           This ID can change if the web app is deleted and recreated.
      *     @type string $default_uri
-     *           Immutable. Domain name of the web app being measured, or empty.
+     *           Domain name of the web app being measured, or empty.
      *           Example: "http://www.google.com", "https://www.google.com"
      * }
      */
@@ -60,8 +60,8 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Analytics "Measurement ID", without the "G-" prefix.
-     * Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     * Output only. Analytics Measurement ID.
+     * Example: "G-1A2BCD345E"
      *
      * Generated from protobuf field <code>string measurement_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -72,8 +72,8 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Analytics "Measurement ID", without the "G-" prefix.
-     * Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     * Output only. Analytics Measurement ID.
+     * Example: "G-1A2BCD345E"
      *
      * Generated from protobuf field <code>string measurement_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -116,10 +116,10 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Domain name of the web app being measured, or empty.
+     * Domain name of the web app being measured, or empty.
      * Example: "http://www.google.com", "https://www.google.com"
      *
-     * Generated from protobuf field <code>string default_uri = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string default_uri = 3;</code>
      * @return string
      */
     public function getDefaultUri()
@@ -128,10 +128,10 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Domain name of the web app being measured, or empty.
+     * Domain name of the web app being measured, or empty.
      * Example: "http://www.google.com", "https://www.google.com"
      *
-     * Generated from protobuf field <code>string default_uri = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string default_uri = 3;</code>
      * @param string $var
      * @return $this
      */

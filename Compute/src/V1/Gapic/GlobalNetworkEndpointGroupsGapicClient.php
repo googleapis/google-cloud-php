@@ -88,6 +88,10 @@ use Google\Cloud\Compute\V1\Operation;
  *     $globalNetworkEndpointGroupsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\GlobalNetworkEndpointGroupsClient} to use the
+ * new surface.
  */
 class GlobalNetworkEndpointGroupsGapicClient
 {

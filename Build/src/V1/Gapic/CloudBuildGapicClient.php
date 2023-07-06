@@ -88,7 +88,7 @@ use Google\Protobuf\GPBEmpty;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -105,7 +105,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -160,6 +160,8 @@ class CloudBuildGapicClient
     private static $projectLocationTriggerNameTemplate;
 
     private static $projectTriggerNameTemplate;
+
+    private static $repositoryNameTemplate;
 
     private static $secretVersionNameTemplate;
 
@@ -284,6 +286,15 @@ class CloudBuildGapicClient
         return self::$projectTriggerNameTemplate;
     }
 
+    private static function getRepositoryNameTemplate()
+    {
+        if (self::$repositoryNameTemplate == null) {
+            self::$repositoryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}');
+        }
+
+        return self::$repositoryNameTemplate;
+    }
+
     private static function getSecretVersionNameTemplate()
     {
         if (self::$secretVersionNameTemplate == null) {
@@ -343,6 +354,7 @@ class CloudBuildGapicClient
                 'projectLocationBuild' => self::getProjectLocationBuildNameTemplate(),
                 'projectLocationTrigger' => self::getProjectLocationTriggerNameTemplate(),
                 'projectTrigger' => self::getProjectTriggerNameTemplate(),
+                'repository' => self::getRepositoryNameTemplate(),
                 'secretVersion' => self::getSecretVersionNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'subscription' => self::getSubscriptionNameTemplate(),
@@ -531,6 +543,27 @@ class CloudBuildGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     */
+    public static function repositoryName($project, $location, $connection, $repository)
+    {
+        return self::getRepositoryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * secret_version resource.
      *
@@ -633,6 +666,7 @@ class CloudBuildGapicClient
      * - projectLocationBuild: projects/{project}/locations/{location}/builds/{build}
      * - projectLocationTrigger: projects/{project}/locations/{location}/triggers/{trigger}
      * - projectTrigger: projects/{project}/triggers/{trigger}
+     * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - subscription: projects/{project}/subscriptions/{subscription}
@@ -781,7 +815,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -798,7 +832,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -908,7 +942,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -925,7 +959,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1036,7 +1070,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1053,7 +1087,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1728,7 +1762,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1745,7 +1779,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1804,7 +1838,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1821,7 +1855,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1934,7 +1968,7 @@ class CloudBuildGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1951,7 +1985,7 @@ class CloudBuildGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

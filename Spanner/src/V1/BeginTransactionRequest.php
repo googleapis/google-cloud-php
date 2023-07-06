@@ -39,6 +39,22 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     private $request_options = null;
 
     /**
+     * @param string                                      $session Required. The session in which the transaction runs. Please see
+     *                                                             {@see SpannerClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions $options Required. Options for the new transaction.
+     *
+     * @return \Google\Cloud\Spanner\V1\BeginTransactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $session, \Google\Cloud\Spanner\V1\TransactionOptions $options): self
+    {
+        return (new self())
+            ->setSession($session)
+            ->setOptions($options);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

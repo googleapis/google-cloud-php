@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for batch process document method.
+ * Request message for
+ * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.BatchProcessRequest</code>
  */
@@ -27,24 +28,46 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The input documents for batch process.
+     * The input documents for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig input_documents = 5;</code>
      */
     private $input_documents = null;
     /**
-     * The overall output config for batch process.
+     * The output configuration for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig document_output_config = 6;</code>
      */
     private $document_output_config = null;
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 4;</code>
      */
     private $skip_human_review = false;
+
+    /**
+     * @param string $name Required. The resource name of
+     *                     [Processor][google.cloud.documentai.v1.Processor] or
+     *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                     or
+     *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *
+     * @return \Google\Cloud\DocumentAI\V1\BatchProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -60,12 +83,16 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *           or
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig $input_documents
-     *           The input documents for batch process.
+     *           The input documents for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentOutputConfig $document_output_config
-     *           The overall output config for batch process.
+     *           The output configuration for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type bool $skip_human_review
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,7 +137,9 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The input documents for batch process.
+     * The input documents for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig input_documents = 5;</code>
      * @return \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig|null
@@ -131,7 +160,9 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The input documents for batch process.
+     * The input documents for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig input_documents = 5;</code>
      * @param \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig $var
@@ -146,7 +177,9 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The overall output config for batch process.
+     * The output configuration for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig document_output_config = 6;</code>
      * @return \Google\Cloud\DocumentAI\V1\DocumentOutputConfig|null
@@ -167,7 +200,9 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The overall output config for batch process.
+     * The output configuration for the
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig document_output_config = 6;</code>
      * @param \Google\Cloud\DocumentAI\V1\DocumentOutputConfig $var
@@ -182,8 +217,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 4;</code>
      * @return bool
@@ -194,8 +229,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 4;</code>
      * @param bool $var

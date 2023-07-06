@@ -41,6 +41,23 @@ class InsertAutoscalerRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                              $project            Project ID for this request.
+     * @param string                              $zone               Name of the zone for this request.
+     * @param \Google\Cloud\Compute\V1\Autoscaler $autoscalerResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertAutoscalerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, \Google\Cloud\Compute\V1\Autoscaler $autoscalerResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setAutoscalerResource($autoscalerResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

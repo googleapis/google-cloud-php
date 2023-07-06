@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class SslMode
 {
     /**
-     * SSL mode not specified. Defaults to SSL_MODE_ALLOW.
+     * SSL mode not specified. Defaults to ENCRYPTED_ONLY.
      *
      * Generated from protobuf enum <code>SSL_MODE_UNSPECIFIED = 0;</code>
      */
@@ -22,7 +22,7 @@ class SslMode
     /**
      * SSL connections are optional. CA verification not enforced.
      *
-     * Generated from protobuf enum <code>SSL_MODE_ALLOW = 1;</code>
+     * Generated from protobuf enum <code>SSL_MODE_ALLOW = 1 [deprecated = true];</code>
      */
     const SSL_MODE_ALLOW = 1;
     /**
@@ -30,7 +30,7 @@ class SslMode
      * Clients may use locally self-signed certificates (default psql client
      * behavior).
      *
-     * Generated from protobuf enum <code>SSL_MODE_REQUIRE = 2;</code>
+     * Generated from protobuf enum <code>SSL_MODE_REQUIRE = 2 [deprecated = true];</code>
      */
     const SSL_MODE_REQUIRE = 2;
     /**
@@ -38,15 +38,29 @@ class SslMode
      * Clients must have certificates signed by a Cluster CA, e.g. via
      * GenerateClientCertificate.
      *
-     * Generated from protobuf enum <code>SSL_MODE_VERIFY_CA = 3;</code>
+     * Generated from protobuf enum <code>SSL_MODE_VERIFY_CA = 3 [deprecated = true];</code>
      */
     const SSL_MODE_VERIFY_CA = 3;
+    /**
+     * SSL connections are optional. CA verification not enforced.
+     *
+     * Generated from protobuf enum <code>ALLOW_UNENCRYPTED_AND_ENCRYPTED = 4;</code>
+     */
+    const ALLOW_UNENCRYPTED_AND_ENCRYPTED = 4;
+    /**
+     * SSL connections are required. CA verification not enforced.
+     *
+     * Generated from protobuf enum <code>ENCRYPTED_ONLY = 5;</code>
+     */
+    const ENCRYPTED_ONLY = 5;
 
     private static $valueToName = [
         self::SSL_MODE_UNSPECIFIED => 'SSL_MODE_UNSPECIFIED',
         self::SSL_MODE_ALLOW => 'SSL_MODE_ALLOW',
         self::SSL_MODE_REQUIRE => 'SSL_MODE_REQUIRE',
         self::SSL_MODE_VERIFY_CA => 'SSL_MODE_VERIFY_CA',
+        self::ALLOW_UNENCRYPTED_AND_ENCRYPTED => 'ALLOW_UNENCRYPTED_AND_ENCRYPTED',
+        self::ENCRYPTED_ONLY => 'ENCRYPTED_ONLY',
     ];
 
     public static function name($value)

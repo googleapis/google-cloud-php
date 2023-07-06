@@ -52,6 +52,20 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent The parent resource. This may be "projects/{project}",
+     *                       "folders/{folder}", or "organizations/{organization}".
+     *
+     * @return \Google\Cloud\AccessApproval\V1\ListApprovalRequestsMessage
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
