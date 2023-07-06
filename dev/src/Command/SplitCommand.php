@@ -207,7 +207,7 @@ class SplitCommand extends Command
         $updateReleaseNotes
     ) {
         $output->writeln('');
-        $tagName = 'v' . $component->getLocalVersion();
+        $tagName = 'v' . $component->getPackageVersion();
         $repoName = $component->getRepoName();
         $componentId = $component->getId();
         $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);

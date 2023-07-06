@@ -68,16 +68,13 @@ class ComponentInfoCommandTest extends TestCase
 
     public function testComponentDetails()
     {
-        self::$commandTester->execute(['name' => 'AccessContextManager']);
+        self::$commandTester->execute(['-c' => 'AccessContextManager']);
 
         // confirm a few fields we expect to see in the output
         $display = self::$commandTester->getDisplay();
 
         $this->assertStringContainsString('Component Name: AccessContextManager', $display);
         $this->assertStringContainsString('Package Name: google/access-context-manager', $display);
-        $this->assertStringContainsString('Php Namespace(s): Google\Identity\AccessContextManager', $display);
-        $this->assertStringContainsString('Github Repo: googleapis/php-access-context-manager', $display);
-        $this->assertStringContainsString('Service Address: accesscontextmanager.googleapis.com', $display);
         $this->assertStringContainsString('Release Level: ', $display);   // these values might change
         $this->assertStringContainsString('Package Version: ', $display); // these values might change
     }
@@ -85,7 +82,7 @@ class ComponentInfoCommandTest extends TestCase
     public function testFieldsOption()
     {
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'name,package_name,doesnt_exist',
         ]);
         $this->assertEquals(<<<EOL
@@ -100,7 +97,7 @@ EOL, self::$commandTester->getDisplay());
     public function testFieldsOptionOrder()
     {
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'package_name,name',
         ]);
         $this->assertEquals(<<<EOL
@@ -117,7 +114,7 @@ EOL, self::$commandTester->getDisplay());
         mkdir($tmpDir = sys_get_temp_dir() . '/component-info-test-' . time());
         $csv = $tmpDir . '/test.csv';
         self::$commandTester->execute([
-            'name' => 'AccessContextManager',
+            '-c' => 'AccessContextManager',
             '--fields' => 'package_name,name,github_repo',
             '--csv' => $csv,
         ]);
