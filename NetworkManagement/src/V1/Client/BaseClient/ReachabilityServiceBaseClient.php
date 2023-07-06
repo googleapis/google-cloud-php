@@ -42,6 +42,7 @@ use Google\Cloud\NetworkManagement\V1\GetConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 use Google\Cloud\NetworkManagement\V1\RerunConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

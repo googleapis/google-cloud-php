@@ -41,6 +41,7 @@ use Google\Cloud\VpcAccess\V1\CreateConnectorRequest;
 use Google\Cloud\VpcAccess\V1\DeleteConnectorRequest;
 use Google\Cloud\VpcAccess\V1\GetConnectorRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

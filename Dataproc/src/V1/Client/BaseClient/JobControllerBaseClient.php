@@ -41,6 +41,7 @@ use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\ListJobsRequest;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

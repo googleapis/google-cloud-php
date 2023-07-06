@@ -53,6 +53,7 @@ use Google\Cloud\StorageTransfer\V1\TransferJob;
 use Google\Cloud\StorageTransfer\V1\TransferOperation;
 use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

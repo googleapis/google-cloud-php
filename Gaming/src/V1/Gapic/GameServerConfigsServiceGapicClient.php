@@ -41,6 +41,7 @@ use Google\Cloud\Gaming\V1\GameServerConfig;
 use Google\Cloud\Gaming\V1\GetGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsResponse;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: The game server config configures the game servers in an Agones fleet.

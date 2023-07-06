@@ -553,10 +553,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $issueCount = 1779144233;
+        $languageCode = 'languageCode-412800396';
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIssueCount($issueCount);
+        $expectedResponse->setLanguageCode($languageCode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1638,10 +1640,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $issueCount = 1779144233;
+        $languageCode = 'languageCode-412800396';
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIssueCount($issueCount);
+        $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
@@ -2648,10 +2652,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $issueCount = 1779144233;
+        $languageCode = 'languageCode-412800396';
         $expectedResponse = new IssueModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIssueCount($issueCount);
+        $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $issueModel = new IssueModel();

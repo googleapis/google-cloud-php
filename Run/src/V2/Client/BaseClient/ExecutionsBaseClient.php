@@ -39,6 +39,7 @@ use Google\Cloud\Run\V2\DeleteExecutionRequest;
 use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\GetExecutionRequest;
 use Google\Cloud\Run\V2\ListExecutionsRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

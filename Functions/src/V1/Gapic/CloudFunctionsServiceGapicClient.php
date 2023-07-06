@@ -56,6 +56,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

@@ -102,6 +102,7 @@ use Google\Cloud\DataLabeling\V1beta1\TextClassificationConfig;
 use Google\Cloud\DataLabeling\V1beta1\TextEntityExtractionConfig;
 use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
 use Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 

@@ -75,6 +75,7 @@ use Google\Cloud\SecurityCenter\V1p1beta1\UpdateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1p1beta1\UpdateOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1p1beta1\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V1p1beta1\UpdateSourceRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;

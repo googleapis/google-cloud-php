@@ -70,6 +70,7 @@ use Google\Cloud\DocumentAI\V1\ProcessorType;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 use Google\Cloud\DocumentAI\V1\RawDocument;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
+use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;

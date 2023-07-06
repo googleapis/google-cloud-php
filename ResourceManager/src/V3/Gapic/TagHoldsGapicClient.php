@@ -40,6 +40,7 @@ use Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsResponse;
 use Google\Cloud\ResourceManager\V3\TagHold;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Allow users to create and manage TagHolds for TagValues. TagHolds represent
