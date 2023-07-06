@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.tpu.v2",
+    "libraryPackage": "Google\\Cloud\\Tpu\\V2",
+    "services": {
+        "Tpu": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TpuGapicClient",
+                    "rpcs": {
+                        "CreateNode": {
+                            "methods": [
+                                "createNode"
+                            ]
+                        },
+                        "DeleteNode": {
+                            "methods": [
+                                "deleteNode"
+                            ]
+                        },
+                        "GenerateServiceIdentity": {
+                            "methods": [
+                                "generateServiceIdentity"
+                            ]
+                        },
+                        "GetAcceleratorType": {
+                            "methods": [
+                                "getAcceleratorType"
+                            ]
+                        },
+                        "GetGuestAttributes": {
+                            "methods": [
+                                "getGuestAttributes"
+                            ]
+                        },
+                        "GetNode": {
+                            "methods": [
+                                "getNode"
+                            ]
+                        },
+                        "GetRuntimeVersion": {
+                            "methods": [
+                                "getRuntimeVersion"
+                            ]
+                        },
+                        "ListAcceleratorTypes": {
+                            "methods": [
+                                "listAcceleratorTypes"
+                            ]
+                        },
+                        "ListNodes": {
+                            "methods": [
+                                "listNodes"
+                            ]
+                        },
+                        "ListRuntimeVersions": {
+                            "methods": [
+                                "listRuntimeVersions"
+                            ]
+                        },
+                        "StartNode": {
+                            "methods": [
+                                "startNode"
+                            ]
+                        },
+                        "StopNode": {
+                            "methods": [
+                                "stopNode"
+                            ]
+                        },
+                        "UpdateNode": {
+                            "methods": [
+                                "updateNode"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
