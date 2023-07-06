@@ -51,7 +51,7 @@ class State
     const DELETING = 5;
     /**
      * TPU node is being repaired and may be unusable. Details can be
-     * found in the `help_description` field.
+     * found in the 'help_description' field.
      *
      * Generated from protobuf enum <code>REPAIRING = 6;</code>
      */
