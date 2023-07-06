@@ -55,6 +55,7 @@ use Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode;
 use Google\Cloud\Talent\V4\SearchJobsRequest\SearchMode;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 use Google\Cloud\Talent\V4\UpdateJobRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 

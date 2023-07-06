@@ -43,6 +43,7 @@ use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesResponse;
 use Google\Cloud\ServiceUsage\V1\Service;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Enables services that service consumers want to use on Google Cloud Platform,
