@@ -47,6 +47,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

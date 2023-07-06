@@ -48,6 +48,7 @@ use Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutRequest;
 use Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutResponse;
 use Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRequest;
 use Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRolloutRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
