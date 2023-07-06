@@ -47,6 +47,7 @@ use Google\Cloud\ApiKeys\V2\LookupKeyRequest;
 use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
 use Google\Cloud\ApiKeys\V2\UndeleteKeyRequest;
 use Google\Cloud\ApiKeys\V2\UpdateKeyRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
