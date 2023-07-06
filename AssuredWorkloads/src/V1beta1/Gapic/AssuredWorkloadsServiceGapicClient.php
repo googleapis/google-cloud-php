@@ -49,6 +49,7 @@ use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\Restri
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
