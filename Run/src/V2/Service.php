@@ -234,6 +234,16 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     */
+    private $custom_audiences;
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -387,6 +397,12 @@ class Service extends \Google\Protobuf\Internal\Message
      *           process in Cloud Run.
      *     @type string $uri
      *           Output only. The main URI in which this Service is serving traffic.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
+     *           One or more custom audiences that you want this service to support. Specify
+     *           each custom audience as the full URL in a string. The custom audiences are
+     *           encoded in the token and used to authenticate requests. For more
+     *           information, see
+     *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $reconciling
@@ -1277,6 +1293,40 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomAudiences()
+    {
+        return $this->custom_audiences;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomAudiences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_audiences = $arr;
 
         return $this;
     }
