@@ -2052,6 +2052,13 @@ class DataCatalogGapicClient
      *           * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
      *           * `default` that can only be descending
      *
+     *           Search queries don't guarantee full recall. Results that match your query
+     *           might not be returned, even in subsequent result pages. Additionally,
+     *           returned (and not returned) results can vary if you repeat search queries.
+     *           If you are experiencing recall issues and you don't have to fetch the
+     *           results in any specific order, consider setting this parameter to
+     *           `default`.
+     *
      *           If this parameter is omitted, it defaults to the descending `relevance`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
