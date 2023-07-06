@@ -57,6 +57,7 @@ use Google\Cloud\Tpu\V1\ReimageNodeRequest;
 use Google\Cloud\Tpu\V1\StartNodeRequest;
 use Google\Cloud\Tpu\V1\StopNodeRequest;
 use Google\Cloud\Tpu\V1\TensorFlowVersion;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Manages TPU nodes and other resources

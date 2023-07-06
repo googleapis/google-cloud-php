@@ -94,6 +94,7 @@ use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
 use Google\Cloud\VMMigration\V1\UpdateTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\UpgradeApplianceRequest;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

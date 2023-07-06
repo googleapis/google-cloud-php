@@ -73,6 +73,7 @@ use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
