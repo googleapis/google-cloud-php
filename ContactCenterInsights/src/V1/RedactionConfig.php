@@ -26,7 +26,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
     /**
      * The fully-qualified DLP inspect template resource name.
      * Format:
-     * `projects/{project}/inspectTemplates/{template}`
+     * `projects/{project}/locations/{location}/inspectTemplates/{template}`
      *
      * Generated from protobuf field <code>string inspect_template = 2;</code>
      */
@@ -45,7 +45,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $inspect_template
      *           The fully-qualified DLP inspect template resource name.
      *           Format:
-     *           `projects/{project}/inspectTemplates/{template}`
+     *           `projects/{project}/locations/{location}/inspectTemplates/{template}`
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +86,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
     /**
      * The fully-qualified DLP inspect template resource name.
      * Format:
-     * `projects/{project}/inspectTemplates/{template}`
+     * `projects/{project}/locations/{location}/inspectTemplates/{template}`
      *
      * Generated from protobuf field <code>string inspect_template = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
     /**
      * The fully-qualified DLP inspect template resource name.
      * Format:
-     * `projects/{project}/inspectTemplates/{template}`
+     * `projects/{project}/locations/{location}/inspectTemplates/{template}`
      *
      * Generated from protobuf field <code>string inspect_template = 2;</code>
      * @param string $var

@@ -33,6 +33,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ServiceControl\V1\CheckRequest;
 use Google\Cloud\ServiceControl\V1\CheckResponse;
+use Google\Cloud\ServiceControl\V1\Operation;
 use Google\Cloud\ServiceControl\V1\ReportRequest;
 use Google\Cloud\ServiceControl\V1\ReportResponse;
 use GuzzleHttp\Promise\PromiseInterface;

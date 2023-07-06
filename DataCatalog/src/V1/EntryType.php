@@ -7,8 +7,17 @@ namespace Google\Cloud\DataCatalog\V1;
 use UnexpectedValueException;
 
 /**
- * The enum field that lists all the types of entry resources in Data
- * Catalog. For example, a BigQuery table entry has the `TABLE` type.
+ * Metadata automatically ingested from Google Cloud resources like BigQuery
+ * tables or Pub/Sub topics always uses enum values from `EntryType` as the type
+ * of entry.
+ * Other sources of metadata like Hive or Oracle databases can identify the type
+ * by either using one of the enum values from `EntryType` (for example,
+ * `FILESET` for a Cloud Storage fileset) or specifying a custom value using
+ * the [`Entry`](#resource:-entry) field `user_specified_type`. For more
+ * information, see
+ * [Surface files from Cloud Storage with fileset
+ * entries](https://cloud.google.com/data-catalog/docs/how-to/filesets) or [Create custom entries for
+ * your data sources](https://cloud.google.com/data-catalog/docs/how-to/custom-entries).
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.EntryType</code>
  */
@@ -28,9 +37,9 @@ class EntryType
      */
     const TABLE = 2;
     /**
-     * Output only. The type of models.
-     * For more information, see [Supported models in BigQuery ML]
-     * (https://cloud.google.com/bigquery-ml/docs/introduction#supported_models_in).
+     * The type of models.
+     * For more information, see [Supported models in BigQuery
+     * ML](https://cloud.google.com/bigquery/docs/bqml-introduction#supported_models).
      *
      * Generated from protobuf enum <code>MODEL = 5;</code>
      */
@@ -61,14 +70,14 @@ class EntryType
      */
     const DATABASE = 7;
     /**
-     * Output only. Connection to a data source. For example, a BigQuery
+     * Connection to a data source. For example, a BigQuery
      * connection.
      *
      * Generated from protobuf enum <code>DATA_SOURCE_CONNECTION = 8;</code>
      */
     const DATA_SOURCE_CONNECTION = 8;
     /**
-     * Output only. Routine, for example, a BigQuery routine.
+     * Routine, for example, a BigQuery routine.
      *
      * Generated from protobuf enum <code>ROUTINE = 9;</code>
      */

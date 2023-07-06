@@ -78,6 +78,7 @@ use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VerifyMigrationJobRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

@@ -49,6 +49,7 @@ use Google\Cloud\Metastore\V1\Federation;
 use Google\Cloud\Metastore\V1\GetFederationRequest;
 use Google\Cloud\Metastore\V1\ListFederationsRequest;
 use Google\Cloud\Metastore\V1\UpdateFederationRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

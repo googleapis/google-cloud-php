@@ -56,6 +56,7 @@ use Google\Cloud\ApiGateway\V1\ListGatewaysResponse;
 use Google\Cloud\ApiGateway\V1\UpdateApiConfigRequest;
 use Google\Cloud\ApiGateway\V1\UpdateApiRequest;
 use Google\Cloud\ApiGateway\V1\UpdateGatewayRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

@@ -42,6 +42,7 @@ use Google\Cloud\ResourceManager\V3\ListEffectiveTagsResponse;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsResponse;
 use Google\Cloud\ResourceManager\V3\TagBinding;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Allow users to create and manage TagBindings between TagValues and

@@ -58,6 +58,7 @@ use Google\Cloud\Notebooks\V1\StopRuntimeRequest;
 use Google\Cloud\Notebooks\V1\SwitchRuntimeRequest;
 use Google\Cloud\Notebooks\V1\UpdateRuntimeRequest;
 use Google\Cloud\Notebooks\V1\UpgradeRuntimeRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

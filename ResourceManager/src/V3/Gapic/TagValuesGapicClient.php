@@ -49,6 +49,7 @@ use Google\Cloud\ResourceManager\V3\ListTagValuesRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesResponse;
 use Google\Cloud\ResourceManager\V3\TagValue;
 use Google\Cloud\ResourceManager\V3\UpdateTagValueRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

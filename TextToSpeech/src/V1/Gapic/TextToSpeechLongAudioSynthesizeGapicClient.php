@@ -39,6 +39,7 @@ use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioRequest;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Service that implements Google Cloud Text-to-Speech API.
