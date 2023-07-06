@@ -40,6 +40,7 @@ use Google\Cloud\Gaming\V1\DeleteGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\GameServerConfig;
 use Google\Cloud\Gaming\V1\GetGameServerConfigRequest;
 use Google\Cloud\Gaming\V1\ListGameServerConfigsRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

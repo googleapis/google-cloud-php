@@ -69,6 +69,7 @@ use Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy;
 use Google\Cloud\NetworkSecurity\V1beta1\UpdateAuthorizationPolicyRequest;
 use Google\Cloud\NetworkSecurity\V1beta1\UpdateClientTlsPolicyRequest;
 use Google\Cloud\NetworkSecurity\V1beta1\UpdateServerTlsPolicyRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

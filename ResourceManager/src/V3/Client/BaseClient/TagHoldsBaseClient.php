@@ -39,6 +39,7 @@ use Google\Cloud\ResourceManager\V3\CreateTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsRequest;
 use Google\Cloud\ResourceManager\V3\TagHold;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

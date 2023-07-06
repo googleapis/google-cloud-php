@@ -41,6 +41,7 @@ use Google\Cloud\DiscoveryEngine\V1\GetSchemaRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListSchemasRequest;
 use Google\Cloud\DiscoveryEngine\V1\Schema;
 use Google\Cloud\DiscoveryEngine\V1\UpdateSchemaRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

@@ -34,6 +34,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

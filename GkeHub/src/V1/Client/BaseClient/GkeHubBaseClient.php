@@ -49,6 +49,7 @@ use Google\Cloud\GkeHub\V1\ListMembershipsRequest;
 use Google\Cloud\GkeHub\V1\Membership;
 use Google\Cloud\GkeHub\V1\UpdateFeatureRequest;
 use Google\Cloud\GkeHub\V1\UpdateMembershipRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

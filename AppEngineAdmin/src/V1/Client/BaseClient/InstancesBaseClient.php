@@ -39,6 +39,7 @@ use Google\Cloud\AppEngine\V1\DeleteInstanceRequest;
 use Google\Cloud\AppEngine\V1\GetInstanceRequest;
 use Google\Cloud\AppEngine\V1\Instance;
 use Google\Cloud\AppEngine\V1\ListInstancesRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
