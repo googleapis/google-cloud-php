@@ -80,6 +80,7 @@ use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
 use Google\Cloud\Channel\V1\LookupOfferRequest;
 use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\OperationMetadata;
+use Google\Cloud\Channel\V1\Parameter;
 use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
