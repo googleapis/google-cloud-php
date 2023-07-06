@@ -40,6 +40,7 @@ use Google\Cloud\Dataproc\V1\CreateBatchRequest;
 use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
 use Google\Cloud\Dataproc\V1\GetBatchRequest;
 use Google\Cloud\Dataproc\V1\ListBatchesRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

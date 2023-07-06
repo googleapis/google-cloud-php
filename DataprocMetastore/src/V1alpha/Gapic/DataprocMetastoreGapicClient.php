@@ -53,6 +53,7 @@ use Google\Cloud\Metastore\V1alpha\Backup;
 use Google\Cloud\Metastore\V1alpha\CreateBackupRequest;
 use Google\Cloud\Metastore\V1alpha\CreateMetadataImportRequest;
 use Google\Cloud\Metastore\V1alpha\CreateServiceRequest;
+use Google\Cloud\Metastore\V1alpha\DatabaseDumpSpec\Type;
 use Google\Cloud\Metastore\V1alpha\DeleteBackupRequest;
 use Google\Cloud\Metastore\V1alpha\DeleteServiceRequest;
 use Google\Cloud\Metastore\V1alpha\ExportMetadataRequest;
@@ -70,10 +71,12 @@ use Google\Cloud\Metastore\V1alpha\MoveTableToDatabaseRequest;
 use Google\Cloud\Metastore\V1alpha\QueryMetadataRequest;
 use Google\Cloud\Metastore\V1alpha\RemoveIamPolicyRequest;
 use Google\Cloud\Metastore\V1alpha\RemoveIamPolicyResponse;
+use Google\Cloud\Metastore\V1alpha\Restore;
 use Google\Cloud\Metastore\V1alpha\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1alpha\Service;
 use Google\Cloud\Metastore\V1alpha\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1alpha\UpdateServiceRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

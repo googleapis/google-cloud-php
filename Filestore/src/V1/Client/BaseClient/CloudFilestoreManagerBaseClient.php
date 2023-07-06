@@ -54,6 +54,7 @@ use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Cloud\Filestore\V1\UpdateInstanceRequest;
 use Google\Cloud\Filestore\V1\UpdateSnapshotRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
