@@ -43,6 +43,7 @@ use Google\Cloud\Gaming\V1\PreviewRealmUpdateRequest;
 use Google\Cloud\Gaming\V1\PreviewRealmUpdateResponse;
 use Google\Cloud\Gaming\V1\Realm;
 use Google\Cloud\Gaming\V1\UpdateRealmRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

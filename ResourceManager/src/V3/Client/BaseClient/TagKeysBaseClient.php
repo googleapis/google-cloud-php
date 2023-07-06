@@ -47,6 +47,7 @@ use Google\Cloud\ResourceManager\V3\GetTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysRequest;
 use Google\Cloud\ResourceManager\V3\TagKey;
 use Google\Cloud\ResourceManager\V3\UpdateTagKeyRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

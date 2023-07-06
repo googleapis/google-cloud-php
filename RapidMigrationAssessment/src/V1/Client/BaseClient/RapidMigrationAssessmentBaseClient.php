@@ -50,6 +50,7 @@ use Google\Cloud\RapidMigrationAssessment\V1\PauseCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\RegisterCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\ResumeCollectorRequest;
 use Google\Cloud\RapidMigrationAssessment\V1\UpdateCollectorRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
