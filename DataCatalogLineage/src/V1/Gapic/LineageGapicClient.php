@@ -60,6 +60,7 @@ use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
