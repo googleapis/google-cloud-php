@@ -93,13 +93,13 @@ class BatchPublisher
     public function __construct($topicName, array $options = [])
     {
         $this->topicName = $topicName;
+        $this->enableCompression = $options['enableCompression'] ?? false;
+        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ??
+            Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         $this->setCommonBatchProperties($options + [
             'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishDeferred'
         ]);
-        $this->enableCompression = $options['enableCompression'] ?? false;
-        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ??
-            Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
     }
 
     /**
