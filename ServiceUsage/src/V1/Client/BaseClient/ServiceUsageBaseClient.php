@@ -42,6 +42,7 @@ use Google\Cloud\ServiceUsage\V1\EnableServiceRequest;
 use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesRequest;
 use Google\Cloud\ServiceUsage\V1\Service;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

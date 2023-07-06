@@ -37,6 +37,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\CompleteQueryRequest;
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
 use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

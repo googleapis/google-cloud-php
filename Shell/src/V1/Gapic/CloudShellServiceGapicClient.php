@@ -43,6 +43,7 @@ use Google\Cloud\Shell\V1\RemovePublicKeyRequest;
 use Google\Cloud\Shell\V1\StartEnvironmentMetadata;
 use Google\Cloud\Shell\V1\StartEnvironmentRequest;
 use Google\Cloud\Shell\V1\StartEnvironmentResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Timestamp;
 
 /**
