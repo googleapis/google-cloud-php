@@ -65,9 +65,15 @@ class BatchPublisher
      */
     private $client;
 
-    private bool $enableCompression;
+    /**
+     * @var bool
+     */
+    private $enableCompression;
 
-    private int $compressionBytesThreshold;
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
 
     /**
      * @param string $topicName The topic name.
