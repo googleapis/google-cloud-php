@@ -40,7 +40,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
-     * The IPv4 address range, in CIDR format, represented by this public delegated prefix.
+     * The IP address range, in CIDR format, represented by this public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
@@ -110,7 +110,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *     @type string $ip_cidr_range
-     *           The IPv4 address range, in CIDR format, represented by this public delegated prefix.
+     *           The IP address range, in CIDR format, represented by this public delegated prefix.
      *     @type bool $is_live_migration
      *           If true, the prefix will be live migrated.
      *     @type string $kind
@@ -280,7 +280,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this public delegated prefix.
+     * The IP address range, in CIDR format, represented by this public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -301,7 +301,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this public delegated prefix.
+     * The IP address range, in CIDR format, represented by this public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var

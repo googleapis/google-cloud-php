@@ -205,6 +205,7 @@ class RoutesClientTest extends GeneratedTest
         $name = 'name3373707';
         $network = 'network1843485230';
         $nextHopGateway = 'nextHopGateway-159695614';
+        $nextHopHub = 'nextHopHub-1948804429';
         $nextHopIlb = 'nextHopIlb-1948803747';
         $nextHopInstance = 'nextHopInstance1467250071';
         $nextHopIp = 'nextHopIp1184061353';
@@ -224,6 +225,7 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setNextHopGateway($nextHopGateway);
+        $expectedResponse->setNextHopHub($nextHopHub);
         $expectedResponse->setNextHopIlb($nextHopIlb);
         $expectedResponse->setNextHopInstance($nextHopInstance);
         $expectedResponse->setNextHopIp($nextHopIp);

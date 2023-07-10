@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterNat extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * Check the AutoNetworkTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
+     */
+    private $auto_network_tier = null;
+    /**
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
@@ -131,6 +138,9 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $auto_network_tier
+     *           The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     *           Check the AutoNetworkTier enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
      *           A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *     @type bool $enable_dynamic_port_allocation
@@ -174,6 +184,44 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * Check the AutoNetworkTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
+     * @return string
+     */
+    public function getAutoNetworkTier()
+    {
+        return isset($this->auto_network_tier) ? $this->auto_network_tier : '';
+    }
+
+    public function hasAutoNetworkTier()
+    {
+        return isset($this->auto_network_tier);
+    }
+
+    public function clearAutoNetworkTier()
+    {
+        unset($this->auto_network_tier);
+    }
+
+    /**
+     * The network tier to use when automatically reserving IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, PREMIUM tier will be used.
+     * Check the AutoNetworkTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutoNetworkTier($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->auto_network_tier = $var;
+
+        return $this;
     }
 
     /**
