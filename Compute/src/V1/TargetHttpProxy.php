@@ -34,6 +34,12 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     private $fingerprint = null;
     /**
+     * Specifies how long to keep a connection open, after completing a response, while there is no matching traffic (in seconds). If an HTTP keep-alive is not specified, a default value (610 seconds) will be used. For Global external HTTP(S) load balancer, the minimum allowed value is 5 seconds and the maximum allowed value is 1200 seconds. For Global external HTTP(S) load balancer (classic), this option is not available publicly.
+     *
+     * Generated from protobuf field <code>optional int32 http_keep_alive_timeout_sec = 447326046;</code>
+     */
+    private $http_keep_alive_timeout_sec = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -88,6 +94,8 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetHttpProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpProxy.
+     *     @type int $http_keep_alive_timeout_sec
+     *           Specifies how long to keep a connection open, after completing a response, while there is no matching traffic (in seconds). If an HTTP keep-alive is not specified, a default value (610 seconds) will be used. For Global external HTTP(S) load balancer, the minimum allowed value is 5 seconds and the maximum allowed value is 1200 seconds. For Global external HTTP(S) load balancer (classic), this option is not available publicly.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -213,6 +221,42 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies how long to keep a connection open, after completing a response, while there is no matching traffic (in seconds). If an HTTP keep-alive is not specified, a default value (610 seconds) will be used. For Global external HTTP(S) load balancer, the minimum allowed value is 5 seconds and the maximum allowed value is 1200 seconds. For Global external HTTP(S) load balancer (classic), this option is not available publicly.
+     *
+     * Generated from protobuf field <code>optional int32 http_keep_alive_timeout_sec = 447326046;</code>
+     * @return int
+     */
+    public function getHttpKeepAliveTimeoutSec()
+    {
+        return isset($this->http_keep_alive_timeout_sec) ? $this->http_keep_alive_timeout_sec : 0;
+    }
+
+    public function hasHttpKeepAliveTimeoutSec()
+    {
+        return isset($this->http_keep_alive_timeout_sec);
+    }
+
+    public function clearHttpKeepAliveTimeoutSec()
+    {
+        unset($this->http_keep_alive_timeout_sec);
+    }
+
+    /**
+     * Specifies how long to keep a connection open, after completing a response, while there is no matching traffic (in seconds). If an HTTP keep-alive is not specified, a default value (610 seconds) will be used. For Global external HTTP(S) load balancer, the minimum allowed value is 5 seconds and the maximum allowed value is 1200 seconds. For Global external HTTP(S) load balancer (classic), this option is not available publicly.
+     *
+     * Generated from protobuf field <code>optional int32 http_keep_alive_timeout_sec = 447326046;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHttpKeepAliveTimeoutSec($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->http_keep_alive_timeout_sec = $var;
 
         return $this;
     }
