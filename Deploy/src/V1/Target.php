@@ -150,13 +150,13 @@ class Target extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Most recent time at which the `Target` was updated.
      *     @type \Google\Cloud\Deploy\V1\GkeCluster $gke
-     *           Information specifying a GKE Cluster.
+     *           Optional. Information specifying a GKE Cluster.
      *     @type \Google\Cloud\Deploy\V1\AnthosCluster $anthos_cluster
-     *           Information specifying an Anthos Cluster.
+     *           Optional. Information specifying an Anthos Cluster.
      *     @type \Google\Cloud\Deploy\V1\CloudRunLocation $run
-     *           Information specifying a Cloud Run deployment target.
+     *           Optional. Information specifying a Cloud Run deployment target.
      *     @type \Google\Cloud\Deploy\V1\MultiTarget $multi_target
-     *           Information specifying a multiTarget.
+     *           Optional. Information specifying a multiTarget.
      *     @type string $etag
      *           Optional. This checksum is computed by the server based on the value of
      *           other fields, and may be sent on update and delete requests to ensure the
@@ -459,9 +459,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a GKE Cluster.
+     * Optional. Information specifying a GKE Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.GkeCluster gke = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.GkeCluster gke = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\GkeCluster|null
      */
     public function getGke()
@@ -475,9 +475,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a GKE Cluster.
+     * Optional. Information specifying a GKE Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.GkeCluster gke = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.GkeCluster gke = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\GkeCluster $var
      * @return $this
      */
@@ -490,9 +490,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying an Anthos Cluster.
+     * Optional. Information specifying an Anthos Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\AnthosCluster|null
      */
     public function getAnthosCluster()
@@ -506,9 +506,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying an Anthos Cluster.
+     * Optional. Information specifying an Anthos Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\AnthosCluster $var
      * @return $this
      */
@@ -521,9 +521,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a Cloud Run deployment target.
+     * Optional. Information specifying a Cloud Run deployment target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\CloudRunLocation|null
      */
     public function getRun()
@@ -537,9 +537,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a Cloud Run deployment target.
+     * Optional. Information specifying a Cloud Run deployment target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\CloudRunLocation $var
      * @return $this
      */
@@ -552,9 +552,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a multiTarget.
+     * Optional. Information specifying a multiTarget.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\MultiTarget|null
      */
     public function getMultiTarget()
@@ -568,9 +568,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a multiTarget.
+     * Optional. Information specifying a multiTarget.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.MultiTarget multi_target = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\MultiTarget $var
      * @return $this
      */
