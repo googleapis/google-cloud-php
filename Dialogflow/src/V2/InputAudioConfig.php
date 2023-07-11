@@ -18,17 +18,16 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $audio_encoding = 0;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $sample_rate_hertz = 0;
     /**
@@ -38,7 +37,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
     /**
@@ -146,8 +145,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Required. Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
      *           Required. Sample rate (in Hertz) of the audio content sent in the query.
-     *           Refer to
-     *           [Cloud Speech API
+     *           Refer to [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      *           more details.
      *     @type string $language_code
@@ -227,7 +225,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getAudioEncoding()
@@ -238,7 +236,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -252,12 +250,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getSampleRateHertz()
@@ -267,12 +264,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -291,7 +287,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -306,7 +302,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
