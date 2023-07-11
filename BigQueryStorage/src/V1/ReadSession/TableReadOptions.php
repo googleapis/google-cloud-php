@@ -74,11 +74,11 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     private $row_restriction = '';
     /**
      * Optional. Specifies a table sampling percentage. Specifically, the query
-     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). This
-     * samples at the file-level. It will randomly choose for each file whether
-     * to include that file in the sample returned. Note, that if the table only
-     * has one file, then TABLESAMPLE SYSTEM will select that file and return
-     * all returnable rows contained within.
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
      *
      * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -146,11 +146,11 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           Optional. Options specific to the Apache Avro output format
      *     @type float $sample_percentage
      *           Optional. Specifies a table sampling percentage. Specifically, the query
-     *           planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). This
-     *           samples at the file-level. It will randomly choose for each file whether
-     *           to include that file in the sample returned. Note, that if the table only
-     *           has one file, then TABLESAMPLE SYSTEM will select that file and return
-     *           all returnable rows contained within.
+     *           planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     *           sampling percentage is applied at the data block granularity. It will
+     *           randomly choose for each data block whether to read the rows in that data
+     *           block. For more details, see
+     *           https://cloud.google.com/bigquery/docs/table-sampling)
      * }
      */
     public function __construct($data = NULL) {
@@ -364,11 +364,11 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies a table sampling percentage. Specifically, the query
-     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). This
-     * samples at the file-level. It will randomly choose for each file whether
-     * to include that file in the sample returned. Note, that if the table only
-     * has one file, then TABLESAMPLE SYSTEM will select that file and return
-     * all returnable rows contained within.
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
      *
      * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -390,11 +390,11 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies a table sampling percentage. Specifically, the query
-     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). This
-     * samples at the file-level. It will randomly choose for each file whether
-     * to include that file in the sample returned. Note, that if the table only
-     * has one file, then TABLESAMPLE SYSTEM will select that file and return
-     * all returnable rows contained within.
+     * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
+     * sampling percentage is applied at the data block granularity. It will
+     * randomly choose for each data block whether to read the rows in that data
+     * block. For more details, see
+     * https://cloud.google.com/bigquery/docs/table-sampling)
      *
      * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var

@@ -82,13 +82,21 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     private $schedule = null;
     /**
+     * Specifies the event stream for the transfer job for event-driven transfers.
+     * When EventStream is specified, the Schedule fields are ignored.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.EventStream event_stream = 15;</code>
+     */
+    private $event_stream = null;
+    /**
      * Status of the job. This value MUST be specified for
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
-     * spawned by the transfer is running, the status change would not affect the
-     * current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
+     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
+     * operation spawned by the transfer is running, the status change would not
+     * affect the current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      */
@@ -162,14 +170,18 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *           This is an optional field. When the field is not set, the job never
      *           executes a transfer, unless you invoke RunTransferJob or update the job to
      *           have a non-empty schedule.
+     *     @type \Google\Cloud\StorageTransfer\V1\EventStream $event_stream
+     *           Specifies the event stream for the transfer job for event-driven transfers.
+     *           When EventStream is specified, the Schedule fields are ignored.
      *     @type int $status
      *           Status of the job. This value MUST be specified for
      *           `CreateTransferJobRequests`.
      *           **Note:** The effect of the new job status takes place during a subsequent
      *           job run. For example, if you change the job status from
-     *           [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
-     *           spawned by the transfer is running, the status change would not affect the
-     *           current operation.
+     *           [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
+     *           [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
+     *           operation spawned by the transfer is running, the status change would not
+     *           affect the current operation.
      *     @type \Google\Protobuf\Timestamp $creation_time
      *           Output only. The time that the transfer job was created.
      *     @type \Google\Protobuf\Timestamp $last_modification_time
@@ -455,13 +467,52 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies the event stream for the transfer job for event-driven transfers.
+     * When EventStream is specified, the Schedule fields are ignored.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.EventStream event_stream = 15;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\EventStream|null
+     */
+    public function getEventStream()
+    {
+        return $this->event_stream;
+    }
+
+    public function hasEventStream()
+    {
+        return isset($this->event_stream);
+    }
+
+    public function clearEventStream()
+    {
+        unset($this->event_stream);
+    }
+
+    /**
+     * Specifies the event stream for the transfer job for event-driven transfers.
+     * When EventStream is specified, the Schedule fields are ignored.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.EventStream event_stream = 15;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\EventStream $var
+     * @return $this
+     */
+    public function setEventStream($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\EventStream::class);
+        $this->event_stream = $var;
+
+        return $this;
+    }
+
+    /**
      * Status of the job. This value MUST be specified for
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
-     * spawned by the transfer is running, the status change would not affect the
-     * current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
+     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
+     * operation spawned by the transfer is running, the status change would not
+     * affect the current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      * @return int
@@ -476,9 +527,10 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * `CreateTransferJobRequests`.
      * **Note:** The effect of the new job status takes place during a subsequent
      * job run. For example, if you change the job status from
-     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an operation
-     * spawned by the transfer is running, the status change would not affect the
-     * current operation.
+     * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED] to
+     * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and an
+     * operation spawned by the transfer is running, the status change would not
+     * affect the current operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      * @param int $var

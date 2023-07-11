@@ -34,35 +34,43 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      */
     private $ip_addresses;
     /**
-     * The cloud region for the instance. e.g. **us-central1**, **europe-west1**.
-     * The region cannot be changed after instance creation.
+     * The cloud region for the instance. For example, `us-central1`,
+     * `europe-west1`. The region cannot be changed after instance creation.
      *
      * Generated from protobuf field <code>string region = 4;</code>
      */
     private $region = '';
     /**
-     * The database engine type and version. The **databaseVersion**
+     * The database engine type and version. The `databaseVersion`
      * field cannot be changed after instance creation.
-     *   MySQL instances: **MYSQL_8_0**, **MYSQL_5_7** (default),
-     * or **MYSQL_5_6**.
-     *   PostgreSQL instances: **POSTGRES_9_6**, **POSTGRES_10**,
-     * **POSTGRES_11** or **POSTGRES_12** (default).
-     *   SQL Server instances: **SQLSERVER_2017_STANDARD** (default),
-     * **SQLSERVER_2017_ENTERPRISE**, **SQLSERVER_2017_EXPRESS**, or
-     * **SQLSERVER_2017_WEB**.
+     *   MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+     * or `MYSQL_5_6`.
+     *   PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+     * `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
+     *   SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+     * `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
+     * `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+     * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+     * `SQLSERVER_2019_WEB`.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 31;</code>
      */
     private $database_version = 0;
     /**
-     * **SECOND_GEN**: Cloud SQL database instance.
-     * **EXTERNAL**: A database server that is not managed by Google.
-     * This property is read-only; use the **tier** property in the **settings**
+     * `SECOND_GEN`: Cloud SQL database instance.
+     * `EXTERNAL`: A database server that is not managed by Google.
+     * This property is read-only; use the `tier` property in the `settings`
      * object to determine the database type.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackendType backend_type = 32;</code>
      */
     private $backend_type = 0;
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     */
+    private $dns_name = '';
 
     /**
      * Constructor.
@@ -77,23 +85,27 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           The assigned IP addresses for the instance.
      *     @type string $region
-     *           The cloud region for the instance. e.g. **us-central1**, **europe-west1**.
-     *           The region cannot be changed after instance creation.
+     *           The cloud region for the instance. For example, `us-central1`,
+     *           `europe-west1`. The region cannot be changed after instance creation.
      *     @type int $database_version
-     *           The database engine type and version. The **databaseVersion**
+     *           The database engine type and version. The `databaseVersion`
      *           field cannot be changed after instance creation.
-     *             MySQL instances: **MYSQL_8_0**, **MYSQL_5_7** (default),
-     *           or **MYSQL_5_6**.
-     *             PostgreSQL instances: **POSTGRES_9_6**, **POSTGRES_10**,
-     *           **POSTGRES_11** or **POSTGRES_12** (default).
-     *             SQL Server instances: **SQLSERVER_2017_STANDARD** (default),
-     *           **SQLSERVER_2017_ENTERPRISE**, **SQLSERVER_2017_EXPRESS**, or
-     *           **SQLSERVER_2017_WEB**.
+     *             MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+     *           or `MYSQL_5_6`.
+     *             PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+     *           `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
+     *             SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+     *           `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
+     *           `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+     *           `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+     *           `SQLSERVER_2019_WEB`.
      *     @type int $backend_type
-     *           **SECOND_GEN**: Cloud SQL database instance.
-     *           **EXTERNAL**: A database server that is not managed by Google.
-     *           This property is read-only; use the **tier** property in the **settings**
+     *           `SECOND_GEN`: Cloud SQL database instance.
+     *           `EXTERNAL`: A database server that is not managed by Google.
+     *           This property is read-only; use the `tier` property in the `settings`
      *           object to determine the database type.
+     *     @type string $dns_name
+     *           The dns name of the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -190,8 +202,8 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cloud region for the instance. e.g. **us-central1**, **europe-west1**.
-     * The region cannot be changed after instance creation.
+     * The cloud region for the instance. For example, `us-central1`,
+     * `europe-west1`. The region cannot be changed after instance creation.
      *
      * Generated from protobuf field <code>string region = 4;</code>
      * @return string
@@ -202,8 +214,8 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cloud region for the instance. e.g. **us-central1**, **europe-west1**.
-     * The region cannot be changed after instance creation.
+     * The cloud region for the instance. For example, `us-central1`,
+     * `europe-west1`. The region cannot be changed after instance creation.
      *
      * Generated from protobuf field <code>string region = 4;</code>
      * @param string $var
@@ -218,15 +230,17 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database engine type and version. The **databaseVersion**
+     * The database engine type and version. The `databaseVersion`
      * field cannot be changed after instance creation.
-     *   MySQL instances: **MYSQL_8_0**, **MYSQL_5_7** (default),
-     * or **MYSQL_5_6**.
-     *   PostgreSQL instances: **POSTGRES_9_6**, **POSTGRES_10**,
-     * **POSTGRES_11** or **POSTGRES_12** (default).
-     *   SQL Server instances: **SQLSERVER_2017_STANDARD** (default),
-     * **SQLSERVER_2017_ENTERPRISE**, **SQLSERVER_2017_EXPRESS**, or
-     * **SQLSERVER_2017_WEB**.
+     *   MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+     * or `MYSQL_5_6`.
+     *   PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+     * `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
+     *   SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+     * `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
+     * `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+     * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+     * `SQLSERVER_2019_WEB`.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 31;</code>
      * @return int
@@ -237,15 +251,17 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database engine type and version. The **databaseVersion**
+     * The database engine type and version. The `databaseVersion`
      * field cannot be changed after instance creation.
-     *   MySQL instances: **MYSQL_8_0**, **MYSQL_5_7** (default),
-     * or **MYSQL_5_6**.
-     *   PostgreSQL instances: **POSTGRES_9_6**, **POSTGRES_10**,
-     * **POSTGRES_11** or **POSTGRES_12** (default).
-     *   SQL Server instances: **SQLSERVER_2017_STANDARD** (default),
-     * **SQLSERVER_2017_ENTERPRISE**, **SQLSERVER_2017_EXPRESS**, or
-     * **SQLSERVER_2017_WEB**.
+     *   MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+     * or `MYSQL_5_6`.
+     *   PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+     * `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
+     *   SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+     * `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
+     * `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+     * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+     * `SQLSERVER_2019_WEB`.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 31;</code>
      * @param int $var
@@ -260,9 +276,9 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * **SECOND_GEN**: Cloud SQL database instance.
-     * **EXTERNAL**: A database server that is not managed by Google.
-     * This property is read-only; use the **tier** property in the **settings**
+     * `SECOND_GEN`: Cloud SQL database instance.
+     * `EXTERNAL`: A database server that is not managed by Google.
+     * This property is read-only; use the `tier` property in the `settings`
      * object to determine the database type.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackendType backend_type = 32;</code>
@@ -274,9 +290,9 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * **SECOND_GEN**: Cloud SQL database instance.
-     * **EXTERNAL**: A database server that is not managed by Google.
-     * This property is read-only; use the **tier** property in the **settings**
+     * `SECOND_GEN`: Cloud SQL database instance.
+     * `EXTERNAL`: A database server that is not managed by Google.
+     * This property is read-only; use the `tier` property in the `settings`
      * object to determine the database type.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackendType backend_type = 32;</code>
@@ -287,6 +303,32 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlBackendType::class);
         $this->backend_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     * @return string
+     */
+    public function getDnsName()
+    {
+        return $this->dns_name;
+    }
+
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDnsName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dns_name = $var;
 
         return $this;
     }

@@ -46,6 +46,7 @@ use Google\Cloud\Talent\V4\ListJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 use Google\Cloud\Talent\V4\UpdateJobRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

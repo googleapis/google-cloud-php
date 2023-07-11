@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\SqlUsersDeleteRequest;
+use Google\Cloud\Sql\V1beta4\SqlUsersGetRequest;
 use Google\Cloud\Sql\V1beta4\SqlUsersInsertRequest;
 use Google\Cloud\Sql\V1beta4\SqlUsersListRequest;
 use Google\Cloud\Sql\V1beta4\SqlUsersUpdateRequest;
@@ -236,6 +237,79 @@ class SqlUsersServiceGapicClient
         return $this->startCall(
             'Delete',
             Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a resource containing information about a user.
+     *
+     * Sample code:
+     * ```
+     * $sqlUsersServiceClient = new SqlUsersServiceClient();
+     * try {
+     *     $response = $sqlUsersServiceClient->get();
+     * } finally {
+     *     $sqlUsersServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Database instance ID. This does not include the project ID.
+     *     @type string $name
+     *           User of the instance.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type string $host
+     *           Host of a user of the instance.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\User
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function get(array $optionalArgs = [])
+    {
+        $request = new SqlUsersGetRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['host'])) {
+            $request->setHost($optionalArgs['host']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Get',
+            User::class,
             $optionalArgs,
             $request
         )->wait();

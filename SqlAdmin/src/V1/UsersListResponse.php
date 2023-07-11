@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UsersListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#usersList**.
+     * This is always `sql#usersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -28,13 +28,12 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * An identifier that uniquely identifies the operation. You can use this
-     * identifier to retrieve the Operations resource that has information about
-     * the operation.
+     * Unused.
      *
-     * Generated from protobuf field <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.
@@ -43,13 +42,11 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#usersList**.
+     *           This is always `sql#usersList`.
      *     @type array<\Google\Cloud\Sql\V1\User>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of user resources in the instance.
      *     @type string $next_page_token
-     *           An identifier that uniquely identifies the operation. You can use this
-     *           identifier to retrieve the Operations resource that has information about
-     *           the operation.
+     *           Unused.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +55,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#usersList**.
+     * This is always `sql#usersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -69,7 +66,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#usersList**.
+     * This is always `sql#usersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -110,29 +107,29 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An identifier that uniquely identifies the operation. You can use this
-     * identifier to retrieve the Operations resource that has information about
-     * the operation.
+     * Unused.
      *
-     * Generated from protobuf field <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getNextPageToken()
     {
+        @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
         return $this->next_page_token;
     }
 
     /**
-     * An identifier that uniquely identifies the operation. You can use this
-     * identifier to retrieve the Operations resource that has information about
-     * the operation.
+     * Unused.
      *
-     * Generated from protobuf field <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNextPageToken($var)
     {
+        @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
 

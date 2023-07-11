@@ -37,6 +37,7 @@ use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionResponse;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\Key;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\ReserveIdsRequest;

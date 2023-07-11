@@ -38,8 +38,8 @@ use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
  * eventually.
  *
  * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
- *                            example: `example.googleapis.com`.
+ *                            [overview](https://cloud.google.com/service-management/overview) for naming
+ *                            requirements.  For example: `example.googleapis.com`.
  */
 function create_service_config_sample(string $serviceName): void
 {

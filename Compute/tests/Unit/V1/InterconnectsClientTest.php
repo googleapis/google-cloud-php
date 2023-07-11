@@ -198,6 +198,7 @@ class InterconnectsClientTest extends GeneratedTest
         $id = 3355;
         $interconnectType = 'interconnectType2125777995';
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $linkType = 'linkType-1624275873';
         $location = 'location1901043637';
         $name = 'name3373707';
@@ -205,6 +206,7 @@ class InterconnectsClientTest extends GeneratedTest
         $operationalStatus = 'operationalStatus1274812671';
         $peerIpAddress = 'peerIpAddress-1939747879';
         $provisionedLinkCount = 1199724171;
+        $remoteLocation = 'remoteLocation1398130574';
         $requestedLinkCount = 1118793211;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
@@ -219,6 +221,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setInterconnectType($interconnectType);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setLinkType($linkType);
         $expectedResponse->setLocation($location);
         $expectedResponse->setName($name);
@@ -226,6 +229,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setOperationalStatus($operationalStatus);
         $expectedResponse->setPeerIpAddress($peerIpAddress);
         $expectedResponse->setProvisionedLinkCount($provisionedLinkCount);
+        $expectedResponse->setRemoteLocation($remoteLocation);
         $expectedResponse->setRequestedLinkCount($requestedLinkCount);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);

@@ -43,6 +43,7 @@ use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
+use Google\Cloud\Monitoring\V3\TimeSeries;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

@@ -22,7 +22,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      */
     private $host_port = '';
     /**
-     * This is always **sql#onPremisesConfiguration**.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
@@ -80,7 +80,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $host_port
      *           The host and port of the on-premises instance in host:port format
      *     @type string $kind
-     *           This is always **sql#onPremisesConfiguration**.
+     *           This is always `sql#onPremisesConfiguration`.
      *     @type string $username
      *           The username for connecting to on-premises instance.
      *     @type string $password
@@ -130,7 +130,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#onPremisesConfiguration**.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @return string
@@ -141,7 +141,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#onPremisesConfiguration**.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @param string $var

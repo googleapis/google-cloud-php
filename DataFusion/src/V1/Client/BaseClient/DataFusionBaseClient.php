@@ -43,6 +43,7 @@ use Google\Cloud\DataFusion\V1\ListAvailableVersionsRequest;
 use Google\Cloud\DataFusion\V1\ListInstancesRequest;
 use Google\Cloud\DataFusion\V1\RestartInstanceRequest;
 use Google\Cloud\DataFusion\V1\UpdateInstanceRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

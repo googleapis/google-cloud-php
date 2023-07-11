@@ -41,7 +41,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      */
     private $minimal_action = null;
     /**
-     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to avoid restarting the VM and to limit disruption as much as possible. RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
@@ -79,7 +79,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      *           Minimal action to be taken on an instance. Use this option to minimize disruption as much as possible or to apply a more disruptive action than is necessary. - To limit disruption as much as possible, set the minimal action to REFRESH. If your update requires a more disruptive action, Compute Engine performs the necessary action to execute the update. - To apply a more disruptive action than is strictly necessary, set the minimal action to RESTART or REPLACE. For example, Compute Engine does not need to restart a VM to change its metadata. But if your application reads instance metadata only when a VM is restarted, you can set the minimal action to RESTART in order to pick up metadata changes.
      *           Check the MinimalAction enum for the list of possible values.
      *     @type string $most_disruptive_allowed_action
-     *           Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     *           Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to avoid restarting the VM and to limit disruption as much as possible. RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
      *           Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *     @type string $replacement_method
      *           What action should be used to replace instances. See minimal_action.REPLACE
@@ -243,7 +243,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to avoid restarting the VM and to limit disruption as much as possible. RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
@@ -265,7 +265,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to avoid restarting the VM and to limit disruption as much as possible. RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>

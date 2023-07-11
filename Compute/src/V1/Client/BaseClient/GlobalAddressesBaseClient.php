@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\GetGlobalAddressRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertGlobalAddressRequest;
 use Google\Cloud\Compute\V1\ListGlobalAddressesRequest;
+use Google\Cloud\Compute\V1\MoveGlobalAddressRequest;
 use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -59,6 +60,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getAsync(GetGlobalAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertGlobalAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListGlobalAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveAsync(MoveGlobalAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setLabelsAsync(SetLabelsGlobalAddressRequest $request, array $optionalArgs = [])
  */
 abstract class GlobalAddressesBaseClient
@@ -329,6 +331,30 @@ abstract class GlobalAddressesBaseClient
     public function list(ListGlobalAddressesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Moves the specified address resource from one project to another project.
+     *
+     * The async variant is {@see self::moveAsync()} .
+     *
+     * @param MoveGlobalAddressRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function move(MoveGlobalAddressRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Move', $request, $callOptions)->wait();
     }
 
     /**

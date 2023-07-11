@@ -28,6 +28,18 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      */
     private $use_parallelism = false;
     /**
+     * Allows setting max parallelism per query when executing on Spanner
+     * independent compute resources. If unspecified, default values of
+     * parallelism are chosen that are dependent on the Cloud Spanner instance
+     * configuration.
+     * REQUIRES: `use_parallelism` must be set.
+     * REQUIRES: Either `use_data_boost` or `use_serverless_analytics` must be
+     * set.
+     *
+     * Generated from protobuf field <code>int32 max_parallelism = 5;</code>
+     */
+    private $max_parallelism = 0;
+    /**
      * If the serverless analytics service should be used to read data from Cloud
      * Spanner.
      * Note: `use_parallelism` must be set when using serverless analytics.
@@ -36,16 +48,24 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      */
     private $use_serverless_analytics = false;
     /**
+     * If set, the request will be executed via Spanner independent compute
+     * resources.
+     * REQUIRES: `use_parallelism` must be set.
+     * NOTE: `use_serverless_analytics` will be deprecated. Prefer
+     * `use_data_boost` over `use_serverless_analytics`.
+     *
+     * Generated from protobuf field <code>bool use_data_boost = 6;</code>
+     */
+    private $use_data_boost = false;
+    /**
      * Optional. Cloud Spanner database role for fine-grained access control.
-     * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions (SELECT,
-     * INSERT, ..). The user can then specify a predefined role on a connection to
-     * execute their Cloud Spanner query. The role is passthrough here. If the
-     * user is not authorized to use the specified role, they get an error. This
-     * validation happens on Cloud Spanner.
-     * See https://cloud.google.com/spanner/docs/fgac-about for more details.
-     * REQUIRES: database role name must start with uppercase/lowercase letter
-     * and only contain uppercase/lowercase letters, numbers, and underscores.
+     * The Cloud Spanner admin should have provisioned the database role with
+     * appropriate permissions, such as `SELECT` and `INSERT`. Other users should
+     * only use roles provided by their Cloud Spanner admins.
+     * For more details, see [About fine-grained access control]
+     * (https://cloud.google.com/spanner/docs/fgac-about).
+     * REQUIRES: The database role name must start with a letter, and can only
+     * contain letters, numbers, and underscores.
      *
      * Generated from protobuf field <code>string database_role = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,21 +81,33 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *           Cloud Spanner database in the form `project/instance/database'
      *     @type bool $use_parallelism
      *           If parallelism should be used when reading from Cloud Spanner
+     *     @type int $max_parallelism
+     *           Allows setting max parallelism per query when executing on Spanner
+     *           independent compute resources. If unspecified, default values of
+     *           parallelism are chosen that are dependent on the Cloud Spanner instance
+     *           configuration.
+     *           REQUIRES: `use_parallelism` must be set.
+     *           REQUIRES: Either `use_data_boost` or `use_serverless_analytics` must be
+     *           set.
      *     @type bool $use_serverless_analytics
      *           If the serverless analytics service should be used to read data from Cloud
      *           Spanner.
      *           Note: `use_parallelism` must be set when using serverless analytics.
+     *     @type bool $use_data_boost
+     *           If set, the request will be executed via Spanner independent compute
+     *           resources.
+     *           REQUIRES: `use_parallelism` must be set.
+     *           NOTE: `use_serverless_analytics` will be deprecated. Prefer
+     *           `use_data_boost` over `use_serverless_analytics`.
      *     @type string $database_role
      *           Optional. Cloud Spanner database role for fine-grained access control.
-     *           A database role is a collection of fine-grained access privileges. Example:
-     *           Admin predefines roles that provides user a set of permissions (SELECT,
-     *           INSERT, ..). The user can then specify a predefined role on a connection to
-     *           execute their Cloud Spanner query. The role is passthrough here. If the
-     *           user is not authorized to use the specified role, they get an error. This
-     *           validation happens on Cloud Spanner.
-     *           See https://cloud.google.com/spanner/docs/fgac-about for more details.
-     *           REQUIRES: database role name must start with uppercase/lowercase letter
-     *           and only contain uppercase/lowercase letters, numbers, and underscores.
+     *           The Cloud Spanner admin should have provisioned the database role with
+     *           appropriate permissions, such as `SELECT` and `INSERT`. Other users should
+     *           only use roles provided by their Cloud Spanner admins.
+     *           For more details, see [About fine-grained access control]
+     *           (https://cloud.google.com/spanner/docs/fgac-about).
+     *           REQUIRES: The database role name must start with a letter, and can only
+     *           contain letters, numbers, and underscores.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +168,44 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Allows setting max parallelism per query when executing on Spanner
+     * independent compute resources. If unspecified, default values of
+     * parallelism are chosen that are dependent on the Cloud Spanner instance
+     * configuration.
+     * REQUIRES: `use_parallelism` must be set.
+     * REQUIRES: Either `use_data_boost` or `use_serverless_analytics` must be
+     * set.
+     *
+     * Generated from protobuf field <code>int32 max_parallelism = 5;</code>
+     * @return int
+     */
+    public function getMaxParallelism()
+    {
+        return $this->max_parallelism;
+    }
+
+    /**
+     * Allows setting max parallelism per query when executing on Spanner
+     * independent compute resources. If unspecified, default values of
+     * parallelism are chosen that are dependent on the Cloud Spanner instance
+     * configuration.
+     * REQUIRES: `use_parallelism` must be set.
+     * REQUIRES: Either `use_data_boost` or `use_serverless_analytics` must be
+     * set.
+     *
+     * Generated from protobuf field <code>int32 max_parallelism = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxParallelism($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_parallelism = $var;
+
+        return $this;
+    }
+
+    /**
      * If the serverless analytics service should be used to read data from Cloud
      * Spanner.
      * Note: `use_parallelism` must be set when using serverless analytics.
@@ -166,16 +236,48 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If set, the request will be executed via Spanner independent compute
+     * resources.
+     * REQUIRES: `use_parallelism` must be set.
+     * NOTE: `use_serverless_analytics` will be deprecated. Prefer
+     * `use_data_boost` over `use_serverless_analytics`.
+     *
+     * Generated from protobuf field <code>bool use_data_boost = 6;</code>
+     * @return bool
+     */
+    public function getUseDataBoost()
+    {
+        return $this->use_data_boost;
+    }
+
+    /**
+     * If set, the request will be executed via Spanner independent compute
+     * resources.
+     * REQUIRES: `use_parallelism` must be set.
+     * NOTE: `use_serverless_analytics` will be deprecated. Prefer
+     * `use_data_boost` over `use_serverless_analytics`.
+     *
+     * Generated from protobuf field <code>bool use_data_boost = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseDataBoost($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_data_boost = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Cloud Spanner database role for fine-grained access control.
-     * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions (SELECT,
-     * INSERT, ..). The user can then specify a predefined role on a connection to
-     * execute their Cloud Spanner query. The role is passthrough here. If the
-     * user is not authorized to use the specified role, they get an error. This
-     * validation happens on Cloud Spanner.
-     * See https://cloud.google.com/spanner/docs/fgac-about for more details.
-     * REQUIRES: database role name must start with uppercase/lowercase letter
-     * and only contain uppercase/lowercase letters, numbers, and underscores.
+     * The Cloud Spanner admin should have provisioned the database role with
+     * appropriate permissions, such as `SELECT` and `INSERT`. Other users should
+     * only use roles provided by their Cloud Spanner admins.
+     * For more details, see [About fine-grained access control]
+     * (https://cloud.google.com/spanner/docs/fgac-about).
+     * REQUIRES: The database role name must start with a letter, and can only
+     * contain letters, numbers, and underscores.
      *
      * Generated from protobuf field <code>string database_role = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -187,15 +289,13 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Cloud Spanner database role for fine-grained access control.
-     * A database role is a collection of fine-grained access privileges. Example:
-     * Admin predefines roles that provides user a set of permissions (SELECT,
-     * INSERT, ..). The user can then specify a predefined role on a connection to
-     * execute their Cloud Spanner query. The role is passthrough here. If the
-     * user is not authorized to use the specified role, they get an error. This
-     * validation happens on Cloud Spanner.
-     * See https://cloud.google.com/spanner/docs/fgac-about for more details.
-     * REQUIRES: database role name must start with uppercase/lowercase letter
-     * and only contain uppercase/lowercase letters, numbers, and underscores.
+     * The Cloud Spanner admin should have provisioned the database role with
+     * appropriate permissions, such as `SELECT` and `INSERT`. Other users should
+     * only use roles provided by their Cloud Spanner admins.
+     * For more details, see [About fine-grained access control]
+     * (https://cloud.google.com/spanner/docs/fgac-about).
+     * REQUIRES: The database role name must start with a letter, and can only
+     * contain letters, numbers, and underscores.
      *
      * Generated from protobuf field <code>string database_role = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

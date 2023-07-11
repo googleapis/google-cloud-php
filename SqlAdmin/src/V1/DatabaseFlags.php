@@ -26,8 +26,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The value of the flag. Booleans are set to **on** for true
-     * and **off** for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>
@@ -47,8 +47,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
      *           [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags)
      *           in the Cloud SQL documentation.
      *     @type string $value
-     *           The value of the flag. Booleans are set to **on** for true
-     *           and **off** for false. This field must be omitted if the flag
+     *           The value of the flag. Boolean flags are set to `on` for true
+     *           and `off` for false. This field must be omitted if the flag
      *           doesn't take a value.
      * }
      */
@@ -92,8 +92,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the flag. Booleans are set to **on** for true
-     * and **off** for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>
@@ -105,8 +105,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the flag. Booleans are set to **on** for true
-     * and **off** for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>

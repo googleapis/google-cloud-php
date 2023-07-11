@@ -41,7 +41,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     private $disallow_username_substring = null;
     /**
      * Minimum interval after which the password can be changed. This flag is only
-     * supported for PostgresSQL.
+     * supported for PostgreSQL.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration password_change_interval = 5;</code>
      */
@@ -69,7 +69,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *           Disallow username as a part of the password.
      *     @type \Google\Protobuf\Duration $password_change_interval
      *           Minimum interval after which the password can be changed. This flag is only
-     *           supported for PostgresSQL.
+     *           supported for PostgreSQL.
      *     @type \Google\Protobuf\BoolValue $enable_password_policy
      *           Whether the password policy is enabled or not.
      * }
@@ -296,7 +296,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Minimum interval after which the password can be changed. This flag is only
-     * supported for PostgresSQL.
+     * supported for PostgreSQL.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration password_change_interval = 5;</code>
      * @return \Google\Protobuf\Duration|null
@@ -318,7 +318,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Minimum interval after which the password can be changed. This flag is only
-     * supported for PostgresSQL.
+     * supported for PostgreSQL.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration password_change_interval = 5;</code>
      * @param \Google\Protobuf\Duration $var

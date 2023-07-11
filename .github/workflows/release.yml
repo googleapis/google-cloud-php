@@ -35,4 +35,7 @@ jobs:
           env:
             tagName: ${{ steps.getTag.outputs.tag }}
           run: |
-            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName -t ${{ secrets.SPLIT_TOKEN }}
+            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
+              -t ${{ secrets.SPLIT_TOKEN }} \
+              --packagist-username=${{ vars.PACKAGIST_USERNAME }}
+              --packagist-token=${{ secrets.PACKAGIST_TOKEN }}

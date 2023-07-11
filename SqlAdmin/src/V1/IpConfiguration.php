@@ -24,7 +24,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The resource link for the VPC network from which the Cloud SQL instance is
      * accessible for private IP. For example,
-     * **&#47;projects/myProject/global/networks/default**. This setting can
+     * `/projects/myProject/global/networks/default`. This setting can
      * be updated, but it cannot be removed after it is set.
      *
      * Generated from protobuf field <code>string private_network = 2;</code>
@@ -39,23 +39,29 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The list of external networks that are allowed to connect to the instance
      * using the IP. In 'CIDR' notation, also known as 'slash' notation (for
-     * example: **192.168.100.0/24**).
+     * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AclEntry authorized_networks = 4;</code>
      */
     private $authorized_networks;
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
      * must be 1-63 characters long and match the regular expression
      * `[a-z]([-a-z0-9]*[a-z0-9])?.`
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      */
     private $allocated_ip_range = '';
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     */
+    private $enable_private_path_for_google_cloud_services = null;
 
     /**
      * Constructor.
@@ -68,22 +74,24 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $private_network
      *           The resource link for the VPC network from which the Cloud SQL instance is
      *           accessible for private IP. For example,
-     *           **&#47;projects/myProject/global/networks/default**. This setting can
+     *           `/projects/myProject/global/networks/default`. This setting can
      *           be updated, but it cannot be removed after it is set.
      *     @type \Google\Protobuf\BoolValue $require_ssl
      *           Whether SSL connections over IP are enforced or not.
      *     @type array<\Google\Cloud\Sql\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
      *           The list of external networks that are allowed to connect to the instance
      *           using the IP. In 'CIDR' notation, also known as 'slash' notation (for
-     *           example: **192.168.100.0/24**).
+     *           example: `157.197.200.0/24`).
      *     @type string $allocated_ip_range
-     *           The name of the allocated ip range for the private ip CloudSQL instance.
+     *           The name of the allocated ip range for the private ip Cloud SQL instance.
      *           For example: "google-managed-services-default". If set, the instance ip
      *           will be created in the allocated range. The range name must comply with
      *           [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
      *           must be 1-63 characters long and match the regular expression
      *           `[a-z]([-a-z0-9]*[a-z0-9])?.`
-     *           Reserved for future use.
+     *     @type \Google\Protobuf\BoolValue $enable_private_path_for_google_cloud_services
+     *           Controls connectivity to private IP instances from Google services,
+     *           such as BigQuery.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,7 +165,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The resource link for the VPC network from which the Cloud SQL instance is
      * accessible for private IP. For example,
-     * **&#47;projects/myProject/global/networks/default**. This setting can
+     * `/projects/myProject/global/networks/default`. This setting can
      * be updated, but it cannot be removed after it is set.
      *
      * Generated from protobuf field <code>string private_network = 2;</code>
@@ -171,7 +179,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The resource link for the VPC network from which the Cloud SQL instance is
      * accessible for private IP. For example,
-     * **&#47;projects/myProject/global/networks/default**. This setting can
+     * `/projects/myProject/global/networks/default`. This setting can
      * be updated, but it cannot be removed after it is set.
      *
      * Generated from protobuf field <code>string private_network = 2;</code>
@@ -252,7 +260,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The list of external networks that are allowed to connect to the instance
      * using the IP. In 'CIDR' notation, also known as 'slash' notation (for
-     * example: **192.168.100.0/24**).
+     * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AclEntry authorized_networks = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -265,7 +273,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * The list of external networks that are allowed to connect to the instance
      * using the IP. In 'CIDR' notation, also known as 'slash' notation (for
-     * example: **192.168.100.0/24**).
+     * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AclEntry authorized_networks = 4;</code>
      * @param array<\Google\Cloud\Sql\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $var
@@ -280,13 +288,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
      * must be 1-63 characters long and match the regular expression
      * `[a-z]([-a-z0-9]*[a-z0-9])?.`
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      * @return string
@@ -297,13 +304,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance.
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the instance ip
      * will be created in the allocated range. The range name must comply with
      * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
      * must be 1-63 characters long and match the regular expression
      * `[a-z]([-a-z0-9]*[a-z0-9])?.`
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      * @param string $var
@@ -316,6 +322,73 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnablePrivatePathForGoogleCloudServices()
+    {
+        return $this->enable_private_path_for_google_cloud_services;
+    }
+
+    public function hasEnablePrivatePathForGoogleCloudServices()
+    {
+        return isset($this->enable_private_path_for_google_cloud_services);
+    }
+
+    public function clearEnablePrivatePathForGoogleCloudServices()
+    {
+        unset($this->enable_private_path_for_google_cloud_services);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnablePrivatePathForGoogleCloudServices()</code>
+
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @return bool|null
+     */
+    public function getEnablePrivatePathForGoogleCloudServicesValue()
+    {
+        return $this->readWrapperValue("enable_private_path_for_google_cloud_services");
+    }
+
+    /**
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnablePrivatePathForGoogleCloudServices($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_private_path_for_google_cloud_services = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Controls connectivity to private IP instances from Google services,
+     * such as BigQuery.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnablePrivatePathForGoogleCloudServicesValue($var)
+    {
+        $this->writeWrapperValue("enable_private_path_for_google_cloud_services", $var);
+        return $this;}
 
 }
 

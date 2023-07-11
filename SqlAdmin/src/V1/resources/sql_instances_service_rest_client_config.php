@@ -136,6 +136,22 @@ return [
                     ],
                 ],
             ],
+            'GetDiskShrinkConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/getDiskShrinkConfig',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Import' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/import',
@@ -209,9 +225,43 @@ return [
                     ],
                 ],
             ],
+            'PerformDiskShrink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/performDiskShrink',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'PromoteReplica' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/promoteReplica',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Reencrypt' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/reencrypt',
+                'body' => 'body',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [
@@ -229,6 +279,23 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/rescheduleMaintenance',
                 'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ResetReplicaSize' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/resetReplicaSize',
+                'body' => '*',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

@@ -28,7 +28,7 @@ class BinLogCoordinates extends \Google\Protobuf\Internal\Message
      */
     private $bin_log_position = 0;
     /**
-     * This is always **sql#binLogCoordinates**.
+     * This is always `sql#binLogCoordinates`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -45,7 +45,7 @@ class BinLogCoordinates extends \Google\Protobuf\Internal\Message
      *     @type int|string $bin_log_position
      *           Position (offset) within the binary log file.
      *     @type string $kind
-     *           This is always **sql#binLogCoordinates**.
+     *           This is always `sql#binLogCoordinates`.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +106,7 @@ class BinLogCoordinates extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#binLogCoordinates**.
+     * This is always `sql#binLogCoordinates`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -117,7 +117,7 @@ class BinLogCoordinates extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#binLogCoordinates**.
+     * This is always `sql#binLogCoordinates`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var

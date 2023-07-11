@@ -43,6 +43,13 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      */
     private $kerberos_config = null;
     /**
+     * The protocol to use for the metastore service endpoint. If unspecified,
+     * defaults to `THRIFT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.HiveMetastoreConfig.EndpointProtocol endpoint_protocol = 4;</code>
+     */
+    private $endpoint_protocol = 0;
+    /**
      * A mapping of Hive metastore version to the auxiliary version
      * configuration. When specified, a secondary Hive metastore service is
      * created along with the primary service. All auxiliary versions must be less
@@ -76,6 +83,9 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      *           method and specify this field's path
      *           (`hive_metastore_config.kerberos_config`) in the request's `update_mask`
      *           while omitting this field from the request's `service`.
+     *     @type int $endpoint_protocol
+     *           The protocol to use for the metastore service endpoint. If unspecified,
+     *           defaults to `THRIFT`.
      *     @type array|\Google\Protobuf\Internal\MapField $auxiliary_versions
      *           A mapping of Hive metastore version to the auxiliary version
      *           configuration. When specified, a secondary Hive metastore service is
@@ -192,6 +202,34 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1\KerberosConfig::class);
         $this->kerberos_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The protocol to use for the metastore service endpoint. If unspecified,
+     * defaults to `THRIFT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.HiveMetastoreConfig.EndpointProtocol endpoint_protocol = 4;</code>
+     * @return int
+     */
+    public function getEndpointProtocol()
+    {
+        return $this->endpoint_protocol;
+    }
+
+    /**
+     * The protocol to use for the metastore service endpoint. If unspecified,
+     * defaults to `THRIFT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.HiveMetastoreConfig.EndpointProtocol endpoint_protocol = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEndpointProtocol($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Metastore\V1\HiveMetastoreConfig\EndpointProtocol::class);
+        $this->endpoint_protocol = $var;
 
         return $this;
     }

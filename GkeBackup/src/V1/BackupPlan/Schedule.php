@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Schedule defines scheduling parameters for automatically creating Backups
+ * Defines scheduling parameters for automatically creating Backups
  * via this BackupPlan.
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.BackupPlan.Schedule</code>

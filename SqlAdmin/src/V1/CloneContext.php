@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloneContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#cloneContext**.
+     * This is always `sql#cloneContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -48,6 +48,25 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp point_in_time = 5;</code>
      */
     private $point_in_time = null;
+    /**
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
+     * For example: "google-managed-services-default". If set, the cloned instance
+     * ip will be created in the allocated range. The range name must comply with
+     * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
+     * must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
+     */
+    private $allocated_ip_range = '';
+    /**
+     * (SQL Server only) Clone only the specified databases from the source
+     * instance. Clone all databases if empty.
+     *
+     * Generated from protobuf field <code>repeated string database_names = 9;</code>
+     */
+    private $database_names;
 
     /**
      * Constructor.
@@ -56,7 +75,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#cloneContext**.
+     *           This is always `sql#cloneContext`.
      *     @type int|string $pitr_timestamp_ms
      *           Reserved for future use.
      *     @type string $destination_instance_name
@@ -68,6 +87,17 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $point_in_time
      *           Timestamp, if specified, identifies the time to which the source instance
      *           is cloned.
+     *     @type string $allocated_ip_range
+     *           The name of the allocated ip range for the private ip Cloud SQL instance.
+     *           For example: "google-managed-services-default". If set, the cloned instance
+     *           ip will be created in the allocated range. The range name must comply with
+     *           [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
+     *           must be 1-63 characters long and match the regular expression
+     *           [a-z]([-a-z0-9]*[a-z0-9])?.
+     *           Reserved for future use.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_names
+     *           (SQL Server only) Clone only the specified databases from the source
+     *           instance. Clone all databases if empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +106,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#cloneContext**.
+     * This is always `sql#cloneContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -87,7 +117,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#cloneContext**.
+     * This is always `sql#cloneContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -227,6 +257,72 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->point_in_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
+     * For example: "google-managed-services-default". If set, the cloned instance
+     * ip will be created in the allocated range. The range name must comply with
+     * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
+     * must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
+     * @return string
+     */
+    public function getAllocatedIpRange()
+    {
+        return $this->allocated_ip_range;
+    }
+
+    /**
+     * The name of the allocated ip range for the private ip Cloud SQL instance.
+     * For example: "google-managed-services-default". If set, the cloned instance
+     * ip will be created in the allocated range. The range name must comply with
+     * [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
+     * must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllocatedIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allocated_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * (SQL Server only) Clone only the specified databases from the source
+     * instance. Clone all databases if empty.
+     *
+     * Generated from protobuf field <code>repeated string database_names = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDatabaseNames()
+    {
+        return $this->database_names;
+    }
+
+    /**
+     * (SQL Server only) Clone only the specified databases from the source
+     * instance. Clone all databases if empty.
+     *
+     * Generated from protobuf field <code>repeated string database_names = 9;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDatabaseNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->database_names = $arr;
 
         return $this;
     }

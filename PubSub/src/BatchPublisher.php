@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\PubSub\Topic;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.
@@ -65,18 +66,43 @@ class BatchPublisher
     private $client;
 
     /**
+     * @var bool
+     */
+    private $enableCompression;
+
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
+
+    /**
      * @param string $topicName The topic name.
-     * @param array $options [optional] Please see
-     *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
+     * @param array $options [optional] {
+     *        Please {@see PubSub\Topic::batchPublisher()} for
      *        configuration details.
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     * }
      */
     public function __construct($topicName, array $options = [])
     {
         $this->topicName = $topicName;
+        $this->enableCompression = $options['enableCompression'] ?? false;
+        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ??
+            Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         $this->setCommonBatchProperties($options + [
             'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishDeferred'
         ]);
+    }
+
+    /**
     }
 
     /**
@@ -149,7 +175,14 @@ class BatchPublisher
                 $this->client = new PubSubClient($this->getUnwrappedClientConfig());
                 //@codeCoverageIgnoreEnd
             }
-            self::$topics[$this->identifier] = $this->client->topic($this->topicName);
+            $compressionOptions = [
+                'enableCompression' => $this->enableCompression,
+                'compressionBytesThreshold' => $this->compressionBytesThreshold
+            ];
+            self::$topics[$this->identifier] = $this->client->topic(
+                $this->topicName,
+                $compressionOptions
+            );
         }
 
         $topic = self::$topics[$this->identifier];

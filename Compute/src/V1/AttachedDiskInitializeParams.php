@@ -72,6 +72,18 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_iops = null;
     /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     */
+    private $provisioned_throughput = null;
+    /**
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     *
+     * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
+     */
+    private $replica_zones;
+    /**
      * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
@@ -134,6 +146,10 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Check the OnUpdateAction enum for the list of possible values.
      *     @type int|string $provisioned_iops
      *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
+     *     @type int|string $provisioned_throughput
+     *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
@@ -457,6 +473,68 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->provisioned_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     * @return int|string
+     */
+    public function getProvisionedThroughput()
+    {
+        return isset($this->provisioned_throughput) ? $this->provisioned_throughput : 0;
+    }
+
+    public function hasProvisionedThroughput()
+    {
+        return isset($this->provisioned_throughput);
+    }
+
+    public function clearProvisionedThroughput()
+    {
+        unset($this->provisioned_throughput);
+    }
+
+    /**
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *
+     * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProvisionedThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->provisioned_throughput = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     *
+     * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaZones()
+    {
+        return $this->replica_zones;
+    }
+
+    /**
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     *
+     * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->replica_zones = $arr;
 
         return $this;
     }

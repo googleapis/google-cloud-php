@@ -15,12 +15,13 @@ class CloudSqlOperations
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlResources::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¡
-.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1-google/cloud/sql/v1/cloud_sql_resources.protogoogle/api/client.proto"=
+≤	
+.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1google/api/client.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/empty.proto"=
 SqlOperationsGetRequest
 	operation (	
 project (	"f
@@ -33,10 +34,14 @@ page_token (	
 OperationsListResponse
 kind (	-
 items (2.google.cloud.sql.v1.Operation
-next_page_token (	2±
+next_page_token (	"@
+SqlOperationsCancelRequest
+	operation (	
+project (	2√
 SqlOperationsServiceä
 Get,.google.cloud.sql.v1.SqlOperationsGetRequest.google.cloud.sql.v1.Operation"5Ç”‰ì/-/v1/projects/{project}/operations/{operation}ç
-List-.google.cloud.sql.v1.SqlOperationsListRequest+.google.cloud.sql.v1.OperationsListResponse")Ç”‰ì#!/v1/projects/{project}/operations| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminB_
+List-.google.cloud.sql.v1.SqlOperationsListRequest+.google.cloud.sql.v1.OperationsListResponse")Ç”‰ì#!/v1/projects/{project}/operationsè
+Cancel/.google.cloud.sql.v1.SqlOperationsCancelRequest.google.protobuf.Empty"<Ç”‰ì6"4/v1/projects/{project}/operations/{operation}/cancel| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminB_
 com.google.cloud.sql.v1BCloudSqlOperationsProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
         , true);
 

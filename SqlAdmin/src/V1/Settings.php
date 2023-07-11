@@ -34,13 +34,13 @@ class Settings extends \Google\Protobuf\Internal\Message
     private $authorized_gae_applications;
     /**
      * The tier (or machine type) for this instance, for example
-     * **db-custom-1-3840**.
+     * `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      *
      * Generated from protobuf field <code>string tier = 3;</code>
      */
     private $tier = '';
     /**
-     * This is always **sql#settings**.
+     * This is always `sql#settings`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
@@ -54,9 +54,9 @@ class Settings extends \Google\Protobuf\Internal\Message
     private $user_labels;
     /**
      * Availability type. Potential values:
-     * *  **ZONAL**: The instance serves data from only one zone. Outages in that
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
      * zone affect data accessibility.
-     * *  **REGIONAL**: The instance can serve data from more than one zone in a
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
      * region (it is highly available)./
      * For more information, see [Overview of the High Availability
      * Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).
@@ -65,15 +65,15 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $availability_type = 0;
     /**
-     * The pricing plan for this instance. This can be either **PER_USE** or
-     * **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either `PER_USE` or
+     * `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlPricingPlan pricing_plan = 7;</code>
      */
     private $pricing_plan = 0;
     /**
      * The type of replication this instance uses. This can be either
-     * **ASYNCHRONOUS** or **SYNCHRONOUS**. (Deprecated) This property was only
+     * `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
      * applicable to First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlReplicationType replication_type = 8 [deprecated = true];</code>
@@ -90,9 +90,9 @@ class Settings extends \Google\Protobuf\Internal\Message
     /**
      * The activation policy specifies when the instance is activated; it is
      * applicable only when the instance state is RUNNABLE. Valid values:
-     * *  **ALWAYS**: The instance is on, and remains so even in the absence of
+     * *  `ALWAYS`: The instance is on, and remains so even in the absence of
      * connection requests.
-     * *  **NEVER**: The instance is off; it is not activated, even if a
+     * *  `NEVER`: The instance is off; it is not activated, even if a
      * connection request arrives.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.SqlActivationPolicy activation_policy = 10;</code>
@@ -129,7 +129,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $database_flags;
     /**
-     * The type of data disk: **PD_SSD** (default) or **PD_HDD**. Not used for
+     * The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
      * First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDataDiskType data_disk_type = 15;</code>
@@ -150,7 +150,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     private $backup_configuration = null;
     /**
      * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * replication is enabled or not. WARNING: Changing this restarts the
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      */
@@ -195,11 +196,62 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $insights_config = null;
     /**
+     * The local user password validation policy of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
+     */
+    private $password_validation_policy = null;
+    /**
      * SQL Server specific audit configuration.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerAuditConfig sql_server_audit_config = 29;</code>
      */
     private $sql_server_audit_config = null;
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $edition = 0;
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors).
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     */
+    private $connector_enforcement = 0;
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     */
+    private $deletion_protection_enabled = null;
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     */
+    private $time_zone = '';
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DataCacheConfig data_cache_config = 37;</code>
+     */
+    private $data_cache_config = null;
 
     /**
      * Constructor.
@@ -217,26 +269,26 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           (Deprecated) Applied to First Generation instances only.
      *     @type string $tier
      *           The tier (or machine type) for this instance, for example
-     *           **db-custom-1-3840**.
+     *           `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      *     @type string $kind
-     *           This is always **sql#settings**.
+     *           This is always `sql#settings`.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           User-provided labels, represented as a dictionary where each label is a
      *           single key value pair.
      *     @type int $availability_type
      *           Availability type. Potential values:
-     *           *  **ZONAL**: The instance serves data from only one zone. Outages in that
+     *           *  `ZONAL`: The instance serves data from only one zone. Outages in that
      *           zone affect data accessibility.
-     *           *  **REGIONAL**: The instance can serve data from more than one zone in a
+     *           *  `REGIONAL`: The instance can serve data from more than one zone in a
      *           region (it is highly available)./
      *           For more information, see [Overview of the High Availability
      *           Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).
      *     @type int $pricing_plan
-     *           The pricing plan for this instance. This can be either **PER_USE** or
-     *           **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
+     *           The pricing plan for this instance. This can be either `PER_USE` or
+     *           `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      *     @type int $replication_type
      *           The type of replication this instance uses. This can be either
-     *           **ASYNCHRONOUS** or **SYNCHRONOUS**. (Deprecated) This property was only
+     *           `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
      *           applicable to First Generation instances.
      *     @type \Google\Protobuf\Int64Value $storage_auto_resize_limit
      *           The maximum size to which storage capacity can be automatically increased.
@@ -244,9 +296,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type int $activation_policy
      *           The activation policy specifies when the instance is activated; it is
      *           applicable only when the instance state is RUNNABLE. Valid values:
-     *           *  **ALWAYS**: The instance is on, and remains so even in the absence of
+     *           *  `ALWAYS`: The instance is on, and remains so even in the absence of
      *           connection requests.
-     *           *  **NEVER**: The instance is off; it is not activated, even if a
+     *           *  `NEVER`: The instance is off; it is not activated, even if a
      *           connection request arrives.
      *     @type \Google\Cloud\Sql\V1\IpConfiguration $ip_configuration
      *           The settings for IP Management. This allows to enable or disable the
@@ -263,7 +315,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Sql\V1\DatabaseFlags>|\Google\Protobuf\Internal\RepeatedField $database_flags
      *           The database flags passed to the instance at startup.
      *     @type int $data_disk_type
-     *           The type of data disk: **PD_SSD** (default) or **PD_HDD**. Not used for
+     *           The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
      *           First Generation instances.
      *     @type \Google\Cloud\Sql\V1\MaintenanceWindow $maintenance_window
      *           The maintenance window for this instance. This specifies when the instance
@@ -272,7 +324,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           The daily backup configuration for the instance.
      *     @type \Google\Protobuf\BoolValue $database_replication_enabled
      *           Configuration specific to read replica instances. Indicates whether
-     *           replication is enabled or not.
+     *           replication is enabled or not. WARNING: Changing this restarts the
+     *           instance.
      *     @type \Google\Protobuf\BoolValue $crash_safe_replication_enabled
      *           Configuration specific to read replica instances. Indicates whether
      *           database flags for crash-safe replication are enabled. This property was
@@ -287,8 +340,31 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Deny maintenance periods
      *     @type \Google\Cloud\Sql\V1\InsightsConfig $insights_config
      *           Insights configuration, for now relevant only for Postgres.
+     *     @type \Google\Cloud\Sql\V1\PasswordValidationPolicy $password_validation_policy
+     *           The local user password validation policy of the instance.
      *     @type \Google\Cloud\Sql\V1\SqlServerAuditConfig $sql_server_audit_config
      *           SQL Server specific audit configuration.
+     *     @type int $edition
+     *           Optional. The edition of the instance.
+     *     @type int $connector_enforcement
+     *           Specifies if connections must use Cloud SQL connectors.
+     *           Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     *           can be connected without Cloud SQL
+     *           Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     *           Connectors).
+     *           Note that using REQUIRED disables all existing authorized networks. If
+     *           this field is not specified when creating a new instance, NOT_REQUIRED is
+     *           used. If this field is not specified when patching or updating an existing
+     *           instance, it is left unchanged in the instance.
+     *     @type \Google\Protobuf\BoolValue $deletion_protection_enabled
+     *           Configuration to protect against accidental instance deletion.
+     *     @type string $time_zone
+     *           Server timezone, relevant only for Cloud SQL for SQL Server.
+     *     @type \Google\Cloud\Sql\V1\AdvancedMachineFeatures $advanced_machine_features
+     *           Specifies advance machine configuration for the instance
+     *           relevant only for SQL Server.
+     *     @type \Google\Cloud\Sql\V1\DataCacheConfig $data_cache_config
+     *           Configuration for data cache.
      * }
      */
     public function __construct($data = NULL) {
@@ -405,7 +481,7 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * The tier (or machine type) for this instance, for example
-     * **db-custom-1-3840**.
+     * `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      *
      * Generated from protobuf field <code>string tier = 3;</code>
      * @return string
@@ -417,7 +493,7 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * The tier (or machine type) for this instance, for example
-     * **db-custom-1-3840**.
+     * `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      *
      * Generated from protobuf field <code>string tier = 3;</code>
      * @param string $var
@@ -432,7 +508,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#settings**.
+     * This is always `sql#settings`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @return string
@@ -443,7 +519,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#settings**.
+     * This is always `sql#settings`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      * @param string $var
@@ -487,9 +563,9 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type. Potential values:
-     * *  **ZONAL**: The instance serves data from only one zone. Outages in that
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
      * zone affect data accessibility.
-     * *  **REGIONAL**: The instance can serve data from more than one zone in a
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
      * region (it is highly available)./
      * For more information, see [Overview of the High Availability
      * Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).
@@ -504,9 +580,9 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability type. Potential values:
-     * *  **ZONAL**: The instance serves data from only one zone. Outages in that
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
      * zone affect data accessibility.
-     * *  **REGIONAL**: The instance can serve data from more than one zone in a
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
      * region (it is highly available)./
      * For more information, see [Overview of the High Availability
      * Configuration](https://cloud.google.com/sql/docs/mysql/high-availability).
@@ -524,8 +600,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pricing plan for this instance. This can be either **PER_USE** or
-     * **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either `PER_USE` or
+     * `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlPricingPlan pricing_plan = 7;</code>
      * @return int
@@ -536,8 +612,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pricing plan for this instance. This can be either **PER_USE** or
-     * **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either `PER_USE` or
+     * `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlPricingPlan pricing_plan = 7;</code>
      * @param int $var
@@ -553,7 +629,7 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of replication this instance uses. This can be either
-     * **ASYNCHRONOUS** or **SYNCHRONOUS**. (Deprecated) This property was only
+     * `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
      * applicable to First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlReplicationType replication_type = 8 [deprecated = true];</code>
@@ -568,7 +644,7 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of replication this instance uses. This can be either
-     * **ASYNCHRONOUS** or **SYNCHRONOUS**. (Deprecated) This property was only
+     * `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
      * applicable to First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlReplicationType replication_type = 8 [deprecated = true];</code>
@@ -655,9 +731,9 @@ class Settings extends \Google\Protobuf\Internal\Message
     /**
      * The activation policy specifies when the instance is activated; it is
      * applicable only when the instance state is RUNNABLE. Valid values:
-     * *  **ALWAYS**: The instance is on, and remains so even in the absence of
+     * *  `ALWAYS`: The instance is on, and remains so even in the absence of
      * connection requests.
-     * *  **NEVER**: The instance is off; it is not activated, even if a
+     * *  `NEVER`: The instance is off; it is not activated, even if a
      * connection request arrives.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.SqlActivationPolicy activation_policy = 10;</code>
@@ -671,9 +747,9 @@ class Settings extends \Google\Protobuf\Internal\Message
     /**
      * The activation policy specifies when the instance is activated; it is
      * applicable only when the instance state is RUNNABLE. Valid values:
-     * *  **ALWAYS**: The instance is on, and remains so even in the absence of
+     * *  `ALWAYS`: The instance is on, and remains so even in the absence of
      * connection requests.
-     * *  **NEVER**: The instance is off; it is not activated, even if a
+     * *  `NEVER`: The instance is off; it is not activated, even if a
      * connection request arrives.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.SqlActivationPolicy activation_policy = 10;</code>
@@ -864,7 +940,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of data disk: **PD_SSD** (default) or **PD_HDD**. Not used for
+     * The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
      * First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDataDiskType data_disk_type = 15;</code>
@@ -876,7 +952,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of data disk: **PD_SSD** (default) or **PD_HDD**. Not used for
+     * The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
      * First Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDataDiskType data_disk_type = 15;</code>
@@ -967,7 +1043,8 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * replication is enabled or not. WARNING: Changing this restarts the
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -991,7 +1068,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getDatabaseReplicationEnabled()</code>
 
      * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * replication is enabled or not. WARNING: Changing this restarts the
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      * @return bool|null
@@ -1003,7 +1081,8 @@ class Settings extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * replication is enabled or not. WARNING: Changing this restarts the
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -1021,7 +1100,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
      * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * replication is enabled or not. WARNING: Changing this restarts the
+     * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      * @param bool|null $var
@@ -1298,6 +1378,42 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The local user password validation policy of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
+     * @return \Google\Cloud\Sql\V1\PasswordValidationPolicy|null
+     */
+    public function getPasswordValidationPolicy()
+    {
+        return $this->password_validation_policy;
+    }
+
+    public function hasPasswordValidationPolicy()
+    {
+        return isset($this->password_validation_policy);
+    }
+
+    public function clearPasswordValidationPolicy()
+    {
+        unset($this->password_validation_policy);
+    }
+
+    /**
+     * The local user password validation policy of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
+     * @param \Google\Cloud\Sql\V1\PasswordValidationPolicy $var
+     * @return $this
+     */
+    public function setPasswordValidationPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PasswordValidationPolicy::class);
+        $this->password_validation_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * SQL Server specific audit configuration.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerAuditConfig sql_server_audit_config = 29;</code>
@@ -1329,6 +1445,237 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\SqlServerAuditConfig::class);
         $this->sql_server_audit_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\Settings\Edition::class);
+        $this->edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors).
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     * @return int
+     */
+    public function getConnectorEnforcement()
+    {
+        return $this->connector_enforcement;
+    }
+
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors).
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConnectorEnforcement($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\Settings\ConnectorEnforcement::class);
+        $this->connector_enforcement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getDeletionProtectionEnabled()
+    {
+        return $this->deletion_protection_enabled;
+    }
+
+    public function hasDeletionProtectionEnabled()
+    {
+        return isset($this->deletion_protection_enabled);
+    }
+
+    public function clearDeletionProtectionEnabled()
+    {
+        unset($this->deletion_protection_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDeletionProtectionEnabled()</code>
+
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @return bool|null
+     */
+    public function getDeletionProtectionEnabledValue()
+    {
+        return $this->readWrapperValue("deletion_protection_enabled");
+    }
+
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setDeletionProtectionEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->deletion_protection_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setDeletionProtectionEnabledValue($var)
+    {
+        $this->writeWrapperValue("deletion_protection_enabled", $var);
+        return $this;}
+
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->time_zone;
+    }
+
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTimeZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->time_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     * @return \Google\Cloud\Sql\V1\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return $this->advanced_machine_features;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     * @param \Google\Cloud\Sql\V1\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DataCacheConfig data_cache_config = 37;</code>
+     * @return \Google\Cloud\Sql\V1\DataCacheConfig|null
+     */
+    public function getDataCacheConfig()
+    {
+        return $this->data_cache_config;
+    }
+
+    public function hasDataCacheConfig()
+    {
+        return isset($this->data_cache_config);
+    }
+
+    public function clearDataCacheConfig()
+    {
+        unset($this->data_cache_config);
+    }
+
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DataCacheConfig data_cache_config = 37;</code>
+     * @param \Google\Cloud\Sql\V1\DataCacheConfig $var
+     * @return $this
+     */
+    public function setDataCacheConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\DataCacheConfig::class);
+        $this->data_cache_config = $var;
 
         return $this;
     }

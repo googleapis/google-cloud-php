@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DatabasesListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always **sql#databasesList**.
+     * This is always `sql#databasesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -35,7 +35,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always **sql#databasesList**.
+     *           This is always `sql#databasesList`.
      *     @type array<\Google\Cloud\Sql\V1\Database>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of database resources in the instance.
      * }
@@ -46,7 +46,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#databasesList**.
+     * This is always `sql#databasesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#databasesList**.
+     * This is always `sql#databasesList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

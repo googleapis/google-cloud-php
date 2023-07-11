@@ -151,6 +151,12 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $contact = new Contact();
+        $contactEmail = 'contactEmail1253690204';
+        $contact->setEmail($contactEmail);
+        $contactNotificationCategorySubscriptions = [];
+        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
+        $contactLanguageTag = 'contactLanguageTag229803234';
+        $contact->setLanguageTag($contactLanguageTag);
         $response = $gapicClient->createContact($formattedParent, $contact);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -186,6 +192,12 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $contact = new Contact();
+        $contactEmail = 'contactEmail1253690204';
+        $contact->setEmail($contactEmail);
+        $contactNotificationCategorySubscriptions = [];
+        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
+        $contactLanguageTag = 'contactLanguageTag229803234';
+        $contact->setLanguageTag($contactLanguageTag);
         try {
             $gapicClient->createContact($formattedParent, $contact);
             // If the $gapicClient method call did not throw, fail the test
@@ -476,6 +488,12 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $contact = new Contact();
+        $contactEmail = 'contactEmail1253690204';
+        $contact->setEmail($contactEmail);
+        $contactNotificationCategorySubscriptions = [];
+        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
+        $contactLanguageTag = 'contactLanguageTag229803234';
+        $contact->setLanguageTag($contactLanguageTag);
         $response = $gapicClient->updateContact($contact);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -508,6 +526,12 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $contact = new Contact();
+        $contactEmail = 'contactEmail1253690204';
+        $contact->setEmail($contactEmail);
+        $contactNotificationCategorySubscriptions = [];
+        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
+        $contactLanguageTag = 'contactLanguageTag229803234';
+        $contact->setLanguageTag($contactLanguageTag);
         try {
             $gapicClient->updateContact($contact);
             // If the $gapicClient method call did not throw, fail the test

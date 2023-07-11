@@ -105,6 +105,7 @@ use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -3046,6 +3047,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function groupAssets($parent, $groupBy, array $optionalArgs = [])
     {
@@ -3457,6 +3460,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAssets($parent, array $optionalArgs = [])
     {
@@ -4274,6 +4279,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function runAssetDiscovery($parent, array $optionalArgs = [])
     {

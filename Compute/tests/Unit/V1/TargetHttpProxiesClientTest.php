@@ -268,6 +268,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
+        $httpKeepAliveTimeoutSec = 2057938782;
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -279,6 +280,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);
+        $expectedResponse->setHttpKeepAliveTimeoutSec($httpKeepAliveTimeoutSec);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);

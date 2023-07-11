@@ -32,8 +32,8 @@ use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
  * [rollout][google.api.servicemanagement.v1.Rollout].
  *
  * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
- *                            example: `example.googleapis.com`.
+ *                            [overview](https://cloud.google.com/service-management/overview) for naming
+ *                            requirements.  For example: `example.googleapis.com`.
  * @param string $rolloutId   The id of the rollout resource.
  */
 function get_service_rollout_sample(string $serviceName, string $rolloutId): void

@@ -35,6 +35,11 @@
                                 "deleteRepository"
                             ]
                         },
+                        "FetchGitRefs": {
+                            "methods": [
+                                "fetchGitRefs"
+                            ]
+                        },
                         "FetchLinkableRepositories": {
                             "methods": [
                                 "fetchLinkableRepositories"

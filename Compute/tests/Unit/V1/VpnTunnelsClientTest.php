@@ -276,6 +276,7 @@ class VpnTunnelsClientTest extends GeneratedTest
         $id = 3355;
         $ikeVersion = 1292118044;
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
         $peerExternalGateway = 'peerExternalGateway384956173';
         $peerExternalGatewayInterface = 620973433;
@@ -297,6 +298,7 @@ class VpnTunnelsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setIkeVersion($ikeVersion);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
         $expectedResponse->setPeerExternalGateway($peerExternalGateway);
         $expectedResponse->setPeerExternalGatewayInterface($peerExternalGatewayInterface);

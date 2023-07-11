@@ -112,6 +112,22 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 protected_pod_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $protected_pod_count = 0;
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state_reason = '';
 
     /**
      * Constructor.
@@ -164,6 +180,14 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type int $protected_pod_count
      *           Output only. The number of Kubernetes Pods backed up in the
      *           last successful Backup created via this BackupPlan.
+     *     @type int $state
+     *           Output only. State of the BackupPlan. This State field reflects the
+     *           various stages a BackupPlan can be in
+     *           during the Create operation. It will be set to "DEACTIVATED"
+     *           if the BackupPlan is deactivated on an Update
+     *     @type string $state_reason
+     *           Output only. Human-readable description of why BackupPlan is in the current
+     *           `state`
      * }
      */
     public function __construct($data = NULL) {
@@ -593,6 +617,66 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->protected_pod_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. State of the BackupPlan. This State field reflects the
+     * various stages a BackupPlan can be in
+     * during the Create operation. It will be set to "DEACTIVATED"
+     * if the BackupPlan is deactivated on an Update
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeBackup\V1\BackupPlan\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStateReason()
+    {
+        return $this->state_reason;
+    }
+
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current
+     * `state`
+     *
+     * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStateReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->state_reason = $var;
 
         return $this;
     }

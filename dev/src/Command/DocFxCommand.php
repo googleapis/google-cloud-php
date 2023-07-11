@@ -94,7 +94,7 @@ class DocFxCommand extends Command
 
         $tocItems = [];
         $packageDescription = $component->getDescription();
-        foreach ($component->getNamespaces() as $namespace) {
+        foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,

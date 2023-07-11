@@ -40,6 +40,7 @@ use Google\Cloud\AppEngine\V1\ListServicesRequest;
 use Google\Cloud\AppEngine\V1\ListServicesResponse;
 use Google\Cloud\AppEngine\V1\Service;
 use Google\Cloud\AppEngine\V1\UpdateServiceRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

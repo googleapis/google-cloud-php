@@ -40,7 +40,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
      */
     private $access_token = '';
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,7 +68,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
      *     @type string $access_token
      *           Optional. Access token to include in the signed certificate.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *           Optional. Optional snapshot read timestamp to trade freshness for
+     *           performance.
      *     @type \Google\Protobuf\Duration $valid_duration
      *           Optional. If set, it will contain the cert valid duration.
      * }
@@ -182,7 +184,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -203,7 +206,8 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional snapshot read timestamp to trade freshness for performance.
+     * Optional. Optional snapshot read timestamp to trade freshness for
+     * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -17,31 +17,31 @@ class ImportContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * Path to the import file in Cloud Storage, in the form
-     * **gs://bucketName/fileName**. Compressed gzip files (.gz) are supported
-     * when **fileType** is **SQL**. The instance must have
+     * `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
+     * when `fileType` is `SQL`. The instance must have
      * write permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
     private $uri = '';
     /**
-     * The target database for the import. If **fileType** is **SQL**, this field
+     * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
      * overridden by any database specification in the import file. If
-     * **fileType** is **CSV**, one database must be specified.
+     * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
      */
     private $database = '';
     /**
-     * This is always **sql#importContext**.
+     * This is always `sql#importContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
     private $kind = '';
     /**
-     * The file type for the specified uri. <br>**SQL**: The file
-     * contains SQL statements. <br>**CSV**: The file contains CSV data.
+     * The file type for the specified uri.\`SQL`: The file
+     * contains SQL statements. \`CSV`: The file contains CSV data.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFileType file_type = 4;</code>
      */
@@ -73,19 +73,19 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Path to the import file in Cloud Storage, in the form
-     *           **gs://bucketName/fileName**. Compressed gzip files (.gz) are supported
-     *           when **fileType** is **SQL**. The instance must have
+     *           `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
+     *           when `fileType` is `SQL`. The instance must have
      *           write permissions to the bucket and read access to the file.
      *     @type string $database
-     *           The target database for the import. If **fileType** is **SQL**, this field
+     *           The target database for the import. If `fileType` is `SQL`, this field
      *           is required only if the import file does not specify a database, and is
      *           overridden by any database specification in the import file. If
-     *           **fileType** is **CSV**, one database must be specified.
+     *           `fileType` is `CSV`, one database must be specified.
      *     @type string $kind
-     *           This is always **sql#importContext**.
+     *           This is always `sql#importContext`.
      *     @type int $file_type
-     *           The file type for the specified uri. <br>**SQL**: The file
-     *           contains SQL statements. <br>**CSV**: The file contains CSV data.
+     *           The file type for the specified uri.\`SQL`: The file
+     *           contains SQL statements. \`CSV`: The file contains CSV data.
      *     @type \Google\Cloud\Sql\V1\ImportContext\SqlCsvImportOptions $csv_import_options
      *           Options for importing data as CSV.
      *     @type string $import_user
@@ -101,8 +101,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the import file in Cloud Storage, in the form
-     * **gs://bucketName/fileName**. Compressed gzip files (.gz) are supported
-     * when **fileType** is **SQL**. The instance must have
+     * `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
+     * when `fileType` is `SQL`. The instance must have
      * write permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -115,8 +115,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the import file in Cloud Storage, in the form
-     * **gs://bucketName/fileName**. Compressed gzip files (.gz) are supported
-     * when **fileType** is **SQL**. The instance must have
+     * `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
+     * when `fileType` is `SQL`. The instance must have
      * write permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -132,10 +132,10 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target database for the import. If **fileType** is **SQL**, this field
+     * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
      * overridden by any database specification in the import file. If
-     * **fileType** is **CSV**, one database must be specified.
+     * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
      * @return string
@@ -146,10 +146,10 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target database for the import. If **fileType** is **SQL**, this field
+     * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
      * overridden by any database specification in the import file. If
-     * **fileType** is **CSV**, one database must be specified.
+     * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
      * @param string $var
@@ -164,7 +164,7 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#importContext**.
+     * This is always `sql#importContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -175,7 +175,7 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always **sql#importContext**.
+     * This is always `sql#importContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var
@@ -190,8 +190,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file type for the specified uri. <br>**SQL**: The file
-     * contains SQL statements. <br>**CSV**: The file contains CSV data.
+     * The file type for the specified uri.\`SQL`: The file
+     * contains SQL statements. \`CSV`: The file contains CSV data.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFileType file_type = 4;</code>
      * @return int
@@ -202,8 +202,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file type for the specified uri. <br>**SQL**: The file
-     * contains SQL statements. <br>**CSV**: The file contains CSV data.
+     * The file type for the specified uri.\`SQL`: The file
+     * contains SQL statements. \`CSV`: The file contains CSV data.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFileType file_type = 4;</code>
      * @param int $var

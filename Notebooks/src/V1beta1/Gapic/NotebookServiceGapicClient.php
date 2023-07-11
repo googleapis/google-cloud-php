@@ -73,6 +73,7 @@ use Google\Cloud\Notebooks\V1beta1\StartInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\StopInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\UpgradeInstanceInternalRequest;
 use Google\Cloud\Notebooks\V1beta1\UpgradeInstanceRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**

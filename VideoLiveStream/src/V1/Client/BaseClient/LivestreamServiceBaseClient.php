@@ -57,6 +57,7 @@ use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

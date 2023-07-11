@@ -20,7 +20,6 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Yaml\Yaml;
 use SimpleXMLElement;
@@ -200,9 +199,7 @@ class DocFxCommandTest extends TestCase
     private static function getCommandTester(): CommandTester
     {
         if (!isset(self::$commandTester)) {
-            $application = new Application();
-            $application->add(new DocFxCommand());
-            self::$commandTester = new CommandTester($application->get('docfx'));
+            self::$commandTester = new CommandTester(new DocFxCommand());
         }
         return self::$commandTester;
     }

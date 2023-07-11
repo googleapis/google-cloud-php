@@ -7,10 +7,9 @@ namespace Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest;
 use UnexpectedValueException;
 
 /**
- * An enum to indicate how to interpret missing values. Missing values are
- * fields present in user schema but missing in rows. A missing value can
- * represent a NULL or a column default value defined in BigQuery table
- * schema.
+ * An enum to indicate how to interpret missing values of fields that are
+ * present in user schema but missing in rows. A missing value can represent a
+ * NULL or a column default value defined in BigQuery table schema.
  *
  * Protobuf type <code>google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation</code>
  */

@@ -292,6 +292,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
         $network = 'network1843485230';
         $region2 = 'region2-690338393';
@@ -302,6 +303,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setRegion($region2);

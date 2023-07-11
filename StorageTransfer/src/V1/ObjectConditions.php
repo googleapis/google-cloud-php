@@ -15,8 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * last change to the object's content or metadata — specifically, this is
  * the `updated` property of Cloud Storage objects, the `LastModified` field
  * of S3 objects, and the `Last-Modified` header of Azure blobs.
- * Transfers with a [PosixFilesystem][google.storagetransfer.v1.PosixFilesystem] source or destination don't support
- * `ObjectConditions`.
+ * Transfers with a [PosixFilesystem][google.storagetransfer.v1.PosixFilesystem]
+ * source or destination don't support `ObjectConditions`.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.ObjectConditions</code>
  */
@@ -25,11 +25,12 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred until a specific minimum time
      * has elapsed after the "last modification time". When a
-     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a "last modification time" are
-     * transferred only if the elapsed time between the
-     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the `TransferOperation`
-     * and the "last modification time" of the object is equal to or
-     * greater than the value of min_time_elapsed_since_last_modification`.
+     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins,
+     * objects with a "last modification time" are transferred only if the elapsed
+     * time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * `TransferOperation` and the "last modification time" of the object is equal
+     * to or greater than the value of min_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_time_elapsed_since_last_modification = 1;</code>
@@ -38,9 +39,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred if a specific maximum time
      * has elapsed since the "last modification time".
-     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a
-     * "last modification time" are transferred only if the elapsed time
-     * between the [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation]
+     * begins, objects with a "last modification time" are transferred only if the
+     * elapsed time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
      * `TransferOperation`and the "last modification time" of the object
      *  is less than the value of max_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
@@ -52,9 +54,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      * If you specify `include_prefixes`, Storage Transfer Service uses the items
      * in the `include_prefixes` array to determine which objects to include in a
      * transfer. Objects must start with one of the matching `include_prefixes`
-     * for inclusion in the transfer. If [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes] is specified,
-     * objects must not start with any of the `exclude_prefixes` specified for
-     * inclusion in the transfer.
+     * for inclusion in the transfer. If
+     * [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes]
+     * is specified, objects must not start with any of the `exclude_prefixes`
+     * specified for inclusion in the transfer.
      * The following are requirements of `include_prefixes`:
      *   * Each include-prefix can contain any sequence of Unicode characters, to
      *     a max length of 1024 bytes when UTF8-encoded, and must not contain
@@ -91,8 +94,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   * Each exclude-prefix must exclude a distinct portion of the object
      *     namespace. No exclude-prefix may be a prefix of another
      *     exclude-prefix.
-     *   * If [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes] is specified, then each exclude-prefix must
-     *   start with the value of a path explicitly included by `include_prefixes`.
+     *   * If
+     *   [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes]
+     *   is specified, then each exclude-prefix must start with the value of a
+     *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
      * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
@@ -132,18 +137,20 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $min_time_elapsed_since_last_modification
      *           Ensures that objects are not transferred until a specific minimum time
      *           has elapsed after the "last modification time". When a
-     *           [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a "last modification time" are
-     *           transferred only if the elapsed time between the
-     *           [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the `TransferOperation`
-     *           and the "last modification time" of the object is equal to or
-     *           greater than the value of min_time_elapsed_since_last_modification`.
+     *           [TransferOperation][google.storagetransfer.v1.TransferOperation] begins,
+     *           objects with a "last modification time" are transferred only if the elapsed
+     *           time between the
+     *           [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     *           `TransferOperation` and the "last modification time" of the object is equal
+     *           to or greater than the value of min_time_elapsed_since_last_modification`.
      *           Objects that do not have a "last modification time" are also transferred.
      *     @type \Google\Protobuf\Duration $max_time_elapsed_since_last_modification
      *           Ensures that objects are not transferred if a specific maximum time
      *           has elapsed since the "last modification time".
-     *           When a [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a
-     *           "last modification time" are transferred only if the elapsed time
-     *           between the [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     *           When a [TransferOperation][google.storagetransfer.v1.TransferOperation]
+     *           begins, objects with a "last modification time" are transferred only if the
+     *           elapsed time between the
+     *           [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
      *           `TransferOperation`and the "last modification time" of the object
      *            is less than the value of max_time_elapsed_since_last_modification`.
      *           Objects that do not have a "last modification time" are also transferred.
@@ -151,9 +158,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *           If you specify `include_prefixes`, Storage Transfer Service uses the items
      *           in the `include_prefixes` array to determine which objects to include in a
      *           transfer. Objects must start with one of the matching `include_prefixes`
-     *           for inclusion in the transfer. If [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes] is specified,
-     *           objects must not start with any of the `exclude_prefixes` specified for
-     *           inclusion in the transfer.
+     *           for inclusion in the transfer. If
+     *           [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes]
+     *           is specified, objects must not start with any of the `exclude_prefixes`
+     *           specified for inclusion in the transfer.
      *           The following are requirements of `include_prefixes`:
      *             * Each include-prefix can contain any sequence of Unicode characters, to
      *               a max length of 1024 bytes when UTF8-encoded, and must not contain
@@ -186,8 +194,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *             * Each exclude-prefix must exclude a distinct portion of the object
      *               namespace. No exclude-prefix may be a prefix of another
      *               exclude-prefix.
-     *             * If [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes] is specified, then each exclude-prefix must
-     *             start with the value of a path explicitly included by `include_prefixes`.
+     *             * If
+     *             [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes]
+     *             is specified, then each exclude-prefix must start with the value of a
+     *             path explicitly included by `include_prefixes`.
      *           The max size of `exclude_prefixes` is 1000.
      *           For more information, see [Filtering objects from
      *           transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
@@ -215,11 +225,12 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred until a specific minimum time
      * has elapsed after the "last modification time". When a
-     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a "last modification time" are
-     * transferred only if the elapsed time between the
-     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the `TransferOperation`
-     * and the "last modification time" of the object is equal to or
-     * greater than the value of min_time_elapsed_since_last_modification`.
+     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins,
+     * objects with a "last modification time" are transferred only if the elapsed
+     * time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * `TransferOperation` and the "last modification time" of the object is equal
+     * to or greater than the value of min_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_time_elapsed_since_last_modification = 1;</code>
@@ -243,11 +254,12 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred until a specific minimum time
      * has elapsed after the "last modification time". When a
-     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a "last modification time" are
-     * transferred only if the elapsed time between the
-     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the `TransferOperation`
-     * and the "last modification time" of the object is equal to or
-     * greater than the value of min_time_elapsed_since_last_modification`.
+     * [TransferOperation][google.storagetransfer.v1.TransferOperation] begins,
+     * objects with a "last modification time" are transferred only if the elapsed
+     * time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * `TransferOperation` and the "last modification time" of the object is equal
+     * to or greater than the value of min_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_time_elapsed_since_last_modification = 1;</code>
@@ -265,9 +277,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred if a specific maximum time
      * has elapsed since the "last modification time".
-     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a
-     * "last modification time" are transferred only if the elapsed time
-     * between the [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation]
+     * begins, objects with a "last modification time" are transferred only if the
+     * elapsed time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
      * `TransferOperation`and the "last modification time" of the object
      *  is less than the value of max_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
@@ -293,9 +306,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
     /**
      * Ensures that objects are not transferred if a specific maximum time
      * has elapsed since the "last modification time".
-     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation] begins, objects with a
-     * "last modification time" are transferred only if the elapsed time
-     * between the [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
+     * When a [TransferOperation][google.storagetransfer.v1.TransferOperation]
+     * begins, objects with a "last modification time" are transferred only if the
+     * elapsed time between the
+     * [start_time][google.storagetransfer.v1.TransferOperation.start_time] of the
      * `TransferOperation`and the "last modification time" of the object
      *  is less than the value of max_time_elapsed_since_last_modification`.
      * Objects that do not have a "last modification time" are also transferred.
@@ -316,9 +330,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      * If you specify `include_prefixes`, Storage Transfer Service uses the items
      * in the `include_prefixes` array to determine which objects to include in a
      * transfer. Objects must start with one of the matching `include_prefixes`
-     * for inclusion in the transfer. If [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes] is specified,
-     * objects must not start with any of the `exclude_prefixes` specified for
-     * inclusion in the transfer.
+     * for inclusion in the transfer. If
+     * [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes]
+     * is specified, objects must not start with any of the `exclude_prefixes`
+     * specified for inclusion in the transfer.
      * The following are requirements of `include_prefixes`:
      *   * Each include-prefix can contain any sequence of Unicode characters, to
      *     a max length of 1024 bytes when UTF8-encoded, and must not contain
@@ -347,9 +362,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      * If you specify `include_prefixes`, Storage Transfer Service uses the items
      * in the `include_prefixes` array to determine which objects to include in a
      * transfer. Objects must start with one of the matching `include_prefixes`
-     * for inclusion in the transfer. If [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes] is specified,
-     * objects must not start with any of the `exclude_prefixes` specified for
-     * inclusion in the transfer.
+     * for inclusion in the transfer. If
+     * [exclude_prefixes][google.storagetransfer.v1.ObjectConditions.exclude_prefixes]
+     * is specified, objects must not start with any of the `exclude_prefixes`
+     * specified for inclusion in the transfer.
      * The following are requirements of `include_prefixes`:
      *   * Each include-prefix can contain any sequence of Unicode characters, to
      *     a max length of 1024 bytes when UTF8-encoded, and must not contain
@@ -395,8 +411,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   * Each exclude-prefix must exclude a distinct portion of the object
      *     namespace. No exclude-prefix may be a prefix of another
      *     exclude-prefix.
-     *   * If [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes] is specified, then each exclude-prefix must
-     *   start with the value of a path explicitly included by `include_prefixes`.
+     *   * If
+     *   [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes]
+     *   is specified, then each exclude-prefix must start with the value of a
+     *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
      * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
@@ -426,8 +444,10 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   * Each exclude-prefix must exclude a distinct portion of the object
      *     namespace. No exclude-prefix may be a prefix of another
      *     exclude-prefix.
-     *   * If [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes] is specified, then each exclude-prefix must
-     *   start with the value of a path explicitly included by `include_prefixes`.
+     *   * If
+     *   [include_prefixes][google.storagetransfer.v1.ObjectConditions.include_prefixes]
+     *   is specified, then each exclude-prefix must start with the value of a
+     *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
      * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).

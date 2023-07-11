@@ -512,10 +512,6 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $recognizer = new Recognizer();
-        $recognizerModel = 'recognizerModel-1985320987';
-        $recognizer->setModel($recognizerModel);
-        $recognizerLanguageCodes = [];
-        $recognizer->setLanguageCodes($recognizerLanguageCodes);
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $response = $gapicClient->createRecognizer($recognizer, $formattedParent);
         $this->assertFalse($response->isDone());
@@ -583,10 +579,6 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $recognizer = new Recognizer();
-        $recognizerModel = 'recognizerModel-1985320987';
-        $recognizer->setModel($recognizerModel);
-        $recognizerLanguageCodes = [];
-        $recognizer->setLanguageCodes($recognizerLanguageCodes);
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $response = $gapicClient->createRecognizer($recognizer, $formattedParent);
         $this->assertFalse($response->isDone());
@@ -2415,10 +2407,6 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $recognizer = new Recognizer();
-        $recognizerModel = 'recognizerModel-1985320987';
-        $recognizer->setModel($recognizerModel);
-        $recognizerLanguageCodes = [];
-        $recognizer->setLanguageCodes($recognizerLanguageCodes);
         $response = $gapicClient->updateRecognizer($recognizer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2483,10 +2471,6 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $recognizer = new Recognizer();
-        $recognizerModel = 'recognizerModel-1985320987';
-        $recognizer->setModel($recognizerModel);
-        $recognizerLanguageCodes = [];
-        $recognizer->setLanguageCodes($recognizerLanguageCodes);
         $response = $gapicClient->updateRecognizer($recognizer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

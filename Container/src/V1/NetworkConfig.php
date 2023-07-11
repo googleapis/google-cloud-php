@@ -91,6 +91,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      */
     private $gateway_api_config = null;
     /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     */
+    private $network_performance_config = null;
+    /**
      * Whether FQDN Network Policy is enabled on this cluster.
      *
      * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
@@ -138,6 +144,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $gateway_api_config
      *           GatewayAPIConfig contains the desired config of Gateway API on this
      *           cluster.
+     *     @type \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $network_performance_config
+     *           Network bandwidth tier configuration.
      *     @type bool $enable_fqdn_network_policy
      *           Whether FQDN Network Policy is enabled on this cluster.
      * }
@@ -473,6 +481,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
         $this->gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     * @return \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig|null
+     */
+    public function getNetworkPerformanceConfig()
+    {
+        return $this->network_performance_config;
+    }
+
+    public function hasNetworkPerformanceConfig()
+    {
+        return isset($this->network_performance_config);
+    }
+
+    public function clearNetworkPerformanceConfig()
+    {
+        unset($this->network_performance_config);
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     * @param \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig::class);
+        $this->network_performance_config = $var;
 
         return $this;
     }

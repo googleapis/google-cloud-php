@@ -167,9 +167,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           be used for search and lookup of the entries.
      *     @type int $type
      *           The type of the entry.
-     *           Only used for entries with types listed in the `EntryType` enum.
-     *           Currently, only `FILESET` enum value is allowed. All other entries
-     *           created in Data Catalog must use the `user_specified_type`.
+     *           For details, see [`EntryType`](#entrytype).
      *     @type string $user_specified_type
      *           Custom entry type that doesn't match any of the values allowed for input
      *           and listed in the `EntryType` enum.
@@ -383,9 +381,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the entry.
-     * Only used for entries with types listed in the `EntryType` enum.
-     * Currently, only `FILESET` enum value is allowed. All other entries
-     * created in Data Catalog must use the `user_specified_type`.
+     * For details, see [`EntryType`](#entrytype).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @return int
@@ -402,9 +398,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the entry.
-     * Only used for entries with types listed in the `EntryType` enum.
-     * Currently, only `FILESET` enum value is allowed. All other entries
-     * created in Data Catalog must use the `user_specified_type`.
+     * For details, see [`EntryType`](#entrytype).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @param int $var

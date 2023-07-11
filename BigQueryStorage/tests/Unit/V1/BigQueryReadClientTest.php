@@ -74,12 +74,14 @@ class BigQueryReadClientTest extends GeneratedTest
         $name = 'name3373707';
         $table = 'table110115790';
         $estimatedTotalBytesScanned = 452788190;
+        $estimatedTotalPhysicalFileSize = 938325754;
         $estimatedRowCount = 1745583577;
         $traceId = 'traceId1270300245';
         $expectedResponse = new ReadSession();
         $expectedResponse->setName($name);
         $expectedResponse->setTable($table);
         $expectedResponse->setEstimatedTotalBytesScanned($estimatedTotalBytesScanned);
+        $expectedResponse->setEstimatedTotalPhysicalFileSize($estimatedTotalPhysicalFileSize);
         $expectedResponse->setEstimatedRowCount($estimatedRowCount);
         $expectedResponse->setTraceId($traceId);
         $transport->addResponse($expectedResponse);

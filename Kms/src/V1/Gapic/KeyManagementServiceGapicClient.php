@@ -81,6 +81,10 @@ use Google\Cloud\Kms\V1\MacVerifyRequest;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
 use Google\Cloud\Kms\V1\ProtectionLevel;
 use Google\Cloud\Kms\V1\PublicKey;
+use Google\Cloud\Kms\V1\RawDecryptRequest;
+use Google\Cloud\Kms\V1\RawDecryptResponse;
+use Google\Cloud\Kms\V1\RawEncryptRequest;
+use Google\Cloud\Kms\V1\RawEncryptResponse;
 use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
@@ -2078,6 +2082,283 @@ class KeyManagementServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MacVerify', MacVerifyResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Decrypts data that was originally encrypted using a raw cryptographic
+     * mechanism. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * must be
+     * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $ciphertext = '...';
+     *     $initializationVector = '...';
+     *     $response = $keyManagementServiceClient->rawDecrypt($name, $ciphertext, $initializationVector);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name                 Required. The resource name of the
+     *                                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                                     decryption.
+     * @param string $ciphertext           Required. The encrypted data originally returned in
+     *                                     [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
+     * @param string $initializationVector Required. The initialization vector (IV) used during encryption, which must
+     *                                     match the data originally provided in
+     *                                     [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     * @param array  $optionalArgs         {
+     *     Optional.
+     *
+     *     @type string $additionalAuthenticatedData
+     *           Optional. Optional data that must match the data originally supplied in
+     *           [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     *     @type int $tagLength
+     *           The length of the authentication tag that is appended to the end of
+     *           the ciphertext. If unspecified (0), the default value for the key's
+     *           algorithm will be used (for AES-GCM, the default value is 16).
+     *     @type Int64Value $ciphertextCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received ciphertext using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that CRC32C(ciphertext) is equal
+     *           to ciphertext_crc32c, and if so, perform a limited number of retries. A
+     *           persistent mismatch may indicate an issue in your computation of the CRC32C
+     *           checksum. Note: This field is defined as int64 for reasons of compatibility
+     *           across different languages. However, it is a non-negative integer, which
+     *           will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     *           languages that support this type.
+     *     @type Int64Value $additionalAuthenticatedDataCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received additional_authenticated_data using
+     *           this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C(additional_authenticated_data) is equal to
+     *           additional_authenticated_data_crc32c, and if so, perform
+     *           a limited number of retries. A persistent mismatch may indicate an issue in
+     *           your computation of the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *     @type Int64Value $initializationVectorCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received initialization_vector using this
+     *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and
+     *           if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\RawDecryptResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rawDecrypt($name, $ciphertext, $initializationVector, array $optionalArgs = [])
+    {
+        $request = new RawDecryptRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setCiphertext($ciphertext);
+        $request->setInitializationVector($initializationVector);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['additionalAuthenticatedData'])) {
+            $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+        }
+
+        if (isset($optionalArgs['tagLength'])) {
+            $request->setTagLength($optionalArgs['tagLength']);
+        }
+
+        if (isset($optionalArgs['ciphertextCrc32c'])) {
+            $request->setCiphertextCrc32c($optionalArgs['ciphertextCrc32c']);
+        }
+
+        if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
+            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
+        }
+
+        if (isset($optionalArgs['initializationVectorCrc32c'])) {
+            $request->setInitializationVectorCrc32c($optionalArgs['initializationVectorCrc32c']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RawDecrypt', RawDecryptResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Encrypts data using portable cryptographic primitives. Most users should
+     * choose [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
+     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt] rather than
+     * their raw counterparts. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $plaintext = '...';
+     *     $response = $keyManagementServiceClient->rawEncrypt($name, $plaintext);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             encryption.
+     * @param string $plaintext    Required. The data to encrypt. Must be no larger than 64KiB.
+     *
+     *                             The maximum size depends on the key version's
+     *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+     *                             plaintext must be no larger than 64KiB. For
+     *                             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *                             the plaintext and additional_authenticated_data fields must be no larger
+     *                             than 8KiB.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $additionalAuthenticatedData
+     *           Optional. Optional data that, if specified, must also be provided during
+     *           decryption through
+     *           [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
+     *
+     *           This field may only be used in conjunction with an
+     *           [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm] that accepts
+     *           additional authenticated data (for example, AES-GCM).
+     *
+     *           The maximum size depends on the key version's
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+     *           plaintext must be no larger than 64KiB. For
+     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *           the plaintext and additional_authenticated_data fields must be no larger
+     *           than 8KiB.
+     *     @type Int64Value $plaintextCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received plaintext using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that CRC32C(plaintext) is equal
+     *           to plaintext_crc32c, and if so, perform a limited number of retries. A
+     *           persistent mismatch may indicate an issue in your computation of the CRC32C
+     *           checksum. Note: This field is defined as int64 for reasons of compatibility
+     *           across different languages. However, it is a non-negative integer, which
+     *           will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     *           languages that support this type.
+     *     @type Int64Value $additionalAuthenticatedDataCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received additional_authenticated_data using
+     *           this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C(additional_authenticated_data) is equal to
+     *           additional_authenticated_data_crc32c, and if so, perform
+     *           a limited number of retries. A persistent mismatch may indicate an issue in
+     *           your computation of the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *     @type string $initializationVector
+     *           Optional. A customer-supplied initialization vector that will be used for
+     *           encryption. If it is not provided for AES-CBC and AES-CTR, one will be
+     *           generated. It will be returned in
+     *           [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     *     @type Int64Value $initializationVectorCrc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received initialization_vector using this
+     *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C(initialization_vector) is equal to
+     *           initialization_vector_crc32c, and if so, perform
+     *           a limited number of retries. A persistent mismatch may indicate an issue in
+     *           your computation of the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\RawEncryptResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rawEncrypt($name, $plaintext, array $optionalArgs = [])
+    {
+        $request = new RawEncryptRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setPlaintext($plaintext);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['additionalAuthenticatedData'])) {
+            $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+        }
+
+        if (isset($optionalArgs['plaintextCrc32c'])) {
+            $request->setPlaintextCrc32c($optionalArgs['plaintextCrc32c']);
+        }
+
+        if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
+            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
+        }
+
+        if (isset($optionalArgs['initializationVector'])) {
+            $request->setInitializationVector($optionalArgs['initializationVector']);
+        }
+
+        if (isset($optionalArgs['initializationVectorCrc32c'])) {
+            $request->setInitializationVectorCrc32c($optionalArgs['initializationVectorCrc32c']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RawEncrypt', RawEncryptResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

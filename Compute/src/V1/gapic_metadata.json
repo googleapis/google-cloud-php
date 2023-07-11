@@ -59,6 +59,11 @@
                                 "list"
                             ]
                         },
+                        "Move": {
+                            "methods": [
+                                "move"
+                            ]
+                        },
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
@@ -284,6 +289,11 @@
                                 "aggregatedList"
                             ]
                         },
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -332,6 +342,21 @@
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
+                            ]
+                        },
+                        "StartAsyncReplication": {
+                            "methods": [
+                                "startAsyncReplication"
+                            ]
+                        },
+                        "StopAsyncReplication": {
+                            "methods": [
+                                "stopAsyncReplication"
+                            ]
+                        },
+                        "StopGroupAsyncReplication": {
+                            "methods": [
+                                "stopGroupAsyncReplication"
                             ]
                         },
                         "TestIamPermissions": {
@@ -597,6 +622,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Move": {
+                            "methods": [
+                                "move"
                             ]
                         },
                         "SetLabels": {
@@ -1409,6 +1439,25 @@
             "clients": {
                 "grpc": {
                     "libraryClient": "InterconnectLocationsGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InterconnectRemoteLocations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InterconnectRemoteLocationsGapicClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -2388,6 +2437,11 @@
                                 "addResourcePolicies"
                             ]
                         },
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -2436,6 +2490,21 @@
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
+                            ]
+                        },
+                        "StartAsyncReplication": {
+                            "methods": [
+                                "startAsyncReplication"
+                            ]
+                        },
+                        "StopAsyncReplication": {
+                            "methods": [
+                                "stopAsyncReplication"
+                            ]
+                        },
+                        "StopGroupAsyncReplication": {
+                            "methods": [
+                                "stopGroupAsyncReplication"
                             ]
                         },
                         "TestIamPermissions": {

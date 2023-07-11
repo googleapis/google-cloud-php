@@ -34,6 +34,14 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $deployment = '';
+    /**
+     * Optional. The time to wait for route updates to propagate. The maximum
+     * configurable time is 3 hours, in seconds format. If unspecified, there is
+     * no wait time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $route_update_wait_time = null;
 
     /**
      * Constructor.
@@ -48,6 +56,10 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *     @type string $deployment
      *           Required. Name of the Kubernetes Deployment whose traffic is managed by
      *           the specified HTTPRoute and Service.
+     *     @type \Google\Protobuf\Duration $route_update_wait_time
+     *           Optional. The time to wait for route updates to propagate. The maximum
+     *           configurable time is 3 hours, in seconds format. If unspecified, there is
+     *           no wait time.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +143,46 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The time to wait for route updates to propagate. The maximum
+     * configurable time is 3 hours, in seconds format. If unspecified, there is
+     * no wait time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRouteUpdateWaitTime()
+    {
+        return $this->route_update_wait_time;
+    }
+
+    public function hasRouteUpdateWaitTime()
+    {
+        return isset($this->route_update_wait_time);
+    }
+
+    public function clearRouteUpdateWaitTime()
+    {
+        unset($this->route_update_wait_time);
+    }
+
+    /**
+     * Optional. The time to wait for route updates to propagate. The maximum
+     * configurable time is 3 hours, in seconds format. If unspecified, there is
+     * no wait time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRouteUpdateWaitTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->route_update_wait_time = $var;
 
         return $this;
     }

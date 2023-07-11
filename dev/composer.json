@@ -10,7 +10,8 @@
         "google/cloud": "dev-parent",
         "symfony/filesystem": "^6.0",
         "twig/twig": "^3.5",
-        "phpstan/phpstan": "^1.7"
+        "phpstan/phpstan": "^1.7",
+        "symfony/finder": "^6.2"
     },
     "autoload": {
         "psr-4": {

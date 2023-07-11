@@ -70,6 +70,12 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $next_hop_gateway = null;
     /**
+     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     *
+     * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
+     */
+    private $next_hop_hub = null;
+    /**
      * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *
      * Generated from protobuf field <code>optional string next_hop_ilb = 198679901;</code>
@@ -168,6 +174,8 @@ class Route extends \Google\Protobuf\Internal\Message
      *           Fully-qualified URL of the network that this route applies to.
      *     @type string $next_hop_gateway
      *           The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
+     *     @type string $next_hop_hub
+     *           [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
      *     @type string $next_hop_ilb
      *           The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *     @type string $next_hop_instance
@@ -511,6 +519,42 @@ class Route extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_hop_gateway = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     *
+     * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
+     * @return string
+     */
+    public function getNextHopHub()
+    {
+        return isset($this->next_hop_hub) ? $this->next_hop_hub : '';
+    }
+
+    public function hasNextHopHub()
+    {
+        return isset($this->next_hop_hub);
+    }
+
+    public function clearNextHopHub()
+    {
+        unset($this->next_hop_hub);
+    }
+
+    /**
+     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     *
+     * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextHopHub($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_hop_hub = $var;
 
         return $this;
     }

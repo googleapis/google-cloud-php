@@ -28,7 +28,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      */
     private $description = null;
     /**
-     * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
+     * The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
@@ -70,7 +70,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $ip_cidr_range
-     *           The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
+     *           The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *     @type bool $is_address
      *           Whether the sub prefix is delegated to create Address resources in the delegatee project.
      *     @type string $name
@@ -160,7 +160,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
+     * The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -181,7 +181,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
+     * The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var

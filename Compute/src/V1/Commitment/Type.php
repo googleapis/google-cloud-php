@@ -56,6 +56,10 @@ class Type
      */
     const GENERAL_PURPOSE_T2D = 232477166;
     /**
+     * Generated from protobuf enum <code>GRAPHICS_OPTIMIZED = 68500563;</code>
+     */
+    const GRAPHICS_OPTIMIZED = 68500563;
+    /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED = 281753417;</code>
      */
     const MEMORY_OPTIMIZED = 281753417;
@@ -79,6 +83,7 @@ class Type
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
+        self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
