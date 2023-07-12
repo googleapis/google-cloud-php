@@ -62,9 +62,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * and can change in the future.
      * Return rows in lexiographical descending order of the row keys. The row
      * contents will not be affected by this flag.
-     * Example result set: [
-     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
-     * "f:col2": "v2"} ].
+     * Example result set:
+     *     [
+     *       {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+     *       {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+     *     ]
      *
      * Generated from protobuf field <code>bool reversed = 7;</code>
      */
@@ -134,9 +136,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           and can change in the future.
      *           Return rows in lexiographical descending order of the row keys. The row
      *           contents will not be affected by this flag.
-     *           Example result set: [
-     *           {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
-     *           "f:col2": "v2"} ].
+     *           Example result set:
+     *               [
+     *                 {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+     *                 {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+     *               ]
      * }
      */
     public function __construct($data = NULL) {
@@ -337,9 +341,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * and can change in the future.
      * Return rows in lexiographical descending order of the row keys. The row
      * contents will not be affected by this flag.
-     * Example result set: [
-     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
-     * "f:col2": "v2"} ].
+     * Example result set:
+     *     [
+     *       {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+     *       {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+     *     ]
      *
      * Generated from protobuf field <code>bool reversed = 7;</code>
      * @return bool
@@ -354,9 +360,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * and can change in the future.
      * Return rows in lexiographical descending order of the row keys. The row
      * contents will not be affected by this flag.
-     * Example result set: [
-     * {key: "k2", "f:col1": "v1", "f:col2": "v1"}, {key: "k1", "f:col1": "v2",
-     * "f:col2": "v2"} ].
+     * Example result set:
+     *     [
+     *       {key: "k2", "f:col1": "v1", "f:col2": "v1"},
+     *       {key: "k1", "f:col1": "v2", "f:col2": "v2"}
+     *     ]
      *
      * Generated from protobuf field <code>bool reversed = 7;</code>
      * @param bool $var
