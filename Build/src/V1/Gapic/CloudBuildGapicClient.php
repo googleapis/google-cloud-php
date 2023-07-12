@@ -208,7 +208,7 @@ class CloudBuildGapicClient
     private static function getBuildTriggerNameTemplate()
     {
         if (self::$buildTriggerNameTemplate == null) {
-            self::$buildTriggerNameTemplate = new PathTemplate('projects/{project}/locations/{location}/triggers/{trigger}');
+            self::$buildTriggerNameTemplate = new PathTemplate('projects/{project}/triggers/{trigger}');
         }
 
         return self::$buildTriggerNameTemplate;
@@ -388,16 +388,14 @@ class CloudBuildGapicClient
      * build_trigger resource.
      *
      * @param string $project
-     * @param string $location
      * @param string $trigger
      *
      * @return string The formatted build_trigger resource.
      */
-    public static function buildTriggerName($project, $location, $trigger)
+    public static function buildTriggerName($project, $trigger)
     {
         return self::getBuildTriggerNameTemplate()->render([
             'project' => $project,
-            'location' => $location,
             'trigger' => $trigger,
         ]);
     }
@@ -659,7 +657,7 @@ class CloudBuildGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - build: projects/{project}/builds/{build}
-     * - buildTrigger: projects/{project}/locations/{location}/triggers/{trigger}
+     * - buildTrigger: projects/{project}/triggers/{trigger}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
