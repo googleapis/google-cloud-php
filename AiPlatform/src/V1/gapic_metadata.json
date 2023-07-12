@@ -20,6 +20,11 @@
                                 "deleteDataset"
                             ]
                         },
+                        "DeleteSavedQuery": {
+                            "methods": [
+                                "deleteSavedQuery"
+                            ]
+                        },
                         "ExportData": {
                             "methods": [
                                 "exportData"

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.GetTensorboardUsage][].
+ * Request message for
+ * [TensorboardService.ReadTensorboardUsage][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReadTensorboardUsageRequest</code>
  */

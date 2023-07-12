@@ -44,6 +44,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -297,6 +301,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *                        or
      *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
      *           if no version is specified, the default version will be deployed.
+     *           The model resource could also be a publisher model.
+     *            Example: `publishers/{publisher}/models/{model}`
+     *                        or
+     *                     `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *     @type string $model_version_id
      *           Output only. The version ID of the Model that produces the predictions via
      *           this job.
@@ -498,6 +506,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -519,6 +531,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *              or
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
