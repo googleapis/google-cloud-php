@@ -120,6 +120,4 @@ class QuantityBasedExpiry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QuantityBasedExpiry::class, \Google\Cloud\AlloyDb\V1alpha\Backup_QuantityBasedExpiry::class);
 

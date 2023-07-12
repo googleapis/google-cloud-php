@@ -191,6 +191,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Instance.UpdatePolicy update_policy = 22;</code>
      */
     protected $update_policy = null;
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     */
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -285,6 +291,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           This field is not persisted when you update the instance.
      *           To use a non-default update policy, you must
      *           specify explicitly specify the value in each update request.
+     *     @type bool $satisfies_pzs
+     *           Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -1026,6 +1034,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Instance\UpdatePolicy::class);
         $this->update_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }
