@@ -20,13 +20,13 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string range_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $range_name = '';
+    private $range_name = '';
     /**
      * Output only. [Output only] The utilization of the range.
      *
      * Generated from protobuf field <code>double utilization = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $utilization = 0.0;
+    private $utilization = 0.0;
 
     /**
      * Constructor.
