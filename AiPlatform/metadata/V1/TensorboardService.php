@@ -37,21 +37,7 @@ class TensorboardService
 tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardBàA"T
 GetTensorboardRequest;
 name (	B-àAúA\'
-%aiplatform.googleapis.com/Tensorboard"a
-ReadTensorboardUsageRequestB
-tensorboard (	B-àAúA\'
-%aiplatform.googleapis.com/Tensorboard"Ã
-ReadTensorboardUsageResponsej
-monthly_usage_data (2N.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.MonthlyUsageDataEntry8
-PerUserUsageData
-username (	
-
-view_count (w
-PerMonthUsageDatab
-user_usage_data (2I.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageDataƒ
-MonthlyUsageDataEntry
-key (	Y
-value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"Ð
+%aiplatform.googleapis.com/Tensorboard"Ð
 ListTensorboardsRequest=
 parent (	B-àAúA\'%aiplatform.googleapis.com/Tensorboard
 filter (	
@@ -68,7 +54,21 @@ page_token (	
 tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardBàA"W
 DeleteTensorboardRequest;
 name (	B-àAúA\'
-%aiplatform.googleapis.com/Tensorboard"è
+%aiplatform.googleapis.com/Tensorboard"a
+ReadTensorboardUsageRequestB
+tensorboard (	B-àAúA\'
+%aiplatform.googleapis.com/Tensorboard"Ã
+ReadTensorboardUsageResponsej
+monthly_usage_data (2N.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.MonthlyUsageDataEntry8
+PerUserUsageData
+username (	
+
+view_count (w
+PerMonthUsageDatab
+user_usage_data (2I.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageDataƒ
+MonthlyUsageDataEntry
+key (	Y
+value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"è
 "CreateTensorboardExperimentRequestG
 parent (	B7àAúA1
 /aiplatform.googleapis.com/TensorboardExperimentQ
@@ -204,13 +204,13 @@ page_token (	
 TensorboardServiceù
 CreateTensorboard4.google.cloud.aiplatform.v1.CreateTensorboardRequest.google.longrunning.Operation"Ž‚Óä“?"0/v1/{parent=projects/*/locations/*}/tensorboards:tensorboardÚAparent,tensorboardÊA1
 Tensorboard"CreateTensorboardOperationMetadata­
-GetTensorboard1.google.cloud.aiplatform.v1.GetTensorboardRequest\'.google.cloud.aiplatform.v1.Tensorboard"?‚Óä“20/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameâ
-ReadTensorboardUsage7.google.cloud.aiplatform.v1.ReadTensorboardUsageRequest8.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse"W‚Óä“CA/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsageÚAtensorboardŠ
+GetTensorboard1.google.cloud.aiplatform.v1.GetTensorboardRequest\'.google.cloud.aiplatform.v1.Tensorboard"?‚Óä“20/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameŠ
 UpdateTensorboard4.google.cloud.aiplatform.v1.UpdateTensorboardRequest.google.longrunning.Operation"Ÿ‚Óä“K2</v1/{tensorboard.name=projects/*/locations/*/tensorboards/*}:tensorboardÚAtensorboard,update_maskÊA1
 Tensorboard"UpdateTensorboardOperationMetadataÀ
 ListTensorboards3.google.cloud.aiplatform.v1.ListTensorboardsRequest4.google.cloud.aiplatform.v1.ListTensorboardsResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/tensorboardsÚAparentÜ
 DeleteTensorboard4.google.cloud.aiplatform.v1.DeleteTensorboardRequest.google.longrunning.Operation"r‚Óä“2*0/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata«
+google.protobuf.EmptyDeleteOperationMetadataâ
+ReadTensorboardUsage7.google.cloud.aiplatform.v1.ReadTensorboardUsageRequest8.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse"W‚Óä“CA/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsageÚAtensorboard«
 CreateTensorboardExperiment>.google.cloud.aiplatform.v1.CreateTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"˜‚Óä“X">/v1/{parent=projects/*/locations/*/tensorboards/*}/experiments:tensorboard_experimentÚA7parent,tensorboard_experiment,tensorboard_experiment_idÙ
 GetTensorboardExperiment;.google.cloud.aiplatform.v1.GetTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"M‚Óä“@>/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*}ÚAname­
 UpdateTensorboardExperiment>.google.cloud.aiplatform.v1.UpdateTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"š‚Óä“o2U/v1/{tensorboard_experiment.name=projects/*/locations/*/tensorboards/*/experiments/*}:tensorboard_experimentÚA"tensorboard_experiment,update_maskì

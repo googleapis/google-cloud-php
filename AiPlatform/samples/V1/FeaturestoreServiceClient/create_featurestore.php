@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The resource name of the Location to create Featurestores.
  *                                Format:
- *                                `projects/{project}/locations/{location}'`
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
  * @param string $featurestoreId  The ID to use for this Featurestore, which will become the final
  *                                component of the Featurestore's resource name.

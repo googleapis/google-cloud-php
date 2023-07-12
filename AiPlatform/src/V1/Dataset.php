@@ -51,6 +51,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_item_count = 0;
+    /**
      * Output only. Timestamp when this Dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -137,6 +144,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *     @type \Google\Protobuf\Value $metadata
      *           Required. Additional information about the Dataset.
+     *     @type int|string $data_item_count
+     *           Output only. The number of DataItems in this Dataset. Only apply for
+     *           non-structured Dataset.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this Dataset was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -327,6 +337,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getDataItemCount()
+    {
+        return $this->data_item_count;
+    }
+
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataItemCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_item_count = $var;
 
         return $this;
     }

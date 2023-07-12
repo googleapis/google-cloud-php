@@ -125,9 +125,10 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $training_pipeline = '';
     /**
-     * This field is populated if the model is produced by a pipeline job.
+     * Optional. This field is populated if the model is produced by a pipeline
+     * job.
      *
-     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $pipeline_job = '';
     /**
@@ -412,7 +413,8 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the TrainingPipeline that uploaded this
      *           Model, if any.
      *     @type string $pipeline_job
-     *           This field is populated if the model is produced by a pipeline job.
+     *           Optional. This field is populated if the model is produced by a pipeline
+     *           job.
      *     @type \Google\Cloud\AIPlatform\V1\ModelContainerSpec $container_spec
      *           Input only. The specification of the container that is to be used when
      *           deploying this Model. The specification is ingested upon
@@ -1018,9 +1020,10 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field is populated if the model is produced by a pipeline job.
+     * Optional. This field is populated if the model is produced by a pipeline
+     * job.
      *
-     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getPipelineJob()
@@ -1029,9 +1032,10 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field is populated if the model is produced by a pipeline job.
+     * Optional. This field is populated if the model is produced by a pipeline
+     * job.
      *
-     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

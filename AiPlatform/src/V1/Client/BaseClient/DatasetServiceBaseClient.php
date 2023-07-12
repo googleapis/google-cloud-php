@@ -39,6 +39,7 @@ use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetRequest;
@@ -61,8 +62,7 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: The service that handles the CRUD of Vertex AI Dataset and its child
- * resources.
+ * Service Description: The service that manages Vertex AI Dataset and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -81,6 +81,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
@@ -418,6 +419,32 @@ abstract class DatasetServiceBaseClient
     public function deleteDataset(DeleteDatasetRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a SavedQuery.
+     *
+     * The async variant is {@see self::deleteSavedQueryAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/delete_saved_query.php
+     *
+     * @param DeleteSavedQueryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSavedQuery(DeleteSavedQueryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteSavedQuery', $request, $callOptions)->wait();
     }
 
     /**

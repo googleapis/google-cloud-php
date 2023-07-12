@@ -953,7 +953,7 @@ class FeaturestoreServiceGapicClient
      *
      * @param string       $parent         Required. The resource name of the Location to create Featurestores.
      *                                     Format:
-     *                                     `projects/{project}/locations/{location}'`
+     *                                     `projects/{project}/locations/{location}`
      * @param Featurestore $featurestore   Required. The Featurestore to create.
      * @param string       $featurestoreId Required. The ID to use for this Featurestore, which will become the final
      *                                     component of the Featurestore's resource name.
@@ -2217,6 +2217,7 @@ class FeaturestoreServiceGapicClient
      *           * `featurestore_id`: Supports = comparisons.
      *
      *           Examples:
+     *
      *           * `description = "foo bar"` --> Any Feature with description exactly equal
      *           to `foo bar`
      *           * `value_type = DOUBLE` --> Features whose type is DOUBLE.
