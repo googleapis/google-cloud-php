@@ -208,7 +208,7 @@ class CloudBuildGapicClient
     private static function getBuildTriggerNameTemplate()
     {
         if (self::$buildTriggerNameTemplate == null) {
-            self::$buildTriggerNameTemplate = new PathTemplate('projects/{project}/triggers/{trigger}');
+            self::$buildTriggerNameTemplate = new PathTemplate('projects/{project}/locations/{location}/triggers/{trigger}');
         }
 
         return self::$buildTriggerNameTemplate;
@@ -388,14 +388,16 @@ class CloudBuildGapicClient
      * build_trigger resource.
      *
      * @param string $project
+     * @param string $location
      * @param string $trigger
      *
      * @return string The formatted build_trigger resource.
      */
-    public static function buildTriggerName($project, $trigger)
+    public static function buildTriggerName($project, $location, $trigger)
     {
         return self::getBuildTriggerNameTemplate()->render([
             'project' => $project,
+            'location' => $location,
             'trigger' => $trigger,
         ]);
     }
@@ -657,7 +659,7 @@ class CloudBuildGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - build: projects/{project}/builds/{build}
-     * - buildTrigger: projects/{project}/triggers/{trigger}
+     * - buildTrigger: projects/{project}/locations/{location}/triggers/{trigger}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
@@ -864,7 +866,7 @@ class CloudBuildGapicClient
         $request = new ApproveBuildRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         if (isset($optionalArgs['approvalResult'])) {
             $request->setApprovalResult($optionalArgs['approvalResult']);
         }
@@ -913,11 +915,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setId($id);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['id'] = $id;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -993,10 +993,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setBuild($build);
-        $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1045,10 +1044,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setTrigger($trigger);
-        $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1128,7 +1126,7 @@ class CloudBuildGapicClient
         $request->setParent($parent);
         $request->setWorkerPool($workerPool);
         $request->setWorkerPoolId($workerPoolId);
-        $requestParamHeaders['parent'] = $parent;
+        $requestParamHeaders['location'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1177,11 +1175,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setTriggerId($triggerId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['trigger_id'] = $triggerId;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1233,8 +1229,8 @@ class CloudBuildGapicClient
      *     Optional.
      *
      *     @type string $etag
-     *           Optional. If this is provided, it must match the server's etag on the
-     *           workerpool for the request to be processed.
+     *           Optional. If provided, it must match the server's etag on the workerpool
+     *           for the request to be processed.
      *     @type bool $allowMissing
      *           If set to true, and the `WorkerPool` is not found, the request will succeed
      *           but no action will be taken on the server.
@@ -1256,7 +1252,7 @@ class CloudBuildGapicClient
         $request = new DeleteWorkerPoolRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1316,11 +1312,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setId($id);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['id'] = $id;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1369,11 +1363,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setTriggerId($triggerId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['trigger_id'] = $triggerId;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1415,7 +1407,7 @@ class CloudBuildGapicClient
         $request = new GetWorkerPoolRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetWorkerPool', WorkerPool::class, $optionalArgs, $request)->wait();
@@ -1480,10 +1472,9 @@ class CloudBuildGapicClient
         $request = new ListBuildTriggersRequest();
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
-        $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -1561,10 +1552,9 @@ class CloudBuildGapicClient
         $request = new ListBuildsRequest();
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
-        $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -1639,7 +1629,7 @@ class CloudBuildGapicClient
         $request = new ListWorkerPoolsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        $requestParamHeaders['location'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1744,7 +1734,7 @@ class CloudBuildGapicClient
      *
      * For builds that specify `StorageSource`:
      *
-     * * If the original build pulled source from Google Cloud Storage without
+     * * If the original build pulled source from Cloud Storage without
      * specifying the generation of the object, the new build will use the current
      * object, which may be different from the original build source.
      * * If the original build pulled source from Cloud Storage and specified the
@@ -1813,11 +1803,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setId($id);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['id'] = $id;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1827,6 +1815,12 @@ class CloudBuildGapicClient
 
     /**
      * Runs a `BuildTrigger` at a particular source revision.
+     *
+     * To run a regional or global trigger, use the POST request
+     * that includes the location endpoint in the path (ex.
+     * v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The
+     * POST request that does not include the location endpoint in the path can
+     * only be used when running global triggers.
      *
      * Sample code:
      * ```
@@ -1875,6 +1869,7 @@ class CloudBuildGapicClient
      *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
      *     @type RepoSource $source
      *           Source to build against this trigger.
+     *           Branch and tag names cannot consist of regular expressions.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1891,11 +1886,9 @@ class CloudBuildGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $request->setTriggerId($triggerId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['trigger_id'] = $triggerId;
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
+            $requestParamHeaders['location'] = $optionalArgs['name'];
         }
 
         if (isset($optionalArgs['source'])) {
@@ -1948,9 +1941,7 @@ class CloudBuildGapicClient
         $request->setProjectId($projectId);
         $request->setTriggerId($triggerId);
         $request->setTrigger($trigger);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['trigger_id'] = $triggerId;
-        $requestParamHeaders['trigger.resource_name'] = $trigger->getResourceName();
+        $requestParamHeaders['location'] = $trigger->getResourceName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateBuildTrigger', BuildTrigger::class, $optionalArgs, $request)->wait();
@@ -2022,7 +2013,7 @@ class CloudBuildGapicClient
         $request = new UpdateWorkerPoolRequest();
         $requestParamHeaders = [];
         $request->setWorkerPool($workerPool);
-        $requestParamHeaders['worker_pool.name'] = $workerPool->getName();
+        $requestParamHeaders['location'] = $workerPool->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

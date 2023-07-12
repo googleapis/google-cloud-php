@@ -7,7 +7,7 @@ namespace Google\Cloud\Build\V1\BuildOptions;
 use UnexpectedValueException;
 
 /**
- * Specifies the behavior when writing build logs to Google Cloud Storage.
+ * Specifies the behavior when writing build logs to Cloud Storage.
  *
  * Protobuf type <code>google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption</code>
  */
@@ -20,13 +20,13 @@ class LogStreamingOption
      */
     const STREAM_DEFAULT = 0;
     /**
-     * Build logs should be streamed to Google Cloud Storage.
+     * Build logs should be streamed to Cloud Storage.
      *
      * Generated from protobuf enum <code>STREAM_ON = 1;</code>
      */
     const STREAM_ON = 1;
     /**
-     * Build logs should not be streamed to Google Cloud Storage; they will be
+     * Build logs should not be streamed to Cloud Storage; they will be
      * written when the build is completed.
      *
      * Generated from protobuf enum <code>STREAM_OFF = 2;</code>

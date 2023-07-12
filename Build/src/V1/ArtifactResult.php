@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ArtifactResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
@@ -38,7 +38,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           The path of an artifact in a Google Cloud Storage bucket, with the
+     *           The path of an artifact in a Cloud Storage bucket, with the
      *           generation number. For example,
      *           `gs://mybucket/path/to/output.jar#generation`.
      *     @type array<\Google\Cloud\Build\V1\FileHashes>|\Google\Protobuf\Internal\RepeatedField $file_hash
@@ -51,7 +51,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
@@ -64,7 +64,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
