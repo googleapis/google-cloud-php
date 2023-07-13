@@ -83,6 +83,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
      */
     private $pod_cidr_overprovision_config = null;
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $pod_ipv4_range_utilization = 0.0;
 
     /**
      * Constructor.
@@ -134,6 +142,10 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           power of 2)
      *           Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
      *           overprovisioning is disabled.
+     *     @type float $pod_ipv4_range_utilization
+     *           Output only. [Output only] The utilization of the IPv4 range for the pod.
+     *           The ratio is Usage/[Total number of IPs in the secondary range],
+     *           Usage=numNodes*numZones*podIPsPerNode.
      * }
      */
     public function __construct($data = NULL) {
@@ -387,6 +399,36 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodCIDROverprovisionConfig::class);
         $this->pod_cidr_overprovision_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getPodIpv4RangeUtilization()
+    {
+        return $this->pod_ipv4_range_utilization;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPodIpv4RangeUtilization($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->pod_ipv4_range_utilization = $var;
 
         return $this;
     }

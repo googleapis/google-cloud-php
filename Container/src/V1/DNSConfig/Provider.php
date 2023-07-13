@@ -32,7 +32,7 @@ class Provider
      */
     const CLOUD_DNS = 2;
     /**
-     * Use KubeDNS for DNS resolution
+     * Use KubeDNS for DNS resolution.
      *
      * Generated from protobuf enum <code>KUBE_DNS = 3;</code>
      */
