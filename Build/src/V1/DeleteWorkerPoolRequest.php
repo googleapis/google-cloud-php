@@ -24,10 +24,10 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. If this is provided, it must match the server's etag on the
-     * workerpool for the request to be processed.
+     * Optional. If provided, it must match the server's etag on the workerpool
+     * for the request to be processed.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
     /**
@@ -56,8 +56,8 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *     @type string $etag
-     *           Optional. If this is provided, it must match the server's etag on the
-     *           workerpool for the request to be processed.
+     *           Optional. If provided, it must match the server's etag on the workerpool
+     *           for the request to be processed.
      *     @type bool $allow_missing
      *           If set to true, and the `WorkerPool` is not found, the request will succeed
      *           but no action will be taken on the server.
@@ -102,10 +102,10 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this is provided, it must match the server's etag on the
-     * workerpool for the request to be processed.
+     * Optional. If provided, it must match the server's etag on the workerpool
+     * for the request to be processed.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -114,10 +114,10 @@ class DeleteWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this is provided, it must match the server's etag on the
-     * workerpool for the request to be processed.
+     * Optional. If provided, it must match the server's etag on the workerpool
+     * for the request to be processed.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

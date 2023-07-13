@@ -16,17 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class MpegCommonEncryption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. 128 bit Key ID represented as lowercase hexadecimal digits for use with
-     * common encryption.
-     *
-     * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    private $key_id = '';
-    /**
      * Required. Specify the encryption scheme.
      * Supported encryption schemes:
-     * - 'cenc'
-     * - 'cbcs'
+     * - `cenc`
+     * - `cbcs`
      *
      * Generated from protobuf field <code>string scheme = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,14 +31,11 @@ class MpegCommonEncryption extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $key_id
-     *           Required. 128 bit Key ID represented as lowercase hexadecimal digits for use with
-     *           common encryption.
      *     @type string $scheme
      *           Required. Specify the encryption scheme.
      *           Supported encryption schemes:
-     *           - 'cenc'
-     *           - 'cbcs'
+     *           - `cenc`
+     *           - `cbcs`
      * }
      */
     public function __construct($data = NULL) {
@@ -54,38 +44,10 @@ class MpegCommonEncryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. 128 bit Key ID represented as lowercase hexadecimal digits for use with
-     * common encryption.
-     *
-     * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getKeyId()
-    {
-        return $this->key_id;
-    }
-
-    /**
-     * Required. 128 bit Key ID represented as lowercase hexadecimal digits for use with
-     * common encryption.
-     *
-     * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setKeyId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->key_id = $var;
-
-        return $this;
-    }
-
-    /**
      * Required. Specify the encryption scheme.
      * Supported encryption schemes:
-     * - 'cenc'
-     * - 'cbcs'
+     * - `cenc`
+     * - `cbcs`
      *
      * Generated from protobuf field <code>string scheme = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -98,8 +60,8 @@ class MpegCommonEncryption extends \Google\Protobuf\Internal\Message
     /**
      * Required. Specify the encryption scheme.
      * Supported encryption schemes:
-     * - 'cenc'
-     * - 'cbcs'
+     * - `cenc`
+     * - `cbcs`
      *
      * Generated from protobuf field <code>string scheme = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

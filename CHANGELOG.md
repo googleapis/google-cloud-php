@@ -1,5 +1,103 @@
 # Changelog
 
+## 0.212.0
+
+<details><summary>google/cloud-ai-platform 0.21.0</summary>
+
+
+
+### Features
+
+* Add data_item_count to Dataset ([#6437](https://github.com/googleapis/google-cloud-php/issues/6437)) ([f1f2c36](https://github.com/googleapis/google-cloud-php/commit/f1f2c36fbff1768fda067657a0cb27628b8378de))
+* Add DeleteSavedQuery to DatasetService ([f1f2c36](https://github.com/googleapis/google-cloud-php/commit/f1f2c36fbff1768fda067657a0cb27628b8378de))
+* Add JOB_STATE_PARTIALLY_SUCCEEDED to JobState ([f1f2c36](https://github.com/googleapis/google-cloud-php/commit/f1f2c36fbff1768fda067657a0cb27628b8378de))
+* Add pipeline_job to Model ([f1f2c36](https://github.com/googleapis/google-cloud-php/commit/f1f2c36fbff1768fda067657a0cb27628b8378de))
+* Add reserved_ip_ranges to PipelineJob ([f1f2c36](https://github.com/googleapis/google-cloud-php/commit/f1f2c36fbff1768fda067657a0cb27628b8378de))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.5.0</summary>
+
+
+
+### Features
+
+* Add metadata exchange support for AlloyDB connectors ([#6441](https://github.com/googleapis/google-cloud-php/issues/6441)) ([d41d39e](https://github.com/googleapis/google-cloud-php/commit/d41d39e0af90513112077650c8b9791be3ef76e0))
+* Adds metadata field describing an AlloyDB backup's quantity based retention ([d41d39e](https://github.com/googleapis/google-cloud-php/commit/d41d39e0af90513112077650c8b9791be3ef76e0))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.26.1</summary>
+
+
+
+### Documentation
+
+* Fix formatting for reversed order field example ([#6440](https://github.com/googleapis/google-cloud-php/issues/6440)) ([8679efa](https://github.com/googleapis/google-cloud-php/commit/8679efa889395f1fc115fb698b36ec09a1fe09e2))
+
+</details>
+
+<details><summary>google/cloud-build 0.10.0</summary>
+
+
+
+### Features
+
+* Add routing information in Cloud Build GRPC clients ([#6436](https://github.com/googleapis/google-cloud-php/issues/6436)) ([379d004](https://github.com/googleapis/google-cloud-php/commit/379d004943b0571a6ed0328b9b1a392d64c2bd6b))
+
+</details>
+
+<details><summary>google/cloud-compute 1.11.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20230701 ([#821](https://github.com/googleapis/google-cloud-php/issues/821)) ([#6431](https://github.com/googleapis/google-cloud-php/issues/6431)) ([1635f0f](https://github.com/googleapis/google-cloud-php/commit/1635f0f55c1ff7a6146f74a64b65d7430bf0aba1))
+
+</details>
+
+<details><summary>google/cloud-container 1.18.0</summary>
+
+
+
+### Features
+
+* Add a Pod IP Utilization API ([4d77a06](https://github.com/googleapis/google-cloud-php/commit/4d77a0659993d7148e1344de4bf33135de2dc163))
+* Add advanced_datapath_observability_config to monitoring_config ([#6439](https://github.com/googleapis/google-cloud-php/issues/6439)) ([4d77a06](https://github.com/googleapis/google-cloud-php/commit/4d77a0659993d7148e1344de4bf33135de2dc163))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.11.0</summary>
+
+
+
+### Features
+
+* Added support routeUpdateWaitTime field for Deployment Strategies ([#6434](https://github.com/googleapis/google-cloud-php/issues/6434)) ([2a17e33](https://github.com/googleapis/google-cloud-php/commit/2a17e33eb8b9f3b48a0434a480a909104a58047e))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.7.1</summary>
+
+
+
+### Documentation
+
+* Added google.api.field_behavior for some fields in audio_config ([#6430](https://github.com/googleapis/google-cloud-php/issues/6430)) ([e7b0f39](https://github.com/googleapis/google-cloud-php/commit/e7b0f3955357ca7631ff548cb2bbeaa769c75178))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* Upgrade gax minimum version ([6427255](https://github.com/googleapis/google-cloud-php/commit/64272554b2b5165ecd405899e13a8f6f7a91b4f6))
+
+</details>
+
 ## 0.211.0
 
 <details><summary>google/cloud-access-approval 1.1.2</summary>

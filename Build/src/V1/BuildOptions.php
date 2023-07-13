@@ -63,7 +63,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      */
     private $dynamic_substitutions = false;
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -160,7 +160,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           NOTE: this is always enabled for triggered builds and cannot be
      *           overridden in the build configuration file.
      *     @type int $log_streaming_option
-     *           Option to define build log streaming behavior to Google Cloud
+     *           Option to define build log streaming behavior to Cloud
      *           Storage.
      *     @type string $worker_pool
      *           This field deprecated; please use `pool.name` instead.
@@ -379,7 +379,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -391,7 +391,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>

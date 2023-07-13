@@ -60,6 +60,12 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 pod_pids_limit = 4;</code>
      */
     private $pod_pids_limit = 0;
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 7;</code>
+     */
+    private $insecure_kubelet_readonly_port_enabled = null;
 
     /**
      * Constructor.
@@ -96,6 +102,8 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
      *           Controls the maximum number of processes allowed to run in a pod. The value
      *           must be greater than or equal to 1024 and less than 4194304.
+     *     @type bool $insecure_kubelet_readonly_port_enabled
+     *           Enable or disable Kubelet read only port.
      * }
      */
     public function __construct($data = NULL) {
@@ -296,6 +304,42 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->pod_pids_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 7;</code>
+     * @return bool
+     */
+    public function getInsecureKubeletReadonlyPortEnabled()
+    {
+        return isset($this->insecure_kubelet_readonly_port_enabled) ? $this->insecure_kubelet_readonly_port_enabled : false;
+    }
+
+    public function hasInsecureKubeletReadonlyPortEnabled()
+    {
+        return isset($this->insecure_kubelet_readonly_port_enabled);
+    }
+
+    public function clearInsecureKubeletReadonlyPortEnabled()
+    {
+        unset($this->insecure_kubelet_readonly_port_enabled);
+    }
+
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInsecureKubeletReadonlyPortEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->insecure_kubelet_readonly_port_enabled = $var;
 
         return $this;
     }

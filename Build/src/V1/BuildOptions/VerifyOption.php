@@ -8,6 +8,12 @@ use UnexpectedValueException;
 
 /**
  * Specifies the manner in which the build should be verified, if at all.
+ * If a verified build is requested, and any part of the process to generate
+ * and upload provenance fails, the build will also fail.
+ * If the build does not request verification then that process may occur, but
+ * is not guaranteed to. If it does occur and fails, the build will not fail.
+ * For more information, see [Viewing Build
+ * Provenance](https://cloud.google.com/build/docs/securing-builds/view-build-provenance).
  *
  * Protobuf type <code>google.devtools.cloudbuild.v1.BuildOptions.VerifyOption</code>
  */
