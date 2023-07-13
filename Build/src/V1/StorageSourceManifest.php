@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Location of the source manifest in Google Cloud Storage.
+ * Location of the source manifest in Cloud Storage.
  * This feature is in Preview; see description
  * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
  *
@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class StorageSourceManifest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket
+     * Cloud Storage bucket containing the source manifest (see [Bucket
      * Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -26,14 +26,14 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
      */
     private $bucket = '';
     /**
-     * Google Cloud Storage object containing the source manifest.
+     * Cloud Storage object containing the source manifest.
      * This object must be a JSON file.
      *
      * Generated from protobuf field <code>string object = 2;</code>
      */
     private $object = '';
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
@@ -47,14 +47,14 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bucket
-     *           Google Cloud Storage bucket containing the source manifest (see [Bucket
+     *           Cloud Storage bucket containing the source manifest (see [Bucket
      *           Name
      *           Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *     @type string $object
-     *           Google Cloud Storage object containing the source manifest.
+     *           Cloud Storage object containing the source manifest.
      *           This object must be a JSON file.
      *     @type int|string $generation
-     *           Google Cloud Storage generation for the object. If the generation is
+     *           Cloud Storage generation for the object. If the generation is
      *           omitted, the latest generation will be used.
      * }
      */
@@ -64,7 +64,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket
+     * Cloud Storage bucket containing the source manifest (see [Bucket
      * Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -77,7 +77,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket
+     * Cloud Storage bucket containing the source manifest (see [Bucket
      * Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -94,7 +94,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage object containing the source manifest.
+     * Cloud Storage object containing the source manifest.
      * This object must be a JSON file.
      *
      * Generated from protobuf field <code>string object = 2;</code>
@@ -106,7 +106,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage object containing the source manifest.
+     * Cloud Storage object containing the source manifest.
      * This object must be a JSON file.
      *
      * Generated from protobuf field <code>string object = 2;</code>
@@ -122,7 +122,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
@@ -134,7 +134,7 @@ class StorageSourceManifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>

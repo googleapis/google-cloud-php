@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Location of the source in an archive file in Google Cloud Storage.
+ * Location of the source in an archive file in Cloud Storage.
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v1.StorageSource</code>
  */
 class StorageSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Google Cloud Storage bucket containing the source (see
+     * Cloud Storage bucket containing the source (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -24,15 +24,15 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      */
     private $bucket = '';
     /**
-     * Google Cloud Storage object containing the source.
-     * This object must be a gzipped archive file (`.tar.gz`) containing source to
-     * build.
+     * Cloud Storage object containing the source.
+     * This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`)
+     * containing source to build.
      *
      * Generated from protobuf field <code>string object = 2;</code>
      */
     private $object = '';
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
@@ -46,15 +46,15 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bucket
-     *           Google Cloud Storage bucket containing the source (see
+     *           Cloud Storage bucket containing the source (see
      *           [Bucket Name
      *           Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *     @type string $object
-     *           Google Cloud Storage object containing the source.
-     *           This object must be a gzipped archive file (`.tar.gz`) containing source to
-     *           build.
+     *           Cloud Storage object containing the source.
+     *           This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`)
+     *           containing source to build.
      *     @type int|string $generation
-     *           Google Cloud Storage generation for the object. If the generation is
+     *           Cloud Storage generation for the object. If the generation is
      *           omitted, the latest generation will be used.
      * }
      */
@@ -64,7 +64,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket containing the source (see
+     * Cloud Storage bucket containing the source (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -77,7 +77,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket containing the source (see
+     * Cloud Storage bucket containing the source (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *
@@ -94,9 +94,9 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage object containing the source.
-     * This object must be a gzipped archive file (`.tar.gz`) containing source to
-     * build.
+     * Cloud Storage object containing the source.
+     * This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`)
+     * containing source to build.
      *
      * Generated from protobuf field <code>string object = 2;</code>
      * @return string
@@ -107,9 +107,9 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage object containing the source.
-     * This object must be a gzipped archive file (`.tar.gz`) containing source to
-     * build.
+     * Cloud Storage object containing the source.
+     * This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`)
+     * containing source to build.
      *
      * Generated from protobuf field <code>string object = 2;</code>
      * @param string $var
@@ -124,7 +124,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
@@ -136,7 +136,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage generation for the object. If the generation is
+     * Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
