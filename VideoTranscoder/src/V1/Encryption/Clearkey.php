@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for SAMPLE-AES encryption.
+ * Clearkey configuration.
  *
- * Generated from protobuf message <code>google.cloud.video.transcoder.v1.Encryption.SampleAesEncryption</code>
+ * Generated from protobuf message <code>google.cloud.video.transcoder.v1.Encryption.Clearkey</code>
  */
-class SampleAesEncryption extends \Google\Protobuf\Internal\Message
+class Clearkey extends \Google\Protobuf\Internal\Message
 {
 
     /**

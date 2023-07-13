@@ -96,6 +96,22 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingMode mode = 20;</code>
      */
     private $mode = 0;
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     */
+    private $batch_mode_priority = 0;
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $optimization = 0;
     protected $job_config;
 
     /**
@@ -147,6 +163,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type int $mode
      *           The processing mode of the job.
      *           The default is `PROCESSING_MODE_INTERACTIVE`.
+     *     @type int $batch_mode_priority
+     *           The processing priority of a batch job.
+     *           This field can only be set for batch mode jobs. The default value is 0.
+     *           This value cannot be negative. Higher values correspond to higher
+     *           priorities for the job.
+     *     @type int $optimization
+     *           Optional. The optimization strategy of the job. The default is
+     *           `AUTODETECT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -572,6 +596,66 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\Job\ProcessingMode::class);
         $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     * @return int
+     */
+    public function getBatchModePriority()
+    {
+        return $this->batch_mode_priority;
+    }
+
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBatchModePriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->batch_mode_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOptimization()
+    {
+        return $this->optimization;
+    }
+
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOptimization($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\Job\OptimizationStrategy::class);
+        $this->optimization = $var;
 
         return $this;
     }

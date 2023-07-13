@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for SAMPLE-AES encryption.
+ * Widevine configuration.
  *
- * Generated from protobuf message <code>google.cloud.video.transcoder.v1.Encryption.SampleAesEncryption</code>
+ * Generated from protobuf message <code>google.cloud.video.transcoder.v1.Encryption.Widevine</code>
  */
-class SampleAesEncryption extends \Google\Protobuf\Internal\Message
+class Widevine extends \Google\Protobuf\Internal\Message
 {
 
     /**
