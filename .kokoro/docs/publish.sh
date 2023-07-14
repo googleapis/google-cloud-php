@@ -11,7 +11,6 @@ elif [ "$#" -ne 0 ]; then
 fi
 
 # Run publish-reporter-script to report back the status in release PR.
-# Dependencies are pre-installed in the docker image.
 CURRENT_DIR=$(dirname "${BASH_SOURCE[0]}")
 REQUIREMENTS_FILE=$(realpath "${CURRENT_DIR}/requirements.txt")
 python3.9 -m venv venv
