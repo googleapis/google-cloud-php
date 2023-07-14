@@ -1,0 +1,33 @@
+name: Incorrect PR Label Check
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: ['main']
+jobs:
+  # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+  incorrectly-labelled-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer global require "roave/backward-compatibility-check:^8.2"
+      - name: Get Latest Release
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        id: latest-release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+      - name: "Check for incorrectly labelled feat PRs"
+        if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && startsWith(github.event.pull_request.title, 'feat')}}
+        # OwlBot PRs which are not labelled feat should not add new files
+        continue-on-error: true
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+              --from=origin/main \
+              --to=${{ steps.latest-release.outputs.release }} --format=github-actions
