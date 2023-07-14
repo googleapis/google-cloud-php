@@ -10,6 +10,16 @@ elif [ "$#" -ne 0 ]; then
     exit 1;
 fi
 
+# Run publish-reporter-script to report back the status in release PR.
+# Dependencies are pre-installed in the docker image.
+CURRENT_DIR=$(dirname "${BASH_SOURCE[0]}")
+REQUIREMENTS_FILE=$(realpath "${CURRENT_DIR}/requirements.txt")
+python3.9 -m venv venv
+source venv/bin/activate
+python3.9 -m pip install --require-hashes -r "${REQUIREMENTS_FILE}"
+python3.9 -m releasetool publish-reporter-script > /tmp/publisher-script; source /tmp/publisher-script
+deactivate
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 
