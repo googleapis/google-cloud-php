@@ -857,7 +857,7 @@ class BigQueryClient
     }
 
     /**
-     * Create a Json object.
+     * Create a BigQuery Json object.
      *
      * Json represents a value with a data type of
      * [JSON](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#json_type)
@@ -867,10 +867,10 @@ class BigQueryClient
      * use Google\Cloud\BigQuery\BigQueryClient;
      *
      * $bigQuery = new BigQueryClient();
-     * $json = $bigQuery->json('{}');
+     * $json = $bigQuery->json('{"key":"value"}');
      * ```
      *
-     * @param string|JsonSerializable|int|null $value The JSON string value.
+     * @param string|\JsonSerializable|int|null $value The JSON string value.
      * @return Json
      * @throws \InvalidArgumentException
      */

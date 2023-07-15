@@ -30,7 +30,7 @@ use JsonSerializable;
  * use Google\Cloud\BigQuery\BigQueryClient;
  *
  * $bigQuery = new BigQueryClient();
- * $json = $bigQuery->json('{}');
+ * $json = $bigQuery->json('{"key":"value"}');
  * ```
  */
 class Json implements ValueInterface
@@ -43,7 +43,7 @@ class Json implements ValueInterface
     private $value;
 
     /**
-     * @param string|JsonSerializable|int|null $value The JSON string value.
+     * @param string|\JsonSerializable|int|null $value The JSON string value.
      * @throws \InvalidArgumentException
      */
     public function __construct($value)
@@ -97,5 +97,18 @@ class Json implements ValueInterface
     public function __toString()
     {
         return (string) $this->value;
+    }
+
+    /**
+     * Get the value as an Object or Associative array.
+     *
+     * @param bool $returnJsonAsAssociativeArray If true, return value
+     * as an associative array, else, return as an object.
+     *
+     * @return array|stdClass|null
+     */
+    public function getVal($returnJsonAsAssociativeArray = false)
+    {
+        return json_decode($this->value, $returnJsonAsAssociativeArray);
     }
 }

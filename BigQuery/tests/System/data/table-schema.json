@@ -112,7 +112,7 @@
   },
   {
     "mode": "NULLABLE",
-    "name": "Json",
+    "name": "AddressJson",
     "type": "JSON"
   }
 ]

@@ -73,7 +73,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'Location' => new Geography('POINT(12 34)'),
         ];
         $this->row = $this->legacyRow;
-        $this->row['Json'] = new Json([
+        $this->row['AddressJson'] = new Json([
             'City' => 'Bangalore',
             'HouseNumber' => 1234
         ]);
@@ -119,7 +119,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             self::$dataset->id(),
             self::$legacyTable->id()
         ) : sprintf(
-            'SELECT Name, Age, Weight, IsMagic, Spells, Location, Json FROM `%s.%s`',
+            'SELECT Name, Age, Weight, IsMagic, Spells, Location, AddressJson FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -846,23 +846,80 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualRow = $rows[self::$expectedRows-1];
 
         $this->assertEquals(
-            json_decode($this->row['Json'], true)['HouseNumber'],
-            json_decode($actualRow['Json']->get(), true)['HouseNumber']
+            json_decode($this->row['AddressJson'], true)['HouseNumber'],
+            json_decode($actualRow['AddressJson']->get(), true)['HouseNumber']
         );
         $this->assertEquals(
-            json_decode($this->row['Json'], true)['City'],
-            json_decode($actualRow['Json']->get(), true)['City']
+            json_decode($this->row['AddressJson'], true)['City'],
+            json_decode($actualRow['AddressJson']->get(), true)['City']
         );
     }
 
-    public function testInsertFaultyJsonToTable()
+    /**
+     * @dataProvider invalidJsonProvider
+     */
+    public function testInsertInvalidJsonToTable($json)
     {
         $row = $this->row;
-        $row['Json'] = '{';
+        $row['AddressJson'] = $json;
         $insertResponse = self::$table->insertRow($row);
         $this->assertEquals(
             $insertResponse->info()['insertErrors'][0]['errors'][0]['reason'],
             "invalid"
         );
+        $this->assertStringContainsString(
+            "syntax error while parsing",
+            $insertResponse->info()['insertErrors'][0]['errors'][0]['message']
+        );
+    }
+
+    /**
+     * @dataProvider validJsonProvider
+     */
+    public function testInsertValidJsonToTable($json)
+    {
+        $row = $this->row;
+        $row['AddressJson'] = $json;
+        $insertResponse = self::$table->insertRow($row);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    public function invalidJsonProvider()
+    {
+        return[
+            ['{'],
+            ['{key: "value"}'],
+            ['{"key": value}'],
+            ['{\'key\': \'value\'}'],
+            ['{"key": \'value\'}'],
+            ['{"key": "value" "key2": "value2"}'],
+            ['{"key": "value" "key2": "value2", "key3": "value3"}'],
+            ['{"key": "value"'],
+            ['["item1", "item2", "item3"'],
+            ['{"key": "value",}'],
+            ['["item1", "item2",]'],
+            ['{"number": 1.23.45}'],
+            ['{"number": 0x123}'],
+            ['\"just a string\"']
+        ];
+    }
+
+    public function validJsonProvider()
+    {
+        return[
+            [
+                '{"string": "value", "number": 123, "boolean": true,
+                    "array": [1, 2, 3], "object": {"nested": "value"}}'
+            ],
+            ['{}'],
+            [null],
+            [1234],
+            ['[1,2,3,4]'],
+            ['{"message": "This is a \"quote\""}'],
+            [
+                '{"string": "Hello, world!", "number": 42, "boolean": true,"nullValue":
+                    null, "array": [1, 2, 3], "object": {"nested": "value"}}'],
+            ['{"message": "Special characters: \u00A9 \u00AE \u00E7 \u20AC അ 😀"}']
+        ];
     }
 }
