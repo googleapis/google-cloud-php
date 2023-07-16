@@ -1,4 +1,4 @@
-name: Incorrect PR Label Check
+name: Incorrect Conventional Commit Check
 on:
   pull_request:
     branches: ['main']
