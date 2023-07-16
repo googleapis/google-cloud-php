@@ -1,7 +1,6 @@
 name: Incorrect PR Label Check
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
     branches: ['main']
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
