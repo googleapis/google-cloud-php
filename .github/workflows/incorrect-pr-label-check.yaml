@@ -24,7 +24,7 @@ jobs:
           repository: ${{ github.repository }}
       - name: "Check for an incorrect feat label in the PR"
         if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && startsWith(github.event.pull_request.title, 'feat')}}
-        # OwlBot PRs which are not labelled feat should not add new files
+        # OwlBot PRs which are not labelled feat should not add new files or methods
         continue-on-error: true
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
