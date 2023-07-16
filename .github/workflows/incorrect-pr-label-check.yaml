@@ -22,7 +22,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
-      - name: "Check for incorrectly labelled feat PRs"
+      - name: "Check for an incorrect feat label in the PR"
         if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && startsWith(github.event.pull_request.title, 'feat')}}
         # OwlBot PRs which are not labelled feat should not add new files
         continue-on-error: true
