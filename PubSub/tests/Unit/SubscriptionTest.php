@@ -32,6 +32,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
 
 /**
  * @group pubsub
@@ -973,6 +974,37 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals([], $this->subscription->detach());
+    }
+
+    public function testCreateSubscriptionWithCloudStorageConfig()
+    {
+        $bucket = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => new Duration(3, 1e+9)
+        ];
+        $bucketString = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => '3.1s'
+        ];
+        $this->connection->createSubscription(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('cloudStorageConfig', $bucketString)
+        ))->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->create([
+            'foo' => 'bar',
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
     }
 
     // Helper method to generate the exception sent during an invalid EOD operation

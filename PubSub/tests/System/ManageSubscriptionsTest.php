@@ -51,6 +51,36 @@ class ManageSubscriptionsTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
+    public function testCreateSubscriptionWithCloudStorageConfig($client)
+    {
+        self::markTestSkipped('This test needs a GCS bucket');
+        $client = self::$restClient;
+        $topic = self::topic($client);
+        $bucket = [
+            'bucket' => 'pubsub-test1-bucket',
+            'avroConfig' => ['writeMetadata' => false],
+            'maxDuration' => new Duration(150, 1e+9),
+            'maxBytes' => '2000'
+        ];
+
+        $subsToCreate = [
+            uniqid(self::TESTING_PREFIX),
+        ];
+
+        foreach ($subsToCreate as $subToCreate) {
+            self::$deletionQueue->add($client->subscribe(
+                $subToCreate,
+                $topic,
+                ['cloudStorageConfig' => $bucket]
+            ));
+        }
+
+        $this->assertSubsFound($client, $subsToCreate, $bucket);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
     public function testSubscribeAndReload($client)
     {
         $topic = self::topic($client);
