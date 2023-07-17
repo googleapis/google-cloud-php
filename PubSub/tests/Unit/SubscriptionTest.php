@@ -28,6 +28,7 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -106,6 +107,32 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $sub = $this->subscription->create(['foo' => 'bar']);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
+    }
+
+    public function testCreateWithCloudStorageConfig()
+    {
+        $config = new CloudStorageConfig([
+            'bucket' => 'bucket'
+        ]);
+        $this->connection->createSubscription(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('cloudStorageConfig', $config)
+        ))->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->create([
+            'foo' => 'bar',
+            'cloudStorageConfig' => $config
+        ]);
 
         $this->assertEquals($sub['name'], self::SUBSCRIPTION);
         $this->assertEquals($sub['topic'], self::TOPIC);

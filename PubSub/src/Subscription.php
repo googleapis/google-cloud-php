@@ -351,6 +351,8 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
+     *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig cloudStorageConfig
+     *           Google Cloud Storage subscription configuration.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException

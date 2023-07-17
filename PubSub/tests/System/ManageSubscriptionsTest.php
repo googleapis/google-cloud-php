@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\PubSub\Tests\System;
 
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
+use Google\Cloud\PubSub\V1\CloudStorageConfig\State;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\MessageBuilder;
@@ -46,6 +48,29 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         $this->assertSubsFound($client, $subsToCreate);
         $this->assertSubsFound($topic, $subsToCreate);
+    }
+
+    public function testCreateSubscriptionWithCloudStorageConfig()
+    {
+        self::markTestSkipped('This test needs a GCS bucket');
+        $client = self::$grpcClient;
+        $topic = self::topic($client);
+        $bucket = ['bucket' => 'pubsub-test1-bucket'];
+        $config = new CloudStorageConfig($bucket);
+
+        $subsToCreate = [
+            uniqid(self::TESTING_PREFIX),
+        ];
+
+        foreach ($subsToCreate as $subToCreate) {
+            self::$deletionQueue->add($client->subscribe(
+                $subToCreate,
+                $topic,
+                ['cloudStorageConfig' => $config]
+            ));
+        }
+
+        $this->assertSubsFound($client, $subsToCreate, $bucket);
     }
 
     /**
@@ -399,10 +424,14 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue($sub->detached());
     }
 
-    private function assertSubsFound($class, $expectedSubs)
+    private function assertSubsFound($class, $expectedSubs, $config = [])
     {
         $backoff = new ExponentialBackoff(8);
-        $hasFoundSubs = $backoff->execute(function () use ($class, $expectedSubs) {
+        $hasFoundSubs = $backoff->execute(function () use (
+            $class,
+            $expectedSubs,
+            $config
+            ) {
             $foundSubs = [];
             $subs = $class->subscriptions();
 
@@ -411,7 +440,17 @@ class ManageSubscriptionsTest extends PubSubTestCase
                 $sName = end($nameParts);
                 foreach ($expectedSubs as $key => $expectedSub) {
                     if ($sName === $expectedSub) {
-                        $foundSubs[$key] = $sName;
+                        if (
+                            isset($config['bucket']) and
+                            $sub->info()['cloudStorageConfig']['bucket'] ==
+                            $config['bucket'] and
+                            $sub->info()['cloudStorageConfig']['state'] ==
+                            State::ACTIVE
+                            ) {
+                            $foundSubs[$key] = $sName;
+                        } else {
+                            $foundSubs[$key] = $sName;
+                        }
                     }
                 }
             }
