@@ -5,8 +5,10 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Shopping\\Merchant\\Inventories\\": "src",
-            "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "metadata"
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\V1Beta\\": "metadata/V1Beta",
+            "GPBMetadata\\Google\\Shopping\\Type\\": "metadata/Type",
+            "Google\\Shopping\\Merchant\\Inventories\\V1beta\\": "src/V1beta",
+            "Google\\Shopping\\Type\\": "src/Type"
         }
     },
     "extra": {
