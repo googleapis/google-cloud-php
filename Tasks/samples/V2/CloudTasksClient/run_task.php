@@ -31,13 +31,14 @@ use Google\Cloud\Tasks\V2\Task;
  * Forces a task to run now.
  *
  * When this method is called, Cloud Tasks will dispatch the task, even if
- * the task is already running, the queue has reached its [RateLimits][google.cloud.tasks.v2.RateLimits] or
- * is [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+ * the task is already running, the queue has reached its
+ * [RateLimits][google.cloud.tasks.v2.RateLimits] or is
+ * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
  *
  * This command is meant to be used for manual debugging. For
- * example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to retry a failed
- * task after a fix has been made or to manually force a task to be
- * dispatched now.
+ * example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
+ * retry a failed task after a fix has been made or to manually force a task
+ * to be dispatched now.
  *
  * The dispatched task is returned. That is, the task that is returned
  * contains the [status][Task.status] after the task is dispatched but
@@ -45,9 +46,10 @@ use Google\Cloud\Tasks\V2\Task;
  *
  * If Cloud Tasks receives a successful response from the task's
  * target, then the task will be deleted; otherwise the task's
- * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to the time that
- * [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was called plus the retry delay specified
- * in the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+ * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to
+ * the time that [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was
+ * called plus the retry delay specified in the queue's
+ * [RetryConfig][google.cloud.tasks.v2.RetryConfig].
  *
  * [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] returns
  * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a

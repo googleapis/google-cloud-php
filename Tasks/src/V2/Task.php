@@ -57,8 +57,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
      * task according to the [RetryConfig][google.cloud.tasks.v2.RetryConfig].
-     * Note that when the request is cancelled, Cloud Tasks will stop listing for
-     * the response, but whether the worker stops processing depends on the
+     * Note that when the request is cancelled, Cloud Tasks will stop listening
+     * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
@@ -167,8 +167,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *           respond by this deadline then the request is cancelled and the attempt
      *           is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
      *           task according to the [RetryConfig][google.cloud.tasks.v2.RetryConfig].
-     *           Note that when the request is cancelled, Cloud Tasks will stop listing for
-     *           the response, but whether the worker stops processing depends on the
+     *           Note that when the request is cancelled, Cloud Tasks will stop listening
+     *           for the response, but whether the worker stops processing depends on the
      *           worker. For example, if the worker is stuck, it may not react to cancelled
      *           requests.
      *           The default and maximum values depend on the type of request:
@@ -425,8 +425,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
      * task according to the [RetryConfig][google.cloud.tasks.v2.RetryConfig].
-     * Note that when the request is cancelled, Cloud Tasks will stop listing for
-     * the response, but whether the worker stops processing depends on the
+     * Note that when the request is cancelled, Cloud Tasks will stop listening
+     * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
@@ -473,8 +473,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * respond by this deadline then the request is cancelled and the attempt
      * is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the
      * task according to the [RetryConfig][google.cloud.tasks.v2.RetryConfig].
-     * Note that when the request is cancelled, Cloud Tasks will stop listing for
-     * the response, but whether the worker stops processing depends on the
+     * Note that when the request is cancelled, Cloud Tasks will stop listening
+     * for the response, but whether the worker stops processing depends on the
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
