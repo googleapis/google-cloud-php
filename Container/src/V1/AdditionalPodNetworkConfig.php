@@ -21,20 +21,20 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 1;</code>
      */
-    protected $subnetwork = '';
+    private $subnetwork = '';
     /**
      * The name of the secondary range on the subnet which provides IP address for
      * this pod range
      *
      * Generated from protobuf field <code>string secondary_pod_range = 2;</code>
      */
-    protected $secondary_pod_range = '';
+    private $secondary_pod_range = '';
     /**
      * The maximum number of pods per node which use this pod network
      *
      * Generated from protobuf field <code>optional .google.container.v1.MaxPodsConstraint max_pods_per_node = 3;</code>
      */
-    protected $max_pods_per_node = null;
+    private $max_pods_per_node = null;
 
     /**
      * Constructor.

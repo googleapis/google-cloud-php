@@ -21,13 +21,13 @@ class AdditionalNodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    protected $network = '';
+    private $network = '';
     /**
      * Name of the subnetwork where the additional interface belongs
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
-    protected $subnetwork = '';
+    private $subnetwork = '';
 
     /**
      * Constructor.
