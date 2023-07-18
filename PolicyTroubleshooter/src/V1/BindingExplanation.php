@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details about how a binding in a policy affects a member's ability to use a
- * permission.
+ * Details about how a binding in a policy affects a principal's ability to use
+ * a permission.
  *
  * Generated from protobuf message <code>google.cloud.policytroubleshooter.v1.BindingExplanation</code>
  */
 class BindingExplanation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Indicates whether _this binding_ provides the specified permission to the
-     * specified member for the specified resource.
-     * This field does _not_ indicate whether the member actually has the
+     * Required. Indicates whether _this binding_ provides the specified
+     * permission to the specified principal for the specified resource.
+     * This field does _not_ indicate whether the principal actually has the
      * permission for the resource. There might be another binding that overrides
-     * this binding. To determine whether the member actually has the permission,
-     * use the `access` field in the
+     * this binding. To determine whether the principal actually has the
+     * permission, use the `access` field in the
      * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -52,19 +52,19 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      */
     private $role_permission_relevance = 0;
     /**
-     * Indicates whether each member in the binding includes the member specified
-     * in the request, either directly or indirectly. Each key identifies a member
-     * in the binding, and each value indicates whether the member in the binding
-     * includes the member in the request.
-     * For example, suppose that a binding includes the following members:
+     * Indicates whether each principal in the binding includes the principal
+     * specified in the request, either directly or indirectly. Each key
+     * identifies a principal in the binding, and each value indicates whether the
+     * principal in the binding includes the principal in the request.
+     * For example, suppose that a binding includes the following principals:
      * * `user:alice&#64;example.com`
      * * `group:product-eng&#64;example.com`
      * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
-     * For the first member in the binding, the key is `user:alice&#64;example.com`,
-     * and the `membership` field in the value is set to
+     * principal of the group `group:product-eng&#64;example.com`.
+     * For the first principal in the binding, the key is
+     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
-     * For the second member in the binding, the key is
+     * For the second principal in the binding, the key is
      * `group:product-eng&#64;example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
@@ -79,10 +79,10 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      */
     private $relevance = 0;
     /**
-     * A condition expression that prevents access unless the expression evaluates
-     * to `true`.
+     * A condition expression that prevents this binding from granting access
+     * unless the expression evaluates to `true`.
      * To learn about IAM Conditions, see
-     * http://cloud.google.com/iam/help/conditions/overview.
+     * https://cloud.google.com/iam/help/conditions/overview.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      */
@@ -95,12 +95,12 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $access
-     *           Required. Indicates whether _this binding_ provides the specified permission to the
-     *           specified member for the specified resource.
-     *           This field does _not_ indicate whether the member actually has the
+     *           Required. Indicates whether _this binding_ provides the specified
+     *           permission to the specified principal for the specified resource.
+     *           This field does _not_ indicate whether the principal actually has the
      *           permission for the resource. There might be another binding that overrides
-     *           this binding. To determine whether the member actually has the permission,
-     *           use the `access` field in the
+     *           this binding. To determine whether the principal actually has the
+     *           permission, use the `access` field in the
      *           [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
      *     @type string $role
      *           The role that this binding grants. For example,
@@ -114,29 +114,29 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *           The relevance of the permission's existence, or nonexistence, in the role
      *           to the overall determination for the entire policy.
      *     @type array|\Google\Protobuf\Internal\MapField $memberships
-     *           Indicates whether each member in the binding includes the member specified
-     *           in the request, either directly or indirectly. Each key identifies a member
-     *           in the binding, and each value indicates whether the member in the binding
-     *           includes the member in the request.
-     *           For example, suppose that a binding includes the following members:
+     *           Indicates whether each principal in the binding includes the principal
+     *           specified in the request, either directly or indirectly. Each key
+     *           identifies a principal in the binding, and each value indicates whether the
+     *           principal in the binding includes the principal in the request.
+     *           For example, suppose that a binding includes the following principals:
      *           * `user:alice&#64;example.com`
      *           * `group:product-eng&#64;example.com`
      *           You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     *           member of the group `group:product-eng&#64;example.com`.
-     *           For the first member in the binding, the key is `user:alice&#64;example.com`,
-     *           and the `membership` field in the value is set to
+     *           principal of the group `group:product-eng&#64;example.com`.
+     *           For the first principal in the binding, the key is
+     *           `user:alice&#64;example.com`, and the `membership` field in the value is set to
      *           `MEMBERSHIP_NOT_INCLUDED`.
-     *           For the second member in the binding, the key is
+     *           For the second principal in the binding, the key is
      *           `group:product-eng&#64;example.com`, and the `membership` field in the value is
      *           set to `MEMBERSHIP_INCLUDED`.
      *     @type int $relevance
      *           The relevance of this binding to the overall determination for the entire
      *           policy.
      *     @type \Google\Type\Expr $condition
-     *           A condition expression that prevents access unless the expression evaluates
-     *           to `true`.
+     *           A condition expression that prevents this binding from granting access
+     *           unless the expression evaluates to `true`.
      *           To learn about IAM Conditions, see
-     *           http://cloud.google.com/iam/help/conditions/overview.
+     *           https://cloud.google.com/iam/help/conditions/overview.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,12 +145,12 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether _this binding_ provides the specified permission to the
-     * specified member for the specified resource.
-     * This field does _not_ indicate whether the member actually has the
+     * Required. Indicates whether _this binding_ provides the specified
+     * permission to the specified principal for the specified resource.
+     * This field does _not_ indicate whether the principal actually has the
      * permission for the resource. There might be another binding that overrides
-     * this binding. To determine whether the member actually has the permission,
-     * use the `access` field in the
+     * this binding. To determine whether the principal actually has the
+     * permission, use the `access` field in the
      * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -162,12 +162,12 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether _this binding_ provides the specified permission to the
-     * specified member for the specified resource.
-     * This field does _not_ indicate whether the member actually has the
+     * Required. Indicates whether _this binding_ provides the specified
+     * permission to the specified principal for the specified resource.
+     * This field does _not_ indicate whether the principal actually has the
      * permission for the resource. There might be another binding that overrides
-     * this binding. To determine whether the member actually has the permission,
-     * use the `access` field in the
+     * this binding. To determine whether the principal actually has the
+     * permission, use the `access` field in the
      * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -271,19 +271,19 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether each member in the binding includes the member specified
-     * in the request, either directly or indirectly. Each key identifies a member
-     * in the binding, and each value indicates whether the member in the binding
-     * includes the member in the request.
-     * For example, suppose that a binding includes the following members:
+     * Indicates whether each principal in the binding includes the principal
+     * specified in the request, either directly or indirectly. Each key
+     * identifies a principal in the binding, and each value indicates whether the
+     * principal in the binding includes the principal in the request.
+     * For example, suppose that a binding includes the following principals:
      * * `user:alice&#64;example.com`
      * * `group:product-eng&#64;example.com`
      * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
-     * For the first member in the binding, the key is `user:alice&#64;example.com`,
-     * and the `membership` field in the value is set to
+     * principal of the group `group:product-eng&#64;example.com`.
+     * For the first principal in the binding, the key is
+     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
-     * For the second member in the binding, the key is
+     * For the second principal in the binding, the key is
      * `group:product-eng&#64;example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
@@ -296,19 +296,19 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether each member in the binding includes the member specified
-     * in the request, either directly or indirectly. Each key identifies a member
-     * in the binding, and each value indicates whether the member in the binding
-     * includes the member in the request.
-     * For example, suppose that a binding includes the following members:
+     * Indicates whether each principal in the binding includes the principal
+     * specified in the request, either directly or indirectly. Each key
+     * identifies a principal in the binding, and each value indicates whether the
+     * principal in the binding includes the principal in the request.
+     * For example, suppose that a binding includes the following principals:
      * * `user:alice&#64;example.com`
      * * `group:product-eng&#64;example.com`
      * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
-     * For the first member in the binding, the key is `user:alice&#64;example.com`,
-     * and the `membership` field in the value is set to
+     * principal of the group `group:product-eng&#64;example.com`.
+     * For the first principal in the binding, the key is
+     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
-     * For the second member in the binding, the key is
+     * For the second principal in the binding, the key is
      * `group:product-eng&#64;example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
@@ -353,10 +353,10 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A condition expression that prevents access unless the expression evaluates
-     * to `true`.
+     * A condition expression that prevents this binding from granting access
+     * unless the expression evaluates to `true`.
      * To learn about IAM Conditions, see
-     * http://cloud.google.com/iam/help/conditions/overview.
+     * https://cloud.google.com/iam/help/conditions/overview.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      * @return \Google\Type\Expr|null
@@ -377,10 +377,10 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A condition expression that prevents access unless the expression evaluates
-     * to `true`.
+     * A condition expression that prevents this binding from granting access
+     * unless the expression evaluates to `true`.
      * To learn about IAM Conditions, see
-     * http://cloud.google.com/iam/help/conditions/overview.
+     * https://cloud.google.com/iam/help/conditions/overview.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      * @param \Google\Type\Expr $var

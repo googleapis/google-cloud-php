@@ -7,30 +7,31 @@ namespace Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation;
 use UnexpectedValueException;
 
 /**
- * Whether the binding includes the member.
+ * Whether the binding includes the principal.
  *
  * Protobuf type <code>google.cloud.policytroubleshooter.v1.BindingExplanation.Membership</code>
  */
 class Membership
 {
     /**
-     * Reserved for future use.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>MEMBERSHIP_UNSPECIFIED = 0;</code>
      */
     const MEMBERSHIP_UNSPECIFIED = 0;
     /**
-     * The binding includes the member. The member can be included directly
-     * or indirectly. For example:
-     * * A member is included directly if that member is listed in the binding.
-     * * A member is included indirectly if that member is in a Google group or
-     *   G Suite domain that is listed in the binding.
+     * The binding includes the principal. The principal can be included
+     * directly or indirectly. For example:
+     * * A principal is included directly if that principal is listed in the
+     *   binding.
+     * * A principal is included indirectly if that principal is in a Google
+     *   group or Google Workspace domain that is listed in the binding.
      *
      * Generated from protobuf enum <code>MEMBERSHIP_INCLUDED = 1;</code>
      */
     const MEMBERSHIP_INCLUDED = 1;
     /**
-     * The binding does not include the member.
+     * The binding does not include the principal.
      *
      * Generated from protobuf enum <code>MEMBERSHIP_NOT_INCLUDED = 2;</code>
      */
@@ -42,7 +43,7 @@ class Membership
      */
     const MEMBERSHIP_UNKNOWN_INFO_DENIED = 3;
     /**
-     * The member is an unsupported type. Only Google Accounts and service
+     * The principal is an unsupported type. Only Google Accounts and service
      * accounts are supported.
      *
      * Generated from protobuf enum <code>MEMBERSHIP_UNKNOWN_UNSUPPORTED = 4;</code>
