@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [GetQueue][google.cloud.tasks.v2beta3.CloudTasks.GetQueue].
+ * Request message for
+ * [GetQueue][google.cloud.tasks.v2beta3.CloudTasks.GetQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.GetQueueRequest</code>
  */
@@ -23,8 +24,8 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns.
-     * If the mask is not present all fields will be returned except
+     * Optional. Read mask is used for a more granular control over what the API
+     * returns. If the mask is not present all fields will be returned except
      * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      * specified in the mask.
      *
@@ -42,8 +43,8 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the queue. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type \Google\Protobuf\FieldMask $read_mask
-     *           Optional. Read mask is used for a more granular control over what the API returns.
-     *           If the mask is not present all fields will be returned except
+     *           Optional. Read mask is used for a more granular control over what the API
+     *           returns. If the mask is not present all fields will be returned except
      *           [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      *           specified in the mask.
      * }
@@ -82,8 +83,8 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns.
-     * If the mask is not present all fields will be returned except
+     * Optional. Read mask is used for a more granular control over what the API
+     * returns. If the mask is not present all fields will be returned except
      * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      * specified in the mask.
      *
@@ -106,8 +107,8 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns.
-     * If the mask is not present all fields will be returned except
+     * Optional. Read mask is used for a more granular control over what the API
+     * returns. If the mask is not present all fields will be returned except
      * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      * specified in the mask.
      *
