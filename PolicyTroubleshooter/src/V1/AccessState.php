@@ -7,33 +7,33 @@ namespace Google\Cloud\PolicyTroubleshooter\V1;
 use UnexpectedValueException;
 
 /**
- * Whether a member has a permission for a resource.
+ * Whether a principal has a permission for a resource.
  *
  * Protobuf type <code>google.cloud.policytroubleshooter.v1.AccessState</code>
  */
 class AccessState
 {
     /**
-     * Reserved for future use.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>ACCESS_STATE_UNSPECIFIED = 0;</code>
      */
     const ACCESS_STATE_UNSPECIFIED = 0;
     /**
-     * The member has the permission.
+     * The principal has the permission.
      *
      * Generated from protobuf enum <code>GRANTED = 1;</code>
      */
     const GRANTED = 1;
     /**
-     * The member does not have the permission.
+     * The principal does not have the permission.
      *
      * Generated from protobuf enum <code>NOT_GRANTED = 2;</code>
      */
     const NOT_GRANTED = 2;
     /**
-     * The member has the permission only if a condition expression evaluates to
-     * `true`.
+     * The principal has the permission only if a condition expression evaluates
+     * to `true`.
      *
      * Generated from protobuf enum <code>UNKNOWN_CONDITIONAL = 3;</code>
      */

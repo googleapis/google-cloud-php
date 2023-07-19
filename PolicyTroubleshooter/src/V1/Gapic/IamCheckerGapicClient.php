@@ -157,8 +157,9 @@ class IamCheckerGapicClient
     }
 
     /**
-     * Checks whether a member has a specific permission for a specific resource,
-     * and explains why the member does or does not have that permission.
+     * Checks whether a principal has a specific permission for a specific
+     * resource, and explains why the principal does or does not have that
+     * permission.
      *
      * Sample code:
      * ```
@@ -174,8 +175,8 @@ class IamCheckerGapicClient
      *     Optional.
      *
      *     @type AccessTuple $accessTuple
-     *           The information to use for checking whether a member has a permission for a
-     *           resource.
+     *           The information to use for checking whether a principal has a permission
+     *           for a resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

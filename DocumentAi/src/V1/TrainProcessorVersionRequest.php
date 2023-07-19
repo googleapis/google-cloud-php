@@ -52,6 +52,7 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string base_processor_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $base_processor_version = '';
+    protected $processor_flags;
 
     /**
      * @param string                                       $parent           Required. The parent (project, location and processor) to create the new
@@ -77,6 +78,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions $custom_document_extraction_options
+     *           Options to control Custom Document Extraction (CDE) Processor.
      *     @type string $parent
      *           Required. The parent (project, location and processor) to create the new
      *           version for. Format:
@@ -97,6 +100,37 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Documentai\V1\DocumentProcessorService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Options to control Custom Document Extraction (CDE) Processor.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions custom_document_extraction_options = 5;</code>
+     * @return \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions|null
+     */
+    public function getCustomDocumentExtractionOptions()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasCustomDocumentExtractionOptions()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Options to control Custom Document Extraction (CDE) Processor.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions custom_document_extraction_options = 5;</code>
+     * @param \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions $var
+     * @return $this
+     */
+    public function setCustomDocumentExtractionOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
     }
 
     /**
@@ -267,6 +301,14 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
         $this->base_processor_version = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProcessorFlags()
+    {
+        return $this->whichOneof("processor_flags");
     }
 
 }

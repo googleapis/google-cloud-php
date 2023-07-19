@@ -65,6 +65,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.
@@ -119,6 +122,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *           These headers represent a subset of the headers that will accompany the
      *           task's HTTP request. Some HTTP request headers will be ignored or replaced.
      *           A partial list of headers that will be ignored or replaced is:
+     *           * Any header that is prefixed with "X-CloudTasks-" will be treated
+     *           as service header. Service headers define properties of the task and are
+     *           predefined in CloudTask.
      *           * Host: This will be computed by Cloud Tasks and derived from
      *             [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      *           * Content-Length: This will be computed by Cloud Tasks.
@@ -233,6 +239,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.
@@ -264,6 +273,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.

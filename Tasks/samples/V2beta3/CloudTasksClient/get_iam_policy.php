@@ -28,9 +28,9 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
 
 /**
- * Gets the access control policy for a [Queue][google.cloud.tasks.v2beta3.Queue].
- * Returns an empty policy if the resource exists and does not have a policy
- * set.
+ * Gets the access control policy for a
+ * [Queue][google.cloud.tasks.v2beta3.Queue]. Returns an empty policy if the
+ * resource exists and does not have a policy set.
  *
  * Authorization requires the following
  * [Google IAM](https://cloud.google.com/iam) permission on the specified
