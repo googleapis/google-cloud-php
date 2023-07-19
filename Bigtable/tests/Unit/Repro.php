@@ -2,21 +2,13 @@
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
-use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as BigtableClient;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as RequestEntry;
-use Google\Cloud\Bigtable\V2\MutateRowsResponse;
-use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as ResponseEntry;
-use Google\Cloud\Bigtable\V2\RowRange;
-use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
-use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
@@ -31,6 +23,11 @@ use Prophecy\Argument;
  *
  * Reference for code taken from:
  * https://github.com/googleapis/google-cloud-php/blob/main/Bigtable/tests/Unit/SmartRetriesTest.php
+ *
+ * HOW TO RUN?
+ * -> Go to google-cloud-php/Bigtable
+ * -> Run `composer update`
+ * -> Run command `vendor/bin/phpunit -c phpunit.xml.dist tests/Unit/Repro.php`
  */
 
 class Repro extends TestCase
