@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class RolePermission
 {
     /**
-     * Reserved for future use.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>ROLE_PERMISSION_UNSPECIFIED = 0;</code>
      */

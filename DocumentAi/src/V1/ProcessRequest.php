@@ -48,6 +48,12 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
     private $field_mask = null;
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     */
+    private $process_options = null;
     protected $source;
 
     /**
@@ -82,6 +88,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           An inline document proto.
      *     @type \Google\Cloud\DocumentAI\V1\RawDocument $raw_document
      *           A raw document content (bytes).
+     *     @type \Google\Cloud\DocumentAI\V1\GcsDocument $gcs_document
+     *           A raw document on Google Cloud Storage.
      *     @type string $name
      *           Required. The resource name of the
      *           [Processor][google.cloud.documentai.v1.Processor] or
@@ -101,6 +109,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      *           output. Only supports top-level document and pages field, so it must be in
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions $process_options
+     *           Inference-time options for the process API
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +176,37 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\RawDocument::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * A raw document on Google Cloud Storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsDocument gcs_document = 8;</code>
+     * @return \Google\Cloud\DocumentAI\V1\GcsDocument|null
+     */
+    public function getGcsDocument()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasGcsDocument()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * A raw document on Google Cloud Storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsDocument gcs_document = 8;</code>
+     * @param \Google\Cloud\DocumentAI\V1\GcsDocument $var
+     * @return $this
+     */
+    public function setGcsDocument($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\GcsDocument::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
@@ -280,6 +321,42 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->field_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessOptions|null
+     */
+    public function getProcessOptions()
+    {
+        return $this->process_options;
+    }
+
+    public function hasProcessOptions()
+    {
+        return isset($this->process_options);
+    }
+
+    public function clearProcessOptions()
+    {
+        unset($this->process_options);
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessOptions $var
+     * @return $this
+     */
+    public function setProcessOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions::class);
+        $this->process_options = $var;
 
         return $this;
     }

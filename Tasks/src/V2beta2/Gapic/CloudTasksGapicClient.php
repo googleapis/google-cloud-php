@@ -27,6 +27,7 @@
 namespace Google\Cloud\Tasks\V2beta2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -34,6 +35,7 @@ use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -41,7 +43,13 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Tasks\V2beta2\AcknowledgeTaskRequest;
+use Google\Cloud\Tasks\V2beta2\BufferTaskRequest;
+use Google\Cloud\Tasks\V2beta2\BufferTaskResponse;
 use Google\Cloud\Tasks\V2beta2\CancelLeaseRequest;
 use Google\Cloud\Tasks\V2beta2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2beta2\CreateTaskRequest;
@@ -64,6 +72,7 @@ use Google\Cloud\Tasks\V2beta2\RunTaskRequest;
 use Google\Cloud\Tasks\V2beta2\Task;
 use Google\Cloud\Tasks\V2beta2\Task\View;
 use Google\Cloud\Tasks\V2beta2\UpdateQueueRequest;
+use Google\Cloud\Tasks\V2beta2\UploadQueueYamlRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -439,6 +448,77 @@ class CloudTasksGapicClient
     }
 
     /**
+     * Creates and buffers a new task without the need to explicitly define a Task
+     * message. The queue must have [HTTP
+     * target][google.cloud.tasks.v2beta2.HttpTarget]. To create the task with a
+     * custom ID, use the following format and set TASK_ID to your desired ID:
+     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer
+     * To create the task with an automatically generated ID, use the following
+     * format:
+     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
+     * Note: This feature is in its experimental stage. You must request access to
+     * the API through the [Cloud Tasks BufferTask Experiment Signup
+     * form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $formattedQueue = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+     *     $response = $cloudTasksClient->bufferTask($formattedQueue);
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param string $queue        Required. The parent queue name. For example:
+     *                             projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *
+     *                             The queue must already exist.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $taskId
+     *           Optional. Task ID for the task being created. If not provided, a random
+     *           task ID is assigned to the task.
+     *     @type HttpBody $body
+     *           Optional. Body of the HTTP request.
+     *
+     *           The body can take any generic value. The value is written to the
+     *           [HttpRequest][payload] of the [Task].
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Tasks\V2beta2\BufferTaskResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function bufferTask($queue, array $optionalArgs = [])
+    {
+        $request = new BufferTaskRequest();
+        $requestParamHeaders = [];
+        $request->setQueue($queue);
+        $requestParamHeaders['queue'] = $queue;
+        if (isset($optionalArgs['taskId'])) {
+            $request->setTaskId($optionalArgs['taskId']);
+            $requestParamHeaders['task_id'] = $optionalArgs['taskId'];
+        }
+
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BufferTask', BufferTaskResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Cancel a pull task's lease.
      *
      * The worker can use this method to cancel a task's lease by
@@ -620,10 +700,10 @@ class CloudTasksGapicClient
      *                             that was deleted or completed recently then the call will fail
      *                             with [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS].
      *                             If the task's queue was created using Cloud Tasks, then another task with
-     *                             the same name can't be created for ~1hour after the original task was
+     *                             the same name can't be created for ~1 hour after the original task was
      *                             deleted or completed. If the task's queue was created using queue.yaml or
      *                             queue.xml, then another task with the same name can't be created
-     *                             for ~9days after the original task was deleted or completed.
+     *                             for ~9 days after the original task was deleted or completed.
      *
      *                             Because there is an extra lookup cost to identify duplicate task
      *                             names, these [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask]
@@ -1813,5 +1893,175 @@ class CloudTasksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateQueue', Queue::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Update queue list by uploading a queue.yaml file.
+     *
+     * The queue.yaml file is supplied in the request body as a YAML encoded
+     * string. This method was added to support gcloud clients versions before
+     * 322.0.0. New clients should use CreateQueue instead of this method.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $appId = 'app_id';
+     *     $cloudTasksClient->uploadQueueYaml($appId);
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param string $appId        Required. The App ID is supplied as an HTTP parameter. Unlike internal
+     *                             usage of App ID, it does not include a region prefix. Rather, the App ID
+     *                             represents the Project ID against which to make the request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type HttpBody $httpBody
+     *           The http body contains the queue.yaml file which used to update queue lists
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function uploadQueueYaml($appId, array $optionalArgs = [])
+    {
+        $request = new UploadQueueYamlRequest();
+        $request->setAppId($appId);
+        if (isset($optionalArgs['httpBody'])) {
+            $request->setHttpBody($optionalArgs['httpBody']);
+        }
+
+        return $this->startCall('UploadQueueYaml', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $response = $cloudTasksClient->getLocation();
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudTasksClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudTasksClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

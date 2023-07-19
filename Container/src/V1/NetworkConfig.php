@@ -91,6 +91,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      */
     private $gateway_api_config = null;
     /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     */
+    private $enable_multi_networking = false;
+    /**
      * Network bandwidth tier configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
@@ -144,6 +150,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $gateway_api_config
      *           GatewayAPIConfig contains the desired config of Gateway API on this
      *           cluster.
+     *     @type bool $enable_multi_networking
+     *           Whether multi-networking is enabled for this cluster.
      *     @type \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $network_performance_config
      *           Network bandwidth tier configuration.
      *     @type bool $enable_fqdn_network_policy
@@ -481,6 +489,32 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
         $this->gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     * @return bool
+     */
+    public function getEnableMultiNetworking()
+    {
+        return $this->enable_multi_networking;
+    }
+
+    /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableMultiNetworking($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_multi_networking = $var;
 
         return $this;
     }
