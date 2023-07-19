@@ -101,6 +101,7 @@ class Bucket
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
+        
         $this->connection = $connection;
         $this->identity = [
             'bucket' => $name,

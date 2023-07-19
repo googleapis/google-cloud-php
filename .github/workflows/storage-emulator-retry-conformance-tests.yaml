@@ -14,11 +14,11 @@ jobs:
   test:
     runs-on: ubuntu-20.04
 
-    services:
-      emulator:
-        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.36.0
-        ports:
-          - 9000:9000
+    # services:
+    #   emulator:
+    #     image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.36.0
+    #     ports:
+    #       - 9000:9000
 
     steps:
       - name: Checkout code
@@ -32,6 +32,17 @@ jobs:
       - name: Install dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-suggest
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      
+      - name: Run Storage Testbench
+        run: |
+          git clone https://github.com/googleapis/storage-testbench.git
+          cd storage-testbench
+          pip install -e .
+          python3 testbench_run.py localhost 9000 10
 
       - name: Run storage retry conformance tests
         run: |
