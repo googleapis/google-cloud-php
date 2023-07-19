@@ -96,15 +96,12 @@ trait GrpcTrait
      * @param callable|null $authHttpHandler
      * @return array
      */
-    private function getGaxConfig(
-        $version,
-        callable $authHttpHandler = null,
-        string $transport = 'grpc')
+    private function getGaxConfig($version, callable $authHttpHandler = null)
     {
         $config = [
             'libName' => 'gccl',
             'libVersion' => $version,
-            'transport' => $transport
+            'transport' => 'grpc'
         ];
 
         // GAX v0.32.0 introduced the CredentialsWrapper class and a different
