@@ -39,7 +39,6 @@ use Google\Analytics\Data\V1alpha\FilterExpression;
 use Google\Analytics\Data\V1alpha\GetMetadataRequest;
 use Google\Analytics\Data\V1alpha\Metadata;
 use Google\Analytics\Data\V1alpha\Metric;
-use Google\Analytics\Data\V1alpha\MetricAggregation;
 use Google\Analytics\Data\V1alpha\OrderBy;
 use Google\Analytics\Data\V1alpha\Pivot;
 use Google\Analytics\Data\V1alpha\RunPivotReportRequest;
