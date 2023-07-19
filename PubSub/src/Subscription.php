@@ -100,7 +100,7 @@ class Subscription
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
-    private $reqHandler;
+    private $requestHandler;
 
     /**
      * The GAPIC class to call under the hood.
@@ -185,7 +185,7 @@ class Subscription
         array $info = []
     ) {
         $this->gapic = SubscriberGapicClient::class;
-        $this->reqHandler = new RequestHandler(
+        $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
@@ -404,7 +404,7 @@ class Subscription
             $options['deadLetterPolicy'] = new DeadLetterPolicy($options['deadLetterPolicy']);
         }
 
-        $this->info = $this->reqHandler->sendReq(
+        $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'createSubscription',
             [$this->name,$this->topicName],
@@ -592,7 +592,7 @@ class Subscription
             'name' => $this->name
         ] + $this->formatDeadLetterPolicyForApi($subscription));
 
-        return $this->info = $this->reqHandler->sendReq(
+        return $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'updateSubscription',
             [$subscriptionProto, $fieldMask],
@@ -615,7 +615,7 @@ class Subscription
      */
     public function delete(array $options = [])
     {
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'deleteSubscription',
             [$this->name],
@@ -700,7 +700,7 @@ class Subscription
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->reqHandler->sendReq(
+        return $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'getSubscription',
             [$this->name],
@@ -738,7 +738,7 @@ class Subscription
         $messages = [];
         $maxMessages = $this->pluck('maxMessages', $options, false) ?? self::MAX_MESSAGES;
 
-        $response = $this->reqHandler->sendReq(
+        $response = $this->requestHandler->sendReq(
             $this->gapic,
             'pull',
             [$this->name, $maxMessages],
@@ -1138,7 +1138,7 @@ class Subscription
             $pushConfig
         );
 
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'modifyPushConfig',
             [$this->name, $pushConfig],
@@ -1169,7 +1169,7 @@ class Subscription
     {
         $options['time'] = (new PubSubSerializer())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'seek',
             [$this->name],
@@ -1200,7 +1200,7 @@ class Subscription
     {
         $options['snapshot'] = $snapshot->name();
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'seek',
             [$this->name],
@@ -1226,7 +1226,7 @@ class Subscription
      */
     public function detach(array $options = [])
     {
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'detachSubscription',
             [$this->name],
@@ -1254,7 +1254,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->reqHandler, $this->gapic , $this->name);
+            $this->iam = new Iam($this->requestHandler, $this->gapic , $this->name);
         }
 
         return $this->iam;
@@ -1372,7 +1372,7 @@ class Subscription
             'topicName' => $this->topicName,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'request_handler' => $this->reqHandler
+            'request_handler' => $this->requestHandler
         ];
     }
 
@@ -1453,7 +1453,7 @@ class Subscription
     private function sendAckRequest(array $messages, array $options) {
         $ackIds = $this->getMessageAckIds($messages);
 
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'acknowledge',
             [$this->name,$ackIds],
@@ -1471,7 +1471,7 @@ class Subscription
     private function sendModAckRequest(array $messages, $seconds, array $options) {
         $ackIds = $this->getMessageAckIds($messages);
 
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'modifyAckDeadline',
             [$this->name, $ackIds, $seconds],

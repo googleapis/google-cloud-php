@@ -40,7 +40,7 @@ class Snapshot
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
-    private $reqHandler;
+    private $requestHandler;
 
     /**
      * The GAPIC class to call under the hood.
@@ -94,7 +94,7 @@ class Snapshot
         array $clientConfig = []
     ) {
         $this->gapic = SubscriberGapicClient::class;
-        $this->reqHandler = new RequestHandler(
+        $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
@@ -173,7 +173,7 @@ class Snapshot
 
         $options['project'] = $this->formatName('project', $this->projectId);
 
-        $this->info = $this->reqHandler->sendReq(
+        $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'createSnapshot',
             [$this->name, $this->info['subscription']],
@@ -199,7 +199,7 @@ class Snapshot
      */
     public function delete(array $options = [])
     {
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'deleteSnapshot',
             [$this->name],
@@ -259,7 +259,7 @@ class Snapshot
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info,
-            'request_handler' => $this->reqHandler
+            'request_handler' => $this->requestHandler
         ];
     }
 }

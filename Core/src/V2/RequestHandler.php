@@ -20,12 +20,12 @@ namespace Google\Cloud\Core\V2;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\V2\RequestCallerTrait;
 
 class RequestHandler
 {
     use EmulatorTrait;
-    use GrpcTrait;
+    use RequestCallerTrait;
 
     /**
      * @var array

@@ -20,7 +20,6 @@ namespace Google\Cloud\Core\V2;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubSerializer;
-use Google\Cloud\PubSub\RequestHandler;
 
 /**
  * IAM Manager
@@ -50,7 +49,7 @@ class Iam
     /**
      * @var RequestHandler
      */
-    private $reqHandler;
+    private $requestHandler;
 
     private $gapic;
 
@@ -70,7 +69,7 @@ class Iam
     private $options;
 
     /**
-     * @param RequestHandler $reqHandler
+     * @param RequestHandler $requestHandler
      * @param string $resource
      * @param array $options [optional] {
      *     Configuration Options
@@ -84,7 +83,7 @@ class Iam
      * @access private
      */
     public function __construct(
-        RequestHandler $reqHandler,
+        RequestHandler $requestHandler,
         $gapic,
         $resource,
         array $options = []
@@ -94,7 +93,7 @@ class Iam
             'args' => []
         ];
 
-        $this->reqHandler = $reqHandler;
+        $this->requestHandler = $requestHandler;
         $this->gapic = $gapic;
         $this->resource = $resource;
         $this->options = $options;
@@ -168,7 +167,7 @@ class Iam
             $request = $policy;
         }
 
-        $this->policy = $this->reqHandler->sendReq(
+        $this->policy = $this->requestHandler->sendReq(
             $this->gapic,
             'setIamPolicy',
             [$this->resource, $policy],
@@ -197,7 +196,7 @@ class Iam
      */
     public function testPermissions(array $permissions, array $options = [])
     {
-        $res = $this->reqHandler->sendReq(
+        $res = $this->requestHandler->sendReq(
             $this->gapic,
             'testIamPermissions',
             [$this->resource, $permissions],
@@ -220,7 +219,7 @@ class Iam
      */
     public function reload(array $options = [])
     {
-        $this->policy = $this->reqHandler->sendReq(
+        $this->policy = $this->requestHandler->sendReq(
             $this->gapic,
             'getIamPolicy',
             [$this->resource],

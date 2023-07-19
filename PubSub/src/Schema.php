@@ -45,7 +45,7 @@ class Schema
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
-    private $reqHandler;
+    private $requestHandler;
 
     /**
      * The GAPIC class to call under the hood.
@@ -71,7 +71,7 @@ class Schema
         array $info = []
     ) {
         $this->gapic = SchemaServiceClient::class;
-        $this->reqHandler = new RequestHandler(
+        $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
@@ -109,7 +109,7 @@ class Schema
      */
     public function delete(array $options = [])
     {
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'deleteSchema',
             [$this->name],
@@ -187,7 +187,7 @@ class Schema
             $options['view'] = SchemaView::value($options['view']);
         }
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'getSchema',
             [$this->name],

@@ -59,7 +59,7 @@ class Topic
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
-    private $reqHandler;
+    private $requestHandler;
 
     /**
      * The GAPIC class to call under the hood.
@@ -128,7 +128,7 @@ class Topic
         array $clientConfig = []
     ) {
         $this->gapic = PublisherGapicClient::class;
-        $this->reqHandler = new RequestHandler(
+        $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
@@ -203,7 +203,7 @@ class Topic
      */
     public function create(array $options = [])
     {
-        $this->info = $this->reqHandler->sendReq(
+        $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'createTopic',
             [$this->name],
@@ -332,7 +332,7 @@ class Topic
         // convert the data passed to the proto object
         $proto = new TopicProto($topic + ['name' => $this->name]);
 
-        $this->info = $this->reqHandler->sendReq(
+        $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'updateTopic',
             [$proto, $fieldMask],
@@ -357,7 +357,7 @@ class Topic
      */
     public function delete(array $options = [])
     {
-        $this->reqHandler->sendReq(
+        $this->requestHandler->sendReq(
             $this->gapic,
             'deleteTopic',
             [$this->name],
@@ -454,7 +454,7 @@ class Topic
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->reqHandler->sendReq(
+        $this->info = $this->requestHandler->sendReq(
             $this->gapic,
             'getTopic',
             [$this->name],
@@ -537,7 +537,7 @@ class Topic
             // new PubsubMessage($message);
         }
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             $this->gapic,
             'publish',
             [$this->name, $messages],
@@ -685,7 +685,7 @@ class Topic
                     return $this->subscriptionFactory($subscription);
                 },
                 function($options) {
-                    return $this->reqHandler->sendReq(
+                    return $this->requestHandler->sendReq(
                         $this->gapic,
                         'listTopicSubscriptions',
                         [$this->name],
@@ -721,7 +721,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->reqHandler, $this->gapic , $this->name);
+            $this->iam = new Iam($this->requestHandler, $this->gapic , $this->name);
         }
 
         return $this->iam;
@@ -740,7 +740,7 @@ class Topic
             'name' => $this->name,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'request_handler' => $this->reqHandler
+            'request_handler' => $this->requestHandler
         ];
     }
 

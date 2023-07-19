@@ -97,7 +97,7 @@ class PubSubClient
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
      */
-    private $reqHandler;
+    private $requestHandler;
 
     /**
      * @var bool
@@ -160,7 +160,7 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
-        $this->reqHandler = new RequestHandler(
+        $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [
                 PublisherGapicClient::class,
@@ -260,7 +260,7 @@ class PubSubClient
                     return $this->topicFactory($topic['name'], $topic);
                 },
                 function($options) use ($projectId) {
-                    return $this->reqHandler->sendReq(
+                    return $this->requestHandler->sendReq(
                         PublisherGapicClient::class,
                         'listTopics',
                         [$projectId],
@@ -371,7 +371,7 @@ class PubSubClient
                     );
                 },
                 function($options) use ($projectId) {
-                    return $this->reqHandler->sendReq(
+                    return $this->requestHandler->sendReq(
                         SubscriberGapicClient::class,
                         'listSubscriptions',
                         [$projectId],
@@ -473,7 +473,7 @@ class PubSubClient
                     );
                 },
                 function($options) use ($projectId) {
-                    return $this->reqHandler->sendReq(
+                    return $this->requestHandler->sendReq(
                         SubscriberGapicClient::class,
                         'listSnapshots',
                         [$projectId],
@@ -540,7 +540,7 @@ class PubSubClient
         ]);
         $options['schemaId'] = $schemaId;
 
-        $res = $this->reqHandler->sendReq(
+        $res = $this->requestHandler->sendReq(
             SchemaServiceClient::class,
             'createSchema',
             [$parent, $schema],
@@ -597,7 +597,7 @@ class PubSubClient
                     return $this->schema($parts['schema'], $schema);
                 },
                 function($options) use($projectId){
-                    return $this->reqHandler->sendReq(
+                    return $this->requestHandler->sendReq(
                         SchemaServiceClient::class,
                         'listSchemas',
                         [$projectId],
@@ -651,7 +651,7 @@ class PubSubClient
         $schema['type'] = Type::value($schema['type']);
         $schema = new SchemaProto($schema);
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             SchemaServiceClient::class,
             'validateSchema',
             [$parent, $schema],
@@ -717,7 +717,7 @@ class PubSubClient
         $options['message'] = $message;
         $options['encoding'] = $encoding;
 
-        return $this->reqHandler->sendReq(
+        return $this->requestHandler->sendReq(
             SchemaServiceClient::class,
             'validateMessage',
             [$parent],
