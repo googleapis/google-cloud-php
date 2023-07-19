@@ -39,8 +39,7 @@ jobs:
       
       - name: Run Storage Testbench
         run: |
-          git clone https://github.com/cojenco/storage-testbench.git
-          git checkout resum-uploads-updates
+          git clone --branch resum-uploads-updates https://github.com/cojenco/storage-testbench.git
           cd storage-testbench
           pip install -e .
           python3 testbench_run.py localhost 9000 10 &
