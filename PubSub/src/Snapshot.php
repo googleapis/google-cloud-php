@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\V2\RequestHandler;
-use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Represents a Pub/Sub Snapshot
@@ -93,7 +93,7 @@ class Snapshot
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = SubscriberGapicClient::class;
+        $this->gapic = SubscriberClient::class;
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
             [$this->gapic],

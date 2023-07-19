@@ -19,7 +19,6 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\V2\RequestHandler;
-use Google\Cloud\PubSub\V1\Gapic\SchemaServiceGapicClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SchemaView;
 
