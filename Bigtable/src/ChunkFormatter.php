@@ -222,6 +222,15 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 $rowSet->setRowRanges($ranges);
             }
+
+            // This flag instructs the `ResumableStream's > readAll()` to not perform
+            // any network call as in the event when all the data is received with a
+            // deadline exceeded error code, smart retry args updation logic gets
+            // triggered and tries to do a network call with empty `rows` resulting
+            // in a full table scan.
+            if (empty($rowKeys) && empty($ranges)) {
+                $this->options['requestCompleted'] = true;
+            }
         } else {
             $range = (new RowRange)->setStartKeyOpen($prevRowKey);
             $this->options['rows'] = (new RowSet)->setRowRanges([$range]);
