@@ -42,7 +42,7 @@ jobs:
           git clone https://github.com/googleapis/storage-testbench.git
           cd storage-testbench
           pip install -e .
-          python3 testbench_run.py localhost 9000 10
+          python3 testbench_run.py localhost 9000 10 &
 
       - name: Run storage retry conformance tests
         run: |
