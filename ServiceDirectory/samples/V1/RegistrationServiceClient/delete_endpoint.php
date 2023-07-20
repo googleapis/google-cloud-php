@@ -27,7 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
- * Deletes a endpoint.
+ * Deletes an endpoint.
  *
  * @param string $formattedName The name of the endpoint to delete. Please see
  *                              {@see RegistrationServiceClient::endpointName()} for help formatting this field.

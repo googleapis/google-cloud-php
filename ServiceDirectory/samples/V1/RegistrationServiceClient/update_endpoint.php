@@ -29,7 +29,7 @@ use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates a endpoint.
+ * Updates an endpoint.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

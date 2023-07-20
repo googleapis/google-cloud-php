@@ -29,22 +29,18 @@ class Service extends \Google\Protobuf\Internal\Message
      * Optional. Annotations for the service. This data can be consumed by service
      * clients.
      * Restrictions:
-     *  - The entire annotations dictionary may contain up to 2000 characters,
-     *    spread accoss all key-value pairs. Annotations that goes beyond any
-     *    these limits will be rejected.
-     *  - Valid annotation keys have two segments: an optional prefix and name,
-     *    separated by a slash (/). The name segment is required and must be 63
-     *    characters or less, beginning and ending with an alphanumeric character
-     *    ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
-     *    alphanumerics between. The prefix is optional. If specified, the prefix
-     *    must be a DNS subdomain: a series of DNS labels separated by dots (.),
-     *    not longer than 253 characters in total, followed by a slash (/).
-     *    Annotations that fails to meet these requirements will be rejected.
-     *  - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved
-     *    for system annotations managed by Service Directory. If the user tries
-     *    to write to these keyspaces, those entries will be silently ignored by
-     *    the system.
-     * Note: This field is equivalent to the 'metadata' field in the v1beta1 API.
+     * *   The entire annotations dictionary may contain up to 2000 characters,
+     *     spread accoss all key-value pairs. Annotations that go beyond this
+     *     limit are rejected
+     * *   Valid annotation keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Annotations that fails to meet these requirements are rejected
+     * Note: This field is equivalent to the `metadata` field in the v1beta1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
      *
@@ -53,12 +49,20 @@ class Service extends \Google\Protobuf\Internal\Message
     private $annotations;
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * LookupService.Resolve. Control plane clients should use
-     * RegistrationService.ListEndpoints.
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
+     * Control plane clients should use
+     * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $endpoints;
+    /**
+     * Output only. The globally unique identifier of the service in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
 
     /**
      * Constructor.
@@ -73,28 +77,28 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Optional. Annotations for the service. This data can be consumed by service
      *           clients.
      *           Restrictions:
-     *            - The entire annotations dictionary may contain up to 2000 characters,
-     *              spread accoss all key-value pairs. Annotations that goes beyond any
-     *              these limits will be rejected.
-     *            - Valid annotation keys have two segments: an optional prefix and name,
-     *              separated by a slash (/). The name segment is required and must be 63
-     *              characters or less, beginning and ending with an alphanumeric character
-     *              ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
-     *              alphanumerics between. The prefix is optional. If specified, the prefix
-     *              must be a DNS subdomain: a series of DNS labels separated by dots (.),
-     *              not longer than 253 characters in total, followed by a slash (/).
-     *              Annotations that fails to meet these requirements will be rejected.
-     *            - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved
-     *              for system annotations managed by Service Directory. If the user tries
-     *              to write to these keyspaces, those entries will be silently ignored by
-     *              the system.
-     *           Note: This field is equivalent to the 'metadata' field in the v1beta1 API.
+     *           *   The entire annotations dictionary may contain up to 2000 characters,
+     *               spread accoss all key-value pairs. Annotations that go beyond this
+     *               limit are rejected
+     *           *   Valid annotation keys have two segments: an optional prefix and name,
+     *               separated by a slash (/). The name segment is required and must be 63
+     *               characters or less, beginning and ending with an alphanumeric character
+     *               ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *               alphanumerics between. The prefix is optional. If specified, the prefix
+     *               must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *               not longer than 253 characters in total, followed by a slash (/).
+     *               Annotations that fails to meet these requirements are rejected
+     *           Note: This field is equivalent to the `metadata` field in the v1beta1 API.
      *           They have the same syntax and read/write to the same location in Service
      *           Directory.
      *     @type array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Output only. Endpoints associated with this service. Returned on
-     *           LookupService.Resolve. Control plane clients should use
-     *           RegistrationService.ListEndpoints.
+     *           [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
+     *           Control plane clients should use
+     *           [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
+     *     @type string $uid
+     *           Output only. The globally unique identifier of the service in the UUID4
+     *           format.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,22 +138,18 @@ class Service extends \Google\Protobuf\Internal\Message
      * Optional. Annotations for the service. This data can be consumed by service
      * clients.
      * Restrictions:
-     *  - The entire annotations dictionary may contain up to 2000 characters,
-     *    spread accoss all key-value pairs. Annotations that goes beyond any
-     *    these limits will be rejected.
-     *  - Valid annotation keys have two segments: an optional prefix and name,
-     *    separated by a slash (/). The name segment is required and must be 63
-     *    characters or less, beginning and ending with an alphanumeric character
-     *    ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
-     *    alphanumerics between. The prefix is optional. If specified, the prefix
-     *    must be a DNS subdomain: a series of DNS labels separated by dots (.),
-     *    not longer than 253 characters in total, followed by a slash (/).
-     *    Annotations that fails to meet these requirements will be rejected.
-     *  - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved
-     *    for system annotations managed by Service Directory. If the user tries
-     *    to write to these keyspaces, those entries will be silently ignored by
-     *    the system.
-     * Note: This field is equivalent to the 'metadata' field in the v1beta1 API.
+     * *   The entire annotations dictionary may contain up to 2000 characters,
+     *     spread accoss all key-value pairs. Annotations that go beyond this
+     *     limit are rejected
+     * *   Valid annotation keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Annotations that fails to meet these requirements are rejected
+     * Note: This field is equivalent to the `metadata` field in the v1beta1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
      *
@@ -165,22 +165,18 @@ class Service extends \Google\Protobuf\Internal\Message
      * Optional. Annotations for the service. This data can be consumed by service
      * clients.
      * Restrictions:
-     *  - The entire annotations dictionary may contain up to 2000 characters,
-     *    spread accoss all key-value pairs. Annotations that goes beyond any
-     *    these limits will be rejected.
-     *  - Valid annotation keys have two segments: an optional prefix and name,
-     *    separated by a slash (/). The name segment is required and must be 63
-     *    characters or less, beginning and ending with an alphanumeric character
-     *    ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
-     *    alphanumerics between. The prefix is optional. If specified, the prefix
-     *    must be a DNS subdomain: a series of DNS labels separated by dots (.),
-     *    not longer than 253 characters in total, followed by a slash (/).
-     *    Annotations that fails to meet these requirements will be rejected.
-     *  - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved
-     *    for system annotations managed by Service Directory. If the user tries
-     *    to write to these keyspaces, those entries will be silently ignored by
-     *    the system.
-     * Note: This field is equivalent to the 'metadata' field in the v1beta1 API.
+     * *   The entire annotations dictionary may contain up to 2000 characters,
+     *     spread accoss all key-value pairs. Annotations that go beyond this
+     *     limit are rejected
+     * *   Valid annotation keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Annotations that fails to meet these requirements are rejected
+     * Note: This field is equivalent to the `metadata` field in the v1beta1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
      *
@@ -198,8 +194,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * LookupService.Resolve. Control plane clients should use
-     * RegistrationService.ListEndpoints.
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
+     * Control plane clients should use
+     * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -211,8 +208,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * LookupService.Resolve. Control plane clients should use
-     * RegistrationService.ListEndpoints.
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1.LookupService.ResolveService].
+     * Control plane clients should use
+     * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
@@ -222,6 +220,34 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ServiceDirectory\V1\Endpoint::class);
         $this->endpoints = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The globally unique identifier of the service in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. The globally unique identifier of the service in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }
