@@ -33,6 +33,11 @@ class ComponentPackage
  \* Updates to the above are reflected here through a refresh process#';
     private string $path;
 
+    private const MIGRATION_V1 = 'v1';
+    private const MIGRATION_V2 = 'v2';
+    private const MIGRATION_V1_AND_V2 = 'v1 and v2';
+    private const MIGRATION_NA = 'n/a';
+
     public function __construct(private Component $component, private string $name)
     {
         $this->path = $component->getPath() . '/src/' . $name;
@@ -62,9 +67,9 @@ class ComponentPackage
         $hasV1Clients = count($this->getV1GapicClientFiles()) > 0;
         $hasV2Clients = count($this->getV2BaseClientFiles()) > 0;
         if ($hasV1Clients) {
-            return $hasV2Clients ? 'v1+v2' : 'v1';
+            return $hasV2Clients ? self::MIGRATION_V1_AND_V2 : self::MIGRATION_V1;
         }
-        return $hasV2Clients ? 'v2' : 'n/a';
+        return $hasV2Clients ? self::MIGRATION_V2 : self::MIGRATION_NA;
     }
 
     public function getServiceAddress(): string
