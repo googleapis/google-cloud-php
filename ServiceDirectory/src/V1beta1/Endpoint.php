@@ -25,7 +25,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
+     * like:
      * *   `8.8.8`
      * *   `8.8.8.8:53`
      * *   `test:bad:address`
@@ -57,10 +58,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -69,8 +66,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $metadata;
     /**
-     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
-     * `projects/<project number>/locations/global/networks/&#42;`.
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
+     * format `projects/<project number>/locations/global/networks/&#42;`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, but no other validation
      * is performed on this field (ex. network or project existence, reachability,
@@ -91,6 +88,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * endpoint.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
 
     /**
      * Constructor.
@@ -102,7 +106,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Immutable. The resource name for the endpoint in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *     @type string $address
-     *           Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     *           Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
+     *           like:
      *           *   `8.8.8`
      *           *   `8.8.8.8:53`
      *           *   `test:bad:address`
@@ -126,16 +131,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *               must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *               not longer than 253 characters in total, followed by a slash (/).
      *               Metadata that fails to meet these requirements are rejected
-     *           *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *               for system metadata managed by Service Directory. If the user tries
-     *               to write to these keyspaces, those entries are silently ignored by
-     *               the system
      *           Note: This field is equivalent to the `annotations` field in the v1 API.
      *           They have the same syntax and read/write to the same location in Service
      *           Directory.
      *     @type string $network
-     *           Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
-     *           `projects/<project number>/locations/global/networks/&#42;`.
+     *           Immutable. The Google Compute Engine network (VPC) of the endpoint in the
+     *           format `projects/<project number>/locations/global/networks/&#42;`.
      *           The project must be specified by project number (project id is rejected).
      *           Incorrectly formatted networks are rejected, but no other validation
      *           is performed on this field (ex. network or project existence, reachability,
@@ -144,6 +145,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when the endpoint was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the endpoint was last updated.
+     *     @type string $uid
+     *           Output only. A globally unique identifier (in UUID4 format) for this
+     *           endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,7 +184,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
+     * like:
      * *   `8.8.8`
      * *   `8.8.8.8:53`
      * *   `test:bad:address`
@@ -197,7 +202,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
+     * like:
      * *   `8.8.8`
      * *   `8.8.8.8:53`
      * *   `test:bad:address`
@@ -258,10 +264,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -289,10 +291,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -310,8 +308,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
-     * `projects/<project number>/locations/global/networks/&#42;`.
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
+     * format `projects/<project number>/locations/global/networks/&#42;`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, but no other validation
      * is performed on this field (ex. network or project existence, reachability,
@@ -326,8 +324,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
-     * `projects/<project number>/locations/global/networks/&#42;`.
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
+     * format `projects/<project number>/locations/global/networks/&#42;`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, but no other validation
      * is performed on this field (ex. network or project existence, reachability,
@@ -413,6 +411,34 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * endpoint.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * endpoint.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

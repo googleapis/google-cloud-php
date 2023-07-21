@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for getting a task using [GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
+ * Request message for getting a task using
+ * [GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.GetTaskRequest</code>
  */
@@ -23,16 +24,17 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      */
@@ -48,16 +50,17 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
      *           Required. The task name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *     @type int $response_view
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
-     *           returned.
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
-     *           Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta3.Task] will be returned.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta3.Task] resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,16 +97,17 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      * @return int
@@ -114,16 +118,17 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      * @param int $var

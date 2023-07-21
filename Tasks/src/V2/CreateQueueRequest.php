@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CreateQueue][google.cloud.tasks.v2.CloudTasks.CreateQueue].
+ * Request message for
+ * [CreateQueue][google.cloud.tasks.v2.CloudTasks.CreateQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.CreateQueueRequest</code>
  */
@@ -27,7 +28,8 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. The queue to create.
-     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
+     * existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +45,8 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *                                             {@see CloudTasksClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Tasks\V2\Queue $queue  Required. The queue to create.
      *
-     *                                             [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     *                                             [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
+     *                                             existing queue.
      *
      * @return \Google\Cloud\Tasks\V2\CreateQueueRequest
      *
@@ -70,7 +73,8 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *           [ListLocations][google.cloud.location.Locations.ListLocations].
      *     @type \Google\Cloud\Tasks\V2\Queue $queue
      *           Required. The queue to create.
-     *           [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     *           [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
+     *           existing queue.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +118,8 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The queue to create.
-     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
+     * existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Tasks\V2\Queue|null
@@ -136,7 +141,8 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The queue to create.
-     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
+     * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
+     * existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Tasks\V2\Queue $var

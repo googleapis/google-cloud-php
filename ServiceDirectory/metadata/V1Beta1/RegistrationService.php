@@ -27,7 +27,7 @@ class RegistrationService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ß9
+ê;
 @google/cloud/servicedirectory/v1beta1/registration_service.proto%google.cloud.servicedirectory.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto4google/cloud/servicedirectory/v1beta1/endpoint.proto5google/cloud/servicedirectory/v1beta1/namespace.proto3google/cloud/servicedirectory/v1beta1/service.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¸
 CreateNamespaceRequest9
 parent (	B)àAúA#
@@ -105,7 +105,7 @@ page_token (	BàA
 update_mask (2.google.protobuf.FieldMaskBàA"W
 DeleteEndpointRequest>
 name (	B0àAúA*
-(servicedirectory.googleapis.com/Endpoint2Ï 
+(servicedirectory.googleapis.com/Endpoint2Ú"
 RegistrationServiceê
 CreateNamespace=.google.cloud.servicedirectory.v1beta1.CreateNamespaceRequest0.google.cloud.servicedirectory.v1beta1.Namespace"f‚Óä“@"3/v1beta1/{parent=projects/*/locations/*}/namespaces:	namespaceÚAparent,namespace,namespace_idÓ
 ListNamespaces<.google.cloud.servicedirectory.v1beta1.ListNamespacesRequest=.google.cloud.servicedirectory.v1beta1.ListNamespacesResponse"D‚Óä“53/v1beta1/{parent=projects/*/locations/*}/namespacesÚAparentÀ
@@ -122,10 +122,10 @@ GetService8.google.cloud.servicedirectory.v1beta1.GetServiceRequest..google.cl
 ListEndpoints;.google.cloud.servicedirectory.v1beta1.ListEndpointsRequest<.google.cloud.servicedirectory.v1beta1.ListEndpointsResponse"[‚Óä“LJ/v1beta1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpointsÚAparentÔ
 GetEndpoint9.google.cloud.servicedirectory.v1beta1.GetEndpointRequest/.google.cloud.servicedirectory.v1beta1.Endpoint"Y‚Óä“LJ/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}ÚAnameý
 UpdateEndpoint<.google.cloud.servicedirectory.v1beta1.UpdateEndpointRequest/.google.cloud.servicedirectory.v1beta1.Endpoint"|‚Óä“_2S/v1beta1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}:endpointÚAendpoint,update_maskÁ
-DeleteEndpoint<.google.cloud.servicedirectory.v1beta1.DeleteEndpointRequest.google.protobuf.Empty"Y‚Óä“L*J/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}ÚAnameò
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"¦‚Óä“Ÿ"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:*ò
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"¦‚Óä“Ÿ"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:*ž
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"²‚Óä“«"J/v1beta1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZZ"U/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*SÊAservicedirectory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBœ
+DeleteEndpoint<.google.cloud.servicedirectory.v1beta1.DeleteEndpointRequest.google.protobuf.Empty"Y‚Óä“L*J/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}ÚAnameÉ
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"ý‚Óä“ö"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:*ZU"P/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:getIamPolicy:*É
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"ý‚Óä“ö"D/v1beta1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:*ZT"O/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:*ZU"P/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:setIamPolicy:*û
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"‚Óä“ˆ"J/v1beta1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZZ"U/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*Z["V/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:testIamPermissions:*SÊAservicedirectory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBœ
 )com.google.cloud.servicedirectory.v1beta1BRegistrationServiceProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypbøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1bproto3'
         , true);
 

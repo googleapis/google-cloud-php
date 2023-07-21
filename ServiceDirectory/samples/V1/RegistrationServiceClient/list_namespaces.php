@@ -32,7 +32,7 @@ use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
  * Lists all namespaces.
  *
  * @param string $formattedParent The resource name of the project and location whose namespaces
- *                                we'd like to list. Please see
+ *                                you'd like to list. Please see
  *                                {@see RegistrationServiceClient::locationName()} for help formatting this field.
  */
 function list_namespaces_sample(string $formattedParent): void

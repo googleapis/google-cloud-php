@@ -9,23 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response for [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
+ * Response for
+ * [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
  *
  * Generated from protobuf message <code>google.cloud.policytroubleshooter.v1.TroubleshootIamPolicyResponse</code>
  */
 class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates whether the member has the specified permission for the specified
-     * resource, based on evaluating all of the applicable IAM policies.
+     * Indicates whether the principal has the specified permission for the
+     * specified resource, based on evaluating all of the applicable IAM policies.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1;</code>
      */
     private $access = 0;
     /**
-     * List of IAM policies that were evaluated to check the member's permissions,
-     * with annotations to indicate how each policy contributed to the final
-     * result.
+     * List of IAM policies that were evaluated to check the principal's
+     * permissions, with annotations to indicate how each policy contributed to
+     * the final result.
      * The list of policies can include the policy for the resource itself. It can
      * also include policies that are inherited from higher levels of the resource
      * hierarchy, including the organization, the folder, and the project.
@@ -35,6 +36,12 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.v1.ExplainedPolicy explained_policies = 2;</code>
      */
     private $explained_policies;
+    /**
+     * The general errors contained in the troubleshooting response.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
+     */
+    private $errors;
 
     /**
      * Constructor.
@@ -43,17 +50,19 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $access
-     *           Indicates whether the member has the specified permission for the specified
-     *           resource, based on evaluating all of the applicable IAM policies.
+     *           Indicates whether the principal has the specified permission for the
+     *           specified resource, based on evaluating all of the applicable IAM policies.
      *     @type array<\Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy>|\Google\Protobuf\Internal\RepeatedField $explained_policies
-     *           List of IAM policies that were evaluated to check the member's permissions,
-     *           with annotations to indicate how each policy contributed to the final
-     *           result.
+     *           List of IAM policies that were evaluated to check the principal's
+     *           permissions, with annotations to indicate how each policy contributed to
+     *           the final result.
      *           The list of policies can include the policy for the resource itself. It can
      *           also include policies that are inherited from higher levels of the resource
      *           hierarchy, including the organization, the folder, and the project.
      *           To learn more about the resource hierarchy, see
      *           https://cloud.google.com/iam/help/resource-hierarchy.
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *           The general errors contained in the troubleshooting response.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,8 +71,8 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the member has the specified permission for the specified
-     * resource, based on evaluating all of the applicable IAM policies.
+     * Indicates whether the principal has the specified permission for the
+     * specified resource, based on evaluating all of the applicable IAM policies.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1;</code>
      * @return int
@@ -74,8 +83,8 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the member has the specified permission for the specified
-     * resource, based on evaluating all of the applicable IAM policies.
+     * Indicates whether the principal has the specified permission for the
+     * specified resource, based on evaluating all of the applicable IAM policies.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1;</code>
      * @param int $var
@@ -90,9 +99,9 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of IAM policies that were evaluated to check the member's permissions,
-     * with annotations to indicate how each policy contributed to the final
-     * result.
+     * List of IAM policies that were evaluated to check the principal's
+     * permissions, with annotations to indicate how each policy contributed to
+     * the final result.
      * The list of policies can include the policy for the resource itself. It can
      * also include policies that are inherited from higher levels of the resource
      * hierarchy, including the organization, the folder, and the project.
@@ -108,9 +117,9 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of IAM policies that were evaluated to check the member's permissions,
-     * with annotations to indicate how each policy contributed to the final
-     * result.
+     * List of IAM policies that were evaluated to check the principal's
+     * permissions, with annotations to indicate how each policy contributed to
+     * the final result.
      * The list of policies can include the policy for the resource itself. It can
      * also include policies that are inherited from higher levels of the resource
      * hierarchy, including the organization, the folder, and the project.
@@ -125,6 +134,32 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy::class);
         $this->explained_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The general errors contained in the troubleshooting response.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * The general errors contained in the troubleshooting response.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->errors = $arr;
 
         return $this;
     }

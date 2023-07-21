@@ -25,6 +25,7 @@
 namespace Google\Cloud\ServiceDirectory\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -33,6 +34,10 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\ServiceDirectory\V1\ResolveServiceRequest;
 use Google\Cloud\ServiceDirectory\V1\ResolveServiceResponse;
 
@@ -290,22 +295,40 @@ class LookupServiceGapicClient
      *     @type string $endpointFilter
      *           Optional. The filter applied to the endpoints of the resolved service.
      *
-     *           General filter string syntax:
-     *           <field> <operator> <value> (<logical connector>)
-     *           <field> can be "name" or "metadata.<key>" for map field.
-     *           <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS and is
-     *           roughly the same as "=".
-     *           <value> must be the same data type as the field.
-     *           <logical connector> can be "AND, OR, NOT".
+     *           General `filter` string syntax:
+     *           `<field> <operator> <value> (<logical connector>)`
+     *
+     *           *   `<field>` can be `name`, `address`, `port`, or `annotations.<key>` for
+     *           map field
+     *           *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
+     *           means `HAS`, and is roughly the same as `=`
+     *           *   `<value>` must be the same data type as field
+     *           *   `<logical connector>` can be `AND`, `OR`, `NOT`
      *
      *           Examples of valid filters:
-     *           * "metadata.owner" returns Endpoints that have a label with the
-     *           key "owner", this is the same as "metadata:owner"
-     *           * "metadata.protocol=gRPC" returns Endpoints that have key/value
-     *           "protocol=gRPC"
-     *           * "metadata.owner!=sd AND metadata.foo=bar" returns
-     *           Endpoints that have "owner" field in metadata with a value that is not
-     *           "sd" AND have the key/value foo=bar.
+     *
+     *           *   `annotations.owner` returns endpoints that have a annotation with the
+     *           key `owner`, this is the same as `annotations:owner`
+     *           *   `annotations.protocol=gRPC` returns endpoints that have key/value
+     *           `protocol=gRPC`
+     *           *   `address=192.108.1.105` returns endpoints that have this address
+     *           *   `port>8080` returns endpoints that have port number larger than 8080
+     *           *
+     *           `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c`
+     *           returns endpoints that have name that is alphabetically later than the
+     *           string, so "endpoint-e" is returned but "endpoint-a" is not
+     *           *
+     *           `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1`
+     *           returns the endpoint that has an endpoint_id equal to `ep-1`
+     *           *   `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that
+     *           have `owner` in annotation key but value is not `sd` AND have
+     *           key/value `foo=bar`
+     *           *   `doesnotexist.foo=bar` returns an empty list. Note that endpoint
+     *           doesn't have a field called "doesnotexist". Since the filter does not
+     *           match any endpoint, it returns no results
+     *
+     *           For more information about filtering, see
+     *           [API Filtering](https://aip.dev/160).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -342,5 +365,145 @@ class LookupServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $lookupServiceClient = new LookupServiceClient();
+     * try {
+     *     $response = $lookupServiceClient->getLocation();
+     * } finally {
+     *     $lookupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $lookupServiceClient = new LookupServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $lookupServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $lookupServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $lookupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

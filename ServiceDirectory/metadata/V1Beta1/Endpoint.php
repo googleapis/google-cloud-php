@@ -19,8 +19,8 @@ class Endpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∞
-4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"î
+¬
+4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"¶
 Endpoint
 name (	B‡A
 address (	B‡A
@@ -29,7 +29,8 @@ class Endpoint
 network (	B/‡A˙A)
 \'servicedirectory.googleapis.com/Network4
 create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A/
+update_time (2.google.protobuf.TimestampB‡A
+uid (	B‡A/
 MetadataEntry
 key (	
 value (	:8:ñÍAí
