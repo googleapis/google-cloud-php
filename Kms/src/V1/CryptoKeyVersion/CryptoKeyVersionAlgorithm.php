@@ -71,6 +71,30 @@ class CryptoKeyVersionAlgorithm
      */
     const AES_256_GCM = 19;
     /**
+     * AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_128_CBC = 42;</code>
+     */
+    const AES_128_CBC = 42;
+    /**
+     * AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_256_CBC = 43;</code>
+     */
+    const AES_256_CBC = 43;
+    /**
+     * AES-CTR (Counter Mode) using 128-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_128_CTR = 44;</code>
+     */
+    const AES_128_CTR = 44;
+    /**
+     * AES-CTR (Counter Mode) using 256-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_256_CTR = 45;</code>
+     */
+    const AES_256_CTR = 45;
+    /**
      * RSASSA-PSS 2048 bit key with a SHA256 digest.
      *
      * Generated from protobuf enum <code>RSA_SIGN_PSS_2048_SHA256 = 2;</code>
@@ -245,6 +269,10 @@ class CryptoKeyVersionAlgorithm
         self::GOOGLE_SYMMETRIC_ENCRYPTION => 'GOOGLE_SYMMETRIC_ENCRYPTION',
         self::AES_128_GCM => 'AES_128_GCM',
         self::AES_256_GCM => 'AES_256_GCM',
+        self::AES_128_CBC => 'AES_128_CBC',
+        self::AES_256_CBC => 'AES_256_CBC',
+        self::AES_128_CTR => 'AES_128_CTR',
+        self::AES_256_CTR => 'AES_256_CTR',
         self::RSA_SIGN_PSS_2048_SHA256 => 'RSA_SIGN_PSS_2048_SHA256',
         self::RSA_SIGN_PSS_3072_SHA256 => 'RSA_SIGN_PSS_3072_SHA256',
         self::RSA_SIGN_PSS_4096_SHA256 => 'RSA_SIGN_PSS_4096_SHA256',
