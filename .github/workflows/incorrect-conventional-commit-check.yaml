@@ -4,7 +4,7 @@ on:
     branches: ['main']
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
-  incorrectly-labelled-check:
+  incorrect-conventional-commit-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
