@@ -94,15 +94,17 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined key/value metadata.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask $input_switch
-     *           Required. Switches to another input stream.
+     *           Switches to another input stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask $ad_break
-     *           Required. Inserts a new ad opportunity.
+     *           Inserts a new ad opportunity.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask $return_to_program
-     *           Required. Stops any running ad break.
+     *           Stops any running ad break.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\SlateTask $slate
+     *           Inserts a slate.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\MuteTask $mute
-     *           Required. Mutes the stream.
+     *           Mutes the stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $unmute
-     *           Required. Unmutes the stream.
+     *           Unmutes the stream.
      *     @type bool $execute_now
      *           When this field is set to true, the event will be executed at the earliest
      *           time that the server can schedule the event and
@@ -256,9 +258,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Switches to another input stream.
+     * Switches to another input stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask|null
      */
     public function getInputSwitch()
@@ -272,9 +274,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Switches to another input stream.
+     * Switches to another input stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask $var
      * @return $this
      */
@@ -287,9 +289,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Inserts a new ad opportunity.
+     * Inserts a new ad opportunity.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask|null
      */
     public function getAdBreak()
@@ -303,9 +305,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Inserts a new ad opportunity.
+     * Inserts a new ad opportunity.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask $var
      * @return $this
      */
@@ -318,9 +320,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Stops any running ad break.
+     * Stops any running ad break.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask|null
      */
     public function getReturnToProgram()
@@ -334,9 +336,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Stops any running ad break.
+     * Stops any running ad break.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask $var
      * @return $this
      */
@@ -349,9 +351,40 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mutes the stream.
+     * Inserts a slate.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.SlateTask slate = 14;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\SlateTask|null
+     */
+    public function getSlate()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasSlate()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Inserts a slate.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.SlateTask slate = 14;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\SlateTask $var
+     * @return $this
+     */
+    public function setSlate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\SlateTask::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Mutes the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\MuteTask|null
      */
     public function getMute()
@@ -365,9 +398,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mutes the stream.
+     * Mutes the stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\MuteTask $var
      * @return $this
      */
@@ -380,9 +413,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unmutes the stream.
+     * Unmutes the stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask|null
      */
     public function getUnmute()
@@ -396,9 +429,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unmutes the stream.
+     * Unmutes the stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $var
      * @return $this
      */

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
+ * The request message for
+ * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
  * Looks up a service by its name, returns the service and its endpoints.
  *
  * Generated from protobuf message <code>google.cloud.servicedirectory.v1beta1.ResolveServiceRequest</code>
@@ -23,8 +24,8 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100.
-     * If a value less than one is specified, the Default is used.
+     * Optional. The maximum number of endpoints to return. Defaults to 25.
+     * Maximum is 100. If a value less than one is specified, the Default is used.
      * If a value greater than the Maximum is specified, the Maximum is used.
      *
      * Generated from protobuf field <code>int32 max_endpoints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -51,6 +52,9 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c`
      *     returns endpoints that have name that is alphabetically later than the
      *     string, so "endpoint-e" is returned but "endpoint-a" is not
+     * *
+     * `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1`
+     *      returns the endpoint that has an endpoint_id equal to `ep-1`
      * *   `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have
      *     `owner` in annotation key but value is not `sd` AND have key/value
      *      `foo=bar`
@@ -73,8 +77,8 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the service to resolve.
      *     @type int $max_endpoints
-     *           Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100.
-     *           If a value less than one is specified, the Default is used.
+     *           Optional. The maximum number of endpoints to return. Defaults to 25.
+     *           Maximum is 100. If a value less than one is specified, the Default is used.
      *           If a value greater than the Maximum is specified, the Maximum is used.
      *     @type string $endpoint_filter
      *           Optional. The filter applied to the endpoints of the resolved service.
@@ -97,6 +101,9 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      *           `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c`
      *               returns endpoints that have name that is alphabetically later than the
      *               string, so "endpoint-e" is returned but "endpoint-a" is not
+     *           *
+     *           `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1`
+     *                returns the endpoint that has an endpoint_id equal to `ep-1`
      *           *   `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have
      *               `owner` in annotation key but value is not `sd` AND have key/value
      *                `foo=bar`
@@ -139,8 +146,8 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100.
-     * If a value less than one is specified, the Default is used.
+     * Optional. The maximum number of endpoints to return. Defaults to 25.
+     * Maximum is 100. If a value less than one is specified, the Default is used.
      * If a value greater than the Maximum is specified, the Maximum is used.
      *
      * Generated from protobuf field <code>int32 max_endpoints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -152,8 +159,8 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100.
-     * If a value less than one is specified, the Default is used.
+     * Optional. The maximum number of endpoints to return. Defaults to 25.
+     * Maximum is 100. If a value less than one is specified, the Default is used.
      * If a value greater than the Maximum is specified, the Maximum is used.
      *
      * Generated from protobuf field <code>int32 max_endpoints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -189,6 +196,9 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c`
      *     returns endpoints that have name that is alphabetically later than the
      *     string, so "endpoint-e" is returned but "endpoint-a" is not
+     * *
+     * `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1`
+     *      returns the endpoint that has an endpoint_id equal to `ep-1`
      * *   `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have
      *     `owner` in annotation key but value is not `sd` AND have key/value
      *      `foo=bar`
@@ -227,6 +237,9 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c`
      *     returns endpoints that have name that is alphabetically later than the
      *     string, so "endpoint-e" is returned but "endpoint-a" is not
+     * *
+     * `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1`
+     *      returns the endpoint that has an endpoint_id equal to `ep-1`
      * *   `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have
      *     `owner` in annotation key but value is not `sd` AND have key/value
      *      `foo=bar`

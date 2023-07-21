@@ -32,9 +32,11 @@ use Google\Cloud\Tasks\V2beta3\Queue;
  *
  * This method resumes a queue after it has been
  * [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED] or
- * [DISABLED][google.cloud.tasks.v2beta3.Queue.State.DISABLED]. The state of a queue is stored
- * in the queue's [state][google.cloud.tasks.v2beta3.Queue.state]; after calling this method it
- * will be set to [RUNNING][google.cloud.tasks.v2beta3.Queue.State.RUNNING].
+ * [DISABLED][google.cloud.tasks.v2beta3.Queue.State.DISABLED]. The state of a
+ * queue is stored in the queue's
+ * [state][google.cloud.tasks.v2beta3.Queue.state]; after calling this method
+ * it will be set to
+ * [RUNNING][google.cloud.tasks.v2beta3.Queue.State.RUNNING].
  *
  * WARNING: Resuming many high-QPS queues at the same time can
  * lead to target overloading. If you are resuming high-QPS

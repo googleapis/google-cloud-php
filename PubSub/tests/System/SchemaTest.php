@@ -144,13 +144,11 @@ class SchemaTest extends PubSubTestCase
         $io = new \AvroStringIO();
         $schema = \AvroSchema::parse($definition);
         $writer = new \AvroIODatumWriter($schema);
-        $dataWriter = new \AvroDataIOWriter($io, $writer, $schema);
-        $dataWriter->append($data);
-
-        $dataWriter->close();
+        $encoder = new \AvroIOBinaryEncoder($io);
+        $writer->write($data, $encoder);
 
         $topic->publish(new Message([
-            'data' => base64_encode($io->string()),
+            'data' => $io->string(),
         ]));
     }
 

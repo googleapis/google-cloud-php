@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [RegistrationService.GetService][google.cloud.servicedirectory.v1beta1.RegistrationService.GetService].
- * This should not be used for looking up a service. Insead, use the `resolve`
+ * The request message for
+ * [RegistrationService.GetService][google.cloud.servicedirectory.v1beta1.RegistrationService.GetService].
+ * This should not be used for looking up a service. Instead, use the `resolve`
  * method as it contains all endpoints and associated metadata.
  *
  * Generated from protobuf message <code>google.cloud.servicedirectory.v1beta1.GetServiceRequest</code>

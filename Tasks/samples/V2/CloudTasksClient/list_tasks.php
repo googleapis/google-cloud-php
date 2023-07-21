@@ -31,10 +31,10 @@ use Google\Cloud\Tasks\V2\Task;
 /**
  * Lists the tasks in a queue.
  *
- * By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is retrieved
- * due to performance considerations;
- * [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view] controls the
- * subset of information which is returned.
+ * By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+ * retrieved due to performance considerations;
+ * [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+ * controls the subset of information which is returned.
  *
  * The tasks may be returned in any order. The ordering may change at any
  * time.

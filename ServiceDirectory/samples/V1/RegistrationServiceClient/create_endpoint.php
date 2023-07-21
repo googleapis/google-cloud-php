@@ -28,7 +28,7 @@ use Google\Cloud\ServiceDirectory\V1\Endpoint;
 use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
- * Creates a endpoint, and returns the new Endpoint.
+ * Creates an endpoint, and returns the new endpoint.
  *
  * @param string $formattedParent The resource name of the service that this endpoint provides. Please see
  *                                {@see RegistrationServiceClient::serviceName()} for help formatting this field.

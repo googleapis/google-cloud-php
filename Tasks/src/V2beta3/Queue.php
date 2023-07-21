@@ -40,6 +40,12 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpTarget http_target = 13;</code>
+     */
+    private $http_target = null;
+    /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
      * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
@@ -84,7 +90,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $retry_config = null;
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
      * uploading
@@ -194,6 +200,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
      *           [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by
      *           this proto.
+     *     @type \Google\Cloud\Tasks\V2beta3\HttpTarget $http_target
+     *           Modifies HTTP target for HTTP tasks.
      *     @type \Google\Cloud\Tasks\V2beta3\RateLimits $rate_limits
      *           Rate limits for task dispatches.
      *           [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
@@ -231,7 +239,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *             documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *     @type int $state
      *           Output only. The state of the queue.
-     *           `state` can only be changed by calling
+     *           `state` can only be changed by called
      *           [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      *           [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
      *           uploading
@@ -386,6 +394,42 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpTarget http_target = 13;</code>
+     * @return \Google\Cloud\Tasks\V2beta3\HttpTarget|null
+     */
+    public function getHttpTarget()
+    {
+        return $this->http_target;
+    }
+
+    public function hasHttpTarget()
+    {
+        return isset($this->http_target);
+    }
+
+    public function clearHttpTarget()
+    {
+        unset($this->http_target);
+    }
+
+    /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpTarget http_target = 13;</code>
+     * @param \Google\Cloud\Tasks\V2beta3\HttpTarget $var
+     * @return $this
+     */
+    public function setHttpTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\HttpTarget::class);
+        $this->http_target = $var;
+
+        return $this;
+    }
+
+    /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
      * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
@@ -521,7 +565,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
      * uploading
@@ -539,7 +583,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
      * uploading
