@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-ai-platform",
-            "path": "AiPlatform",
+            "path": "AIPlatform",
             "entry": null,
             "target": "googleapis/google-cloud-php-ai-platform.git"
         }

@@ -240,7 +240,7 @@
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Cloud\\Accessapproval\\": "AccessApproval/metadata",
             "GPBMetadata\\Google\\Cloud\\Advisorynotifications\\": "AdvisoryNotifications/metadata",
-            "GPBMetadata\\Google\\Cloud\\Aiplatform\\": "AiPlatform/metadata",
+            "GPBMetadata\\Google\\Cloud\\Aiplatform\\": "AIPlatform/metadata",
             "GPBMetadata\\Google\\Cloud\\Alloydb\\": "AlloyDb/metadata",
             "GPBMetadata\\Google\\Cloud\\Apigateway\\": "ApiGateway/metadata",
             "GPBMetadata\\Google\\Cloud\\Apigeeconnect\\": "ApigeeConnect/metadata",
@@ -394,7 +394,7 @@
             "Google\\Cloud\\": [
                 "CommonProtos/src"
             ],
-            "Google\\Cloud\\AIPlatform\\": "AiPlatform/src",
+            "Google\\Cloud\\AIPlatform\\": "AIPlatform/src",
             "Google\\Cloud\\AccessApproval\\": "AccessApproval/src",
             "Google\\Cloud\\AdvisoryNotifications\\": "AdvisoryNotifications/src",
             "Google\\Cloud\\AlloyDb\\": "AlloyDb/src",
@@ -555,7 +555,7 @@
         "psr-4": {
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
-            "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",
+            "Google\\Cloud\\AIPlatform\\Tests\\": "AIPlatform/tests",
             "Google\\Cloud\\AccessApproval\\Tests\\": "AccessApproval/tests",
             "Google\\Cloud\\ApiGateway\\Tests\\": "ApiGateway/tests",
             "Google\\Cloud\\ApigeeConnect\\Tests\\": "ApigeeConnect/tests",

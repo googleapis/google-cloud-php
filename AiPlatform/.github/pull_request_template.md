@@ -14,7 +14,7 @@ $ git clone git@github.com:googleapis/google-cloud-php.git
 ```
 
 * Move your changes into the correct location in that library. Library code
-belongs in `AiPlatform/src`, and tests in `AiPlatform/tests`.
+belongs in `AIPlatform/src`, and tests in `AIPlatform/tests`.
 
 * Push the changes in a new branch to a fork, and open a new pull request
 [here](https://github.com/googleapis/google-cloud-php).
