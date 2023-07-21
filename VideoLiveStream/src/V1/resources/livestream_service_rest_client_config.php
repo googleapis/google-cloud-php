@@ -27,6 +27,21 @@ return [
             ],
         ],
         'google.cloud.video.livestream.v1.LivestreamService' => [
+            'CreateAsset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/assets',
+                'body' => 'asset',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'asset_id',
+                ],
+            ],
             'CreateChannel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channels',
@@ -72,6 +87,17 @@ return [
                     'input_id',
                 ],
             ],
+            'DeleteAsset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/assets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteChannel' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}',
@@ -97,6 +123,17 @@ return [
             'DeleteInput' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/inputs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAsset' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/assets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -134,6 +171,28 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPool' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/pools/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/assets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -216,6 +275,19 @@ return [
                     'input.name' => [
                         'getters' => [
                             'getInput',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePool' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{pool.name=projects/*/locations/*/pools/*}',
+                'body' => 'pool',
+                'placeholders' => [
+                    'pool.name' => [
+                        'getters' => [
+                            'getPool',
                             'getName',
                         ],
                     ],

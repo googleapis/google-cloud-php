@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,39 +22,52 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [START livestream_v1_generated_LivestreamService_CreateAsset_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
-use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
+use Google\Rpc\Status;
 
 /**
- * Creates an event with the provided unique ID in the specified channel.
+ * Creates a Asset with the provided unique ID in the specified
+ * region.
  *
- * @param string $formattedParent The parent channel for the resource, in the form of:
- *                                `projects/{project}/locations/{location}/channels/{channelId}`. Please see
- *                                {@see LivestreamServiceClient::channelName()} for help formatting this field.
- * @param string $eventId         The ID of the event resource to be created.
+ * @param string $formattedParent The parent location for the resource, in the form of:
+ *                                `projects/{project}/locations/{location}`. Please see
+ *                                {@see LivestreamServiceClient::locationName()} for help formatting this field.
+ * @param string $assetId         The ID of the asset resource to be created.
  *                                This value must be 1-63 characters, begin and end with `[a-z0-9]`,
  *                                could contain dashes (-) in between.
  */
-function create_event_sample(string $formattedParent, string $eventId): void
+function create_asset_sample(string $formattedParent, string $assetId): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $event = new Event();
-    $request = (new CreateEventRequest())
+    $asset = new Asset();
+    $request = (new CreateAssetRequest())
         ->setParent($formattedParent)
-        ->setEvent($event)
-        ->setEventId($eventId);
+        ->setAsset($asset)
+        ->setAssetId($assetId);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Event $response */
-        $response = $livestreamServiceClient->createEvent($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $livestreamServiceClient->createAsset($request);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var Asset $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,9 +84,9 @@ function create_event_sample(string $formattedParent, string $eventId): void
  */
 function callSample(): void
 {
-    $formattedParent = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-    $eventId = '[EVENT_ID]';
+    $formattedParent = LivestreamServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $assetId = '[ASSET_ID]';
 
-    create_event_sample($formattedParent, $eventId);
+    create_asset_sample($formattedParent, $assetId);
 }
-// [END livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [END livestream_v1_generated_LivestreamService_CreateAsset_sync]

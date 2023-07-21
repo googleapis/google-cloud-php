@@ -25,8 +25,33 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶4
-.google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ø
+∫D
+.google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
+CreateAssetRequest7
+parent (	B\'‡A˙A!livestream.googleapis.com/Asset;
+asset (2\'.google.cloud.video.livestream.v1.AssetB‡A
+asset_id (	B‡A
+
+request_id (	"_
+DeleteAssetRequest5
+name (	B\'‡A˙A!
+livestream.googleapis.com/Asset
+
+request_id (	"ï
+ListAssetsRequest7
+parent (	B\'‡A˙A!livestream.googleapis.com/Asset
+	page_size (
+
+page_token (	
+filter (	
+order_by (	"{
+ListAssetsResponse7
+assets (2\'.google.cloud.video.livestream.v1.Asset
+next_page_token (	
+unreachable (	"H
+GetAssetRequest5
+name (	B\'‡A˙A!
+livestream.googleapis.com/Asset"ø
 CreateChannelRequest9
 parent (	B)‡A˙A#!livestream.googleapis.com/Channel?
 channel (2).google.cloud.video.livestream.v1.ChannelB‡A
@@ -131,7 +156,15 @@ request_id (	"
 target (	B‡A
 verb (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2’
+api_version (	B‡A"F
+GetPoolRequest4
+name (	B&‡A˙A 
+livestream.googleapis.com/Pool"ì
+UpdatePoolRequest/
+update_mask (2.google.protobuf.FieldMask9
+pool (2&.google.cloud.video.livestream.v1.PoolB‡A
+
+request_id (	2¬"
 LivestreamService‡
 CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÇ”‰ì7",/v1/{parent=projects/*/locations/*}/channels:channel⁄Aparent,channel,channel_id A
 ChannelOperationMetadataº
@@ -159,9 +192,21 @@ ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.v
 
 ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"FÇ”‰ì75/v1/{parent=projects/*/locations/*/channels/*}/events⁄Aparent¨
 GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"DÇ”‰ì75/v1/{name=projects/*/locations/*/channels/*/events/*}⁄Aname°
-DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÇ”‰ì7*5/v1/{name=projects/*/locations/*/channels/*/events/*}⁄AnameM Alivestream.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB–
+DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÇ”‰ì7*5/v1/{name=projects/*/locations/*/channels/*/events/*}⁄Aname“
+CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"nÇ”‰ì3"*/v1/{parent=projects/*/locations/*}/assets:asset⁄Aparent,asset,asset_id A
+AssetOperationMetadata 
+DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"fÇ”‰ì,**/v1/{name=projects/*/locations/*/assets/*}⁄Aname A*
+google.protobuf.EmptyOperationMetadata°
+GetAsset1.google.cloud.video.livestream.v1.GetAssetRequest\'.google.cloud.video.livestream.v1.Asset"9Ç”‰ì,*/v1/{name=projects/*/locations/*/assets/*}⁄Aname¥
+
+ListAssets3.google.cloud.video.livestream.v1.ListAssetsRequest4.google.cloud.video.livestream.v1.ListAssetsResponse";Ç”‰ì,*/v1/{parent=projects/*/locations/*}/assets⁄Aparentù
+GetPool0.google.cloud.video.livestream.v1.GetPoolRequest&.google.cloud.video.livestream.v1.Pool"8Ç”‰ì+)/v1/{name=projects/*/locations/*/pools/*}⁄AnameÕ
+
+UpdatePool3.google.cloud.video.livestream.v1.UpdatePoolRequest.google.longrunning.Operation"kÇ”‰ì62./v1/{pool.name=projects/*/locations/*/pools/*}:pool⁄Apool,update_mask A
+PoolOperationMetadataM Alivestream.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB°
 $com.google.cloud.video.livestream.v1BServiceProtoPZDcloud.google.com/go/video/livestream/apiv1/livestreampb;livestreampb™ Google.Cloud.Video.LiveStream.V1  Google\\Cloud\\Video\\LiveStream\\V1Í$Google::Cloud::Video::LiveStream::V1ÍAd
-*secretmanager.googleapis.com/SecretVersion6projects/{project}/secrets/{secret}/versions/{version}bproto3'
+*secretmanager.googleapis.com/SecretVersion6projects/{project}/secrets/{secret}/versions/{version}ÍAN
+compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
         , true);
 
         static::$is_initialized = true;

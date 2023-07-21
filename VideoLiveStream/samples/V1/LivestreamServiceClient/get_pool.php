@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [START livestream_v1_generated_LivestreamService_GetPool_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
-use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
+use Google\Cloud\Video\LiveStream\V1\Pool;
 
 /**
- * Creates an event with the provided unique ID in the specified channel.
+ * Returns the specified pool.
  *
- * @param string $formattedParent The parent channel for the resource, in the form of:
- *                                `projects/{project}/locations/{location}/channels/{channelId}`. Please see
- *                                {@see LivestreamServiceClient::channelName()} for help formatting this field.
- * @param string $eventId         The ID of the event resource to be created.
- *                                This value must be 1-63 characters, begin and end with `[a-z0-9]`,
- *                                could contain dashes (-) in between.
+ * @param string $formattedName The name of the pool resource, in the form of:
+ *                              `projects/{project}/locations/{location}/pools/{poolId}`. Please see
+ *                              {@see LivestreamServiceClient::poolName()} for help formatting this field.
  */
-function create_event_sample(string $formattedParent, string $eventId): void
+function get_pool_sample(string $formattedName): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $event = new Event();
-    $request = (new CreateEventRequest())
-        ->setParent($formattedParent)
-        ->setEvent($event)
-        ->setEventId($eventId);
+    $request = (new GetPoolRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Event $response */
-        $response = $livestreamServiceClient->createEvent($request);
+        /** @var Pool $response */
+        $response = $livestreamServiceClient->getPool($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -71,9 +65,8 @@ function create_event_sample(string $formattedParent, string $eventId): void
  */
 function callSample(): void
 {
-    $formattedParent = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-    $eventId = '[EVENT_ID]';
+    $formattedName = LivestreamServiceClient::poolName('[PROJECT]', '[LOCATION]', '[POOL]');
 
-    create_event_sample($formattedParent, $eventId);
+    get_pool_sample($formattedName);
 }
-// [END livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [END livestream_v1_generated_LivestreamService_GetPool_sync]

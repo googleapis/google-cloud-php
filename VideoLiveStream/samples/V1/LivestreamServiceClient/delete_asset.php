@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,39 +22,42 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [START livestream_v1_generated_LivestreamService_DeleteAsset_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
-use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
+use Google\Rpc\Status;
 
 /**
- * Creates an event with the provided unique ID in the specified channel.
+ * Deletes the specified asset if it is not used.
  *
- * @param string $formattedParent The parent channel for the resource, in the form of:
- *                                `projects/{project}/locations/{location}/channels/{channelId}`. Please see
- *                                {@see LivestreamServiceClient::channelName()} for help formatting this field.
- * @param string $eventId         The ID of the event resource to be created.
- *                                This value must be 1-63 characters, begin and end with `[a-z0-9]`,
- *                                could contain dashes (-) in between.
+ * @param string $formattedName The name of the asset resource, in the form of:
+ *                              `projects/{project}/locations/{location}/assets/{assetId}`. Please see
+ *                              {@see LivestreamServiceClient::assetName()} for help formatting this field.
  */
-function create_event_sample(string $formattedParent, string $eventId): void
+function delete_asset_sample(string $formattedName): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $event = new Event();
-    $request = (new CreateEventRequest())
-        ->setParent($formattedParent)
-        ->setEvent($event)
-        ->setEventId($eventId);
+    $request = (new DeleteAssetRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Event $response */
-        $response = $livestreamServiceClient->createEvent($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $livestreamServiceClient->deleteAsset($request);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,9 +74,8 @@ function create_event_sample(string $formattedParent, string $eventId): void
  */
 function callSample(): void
 {
-    $formattedParent = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-    $eventId = '[EVENT_ID]';
+    $formattedName = LivestreamServiceClient::assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
 
-    create_event_sample($formattedParent, $eventId);
+    delete_asset_sample($formattedName);
 }
-// [END livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [END livestream_v1_generated_LivestreamService_DeleteAsset_sync]

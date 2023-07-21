@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.video.livestream.v1.LivestreamService' => [
+            'CreateAsset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Asset',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateChannel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Channel',
@@ -37,6 +56,25 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAsset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -157,6 +195,26 @@ return [
                     ],
                 ],
             ],
+            'UpdatePool' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Pool',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'pool.name',
+                        'fieldAccessors' => [
+                            'getPool',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Video\LiveStream\V1\Event',
@@ -172,6 +230,18 @@ return [
             'DeleteEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAsset' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\Asset',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -213,6 +283,38 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPool' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\Pool',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAssets',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListAssetsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -312,10 +414,13 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'asset' => 'projects/{project}/locations/{location}/assets/{asset}',
                 'channel' => 'projects/{project}/locations/{location}/channels/{channel}',
                 'event' => 'projects/{project}/locations/{location}/channels/{channel}/events/{event}',
                 'input' => 'projects/{project}/locations/{location}/inputs/{input}',
                 'location' => 'projects/{project}/locations/{location}',
+                'network' => 'projects/{project}/global/networks/{network}',
+                'pool' => 'projects/{project}/locations/{location}/pools/{pool}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
             ],
         ],
