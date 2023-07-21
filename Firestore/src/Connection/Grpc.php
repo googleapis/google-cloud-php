@@ -57,6 +57,11 @@ class Grpc implements ConnectionInterface
     private $resourcePrefixHeader;
 
     /**
+     * @var string
+     */
+    private $databaseRoutingHeader;
+
+    /**
      * @var bool
      */
     private $isUsingEmulator = false;
@@ -347,6 +352,7 @@ class Grpc implements ConnectionInterface
             'serializer' => get_class($this->serializer),
             'firestore' => get_class($this->firestore),
             'resourcePrefixHeader' => $this->resourcePrefixHeader,
+            'databaseRoutingHeader' => $this->databaseRoutingHeader,
             'isUsingEmulator' => $this->isUsingEmulator
         ];
     }
