@@ -22,7 +22,7 @@ if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
 fi
 
-find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex "$PROJECT_DIR/[A-Z].*" -exec dirname {} \; | while read DIR
+find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'installed.json' -not -path '*vendor/*' -regex "$PROJECT_DIR/[A-Z].*" -exec dirname {} \; | while read DIR
 do
     COMPONENT=$(basename $DIR)
     VERSION=$(cat $DIR/VERSION)
@@ -60,15 +60,18 @@ release_modules () {
 for module in $(release_modules "$VERSION");
 do
     # Store the released package
-    zip -r "pkg/$module.zip" "$module"  -x "$module/.github/*" "$module/samples/*"  "$module/tests/*" \
-    "$module/.OwlBot.yaml"  "$module/.gitattributes"  "$module/.repo-metadata.json"  "$module/owlbot.py" \
-    "$module/phpunit.xml.dist"
+    zip -r "pkg/$module.zip" "$module"  -x \
+        "$module/.github/*" \
+        "$module/samples/*" \
+        "$module/tests/*" \
+        "$module/.OwlBot.yaml" \
+        "$module/.gitattributes" \
+        "$module/.repo-metadata.json" \
+        "$module/owlbot.py" \
+        "$module/phpunit.xml.dist"
 
     # Store composer.lock for SBOM generation
     mkdir "pkg/$module"
     composer update -d "$module"
     cp "$module/composer.lock" "pkg/$module/composer.lock"
 done
-
-
-
