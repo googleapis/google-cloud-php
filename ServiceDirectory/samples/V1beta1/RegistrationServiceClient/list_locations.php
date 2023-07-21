@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START servicedirectory_v1_generated_RegistrationService_UpdateEndpoint_sync]
+// [START servicedirectory_v1beta1_generated_RegistrationService_ListLocations_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ServiceDirectory\V1\Endpoint;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
-use Google\Protobuf\FieldMask;
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\Location;
+use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
 
 /**
- * Updates an endpoint.
+ * Lists information about the supported locations for this service.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -37,22 +37,22 @@ use Google\Protobuf\FieldMask;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_endpoint_sample(): void
+function list_locations_sample(): void
 {
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $endpoint = new Endpoint();
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
-        /** @var Endpoint $response */
-        $response = $registrationServiceClient->updateEndpoint($endpoint, $updateMask);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var PagedListResponse $response */
+        $response = $registrationServiceClient->listLocations();
+
+        /** @var Location $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END servicedirectory_v1_generated_RegistrationService_UpdateEndpoint_sync]
+// [END servicedirectory_v1beta1_generated_RegistrationService_ListLocations_sync]

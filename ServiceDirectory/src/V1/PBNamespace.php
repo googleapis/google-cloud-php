@@ -25,13 +25,20 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Output only. The globally unique identifier of the namespace in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
 
     /**
      * Constructor.
@@ -43,9 +50,12 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *           Immutable. The resource name for the namespace in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. Resource labels associated with this Namespace.
-     *           No more than 64 user labels can be associated with a given resource.  Label
+     *           Optional. Resource labels associated with this namespace.
+     *           No more than 64 user labels can be associated with a given resource. Label
      *           keys and values can be no longer than 63 characters.
+     *     @type string $uid
+     *           Output only. The globally unique identifier of the namespace in the UUID4
+     *           format.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +92,8 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -95,8 +105,8 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -107,6 +117,34 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The globally unique identifier of the namespace in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. The globally unique identifier of the namespace in the UUID4
+     * format.
+     *
+     * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

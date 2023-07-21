@@ -44,6 +44,13 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * namespace.
+     *
+     * Generated from protobuf field <code>string uid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
 
     /**
      * Constructor.
@@ -62,6 +69,9 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when the namespace was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the namespace was last updated.
+     *     @type string $uid
+     *           Output only. A globally unique identifier (in UUID4 format) for this
+     *           namespace.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +205,34 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * namespace.
+     *
+     * Generated from protobuf field <code>string uid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * namespace.
+     *
+     * Generated from protobuf field <code>string uid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

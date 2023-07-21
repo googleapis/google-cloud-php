@@ -28,7 +28,7 @@ use Google\Cloud\ServiceDirectory\V1\Endpoint;
 use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
- * Gets a endpoint.
+ * Gets an endpoint.
  *
  * @param string $formattedName The name of the endpoint to get. Please see
  *                              {@see RegistrationServiceClient::endpointName()} for help formatting this field.
