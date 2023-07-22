@@ -1,5 +1,192 @@
 # Changelog
 
+## 0.213.0
+
+<details><summary>google/cloud-ai-platform 0.22.0</summary>
+
+
+
+### Features
+
+* Schedule (schedule.proto) periodically schedules runs to make API calls ([7d4945f](https://github.com/googleapis/google-cloud-php/commit/7d4945f7be0f61ae5216967e6522b9b677e644cf))
+* ScheduleService (schedule_service.proto) creates and manages Schedule resources to launch scheduled pipelines runs ([#6477](https://github.com/googleapis/google-cloud-php/issues/6477)) ([7d4945f](https://github.com/googleapis/google-cloud-php/commit/7d4945f7be0f61ae5216967e6522b9b677e644cf))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.25.1</summary>
+
+
+
+### Bug Fixes
+
+* **BigQuery:** Return description for QueryResults-&gt;job() ([#6443](https://github.com/googleapis/google-cloud-php/issues/6443)) ([91afd16](https://github.com/googleapis/google-cloud-php/commit/91afd16818d7761db0bbc2fb301d23856340ea0b))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.26.2</summary>
+
+
+
+### Bug Fixes
+
+* **Bigtable:** Race condition in resuming ReadRows can lead to unintentional full table scan ([#6464](https://github.com/googleapis/google-cloud-php/issues/6464)) ([ac8bedd](https://github.com/googleapis/google-cloud-php/commit/ac8bedd09ccf74924d6db19f61987e27aef643aa))
+
+</details>
+
+<details><summary>google/cloud-build 0.11.0</summary>
+
+
+
+### Features
+
+* Add git_file_source and git_repo_source to build_trigger ([#6476](https://github.com/googleapis/google-cloud-php/issues/6476)) ([0d13aba](https://github.com/googleapis/google-cloud-php/commit/0d13abac6c40f98a08f6aa4bd993ca7b9a54202a))
+
+</details>
+
+<details><summary>google/cloud-compute 1.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.19.0</summary>
+
+
+
+### Features
+
+* Add Multi-networking API ([#6457](https://github.com/googleapis/google-cloud-php/issues/6457)) ([41ac651](https://github.com/googleapis/google-cloud-php/commit/41ac65100cc8976d1aaf5efd14a2aed8d2a01269))
+* Add policy_name to PlacementPolicy message within a node pool ([41ac651](https://github.com/googleapis/google-cloud-php/commit/41ac65100cc8976d1aaf5efd14a2aed8d2a01269))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.11.1</summary>
+
+
+
+### Documentation
+
+* Small documentation updates ([#6466](https://github.com/googleapis/google-cloud-php/issues/6466)) ([197fff2](https://github.com/googleapis/google-cloud-php/commit/197fff20f3614564712ff9f98f69239f9578922c))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Removed id field from Document message ([#6452](https://github.com/googleapis/google-cloud-php/issues/6452))
+
+### Features
+
+* Added http configuration and document publishing for v1beta2 ([284040c](https://github.com/googleapis/google-cloud-php/commit/284040c95daebf342a43ecfeac65bfe609ffe501))
+* Added ImportDocuments, GetDocument and BatchDeleteDocuments RPCs for v1beta3 ([284040c](https://github.com/googleapis/google-cloud-php/commit/284040c95daebf342a43ecfeac65bfe609ffe501))
+* Removed id field from Document message ([#6452](https://github.com/googleapis/google-cloud-php/issues/6452)) ([284040c](https://github.com/googleapis/google-cloud-php/commit/284040c95daebf342a43ecfeac65bfe609ffe501))
+
+</details>
+
+<details><summary>google/cloud-kms 1.20.0</summary>
+
+
+
+### Features
+
+* Add interoperable symmetric encryption system ([#6473](https://github.com/googleapis/google-cloud-php/issues/6473)) ([8679fca](https://github.com/googleapis/google-cloud-php/commit/8679fca9ac3b61a1a035951afc35526ed912ad01))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.3.0</summary>
+
+
+
+### Features
+
+* Add resource_types to SearchAllResources, to allow filtering by resource type ([#6448](https://github.com/googleapis/google-cloud-php/issues/6448)) ([98406a5](https://github.com/googleapis/google-cloud-php/commit/98406a506bf8e7fb7e04008d026931716cfc3b85))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.2.0</summary>
+
+
+
+### Features
+
+* Include errors in troubleshoot response ([#6458](https://github.com/googleapis/google-cloud-php/issues/6458)) ([1c4f512](https://github.com/googleapis/google-cloud-php/commit/1c4f512c79a86d9989864a7fbfe295be2966b7f3))
+
+
+### Documentation
+
+* Update documentation for ToubleshootIamPolicy RPC method ([1c4f512](https://github.com/googleapis/google-cloud-php/commit/1c4f512c79a86d9989864a7fbfe295be2966b7f3))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.45.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.2.0</summary>
+
+
+
+### Features
+
+* Added network and uid fields in Endpoint message ([#6472](https://github.com/googleapis/google-cloud-php/issues/6472)) ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+* Added uid field to Namespace message ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+* Added uid field to Service message ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+* Enable Location methods ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+
+
+### Documentation
+
+* Updated docs for ListServicesRequest and ListEndpointsRequest message ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+* Updated docs for ResolveServiceRequest message ([319de49](https://github.com/googleapis/google-cloud-php/commit/319de4909499898117dd8039527575a7c76e8774))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.13.0</summary>
+
+
+
+### Features
+
+* Add BufferTask RPC method for CloudTasks service for v2beta3 ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+* Add UploadQueueYaml, BufferTask RPC method for CloudTasks service for v2beta2 ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+* Add YAML config for GetLocation and ListLocation for v2 ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+* Add YAML config for GetLocation and ListLocations for v2beta3 ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+* Increase timeout of RPC methods to 20s for v2 ([#6455](https://github.com/googleapis/google-cloud-php/issues/6455)) ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+* Set deadline for GetLocation, ListLocations and UploadQueueYaml RPCs for v2beta2 ([1972ec6](https://github.com/googleapis/google-cloud-php/commit/1972ec62086eeed0e7a14bda07d9f440afa03e85))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.6.0</summary>
+
+
+
+### Features
+
+* Added a new asset resource which can be used as the content of slate events ([fefa9af](https://github.com/googleapis/google-cloud-php/commit/fefa9afa92c2ad154278af4b7189dd9c6e706979))
+* Added a new pool resource for protecting input endpoints within a VPC Service Controls perimeter ([fefa9af](https://github.com/googleapis/google-cloud-php/commit/fefa9afa92c2ad154278af4b7189dd9c6e706979))
+* Added support for slate events which allow users to create and insert a slate into a live stream to replace the main live stream content ([#6471](https://github.com/googleapis/google-cloud-php/issues/6471)) ([fefa9af](https://github.com/googleapis/google-cloud-php/commit/fefa9afa92c2ad154278af4b7189dd9c6e706979))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.9.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [VideoTranscoder] added support for segment template manifest generation with DASH ([#6433](https://github.com/googleapis/google-cloud-php/issues/6433))
+
+### Features
+
+* [VideoTranscoder] added support for segment template manifest generation with DASH ([#6433](https://github.com/googleapis/google-cloud-php/issues/6433)) ([37ee3ba](https://github.com/googleapis/google-cloud-php/commit/37ee3ba7dd3efa8db4785bf0bd923ab81b75c37a))
+
+</details>
+
 ## 0.212.0
 
 <details><summary>google/cloud-ai-platform 0.21.0</summary>
