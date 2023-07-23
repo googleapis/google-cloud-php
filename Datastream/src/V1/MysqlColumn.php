@@ -58,6 +58,18 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 ordinal_position = 7;</code>
      */
     private $ordinal_position = 0;
+    /**
+     * Column precision.
+     *
+     * Generated from protobuf field <code>int32 precision = 8;</code>
+     */
+    private $precision = 0;
+    /**
+     * Column scale.
+     *
+     * Generated from protobuf field <code>int32 scale = 9;</code>
+     */
+    private $scale = 0;
 
     /**
      * Constructor.
@@ -80,6 +92,10 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
      *           Whether or not the column can accept a null value.
      *     @type int $ordinal_position
      *           The ordinal position of the column in the table.
+     *     @type int $precision
+     *           Column precision.
+     *     @type int $scale
+     *           Column scale.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +283,58 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->ordinal_position = $var;
+
+        return $this;
+    }
+
+    /**
+     * Column precision.
+     *
+     * Generated from protobuf field <code>int32 precision = 8;</code>
+     * @return int
+     */
+    public function getPrecision()
+    {
+        return $this->precision;
+    }
+
+    /**
+     * Column precision.
+     *
+     * Generated from protobuf field <code>int32 precision = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPrecision($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->precision = $var;
+
+        return $this;
+    }
+
+    /**
+     * Column scale.
+     *
+     * Generated from protobuf field <code>int32 scale = 9;</code>
+     * @return int
+     */
+    public function getScale()
+    {
+        return $this->scale;
+    }
+
+    /**
+     * Column scale.
+     *
+     * Generated from protobuf field <code>int32 scale = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScale($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->scale = $var;
 
         return $this;
     }
