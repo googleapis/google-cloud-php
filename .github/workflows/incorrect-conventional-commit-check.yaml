@@ -1,7 +1,8 @@
 name: Incorrect Conventional Commit Check
 on:
   pull_request:
-    branches: ['main']
+    types: [opened, synchronize, reopened, edited]
+
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   incorrect-conventional-commit-check:
@@ -28,4 +29,4 @@ jobs:
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=origin/main \
-              --to=${{ steps.latest-release.outputs.release }} --format=github-actions
+              --to=${{ github.event.pull_request.head.sha }} --format=github-actions
