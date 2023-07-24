@@ -160,14 +160,6 @@ class FirestoreClient
     }
 
     /**
-     * Todo: Remove before committing to main.
-     */
-    public function myCustomFunction()
-    {
-        print('Do NOT commit to main.');
-    }
-
-    /**
      * Get a Batch Writer
      *
      * The {@see Google\Cloud\Firestore\WriteBatch} allows more performant
