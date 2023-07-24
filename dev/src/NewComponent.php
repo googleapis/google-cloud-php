@@ -132,7 +132,7 @@ class NewComponent
     private static function extractShortNameFromProtoContents(string $protoContents): string
     {
         if (!preg_match(
-            '/option \(google.api.default_host\) = "(.*).googleapis.com";/',
+            '/option \(google.api.default_host\) =[\n\r\s]+"(.*).googleapis.com";/',
             $protoContents,
             $matches)
         ) {
