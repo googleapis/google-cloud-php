@@ -62,6 +62,14 @@ class Retry
     }
 
     /**
+     * Todo: Remove before committing to main.
+     */
+    public function myCustomFunction()
+    {
+        print('Do NOT commit to main.');
+    }
+
+    /**
      * Executes the retry process.
      *
      * @param callable $function
