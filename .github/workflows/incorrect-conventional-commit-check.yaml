@@ -27,5 +27,6 @@ jobs:
         # OwlBot PRs which are not labelled feat should not add new files or methods
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-              --to=origin/main \
-              --from=${{ github.event.pull_request.head.sha }} --format=github-actions
+              --from=${{ github.event.pull_request.head.sha }} \
+              --to=${{ steps.latest-release.outputs.release }} --format=github-actions
+
