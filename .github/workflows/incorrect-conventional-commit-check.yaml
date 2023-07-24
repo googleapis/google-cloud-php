@@ -1,6 +1,7 @@
 name: Incorrect Conventional Commit Check
 on:
   pull_request:
+    types: [opened, synchronize, reopened, edited]
     branches: ['main']
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
@@ -17,16 +18,14 @@ jobs:
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: Get Latest Release
-        if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
       - name: "Check for an incorrect feat label in the PR"
-        if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && startsWith(github.event.pull_request.title, 'feat')}}
+        if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && !startsWith(github.event.pull_request.title, 'feat')}}
         # OwlBot PRs which are not labelled feat should not add new files or methods
-        continue-on-error: true
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-              --from=origin/main \
+              --from=${{ github.event.pull_request.head.sha }} \
               --to=${{ steps.latest-release.outputs.release }} --format=github-actions
