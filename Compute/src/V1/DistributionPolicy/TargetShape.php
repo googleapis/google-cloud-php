@@ -26,6 +26,12 @@ class TargetShape
      */
     const ANY = 64972;
     /**
+     * The group creates all VM instances within a single zone. The zone is selected based on the present resource constraints and to maximize utilization of unused zonal reservations. Recommended for batch workloads with heavy interprocess communication.
+     *
+     * Generated from protobuf enum <code>ANY_SINGLE_ZONE = 61100880;</code>
+     */
+    const ANY_SINGLE_ZONE = 61100880;
+    /**
      * The group prioritizes acquisition of resources, scheduling VMs in zones where resources are available while distributing VMs as evenly as possible across selected zones to minimize the impact of zonal failure. Recommended for highly available serving workloads.
      *
      * Generated from protobuf enum <code>BALANCED = 468409608;</code>
@@ -41,6 +47,7 @@ class TargetShape
     private static $valueToName = [
         self::UNDEFINED_TARGET_SHAPE => 'UNDEFINED_TARGET_SHAPE',
         self::ANY => 'ANY',
+        self::ANY_SINGLE_ZONE => 'ANY_SINGLE_ZONE',
         self::BALANCED => 'BALANCED',
         self::EVEN => 'EVEN',
     ];

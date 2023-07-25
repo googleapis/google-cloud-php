@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START compute_v1_generated_SecurityPolicies_PatchRule_sync]
+// [START compute_v1_generated_ResourcePolicies_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SecurityPoliciesClient;
-use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\ResourcePolicy;
 use Google\Rpc\Status;
 
 /**
- * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+ * Modify the specified resource policy.
  *
  * @param string $project        Project ID for this request.
- * @param string $securityPolicy Name of the security policy to update.
+ * @param string $region         Name of the region for this request.
+ * @param string $resourcePolicy Id of the resource policy to patch.
  */
-function patch_rule_sample(string $project, string $securityPolicy): void
+function patch_sample(string $project, string $region, string $resourcePolicy): void
 {
     // Create a client.
-    $securityPoliciesClient = new SecurityPoliciesClient();
+    $resourcePoliciesClient = new ResourcePoliciesClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $securityPolicyRuleResource = new SecurityPolicyRule();
+    $resourcePolicyResource = new ResourcePolicy();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $securityPoliciesClient->patchRule(
+        $response = $resourcePoliciesClient->patch(
             $project,
-            $securityPolicy,
-            $securityPolicyRuleResource
+            $region,
+            $resourcePolicy,
+            $resourcePolicyResource
         );
         $response->pollUntilComplete();
 
@@ -77,8 +79,9 @@ function patch_rule_sample(string $project, string $securityPolicy): void
 function callSample(): void
 {
     $project = '[PROJECT]';
-    $securityPolicy = '[SECURITY_POLICY]';
+    $region = '[REGION]';
+    $resourcePolicy = '[RESOURCE_POLICY]';
 
-    patch_rule_sample($project, $securityPolicy);
+    patch_sample($project, $region, $resourcePolicy);
 }
-// [END compute_v1_generated_SecurityPolicies_PatchRule_sync]
+// [END compute_v1_generated_ResourcePolicies_Patch_sync]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +22,17 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\DistributionPolicy;
+namespace Google\Cloud\Compute\V1\Enums\QuotaExceededInfo;
 
 /**
- * TargetShape contains string constants that represent the names of each value in
- * the google.cloud.compute.v1.DistributionPolicy.TargetShape descriptor.
+ * RolloutStatus contains string constants that represent the names of each value
+ * in the google.cloud.compute.v1.QuotaExceededInfo.RolloutStatus descriptor.
  */
-class TargetShape
+class RolloutStatus
 {
-    const UNDEFINED_TARGET_SHAPE = 'UNDEFINED_TARGET_SHAPE';
+    const UNDEFINED_ROLLOUT_STATUS = 'UNDEFINED_ROLLOUT_STATUS';
 
-    const ANY = 'ANY';
+    const IN_PROGRESS = 'IN_PROGRESS';
 
-    const ANY_SINGLE_ZONE = 'ANY_SINGLE_ZONE';
-
-    const BALANCED = 'BALANCED';
-
-    const EVEN = 'EVEN';
+    const ROLLOUT_STATUS_UNSPECIFIED = 'ROLLOUT_STATUS_UNSPECIFIED';
 }
