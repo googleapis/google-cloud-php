@@ -366,8 +366,8 @@ class Subscription
      *           not end in "/".
      *     @type array $cloudStorageConfig.textConfig If set, message data will be written
      *           to Cloud Storage in text format.
-     *     @type array $cloudStorageConfig.avroConfig If set, message data will be written to
-     *           Cloud Storage in Avro format.
+     *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
+     *           will be written to Cloud Storage in Avro format.
      *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
      *           When true, write the subscription name, message_id, publish_time,
      *           attributes, and ordering_key as additional fields in the output.
