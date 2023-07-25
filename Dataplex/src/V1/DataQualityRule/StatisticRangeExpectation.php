@@ -17,41 +17,41 @@ use Google\Protobuf\Internal\GPBUtil;
 class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The aggregate metric to evaluate.
+     * Optional. The aggregate metric to evaluate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $statistic = 0;
     /**
-     * The minimum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The minimum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string min_value = 2;</code>
+     * Generated from protobuf field <code>string min_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_value = '';
     /**
-     * The maximum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The maximum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string max_value = 3;</code>
+     * Generated from protobuf field <code>string max_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_value = '';
     /**
-     * Whether column statistic needs to be strictly greater than ('>')
-     * the minimum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly greater than
+     * ('>') the minimum, or if equality is allowed.
      * Only relevant if a `min_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_min_enabled = 4;</code>
+     * Generated from protobuf field <code>bool strict_min_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $strict_min_enabled = false;
     /**
-     * Whether column statistic needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly lesser than ('<')
+     * the maximum, or if equality is allowed.
      * Only relevant if a `max_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_max_enabled = 5;</code>
+     * Generated from protobuf field <code>bool strict_max_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $strict_max_enabled = false;
 
@@ -62,22 +62,22 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $statistic
-     *           The aggregate metric to evaluate.
+     *           Optional. The aggregate metric to evaluate.
      *     @type string $min_value
-     *           The minimum column statistic value allowed for a row to pass this
-     *           validation.
+     *           Optional. The minimum column statistic value allowed for a row to pass
+     *           this validation.
      *           At least one of `min_value` and `max_value` need to be provided.
      *     @type string $max_value
-     *           The maximum column statistic value allowed for a row to pass this
-     *           validation.
+     *           Optional. The maximum column statistic value allowed for a row to pass
+     *           this validation.
      *           At least one of `min_value` and `max_value` need to be provided.
      *     @type bool $strict_min_enabled
-     *           Whether column statistic needs to be strictly greater than ('>')
-     *           the minimum, or if equality is allowed.
+     *           Optional. Whether column statistic needs to be strictly greater than
+     *           ('>') the minimum, or if equality is allowed.
      *           Only relevant if a `min_value` has been defined. Default = false.
      *     @type bool $strict_max_enabled
-     *           Whether column statistic needs to be strictly lesser than ('<') the
-     *           maximum, or if equality is allowed.
+     *           Optional. Whether column statistic needs to be strictly lesser than ('<')
+     *           the maximum, or if equality is allowed.
      *           Only relevant if a `max_value` has been defined. Default = false.
      * }
      */
@@ -87,9 +87,9 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The aggregate metric to evaluate.
+     * Optional. The aggregate metric to evaluate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getStatistic()
@@ -98,9 +98,9 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The aggregate metric to evaluate.
+     * Optional. The aggregate metric to evaluate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -113,11 +113,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The minimum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string min_value = 2;</code>
+     * Generated from protobuf field <code>string min_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getMinValue()
@@ -126,11 +126,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The minimum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string min_value = 2;</code>
+     * Generated from protobuf field <code>string min_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -143,11 +143,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The maximum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string max_value = 3;</code>
+     * Generated from protobuf field <code>string max_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getMaxValue()
@@ -156,11 +156,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum column statistic value allowed for a row to pass this
-     * validation.
+     * Optional. The maximum column statistic value allowed for a row to pass
+     * this validation.
      * At least one of `min_value` and `max_value` need to be provided.
      *
-     * Generated from protobuf field <code>string max_value = 3;</code>
+     * Generated from protobuf field <code>string max_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -173,11 +173,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether column statistic needs to be strictly greater than ('>')
-     * the minimum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly greater than
+     * ('>') the minimum, or if equality is allowed.
      * Only relevant if a `min_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_min_enabled = 4;</code>
+     * Generated from protobuf field <code>bool strict_min_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getStrictMinEnabled()
@@ -186,11 +186,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether column statistic needs to be strictly greater than ('>')
-     * the minimum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly greater than
+     * ('>') the minimum, or if equality is allowed.
      * Only relevant if a `min_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_min_enabled = 4;</code>
+     * Generated from protobuf field <code>bool strict_min_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -203,11 +203,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether column statistic needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly lesser than ('<')
+     * the maximum, or if equality is allowed.
      * Only relevant if a `max_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_max_enabled = 5;</code>
+     * Generated from protobuf field <code>bool strict_max_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getStrictMaxEnabled()
@@ -216,11 +216,11 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether column statistic needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed.
+     * Optional. Whether column statistic needs to be strictly lesser than ('<')
+     * the maximum, or if equality is allowed.
      * Only relevant if a `max_value` has been defined. Default = false.
      *
-     * Generated from protobuf field <code>bool strict_max_enabled = 5;</code>
+     * Generated from protobuf field <code>bool strict_max_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

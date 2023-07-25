@@ -27,7 +27,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶`
+ïb
 &google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"≥
 CreateLakeRequest9
 parent (	B)‡A˙A#
@@ -170,10 +170,18 @@ page_token (	B‡A
 dataplex.googleapis.com/Task"B
 GetJobRequest1
 name (	B#‡A˙A
-dataplex.googleapis.com/Job"D
+dataplex.googleapis.com/Job"≤
 RunTaskRequest2
 name (	B$‡A˙A
-dataplex.googleapis.com/Task"=
+dataplex.googleapis.com/TaskI
+labels (24.google.cloud.dataplex.v1.RunTaskRequest.LabelsEntryB‡AE
+args (22.google.cloud.dataplex.v1.RunTaskRequest.ArgsEntryB‡A-
+LabelsEntry
+key (	
+value (	:8+
+	ArgsEntry
+key (	
+value (	:8"=
 RunTaskResponse*
 job (2.google.cloud.dataplex.v1.Job"x
 ListJobsRequest4

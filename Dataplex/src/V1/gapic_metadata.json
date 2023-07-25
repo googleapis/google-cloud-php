@@ -263,6 +263,115 @@
                 }
             }
         },
+        "DataTaxonomyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataTaxonomyServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataAttribute": {
+                            "methods": [
+                                "createDataAttribute"
+                            ]
+                        },
+                        "CreateDataAttributeBinding": {
+                            "methods": [
+                                "createDataAttributeBinding"
+                            ]
+                        },
+                        "CreateDataTaxonomy": {
+                            "methods": [
+                                "createDataTaxonomy"
+                            ]
+                        },
+                        "DeleteDataAttribute": {
+                            "methods": [
+                                "deleteDataAttribute"
+                            ]
+                        },
+                        "DeleteDataAttributeBinding": {
+                            "methods": [
+                                "deleteDataAttributeBinding"
+                            ]
+                        },
+                        "DeleteDataTaxonomy": {
+                            "methods": [
+                                "deleteDataTaxonomy"
+                            ]
+                        },
+                        "GetDataAttribute": {
+                            "methods": [
+                                "getDataAttribute"
+                            ]
+                        },
+                        "GetDataAttributeBinding": {
+                            "methods": [
+                                "getDataAttributeBinding"
+                            ]
+                        },
+                        "GetDataTaxonomy": {
+                            "methods": [
+                                "getDataTaxonomy"
+                            ]
+                        },
+                        "ListDataAttributeBindings": {
+                            "methods": [
+                                "listDataAttributeBindings"
+                            ]
+                        },
+                        "ListDataAttributes": {
+                            "methods": [
+                                "listDataAttributes"
+                            ]
+                        },
+                        "ListDataTaxonomies": {
+                            "methods": [
+                                "listDataTaxonomies"
+                            ]
+                        },
+                        "UpdateDataAttribute": {
+                            "methods": [
+                                "updateDataAttribute"
+                            ]
+                        },
+                        "UpdateDataAttributeBinding": {
+                            "methods": [
+                                "updateDataAttributeBinding"
+                            ]
+                        },
+                        "UpdateDataTaxonomy": {
+                            "methods": [
+                                "updateDataTaxonomy"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataScanService": {
             "clients": {
                 "grpc": {

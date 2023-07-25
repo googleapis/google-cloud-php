@@ -70,6 +70,12 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_job = 9;</code>
      */
     private $service_job = '';
+    /**
+     * Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.ExecutionTrigger execution_trigger = 11;</code>
+     */
+    private $execution_trigger = 0;
 
     /**
      * Constructor.
@@ -95,6 +101,8 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *           The service used to execute the job.
      *     @type string $service_job
      *           The reference to the job within the service.
+     *     @type int $execution_trigger
+     *           Job execution trigger.
      * }
      */
     public function __construct($data = NULL) {
@@ -352,6 +360,32 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.ExecutionTrigger execution_trigger = 11;</code>
+     * @return int
+     */
+    public function getExecutionTrigger()
+    {
+        return $this->execution_trigger;
+    }
+
+    /**
+     * Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.ExecutionTrigger execution_trigger = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExecutionTrigger($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataplex\V1\JobEvent\ExecutionTrigger::class);
+        $this->execution_trigger = $var;
 
         return $this;
     }

@@ -27,6 +27,13 @@ class TopNValue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
     private $count = 0;
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     */
+    private $ratio = 0.0;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class TopNValue extends \Google\Protobuf\Internal\Message
      *           String value of a top N non-null value.
      *     @type int|string $count
      *           Count of the corresponding value in the scanned data.
+     *     @type float $ratio
+     *           Ratio of the corresponding value in the field against the total
+     *           number of rows in the scanned data.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     * @return float
+     */
+    public function getRatio()
+    {
+        return $this->ratio;
+    }
+
+    /**
+     * Ratio of the corresponding value in the field against the total
+     * number of rows in the scanned data.
+     *
+     * Generated from protobuf field <code>double ratio = 3;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRatio($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->ratio = $var;
 
         return $this;
     }

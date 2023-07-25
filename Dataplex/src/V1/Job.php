@@ -72,6 +72,24 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $message = '';
+    /**
+     * Output only. User-defined labels for the task.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $labels;
+    /**
+     * Output only. Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job.Trigger trigger = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $trigger = 0;
+    /**
+     * Output only. Spec related to how a task is executed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $execution_spec = null;
 
     /**
      * Constructor.
@@ -100,6 +118,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *           service.
      *     @type string $message
      *           Output only. Additional information about the current state.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Output only. User-defined labels for the task.
+     *     @type int $trigger
+     *           Output only. Job execution trigger.
+     *     @type \Google\Cloud\Dataplex\V1\Task\ExecutionSpec $execution_spec
+     *           Output only. Spec related to how a task is executed.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,6 +387,94 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. User-defined labels for the task.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Output only. User-defined labels for the task.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job.Trigger trigger = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTrigger()
+    {
+        return $this->trigger;
+    }
+
+    /**
+     * Output only. Job execution trigger.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job.Trigger trigger = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTrigger($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataplex\V1\Job\Trigger::class);
+        $this->trigger = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Spec related to how a task is executed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\Task\ExecutionSpec|null
+     */
+    public function getExecutionSpec()
+    {
+        return $this->execution_spec;
+    }
+
+    public function hasExecutionSpec()
+    {
+        return isset($this->execution_spec);
+    }
+
+    public function clearExecutionSpec()
+    {
+        unset($this->execution_spec);
+    }
+
+    /**
+     * Output only. Spec related to how a task is executed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\Task\ExecutionSpec $var
+     * @return $this
+     */
+    public function setExecutionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\ExecutionSpec::class);
+        $this->execution_spec = $var;
 
         return $this;
     }

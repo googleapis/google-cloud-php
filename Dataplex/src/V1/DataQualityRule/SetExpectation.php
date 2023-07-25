@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Expected values for the column value.
+     * Optional. Expected values for the column value.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $values;
 
@@ -29,7 +29,7 @@ class SetExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
-     *           Expected values for the column value.
+     *           Optional. Expected values for the column value.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class SetExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected values for the column value.
+     * Optional. Expected values for the column value.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
@@ -49,9 +49,9 @@ class SetExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected values for the column value.
+     * Optional. Expected values for the column value.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

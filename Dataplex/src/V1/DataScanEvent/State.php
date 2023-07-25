@@ -20,29 +20,35 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * Data scan started.
+     * Data scan job started.
      *
      * Generated from protobuf enum <code>STARTED = 1;</code>
      */
     const STARTED = 1;
     /**
-     * Data scan successfully completed.
+     * Data scan job successfully completed.
      *
      * Generated from protobuf enum <code>SUCCEEDED = 2;</code>
      */
     const SUCCEEDED = 2;
     /**
-     * Data scan was unsuccessful.
+     * Data scan job was unsuccessful.
      *
      * Generated from protobuf enum <code>FAILED = 3;</code>
      */
     const FAILED = 3;
     /**
-     * Data scan was cancelled.
+     * Data scan job was cancelled.
      *
      * Generated from protobuf enum <code>CANCELLED = 4;</code>
      */
     const CANCELLED = 4;
+    /**
+     * Data scan job was createed.
+     *
+     * Generated from protobuf enum <code>CREATED = 5;</code>
+     */
+    const CREATED = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::CANCELLED => 'CANCELLED',
+        self::CREATED => 'CREATED',
     ];
 
     public static function name($value)

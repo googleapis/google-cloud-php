@@ -16,12 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataQualitySpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of rules to evaluate against a data source. At least one rule is
-     * required.
+     * Required. The list of rules to evaluate against a data source. At least one
+     * rule is required.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules;
+    /**
+     * Optional. The percentage of the records to be selected from the dataset for
+     * DataScan.
+     * * Value can range between 0.0 and 100.0 with up to 3 significant decimal
+     * digits.
+     * * Sampling is not applied if `sampling_percent` is not specified, 0 or
+     * 100.
+     *
+     * Generated from protobuf field <code>float sampling_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sampling_percent = 0.0;
+    /**
+     * Optional. A filter applied to all rows in a single DataScan job.
+     * The filter needs to be a valid SQL expression for a WHERE clause in
+     * BigQuery standard SQL syntax.
+     * Example: col1 >= 0 AND col2 < 10
+     *
+     * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $row_filter = '';
+    /**
+     * Optional. Actions to take upon job completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $post_scan_actions = null;
 
     /**
      * Constructor.
@@ -30,8 +56,22 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           The list of rules to evaluate against a data source. At least one rule is
-     *           required.
+     *           Required. The list of rules to evaluate against a data source. At least one
+     *           rule is required.
+     *     @type float $sampling_percent
+     *           Optional. The percentage of the records to be selected from the dataset for
+     *           DataScan.
+     *           * Value can range between 0.0 and 100.0 with up to 3 significant decimal
+     *           digits.
+     *           * Sampling is not applied if `sampling_percent` is not specified, 0 or
+     *           100.
+     *     @type string $row_filter
+     *           Optional. A filter applied to all rows in a single DataScan job.
+     *           The filter needs to be a valid SQL expression for a WHERE clause in
+     *           BigQuery standard SQL syntax.
+     *           Example: col1 >= 0 AND col2 < 10
+     *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions $post_scan_actions
+     *           Optional. Actions to take upon job completion.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +80,10 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of rules to evaluate against a data source. At least one rule is
-     * required.
+     * Required. The list of rules to evaluate against a data source. At least one
+     * rule is required.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRules()
@@ -52,10 +92,10 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of rules to evaluate against a data source. At least one rule is
-     * required.
+     * Required. The list of rules to evaluate against a data source. At least one
+     * rule is required.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -63,6 +103,110 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityRule::class);
         $this->rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The percentage of the records to be selected from the dataset for
+     * DataScan.
+     * * Value can range between 0.0 and 100.0 with up to 3 significant decimal
+     * digits.
+     * * Sampling is not applied if `sampling_percent` is not specified, 0 or
+     * 100.
+     *
+     * Generated from protobuf field <code>float sampling_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getSamplingPercent()
+    {
+        return $this->sampling_percent;
+    }
+
+    /**
+     * Optional. The percentage of the records to be selected from the dataset for
+     * DataScan.
+     * * Value can range between 0.0 and 100.0 with up to 3 significant decimal
+     * digits.
+     * * Sampling is not applied if `sampling_percent` is not specified, 0 or
+     * 100.
+     *
+     * Generated from protobuf field <code>float sampling_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSamplingPercent($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->sampling_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A filter applied to all rows in a single DataScan job.
+     * The filter needs to be a valid SQL expression for a WHERE clause in
+     * BigQuery standard SQL syntax.
+     * Example: col1 >= 0 AND col2 < 10
+     *
+     * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRowFilter()
+    {
+        return $this->row_filter;
+    }
+
+    /**
+     * Optional. A filter applied to all rows in a single DataScan job.
+     * The filter needs to be a valid SQL expression for a WHERE clause in
+     * BigQuery standard SQL syntax.
+     * Example: col1 >= 0 AND col2 < 10
+     *
+     * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRowFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->row_filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Actions to take upon job completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions|null
+     */
+    public function getPostScanActions()
+    {
+        return $this->post_scan_actions;
+    }
+
+    public function hasPostScanActions()
+    {
+        return isset($this->post_scan_actions);
+    }
+
+    public function clearPostScanActions()
+    {
+        unset($this->post_scan_actions);
+    }
+
+    /**
+     * Optional. Actions to take upon job completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions $var
+     * @return $this
+     */
+    public function setPostScanActions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions::class);
+        $this->post_scan_actions = $var;
 
         return $this;
     }
