@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/commerce/consumer/procurement/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/CommerceConsumerProcurement/$1/$2
+api-name: CommerceConsumerProcurement

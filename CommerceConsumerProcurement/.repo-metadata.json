@@ -1,0 +1,8 @@
+{
+    "language": "php",
+    "distribution_name": "google/cloud-commerce-consumer-procurement",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-commerce-consumer-procurement/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "cloudcommerceconsumerprocurement"
+}
