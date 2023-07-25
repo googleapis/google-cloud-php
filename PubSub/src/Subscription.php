@@ -351,8 +351,7 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
-     *     @type array cloudStorageConfig If delivery to Google Cloud Storage is used
-     *           with this subscription, this field is used to configure it.
+     *     @type array $cloudStorageConfig If provided, messages will be delivered to Google Cloud Storage.
      *     @type string $cloudStorageConfig.bucket User-provided name for the Cloud Storage bucket.
      *           The bucket must be created by the user. The bucket name must be without
      *           any prefix like "gs://". See the [bucket naming
