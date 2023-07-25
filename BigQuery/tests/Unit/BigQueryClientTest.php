@@ -681,7 +681,7 @@ class BigQueryClientTest extends TestCase
 
     public function testGetsJson()
     {
-        $json = $this->getClient()->json(['id' => 1]);
+        $json = $this->getClient()->json(json_encode(['id' => 1]));
 
         $this->assertInstanceOf(Json::class, $json);
     }

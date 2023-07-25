@@ -870,9 +870,8 @@ class BigQueryClient
      * $json = $bigQuery->json('{"key":"value"}');
      * ```
      *
-     * @param string|\JsonSerializable|int|null $value The JSON string value.
+     * @param string|null $value The JSON string value.
      * @return Json
-     * @throws \InvalidArgumentException
      */
     public function json($value)
     {

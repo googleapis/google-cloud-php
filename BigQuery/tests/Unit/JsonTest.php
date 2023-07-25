@@ -17,13 +17,9 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
-use Error;
-use Exception;
 use Google\Cloud\BigQuery\Json;
 use InvalidArgumentException;
-use JsonSerializable;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
  * @group bigquery
@@ -34,17 +30,11 @@ class JsonTest extends TestCase
     /**
      * @dataProvider invalidJsonProvider
      */
-    public function testInvalidValues($value, $exception)
+    public function testInvalidValues($value)
     {
-        $this->expectException($exception);
+        $this->expectException(InvalidArgumentException::class);
 
-        try {
-            new Json($value);
-        } finally {
-            if (is_resource($value)) {
-                fclose($value);
-            }
-        }
+        new Json($value);
     }
 
     /**
@@ -54,25 +44,20 @@ class JsonTest extends TestCase
     {
         $json = new Json($value);
         $this->assertInstanceOf(Json::class, $json);
-        if (is_array($value) || $value instanceof JsonSerializable || is_resource($value)) {
-            $this->assertEquals(json_encode($value), $json->formatAsString());
-            $this->assertEquals(json_encode($value), $json->get());
-        } else {
-            $this->assertEquals($value, $json->formatAsString());
-            $this->assertEquals($value, $json->get());
-        }
+        $this->assertEquals($value, $json->formatAsString());
+        $this->assertEquals($value, $json->get());
     }
 
     public function testGetsType()
     {
-        $json = new Json(['id' => 2]);
+        $json = new Json(json_encode(['id' => 2]));
 
         $this->assertEquals('JSON', $json->type());
     }
 
     public function testJsonAttributes()
     {
-        $json = new Json(['id' => 2]);
+        $json = new Json(json_encode(['id' => 2]));
 
         $this->assertEquals(2, json_decode($json->get())->id);
     }
@@ -80,31 +65,21 @@ class JsonTest extends TestCase
     public function testToString()
     {
         $expectedJson = '{"id":1}';
-        $value = ['id' => 1];
+        $value = json_encode(['id' => 1]);
         $json = new Json($value);
 
         $this->assertEquals($expectedJson, (string) $json);
         $this->assertEquals($expectedJson, $json->formatAsString());
     }
 
-    public function testGetVal()
-    {
-        $id = 1;
-        $jsonString = sprintf('{"id":%d}', $id);
-        $json = new Json($jsonString);
-
-        $this->assertEquals($id, $json->getVal()->id);
-        $this->assertEquals($id, $json->getVal(true)['id']);
-    }
-
     public function validJsonProvider()
     {
         return
             [
-                [['id' => 2]],
+                [json_encode(['id' => 2])],
                 ['{"key":"value"}'],
                 [null],
-                [
+                [json_encode(
                     [
                         "string" => "value",
                         "number" => 123,
@@ -113,10 +88,12 @@ class JsonTest extends TestCase
                         "object" => ["nested" => "value"],
                         "twoNested" => ["top" => ["mid" => "\"bottom\""]]
                     ]
-                    ],
-                [[]],
-                [1234],
-                [["message" => "Special characters: \u00A9 \u00AE \u00E7 \u20AC അ 😀"]],
+                )],
+                [json_encode([])],
+                [json_encode(1234)],
+                [json_encode([
+                    "message" => "Special characters: \u00A9 \u00AE \u00E7 \u20AC അ 😀"
+                ])],
             ];
     }
 
@@ -124,8 +101,11 @@ class JsonTest extends TestCase
     {
         return
             [
-                [tmpfile(), InvalidArgumentException::class],
-                [new \stdClass, Error::class],
+                [tmpfile()],
+                [new \stdClass],
+                [1234],
+                [['a', 'b']],
+                [['key' => 'val']]
             ];
     }
 }

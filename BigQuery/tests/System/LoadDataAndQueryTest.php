@@ -73,10 +73,10 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'Location' => new Geography('POINT(12 34)'),
         ];
         $this->row = $this->legacyRow;
-        $this->row['AddressJson'] = new Json([
+        $this->row['AddressJson'] = new Json(json_encode([
             'City' => 'Bangalore',
             'HouseNumber' => 1234
-        ]);
+        ]));
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
     }
 
@@ -913,7 +913,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ],
             ['{}'],
             [null],
-            [1234],
+            [json_encode(1234)],
             ['[1,2,3,4]'],
             ['{"message": "This is a \"quote\""}'],
             [

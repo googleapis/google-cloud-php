@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\Core\JsonTrait;
-use JsonSerializable;
+use InvalidArgumentException;
 
 /**
  * Represents a value with a data type of
@@ -35,28 +34,23 @@ use JsonSerializable;
  */
 class Json implements ValueInterface
 {
-    use JsonTrait;
-
     /**
      * @var string|null
      */
     private $value;
 
     /**
-     * @param string|\JsonSerializable|int|null $value The JSON string value.
-     * @throws \InvalidArgumentException
+     * @param string|null $value The JSON string value.
      */
     public function __construct($value)
     {
-        // null shouldn't be casted to an empty string
-        if (!is_null($value)) {
-            if (is_array($value) || $value instanceof JsonSerializable || is_resource($value)) {
-                $value = self::jsonEncode($value);
-            } else {
-                $value = (string) $value;
-            }
+        if (is_null($value) or is_string($value)) {
+            $this->value = $value;
+        } else {
+            throw new InvalidArgumentException(
+                'Invalid JSON string'
+            );
         }
-        $this->value = $value;
     }
 
     /**
@@ -97,18 +91,5 @@ class Json implements ValueInterface
     public function __toString()
     {
         return (string) $this->value;
-    }
-
-    /**
-     * Get the value as an Object or Associative array.
-     *
-     * @param bool $returnJsonAsAssociativeArray If true, return value
-     * as an associative array, else, return as an object.
-     *
-     * @return array|stdClass|null
-     */
-    public function getVal($returnJsonAsAssociativeArray = false)
-    {
-        return json_decode($this->value, $returnJsonAsAssociativeArray);
     }
 }

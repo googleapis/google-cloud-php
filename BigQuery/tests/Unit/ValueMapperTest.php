@@ -215,7 +215,7 @@ class ValueMapperTest extends TestCase
             [
                 ['v' => '{"id":1}'],
                 ['type' => 'JSON'],
-                new Json(['id' => 1])
+                new Json(json_encode(['id' => 1]))
             ],
         ];
     }
@@ -249,7 +249,7 @@ class ValueMapperTest extends TestCase
         $int64 = new Int64('123');
         $numeric = new Numeric('99999999999999999999999999999999999999.999999999');
         $bigNumeric = new BigNumeric(str_pad('9', 75, '9') . '.999999999');
-        $json = new Json(['id' => 1]);
+        $json = new Json(json_encode(['id' => 1]));
 
         return [
             [$dt, $dt->format('Y-m-d\TH:i:s.u')],
