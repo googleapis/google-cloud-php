@@ -34,10 +34,9 @@ use Google\Rpc\Status;
 /**
  * Updates the configurations of a node.
  *
- * @param string $nodeAcceleratorType The type of hardware accelerators associated with this node.
- * @param string $nodeRuntimeVersion  The runtime version running in the Node.
+ * @param string $nodeRuntimeVersion The runtime version running in the Node.
  */
-function update_node_sample(string $nodeAcceleratorType, string $nodeRuntimeVersion): void
+function update_node_sample(string $nodeRuntimeVersion): void
 {
     // Create a client.
     $tpuClient = new TpuClient();
@@ -45,7 +44,6 @@ function update_node_sample(string $nodeAcceleratorType, string $nodeRuntimeVers
     // Prepare the request message.
     $updateMask = new FieldMask();
     $node = (new Node())
-        ->setAcceleratorType($nodeAcceleratorType)
         ->setRuntimeVersion($nodeRuntimeVersion);
     $request = (new UpdateNodeRequest())
         ->setUpdateMask($updateMask)
@@ -82,9 +80,8 @@ function update_node_sample(string $nodeAcceleratorType, string $nodeRuntimeVers
  */
 function callSample(): void
 {
-    $nodeAcceleratorType = '[ACCELERATOR_TYPE]';
     $nodeRuntimeVersion = '[RUNTIME_VERSION]';
 
-    update_node_sample($nodeAcceleratorType, $nodeRuntimeVersion);
+    update_node_sample($nodeRuntimeVersion);
 }
 // [END tpu_v2_generated_Tpu_UpdateNode_sync]

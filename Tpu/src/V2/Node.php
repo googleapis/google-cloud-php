@@ -28,9 +28,9 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. The type of hardware accelerators associated with this node.
+     * Optional. The type of hardware accelerators associated with this node.
      *
-     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $accelerator_type = '';
     /**
@@ -160,6 +160,19 @@ class Node extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.tpu.v2.AcceleratorConfig accelerator_config = 46;</code>
      */
     private $accelerator_config = null;
+    /**
+     * Output only. The qualified name of the QueuedResource that requested this
+     * Node.
+     *
+     * Generated from protobuf field <code>string queued_resource = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $queued_resource = '';
+    /**
+     * Output only. Whether the Node belongs to a Multislice group.
+     *
+     * Generated from protobuf field <code>bool multislice_node = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $multislice_node = false;
 
     /**
      * Constructor.
@@ -172,7 +185,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The user-supplied description of the TPU. Maximum of 512 characters.
      *     @type string $accelerator_type
-     *           Required. The type of hardware accelerators associated with this node.
+     *           Optional. The type of hardware accelerators associated with this node.
      *     @type int $state
      *           Output only. The current state for the TPU Node.
      *     @type string $health_description
@@ -224,6 +237,11 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Shielded Instance options.
      *     @type \Google\Cloud\Tpu\V2\AcceleratorConfig $accelerator_config
      *           The AccleratorConfig for the TPU Node.
+     *     @type string $queued_resource
+     *           Output only. The qualified name of the QueuedResource that requested this
+     *           Node.
+     *     @type bool $multislice_node
+     *           Output only. Whether the Node belongs to a Multislice group.
      * }
      */
     public function __construct($data = NULL) {
@@ -284,9 +302,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of hardware accelerators associated with this node.
+     * Optional. The type of hardware accelerators associated with this node.
      *
-     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAcceleratorType()
@@ -295,9 +313,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of hardware accelerators associated with this node.
+     * Optional. The type of hardware accelerators associated with this node.
      *
-     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -885,6 +903,60 @@ class Node extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tpu\V2\AcceleratorConfig::class);
         $this->accelerator_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The qualified name of the QueuedResource that requested this
+     * Node.
+     *
+     * Generated from protobuf field <code>string queued_resource = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getQueuedResource()
+    {
+        return $this->queued_resource;
+    }
+
+    /**
+     * Output only. The qualified name of the QueuedResource that requested this
+     * Node.
+     *
+     * Generated from protobuf field <code>string queued_resource = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQueuedResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->queued_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the Node belongs to a Multislice group.
+     *
+     * Generated from protobuf field <code>bool multislice_node = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getMultisliceNode()
+    {
+        return $this->multislice_node;
+    }
+
+    /**
+     * Output only. Whether the Node belongs to a Multislice group.
+     *
+     * Generated from protobuf field <code>bool multislice_node = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultisliceNode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multislice_node = $var;
 
         return $this;
     }

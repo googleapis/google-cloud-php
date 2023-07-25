@@ -22,7 +22,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * the accelerator type.
+     * The accelerator type.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -43,7 +43,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name.
      *     @type string $type
-     *           the accelerator type.
+     *           The accelerator type.
      *     @type array<\Google\Cloud\Tpu\V2\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerator_configs
      *           The accelerator config.
      * }
@@ -80,7 +80,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the accelerator type.
+     * The accelerator type.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -91,7 +91,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the accelerator type.
+     * The accelerator type.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var
