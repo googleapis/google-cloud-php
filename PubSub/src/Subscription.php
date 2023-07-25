@@ -364,8 +364,8 @@ class Subscription
      *           User-provided suffix for Cloud Storage filename. See the [object naming
      *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
      *           not end in "/".
-     *     @type array $cloudStorageConfig.textConfig If set, message data will be written
-     *           to Cloud Storage in text format.
+     *     @type array $cloudStorageConfig.textConfig If present, payloads will be written
+     *           to Cloud Storage as raw text, separated by a newline.
      *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
      *           will be written to Cloud Storage in Avro format.
      *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
