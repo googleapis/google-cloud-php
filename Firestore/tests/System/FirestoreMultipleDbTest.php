@@ -30,8 +30,7 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
 
     public function setUp(): void
     {
-        $doc = self::$multiDbCollection->newDocument();
-        $this->document = $doc;
+        $this->document = self::$multiDbCollection->newDocument();
     }
 
     public function testInsert()
