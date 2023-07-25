@@ -34,6 +34,8 @@ class TargetShape
 
     const ANY = 'ANY';
 
+    const ANY_SINGLE_ZONE = 'ANY_SINGLE_ZONE';
+
     const BALANCED = 'BALANCED';
 
     const EVEN = 'EVEN';
