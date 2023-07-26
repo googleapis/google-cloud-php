@@ -25,12 +25,12 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ github.event.pull_request.head.sha }} \
               --to=${{ github.event.pull_request.base.sha }}
-          variable=true
-      - name: "Result for a failed incorrect label check"
-        if: ${{ steps.compatibility-checker.outcome }} == 'failure' }}
+      - name: "Print the action item"
         run: |
-          echo 'Action item: Change the PR label to `feat`'
-      - name: "Result for a successful incorrect label check"
-        if: ${{ steps.compatibility-checker.outcome }} != 'failure' }}
-        run: |
-          echo 'Action item: No changes needed in the PR label'
+          if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
+            echo "Action item: Change the PR label to feat"
+            exit 1
+          else
+            echo "No changes needed in the PR label"
+            exit 0
+          fi
