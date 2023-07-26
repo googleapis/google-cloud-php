@@ -36,6 +36,13 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      */
     private $mutate_rows_rate_limit = false;
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     */
+    private $last_scanned_row_responses = false;
 
     /**
      * Constructor.
@@ -49,6 +56,9 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *     @type bool $mutate_rows_rate_limit
      *           Notify the server that the client enables batch write flow control by
      *           requesting RateLimitInfo from MutateRowsResponse.
+     *     @type bool $last_scanned_row_responses
+     *           Notify the server that the client supports the last_scanned_row field
+     *           in ReadRowsResponse for long-running sparse scans.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +118,34 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->mutate_rows_rate_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     * @return bool
+     */
+    public function getLastScannedRowResponses()
+    {
+        return $this->last_scanned_row_responses;
+    }
+
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLastScannedRowResponses($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last_scanned_row_responses = $var;
 
         return $this;
     }
