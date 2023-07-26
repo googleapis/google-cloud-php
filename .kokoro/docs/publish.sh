@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+ln -sf /usr/local/bin/python3.9 /usr/bin/python3
 
 # determine staging bucket (e.g. "docs-staging-v2-dev")
 if [ "$#" -eq 1 ]; then
