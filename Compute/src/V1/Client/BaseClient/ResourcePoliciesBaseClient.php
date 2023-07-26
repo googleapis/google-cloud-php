@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\GetIamPolicyResourcePolicyRequest;
 use Google\Cloud\Compute\V1\GetResourcePolicyRequest;
 use Google\Cloud\Compute\V1\InsertResourcePolicyRequest;
 use Google\Cloud\Compute\V1\ListResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\PatchResourcePolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\ResourcePolicy;
@@ -66,6 +67,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertResourcePolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListResourcePoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface patchAsync(PatchResourcePolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsResourcePolicyRequest $request, array $optionalArgs = [])
  */
@@ -386,6 +388,30 @@ abstract class ResourcePoliciesBaseClient
     public function list(ListResourcePoliciesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Modify the specified resource policy.
+     *
+     * The async variant is {@see self::patchAsync()} .
+     *
+     * @param PatchResourcePolicyRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patch(PatchResourcePolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Patch', $request, $callOptions)->wait();
     }
 
     /**

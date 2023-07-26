@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The url of the consumer network.
+     *
+     * Generated from protobuf field <code>optional string consumer_network = 254357221;</code>
+     */
+    private $consumer_network = null;
+    /**
      * The url of a connected endpoint.
      *
      * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
@@ -41,6 +47,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $consumer_network
+     *           The url of the consumer network.
      *     @type string $endpoint
      *           The url of a connected endpoint.
      *     @type int|string $psc_connection_id
@@ -53,6 +61,42 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The url of the consumer network.
+     *
+     * Generated from protobuf field <code>optional string consumer_network = 254357221;</code>
+     * @return string
+     */
+    public function getConsumerNetwork()
+    {
+        return isset($this->consumer_network) ? $this->consumer_network : '';
+    }
+
+    public function hasConsumerNetwork()
+    {
+        return isset($this->consumer_network);
+    }
+
+    public function clearConsumerNetwork()
+    {
+        unset($this->consumer_network);
+    }
+
+    /**
+     * The url of the consumer network.
+     *
+     * Generated from protobuf field <code>optional string consumer_network = 254357221;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsumerNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->consumer_network = $var;
+
+        return $this;
     }
 
     /**
