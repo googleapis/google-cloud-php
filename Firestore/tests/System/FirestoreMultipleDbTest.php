@@ -81,6 +81,7 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
             'abc/%s',
         ]);
 
+        // Returns docs with parent path having the collection id
         $this->assertEquals(
             ['cg-doc1', 'cg-doc2', 'cg-doc3', 'cg-doc4', 'cg-doc5'],
             $this->getIds($query)
