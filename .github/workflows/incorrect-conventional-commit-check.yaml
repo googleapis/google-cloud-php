@@ -29,7 +29,9 @@ jobs:
       - name: "Print the action item"
         run: |
           if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
-            echo "Action item: Change the PR label to feat" >> $GITHUB_OUTPUT
+            echo "Action item: Change the PR label to feat"
+            exit 1
           else
-            echo "No changes needed in the PR label" >> $GITHUB_OUTPUT
+            echo "No changes needed in the PR label"
+            exit 0
           fi
