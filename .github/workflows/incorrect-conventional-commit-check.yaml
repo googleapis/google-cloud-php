@@ -23,9 +23,20 @@ jobs:
         with:
           repository: ${{ github.repository }}
       - name: "Check for an incorrect feat label in the PR"
+        id: compatibility-checker
         if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && !startsWith(github.event.pull_request.title, 'feat')}}
+        continue-on-error: true
         # OwlBot PRs which are not labelled feat should not add new files or methods
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ github.event.pull_request.head.sha }} \
-              --to=${{ steps.latest-release.outputs.release }} --format=github-actions
+              --to=${{ steps.latest-release.outputs.release }}
+          variable=true
+      - name: "Result for incorrect label check"
+        if: ${{ steps.compatibility-checker.outcome }} == 'failure' }}
+        run: |
+          echo 'Change the PR label to `feat`'
+      - name: "Result for incorrect label check"
+        if: ${{ steps.compatibility-checker.outcome }} != 'failure' }}
+        run: |
+          echo 'No changes needed in the PR label'
