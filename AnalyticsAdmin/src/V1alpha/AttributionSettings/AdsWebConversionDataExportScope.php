@@ -27,23 +27,28 @@ class AdsWebConversionDataExportScope
      */
     const NOT_SELECTED_YET = 1;
     /**
-     * The Ads Web Conversion Data export scope is Cross Channel.
+     * Paid and organic channels are eligible to receive conversion credit, but
+     * only credit assigned to Google Ads channels will appear in your Ads
+     * accounts. To learn more, see [Paid and Organic
+     * channels](https://support.google.com/analytics/answer/10632359).
      *
-     * Generated from protobuf enum <code>CROSS_CHANNEL = 2;</code>
+     * Generated from protobuf enum <code>PAID_AND_ORGANIC_CHANNELS = 2;</code>
      */
-    const CROSS_CHANNEL = 2;
+    const PAID_AND_ORGANIC_CHANNELS = 2;
     /**
-     * The Ads Web Conversion Data export scope is Ads Preferred.
+     * Only Google Ads paid channels are eligible to receive conversion credit.
+     * To learn more, see [Google Paid
+     * channels](https://support.google.com/analytics/answer/10632359).
      *
-     * Generated from protobuf enum <code>ADS_PREFERRED = 3;</code>
+     * Generated from protobuf enum <code>GOOGLE_PAID_CHANNELS = 3;</code>
      */
-    const ADS_PREFERRED = 3;
+    const GOOGLE_PAID_CHANNELS = 3;
 
     private static $valueToName = [
         self::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED => 'ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED',
         self::NOT_SELECTED_YET => 'NOT_SELECTED_YET',
-        self::CROSS_CHANNEL => 'CROSS_CHANNEL',
-        self::ADS_PREFERRED => 'ADS_PREFERRED',
+        self::PAID_AND_ORGANIC_CHANNELS => 'PAID_AND_ORGANIC_CHANNELS',
+        self::GOOGLE_PAID_CHANNELS => 'GOOGLE_PAID_CHANNELS',
     ];
 
     public static function name($value)
