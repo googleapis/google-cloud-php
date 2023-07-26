@@ -1,0 +1,34 @@
+name: Conventional Commit Check
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: ['main']
+jobs:
+  # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+  incorrect-conventional-commit-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer global require "roave/backward-compatibility-check:^8.2"
+      - name: "Check for an incorrect feat label in the PR"
+        id: compatibility-checker
+        if: ${{ github.event.pull_request.user.login == 'gcf-owl-bot' && !startsWith(github.event.pull_request.title, 'feat')}}
+        continue-on-error: true
+        # OwlBot PRs which are not labelled feat should not add new files or methods
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+              --from=${{ github.event.pull_request.head.sha }} \
+              --to=${{ github.event.pull_request.base.sha }}
+      - name: "Print the action item"
+        run: |
+          if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
+            echo "Action item: Change the PR label to feat"
+            exit 1
+          fi
