@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
+ * Request for
+ * [TroubleshootIamPolicy][google.cloud.policytroubleshooter.v1.IamChecker.TroubleshootIamPolicy].
  *
  * Generated from protobuf message <code>google.cloud.policytroubleshooter.v1.TroubleshootIamPolicyRequest</code>
  */
 class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The information to use for checking whether a member has a permission for a
-     * resource.
+     * The information to use for checking whether a principal has a permission
+     * for a resource.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessTuple access_tuple = 1;</code>
      */
@@ -30,8 +31,8 @@ class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\PolicyTroubleshooter\V1\AccessTuple $access_tuple
-     *           The information to use for checking whether a member has a permission for a
-     *           resource.
+     *           The information to use for checking whether a principal has a permission
+     *           for a resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +41,8 @@ class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The information to use for checking whether a member has a permission for a
-     * resource.
+     * The information to use for checking whether a principal has a permission
+     * for a resource.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessTuple access_tuple = 1;</code>
      * @return \Google\Cloud\PolicyTroubleshooter\V1\AccessTuple|null
@@ -62,8 +63,8 @@ class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The information to use for checking whether a member has a permission for a
-     * resource.
+     * The information to use for checking whether a principal has a permission
+     * for a resource.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessTuple access_tuple = 1;</code>
      * @param \Google\Cloud\PolicyTroubleshooter\V1\AccessTuple $var

@@ -18,11 +18,12 @@ class PBNamespace
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
-0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/resource.proto"ã
+ì
+0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/resource.proto"ù
 	Namespace
 name (	B‡AL
-labels (27.google.cloud.servicedirectory.v1.Namespace.LabelsEntryB‡A-
+labels (27.google.cloud.servicedirectory.v1.Namespace.LabelsEntryB‡A
+uid (	B‡A-
 LabelsEntry
 key (	
 value (	:8:nÍAk

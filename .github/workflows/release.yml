@@ -37,5 +37,5 @@ jobs:
           run: |
             ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
               -t ${{ secrets.SPLIT_TOKEN }} \
-              --packagist-username=${{ vars.PACKAGIST_USERNAME }}
+              --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }}

@@ -7,7 +7,8 @@ namespace Google\Cloud\PolicyTroubleshooter\V1;
 use UnexpectedValueException;
 
 /**
- * The extent to which a single data point contributes to an overall
+ * The extent to which a single data point, such as the existence of a binding
+ * or whether a binding includes a specific principal, contributes to an overall
  * determination.
  *
  * Protobuf type <code>google.cloud.policytroubleshooter.v1.HeuristicRelevance</code>
@@ -15,7 +16,7 @@ use UnexpectedValueException;
 class HeuristicRelevance
 {
     /**
-     * Reserved for future use.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>HEURISTIC_RELEVANCE_UNSPECIFIED = 0;</code>
      */

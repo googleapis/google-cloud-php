@@ -28,7 +28,7 @@ use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\Service;
 
 /**
- * Creates a service, and returns the new Service.
+ * Creates a service, and returns the new service.
  *
  * @param string $formattedParent The resource name of the namespace this service will belong to. Please see
  *                                {@see RegistrationServiceClient::namespaceName()} for help formatting this field.

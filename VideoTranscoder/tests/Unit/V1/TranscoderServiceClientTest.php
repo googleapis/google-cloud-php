@@ -77,12 +77,14 @@ class TranscoderServiceClientTest extends GeneratedTest
         $outputUri = 'outputUri-1273518802';
         $templateId = 'templateId1769642752';
         $ttlAfterCompletionDays = 107576420;
+        $batchModePriority = 2137003131;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setInputUri($inputUri);
         $expectedResponse->setOutputUri($outputUri);
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
+        $expectedResponse->setBatchModePriority($batchModePriority);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -331,12 +333,14 @@ class TranscoderServiceClientTest extends GeneratedTest
         $outputUri = 'outputUri-1273518802';
         $templateId = 'templateId1769642752';
         $ttlAfterCompletionDays = 107576420;
+        $batchModePriority = 2137003131;
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
         $expectedResponse->setInputUri($inputUri);
         $expectedResponse->setOutputUri($outputUri);
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
+        $expectedResponse->setBatchModePriority($batchModePriority);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');

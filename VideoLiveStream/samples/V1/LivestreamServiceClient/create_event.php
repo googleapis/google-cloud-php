@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
-use Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask;
 
 /**
  * Creates an event with the provided unique ID in the specified channel.
@@ -45,9 +44,7 @@ function create_event_sample(string $formattedParent, string $eventId): void
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $eventInputSwitch = new InputSwitchTask();
-    $event = (new Event())
-        ->setInputSwitch($eventInputSwitch);
+    $event = new Event();
     $request = (new CreateEventRequest())
         ->setParent($formattedParent)
         ->setEvent($event)

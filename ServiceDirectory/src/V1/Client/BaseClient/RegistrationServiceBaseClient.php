@@ -38,6 +38,9 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
 use Google\Cloud\ServiceDirectory\V1\CreateEndpointRequest;
 use Google\Cloud\ServiceDirectory\V1\CreateNamespaceRequest;
 use Google\Cloud\ServiceDirectory\V1\CreateServiceRequest;
@@ -109,6 +112,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface updateEndpointAsync(UpdateEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateNamespaceAsync(UpdateNamespaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 abstract class RegistrationServiceBaseClient
 {
@@ -211,6 +216,23 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $project, string $network): string
+    {
+        return self::getPathTemplate('network')->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a service
      * resource.
      *
@@ -238,6 +260,7 @@ abstract class RegistrationServiceBaseClient
      * - endpoint: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - namespace: projects/{project}/locations/{location}/namespaces/{namespace}
+     * - network: projects/{project}/locations/global/networks/{network}
      * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -330,7 +353,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Creates a endpoint, and returns the new Endpoint.
+     * Creates an endpoint, and returns the new endpoint.
      *
      * The async variant is {@see self::createEndpointAsync()} .
      *
@@ -354,7 +377,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Creates a namespace, and returns the new Namespace.
+     * Creates a namespace, and returns the new namespace.
      *
      * The async variant is {@see self::createNamespaceAsync()} .
      *
@@ -378,7 +401,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Creates a service, and returns the new Service.
+     * Creates a service, and returns the new service.
      *
      * The async variant is {@see self::createServiceAsync()} .
      *
@@ -402,7 +425,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Deletes a endpoint.
+     * Deletes an endpoint.
      *
      * The async variant is {@see self::deleteEndpointAsync()} .
      *
@@ -470,7 +493,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Gets a endpoint.
+     * Gets an endpoint.
      *
      * The async variant is {@see self::getEndpointAsync()} .
      *
@@ -686,7 +709,7 @@ abstract class RegistrationServiceBaseClient
     }
 
     /**
-     * Updates a endpoint.
+     * Updates an endpoint.
      *
      * The async variant is {@see self::updateEndpointAsync()} .
      *
@@ -755,5 +778,53 @@ abstract class RegistrationServiceBaseClient
     public function updateService(UpdateServiceRequest $request, array $callOptions = []): Service
     {
         return $this->startApiCall('UpdateService', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

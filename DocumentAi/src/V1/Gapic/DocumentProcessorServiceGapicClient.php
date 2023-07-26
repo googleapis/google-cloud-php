@@ -51,6 +51,7 @@ use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\Evaluation;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
+use Google\Cloud\DocumentAI\V1\GcsDocument;
 use Google\Cloud\DocumentAI\V1\GetEvaluationRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorTypeRequest;
@@ -63,6 +64,7 @@ use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
+use Google\Cloud\DocumentAI\V1\ProcessOptions;
 use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\Processor;
@@ -74,6 +76,7 @@ use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -622,6 +625,8 @@ class DocumentProcessorServiceGapicClient
      *     @type bool $skipHumanReview
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -650,6 +655,10 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
+        }
+
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1769,6 +1778,8 @@ class DocumentProcessorServiceGapicClient
      *           An inline document proto.
      *     @type RawDocument $rawDocument
      *           A raw document content (bytes).
+     *     @type GcsDocument $gcsDocument
+     *           A raw document on Google Cloud Storage.
      *     @type bool $skipHumanReview
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
@@ -1777,6 +1788,8 @@ class DocumentProcessorServiceGapicClient
      *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      *           output. Only supports top-level document and pages field, so it must be in
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1801,12 +1814,20 @@ class DocumentProcessorServiceGapicClient
             $request->setRawDocument($optionalArgs['rawDocument']);
         }
 
+        if (isset($optionalArgs['gcsDocument'])) {
+            $request->setGcsDocument($optionalArgs['gcsDocument']);
+        }
+
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2063,6 +2084,8 @@ class DocumentProcessorServiceGapicClient
      * @param array            $optionalArgs     {
      *     Optional.
      *
+     *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
+     *           Options to control Custom Document Extraction (CDE) Processor.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
@@ -2092,6 +2115,12 @@ class DocumentProcessorServiceGapicClient
         $request->setParent($parent);
         $request->setProcessorVersion($processorVersion);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['customDocumentExtractionOptions'])) {
+            $request->setCustomDocumentExtractionOptions(
+                $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
         if (isset($optionalArgs['documentSchema'])) {
             $request->setDocumentSchema($optionalArgs['documentSchema']);
         }

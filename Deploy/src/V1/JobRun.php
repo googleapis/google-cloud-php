@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `JobRun` resource in the Google Cloud Deploy API.
+ * A `JobRun` resource in the Cloud Deploy API.
  * A `JobRun` contains information of a single `Rollout` job evaluation.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.JobRun</code>

@@ -338,7 +338,7 @@ class QueryResults implements \IteratorAggregate
      * $job = $queryResults->job();
      * ```
      *
-     * @return array
+     * @return Google\Cloud\BigQuery\Job
      */
     public function job()
     {
