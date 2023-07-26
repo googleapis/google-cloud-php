@@ -2,7 +2,6 @@ name: Incorrect Conventional Commit Check
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
-
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   incorrect-conventional-commit-check:
@@ -17,16 +16,21 @@ jobs:
           php-version: "8.1"
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.2"
-      - name: Get Latest Release
-        id: latest-release
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          repository: ${{ github.repository }}
       - name: "Check for an incorrect feat label in the PR"
+        id: compatibility-checker
         if: ${{ github.event.pull_request.user.login == 'vishwarajanand' && !startsWith(github.event.pull_request.title, 'feat')}}
+        continue-on-error: true
         # OwlBot PRs which are not labelled feat should not add new files or methods
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ github.event.pull_request.head.sha }} \
-              --to=${{ steps.latest-release.outputs.release }} --format=github-actions
-
+              --to=${{ github.event.pull_request.base.sha }}
+          variable=true
+      - name: "Result for a failed incorrect label check"
+        if: ${{ steps.compatibility-checker.outcome }} == 'failure' }}
+        run: |
+          echo 'Action item: Change the PR label to `feat`'
+      - name: "Result for a successful incorrect label check"
+        if: ${{ steps.compatibility-checker.outcome }} != 'failure' }}
+        run: |
+          echo 'Action item: No changes needed in the PR label'
