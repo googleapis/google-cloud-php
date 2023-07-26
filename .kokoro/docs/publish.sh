@@ -14,7 +14,7 @@ fi
 # Run publish-reporter-script to report back the status in release PR.
 CURRENT_DIR=$(dirname "${BASH_SOURCE[0]}")
 REQUIREMENTS_FILE=$(realpath "${CURRENT_DIR}/requirements.txt")
-python3.9 -m pip install -r "${REQUIREMENTS_FILE}"
+python3.9 -m pip install --require-hashes -r "${REQUIREMENTS_FILE}"
 python3.9 -m releasetool publish-reporter-script > /tmp/publisher-script; source /tmp/publisher-script
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
