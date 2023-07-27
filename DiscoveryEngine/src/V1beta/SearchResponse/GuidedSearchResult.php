@@ -22,6 +22,12 @@ class GuidedSearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.GuidedSearchResult.RefinementAttribute refinement_attributes = 1;</code>
      */
     private $refinement_attributes;
+    /**
+     * Suggested follow-up questions.
+     *
+     * Generated from protobuf field <code>repeated string follow_up_questions = 2;</code>
+     */
+    private $follow_up_questions;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class GuidedSearchResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\GuidedSearchResult\RefinementAttribute>|\Google\Protobuf\Internal\RepeatedField $refinement_attributes
      *           A list of ranked refinement attributes.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $follow_up_questions
+     *           Suggested follow-up questions.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,32 @@ class GuidedSearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\GuidedSearchResult\RefinementAttribute::class);
         $this->refinement_attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Suggested follow-up questions.
+     *
+     * Generated from protobuf field <code>repeated string follow_up_questions = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFollowUpQuestions()
+    {
+        return $this->follow_up_questions;
+    }
+
+    /**
+     * Suggested follow-up questions.
+     *
+     * Generated from protobuf field <code>repeated string follow_up_questions = 2;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFollowUpQuestions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->follow_up_questions = $arr;
 
         return $this;
     }

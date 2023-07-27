@@ -9,35 +9,46 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The specification that configs the extractive content in search results.
+ * A specification for configuring the extractive content in a search
+ * response.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.ExtractiveContentSpec</code>
  */
 class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The max number of extractive answers returned in each search result.
+     * The maximum number of extractive answers returned in each search
+     * result.
      * An extractive answer is a verbatim answer extracted from the original
-     * document, which provides precise and contextually relevant answer to
+     * document, which provides a precise and contextually relevant answer to
      * the search query.
      * If the number of matching answers is less than the
-     * extractive_answer_count, return all of the answers; otherwise, return
-     * the extractive_answer_count.
-     * At most 5 answers will be returned for each SearchResult.
+     * `max_extractive_answer_count`, return all of the answers. Otherwise,
+     * return the `max_extractive_answer_count`.
+     * At most one answer is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
      */
     protected $max_extractive_answer_count = 0;
     /**
      * The max number of extractive segments returned in each search result.
+     * Only applied if the
+     * [DataStore][google.cloud.discoveryengine.v1beta.DataStore] is set to
+     * [DataStore.ContentConfig.CONTENT_REQUIRED][google.cloud.discoveryengine.v1beta.DataStore.ContentConfig.CONTENT_REQUIRED]
+     * or
+     * [DataStore.solution_types][google.cloud.discoveryengine.v1beta.DataStore.solution_types]
+     * is
+     * [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_CHAT].
      * An extractive segment is a text segment extracted from the original
-     * document which is relevant to the search query and in general more
-     * verbose than an extrative answer. The segment could then be used as
+     * document that is relevant to the search query, and, in general, more
+     * verbose than an extractive answer. The segment could then be used as
      * input for LLMs to generate summaries and answers.
-     * If the number of matching segments is less than the
-     * max_extractive_segment_count, return all of the segments; otherwise,
-     * return the max_extractive_segment_count.
-     * Currently one segment will be returned for each SearchResult.
+     * If the number of matching segments is less than
+     * `max_extractive_segment_count`, return all of the segments. Otherwise,
+     * return the `max_extractive_segment_count`.
+     * Currently one segment is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      */
@@ -50,24 +61,34 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_extractive_answer_count
-     *           The max number of extractive answers returned in each search result.
+     *           The maximum number of extractive answers returned in each search
+     *           result.
      *           An extractive answer is a verbatim answer extracted from the original
-     *           document, which provides precise and contextually relevant answer to
+     *           document, which provides a precise and contextually relevant answer to
      *           the search query.
      *           If the number of matching answers is less than the
-     *           extractive_answer_count, return all of the answers; otherwise, return
-     *           the extractive_answer_count.
-     *           At most 5 answers will be returned for each SearchResult.
+     *           `max_extractive_answer_count`, return all of the answers. Otherwise,
+     *           return the `max_extractive_answer_count`.
+     *           At most one answer is returned for each
+     *           [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *     @type int $max_extractive_segment_count
      *           The max number of extractive segments returned in each search result.
+     *           Only applied if the
+     *           [DataStore][google.cloud.discoveryengine.v1beta.DataStore] is set to
+     *           [DataStore.ContentConfig.CONTENT_REQUIRED][google.cloud.discoveryengine.v1beta.DataStore.ContentConfig.CONTENT_REQUIRED]
+     *           or
+     *           [DataStore.solution_types][google.cloud.discoveryengine.v1beta.DataStore.solution_types]
+     *           is
+     *           [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_CHAT].
      *           An extractive segment is a text segment extracted from the original
-     *           document which is relevant to the search query and in general more
-     *           verbose than an extrative answer. The segment could then be used as
+     *           document that is relevant to the search query, and, in general, more
+     *           verbose than an extractive answer. The segment could then be used as
      *           input for LLMs to generate summaries and answers.
-     *           If the number of matching segments is less than the
-     *           max_extractive_segment_count, return all of the segments; otherwise,
-     *           return the max_extractive_segment_count.
-     *           Currently one segment will be returned for each SearchResult.
+     *           If the number of matching segments is less than
+     *           `max_extractive_segment_count`, return all of the segments. Otherwise,
+     *           return the `max_extractive_segment_count`.
+     *           Currently one segment is returned for each
+     *           [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      * }
      */
     public function __construct($data = NULL) {
@@ -76,14 +97,16 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The max number of extractive answers returned in each search result.
+     * The maximum number of extractive answers returned in each search
+     * result.
      * An extractive answer is a verbatim answer extracted from the original
-     * document, which provides precise and contextually relevant answer to
+     * document, which provides a precise and contextually relevant answer to
      * the search query.
      * If the number of matching answers is less than the
-     * extractive_answer_count, return all of the answers; otherwise, return
-     * the extractive_answer_count.
-     * At most 5 answers will be returned for each SearchResult.
+     * `max_extractive_answer_count`, return all of the answers. Otherwise,
+     * return the `max_extractive_answer_count`.
+     * At most one answer is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
      * @return int
@@ -94,14 +117,16 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The max number of extractive answers returned in each search result.
+     * The maximum number of extractive answers returned in each search
+     * result.
      * An extractive answer is a verbatim answer extracted from the original
-     * document, which provides precise and contextually relevant answer to
+     * document, which provides a precise and contextually relevant answer to
      * the search query.
      * If the number of matching answers is less than the
-     * extractive_answer_count, return all of the answers; otherwise, return
-     * the extractive_answer_count.
-     * At most 5 answers will be returned for each SearchResult.
+     * `max_extractive_answer_count`, return all of the answers. Otherwise,
+     * return the `max_extractive_answer_count`.
+     * At most one answer is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
      * @param int $var
@@ -117,14 +142,22 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * The max number of extractive segments returned in each search result.
+     * Only applied if the
+     * [DataStore][google.cloud.discoveryengine.v1beta.DataStore] is set to
+     * [DataStore.ContentConfig.CONTENT_REQUIRED][google.cloud.discoveryengine.v1beta.DataStore.ContentConfig.CONTENT_REQUIRED]
+     * or
+     * [DataStore.solution_types][google.cloud.discoveryengine.v1beta.DataStore.solution_types]
+     * is
+     * [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_CHAT].
      * An extractive segment is a text segment extracted from the original
-     * document which is relevant to the search query and in general more
-     * verbose than an extrative answer. The segment could then be used as
+     * document that is relevant to the search query, and, in general, more
+     * verbose than an extractive answer. The segment could then be used as
      * input for LLMs to generate summaries and answers.
-     * If the number of matching segments is less than the
-     * max_extractive_segment_count, return all of the segments; otherwise,
-     * return the max_extractive_segment_count.
-     * Currently one segment will be returned for each SearchResult.
+     * If the number of matching segments is less than
+     * `max_extractive_segment_count`, return all of the segments. Otherwise,
+     * return the `max_extractive_segment_count`.
+     * Currently one segment is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      * @return int
@@ -136,14 +169,22 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * The max number of extractive segments returned in each search result.
+     * Only applied if the
+     * [DataStore][google.cloud.discoveryengine.v1beta.DataStore] is set to
+     * [DataStore.ContentConfig.CONTENT_REQUIRED][google.cloud.discoveryengine.v1beta.DataStore.ContentConfig.CONTENT_REQUIRED]
+     * or
+     * [DataStore.solution_types][google.cloud.discoveryengine.v1beta.DataStore.solution_types]
+     * is
+     * [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_CHAT].
      * An extractive segment is a text segment extracted from the original
-     * document which is relevant to the search query and in general more
-     * verbose than an extrative answer. The segment could then be used as
+     * document that is relevant to the search query, and, in general, more
+     * verbose than an extractive answer. The segment could then be used as
      * input for LLMs to generate summaries and answers.
-     * If the number of matching segments is less than the
-     * max_extractive_segment_count, return all of the segments; otherwise,
-     * return the max_extractive_segment_count.
-     * Currently one segment will be returned for each SearchResult.
+     * If the number of matching segments is less than
+     * `max_extractive_segment_count`, return all of the segments. Otherwise,
+     * return the `max_extractive_segment_count`.
+     * Currently one segment is returned for each
+     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      * @param int $var

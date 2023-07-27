@@ -36,15 +36,15 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *   have a valid
      *   [Document.id][google.cloud.discoveryengine.v1beta.Document.id].
      * * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by
-     *   `input_uris` will become a document, with the ID set to the first 128
+     *   `input_uris` becomes a document, with the ID set to the first 128
      *   bits of SHA256(URI) encoded as a hex string.
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
-     *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. This can only be used by the GENERIC Data Store vertical.
-     * * `csv`: A CSV file with header conforming the defined
+     *   to the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of
+     *   the data store. This can only be used by Gen App Builder.
+     * * `csv`: A CSV file with header conforming to the defined
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. Each entry after the header will be imported as a Document.
-     *   This can only be used by the GENERIC Data Store vertical.
+     *   data store. Each entry after the header is imported as a Document.
+     *   This can only be used by Gen App Builder.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -76,15 +76,15 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *             have a valid
      *             [Document.id][google.cloud.discoveryengine.v1beta.Document.id].
      *           * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by
-     *             `input_uris` will become a document, with the ID set to the first 128
+     *             `input_uris` becomes a document, with the ID set to the first 128
      *             bits of SHA256(URI) encoded as a hex string.
      *           * `custom`: One custom data JSON per row in arbitrary format that conforms
-     *             the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *             data store. This can only be used by the GENERIC Data Store vertical.
-     *           * `csv`: A CSV file with header conforming the defined
+     *             to the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of
+     *             the data store. This can only be used by Gen App Builder.
+     *           * `csv`: A CSV file with header conforming to the defined
      *           [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *             data store. Each entry after the header will be imported as a Document.
-     *             This can only be used by the GENERIC Data Store vertical.
+     *             data store. Each entry after the header is imported as a Document.
+     *             This can only be used by Gen App Builder.
      *           Supported values for user even imports:
      *           * `user_event` (default): One JSON
      *           [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -142,15 +142,15 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *   have a valid
      *   [Document.id][google.cloud.discoveryengine.v1beta.Document.id].
      * * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by
-     *   `input_uris` will become a document, with the ID set to the first 128
+     *   `input_uris` becomes a document, with the ID set to the first 128
      *   bits of SHA256(URI) encoded as a hex string.
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
-     *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. This can only be used by the GENERIC Data Store vertical.
-     * * `csv`: A CSV file with header conforming the defined
+     *   to the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of
+     *   the data store. This can only be used by Gen App Builder.
+     * * `csv`: A CSV file with header conforming to the defined
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. Each entry after the header will be imported as a Document.
-     *   This can only be used by the GENERIC Data Store vertical.
+     *   data store. Each entry after the header is imported as a Document.
+     *   This can only be used by Gen App Builder.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.
@@ -172,15 +172,15 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *   have a valid
      *   [Document.id][google.cloud.discoveryengine.v1beta.Document.id].
      * * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by
-     *   `input_uris` will become a document, with the ID set to the first 128
+     *   `input_uris` becomes a document, with the ID set to the first 128
      *   bits of SHA256(URI) encoded as a hex string.
      * * `custom`: One custom data JSON per row in arbitrary format that conforms
-     *   the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. This can only be used by the GENERIC Data Store vertical.
-     * * `csv`: A CSV file with header conforming the defined
+     *   to the defined [Schema][google.cloud.discoveryengine.v1beta.Schema] of
+     *   the data store. This can only be used by Gen App Builder.
+     * * `csv`: A CSV file with header conforming to the defined
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] of the
-     *   data store. Each entry after the header will be imported as a Document.
-     *   This can only be used by the GENERIC Data Store vertical.
+     *   data store. Each entry after the header is imported as a Document.
+     *   This can only be used by Gen App Builder.
      * Supported values for user even imports:
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] per line.

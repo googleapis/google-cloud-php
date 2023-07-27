@@ -69,7 +69,9 @@ class CompletionServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $tailMatchTriggered = true;
         $expectedResponse = new CompleteQueryResponse();
+        $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -137,7 +139,9 @@ class CompletionServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $tailMatchTriggered = true;
         $expectedResponse = new CompleteQueryResponse();
+        $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
