@@ -21,6 +21,20 @@ class Standard extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool verify = 1;</code>
      */
     private $verify = false;
+    /**
+     * Optional. Configuration for the predeploy job. If this is not configured,
+     * predeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $predeploy = null;
+    /**
+     * Optional. Configuration for the postdeploy job. If this is not configured,
+     * postdeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $postdeploy = null;
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class Standard extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $verify
      *           Whether to verify a deployment.
+     *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
+     *           Optional. Configuration for the predeploy job. If this is not configured,
+     *           predeploy job will not be present.
+     *     @type \Google\Cloud\Deploy\V1\Postdeploy $postdeploy
+     *           Optional. Configuration for the postdeploy job. If this is not configured,
+     *           postdeploy job will not be present.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +79,82 @@ class Standard extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->verify = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the predeploy job. If this is not configured,
+     * predeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\Predeploy|null
+     */
+    public function getPredeploy()
+    {
+        return $this->predeploy;
+    }
+
+    public function hasPredeploy()
+    {
+        return isset($this->predeploy);
+    }
+
+    public function clearPredeploy()
+    {
+        unset($this->predeploy);
+    }
+
+    /**
+     * Optional. Configuration for the predeploy job. If this is not configured,
+     * predeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\Predeploy $var
+     * @return $this
+     */
+    public function setPredeploy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Predeploy::class);
+        $this->predeploy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the postdeploy job. If this is not configured,
+     * postdeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\Postdeploy|null
+     */
+    public function getPostdeploy()
+    {
+        return $this->postdeploy;
+    }
+
+    public function hasPostdeploy()
+    {
+        return isset($this->postdeploy);
+    }
+
+    public function clearPostdeploy()
+    {
+        unset($this->postdeploy);
+    }
+
+    /**
+     * Optional. Configuration for the postdeploy job. If this is not configured,
+     * postdeploy job will not be present.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\Postdeploy $var
+     * @return $this
+     */
+    public function setPostdeploy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Postdeploy::class);
+        $this->postdeploy = $var;
 
         return $this;
     }
