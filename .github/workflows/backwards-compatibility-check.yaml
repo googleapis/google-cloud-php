@@ -27,7 +27,7 @@ jobs:
         # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
         continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         run: |
-          if [[ "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+          if [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
             echo "Breaking change label found in PR title"
             exit 1
           fi
