@@ -68,17 +68,19 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
     public function testCollectionGroup()
     {
         $query = $this->createDocumentsQuery([
+            // following doc paths will match based on the collection group id
             'abc/123/%s/cg-doc1',
             'abc/123/%s/cg-doc2',
             '%s/cg-doc3',
             '%s/cg-doc4',
             'def/456/%s/cg-doc5',
-            '%s/virtual-doc/nested-coll/not-cg-doc',
-            'x%s/not-cg-doc',
-            '%sx/not-cg-doc',
-            'abc/123/%sx/not-cg-doc',
-            'abc/123/x%s/not-cg-doc',
-            'abc/%s',
+            // following doc paths will NOT match with collection group id
+            '%s/virtual-doc/nested-coll/not-cg-doc', // nested-coll
+            'x%s/not-cg-doc',                        // x-prefix
+            '%sx/not-cg-doc',                        // x-suffix
+            'abc/123/%sx/not-cg-doc',                // x-prefix
+            'abc/123/x%s/not-cg-doc',                // x-suffix
+            'abc/%s',                                // abc
         ]);
 
         // Returns docs only with matching exact collection group id
