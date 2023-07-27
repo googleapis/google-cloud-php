@@ -67,7 +67,7 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
 
     public function testCollectionGroup()
     {
-        list ($query) = $this->createDocuments([
+        $query = $this->createDocumentsQuery([
             'abc/123/%s/cg-doc1',
             'abc/123/%s/cg-doc2',
             '%s/cg-doc3',
@@ -81,14 +81,14 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
             'abc/%s',
         ]);
 
-        // Returns docs with parent path having the collection id
+        // Returns docs only with matching exact collection group id
         $this->assertEquals(
             ['cg-doc1', 'cg-doc2', 'cg-doc3', 'cg-doc4', 'cg-doc5'],
             $this->getIds($query)
         );
     }
 
-    private function createDocuments(array $paths)
+    private function createDocumentsQuery(array $paths)
     {
         // Create a random collection name, but make sure
         // it starts with 'b' for predictable ordering.
@@ -111,7 +111,7 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
         $batch->flush();
         self::$localDeletionQueue->add($collectionGroup);
 
-        return [$query, $paths, $collectionGroup];
+        return $query;
     }
 
     private function getIds(Query $query)
