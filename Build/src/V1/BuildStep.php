@@ -167,6 +167,14 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string script = 19;</code>
      */
     private $script = '';
+    /**
+     * Option to include built-in and custom substitutions as env variables
+     * for this build step. This option will override the global option
+     * in BuildOption.
+     *
+     * Generated from protobuf field <code>optional bool automap_substitutions = 20;</code>
+     */
+    private $automap_substitutions = null;
 
     /**
      * Constructor.
@@ -258,6 +266,10 @@ class BuildStep extends \Google\Protobuf\Internal\Message
      *     @type string $script
      *           A shell script to be executed in the step.
      *           When script is provided, the user cannot specify the entrypoint or args.
+     *     @type bool $automap_substitutions
+     *           Option to include built-in and custom substitutions as env variables
+     *           for this build step. This option will override the global option
+     *           in BuildOption.
      * }
      */
     public function __construct($data = NULL) {
@@ -833,6 +845,46 @@ class BuildStep extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->script = $var;
+
+        return $this;
+    }
+
+    /**
+     * Option to include built-in and custom substitutions as env variables
+     * for this build step. This option will override the global option
+     * in BuildOption.
+     *
+     * Generated from protobuf field <code>optional bool automap_substitutions = 20;</code>
+     * @return bool
+     */
+    public function getAutomapSubstitutions()
+    {
+        return isset($this->automap_substitutions) ? $this->automap_substitutions : false;
+    }
+
+    public function hasAutomapSubstitutions()
+    {
+        return isset($this->automap_substitutions);
+    }
+
+    public function clearAutomapSubstitutions()
+    {
+        unset($this->automap_substitutions);
+    }
+
+    /**
+     * Option to include built-in and custom substitutions as env variables
+     * for this build step. This option will override the global option
+     * in BuildOption.
+     *
+     * Generated from protobuf field <code>optional bool automap_substitutions = 20;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutomapSubstitutions($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->automap_substitutions = $var;
 
         return $this;
     }
