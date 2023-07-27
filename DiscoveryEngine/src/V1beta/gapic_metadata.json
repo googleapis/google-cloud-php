@@ -19,6 +19,59 @@
                 }
             }
         },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationalSearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationalSearchServiceGapicClient",
+                    "rpcs": {
+                        "ConverseConversation": {
+                            "methods": [
+                                "converseConversation"
+                            ]
+                        },
+                        "CreateConversation": {
+                            "methods": [
+                                "createConversation"
+                            ]
+                        },
+                        "DeleteConversation": {
+                            "methods": [
+                                "deleteConversation"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DocumentService": {
             "clients": {
                 "grpc": {
@@ -105,20 +158,6 @@
                         "UpdateSchema": {
                             "methods": [
                                 "updateSchema"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "SearchService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
-                    "rpcs": {
-                        "Search": {
-                            "methods": [
-                                "search"
                             ]
                         }
                     }
