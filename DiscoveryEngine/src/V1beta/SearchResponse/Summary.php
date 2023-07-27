@@ -21,6 +21,13 @@ class Summary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string summary_text = 1;</code>
      */
     protected $summary_text = '';
+    /**
+     * Additional summary-skipped reasons. This provides the reason for ignored
+     * cases. If nothing is skipped, this field is not set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
+     */
+    private $summary_skipped_reasons;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class Summary extends \Google\Protobuf\Internal\Message
      *
      *     @type string $summary_text
      *           The summary content.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $summary_skipped_reasons
+     *           Additional summary-skipped reasons. This provides the reason for ignored
+     *           cases. If nothing is skipped, this field is not set.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,34 @@ class Summary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->summary_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Additional summary-skipped reasons. This provides the reason for ignored
+     * cases. If nothing is skipped, this field is not set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSummarySkippedReasons()
+    {
+        return $this->summary_skipped_reasons;
+    }
+
+    /**
+     * Additional summary-skipped reasons. This provides the reason for ignored
+     * cases. If nothing is skipped, this field is not set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSummarySkippedReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummarySkippedReason::class);
+        $this->summary_skipped_reasons = $arr;
 
         return $this;
     }
