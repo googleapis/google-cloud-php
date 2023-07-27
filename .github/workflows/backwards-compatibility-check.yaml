@@ -22,8 +22,15 @@ jobs:
         # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
         continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         run: |
-          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions \
-              && "${{ !contains(github.event.pull_request.title, '!:') }}"
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
+      - name: "Check for BC label"
+        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
+        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+        run: |
+          if [[ "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+            echo "Breaking change label found in PR title"
+            exit 1
+          fi
       - name: Get Latest Release
         if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
