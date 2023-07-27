@@ -53,14 +53,14 @@ class BatchDocumentOutputConfig extends \Google\Protobuf\Internal\Message
      *           (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      *           The naming format of translation output files follows (for target
      *           language code [trg]): `translation_output`:
-     *           gs://translation_output/a_b_c_[trg]_translation.[extension]
+     *           `gs://translation_output/a_b_c_[trg]_translation.[extension]`
      *           `glossary_translation_output`:
-     *           gs://translation_test/a_b_c_[trg]_glossary_translation.[extension] The
+     *           `gs://translation_test/a_b_c_[trg]_glossary_translation.[extension]`. The
      *           output document will maintain the same file format as the input document.
      *           The naming format of error output files follows (for target language code
-     *           [trg]): `error_output`: gs://translation_test/a_b_c_[trg]_errors.txt
+     *           [trg]): `error_output`: `gs://translation_test/a_b_c_[trg]_errors.txt`
      *           `glossary_error_output`:
-     *           gs://translation_test/a_b_c_[trg]_glossary_translation.txt The error
+     *           `gs://translation_test/a_b_c_[trg]_glossary_translation.txt`. The error
      *           output is a txt file containing error details.
      * }
      */
@@ -99,14 +99,14 @@ class BatchDocumentOutputConfig extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      * The naming format of translation output files follows (for target
      * language code [trg]): `translation_output`:
-     * gs://translation_output/a_b_c_[trg]_translation.[extension]
+     * `gs://translation_output/a_b_c_[trg]_translation.[extension]`
      * `glossary_translation_output`:
-     * gs://translation_test/a_b_c_[trg]_glossary_translation.[extension] The
+     * `gs://translation_test/a_b_c_[trg]_glossary_translation.[extension]`. The
      * output document will maintain the same file format as the input document.
      * The naming format of error output files follows (for target language code
-     * [trg]): `error_output`: gs://translation_test/a_b_c_[trg]_errors.txt
+     * [trg]): `error_output`: `gs://translation_test/a_b_c_[trg]_errors.txt`
      * `glossary_error_output`:
-     * gs://translation_test/a_b_c_[trg]_glossary_translation.txt The error
+     * `gs://translation_test/a_b_c_[trg]_glossary_translation.txt`. The error
      * output is a txt file containing error details.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GcsDestination gcs_destination = 1;</code>
@@ -152,14 +152,14 @@ class BatchDocumentOutputConfig extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/storage/docs/bucket-lock#retention-policy)
      * The naming format of translation output files follows (for target
      * language code [trg]): `translation_output`:
-     * gs://translation_output/a_b_c_[trg]_translation.[extension]
+     * `gs://translation_output/a_b_c_[trg]_translation.[extension]`
      * `glossary_translation_output`:
-     * gs://translation_test/a_b_c_[trg]_glossary_translation.[extension] The
+     * `gs://translation_test/a_b_c_[trg]_glossary_translation.[extension]`. The
      * output document will maintain the same file format as the input document.
      * The naming format of error output files follows (for target language code
-     * [trg]): `error_output`: gs://translation_test/a_b_c_[trg]_errors.txt
+     * [trg]): `error_output`: `gs://translation_test/a_b_c_[trg]_errors.txt`
      * `glossary_error_output`:
-     * gs://translation_test/a_b_c_[trg]_glossary_translation.txt The error
+     * `gs://translation_test/a_b_c_[trg]_glossary_translation.txt`. The error
      * output is a txt file containing error details.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GcsDestination gcs_destination = 1;</code>
