@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\GetResourcePolicyRequest;
 use Google\Cloud\Compute\V1\InsertResourcePolicyRequest;
 use Google\Cloud\Compute\V1\ListResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\PatchResourcePolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
@@ -673,6 +674,91 @@ class ResourcePoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('List', $optionalArgs, ResourcePolicyList::class, $request);
+    }
+
+    /**
+     * Modify the specified resource policy.
+     *
+     * Sample code:
+     * ```
+     * $resourcePoliciesClient = new ResourcePoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $resourcePolicy = 'resource_policy';
+     *     $resourcePolicyResource = new ResourcePolicy();
+     *     $operationResponse = $resourcePoliciesClient->patch($project, $region, $resourcePolicy, $resourcePolicyResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $resourcePoliciesClient->patch($project, $region, $resourcePolicy, $resourcePolicyResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $resourcePoliciesClient->resumeOperation($operationName, 'patch');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $resourcePoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string         $project                Project ID for this request.
+     * @param string         $region                 Name of the region for this request.
+     * @param string         $resourcePolicy         Id of the resource policy to patch.
+     * @param ResourcePolicy $resourcePolicyResource The body resource for this request
+     * @param array          $optionalArgs           {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $updateMask
+     *           update_mask indicates fields to be updated as part of this request.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function patch($project, $region, $resourcePolicy, $resourcePolicyResource, array $optionalArgs = [])
+    {
+        $request = new PatchResourcePolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setResourcePolicy($resourcePolicy);
+        $request->setResourcePolicyResource($resourcePolicyResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource_policy'] = $resourcePolicy;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
