@@ -40,6 +40,7 @@ jobs:
 
   # Ensure the release PR does not contain an unexpected (2.0.0) major version release
   unexpected-major-version-check:
+    runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
       - uses: actions/checkout@v3
