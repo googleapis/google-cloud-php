@@ -46,8 +46,9 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
      * empirical quartile, as 75% of the data lies below this point.
-     * Here, the quartiles is provided as an ordered list of quartile
-     * values for the scanned data, occurring in order Q1, median, Q3.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      */
@@ -85,8 +86,9 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      *           below this point. The third quartile (Q3) splits off the highest
      *           25% of data from the lowest 75%. It is known as the upper or 75th
      *           empirical quartile, as 75% of the data lies below this point.
-     *           Here, the quartiles is provided as an ordered list of quartile
-     *           values for the scanned data, occurring in order Q1, median, Q3.
+     *           Here, the quartiles is provided as an ordered list of approximate
+     *           quartile values for the scanned data, occurring in order Q1,
+     *           median, Q3.
      *     @type int|string $max
      *           Maximum of non-null values in the scanned data. NaN, if the field
      *           has a NaN.
@@ -191,8 +193,9 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
      * empirical quartile, as 75% of the data lies below this point.
-     * Here, the quartiles is provided as an ordered list of quartile
-     * values for the scanned data, occurring in order Q1, median, Q3.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -212,8 +215,9 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
      * empirical quartile, as 75% of the data lies below this point.
-     * Here, the quartiles is provided as an ordered list of quartile
-     * values for the scanned data, occurring in order Q1, median, Q3.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
