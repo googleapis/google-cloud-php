@@ -67,7 +67,10 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
 
     public function testCollectionGroup()
     {
-        $query = $this->createDocumentsQuery([
+        // Create a random collection name, but make sure
+        // it starts with 'b' for predictable ordering.
+        $collectionGroup = 'b' . uniqid(self::COLLECTION_NAME);
+        $query = $this->createDocuments([
             // following doc paths will match based on the collection group id
             'abc/123/%s/cg-doc1',
             'abc/123/%s/cg-doc2',
@@ -81,24 +84,24 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
             'abc/123/%sx/not-cg-doc',                // x-prefix
             'abc/123/x%s/not-cg-doc',                // x-suffix
             'abc/%s',                                // abc
-        ]);
+        ], $collectionGroup);
 
-        // Returns docs only with matching exact collection group id
-        $this->assertEquals(
+        $query = self::$multiDbClient->collectionGroup($collectionGroup);
+        $documentIds = array_map(
+            fn($doc) => $doc->id(),
+            // Returns docs only with matching exact collection group id
+            $query->documents()->rows()
+        );
+        $this->assertEqualsCanonicalizing(
             ['cg-doc1', 'cg-doc2', 'cg-doc3', 'cg-doc4', 'cg-doc5'],
-            $this->getIds($query)
+            $documentIds
         );
     }
 
-    private function createDocumentsQuery(array $paths)
+    private function createDocuments(array $paths, $collectionGroupId)
     {
-        // Create a random collection name, but make sure
-        // it starts with 'b' for predictable ordering.
-        $collectionGroup = 'b' . uniqid(self::COLLECTION_NAME);
-        $query = self::$multiDbClient->collectionGroup($collectionGroup);
-
         foreach ($paths as &$path) {
-            $path = sprintf($path, $collectionGroup);
+            $path = sprintf($path, $collectionGroupId);
         }
         $batch = self::$multiDbClient->bulkWriter();
 
@@ -111,20 +114,6 @@ class FirestoreMultipleDbTest extends FirestoreTestCase
         }
 
         $batch->flush();
-        self::$localDeletionQueue->add($collectionGroup);
-
-        return $query;
-    }
-
-    private function getIds(Query $query)
-    {
-        $documents = $query->documents()->rows();
-        $ids = [];
-        foreach ($documents as $document) {
-            $ids[] = $document->id();
-        }
-        sort($ids);
-
-        return $ids;
+        self::$localDeletionQueue->add($collectionGroupId);
     }
 }
