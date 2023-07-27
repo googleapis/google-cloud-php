@@ -41,7 +41,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
-     * Headers that the HTTP/S load balancer should add to proxied responses.
+     * Headers that the Application Load Balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      */
@@ -105,7 +105,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
-     *           Headers that the HTTP/S load balancer should add to proxied responses.
+     *           Headers that the Application Load Balancer should add to proxied responses.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client when the resource is created.
      *     @type string $edge_security_policy
@@ -274,7 +274,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headers that the HTTP/S load balancer should add to proxied responses.
+     * Headers that the Application Load Balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -285,7 +285,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headers that the HTTP/S load balancer should add to proxied responses.
+     * Headers that the Application Load Balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
