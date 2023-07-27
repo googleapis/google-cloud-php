@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class RowConditionExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The SQL expression.
+     * Optional. The SQL expression.
      *
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sql_expression = '';
 
@@ -32,7 +32,7 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sql_expression
-     *           The SQL expression.
+     *           Optional. The SQL expression.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,9 +41,9 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SQL expression.
+     * Optional. The SQL expression.
      *
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSqlExpression()
@@ -52,9 +52,9 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SQL expression.
+     * Optional. The SQL expression.
      *
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
