@@ -20,6 +20,30 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. User-defined labels for the task. If the map is left empty, the
+     * task will run with existing labels from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * labels. If the map contains an entry with an existing label key in task
+     * definition, the task will run with new label value for that entry. Clearing
+     * an existing label will require label value to be explicitly set to a hyphen
+     * "-". The label value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
+    /**
+     * Optional. Execution spec arguments. If the map is left empty, the task will
+     * run with existing execution spec args from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * args. If the map contains an entry with an existing arg key in task
+     * definition, the task will run with new arg value for that entry. Clearing
+     * an existing arg will require arg value to be explicitly set to a hyphen
+     * "-". The arg value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $args;
 
     /**
      * @param string $name Required. The resource name of the task:
@@ -45,6 +69,22 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the task:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. User-defined labels for the task. If the map is left empty, the
+     *           task will run with existing labels from task definition. If the map
+     *           contains an entry with a new key, the same will be added to existing set of
+     *           labels. If the map contains an entry with an existing label key in task
+     *           definition, the task will run with new label value for that entry. Clearing
+     *           an existing label will require label value to be explicitly set to a hyphen
+     *           "-". The label value cannot be empty.
+     *     @type array|\Google\Protobuf\Internal\MapField $args
+     *           Optional. Execution spec arguments. If the map is left empty, the task will
+     *           run with existing execution spec args from task definition. If the map
+     *           contains an entry with a new key, the same will be added to existing set of
+     *           args. If the map contains an entry with an existing arg key in task
+     *           definition, the task will run with new arg value for that entry. Clearing
+     *           an existing arg will require arg value to be explicitly set to a hyphen
+     *           "-". The arg value cannot be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,6 +116,82 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. User-defined labels for the task. If the map is left empty, the
+     * task will run with existing labels from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * labels. If the map contains an entry with an existing label key in task
+     * definition, the task will run with new label value for that entry. Clearing
+     * an existing label will require label value to be explicitly set to a hyphen
+     * "-". The label value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. User-defined labels for the task. If the map is left empty, the
+     * task will run with existing labels from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * labels. If the map contains an entry with an existing label key in task
+     * definition, the task will run with new label value for that entry. Clearing
+     * an existing label will require label value to be explicitly set to a hyphen
+     * "-". The label value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Execution spec arguments. If the map is left empty, the task will
+     * run with existing execution spec args from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * args. If the map contains an entry with an existing arg key in task
+     * definition, the task will run with new arg value for that entry. Clearing
+     * an existing arg will require arg value to be explicitly set to a hyphen
+     * "-". The arg value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getArgs()
+    {
+        return $this->args;
+    }
+
+    /**
+     * Optional. Execution spec arguments. If the map is left empty, the task will
+     * run with existing execution spec args from task definition. If the map
+     * contains an entry with a new key, the same will be added to existing set of
+     * args. If the map contains an entry with an existing arg key in task
+     * definition, the task will run with new arg value for that entry. Clearing
+     * an existing arg will require arg value to be explicitly set to a hyphen
+     * "-". The arg value cannot be empty.
+     *
+     * Generated from protobuf field <code>map<string, string> args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setArgs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->args = $arr;
 
         return $this;
     }

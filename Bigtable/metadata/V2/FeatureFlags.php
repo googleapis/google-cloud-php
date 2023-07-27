@@ -16,11 +16,12 @@ class FeatureFlags
         }
         $pool->internalAddGeneratedFile(
             '
-Ë
-&google/bigtable/v2/feature_flags.protogoogle.bigtable.v2"E
+ï
+&google/bigtable/v2/feature_flags.protogoogle.bigtable.v2"i
 FeatureFlags
 reverse_scans (
-mutate_rows_rate_limit (B½
+mutate_rows_rate_limit ("
+last_scanned_row_responses (B½
 com.google.bigtable.v2BFeatureFlagsProtoPZ:google.golang.org/genproto/googleapis/bigtable/v2;bigtableªGoogle.Cloud.Bigtable.V2ÊGoogle\\Cloud\\Bigtable\\V2êGoogle::Cloud::Bigtable::V2bproto3'
         , true);
 
