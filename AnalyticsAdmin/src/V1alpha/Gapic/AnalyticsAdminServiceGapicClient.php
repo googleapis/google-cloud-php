@@ -7453,18 +7453,19 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $measurementProtocolSecret = new MeasurementProtocolSecret();
-     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
      * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
+     * @param FieldMask                 $updateMask                Required. The list of fields to be updated. Omitted fields will not be
+     *                                                             updated.
      * @param array                     $optionalArgs              {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -7477,16 +7478,13 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret($measurementProtocolSecret, array $optionalArgs = [])
+    public function updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
         $request->setMeasurementProtocolSecret($measurementProtocolSecret);
+        $request->setUpdateMask($updateMask);
         $requestParamHeaders['measurement_protocol_secret.name'] = $measurementProtocolSecret->getName();
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
