@@ -33,9 +33,9 @@ use Google\Rpc\Status;
 /**
  * Creates the specified index.
  * A newly created index's initial state is `CREATING`. On completion of the
- * returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
- * If the index already exists, the call will return an `ALREADY_EXISTS`
- * status.
+ * returned [google.longrunning.Operation][google.longrunning.Operation], the
+ * state will be `READY`. If the index already exists, the call will return an
+ * `ALREADY_EXISTS` status.
  *
  * During index creation, the process could result in an error, in which
  * case the index will move to the `ERROR` state. The process can be recovered
