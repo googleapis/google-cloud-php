@@ -18,7 +18,11 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * When true, write the subscription name, message_id, publish_time,
-     * attributes, and ordering_key as additional fields in the output.
+     * attributes, and ordering_key as additional fields in the output. The
+     * subscription name, message_id, and publish_time fields are put in their
+     * own fields while all other message properties other than data (for
+     * example, an ordering_key, if present) are added as entries in the
+     * attributes map.
      *
      * Generated from protobuf field <code>bool write_metadata = 1;</code>
      */
@@ -32,7 +36,11 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $write_metadata
      *           When true, write the subscription name, message_id, publish_time,
-     *           attributes, and ordering_key as additional fields in the output.
+     *           attributes, and ordering_key as additional fields in the output. The
+     *           subscription name, message_id, and publish_time fields are put in their
+     *           own fields while all other message properties other than data (for
+     *           example, an ordering_key, if present) are added as entries in the
+     *           attributes map.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +50,11 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, write the subscription name, message_id, publish_time,
-     * attributes, and ordering_key as additional fields in the output.
+     * attributes, and ordering_key as additional fields in the output. The
+     * subscription name, message_id, and publish_time fields are put in their
+     * own fields while all other message properties other than data (for
+     * example, an ordering_key, if present) are added as entries in the
+     * attributes map.
      *
      * Generated from protobuf field <code>bool write_metadata = 1;</code>
      * @return bool
@@ -54,7 +66,11 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, write the subscription name, message_id, publish_time,
-     * attributes, and ordering_key as additional fields in the output.
+     * attributes, and ordering_key as additional fields in the output. The
+     * subscription name, message_id, and publish_time fields are put in their
+     * own fields while all other message properties other than data (for
+     * example, an ordering_key, if present) are added as entries in the
+     * attributes map.
      *
      * Generated from protobuf field <code>bool write_metadata = 1;</code>
      * @param bool $var

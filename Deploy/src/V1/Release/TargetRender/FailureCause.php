@@ -41,12 +41,21 @@ class FailureCause
      * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 3;</code>
      */
     const CLOUD_BUILD_REQUEST_FAILED = 3;
+    /**
+     * The render operation did not complete successfully because the custom
+     * action required for predeploy or postdeploy was not found in the
+     * skaffold configuration. See failure_message for additional details.
+     *
+     * Generated from protobuf enum <code>CUSTOM_ACTION_NOT_FOUND = 5;</code>
+     */
+    const CUSTOM_ACTION_NOT_FOUND = 5;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
         self::CLOUD_BUILD_UNAVAILABLE => 'CLOUD_BUILD_UNAVAILABLE',
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
+        self::CUSTOM_ACTION_NOT_FOUND => 'CUSTOM_ACTION_NOT_FOUND',
     ];
 
     public static function name($value)

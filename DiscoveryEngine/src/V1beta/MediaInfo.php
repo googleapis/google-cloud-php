@@ -18,14 +18,16 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The media progress time in seconds, if applicable.
      * For example, if the end user has finished 90 seconds of a playback video,
-     * then [MediaInfo.media_progress_duration.seconds][Duration.seconds] should
-     * be set to 90.
+     * then
+     * [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
+     * should be set to 90.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration media_progress_duration = 1;</code>
      */
     protected $media_progress_duration = null;
     /**
-     * Media progress should be computed using only the media_progress_duration
+     * Media progress should be computed using only the
+     * [media_progress_duration][google.cloud.discoveryengine.v1beta.MediaInfo.media_progress_duration]
      * relative to the media total length.
      * This value must be between `[0, 1.0]` inclusive.
      * If this is not a playback or the progress cannot be computed (e.g. ongoing
@@ -44,10 +46,12 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $media_progress_duration
      *           The media progress time in seconds, if applicable.
      *           For example, if the end user has finished 90 seconds of a playback video,
-     *           then [MediaInfo.media_progress_duration.seconds][Duration.seconds] should
-     *           be set to 90.
+     *           then
+     *           [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
+     *           should be set to 90.
      *     @type float $media_progress_percentage
-     *           Media progress should be computed using only the media_progress_duration
+     *           Media progress should be computed using only the
+     *           [media_progress_duration][google.cloud.discoveryengine.v1beta.MediaInfo.media_progress_duration]
      *           relative to the media total length.
      *           This value must be between `[0, 1.0]` inclusive.
      *           If this is not a playback or the progress cannot be computed (e.g. ongoing
@@ -62,8 +66,9 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The media progress time in seconds, if applicable.
      * For example, if the end user has finished 90 seconds of a playback video,
-     * then [MediaInfo.media_progress_duration.seconds][Duration.seconds] should
-     * be set to 90.
+     * then
+     * [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
+     * should be set to 90.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration media_progress_duration = 1;</code>
      * @return \Google\Protobuf\Duration|null
@@ -86,8 +91,9 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The media progress time in seconds, if applicable.
      * For example, if the end user has finished 90 seconds of a playback video,
-     * then [MediaInfo.media_progress_duration.seconds][Duration.seconds] should
-     * be set to 90.
+     * then
+     * [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
+     * should be set to 90.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration media_progress_duration = 1;</code>
      * @param \Google\Protobuf\Duration $var
@@ -102,7 +108,8 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Media progress should be computed using only the media_progress_duration
+     * Media progress should be computed using only the
+     * [media_progress_duration][google.cloud.discoveryengine.v1beta.MediaInfo.media_progress_duration]
      * relative to the media total length.
      * This value must be between `[0, 1.0]` inclusive.
      * If this is not a playback or the progress cannot be computed (e.g. ongoing
@@ -127,7 +134,8 @@ class MediaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Media progress should be computed using only the media_progress_duration
+     * Media progress should be computed using only the
+     * [media_progress_duration][google.cloud.discoveryengine.v1beta.MediaInfo.media_progress_duration]
      * relative to the media total length.
      * This value must be between `[0, 1.0]` inclusive.
      * If this is not a playback or the progress cannot be computed (e.g. ongoing

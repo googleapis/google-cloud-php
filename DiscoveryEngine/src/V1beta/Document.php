@@ -74,13 +74,11 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Struct $struct_data
      *           The structured JSON data for the document. It should conform to the
-     *           registered
-     *           [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     *           registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      *           `INVALID_ARGUMENT` error is thrown.
      *     @type string $json_data
      *           The JSON string representation of the document. It should conform to the
-     *           registered
-     *           [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     *           registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      *           `INVALID_ARGUMENT` error is thrown.
      *     @type string $name
      *           Immutable. The full resource name of the document.
@@ -115,8 +113,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The structured JSON data for the document. It should conform to the
-     * registered
-     * [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     * registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      * `INVALID_ARGUMENT` error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 4;</code>
@@ -134,8 +131,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The structured JSON data for the document. It should conform to the
-     * registered
-     * [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     * registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      * `INVALID_ARGUMENT` error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 4;</code>
@@ -152,8 +148,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The JSON string representation of the document. It should conform to the
-     * registered
-     * [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     * registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      * `INVALID_ARGUMENT` error is thrown.
      *
      * Generated from protobuf field <code>string json_data = 5;</code>
@@ -171,8 +166,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The JSON string representation of the document. It should conform to the
-     * registered
-     * [Schema.schema][google.cloud.discoveryengine.v1beta.Schema.schema] or an
+     * registered [Schema][google.cloud.discoveryengine.v1beta.Schema] or an
      * `INVALID_ARGUMENT` error is thrown.
      *
      * Generated from protobuf field <code>string json_data = 5;</code>

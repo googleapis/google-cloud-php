@@ -32,7 +32,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     /**
      * The URL including cgi-parameters but excluding the hash fragment with a
      * length limit of 5,000 characters. This is often more useful than the
-     * referer URL, because many browsers only send the domain for 3rd party
+     * referer URL, because many browsers only send the domain for third-party
      * requests.
      *
      * Generated from protobuf field <code>optional string uri = 3;</code>
@@ -62,7 +62,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           The URL including cgi-parameters but excluding the hash fragment with a
      *           length limit of 5,000 characters. This is often more useful than the
-     *           referer URL, because many browsers only send the domain for 3rd party
+     *           referer URL, because many browsers only send the domain for third-party
      *           requests.
      *     @type int|string $ets
      *           The event timestamp in milliseconds. This prevents browser caching of
@@ -134,7 +134,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     /**
      * The URL including cgi-parameters but excluding the hash fragment with a
      * length limit of 5,000 characters. This is often more useful than the
-     * referer URL, because many browsers only send the domain for 3rd party
+     * referer URL, because many browsers only send the domain for third-party
      * requests.
      *
      * Generated from protobuf field <code>optional string uri = 3;</code>
@@ -158,7 +158,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     /**
      * The URL including cgi-parameters but excluding the hash fragment with a
      * length limit of 5,000 characters. This is often more useful than the
-     * referer URL, because many browsers only send the domain for 3rd party
+     * referer URL, because many browsers only send the domain for third-party
      * requests.
      *
      * Generated from protobuf field <code>optional string uri = 3;</code>
