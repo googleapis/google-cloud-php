@@ -77,10 +77,12 @@ class PublishAndPullTest extends PubSubTestCase
         $sub->modifyAckDeadlineBatch($actualMessages, 15);
         $sub->acknowledgeBatch($actualMessages);
 
-        $this->assertEquals($messages[0]['data'], $actualMessages[0]->data());
-        $this->assertEquals($messages[0]['attributes'], $actualMessages[0]->attributes());
-        $this->assertEquals($messages[1]['data'], $actualMessages[1]->data());
-        $this->assertEquals($messages[1]['attributes'], $actualMessages[1]->attributes());
+        $data = [$actualMessages[0]->data(), $actualMessages[1]->data()];
+        $attributes = [$actualMessages[0]->attributes(), $actualMessages[1]->attributes()];
+        $this->assertTrue(in_array($messages[0]['data'], $data));
+        $this->assertTrue(in_array($messages[0]['attributes'], $attributes));
+        $this->assertTrue(in_array($messages[1]['data'], $data));
+        $this->assertTrue(in_array($messages[1]['attributes'], $attributes));
     }
 
     /**

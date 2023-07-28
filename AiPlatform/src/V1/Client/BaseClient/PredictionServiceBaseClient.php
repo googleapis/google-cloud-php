@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
@@ -39,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\ExplainResponse;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -370,6 +372,29 @@ abstract class PredictionServiceBaseClient
     public function rawPredict(RawPredictRequest $request, array $callOptions = []): HttpBody
     {
         return $this->startApiCall('RawPredict', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Perform a server-side streaming online prediction request for Vertex
+     * LLM streaming.
+     *
+     * @example samples/V1/PredictionServiceClient/server_streaming_predict.php
+     *
+     * @param StreamingPredictRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function serverStreamingPredict(StreamingPredictRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('ServerStreamingPredict', $request, $callOptions);
     }
 
     /**

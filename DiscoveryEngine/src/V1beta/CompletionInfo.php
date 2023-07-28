@@ -17,13 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CompletionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][].
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
      * Generated from protobuf field <code>string selected_suggestion = 1;</code>
      */
     protected $selected_suggestion = '';
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][]
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion]
      * position, starting from 0.
      *
      * Generated from protobuf field <code>int32 selected_position = 2;</code>
@@ -37,9 +39,11 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $selected_suggestion
-     *           End user selected [CompleteQueryResponse.CompletionResult.suggestion][].
+     *           End user selected
+     *           [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion].
      *     @type int $selected_position
-     *           End user selected [CompleteQueryResponse.CompletionResult.suggestion][]
+     *           End user selected
+     *           [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion]
      *           position, starting from 0.
      * }
      */
@@ -49,7 +53,8 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][].
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
      * Generated from protobuf field <code>string selected_suggestion = 1;</code>
      * @return string
@@ -60,7 +65,8 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][].
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
      * Generated from protobuf field <code>string selected_suggestion = 1;</code>
      * @param string $var
@@ -75,7 +81,8 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][]
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion]
      * position, starting from 0.
      *
      * Generated from protobuf field <code>int32 selected_position = 2;</code>
@@ -87,7 +94,8 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected [CompleteQueryResponse.CompletionResult.suggestion][]
+     * End user selected
+     * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1beta.CompleteQueryResponse.QuerySuggestion.suggestion]
      * position, starting from 0.
      *
      * Generated from protobuf field <code>int32 selected_position = 2;</code>

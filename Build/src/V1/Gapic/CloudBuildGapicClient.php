@@ -147,6 +147,8 @@ class CloudBuildGapicClient
 
     private static $cryptoKeyNameTemplate;
 
+    private static $githubEnterpriseConfigNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $networkNameTemplate;
@@ -155,7 +157,11 @@ class CloudBuildGapicClient
 
     private static $projectBuildNameTemplate;
 
+    private static $projectConfigNameTemplate;
+
     private static $projectLocationBuildNameTemplate;
+
+    private static $projectLocationConfigNameTemplate;
 
     private static $projectLocationTriggerNameTemplate;
 
@@ -223,6 +229,15 @@ class CloudBuildGapicClient
         return self::$cryptoKeyNameTemplate;
     }
 
+    private static function getGithubEnterpriseConfigNameTemplate()
+    {
+        if (self::$githubEnterpriseConfigNameTemplate == null) {
+            self::$githubEnterpriseConfigNameTemplate = new PathTemplate('projects/{project}/githubEnterpriseConfigs/{config}');
+        }
+
+        return self::$githubEnterpriseConfigNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -259,6 +274,15 @@ class CloudBuildGapicClient
         return self::$projectBuildNameTemplate;
     }
 
+    private static function getProjectConfigNameTemplate()
+    {
+        if (self::$projectConfigNameTemplate == null) {
+            self::$projectConfigNameTemplate = new PathTemplate('projects/{project}/githubEnterpriseConfigs/{config}');
+        }
+
+        return self::$projectConfigNameTemplate;
+    }
+
     private static function getProjectLocationBuildNameTemplate()
     {
         if (self::$projectLocationBuildNameTemplate == null) {
@@ -266,6 +290,15 @@ class CloudBuildGapicClient
         }
 
         return self::$projectLocationBuildNameTemplate;
+    }
+
+    private static function getProjectLocationConfigNameTemplate()
+    {
+        if (self::$projectLocationConfigNameTemplate == null) {
+            self::$projectLocationConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/githubEnterpriseConfigs/{config}');
+        }
+
+        return self::$projectLocationConfigNameTemplate;
     }
 
     private static function getProjectLocationTriggerNameTemplate()
@@ -347,11 +380,14 @@ class CloudBuildGapicClient
                 'build' => self::getBuildNameTemplate(),
                 'buildTrigger' => self::getBuildTriggerNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'githubEnterpriseConfig' => self::getGithubEnterpriseConfigNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectBuild' => self::getProjectBuildNameTemplate(),
+                'projectConfig' => self::getProjectConfigNameTemplate(),
                 'projectLocationBuild' => self::getProjectLocationBuildNameTemplate(),
+                'projectLocationConfig' => self::getProjectLocationConfigNameTemplate(),
                 'projectLocationTrigger' => self::getProjectLocationTriggerNameTemplate(),
                 'projectTrigger' => self::getProjectTriggerNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
@@ -418,6 +454,23 @@ class CloudBuildGapicClient
             'location' => $location,
             'keyring' => $keyring,
             'key' => $key,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * github_enterprise_config resource.
+     *
+     * @param string $project
+     * @param string $config
+     *
+     * @return string The formatted github_enterprise_config resource.
+     */
+    public static function githubEnterpriseConfigName($project, $config)
+    {
+        return self::getGithubEnterpriseConfigNameTemplate()->render([
+            'project' => $project,
+            'config' => $config,
         ]);
     }
 
@@ -489,6 +542,23 @@ class CloudBuildGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_config resource.
+     *
+     * @param string $project
+     * @param string $config
+     *
+     * @return string The formatted project_config resource.
+     */
+    public static function projectConfigName($project, $config)
+    {
+        return self::getProjectConfigNameTemplate()->render([
+            'project' => $project,
+            'config' => $config,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_build resource.
      *
      * @param string $project
@@ -503,6 +573,25 @@ class CloudBuildGapicClient
             'project' => $project,
             'location' => $location,
             'build' => $build,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $config
+     *
+     * @return string The formatted project_location_config resource.
+     */
+    public static function projectLocationConfigName($project, $location, $config)
+    {
+        return self::getProjectLocationConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'config' => $config,
         ]);
     }
 
@@ -659,11 +748,14 @@ class CloudBuildGapicClient
      * - build: projects/{project}/builds/{build}
      * - buildTrigger: projects/{project}/triggers/{trigger}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}
+     * - githubEnterpriseConfig: projects/{project}/githubEnterpriseConfigs/{config}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
      * - project: projects/{project}
      * - projectBuild: projects/{project}/builds/{build}
+     * - projectConfig: projects/{project}/githubEnterpriseConfigs/{config}
      * - projectLocationBuild: projects/{project}/locations/{location}/builds/{build}
+     * - projectLocationConfig: projects/{project}/locations/{location}/githubEnterpriseConfigs/{config}
      * - projectLocationTrigger: projects/{project}/locations/{location}/triggers/{trigger}
      * - projectTrigger: projects/{project}/triggers/{trigger}
      * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}

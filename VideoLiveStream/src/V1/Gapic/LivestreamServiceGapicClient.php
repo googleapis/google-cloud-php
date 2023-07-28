@@ -40,28 +40,37 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Channel;
+use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteEventRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\GetAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\GetChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
+use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
+use Google\Cloud\Video\LiveStream\V1\ListAssetsRequest;
+use Google\Cloud\Video\LiveStream\V1\ListAssetsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListEventsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListInputsResponse;
+use Google\Cloud\Video\LiveStream\V1\Pool;
 use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\UpdatePoolRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -80,9 +89,9 @@ use Google\Protobuf\GPBEmpty;
  * $livestreamServiceClient = new LivestreamServiceClient();
  * try {
  *     $formattedParent = $livestreamServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $channel = new Channel();
- *     $channelId = 'channel_id';
- *     $operationResponse = $livestreamServiceClient->createChannel($formattedParent, $channel, $channelId);
+ *     $asset = new Asset();
+ *     $assetId = 'asset_id';
+ *     $operationResponse = $livestreamServiceClient->createAsset($formattedParent, $asset, $assetId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -93,10 +102,10 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $livestreamServiceClient->createChannel($formattedParent, $channel, $channelId);
+ *     $operationResponse = $livestreamServiceClient->createAsset($formattedParent, $asset, $assetId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $livestreamServiceClient->resumeOperation($operationName, 'createChannel');
+ *     $newOperationResponse = $livestreamServiceClient->resumeOperation($operationName, 'createAsset');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -143,6 +152,8 @@ class LivestreamServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $assetNameTemplate;
+
     private static $channelNameTemplate;
 
     private static $eventNameTemplate;
@@ -150,6 +161,10 @@ class LivestreamServiceGapicClient
     private static $inputNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $networkNameTemplate;
+
+    private static $poolNameTemplate;
 
     private static $secretVersionNameTemplate;
 
@@ -181,6 +196,17 @@ class LivestreamServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getAssetNameTemplate()
+    {
+        if (self::$assetNameTemplate == null) {
+            self::$assetNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/assets/{asset}'
+            );
+        }
+
+        return self::$assetNameTemplate;
     }
 
     private static function getChannelNameTemplate()
@@ -227,6 +253,28 @@ class LivestreamServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getNetworkNameTemplate()
+    {
+        if (self::$networkNameTemplate == null) {
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networkNameTemplate;
+    }
+
+    private static function getPoolNameTemplate()
+    {
+        if (self::$poolNameTemplate == null) {
+            self::$poolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/pools/{pool}'
+            );
+        }
+
+        return self::$poolNameTemplate;
+    }
+
     private static function getSecretVersionNameTemplate()
     {
         if (self::$secretVersionNameTemplate == null) {
@@ -242,15 +290,37 @@ class LivestreamServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'asset' => self::getAssetNameTemplate(),
                 'channel' => self::getChannelNameTemplate(),
                 'event' => self::getEventNameTemplate(),
                 'input' => self::getInputNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'network' => self::getNetworkNameTemplate(),
+                'pool' => self::getPoolNameTemplate(),
                 'secretVersion' => self::getSecretVersionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a asset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $asset
+     *
+     * @return string The formatted asset resource.
+     */
+    public static function assetName($project, $location, $asset)
+    {
+        return self::getAssetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'asset' => $asset,
+        ]);
     }
 
     /**
@@ -330,6 +400,42 @@ class LivestreamServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName($project, $network)
+    {
+        return self::getNetworkNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pool
+     *
+     * @return string The formatted pool resource.
+     */
+    public static function poolName($project, $location, $pool)
+    {
+        return self::getPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'pool' => $pool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * secret_version resource.
      *
@@ -352,10 +458,13 @@ class LivestreamServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - asset: projects/{project}/locations/{location}/assets/{asset}
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - event: projects/{project}/locations/{location}/channels/{channel}/events/{event}
      * - input: projects/{project}/locations/{location}/inputs/{input}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{network}
+     * - pool: projects/{project}/locations/{location}/pools/{pool}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -491,6 +600,111 @@ class LivestreamServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Creates a Asset with the provided unique ID in the specified
+     * region.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $formattedParent = $livestreamServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $asset = new Asset();
+     *     $assetId = 'asset_id';
+     *     $operationResponse = $livestreamServiceClient->createAsset($formattedParent, $asset, $assetId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $livestreamServiceClient->createAsset($formattedParent, $asset, $assetId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $livestreamServiceClient->resumeOperation($operationName, 'createAsset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent location for the resource, in the form of:
+     *                             `projects/{project}/locations/{location}`.
+     * @param Asset  $asset        Required. The asset resource to be created.
+     * @param string $assetId      Required. The ID of the asset resource to be created.
+     *                             This value must be 1-63 characters, begin and end with `[a-z0-9]`,
+     *                             could contain dashes (-) in between.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createAsset(
+        $parent,
+        $asset,
+        $assetId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateAssetRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAsset($asset);
+        $request->setAssetId($assetId);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateAsset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -782,6 +996,96 @@ class LivestreamServiceGapicClient
     }
 
     /**
+     * Deletes the specified asset if it is not used.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $formattedName = $livestreamServiceClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+     *     $operationResponse = $livestreamServiceClient->deleteAsset($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $livestreamServiceClient->deleteAsset($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $livestreamServiceClient->resumeOperation($operationName, 'deleteAsset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the asset resource, in the form of:
+     *                             `projects/{project}/locations/{location}/assets/{assetId}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAsset($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAssetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteAsset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes the specified channel.
      *
      * Sample code:
@@ -1036,6 +1340,55 @@ class LivestreamServiceGapicClient
     }
 
     /**
+     * Returns the specified asset.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $formattedName = $livestreamServiceClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+     *     $response = $livestreamServiceClient->getAsset($formattedName);
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the resource, in the following form:
+     *                             `projects/{project}/locations/{location}/assets/{asset}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\Asset
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAsset($name, array $optionalArgs = [])
+    {
+        $request = new GetAssetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAsset',
+            Asset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the specified channel.
      *
      * Sample code:
@@ -1180,6 +1533,145 @@ class LivestreamServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Returns the specified pool.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $formattedName = $livestreamServiceClient->poolName('[PROJECT]', '[LOCATION]', '[POOL]');
+     *     $response = $livestreamServiceClient->getPool($formattedName);
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the pool resource, in the form of:
+     *                             `projects/{project}/locations/{location}/pools/{poolId}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\Pool
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getPool($name, array $optionalArgs = [])
+    {
+        $request = new GetPoolRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetPool',
+            Pool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns a list of all assets in the specified region.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $formattedParent = $livestreamServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $livestreamServiceClient->listAssets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $livestreamServiceClient->listAssets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent location for the resource, in the form of:
+     *                             `projects/{project}/locations/{location}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Filtering results
+     *     @type string $orderBy
+     *           Hint for how to order the results
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAssets($parent, array $optionalArgs = [])
+    {
+        $request = new ListAssetsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAssets',
+            $optionalArgs,
+            ListAssetsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1859,6 +2351,109 @@ class LivestreamServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateInput',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the specified pool.
+     *
+     * Sample code:
+     * ```
+     * $livestreamServiceClient = new LivestreamServiceClient();
+     * try {
+     *     $pool = new Pool();
+     *     $operationResponse = $livestreamServiceClient->updatePool($pool);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $livestreamServiceClient->updatePool($pool);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $livestreamServiceClient->resumeOperation($operationName, 'updatePool');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $livestreamServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Pool  $pool         Required. The pool resource to be updated.
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Field mask is used to specify the fields to be overwritten in the Pool
+     *           resource by the update. You can only update the following fields:
+     *
+     *           * `networkConfig`
+     *
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it is in the mask.
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updatePool($pool, array $optionalArgs = [])
+    {
+        $request = new UpdatePoolRequest();
+        $requestParamHeaders = [];
+        $request->setPool($pool);
+        $requestParamHeaders['pool.name'] = $pool->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdatePool',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

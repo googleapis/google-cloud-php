@@ -22,7 +22,8 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The indexed property's direction.  Must not be DIRECTION_UNSPECIFIED.
+     * Required. The indexed property's direction.  Must not be
+     * DIRECTION_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.Direction direction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +38,8 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The property name to index.
      *     @type int $direction
-     *           Required. The indexed property's direction.  Must not be DIRECTION_UNSPECIFIED.
+     *           Required. The indexed property's direction.  Must not be
+     *           DIRECTION_UNSPECIFIED.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +74,8 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The indexed property's direction.  Must not be DIRECTION_UNSPECIFIED.
+     * Required. The indexed property's direction.  Must not be
+     * DIRECTION_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.Direction direction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -83,7 +86,8 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The indexed property's direction.  Must not be DIRECTION_UNSPECIFIED.
+     * Required. The indexed property's direction.  Must not be
+     * DIRECTION_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.Direction direction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

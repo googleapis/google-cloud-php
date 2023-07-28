@@ -454,6 +454,59 @@ class SmartRetriesTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
+    public function testReadRowsWithRetryableErrorAfterAllDataReceived()
+    {
+        $this->serverStream->readAll()->willReturn(
+            $this->arrayAsGeneratorWithException(
+                $this->generateRowsResponse(1, 3),
+                $this->retryingApiException
+            ),
+            $this->arrayAsGeneratorWithException([])
+        );
+
+        // First Call
+        // Check if the request has expected row range
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($argument) {
+                $rowRanges = $argument['rows']->getRowRanges();
+                if (count($rowRanges) === 0) {
+                    return false;
+                }
+                $rowRange = $rowRanges[0];
+                return $rowRange->getStartKeyClosed() === 'rk1' &&
+                    $rowRange->getEndKeyClosed() === 'rk3';
+            })
+        )->shouldBeCalledOnce()->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        // Second Call
+        // Check if the request has empty row range and fail the test
+        // as this will result in full table scan
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($argument) {
+                $rowRanges = $argument['rows']->getRowRanges();
+                if (count($rowRanges)) {
+                    return false;
+                }
+                return true;
+            })
+        )->will(function ($args) {
+            self::fail('Full table scan attempted');
+        });
+
+        $args = [
+            'rowRanges' => [[
+                'startKeyClosed' => 'rk1',
+                'endKeyClosed' => 'rk3'
+            ]]
+        ];
+        $iterator = $this->table->readRows($args);
+        $this->assertCount(3, $iterator);
+    }
+
     public function testMutateRowsShouldRetryDefaultNumberOfTimes()
     {
         $this->expectException(BigtableDataOperationException::class);

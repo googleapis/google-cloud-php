@@ -23,6 +23,14 @@ jobs:
         continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
+      - name: "Check for BC label"
+        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
+        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+        run: |
+          if [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+            echo "Breaking change label found in PR title"
+            exit 1
+          fi
       - name: Get Latest Release
         if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
@@ -37,3 +45,18 @@ jobs:
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
               --from=${{ steps.latest-release.outputs.release }} \
               --to=origin/main --format=github-actions
+
+  # Ensure the release PR does not contain an unexpected (2.0.0) major version release
+  unexpected-major-version-check:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Check for unexpected major version"
+        run: |
+          if [[ "true" == "${{ contains(github.event.pull_request.body, '2.0.0') }}" ]]; then
+            echo "Unexpected 2.0.0 major version release found"
+            exit 1
+          fi

@@ -28,7 +28,7 @@ use Google\Cloud\ServiceDirectory\V1\PBNamespace;
 use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
- * Creates a namespace, and returns the new Namespace.
+ * Creates a namespace, and returns the new namespace.
  *
  * @param string $formattedParent The resource name of the project and location the namespace
  *                                will be created in. Please see

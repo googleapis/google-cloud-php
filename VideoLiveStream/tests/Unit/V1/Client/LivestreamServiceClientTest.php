@@ -31,32 +31,40 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Channel;
 use Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse;
 use Google\Cloud\Video\LiveStream\V1\Channel\Output;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteEventRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
-use Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask;
+use Google\Cloud\Video\LiveStream\V1\GetAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\GetChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
+use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
+use Google\Cloud\Video\LiveStream\V1\ListAssetsRequest;
+use Google\Cloud\Video\LiveStream\V1\ListAssetsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListEventsResponse;
 use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListInputsResponse;
+use Google\Cloud\Video\LiveStream\V1\Pool;
 use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\UpdatePoolRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -90,6 +98,143 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new LivestreamServiceClient($options);
+    }
+
+    /** @test */
+    public function createAssetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAssetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $crc32c = 'crc32c-1352399984';
+        $expectedResponse = new Asset();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCrc32c($crc32c);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAssetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $asset = new Asset();
+        $assetId = 'assetId-373202742';
+        $request = (new CreateAssetRequest())
+            ->setParent($formattedParent)
+            ->setAsset($asset)
+            ->setAssetId($assetId);
+        $response = $gapicClient->createAsset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/CreateAsset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAsset();
+        $this->assertProtobufEquals($asset, $actualValue);
+        $actualValue = $actualApiRequestObject->getAssetId();
+        $this->assertProtobufEquals($assetId, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAssetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAssetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAssetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $asset = new Asset();
+        $assetId = 'assetId-373202742';
+        $request = (new CreateAssetRequest())
+            ->setParent($formattedParent)
+            ->setAsset($asset)
+            ->setAssetId($assetId);
+        $response = $gapicClient->createAsset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAssetTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -251,8 +396,6 @@ class LivestreamServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $event = new Event();
-        $eventInputSwitch = new InputSwitchTask();
-        $event->setInputSwitch($eventInputSwitch);
         $eventId = 'eventId278118624';
         $request = (new CreateEventRequest())
             ->setParent($formattedParent)
@@ -295,8 +438,6 @@ class LivestreamServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $event = new Event();
-        $eventInputSwitch = new InputSwitchTask();
-        $event->setInputSwitch($eventInputSwitch);
         $eventId = 'eventId278118624';
         $request = (new CreateEventRequest())
             ->setParent($formattedParent)
@@ -435,6 +576,127 @@ class LivestreamServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInputTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAssetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAssetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAssetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+        $request = (new DeleteAssetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteAsset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/DeleteAsset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAssetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAssetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAssetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+        $request = (new DeleteAssetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteAsset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAssetTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -756,6 +1018,72 @@ class LivestreamServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAssetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $crc32c = 'crc32c-1352399984';
+        $expectedResponse = new Asset();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setCrc32c($crc32c);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+        $request = (new GetAssetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getAsset($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/GetAsset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAssetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
+        $request = (new GetAssetRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getAsset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getChannelTest()
     {
         $transport = $this->createTransport();
@@ -942,6 +1270,142 @@ class LivestreamServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getInput($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPoolTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new Pool();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->poolName('[PROJECT]', '[LOCATION]', '[POOL]');
+        $request = (new GetPoolRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getPool($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/GetPool', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPoolExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->poolName('[PROJECT]', '[LOCATION]', '[POOL]');
+        $request = (new GetPoolRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getPool($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAssetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $assetsElement = new Asset();
+        $assets = [
+            $assetsElement,
+        ];
+        $expectedResponse = new ListAssetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAssets($assets);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAssetsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAssets($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAssets()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/ListAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAssetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAssetsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1666,6 +2130,129 @@ class LivestreamServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updatePoolTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updatePoolTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new Pool();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updatePoolTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $pool = new Pool();
+        $request = (new UpdatePoolRequest())
+            ->setPool($pool);
+        $response = $gapicClient->updatePool($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/UpdatePool', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getPool();
+        $this->assertProtobufEquals($pool, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updatePoolTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePoolExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updatePoolTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $pool = new Pool();
+        $request = (new UpdatePoolRequest())
+            ->setPool($pool);
+        $response = $gapicClient->updatePool($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updatePoolTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1790,7 +2377,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createChannelAsyncTest()
+    public function createAssetAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1807,32 +2394,30 @@ class LivestreamServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createChannelTest');
+        $incompleteOperation->setName('operations/createAssetTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $activeInput = 'activeInput1758551377';
-        $expectedResponse = new Channel();
+        $crc32c = 'crc32c-1352399984';
+        $expectedResponse = new Asset();
         $expectedResponse->setName($name);
-        $expectedResponse->setActiveInput($activeInput);
+        $expectedResponse->setCrc32c($crc32c);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createChannelTest');
+        $completeOperation->setName('operations/createAssetTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $channel = new Channel();
-        $channelOutput = new Output();
-        $channel->setOutput($channelOutput);
-        $channelId = 'channelId-1930808873';
-        $request = (new CreateChannelRequest())
+        $asset = new Asset();
+        $assetId = 'assetId-373202742';
+        $request = (new CreateAssetRequest())
             ->setParent($formattedParent)
-            ->setChannel($channel)
-            ->setChannelId($channelId);
-        $response = $gapicClient->createChannelAsync($request)->wait();
+            ->setAsset($asset)
+            ->setAssetId($assetId);
+        $response = $gapicClient->createAssetAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1841,15 +2426,15 @@ class LivestreamServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/CreateChannel', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.video.livestream.v1.LivestreamService/CreateAsset', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannel();
-        $this->assertProtobufEquals($channel, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannelId();
-        $this->assertProtobufEquals($channelId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAsset();
+        $this->assertProtobufEquals($asset, $actualValue);
+        $actualValue = $actualApiRequestObject->getAssetId();
+        $this->assertProtobufEquals($assetId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createChannelTest');
+        $expectedOperationsRequestObject->setName('operations/createAssetTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

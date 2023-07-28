@@ -33,22 +33,17 @@ use Google\Rpc\Status;
 /**
  * Creates a node.
  *
- * @param string $formattedParent     The parent resource name. Please see
- *                                    {@see TpuClient::locationName()} for help formatting this field.
- * @param string $nodeAcceleratorType The type of hardware accelerators associated with this node.
- * @param string $nodeRuntimeVersion  The runtime version running in the Node.
+ * @param string $formattedParent    The parent resource name. Please see
+ *                                   {@see TpuClient::locationName()} for help formatting this field.
+ * @param string $nodeRuntimeVersion The runtime version running in the Node.
  */
-function create_node_sample(
-    string $formattedParent,
-    string $nodeAcceleratorType,
-    string $nodeRuntimeVersion
-): void {
+function create_node_sample(string $formattedParent, string $nodeRuntimeVersion): void
+{
     // Create a client.
     $tpuClient = new TpuClient();
 
     // Prepare the request message.
     $node = (new Node())
-        ->setAcceleratorType($nodeAcceleratorType)
         ->setRuntimeVersion($nodeRuntimeVersion);
     $request = (new CreateNodeRequest())
         ->setParent($formattedParent)
@@ -86,9 +81,8 @@ function create_node_sample(
 function callSample(): void
 {
     $formattedParent = TpuClient::locationName('[PROJECT]', '[LOCATION]');
-    $nodeAcceleratorType = '[ACCELERATOR_TYPE]';
     $nodeRuntimeVersion = '[RUNTIME_VERSION]';
 
-    create_node_sample($formattedParent, $nodeAcceleratorType, $nodeRuntimeVersion);
+    create_node_sample($formattedParent, $nodeRuntimeVersion);
 }
 // [END tpu_v2_generated_Tpu_CreateNode_sync]

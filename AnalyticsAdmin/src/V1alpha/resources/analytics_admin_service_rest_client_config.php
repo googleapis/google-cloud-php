@@ -1475,6 +1475,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateProperty' => [
                 'method' => 'patch',

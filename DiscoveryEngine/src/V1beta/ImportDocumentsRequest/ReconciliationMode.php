@@ -15,7 +15,7 @@ use UnexpectedValueException;
 class ReconciliationMode
 {
     /**
-     * Defaults to INCREMENTAL.
+     * Defaults to `INCREMENTAL`.
      *
      * Generated from protobuf enum <code>RECONCILIATION_MODE_UNSPECIFIED = 0;</code>
      */

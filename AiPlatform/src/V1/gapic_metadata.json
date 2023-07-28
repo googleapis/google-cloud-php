@@ -1267,6 +1267,80 @@
                                 "rawPredict"
                             ]
                         },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ScheduleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ScheduleServiceGapicClient",
+                    "rpcs": {
+                        "CreateSchedule": {
+                            "methods": [
+                                "createSchedule"
+                            ]
+                        },
+                        "DeleteSchedule": {
+                            "methods": [
+                                "deleteSchedule"
+                            ]
+                        },
+                        "GetSchedule": {
+                            "methods": [
+                                "getSchedule"
+                            ]
+                        },
+                        "ListSchedules": {
+                            "methods": [
+                                "listSchedules"
+                            ]
+                        },
+                        "PauseSchedule": {
+                            "methods": [
+                                "pauseSchedule"
+                            ]
+                        },
+                        "ResumeSchedule": {
+                            "methods": [
+                                "resumeSchedule"
+                            ]
+                        },
+                        "UpdateSchedule": {
+                            "methods": [
+                                "updateSchedule"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

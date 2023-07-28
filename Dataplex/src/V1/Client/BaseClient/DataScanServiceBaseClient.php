@@ -244,6 +244,25 @@ abstract class DataScanServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a table
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $table
+     *
+     * @return string The formatted table resource.
+     */
+    public static function tableName(string $project, string $dataset, string $table): string
+    {
+        return self::getPathTemplate('table')->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -251,6 +270,7 @@ abstract class DataScanServiceBaseClient
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
      * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
+     * - table: projects/{project}/datasets/{dataset}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

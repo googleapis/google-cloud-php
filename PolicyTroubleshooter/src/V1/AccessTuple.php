@@ -9,19 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information about the member, resource, and permission to check.
+ * Information about the principal, resource, and permission to check.
  *
  * Generated from protobuf message <code>google.cloud.policytroubleshooter.v1.AccessTuple</code>
  */
 class AccessTuple extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The member, or principal, whose access you want to check, in the form of
-     * the email address that represents that member. For example,
+     * Required. The principal whose access you want to check, in the form of
+     * the email address that represents that principal. For example,
      * `alice&#64;example.com` or
      * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
-     * The member must be a Google Account or a service account. Other types of
-     * members are not supported.
+     * The principal must be a Google Account or a service account. Other types of
+     * principals are not supported.
      *
      * Generated from protobuf field <code>string principal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +36,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      */
     private $full_resource_name = '';
     /**
-     * Required. The IAM permission to check for the specified member and resource.
+     * Required. The IAM permission to check for the specified principal and
+     * resource.
      * For a complete list of IAM permissions, see
      * https://cloud.google.com/iam/help/permissions/reference.
      * For a complete list of predefined IAM roles and the permissions in each
@@ -53,19 +54,20 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $principal
-     *           Required. The member, or principal, whose access you want to check, in the form of
-     *           the email address that represents that member. For example,
+     *           Required. The principal whose access you want to check, in the form of
+     *           the email address that represents that principal. For example,
      *           `alice&#64;example.com` or
      *           `my-service-account&#64;my-project.iam.gserviceaccount.com`.
-     *           The member must be a Google Account or a service account. Other types of
-     *           members are not supported.
+     *           The principal must be a Google Account or a service account. Other types of
+     *           principals are not supported.
      *     @type string $full_resource_name
      *           Required. The full resource name that identifies the resource. For example,
      *           `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`.
      *           For examples of full resource names for Google Cloud services, see
      *           https://cloud.google.com/iam/help/troubleshooter/full-resource-names.
      *     @type string $permission
-     *           Required. The IAM permission to check for the specified member and resource.
+     *           Required. The IAM permission to check for the specified principal and
+     *           resource.
      *           For a complete list of IAM permissions, see
      *           https://cloud.google.com/iam/help/permissions/reference.
      *           For a complete list of predefined IAM roles and the permissions in each
@@ -78,12 +80,12 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The member, or principal, whose access you want to check, in the form of
-     * the email address that represents that member. For example,
+     * Required. The principal whose access you want to check, in the form of
+     * the email address that represents that principal. For example,
      * `alice&#64;example.com` or
      * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
-     * The member must be a Google Account or a service account. Other types of
-     * members are not supported.
+     * The principal must be a Google Account or a service account. Other types of
+     * principals are not supported.
      *
      * Generated from protobuf field <code>string principal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -94,12 +96,12 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The member, or principal, whose access you want to check, in the form of
-     * the email address that represents that member. For example,
+     * Required. The principal whose access you want to check, in the form of
+     * the email address that represents that principal. For example,
      * `alice&#64;example.com` or
      * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
-     * The member must be a Google Account or a service account. Other types of
-     * members are not supported.
+     * The principal must be a Google Account or a service account. Other types of
+     * principals are not supported.
      *
      * Generated from protobuf field <code>string principal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -146,7 +148,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IAM permission to check for the specified member and resource.
+     * Required. The IAM permission to check for the specified principal and
+     * resource.
      * For a complete list of IAM permissions, see
      * https://cloud.google.com/iam/help/permissions/reference.
      * For a complete list of predefined IAM roles and the permissions in each
@@ -161,7 +164,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IAM permission to check for the specified member and resource.
+     * Required. The IAM permission to check for the specified principal and
+     * resource.
      * For a complete list of IAM permissions, see
      * https://cloud.google.com/iam/help/permissions/reference.
      * For a complete list of predefined IAM roles and the permissions in each
