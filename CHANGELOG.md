@@ -1,5 +1,224 @@
 # Changelog
 
+## 0.214.0
+
+<details><summary>google/cloud-ai-platform 0.23.0</summary>
+
+
+
+### Features
+
+* Add `PredictionService.ServerStreamingPredict` method ([#6508](https://github.com/googleapis/google-cloud-php/issues/6508)) ([f9a3546](https://github.com/googleapis/google-cloud-php/commit/f9a3546c7c1a6c61932f0f40e82f0219a68750fb))
+* Add `StreamingPredictRequest` type ([f9a3546](https://github.com/googleapis/google-cloud-php/commit/f9a3546c7c1a6c61932f0f40e82f0219a68750fb))
+* Add `StreamingPredictResponse` type ([f9a3546](https://github.com/googleapis/google-cloud-php/commit/f9a3546c7c1a6c61932f0f40e82f0219a68750fb))
+* Add `Tensor` type ([f9a3546](https://github.com/googleapis/google-cloud-php/commit/f9a3546c7c1a6c61932f0f40e82f0219a68750fb))
+
+</details>
+
+<details><summary>google/analytics-admin 0.16.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Update the `AdsWebConversionDataExportScope` enum to rename `CROSS_CHANNEL` to `PAID_AND_ORGANIC_CHANNELS`, `ADS_PREFERRED` to `GOOGLE_PAID_CHANNELS`
+* Update the `ReportingAttributionModel` enum to rename `CROSS_CHANNEL_DATA_DRIVEN` to `PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN`, `CROSS_CHANNEL_LAST_CLICK` to `PAID_AND_ORGANIC_CHANNELS_LAST_CLICK`, `CROSS_CHANNEL_FIRST_CLICK` to `P... ([#6497](https://github.com/googleapis/google-cloud-php/issues/6497))
+
+### Bug Fixes
+
+* Update the `AdsWebConversionDataExportScope` enum to rename `CROSS_CHANNEL` to `PAID_AND_ORGANIC_CHANNELS`, `ADS_PREFERRED` to `GOOGLE_PAID_CHANNELS` ([5bf5f4f](https://github.com/googleapis/google-cloud-php/commit/5bf5f4f79a40343a66e59137eb106e4bc02f5379))
+* Update the `ReportingAttributionModel` enum to rename `CROSS_CHANNEL_DATA_DRIVEN` to `PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN`, `CROSS_CHANNEL_LAST_CLICK` to `PAID_AND_ORGANIC_CHANNELS_LAST_CLICK`, `CROSS_CHANNEL_FIRST_CLICK` to `P... ([#6497](https://github.com/googleapis/google-cloud-php/issues/6497)) ([5bf5f4f](https://github.com/googleapis/google-cloud-php/commit/5bf5f4f79a40343a66e59137eb106e4bc02f5379))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.27.0</summary>
+
+
+
+### Features
+
+* Add last_scanned_row_key feature ([#6492](https://github.com/googleapis/google-cloud-php/issues/6492)) ([bb90405](https://github.com/googleapis/google-cloud-php/commit/bb90405de4ee54c9132bbe76f372e967ce41eda1))
+
+</details>
+
+<details><summary>google/cloud-build 0.12.0</summary>
+
+
+
+### Features
+
+* Add automap_substitutions flag to use substitutions as envs in Cloud Build ([#6494](https://github.com/googleapis/google-cloud-php/issues/6494)) ([d108fd6](https://github.com/googleapis/google-cloud-php/commit/d108fd69a9150797863d194fd02eb6384b42ce22))
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce CommergeConsumerProcurement ([#6487](https://github.com/googleapis/google-cloud-php/issues/6487)) ([d0c37cb](https://github.com/googleapis/google-cloud-php/commit/d0c37cb2edba5f9349acfed81e1a234825f608f2))
+
+</details>
+
+<details><summary>google/cloud-compute 1.12.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20230711 ([#6488](https://github.com/googleapis/google-cloud-php/issues/6488)) ([b25fc4c](https://github.com/googleapis/google-cloud-php/commit/b25fc4c3be1313db34bcada89abddd7926644d9a))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 0.3.0</summary>
+
+
+
+### Features
+
+* Added support for signed container image and custom audience and nonce requests ([#6491](https://github.com/googleapis/google-cloud-php/issues/6491)) ([168fd7f](https://github.com/googleapis/google-cloud-php/commit/168fd7ff2f0a6e8ac787749010c05247bca10107))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.7.0</summary>
+
+
+
+### Features
+
+* Added DataQualityRule.name, description ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added DataQualitySpec.sampling_percent, row_filter ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added DataScanEvent.data_profile_configs, data_quality_configs, post_scan_actions_result ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added Job.labels, trigger, execution_spec ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added JobEvent.execution_trigger ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added ListDataScanJobsRequest.filter to filter ListDataScanJob results ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added RunTaskRequest.labels, args ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* Added TopNValue.ratio ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* DataProfileSpec message with DataProfileScan related settings ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+* New service DataTaxonomyService and related messages ([#6486](https://github.com/googleapis/google-cloud-php/issues/6486)) ([d99dfbd](https://github.com/googleapis/google-cloud-php/commit/d99dfbde961708d980363ce071da2c97d717e3bf))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.7.3</summary>
+
+
+
+### Documentation
+
+* Minor formatting in Datastore Admin API ([0432b20](https://github.com/googleapis/google-cloud-php/commit/0432b20fa34e0d74c02401e9255558e96fc4c430))
+* Specify limit for `properties` in `Index` message in Datastore Admin API ([#6509](https://github.com/googleapis/google-cloud-php/issues/6509)) ([0432b20](https://github.com/googleapis/google-cloud-php/commit/0432b20fa34e0d74c02401e9255558e96fc4c430))
+
+</details>
+
+<details><summary>google/cloud-datastream 1.4.0</summary>
+
+
+
+### Features
+
+* Add precision and scale to MysqlColumn ([#6479](https://github.com/googleapis/google-cloud-php/issues/6479)) ([a42dc4b](https://github.com/googleapis/google-cloud-php/commit/a42dc4b59590f8fa8ae9106fe884015b44404134))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.12.0</summary>
+
+
+
+### Features
+
+* Added support for predeploy and postdeploy actions ([#6499](https://github.com/googleapis/google-cloud-php/issues/6499)) ([fc3d4d0](https://github.com/googleapis/google-cloud-php/commit/fc3d4d0a92d6eb586846552191c8a812f787f11a))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.6.0</summary>
+
+
+
+### Features
+
+* Add skip reason for search summarization ([5fa1d05](https://github.com/googleapis/google-cloud-php/commit/5fa1d0579c5aa174a547a015e1f4629a9cbfd4fb))
+* Support conversational / multi-turn search ([#6501](https://github.com/googleapis/google-cloud-php/issues/6501)) ([5fa1d05](https://github.com/googleapis/google-cloud-php/commit/5fa1d0579c5aa174a547a015e1f4629a9cbfd4fb))
+* Support image search ([5fa1d05](https://github.com/googleapis/google-cloud-php/commit/5fa1d0579c5aa174a547a015e1f4629a9cbfd4fb))
+* Support tail suggestions in completion API ([5fa1d05](https://github.com/googleapis/google-cloud-php/commit/5fa1d0579c5aa174a547a015e1f4629a9cbfd4fb))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([5fa1d05](https://github.com/googleapis/google-cloud-php/commit/5fa1d0579c5aa174a547a015e1f4629a9cbfd4fb))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.6.0</summary>
+
+
+
+### Features
+
+* Added http configuration and document publishing for v1beta2 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Added http configuration and document publishing for v1beta2 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Added http configuration and document publishing for v1beta2 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Added ImportDocuments, GetDocument and BatchDeleteDocuments RPCs for v1beta3 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Added ImportDocuments, GetDocument and BatchDeleteDocuments RPCs for v1beta3 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Added ImportDocuments, GetDocument and BatchDeleteDocuments RPCs for v1beta3 ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Removed id field from Document message ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Removed id field from Document message ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+* Removed id field from Document message ([aeb00a0](https://github.com/googleapis/google-cloud-php/commit/aeb00a0071fece7d8231472f53d2a121b052cb1b))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.36.1</summary>
+
+
+
+### Bug Fixes
+
+* **Firestore:** Custom Multiple Db routing headers ([#6475](https://github.com/googleapis/google-cloud-php/issues/6475)) ([4eb6659](https://github.com/googleapis/google-cloud-php/commit/4eb665993275a3793337903a189a73fff25c2e5f))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.45.2</summary>
+
+
+
+### Documentation
+
+* Clarified where ordering_key will be written if write_metadata is set ([#6493](https://github.com/googleapis/google-cloud-php/issues/6493)) ([6dbd82f](https://github.com/googleapis/google-cloud-php/commit/6dbd82ff1f27b451ed744cacc3afc4270fa00285))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.13.1</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6484](https://github.com/googleapis/google-cloud-php/issues/6484)) ([f4fbff0](https://github.com/googleapis/google-cloud-php/commit/f4fbff02367831e730a9f99dba65796dbf1712e3))
+
+</details>
+
+<details><summary>google/cloud-tpu 1.3.0</summary>
+
+
+
+### Features
+
+* Add multislice_node flag ([79345bd](https://github.com/googleapis/google-cloud-php/commit/79345bd24137d1c999c16004f5bdd689c89576be))
+* Enable QueuedResources in us-east5 ([#6485](https://github.com/googleapis/google-cloud-php/issues/6485)) ([79345bd](https://github.com/googleapis/google-cloud-php/commit/79345bd24137d1c999c16004f5bdd689c89576be))
+
+</details>
+
+<details><summary>google/cloud-translate 1.14.3</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6505](https://github.com/googleapis/google-cloud-php/issues/6505)) ([7617d0d](https://github.com/googleapis/google-cloud-php/commit/7617d0dce2f4ea4adc21d5fe02893e752ca556d2))
+* Minor formatting ([#6510](https://github.com/googleapis/google-cloud-php/issues/6510)) ([5d2e014](https://github.com/googleapis/google-cloud-php/commit/5d2e0144e67359f63edcfb1bf51659e53eeb46af))
+
+</details>
+
 ## 0.213.0
 
 <details><summary>google/cloud-ai-platform 0.22.0</summary>
