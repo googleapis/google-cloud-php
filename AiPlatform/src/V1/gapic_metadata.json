@@ -1267,6 +1267,11 @@
                                 "rawPredict"
                             ]
                         },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
