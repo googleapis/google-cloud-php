@@ -139,51 +139,46 @@ class BootstrapTest extends TestCase
 
     /**
      * @dataProvider exceptionProvider
+     * @runInSeparateProcess
      */
     public function testExceptionHandlerWithHttpContext($exception)
     {
-        try {
-            $oldServer = $_SERVER;
-            $_SERVER = [
-                'REQUEST_METHOD' => 'GET',
-                'HTTP_REFERER' => 'ref',
-                'HTTP_HOST' => 'google.com',
-                'REQUEST_URI' => '/index.php',
-                'REMOTE_ADDR' => '1.2.3.4',
-                'HTTP_USER_AGENT' => 'UA',
-             ];
-            $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
-            $expectedContext = [
-                'context' => [
-                    'reportLocation' => [
-                        'filePath' => $exception->getFile(),
-                        'lineNumber' => $exception->getLine(),
-                        'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
-                    ],
-                    'httpRequest' => [
-                        'method' => 'GET',
-                        'url' => 'http://google.com/index.php',
-                        'referrer' => 'ref',
-                        'remoteIp' => '1.2.3.4',
-                        'userAgent' => 'UA',
-                    ]
-                ],
-                'serviceContext' => [
-                    'service' => '',
-                    'version' => ''
-                ]
+        $_SERVER = [
+            'REQUEST_METHOD' => 'GET',
+            'HTTP_REFERER' => 'ref',
+            'HTTP_HOST' => 'google.com',
+            'REQUEST_URI' => '/index.php',
+            'REMOTE_ADDR' => '1.2.3.4',
+            'HTTP_USER_AGENT' => 'UA',
             ];
-            $this->psrBatchLogger->error($expectedMessage, $expectedContext)
-                ->shouldBeCalledTimes(1);
-            $this->psrBatchLogger->getMetadataProvider()
-                ->willReturn(new SimpleMetadataProvider())
-                ->shouldBeCalledTimes(2);
-            Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
-            Bootstrap::exceptionHandler($exception);
-        } finally {
-            // restore
-            $_SERVER = $oldServer;
-        }
+        $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
+        $expectedContext = [
+            'context' => [
+                'reportLocation' => [
+                    'filePath' => $exception->getFile(),
+                    'lineNumber' => $exception->getLine(),
+                    'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
+                ],
+                'httpRequest' => [
+                    'method' => 'GET',
+                    'url' => 'http://google.com/index.php',
+                    'referrer' => 'ref',
+                    'remoteIp' => '1.2.3.4',
+                    'userAgent' => 'UA',
+                ]
+            ],
+            'serviceContext' => [
+                'service' => '',
+                'version' => ''
+            ]
+        ];
+        $this->psrBatchLogger->error($expectedMessage, $expectedContext)
+            ->shouldBeCalledTimes(1);
+        $this->psrBatchLogger->getMetadataProvider()
+            ->willReturn(new SimpleMetadataProvider())
+            ->shouldBeCalledTimes(2);
+        Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
+        Bootstrap::exceptionHandler($exception);
     }
 
     /**
