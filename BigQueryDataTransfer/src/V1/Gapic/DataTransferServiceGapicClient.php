@@ -1372,10 +1372,15 @@ class DataTransferServiceGapicClient
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type TimeRange $requestedTimeRange
-     *           Time range for the transfer runs that should be started.
+     *           A time_range start and end timestamp for historical data files or reports
+     *           that are scheduled to be transferred by the scheduled transfer run.
+     *           requested_time_range must be a past time and cannot include future time
+     *           values.
      *     @type Timestamp $requestedRunTime
-     *           Specific run_time for a transfer run to be started. The
-     *           requested_run_time must not be in the future.
+     *           A run_time timestamp for historical data files or reports
+     *           that are scheduled to be transferred by the scheduled transfer run.
+     *           requested_run_time must be a past time and cannot include future time
+     *           values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
