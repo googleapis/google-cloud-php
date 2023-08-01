@@ -53,11 +53,17 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testCreateSubscriptionWithCloudStorageConfig($client)
     {
-        self::markTestSkipped('This test needs a GCS bucket');
-        $client = self::$restClient;
+        $gcsBucket = getenv('GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET');
+        if (!$gcsBucket) {
+            $this->markTestSkipped(
+                'Must provide `GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET` to run this test.'
+            );
+            return;
+        }
+
         $topic = self::topic($client);
         $bucket = [
-            'bucket' => 'pubsub-test1-bucket',
+            'bucket' => $gcsBucket,
             'avroConfig' => ['writeMetadata' => false],
             'maxDuration' => new Duration(150, 1e+9),
             'maxBytes' => '2000'
@@ -76,6 +82,35 @@ class ManageSubscriptionsTest extends PubSubTestCase
         }
 
         $this->assertSubsFound($client, $subsToCreate, $bucket);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateSubscriptionWithCloudStorageConfig($client)
+    {
+        $gcsBucket = getenv('GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET');
+        if (!$gcsBucket) {
+            $this->markTestSkipped(
+                'Must provide `GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET` to run this test.'
+            );
+            return;
+        }
+
+        $topic = self::topic($client);
+        $subToCreate = uniqid(self::TESTING_PREFIX);
+        $sub = $client->subscribe($subToCreate, $topic);
+        self::$deletionQueue->add($sub);
+
+        $isSetCloudStorageConfig = isset($sub->info()['cloudStorageConfig']) ?? false;
+        $bucket = ['bucket' => $gcsBucket];
+
+        $sub->update([
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals(false, $isSetCloudStorageConfig);
+        $this->assertEquals(true, $sub->info()['cloudStorageConfig'] ? true : false);
     }
 
     /**
@@ -429,10 +464,10 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue($sub->detached());
     }
 
-    private function assertSubsFound($class, $expectedSubs)
+    private function assertSubsFound($class, $expectedSubs, $bucket = [])
     {
         $backoff = new ExponentialBackoff(8);
-        $hasFoundSubs = $backoff->execute(function () use ($class, $expectedSubs) {
+        $hasFoundSubs = $backoff->execute(function () use ($class, $expectedSubs, $bucket) {
             $foundSubs = [];
             $subs = $class->subscriptions();
 
@@ -441,7 +476,13 @@ class ManageSubscriptionsTest extends PubSubTestCase
                 $sName = end($nameParts);
                 foreach ($expectedSubs as $key => $expectedSub) {
                     if ($sName === $expectedSub) {
-                        $foundSubs[$key] = $sName;
+                        if ($bucket) {
+                            if (isset($sub->info()['cloudStorageConfig'])) {
+                                $foundSubs[$key] = $sName;
+                            }
+                        } else {
+                            $foundSubs[$key] = $sName;
+                        }
                     }
                 }
             }
