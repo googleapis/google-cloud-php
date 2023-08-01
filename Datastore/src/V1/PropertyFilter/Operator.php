@@ -60,8 +60,9 @@ class Operator
     /**
      * The given `property` is equal to at least one value in the given array.
      * Requires:
-     * * That `value` is a non-empty `ArrayValue` with at most 10 values.
-     * * No other `IN` or `NOT_IN` is in the same query.
+     * * That `value` is a non-empty `ArrayValue`, subject to disjunction
+     *   limits.
+     * * No `NOT_IN` is in the same query.
      *
      * Generated from protobuf enum <code>IN = 6;</code>
      */
@@ -79,7 +80,7 @@ class Operator
      * Limit the result set to the given entity and its descendants.
      * Requires:
      * * That `value` is an entity key.
-     * * No other `HAS_ANCESTOR` is in the same query.
+     * * All evaluated disjunctions must have the same `HAS_ANCESTOR` filter.
      *
      * Generated from protobuf enum <code>HAS_ANCESTOR = 11;</code>
      */
@@ -88,7 +89,7 @@ class Operator
      * The value of the `property` is not in the given array.
      * Requires:
      * * That `value` is a non-empty `ArrayValue` with at most 10 values.
-     * * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query.
+     * * No other `OR`, `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query.
      * * That `field` comes first in the `order_by`.
      *
      * Generated from protobuf enum <code>NOT_IN = 13;</code>
