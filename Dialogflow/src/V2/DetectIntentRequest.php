@@ -43,10 +43,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     private $query_params = null;
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -101,12 +101,12 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *                                                           {@see SessionsClient::sessionName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $queryInput Required. The input specification. It can be set to:
      *
-     *                                                           1.  an audio config
-     *                                                           which instructs the speech recognizer how to process the speech audio,
+     *                                                           1. an audio config which instructs the speech recognizer how to process
+     *                                                           the speech audio,
      *
-     *                                                           2.  a conversational query in the form of text, or
+     *                                                           2. a conversational query in the form of text, or
      *
-     *                                                           3.  an event that specifies which intent to trigger.
+     *                                                           3. an event that specifies which intent to trigger.
      *
      * @return \Google\Cloud\Dialogflow\V2\DetectIntentRequest
      *
@@ -145,10 +145,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
      *           Required. The input specification. It can be set to:
-     *           1.  an audio config
-     *               which instructs the speech recognizer how to process the speech audio,
-     *           2.  a conversational query in the form of text, or
-     *           3.  an event that specifies which intent to trigger.
+     *           1. an audio config which instructs the speech recognizer how to process
+     *           the speech audio,
+     *           2. a conversational query in the form of text, or
+     *           3. an event that specifies which intent to trigger.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
@@ -264,10 +264,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryInput|null
@@ -289,10 +289,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config
-     *     which instructs the speech recognizer how to process the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $var

@@ -17,7 +17,7 @@ class GcsSources extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Google Cloud Storage URIs for the inputs. A URI is of the form:
-     *   gs://bucket/object-prefix-or-name
+     * `gs://bucket/object-prefix-or-name`
      * Whether a prefix or name is used depends on the use case.
      *
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -32,7 +32,7 @@ class GcsSources extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           Required. Google Cloud Storage URIs for the inputs. A URI is of the form:
-     *             gs://bucket/object-prefix-or-name
+     *           `gs://bucket/object-prefix-or-name`
      *           Whether a prefix or name is used depends on the use case.
      * }
      */
@@ -43,7 +43,7 @@ class GcsSources extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Google Cloud Storage URIs for the inputs. A URI is of the form:
-     *   gs://bucket/object-prefix-or-name
+     * `gs://bucket/object-prefix-or-name`
      * Whether a prefix or name is used depends on the use case.
      *
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -56,7 +56,7 @@ class GcsSources extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Google Cloud Storage URIs for the inputs. A URI is of the form:
-     *   gs://bucket/object-prefix-or-name
+     * `gs://bucket/object-prefix-or-name`
      * Whether a prefix or name is used depends on the use case.
      *
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
