@@ -58,7 +58,7 @@ class Packagist
                 'json' => $requestBody,
             ]);
 
-            return $response->getStatusCode() === 200;
+            return $response->getStatusCode() === 202;
         } catch (\Exception $e) {
             return false;
         }

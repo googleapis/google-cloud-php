@@ -328,7 +328,7 @@ class SplitCommand extends Command
         if ($tagName === 'v0.1.0' && $packagist) {
             $output->writeln('<comment>[info]</comment> Creating Packagist package.');
 
-            $res = $packagist->createPackage('https://github.com/' . $repoName);
+            $res = $packagist->submitPackage('https://github.com/' . $repoName);
 
             if ($res) {
                 $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
