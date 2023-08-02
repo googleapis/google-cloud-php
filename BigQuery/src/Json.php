@@ -80,7 +80,7 @@ class Json implements ValueInterface
      */
     public function formatAsString()
     {
-        return (string) $this->value;
+        return $this->value;
     }
 
     /**
@@ -90,6 +90,6 @@ class Json implements ValueInterface
      */
     public function __toString()
     {
-        return (string) $this->value;
+        return $this->value;
     }
 }

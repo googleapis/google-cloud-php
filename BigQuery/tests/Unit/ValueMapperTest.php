@@ -211,7 +211,8 @@ class ValueMapperTest extends TestCase
                     'type' => 'STRING',
                     'mode' => 'NULLABLE'
                 ],
-                null            ],
+                null
+            ],
             [
                 ['v' => '{"id":1}'],
                 ['type' => 'JSON'],
