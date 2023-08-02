@@ -975,6 +975,69 @@ class SubscriptionTest extends TestCase
         $this->assertEquals([], $this->subscription->detach());
     }
 
+    public function testCreateSubscriptionWithCloudStorageConfig()
+    {
+        $bucket = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => new Duration(3, 1e+9)
+        ];
+        $bucketString = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => '3.1s'
+        ];
+        $this->connection->createSubscription(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('cloudStorageConfig', $bucketString)
+        ))->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->create([
+            'foo' => 'bar',
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
+    }
+
+    public function testUpdateSubscriptionWithCloudStorageConfig()
+    {
+        $bucket = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => new Duration(3, 1e+9)
+        ];
+        $bucketString = [
+            'name' => 'projects/project-id/subscriptions/subscription-name',
+            'cloudStorageConfig' => [
+                'bucket' => 'pubsub-test-bucket',
+                'maxDuration' => '3.1s'
+                ]
+            ];
+        $this->connection->updateSubscription(
+            Argument::containing($bucketString)
+        )->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->update([
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
+    }
+
     // Helper method to generate the exception sent during an invalid EOD operation
     // like acknowledge or modifyAckDeadline
     private function generateEodException($metadata, $failureReason = 'EXACTLY_ONCE_ACKID_FAILURE')

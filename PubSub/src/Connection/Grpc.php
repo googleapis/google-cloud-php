@@ -43,6 +43,7 @@ use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
 
 /**
  * Implementation of the
@@ -321,6 +322,13 @@ class Grpc implements ConnectionInterface
             $args['deadLetterPolicy'] = $this->serializer->decodeMessage(
                 new DeadLetterPolicy(),
                 $args['deadLetterPolicy']
+            );
+        }
+
+        if (isset($args['cloudStorageConfig'])) {
+            $args['cloudStorageConfig'] = $this->serializer->decodeMessage(
+                new CloudStorageConfig(),
+                $args['cloudStorageConfig']
             );
         }
 
