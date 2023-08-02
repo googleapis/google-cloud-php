@@ -18,12 +18,12 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
+use Google\ApiCore\Traits\TimeHelperTrait;
 use Google\Cloud\Core\Duration as CoreDuration;
-use Google\Cloud\Core\GrpcTrait;
 
 class PubSubSerializer extends Serializer
 {
-    use GrpcTrait;
+    use TimeHelperTrait;
 
     public static $obj = null;
 

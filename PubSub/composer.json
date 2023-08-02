@@ -5,9 +5,15 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.4",
-        "google/cloud-core": "^1.46",
-        "google/gax": "^1.1"
+        "google/cloud-core": "1.9",
+        "google/gax": "dev-v2-helper"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Core"
+        }
+    ],
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",

@@ -3,6 +3,7 @@
     "description": "Google Cloud PHP shared dependency, providing functionality useful to all components.",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
+    "version": "1.9",
     "require": {
         "php": ">=7.4",
         "rize/uri-template": "~0.3",
