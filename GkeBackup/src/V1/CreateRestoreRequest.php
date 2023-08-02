@@ -31,11 +31,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -81,11 +81,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
      *     @type string $restore_id
      *           Required. The client-provided short name for the Restore resource.
      *           This name must:
-     *            - be between 1 and 63 characters long (inclusive)
-     *            - consist of only lower-case ASCII letters, numbers, and dashes
-     *            - start with a lower-case letter
-     *            - end with a lower-case letter or number
-     *            - be unique within the set of Restores in this RestorePlan.
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of Restores in this RestorePlan.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,11 +160,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -177,11 +177,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
