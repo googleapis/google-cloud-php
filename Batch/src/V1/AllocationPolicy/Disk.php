@@ -58,18 +58,22 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image
-     *           Name of a public or custom image used as the data source.
+     *           Name of an image used as the data source.
      *           For example, the following are all valid URLs:
      *           * Specify the image by its family name:
-     *           projects/{project}/global/images/family/{image_family}
+     *           <pre><code>projects/<var
+     *           class="apiparam">project</var>/global/images/family/<var
+     *           class="apiparam">image_family</var></code></pre>
      *           * Specify the image version:
-     *           projects/{project}/global/images/{image_version}
+     *           <pre>projects/<var
+     *           class="apiparam">project</var>/global/images/<var
+     *           class="apiparam">image_version</var></code></pre>
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
-     *           * "batch-debian": use Batch Debian images.
-     *           * "batch-centos": use Batch CentOS images.
-     *           * "batch-cos": use Batch Container-Optimized images.
-     *           * "batch-hpc-centos": use Batch HPC CentOS images.
+     *           * `batch-debian`: use Batch Debian images.
+     *           * `batch-centos`: use Batch CentOS images.
+     *           * `batch-cos`: use Batch Container-Optimized images.
+     *           * `batch-hpc-centos`: use Batch HPC CentOS images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
      *           Snapshot is not supported as boot disk now.
@@ -100,18 +104,22 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a public or custom image used as the data source.
+     * Name of an image used as the data source.
      * For example, the following are all valid URLs:
      * * Specify the image by its family name:
-     * projects/{project}/global/images/family/{image_family}
+     * <pre><code>projects/<var
+     * class="apiparam">project</var>/global/images/family/<var
+     * class="apiparam">image_family</var></code></pre>
      * * Specify the image version:
-     * projects/{project}/global/images/{image_version}
+     * <pre>projects/<var
+     * class="apiparam">project</var>/global/images/<var
+     * class="apiparam">image_version</var></code></pre>
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * * "batch-debian": use Batch Debian images.
-     * * "batch-centos": use Batch CentOS images.
-     * * "batch-cos": use Batch Container-Optimized images.
-     * * "batch-hpc-centos": use Batch HPC CentOS images.
+     * * `batch-debian`: use Batch Debian images.
+     * * `batch-centos`: use Batch CentOS images.
+     * * `batch-cos`: use Batch Container-Optimized images.
+     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @return string
@@ -127,18 +135,22 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a public or custom image used as the data source.
+     * Name of an image used as the data source.
      * For example, the following are all valid URLs:
      * * Specify the image by its family name:
-     * projects/{project}/global/images/family/{image_family}
+     * <pre><code>projects/<var
+     * class="apiparam">project</var>/global/images/family/<var
+     * class="apiparam">image_family</var></code></pre>
      * * Specify the image version:
-     * projects/{project}/global/images/{image_version}
+     * <pre>projects/<var
+     * class="apiparam">project</var>/global/images/<var
+     * class="apiparam">image_version</var></code></pre>
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
-     * * "batch-debian": use Batch Debian images.
-     * * "batch-centos": use Batch CentOS images.
-     * * "batch-cos": use Batch Container-Optimized images.
-     * * "batch-hpc-centos": use Batch HPC CentOS images.
+     * * `batch-debian`: use Batch Debian images.
+     * * `batch-centos`: use Batch CentOS images.
+     * * `batch-cos`: use Batch Container-Optimized images.
+     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
      * @param string $var
