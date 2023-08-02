@@ -81,7 +81,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
             ));
         }
 
-        $this->assertSubsFound($client, $subsToCreate, $bucket);
+        $this->assertSubsFound($client, $subsToCreate, true);
     }
 
     /**
@@ -464,35 +464,42 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue($sub->detached());
     }
 
-    private function assertSubsFound($class, $expectedSubs, $bucket = [])
-    {
+    private function assertSubsFound(
+        $class,
+        $expectedSubs,
+        $assertForStorageConfig = false
+    ) {
         $backoff = new ExponentialBackoff(8);
-        $hasFoundSubs = $backoff->execute(function () use ($class, $expectedSubs, $bucket) {
-            $foundSubs = [];
-            $subs = $class->subscriptions();
+        $hasFoundSubs = $backoff->execute(
+            function () use ($class, $expectedSubs, $assertForStorageConfig) {
+                $foundSubs = [];
+                $subs = $class->subscriptions();
 
-            foreach ($subs as $sub) {
-                $nameParts = explode('/', $sub->name());
-                $sName = end($nameParts);
-                foreach ($expectedSubs as $key => $expectedSub) {
-                    if ($sName === $expectedSub) {
-                        if ($bucket) {
-                            if (isset($sub->info()['cloudStorageConfig'])) {
+                foreach ($subs as $sub) {
+                    $nameParts = explode('/', $sub->name());
+                    $sName = end($nameParts);
+                    foreach ($expectedSubs as $key => $expectedSub) {
+                        if ($sName === $expectedSub) {
+                            if ($assertForStorageConfig) {
+                                if (isset($sub->info()['cloudStorageConfig'])) {
+                                    $foundSubs[$key] = $sName;
+                                }
+                            } else {
                                 $foundSubs[$key] = $sName;
                             }
-                        } else {
-                            $foundSubs[$key] = $sName;
                         }
                     }
                 }
-            }
 
-            if (sort($foundSubs) === sort($expectedSubs)) {
-                return true;
-            }
+                if (sort($foundSubs) === sort($expectedSubs)) {
+                    return true;
+                }
 
-            throw new \Exception('Items not found in the allotted number of attempts.');
-        });
+                throw new \Exception(
+                    'Items not found in the allotted number of attempts.'
+                );
+            }
+        );
 
         $this->assertTrue($hasFoundSubs);
     }
