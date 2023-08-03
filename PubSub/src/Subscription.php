@@ -17,17 +17,16 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\Traits\ArrayTrait;
 use Google\Cloud\Core\Duration;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\ExponentialBackoff;
+use Google\ApiCore\Veneer\Exception\NotFoundException;
+use Google\ApiCore\Veneer\Exception\BadRequestException;
+use Google\ApiCore\Veneer\ExponentialBackoff;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\V2\RequestHandler;
-use Google\Cloud\Core\ValidateTrait;
+use Google\ApiCore\Traits\TimeTrait;
+use Google\ApiCore\Veneer\RequestHandler;
+use Google\ApiCore\Traits\ValidateTrait;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
@@ -108,6 +107,11 @@ class Subscription
     private $gapic;
 
     /**
+     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
+     */
+    private $serializer;
+
+    /**
      * @var string
      */
     private $projectId;
@@ -185,8 +189,9 @@ class Subscription
         array $info = []
     ) {
         $this->gapic = SubscriberClient::class;
+        $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
-            new PubSubSerializer(),
+            $this->serializer,
             [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
@@ -579,7 +584,7 @@ class Subscription
 
         $maskPaths = [];
         foreach ($updateMaskPaths as $path) {
-            $maskPaths[] = Serializer::toSnakeCase($path);
+            $maskPaths[] = $this->serializer::toSnakeCase($path);
         }
 
         $fieldMask = new FieldMask([
@@ -1133,7 +1138,7 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = (new PubSubSerializer())->decodeMessage(
+        $pushConfig = $this->serializer->decodeMessage(
             new PushConfig(),
             $pushConfig
         );
@@ -1167,7 +1172,7 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = (new PubSubSerializer())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
+        $options['time'] = $this->serializer->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
         return $this->requestHandler->sendReq(
             $this->gapic,

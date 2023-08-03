@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\V2\RequestHandler;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
@@ -46,6 +46,11 @@ class Snapshot
      * The GAPIC class to call under the hood.
      */
     private $gapic;
+
+    /**
+     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
+     */
+    private $serializer;
 
     /**
      * @var string
@@ -94,8 +99,9 @@ class Snapshot
         array $clientConfig = []
     ) {
         $this->gapic = SubscriberClient::class;
+        $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
-            new PubSubSerializer(),
+            $this->serializer,
             [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
         );

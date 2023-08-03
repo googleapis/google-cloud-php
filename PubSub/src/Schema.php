@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\V2\RequestHandler;
+use Google\ApiCore\Veneer\Exception\NotFoundException;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SchemaView;
 
@@ -52,6 +52,11 @@ class Schema
     private $gapic;
 
     /**
+     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
+     */
+    private $serializer;
+
+    /**
      * @var string
      */
     private $name;
@@ -70,8 +75,9 @@ class Schema
         array $info = []
     ) {
         $this->gapic = SchemaServiceClient::class;
+        $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
-            new PubSubSerializer(),
+            $this->serializer,
             [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
