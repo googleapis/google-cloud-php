@@ -68,34 +68,47 @@ class RetryTest extends TestCase
         $this->job = $this->prophesize(BatchJob::class);
     }
 
-    public function testRetryAll()
+    /**
+     * @dataProvider retryAllCases
+     */
+    public function testRetryAll($key, $item)
     {
-        $this->job->callFunc(array('apple', 'orange'))
+        $this->job->callFunc($item)
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
-        $this->runner->getJobFromIdNum(1)
+        $this->runner->getJobFromIdNum($key)
             ->willReturn($this->job->reveal())
             ->shouldBeCalledTimes(1);
         $this->retry = new Retry($this->runner->reveal());
-        $this->retry->handleFailure(1, array('apple', 'orange'));
+        $this->retry->handleFailure($key, $item);
         $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
         $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
     }
 
-    public function testRetryAllWithSingleFailure()
+    /**
+     * @dataProvider retryAllCases
+     */
+    public function testRetryAllWithSingleFailure($key, $item)
     {
-        $this->job->callFunc(array('apple', 'orange'))
+        $this->job->callFunc($item)
             ->willReturn(false, true)
             ->shouldBeCalledTimes(2);
-        $this->runner->getJobFromIdNum(1)
+        $this->runner->getJobFromIdNum($key)
             ->willReturn($this->job->reveal())
             ->shouldBeCalledTimes(2);
         $this->retry = new Retry($this->runner->reveal());
-        $this->retry->handleFailure(1, array('apple', 'orange'));
+        $this->retry->handleFailure($key, $item);
         $this->retry->retryAll();
         $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
         $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
+    }
+
+    public function retryAllCases()
+    {
+        return [
+            [1, array('apple', 'orange')],
+        ];
     }
 }
