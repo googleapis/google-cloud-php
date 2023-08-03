@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Manages GitHub API calls for Subtree Split releases.
@@ -33,29 +34,19 @@ class GitHub
     const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
-
-    /**
-     * @var RunShell
-     */
-    private $shell;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @var string
-     */
-    private $token;
+    const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
 
     /**
      * @var array[]
      */
     private $targetInfoCache = [];
 
-    public function __construct(RunShell $shell, Client $client, $token)
-    {
+    public function __construct(
+        private RunShell $shell,
+        private Client $client,
+        private string $token,
+        private ?OutputInterface $output = null
+    ) {
         $this->shell = $shell;
         $this->client = $client;
         $this->token = $token;
@@ -74,6 +65,7 @@ class GitHub
             $res = $this->getRepo($target);
             return json_decode((string) $res->getBody(), true)['default_branch'];
         } catch (\Exception $e) {
+            $this->logException($e);
             return null;
         }
     }
@@ -91,6 +83,7 @@ class GitHub
             $res = $this->getRepo($target);
             return json_decode((string) $res->getBody(), true)['size'] === 0;
         } catch (\Exception $e) {
+            $this->logException($e);
             return null;
         }
     }
@@ -115,6 +108,7 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
+            $this->logException($e);
             return null;
         }
     }
@@ -148,6 +142,7 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            $this->logException($e);
             return false;
         }
     }
@@ -193,6 +188,7 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            $this->logException($e);
             return false;
         }
     }
@@ -218,6 +214,7 @@ class GitHub
 
             return json_decode((string) $res->getBody(), true)['body'];
         } catch (\Exception $e) {
+            $this->logException($e);
             return null;
         }
     }
@@ -289,5 +286,54 @@ class GitHub
         }
 
         return $res;
+    }
+
+    /**
+     * Add webhook
+     */
+    public function addWebhook(
+        string $target,
+        string $webhookUrl,
+        string $secret
+    ) {
+        try {
+            $res = $this->client->post(sprintf(
+                self::GITHUB_WEBHOOK_CREATE_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token],
+                'json' => [
+                    'name' => 'web',
+                    'active' => true,
+                    'events' => ['push'],
+                    'config' =>  [
+                        'url' => $webhookUrl,
+                        'content_type' => 'json',
+                        'secret' => $secret,
+                        'insecure_ssl' => false,
+                    ],
+                ],
+            ]);
+
+            return $res->getStatusCode() === 201;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+    }
+
+    /**
+     * Log an exception
+     *
+     * @param \Exception $e
+     */
+    private function logException(\Exception $e)
+    {
+        if ($this->output) {
+            $this->output->writeln(sprintf(
+                '<error>Exception: %s</error>',
+                $e->getMessage()
+            ));
+        }
     }
 }
