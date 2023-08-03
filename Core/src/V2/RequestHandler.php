@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\V2;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\EmulatorTrait;
-use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\ApiCore\Veneer\RequestWrapper;
 use Google\Cloud\Core\V2\RequestCallerTrait;
 
 class RequestHandler
@@ -55,7 +55,7 @@ class RequestHandler
         // TODO: We should be able to swap out the use of
         // GrpcRequestWrapper with either something in gax, or
         // have the functionality in this file itself.
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $this->setRequestWrapper(new RequestWrapper($config));
         $grpcConfig = $this->getGaxConfig(
             $this->pluck('libVersion', $config),
             isset($config['authHttpHandler'])
