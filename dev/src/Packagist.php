@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Manages Packagist API calls
@@ -34,7 +35,8 @@ class Packagist
     public function __construct(
         private Client $client,
         private string $username,
-        private string $apiToken
+        private string $apiToken,
+        private ?OutputInterface $output = null
     ) {
     }
 
@@ -61,6 +63,7 @@ class Packagist
 
             return $response->getStatusCode() === 202;
         } catch (\Exception $e) {
+            $this->logException($e);
             return false;
         }
     }
@@ -73,5 +76,20 @@ class Packagist
     public function getApiToken(): string
     {
         return $this->apiToken;
+    }
+
+    /**
+     * Log an exception
+     *
+     * @param \Exception $e
+     */
+    private function logException(\Exception $e)
+    {
+        if ($this->output) {
+            $this->output->writeln(sprintf(
+                '<error>Exception: %s</error>',
+                $e->getMessage()
+            ));
+        }
     }
 }
