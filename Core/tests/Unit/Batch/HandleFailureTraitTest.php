@@ -125,7 +125,8 @@ class HandleFailureTraitTest extends TestCase
     public function handleFailureCases()
     {
         return [
-            [1, array('apple', 'orange')]
+            [1, array('apple', 'orange')],
+            [2, array('apple' . PHP_EOL, 'orange')]
         ];
     }
 }
