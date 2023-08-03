@@ -169,6 +169,5 @@ class BatchRunnerTest extends TestCase
         usleep(500000);
         $this->assertResultContains('BANANA');
         $this->assertResultContains('LEMON' . PHP_EOL);
-
     }
 }
