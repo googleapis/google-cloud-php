@@ -113,7 +113,7 @@ class HandleFailureTraitTest extends TestCase
         $fp = fopen($files[0], 'r');
         $unserializedData = [];
         while ($line = fgets($fp)) {
-            $unserializedData += unserialize($line);
+            $unserializedData += unserialize(json_decode($line));
         }
         @fclose($fp);
         $this->assertEquals(
