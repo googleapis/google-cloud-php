@@ -196,6 +196,53 @@ class Query
     }
 
     /**
+     * Gets the sum of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $sum = $query->sum();
+     * ```
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return int
+     */
+    public function sum(string $field, array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::sum($field)->alias('sum'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('sum');
+    }
+
+    /**
+     * Gets the average of all documents matching the provided query filters.
+     *
+     * Example:
+     * ```
+     * $avg = $query->avg();
+     * ```
+     *
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return int
+     */
+    public function avg(string $field, array $options = [])
+    {
+        $aggregateQuery = $this->addAggregation(Aggregate::avg($field)->alias('avg'));
+
+        $aggregationResult = $aggregateQuery->getSnapshot($options);
+        return $aggregationResult->get('avg');
+    }
+
+    /**
      * Returns an aggregate query provided an aggregation with existing query filters.
      *
      * Example:

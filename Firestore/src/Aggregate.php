@@ -38,6 +38,16 @@ class Aggregate
     private const TYPE_COUNT = 'count';
 
     /**
+     * Default placeholder for all sum aggregate props.
+     */
+    private const TYPE_SUM = 'sum';
+
+    /**
+     * Default placeholder for all average aggregate props.
+     */
+    private const TYPE_AVG = 'avg';
+
+    /**
      * @var array Aggregation properties for an AggregateQuery.
      */
     private $props = [];
@@ -66,6 +76,48 @@ class Aggregate
         $count = new Aggregate(self::TYPE_COUNT);
         $count->props[$count->aggregationType] = [];
         return $count;
+    }
+
+    /**
+     * Creates sum aggregation properties.
+     *
+     * Example:
+     * ```
+     * $sum = Aggregate::sum('field_to_aggregate_upon');
+     * ```
+     * @param string $field The relative path of the field to aggregate upon.
+     * @return Aggregate
+     */
+    public static function sum($field)
+    {
+        $sum = new Aggregate(self::TYPE_SUM);
+        $sum->props[$sum->aggregationType] = [
+            'field' => [
+                'fieldPath' => $field
+            ]
+        ];
+        return $sum;
+    }
+
+    /**
+     * Creates average aggregation properties.
+     *
+     * Example:
+     * ```
+     * $avg = Aggregate::avg('field_to_aggregate_upon');
+     * ```
+     * @param string $field The relative path of the field to aggregate upon.
+     * @return Aggregate
+     */
+    public static function avg($field)
+    {
+        $avg = new Aggregate(self::TYPE_AVG);
+        $avg->props[$avg->aggregationType] = [
+            'field' => [
+                'fieldPath' => $field
+            ]
+        ];
+        return $avg;
     }
 
     /**

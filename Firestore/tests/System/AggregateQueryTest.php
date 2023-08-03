@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Exception;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\Query;
@@ -105,13 +107,30 @@ class AggregateQueryTest extends FirestoreTestCase
 
     private function assertQuery(Query $query, $type, $arg, $expected)
     {
+        if ($expected instanceof Exception) {
+            $this->expectException(get_class($expected));
+            $this->expectExceptionMessage($expected->getMessage());
+        }
+
         $actual = $arg ? $query->$type($arg) : $query->$type();
-        $this->assertEquals($expected, $actual);
+
+        if (!($expected instanceof Exception)){
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEquals($expected, $actual);
+            }
+        }
         $this->assertQueryWithMultipleAggregations($query, $type, $arg, $expected);
     }
 
     private function assertQueryWithMultipleAggregations(Query $query, $type, $arg, $expected)
     {
+        if ($expected instanceof Exception) {
+            $this->expectException(get_class($expected));
+            $this->expectExceptionMessage($expected->getMessage());
+        }
+
         $aggregations = [
             ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('a1'),
             ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('a2'),
@@ -129,10 +148,15 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $snapshot = $query->getSnapshot();
 
-        foreach ($expectedResults as $k => $v) {
-            $expectedResult = $v;
-            $actualResult = $snapshot->get($k);
-            $this->assertEquals($expectedResult, $actualResult);
+        if (!($expected instanceof Exception)){
+            foreach ($expectedResults as $key => $expectedResult) {
+                $actualResult = $snapshot->get($key);
+                if (is_nan($expected)) {
+                    $this->assertNan($actualResult);
+                } else {
+                    $this->assertEquals($expected, $actualResult);
+                }
+            }
         }
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
@@ -154,15 +178,57 @@ class AggregateQueryTest extends FirestoreTestCase
      *     string $aggregationType,
      *     string $targetFieldName,
      *     string $fieldMask,
-     *     mixed $expectedResult,
+     *     mixed $expectedResult, // can be exception too
      *     array $docsToAddBeforeTestRunning
      * ]
      */
     public function getSelectCases()
     {
         return [
-            ['count', null, ['foo', 'good'], 1, [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']]],
-            ['count', null, [], 1, [['foo' => 'bar']]],
+            // With mask
+            [
+                'count',
+                null,
+                ['foo', 'good'],
+                1,
+                [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']]
+            ],
+            [
+                'sum',
+                'foo',
+                ['foo'],
+                new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
+                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            ],
+            [
+                'avg',
+                'foo',
+                ['foo'],
+                new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
+                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            ],
+
+            // With empty mask
+            [
+                'count',
+                null,
+                [], 1,
+                [['foo' => 'bar']]
+            ],
+            [
+                'sum',
+                'foo',
+                [],
+                new BadRequestException('Aggregation over non-key properties is not supported for base query that only returns keys.'),
+                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            ],
+            [
+                'avg',
+                'foo',
+                [],
+                new BadRequestException('Aggregation over non-key properties is not supported for base query that only returns keys'),
+                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            ]
         ];
     }
 
@@ -186,23 +252,37 @@ class AggregateQueryTest extends FirestoreTestCase
             ['value' => ['foo', 'bar']],
             ['value' => ['foo']]
         ];
+        $numDoc = [
+            ['value' => [1, 2]],
+            ['value' => [30]]
+        ];
         $randomVal = base64_encode(random_bytes(10));
+        $randomInt = random_int(1, PHP_INT_MAX);
         return [
             // For testing where: equality for random value
             ['count', null, '=', $randomVal, 1, [['value' => $randomVal]]],
+            ['sum', 'value', '=', $randomInt, $randomInt, [['value' => $randomInt]]],
+            ['avg', 'value', '=', $randomInt, $randomInt, [['value' => $randomInt], ['value']]],
 
             // For testing where: equality for null
             ['count', null, '=', null, 1, [['value' => null]]],
+            ['sum', 'value', '=', null, 0, [['value' => null]]],
+            ['avg', 'value', '=', null, null, [['value' => null]]],
 
-            // For testing where: equality for NAN
+            // // For testing where: equality for NAN
             ['count', null, '=', NAN, 1, [['value' => NAN]]],
+            ['sum', 'value', '=', NAN, NAN, [['value' => NAN]]],
+            ['avg', 'value', '=', NAN, NAN, [['value' => NAN]]],
 
-            // For testing where: in array
+            // // // For testing where: in array
             ['count', null, 'in', [['foo']], 1, $arrayDoc],
             ['count', null, 'in', [['foo'], ['foo', 'bar']], 2, $arrayDoc],
             ['count', null, 'in', [['bar']], 0, $arrayDoc],
             ['count', null, 'in', [['foo', 'bar']], 1, $arrayDoc],
             ['count', null, 'in', [['bar', 'foo']], 0, $arrayDoc],
+            // Array is considered non numeric for Sum and Avg
+            ['sum', 'value', 'in', [[1, 2]], 0, $numDoc],
+            ['avg', 'value', 'in', [[1, 2]], null, $numDoc]
         ];
     }
 
@@ -220,9 +300,16 @@ class AggregateQueryTest extends FirestoreTestCase
      */
     public function getSnapshotCursorCases()
     {
-        $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3]];
+        $docsToAdd = [
+            ['value' => 1],
+            ['value' => 2],
+            ['value' => 3],
+            ['value' => 4]
+        ];
         return [
-            ['count', null, [4, 3, 3, 4], $docsToAdd]
+            ['count', null, [4, 3, 3, 4], $docsToAdd],
+            ['sum', 'value', [10, 9, 6, 10], $docsToAdd],
+            ['avg', 'value', [2.5, 3, 2, 2.5], $docsToAdd]
         ];
     }
 
@@ -240,9 +327,17 @@ class AggregateQueryTest extends FirestoreTestCase
      */
     public function getLimitCases()
     {
-        $docsToAdd = [['value' => 0], ['value' => 1], ['value' => 2], ['value' => 3],  ['value' => 4]];
+        $docsToAdd = [
+            ['value' => 1],
+            ['value' => 2],
+            ['value' => 3],
+            ['value' => 4],
+            ['value' => 5]
+        ];
         return [
-            ['count', null, [2, 2], $docsToAdd]
+            ['count', null, [2, 2], $docsToAdd],
+            ['sum', 'value', [9, 7], $docsToAdd],
+            ['avg', 'value', [4.5, 3.5], $docsToAdd]
         ];
     }
 }
