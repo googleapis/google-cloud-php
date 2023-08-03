@@ -108,7 +108,11 @@ class RetryTest extends TestCase
     public function retryAllCases()
     {
         return [
+            // To test past behaviour of just serializing data
             [1, array('apple', 'orange')],
+            // To test updated behaviour of just serializing then
+            // json_encoding the data
+            [1, array('apple' . PHP_EOL, 'orange')],
         ];
     }
 }
