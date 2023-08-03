@@ -337,6 +337,14 @@ class SplitCommand extends Command
 
                 return false;
             }
+
+            if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->apiToken)) {
+                $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
+            } else {
+                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
+
+                return false;
+            }
         }
 
         return true;

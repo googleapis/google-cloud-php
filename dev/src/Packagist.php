@@ -28,12 +28,13 @@ use GuzzleHttp\Psr7\Response;
  */
 class Packagist
 {
-    private const CREATE_PACKAGE_ENDPOINT = 'https://packagist.org/api/create-package';
+    private const WEBHOOK_URL = 'https://packagist.org/api/update-package?username=%s';
+    private const CREATE_PACKAGE_URL = 'https://packagist.org/api/create-package';
 
     public function __construct(
         private Client $client,
-        private string $username,
-        private string $apiToken
+        public string $username,
+        public string $apiToken
     ) {
     }
 
@@ -50,7 +51,7 @@ class Packagist
         ];
 
         try {
-            $response = $this->client->post(self::CREATE_PACKAGE_ENDPOINT, [
+            $response = $this->client->post(self::CREATE_PACKAGE_URL, [
                 'query' => [
                     'apiToken' => $this->apiToken,
                     'username' => $this->username,
@@ -62,5 +63,10 @@ class Packagist
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function getWebhookUrl(): string
+    {
+        return sprintf(self::WEBHOOK_URL, $this->username);
     }
 }

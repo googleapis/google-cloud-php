@@ -33,6 +33,7 @@ class GitHub
     const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
+    const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
 
     /**
      * @var RunShell
@@ -289,5 +290,38 @@ class GitHub
         }
 
         return $res;
+    }
+
+    /**
+     * Add webhook
+     */
+    public function addWebhook(
+        string $target,
+        string $webhookUrl,
+        string $secret
+    ) {
+        try {
+            $res = $this->client->post(sprintf(
+                self::GITHUB_WEBHOOK_CREATE_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token],
+                'json' => [
+                    'name' => 'web',
+                    'active' => true,
+                    'events' => ['push'],
+                    'config' =>  [
+                        'url' => $webhookUrl,
+                        'content_type' => 'json',
+                        'secret' => $secret,
+                        'insecure_ssl' => false,
+                    ],
+                ],
+            ]);
+
+            return $res->getStatusCode() === 201;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 }
