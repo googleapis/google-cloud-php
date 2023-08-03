@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Core\V2;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\PubSub\PubSubSerializer;
 
 /**
  * IAM Manager
@@ -157,7 +157,7 @@ class Iam
             throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 
-        $policy = (new PubSubSerializer())->decodeMessage(Policy::class, $policy);
+        $policy = (new Serializer())->decodeMessage(Policy::class, $policy);
 
         $request = [];
         if ($this->options['parent']) {

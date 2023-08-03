@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
+use Google\ApiCore\Traits\ArrayTrait;
+use Google\ApiCore\Exception\NotFoundException;
 use Google\Cloud\Core\V2\Iam;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
+use Google\ApiCore\Veneer\Iterator\ItemIterator;
+use Google\ApiCore\Veneer\Iterator\PageIterator;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
-use Google\Cloud\Core\GrpcTrait;
+use Google\ApiCore\Traits\RequestCallerTrait;
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\V2\RequestHandler;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
@@ -53,7 +53,7 @@ class Topic
 {
     use ArrayTrait;
     use ResourceNameTrait;
-    use GrpcTrait;
+    use RequestCallerTrait;
 
     /**
      * The request handler that is responsible for sending a req and

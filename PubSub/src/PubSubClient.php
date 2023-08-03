@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
+use Google\ApiCore\Traits\ArrayTrait;
+use Google\ApiCore\Traits\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
+use Google\ApiCore\Veneer\Iterator\ItemIterator;
+use Google\ApiCore\Veneer\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\V2\RequestHandler;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
