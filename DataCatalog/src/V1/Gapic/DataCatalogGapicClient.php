@@ -2060,6 +2060,12 @@ class DataCatalogGapicClient
      *           `default`.
      *
      *           If this parameter is omitted, it defaults to the descending `relevance`.
+     *     @type bool $adminSearch
+     *           Optional. If set, uses searchAll permission granted on organizations from
+     *           `include_org_ids` and projects from `include_project_ids` instead of the
+     *           fine grained per resource permissions when filtering the search results.
+     *           The only allowed `order_by` criteria for admin_search mode is `default`.
+     *           Using this flags guarantees a full recall of the search results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2085,6 +2091,10 @@ class DataCatalogGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['adminSearch'])) {
+            $request->setAdminSearch($optionalArgs['adminSearch']);
         }
 
         return $this->getPagedListResponse('SearchCatalog', $optionalArgs, SearchCatalogResponse::class, $request);
