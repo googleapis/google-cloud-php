@@ -45,7 +45,7 @@ class GitHub
         private RunShell $shell,
         private Client $client,
         private string $token,
-        private ?OutputInterface $output
+        private ?OutputInterface $output = null
     ) {
         $this->shell = $shell;
         $this->client = $client;
