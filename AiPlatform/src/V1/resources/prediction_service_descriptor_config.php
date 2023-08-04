@@ -39,6 +39,21 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingPredict' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamingPredictResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'endpoint',
+                        'fieldAccessors' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

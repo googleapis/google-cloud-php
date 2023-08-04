@@ -2014,6 +2014,10 @@ class CloudBuildGapicClient
      * @param array        $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Update mask for the resource. If this is set,
+     *           the server will only update the fields specified in the field mask.
+     *           Otherwise, a full update of the mutable resource fields will be performed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2032,6 +2036,10 @@ class CloudBuildGapicClient
         $request->setTriggerId($triggerId);
         $request->setTrigger($trigger);
         $requestParamHeaders['location'] = $trigger->getResourceName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateBuildTrigger', BuildTrigger::class, $optionalArgs, $request)->wait();

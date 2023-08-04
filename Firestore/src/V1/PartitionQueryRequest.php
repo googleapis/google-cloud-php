@@ -110,7 +110,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           2 partitions, to complete the total of 10 specified in `partition_count`.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,7 +309,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -324,7 +328,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var

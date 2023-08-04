@@ -31,6 +31,9 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "ServerStreamingPredict": {
+                    "timeout_millis": 60000
+                },
                 "GetLocation": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

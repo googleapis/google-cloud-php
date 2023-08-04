@@ -34,7 +34,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -70,7 +70,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names and values, used to configure Hive.
      *           Properties that conflict with values set by the Dataproc API may be
-     *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATH of the
@@ -206,7 +206,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -220,7 +220,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

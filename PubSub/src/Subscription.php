@@ -351,6 +351,35 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
+     *     @type array $cloudStorageConfig If provided, messages will be delivered to Google Cloud Storage.
+     *     @type string $cloudStorageConfig.bucket User-provided name for the Cloud Storage bucket.
+     *           The bucket must be created by the user. The bucket name must be without
+     *           any prefix like "gs://". See the [bucket naming
+     *           requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     *     @type string $cloudStorageConfig.filenamePrefix
+     *           User-provided prefix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *     @type string $cloudStorageConfig.filenameSuffix
+     *           User-provided suffix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     *           not end in "/".
+     *     @type array $cloudStorageConfig.textConfig If present, payloads will be written
+     *           to Cloud Storage as raw text, separated by a newline.
+     *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
+     *           will be written to Cloud Storage in Avro format.
+     *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
+     *           When true, write the subscription name, message_id, publish_time,
+     *           attributes, and ordering_key as additional fields in the output.
+     *     @type Duration|string $cloudStorageConfig.maxDuration The maximum duration
+     *           that can elapse before a new Cloud Storage file is created.
+     *           Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the
+     *           subscription's acknowledgement deadline. If a string is provided,
+     *           it should be as a duration in seconds with up to nine fractional digits,
+     *           terminated by 's', e.g "3.5s"
+     *     @type int|string $cloudStorageConfig.maxBytes The maximum bytes that can be
+     *           written to a Cloud Storage file before a new file is created.
+     *           Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where
+     *           messages are larger than the limit.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -499,6 +528,35 @@ class Subscription
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription.
+     *     @type array $cloudStorageConfig If provided, messages will be delivered to Google Cloud Storage.
+     *     @type string $cloudStorageConfig.bucket User-provided name for the Cloud Storage bucket.
+     *           The bucket must be created by the user. The bucket name must be without
+     *           any prefix like "gs://". See the [bucket naming
+     *           requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     *     @type string $cloudStorageConfig.filenamePrefix
+     *           User-provided prefix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *     @type string $cloudStorageConfig.filenameSuffix
+     *           User-provided suffix for Cloud Storage filename. See the [object naming
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     *           not end in "/".
+     *     @type array $cloudStorageConfig.textConfig If present, payloads will be written
+     *           to Cloud Storage as raw text, separated by a newline.
+     *     @type array $cloudStorageConfig.avroConfig If set, message payloads and metadata
+     *           will be written to Cloud Storage in Avro format.
+     *     @type bool $cloudStorageConfig.avroConfig.writeMetadata
+     *           When true, write the subscription name, message_id, publish_time,
+     *           attributes, and ordering_key as additional fields in the output.
+     *     @type Duration|string $cloudStorageConfig.maxDuration The maximum duration
+     *           that can elapse before a new Cloud Storage file is created.
+     *           Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the
+     *           subscription's acknowledgement deadline. If a string is provided,
+     *           it should be as a duration in seconds with up to nine fractional digits,
+     *           terminated by 's', e.g "3.5s"
+     *     @type int|string $cloudStorageConfig.maxBytes The maximum bytes that can be
+     *           written to a Cloud Storage file before a new file is created.
+     *           Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where
+     *           messages are larger than the limit.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -1257,6 +1315,17 @@ class Subscription
         ) {
             $duration = $options['retryPolicy']['maximumBackoff']->get();
             $options['retryPolicy']['maximumBackoff'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        if (isset($options['cloudStorageConfig']['maxDuration']) &&
+            $options['cloudStorageConfig']['maxDuration'] instanceof Duration
+        ) {
+            $duration = $options['cloudStorageConfig']['maxDuration']->get();
+            $options['cloudStorageConfig']['maxDuration'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)

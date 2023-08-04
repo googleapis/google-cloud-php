@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
@@ -211,7 +212,12 @@ class ValueMapperTest extends TestCase
                     'mode' => 'NULLABLE'
                 ],
                 null
-            ]
+            ],
+            [
+                ['v' => '{"id":1}'],
+                ['type' => 'JSON'],
+                new Json(json_encode(['id' => 1]))
+            ],
         ];
     }
 
@@ -244,6 +250,7 @@ class ValueMapperTest extends TestCase
         $int64 = new Int64('123');
         $numeric = new Numeric('99999999999999999999999999999999999999.999999999');
         $bigNumeric = new BigNumeric(str_pad('9', 75, '9') . '.999999999');
+        $json = new Json(json_encode(['id' => 1]));
 
         return [
             [$dt, $dt->format('Y-m-d\TH:i:s.u')],
@@ -256,6 +263,7 @@ class ValueMapperTest extends TestCase
             [$int64, '123'],
             [$numeric, $numeric->formatAsString()],
             [$bigNumeric, $bigNumeric->formatAsString()],
+            [$json, $json->formatAsString()],
         ];
     }
 

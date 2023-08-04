@@ -53,6 +53,25 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:serverStreamingPredict',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:serverStreamingPredict',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

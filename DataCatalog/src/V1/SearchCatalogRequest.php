@@ -77,6 +77,16 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
     private $order_by = '';
+    /**
+     * Optional. If set, uses searchAll permission granted on organizations from
+     * `include_org_ids` and projects from `include_project_ids` instead of the
+     * fine grained per resource permissions when filtering the search results.
+     * The only allowed `order_by` criteria for admin_search mode is `default`.
+     * Using this flags guarantees a full recall of the search results.
+     *
+     * Generated from protobuf field <code>bool admin_search = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $admin_search = false;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope $scope Required. The scope of this search request.
@@ -155,6 +165,12 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           results in any specific order, consider setting this parameter to
      *           `default`.
      *           If this parameter is omitted, it defaults to the descending `relevance`.
+     *     @type bool $admin_search
+     *           Optional. If set, uses searchAll permission granted on organizations from
+     *           `include_org_ids` and projects from `include_project_ids` instead of the
+     *           fine grained per resource permissions when filtering the search results.
+     *           The only allowed `order_by` criteria for admin_search mode is `default`.
+     *           Using this flags guarantees a full recall of the search results.
      * }
      */
     public function __construct($data = NULL) {
@@ -360,6 +376,40 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, uses searchAll permission granted on organizations from
+     * `include_org_ids` and projects from `include_project_ids` instead of the
+     * fine grained per resource permissions when filtering the search results.
+     * The only allowed `order_by` criteria for admin_search mode is `default`.
+     * Using this flags guarantees a full recall of the search results.
+     *
+     * Generated from protobuf field <code>bool admin_search = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAdminSearch()
+    {
+        return $this->admin_search;
+    }
+
+    /**
+     * Optional. If set, uses searchAll permission granted on organizations from
+     * `include_org_ids` and projects from `include_project_ids` instead of the
+     * fine grained per resource permissions when filtering the search results.
+     * The only allowed `order_by` criteria for admin_search mode is `default`.
+     * Using this flags guarantees a full recall of the search results.
+     *
+     * Generated from protobuf field <code>bool admin_search = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAdminSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->admin_search = $var;
 
         return $this;
     }

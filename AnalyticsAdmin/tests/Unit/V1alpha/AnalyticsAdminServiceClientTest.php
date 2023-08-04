@@ -7904,7 +7904,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
-        $response = $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -7913,6 +7914,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateMeasurementProtocolSecret', $actualFuncCall);
         $actualValue = $actualRequestObject->getMeasurementProtocolSecret();
         $this->assertProtobufEquals($measurementProtocolSecret, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7938,8 +7941,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+            $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -24,7 +24,10 @@ use Google\Cloud\Dev\ReleaseNotes;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\Split;
 use Google\Cloud\Dev\SplitInstall;
+use GuzzleHttp\BodySummarizer;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -139,12 +142,11 @@ class SplitCommand extends Command
             if (!$packagistToken = $input->getOption('packagist-token')) {
                 throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
             }
-            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken);
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output);
         }
 
 
         @mkdir($execDir);
-
         $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
 
         $changelog = $github->getChangelog(
@@ -328,12 +330,20 @@ class SplitCommand extends Command
         if ($tagName === 'v0.1.0' && $packagist) {
             $output->writeln('<comment>[info]</comment> Creating Packagist package.');
 
-            $res = $packagist->createPackage('https://github.com/' . $repoName);
+            $res = $packagist->submitPackage('https://github.com/' . $repoName);
 
             if ($res) {
                 $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
             } else {
                 $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
+
+                return false;
+            }
+
+            if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
+                $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
+            } else {
+                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
 
                 return false;
             }
@@ -396,7 +406,7 @@ class SplitCommand extends Command
     {
         $output->writeln('<comment>[info]</comment> Instantiating GitHub API Wrapper.');
 
-        return new GitHub($shell, $guzzle, $token);
+        return new GitHub($shell, $guzzle, $token, $output);
     }
 
     /**
@@ -408,7 +418,13 @@ class SplitCommand extends Command
      */
     protected function guzzleClient()
     {
-        return new Client;
+        // Create a new HTTP Errors middleware with a body summarizer of length
+        // 240 characters (the default is 120)
+        $httpErrorsMiddleware = Middleware::httpErrors(new BodySummarizer(240));
+        $stack = HandlerStack::create();
+        $stack->remove('http_errors');
+        $stack->unshift($httpErrorsMiddleware, 'http_errors');
+        return new Client(['handler' => $stack]);
     }
 
     /**
