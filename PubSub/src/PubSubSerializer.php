@@ -18,12 +18,12 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
-use Google\ApiCore\Traits\TimeHelperTrait;
+use Google\ApiCore\Traits\TimeTrait;
 use Google\Cloud\Core\Duration as CoreDuration;
 
 class PubSubSerializer extends Serializer
 {
-    use TimeHelperTrait;
+    use TimeTrait;
 
     public static $obj = null;
 
@@ -70,6 +70,23 @@ class PubSubSerializer extends Serializer
         ];
     }
 
+    /**
+     * Format a gRPC timestamp to match the format returned by the REST API.
+     *
+     * @param array $timestamp
+     * @return string
+     */
+    private function formatTimestampFromApi(array $timestamp)
+    {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
+        $dt = $this->createDateTimeFromSeconds($timestamp['seconds']);
+
+        return $this->formatTimeAsString($dt, $timestamp['nanos']);
+    }
 
     private function transformDuration($v)
     {
