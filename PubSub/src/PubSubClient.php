@@ -99,6 +99,10 @@ class PubSubClient
      */
     private $requestHandler;
 
+    private $publisherGapic;
+    private $subscriberGapic;
+    private $schemaGapic;
+
     /**
      * @var bool
      */
@@ -160,13 +164,11 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
+        $this->publisherGapic = new PublisherClient($config);
+        $this->subscriberGapic = new SubscriberClient($config);
+        $this->schemaGapic = new SchemaServiceClient($config);
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
-            [
-                PublisherClient::class,
-                SubscriberClient::class,
-                SchemaServiceClient::class,
-            ],
             $config + ['libVersion' => self::VERSION]
         );
     }
@@ -261,7 +263,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        PublisherClient::class,
+                        $this->publisherGapic,
                         'listTopics',
                         [$projectId],
                         $options
@@ -372,7 +374,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        SubscriberClient::class,
+                        $this->subscriberGapic,
                         'listSubscriptions',
                         [$projectId],
                         $options
@@ -474,7 +476,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        SubscriberClient::class,
+                        $this->subscriberGapic,
                         'listSnapshots',
                         [$projectId],
                         $options
@@ -505,7 +507,8 @@ class PubSubClient
     {
         return new Schema(
             SchemaServiceClient::schemaName($this->projectId, $schemaId),
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 
@@ -533,7 +536,7 @@ class PubSubClient
     public function createSchema($schemaId, $type, $definition, array $options = [])
     {
         $type = is_string($type) ? Type::value($type) : $type;
-        $parent = SchemaServiceClient::projectName($this->projectId);
+        $parent = $this->schemaGapic::projectName($this->projectId);
         $schema = new SchemaProto([
             'type' => $type,
             'definition' => $definition,
@@ -541,7 +544,7 @@ class PubSubClient
         $options['schemaId'] = $schemaId;
 
         $res = $this->requestHandler->sendReq(
-            SchemaServiceClient::class,
+            $this->schemaGapic,
             'createSchema',
             [$parent, $schema],
             $options
@@ -593,12 +596,12 @@ class PubSubClient
         return new ItemIterator(
             new PageIterator(
                 function (array $schema) {
-                    $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
+                    $parts = $this->schemaGapic::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
                 function($options) use($projectId){
                     return $this->requestHandler->sendReq(
-                        SchemaServiceClient::class,
+                        $this->schemaGapic,
                         'listSchemas',
                         [$projectId],
                         $options
@@ -647,12 +650,12 @@ class PubSubClient
      */
     public function validateSchema(array $schema, array $options = [])
     {
-        $parent = SchemaServiceClient::projectName($this->projectId);
+        $parent = $this->schemaGapic::projectName($this->projectId);
         $schema['type'] = Type::value($schema['type']);
         $schema = new SchemaProto($schema);
 
         return $this->requestHandler->sendReq(
-            SchemaServiceClient::class,
+            $this->schemaGapic,
             'validateSchema',
             [$parent, $schema],
             $options
@@ -699,7 +702,7 @@ class PubSubClient
      */
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
-        $parent = SchemaServiceClient::projectName($this->projectId);
+        $parent = $this->schemaGapic::projectName($this->projectId);
 
         if (is_string($schema)) {
             $options['name'] = $schema;
@@ -718,7 +721,7 @@ class PubSubClient
         $options['encoding'] = $encoding;
 
         return $this->requestHandler->sendReq(
-            SchemaServiceClient::class,
+            $this->schemaGapic,
             'validateMessage',
             [$parent],
             $options
@@ -826,7 +829,8 @@ class PubSubClient
             $name,
             $topic,
             $this->encode,
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 

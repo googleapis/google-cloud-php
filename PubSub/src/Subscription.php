@@ -186,13 +186,13 @@ class Subscription
         $name,
         $topicName,
         $encode,
-        array $info = []
+        array $info = [],
+        $clientConfig = []
     ) {
-        $this->gapic = SubscriberClient::class;
+        $this->gapic = new SubscriberClient($clientConfig);
         $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
             $this->serializer,
-            [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;

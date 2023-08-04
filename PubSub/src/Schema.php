@@ -72,13 +72,13 @@ class Schema
      */
     public function __construct(
         $name,
-        array $info = []
+        array $info = [],
+        $clientConfig = []
     ) {
-        $this->gapic = SchemaServiceClient::class;
+        $this->gapic = new SchemaServiceClient($clientConfig);
         $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
             $this->serializer,
-            [$this->gapic],
             ['libVersion' => PubSubClient::VERSION]
         );
 

@@ -67,6 +67,11 @@ class Topic
     private $gapic;
 
     /**
+     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
+     */
+    private $serializer;
+
+    /**
      * @var string The project ID
      */
     private $projectId;
@@ -127,10 +132,10 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = PublisherClient::class;
+        $this->gapic = new PublisherClient($clientConfig);
+        $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
-            [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;
@@ -790,7 +795,8 @@ class Topic
             $name,
             $this->name,
             $this->encode,
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 }

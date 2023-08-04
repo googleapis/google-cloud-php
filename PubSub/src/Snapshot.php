@@ -98,11 +98,10 @@ class Snapshot
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = SubscriberClient::class;
+        $this->gapic = new SubscriberClient($clientConfig);
         $this->serializer = new PubSubSerializer();
         $this->requestHandler = new RequestHandler(
             $this->serializer,
-            [$this->gapic],
             $clientConfig + ['libVersion' => PubSubClient::VERSION]
         );
         $this->projectId = $projectId;
