@@ -872,6 +872,7 @@ class BigQueryClient
      *
      * @param string|null $value The JSON string value.
      * @return Json
+     * @throws InvalidArgumentException If the given $value is not string|null.
      */
     public function json($value)
     {

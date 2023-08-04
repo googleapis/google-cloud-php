@@ -41,6 +41,7 @@ class Json implements ValueInterface
 
     /**
      * @param string|null $value The JSON string value.
+     * @throws InvalidArgumentException If the given $value is not string|null.
      */
     public function __construct($value)
     {
