@@ -93,7 +93,7 @@ class RepoInfoCommand extends Command
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
                 if (!$this->checkTeamCompliance($details)) {
-                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, 'googleapis/' . $details['name']);
+                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
                 }
                 if ($refreshDetails) {
                     $details = $this->getRepoDetails($component);
