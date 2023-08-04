@@ -25,9 +25,6 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
-use Google\Cloud\Storage\Connection\RetryTrait;
-use Google\Cloud\Storage\StorageClient;
-use Google\CRC32\CRC32;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -297,9 +294,8 @@ class RestTest extends TestCase
         $tempFile->write(str_repeat('0', 5000001));
         $logoFile = Utils::streamFor(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32c->update((string) $logoFile);
-        $crcHash = base64_encode($crc32c->hash(true));
+        $crc32c = hash('crc32c', (string) $logoFile, true);
+        $crcHash = base64_encode($crc32c);
 
         return [
             [
@@ -411,11 +407,10 @@ class RestTest extends TestCase
     /**
      * @dataProvider validationMethod
      */
-    public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
+    public function testChooseValidationMethod($args, $extensionLoaded, $expected)
     {
         $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
-        $rest->supportsBuiltin = $supportsBuiltin;
 
         $this->assertEquals($expected, $rest->chooseValidationMethodProxy($args));
     }
@@ -426,46 +421,37 @@ class RestTest extends TestCase
             [
                 ['validate' => true],
                 false,
-                false,
                 'md5'
             ], [
                 ['validate' => true],
                 true,
-                false,
                 'crc32'
             ], [
                 ['validate' => true],
                 false,
-                true,
-                'crc32'
+                'md5'
             ], [
                 ['validate' => 'md5'],
-                true,
                 true,
                 'md5'
             ], [
                 ['validate' => 'crc32'],
                 false,
-                false,
                 'crc32'
             ], [
                 ['validate' => 'crc32c'],
-                false,
                 false,
                 'crc32'
             ], [
                 ['validate' => false],
                 true,
-                true,
                 false
             ], [
                 ['validate' => 'md5', 'metadata' => ['md5Hash' => 'foo']],
                 true,
-                true,
                 false
             ], [
                 ['validate' => 'md5', 'metadata' => ['crc32c' => 'foo']],
-                true,
                 true,
                 false
             ]
@@ -547,16 +533,10 @@ class RestTest extends TestCase
 class RestCrc32cStub extends Rest
 {
     public $extensionLoaded = false;
-    public $supportsBuiltin = false;
 
     protected function crc32cExtensionLoaded()
     {
         return $this->extensionLoaded;
-    }
-
-    protected function supportsBuiltinCrc32c()
-    {
-        return $this->supportsBuiltin;
     }
 
     public function chooseValidationMethodProxy(array $args)
