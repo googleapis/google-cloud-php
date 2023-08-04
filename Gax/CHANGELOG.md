@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.1](https://github.com/googleapis/gax-php/compare/v1.22.0...v1.22.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* Deprecation notice while GapicClientTrait-&gt;setClientOptions ([#483](https://github.com/googleapis/gax-php/issues/483)) ([1c66d34](https://github.com/googleapis/gax-php/commit/1c66d3445dca4d43831a2f4e26e59b9bd1cb76dd))
+
 ## [1.22.0](https://github.com/googleapis/gax-php/compare/v1.21.1...v1.22.0) (2023-07-31)
 
 
