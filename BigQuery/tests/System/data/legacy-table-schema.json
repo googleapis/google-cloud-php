@@ -109,10 +109,5 @@
     "mode": "NULLABLE",
     "name": "Location",
     "type": "GEOGRAPHY"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "AddressJson",
-    "type": "JSON"
   }
 ]
