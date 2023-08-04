@@ -95,9 +95,9 @@ class PublishAndPullTest extends PubSubTestCase
         ]);
 
         $key = 'foo';
-        $numOfmessages = 5;
+        $numOfMessages = 5;
 
-        foreach (range(1, $numOfmessages) as $i) {
+        foreach (range(1, $numOfMessages) as $i) {
             $topic->publish((new MessageBuilder())
             ->setData('message' . $i)
             ->setOrderingKey($key)
@@ -106,7 +106,7 @@ class PublishAndPullTest extends PubSubTestCase
 
         $messages = $sub->pull();
         $messagesReceived = array();
-        while (count($messagesReceived) != $numOfmessages) {
+        while (count($messagesReceived) != $numOfMessages) {
             foreach ($messages as $message) {
                 if (!in_array($message->data(), $messagesReceived)) {
                     // Append message to understand the order
