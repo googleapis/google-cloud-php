@@ -153,7 +153,7 @@ class ComponentInfoCommand extends Command
                     'name' => $component->getName() . "\\" . $pkg->getName(),
                     'package_name' => $component->getPackageName(),
                     'package_version' => $component->getPackageVersion(),
-                    'api_versions' => implode("\n", $component->getApiVersions()),
+                    'api_versions' => $pkg->getName(),
                     'release_level' => $component->getReleaseLevel(),
                     'migration' => $pkg->getMigrationStatus(),
                     'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
