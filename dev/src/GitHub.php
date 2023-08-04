@@ -100,6 +100,9 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
+            if ($e->getCode() === 404) {
+                return false;
+            }
             $this->logException($e);
             return null;
         }
