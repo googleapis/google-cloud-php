@@ -18,9 +18,9 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The BigQuery table to export DataProfileScan results to.
      * Format:
-     * projects/{project}/datasets/{dataset}/tables/{table}
+     * //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      *
-     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $results_table = '';
 
@@ -33,7 +33,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *     @type string $results_table
      *           Optional. The BigQuery table to export DataProfileScan results to.
      *           Format:
-     *           projects/{project}/datasets/{dataset}/tables/{table}
+     *           //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      * }
      */
     public function __construct($data = NULL) {
@@ -44,9 +44,9 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The BigQuery table to export DataProfileScan results to.
      * Format:
-     * projects/{project}/datasets/{dataset}/tables/{table}
+     * //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      *
-     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getResultsTable()
@@ -57,9 +57,9 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The BigQuery table to export DataProfileScan results to.
      * Format:
-     * projects/{project}/datasets/{dataset}/tables/{table}
+     * //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      *
-     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

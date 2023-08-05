@@ -215,7 +215,6 @@ return [
                 'dataScanJob' => 'projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}',
                 'entity' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}',
                 'location' => 'projects/{project}/locations/{location}',
-                'table' => 'projects/{project}/datasets/{dataset}/tables/{table}',
             ],
         ],
     ],
