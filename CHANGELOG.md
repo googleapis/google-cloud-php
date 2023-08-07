@@ -1,5 +1,172 @@
 # Changelog
 
+## 0.215.0
+
+<details><summary>google/cloud-advisorynotifications 0.4.0</summary>
+
+
+
+### Features
+
+* Adding notification types to advisorynotifications.googleapis.com libraries ([#6516](https://github.com/googleapis/google-cloud-php/issues/6516)) ([767e8f2](https://github.com/googleapis/google-cloud-php/commit/767e8f26c6a36a1f0b125a4050d9a6fa76c6d1c0))
+
+</details>
+
+<details><summary>google/cloud-batch 0.10.0</summary>
+
+
+
+### Features
+
+* Add comment to the unsupported order_by field of ListTasksRequest ([#6519](https://github.com/googleapis/google-cloud-php/issues/6519)) ([06b48ef](https://github.com/googleapis/google-cloud-php/commit/06b48ef62d242123483c8c9a47c4dbf07ce68cf7))
+* Allow order_by for v1 ListJobs ([06b48ef](https://github.com/googleapis/google-cloud-php/commit/06b48ef62d242123483c8c9a47c4dbf07ce68cf7))
+* Enable gpu driver version field on v1 ([06b48ef](https://github.com/googleapis/google-cloud-php/commit/06b48ef62d242123483c8c9a47c4dbf07ce68cf7))
+* Improve url examples formats on Batch API comments ([06b48ef](https://github.com/googleapis/google-cloud-php/commit/06b48ef62d242123483c8c9a47c4dbf07ce68cf7))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.26.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add JSON datatype ([#6412](https://github.com/googleapis/google-cloud-php/issues/6412)) ([7c92758](https://github.com/googleapis/google-cloud-php/commit/7c92758e7e4294e8723c7ddf722772c9b4d58b93))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.6.0</summary>
+
+
+
+### Features
+
+* Add EncryptionConfiguration to TransferConfig ([#6518](https://github.com/googleapis/google-cloud-php/issues/6518)) ([21a810d](https://github.com/googleapis/google-cloud-php/commit/21a810d76d986e1d67b0f051b4d64abaacc54108))
+* Add List type to Data source parameter. ([21a810d](https://github.com/googleapis/google-cloud-php/commit/21a810d76d986e1d67b0f051b4d64abaacc54108))
+
+</details>
+
+<details><summary>google/cloud-build 0.13.0</summary>
+
+
+
+### Features
+
+* Add update_mask to UpdateBuildTriggerRequest proto ([#6515](https://github.com/googleapis/google-cloud-php/issues/6515)) ([f081688](https://github.com/googleapis/google-cloud-php/commit/f081688b0d8a117b946aee29078d4238e98496af))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 0.4.0</summary>
+
+
+
+### Features
+
+* Mark all fields `Optional` for `ContainerImageSignagure` proto ([#6535](https://github.com/googleapis/google-cloud-php/issues/6535)) ([9eac689](https://github.com/googleapis/google-cloud-php/commit/9eac689e2cab2bfa8c9c15164fa6deba64ec8d0c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.7.0</summary>
+
+
+
+### Features
+
+* Add support for admin_search in SearchCatalog() API method ([#6529](https://github.com/googleapis/google-cloud-php/issues/6529)) ([2f52106](https://github.com/googleapis/google-cloud-php/commit/2f52106c86f7cf4b03a61336203f4134953c3856))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.8.1</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6524](https://github.com/googleapis/google-cloud-php/issues/6524)) ([1408699](https://github.com/googleapis/google-cloud-php/commit/14086990a9a1a772b3f9220a19cf3f135c509ba2))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.24.0</summary>
+
+
+
+### Features
+
+* Publish proto definitions for SUM/AVG in Datastore ([#6522](https://github.com/googleapis/google-cloud-php/issues/6522)) ([4801b80](https://github.com/googleapis/google-cloud-php/commit/4801b80b3c6ef23140175e7aad262ab359e597c1))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.7.2</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6521](https://github.com/googleapis/google-cloud-php/issues/6521)) ([ad48c27](https://github.com/googleapis/google-cloud-php/commit/ad48c278d4247aec1448bca1f0cec6b37445e002))
+* Minor formatting ([#6531](https://github.com/googleapis/google-cloud-php/issues/6531)) ([74facb8](https://github.com/googleapis/google-cloud-php/commit/74facb832987d491fa6a45f568b636699dc14674))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.21.0</summary>
+
+
+
+### Features
+
+* **ErrorReporting:** Generate HttpRequestContext for log context. ([#5656](https://github.com/googleapis/google-cloud-php/issues/5656)) ([e2c9d07](https://github.com/googleapis/google-cloud-php/commit/e2c9d07c18da58298a3b287c818cebaeb722a144))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.0</summary>
+
+
+
+### Features
+
+* Publish proto definitions for SUM/AVG in Firestore ([#6520](https://github.com/googleapis/google-cloud-php/issues/6520)) ([554efa5](https://github.com/googleapis/google-cloud-php/commit/554efa5c321b0af948071e6ce12c699fca2042e6))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.5.1</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6526](https://github.com/googleapis/google-cloud-php/issues/6526)) ([3dc73e4](https://github.com/googleapis/google-cloud-php/commit/3dc73e4e5c420539a4a78d09fb54fecb17fa9f05))
+
+</details>
+
+<details><summary>google/cloud-kms 1.20.1</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6527](https://github.com/googleapis/google-cloud-php/issues/6527)) ([b529f09](https://github.com/googleapis/google-cloud-php/commit/b529f09e61ac94753a837bd90e97a0d12f0f0471))
+
+</details>
+
+<details><summary>google/cloud-policysimulator 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce PolicySimulator ([#6530](https://github.com/googleapis/google-cloud-php/issues/6530)) ([250f837](https://github.com/googleapis/google-cloud-php/commit/250f837c9c328b1ef54a3c352d1fa493c2470602))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.46.0</summary>
+
+
+
+### Features
+
+* **PubSub:** Add CloudStorageConfig to subscribe function ([#6482](https://github.com/googleapis/google-cloud-php/issues/6482)) ([bcb075f](https://github.com/googleapis/google-cloud-php/commit/bcb075f11558f14aa64e151f83f5f5c526c0428b))
+
+</details>
+
 ## 0.214.0
 
 <details><summary>google/cloud-ai-platform 0.23.0</summary>

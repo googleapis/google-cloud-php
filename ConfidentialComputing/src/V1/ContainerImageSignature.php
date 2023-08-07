@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContainerImageSignature extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The binary signature payload following the SimpleSigning format
+     * Optional. The binary signature payload following the SimpleSigning format
      * https://github.com/sigstore/cosign/blob/main/specs/SIGNATURE_SPEC.md#simple-signing.
      * This payload includes the container image digest.
      *
-     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $payload = '';
     /**
-     * Required. A signature over the payload.
+     * Optional. A signature over the payload.
      * The container image digest is incorporated into the signature as follows:
      * 1. Generate a SimpleSigning format payload that includes the container
      * image digest.
@@ -33,19 +33,19 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
      * The signature generation process can be represented as follows:
      * `Sign(sha256(SimpleSigningPayload(sha256(Image Manifest))))`
      *
-     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $signature = '';
     /**
-     * Required. An associated public key used to verify the signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $public_key = '';
     /**
-     * Required. The algorithm used to produce the container image signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $sig_alg = 0;
 
@@ -56,11 +56,11 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $payload
-     *           Required. The binary signature payload following the SimpleSigning format
+     *           Optional. The binary signature payload following the SimpleSigning format
      *           https://github.com/sigstore/cosign/blob/main/specs/SIGNATURE_SPEC.md#simple-signing.
      *           This payload includes the container image digest.
      *     @type string $signature
-     *           Required. A signature over the payload.
+     *           Optional. A signature over the payload.
      *           The container image digest is incorporated into the signature as follows:
      *           1. Generate a SimpleSigning format payload that includes the container
      *           image digest.
@@ -68,9 +68,9 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
      *           The signature generation process can be represented as follows:
      *           `Sign(sha256(SimpleSigningPayload(sha256(Image Manifest))))`
      *     @type string $public_key
-     *           Required. An associated public key used to verify the signature.
+     *           Optional. Reserved for future use.
      *     @type int $sig_alg
-     *           Required. The algorithm used to produce the container image signature.
+     *           Optional. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,11 +79,11 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The binary signature payload following the SimpleSigning format
+     * Optional. The binary signature payload following the SimpleSigning format
      * https://github.com/sigstore/cosign/blob/main/specs/SIGNATURE_SPEC.md#simple-signing.
      * This payload includes the container image digest.
      *
-     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPayload()
@@ -92,11 +92,11 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The binary signature payload following the SimpleSigning format
+     * Optional. The binary signature payload following the SimpleSigning format
      * https://github.com/sigstore/cosign/blob/main/specs/SIGNATURE_SPEC.md#simple-signing.
      * This payload includes the container image digest.
      *
-     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes payload = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -109,7 +109,7 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A signature over the payload.
+     * Optional. A signature over the payload.
      * The container image digest is incorporated into the signature as follows:
      * 1. Generate a SimpleSigning format payload that includes the container
      * image digest.
@@ -117,7 +117,7 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
      * The signature generation process can be represented as follows:
      * `Sign(sha256(SimpleSigningPayload(sha256(Image Manifest))))`
      *
-     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSignature()
@@ -126,7 +126,7 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A signature over the payload.
+     * Optional. A signature over the payload.
      * The container image digest is incorporated into the signature as follows:
      * 1. Generate a SimpleSigning format payload that includes the container
      * image digest.
@@ -134,7 +134,7 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
      * The signature generation process can be represented as follows:
      * `Sign(sha256(SimpleSigningPayload(sha256(Image Manifest))))`
      *
-     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes signature = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -147,9 +147,9 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An associated public key used to verify the signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPublicKey()
@@ -158,9 +158,9 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An associated public key used to verify the signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bytes public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -173,9 +173,9 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The algorithm used to produce the container image signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSigAlg()
@@ -184,9 +184,9 @@ class ContainerImageSignature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The algorithm used to produce the container image signature.
+     * Optional. Reserved for future use.
      *
-     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SigningAlgorithm sig_alg = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
