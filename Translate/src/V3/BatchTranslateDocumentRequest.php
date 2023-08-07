@@ -101,6 +101,21 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $customized_attribution = '';
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_shadow_removal_native_pdf = false;
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_rotation_correction = false;
 
     /**
      * @param string                                                $parent              Required. Location to make a regional call.
@@ -196,6 +211,13 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           If not provided, the default is `Machine Translated by Google`.
      *           Customized attribution should follow rules in
      *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $enable_shadow_removal_native_pdf
+     *           Optional. If true, use the text removal server to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enable_rotation_correction
+     *           Optional. If true, enable auto rotation correction in DVS.
      * }
      */
     public function __construct($data = NULL) {
@@ -507,6 +529,64 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customized_attribution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableShadowRemovalNativePdf()
+    {
+        return $this->enable_shadow_removal_native_pdf;
+    }
+
+    /**
+     * Optional. If true, use the text removal server to remove the shadow text on
+     * background image for native pdf translation.
+     * Shadow removal feature can only be enabled when
+     * is_translate_native_pdf_only: false && pdf_native_only: false
+     *
+     * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableShadowRemovalNativePdf($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_shadow_removal_native_pdf = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableRotationCorrection()
+    {
+        return $this->enable_rotation_correction;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableRotationCorrection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_rotation_correction = $var;
 
         return $this;
     }
