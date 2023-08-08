@@ -37,12 +37,40 @@ class State
      * Generated from protobuf enum <code>DELETED = 3;</code>
      */
     const DELETED = 3;
+    /**
+     * The server is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 4;</code>
+     */
+    const UPDATING = 4;
+    /**
+     * The server is starting.
+     *
+     * Generated from protobuf enum <code>STARTING = 5;</code>
+     */
+    const STARTING = 5;
+    /**
+     * The server is stopping.
+     *
+     * Generated from protobuf enum <code>STOPPING = 6;</code>
+     */
+    const STOPPING = 6;
+    /**
+     * The server is shutdown.
+     *
+     * Generated from protobuf enum <code>SHUTDOWN = 7;</code>
+     */
+    const SHUTDOWN = 7;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::PROVISIONING => 'PROVISIONING',
         self::RUNNING => 'RUNNING',
         self::DELETED => 'DELETED',
+        self::UPDATING => 'UPDATING',
+        self::STARTING => 'STARTING',
+        self::STOPPING => 'STOPPING',
+        self::SHUTDOWN => 'SHUTDOWN',
     ];
 
     public static function name($value)
