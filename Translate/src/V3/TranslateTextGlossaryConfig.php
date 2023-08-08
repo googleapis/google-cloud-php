@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configures which glossary should be used for a specific target language,
- * and defines options for applying that glossary.
+ * Configures which glossary is used for a specific target language and defines
+ * options for applying that glossary.
  *
  * Generated from protobuf message <code>google.cloud.translation.v3.TranslateTextGlossaryConfig</code>
  */

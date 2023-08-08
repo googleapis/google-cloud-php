@@ -17,8 +17,8 @@ class JobNotification extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Pub/Sub topic where notifications like the job state changes
-     * will be published. This topic exist in the same project as the job
-     * and billings will be charged to this project.
+     * will be published. The topic must exist in the same project as
+     * the job and billings will be charged to this project.
      * If not specified, no Pub/Sub messages will be sent.
      * Topic format: `projects/{project}/topics/{topic}`.
      *
@@ -41,8 +41,8 @@ class JobNotification extends \Google\Protobuf\Internal\Message
      *
      *     @type string $pubsub_topic
      *           The Pub/Sub topic where notifications like the job state changes
-     *           will be published. This topic exist in the same project as the job
-     *           and billings will be charged to this project.
+     *           will be published. The topic must exist in the same project as
+     *           the job and billings will be charged to this project.
      *           If not specified, no Pub/Sub messages will be sent.
      *           Topic format: `projects/{project}/topics/{topic}`.
      *     @type \Google\Cloud\Batch\V1\JobNotification\Message $message
@@ -57,8 +57,8 @@ class JobNotification extends \Google\Protobuf\Internal\Message
 
     /**
      * The Pub/Sub topic where notifications like the job state changes
-     * will be published. This topic exist in the same project as the job
-     * and billings will be charged to this project.
+     * will be published. The topic must exist in the same project as
+     * the job and billings will be charged to this project.
      * If not specified, no Pub/Sub messages will be sent.
      * Topic format: `projects/{project}/topics/{topic}`.
      *
@@ -72,8 +72,8 @@ class JobNotification extends \Google\Protobuf\Internal\Message
 
     /**
      * The Pub/Sub topic where notifications like the job state changes
-     * will be published. This topic exist in the same project as the job
-     * and billings will be charged to this project.
+     * will be published. The topic must exist in the same project as
+     * the job and billings will be charged to this project.
      * If not specified, no Pub/Sub messages will be sent.
      * Topic format: `projects/{project}/topics/{topic}`.
      *

@@ -18,16 +18,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class PropertyQuota extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Standard Analytics Properties can use up to 25,000 tokens per day;
-     * Analytics 360 Properties can use 250,000 tokens per day. Most requests
+     * Standard Analytics Properties can use up to 200,000 tokens per day;
+     * Analytics 360 Properties can use 2,000,000 tokens per day. Most requests
      * consume fewer than 10 tokens.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus tokens_per_day = 1;</code>
      */
     private $tokens_per_day = null;
     /**
-     * Standard Analytics Properties can use up to 5,000 tokens per hour;
-     * Analytics 360 Properties can use 50,000 tokens per hour. An API request
+     * Standard Analytics Properties can use up to 40,000 tokens per hour;
+     * Analytics 360 Properties can use 400,000 tokens per hour. An API request
      * consumes a single number of tokens, and that number is deducted from all of
      * the hourly, daily, and per project hourly quotas.
      *
@@ -59,9 +59,9 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     private $potentially_thresholded_requests_per_hour = null;
     /**
-     * Analytics Properties can use up to 25% of their tokens per project per
-     * hour. This amounts to standard Analytics Properties can use up to 1,250
-     * tokens per project per hour, and Analytics 360 Properties can use 12,500
+     * Analytics Properties can use up to 35% of their tokens per project per
+     * hour. This amounts to standard Analytics Properties can use up to 14,000
+     * tokens per project per hour, and Analytics 360 Properties can use 140,000
      * tokens per project per hour. An API request consumes a single number of
      * tokens, and that number is deducted from all of the hourly, daily, and per
      * project hourly quotas.
@@ -77,12 +77,12 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Analytics\Data\V1beta\QuotaStatus $tokens_per_day
-     *           Standard Analytics Properties can use up to 25,000 tokens per day;
-     *           Analytics 360 Properties can use 250,000 tokens per day. Most requests
+     *           Standard Analytics Properties can use up to 200,000 tokens per day;
+     *           Analytics 360 Properties can use 2,000,000 tokens per day. Most requests
      *           consume fewer than 10 tokens.
      *     @type \Google\Analytics\Data\V1beta\QuotaStatus $tokens_per_hour
-     *           Standard Analytics Properties can use up to 5,000 tokens per hour;
-     *           Analytics 360 Properties can use 50,000 tokens per hour. An API request
+     *           Standard Analytics Properties can use up to 40,000 tokens per hour;
+     *           Analytics 360 Properties can use 400,000 tokens per hour. An API request
      *           consumes a single number of tokens, and that number is deducted from all of
      *           the hourly, daily, and per project hourly quotas.
      *     @type \Google\Analytics\Data\V1beta\QuotaStatus $concurrent_requests
@@ -98,9 +98,9 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      *           is individually counted for this quota if the request contains potentially
      *           thresholded dimensions.
      *     @type \Google\Analytics\Data\V1beta\QuotaStatus $tokens_per_project_per_hour
-     *           Analytics Properties can use up to 25% of their tokens per project per
-     *           hour. This amounts to standard Analytics Properties can use up to 1,250
-     *           tokens per project per hour, and Analytics 360 Properties can use 12,500
+     *           Analytics Properties can use up to 35% of their tokens per project per
+     *           hour. This amounts to standard Analytics Properties can use up to 14,000
+     *           tokens per project per hour, and Analytics 360 Properties can use 140,000
      *           tokens per project per hour. An API request consumes a single number of
      *           tokens, and that number is deducted from all of the hourly, daily, and per
      *           project hourly quotas.
@@ -112,8 +112,8 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard Analytics Properties can use up to 25,000 tokens per day;
-     * Analytics 360 Properties can use 250,000 tokens per day. Most requests
+     * Standard Analytics Properties can use up to 200,000 tokens per day;
+     * Analytics 360 Properties can use 2,000,000 tokens per day. Most requests
      * consume fewer than 10 tokens.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus tokens_per_day = 1;</code>
@@ -135,8 +135,8 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard Analytics Properties can use up to 25,000 tokens per day;
-     * Analytics 360 Properties can use 250,000 tokens per day. Most requests
+     * Standard Analytics Properties can use up to 200,000 tokens per day;
+     * Analytics 360 Properties can use 2,000,000 tokens per day. Most requests
      * consume fewer than 10 tokens.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus tokens_per_day = 1;</code>
@@ -152,8 +152,8 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard Analytics Properties can use up to 5,000 tokens per hour;
-     * Analytics 360 Properties can use 50,000 tokens per hour. An API request
+     * Standard Analytics Properties can use up to 40,000 tokens per hour;
+     * Analytics 360 Properties can use 400,000 tokens per hour. An API request
      * consumes a single number of tokens, and that number is deducted from all of
      * the hourly, daily, and per project hourly quotas.
      *
@@ -176,8 +176,8 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard Analytics Properties can use up to 5,000 tokens per hour;
-     * Analytics 360 Properties can use 50,000 tokens per hour. An API request
+     * Standard Analytics Properties can use up to 40,000 tokens per hour;
+     * Analytics 360 Properties can use 400,000 tokens per hour. An API request
      * consumes a single number of tokens, and that number is deducted from all of
      * the hourly, daily, and per project hourly quotas.
      *
@@ -314,9 +314,9 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Analytics Properties can use up to 25% of their tokens per project per
-     * hour. This amounts to standard Analytics Properties can use up to 1,250
-     * tokens per project per hour, and Analytics 360 Properties can use 12,500
+     * Analytics Properties can use up to 35% of their tokens per project per
+     * hour. This amounts to standard Analytics Properties can use up to 14,000
+     * tokens per project per hour, and Analytics 360 Properties can use 140,000
      * tokens per project per hour. An API request consumes a single number of
      * tokens, and that number is deducted from all of the hourly, daily, and per
      * project hourly quotas.
@@ -340,9 +340,9 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Analytics Properties can use up to 25% of their tokens per project per
-     * hour. This amounts to standard Analytics Properties can use up to 1,250
-     * tokens per project per hour, and Analytics 360 Properties can use 12,500
+     * Analytics Properties can use up to 35% of their tokens per project per
+     * hour. This amounts to standard Analytics Properties can use up to 14,000
+     * tokens per project per hour, and Analytics 360 Properties can use 140,000
      * tokens per project per hour. An API request consumes a single number of
      * tokens, and that number is deducted from all of the hourly, daily, and per
      * project hourly quotas.
