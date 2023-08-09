@@ -3,6 +3,90 @@
 return [
     'interfaces' => [
         'google.cloud.baremetalsolution.v2.BareMetalSolution' => [
+            'CreateNfsShare' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/nfsShares',
+                'body' => 'nfs_share',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateProvisioningConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/provisioningConfigs',
+                'body' => 'provisioning_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSSHKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/sshKeys',
+                'body' => 'ssh_key',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'ssh_key_id',
+                ],
+            ],
+            'CreateVolumeSnapshot' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/volumes/*}/snapshots',
+                'body' => 'volume_snapshot',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNfsShare' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/nfsShares/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSSHKey' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/sshKeys/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteVolumeSnapshot' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DetachLun' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{instance=projects/*/locations/*/instances/*}:detachLun',
@@ -11,6 +95,54 @@ return [
                     'instance' => [
                         'getters' => [
                             'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableInteractiveSerialConsole' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:disableInteractiveSerialConsole',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableInteractiveSerialConsole' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:enableInteractiveSerialConsole',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EvictLun' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*/luns/*}:evict',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EvictVolume' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*}:evict',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -59,9 +191,31 @@ return [
                     ],
                 ],
             ],
+            'GetProvisioningConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/provisioningConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetVolume' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetVolumeSnapshot' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -125,6 +279,50 @@ return [
                     ],
                 ],
             ],
+            'ListOSImages' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/osImages',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProvisioningQuotas' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/provisioningQuotas',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSSHKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/sshKeys',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListVolumeSnapshots' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/volumes/*}/snapshots',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListVolumes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/volumes',
@@ -132,6 +330,54 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameNetwork' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/networks/*}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameNfsShare' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/nfsShares/*}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameVolume' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -160,6 +406,18 @@ return [
                     ],
                 ],
             ],
+            'RestoreVolumeSnapshot' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{volume_snapshot=projects/*/locations/*/volumes/*/snapshots/*}:restoreVolumeSnapshot',
+                'body' => '*',
+                'placeholders' => [
+                    'volume_snapshot' => [
+                        'getters' => [
+                            'getVolumeSnapshot',
+                        ],
+                    ],
+                ],
+            ],
             'StartInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:start',
@@ -180,6 +438,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SubmitProvisioningConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/provisioningConfigs:submit',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -221,6 +491,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateProvisioningConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{provisioning_config.name=projects/*/locations/*/provisioningConfigs/*}',
+                'body' => 'provisioning_config',
+                'placeholders' => [
+                    'provisioning_config.name' => [
+                        'getters' => [
+                            'getProvisioningConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateVolume' => [

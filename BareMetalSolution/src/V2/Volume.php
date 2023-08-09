@@ -50,6 +50,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     private $requested_size_gib = 0;
     /**
+     * Originally requested size, in GiB.
+     *
+     * Generated from protobuf field <code>int64 originally_requested_size_gib = 16;</code>
+     */
+    private $originally_requested_size_gib = 0;
+    /**
      * The current size of this storage volume, in GiB, including space reserved
      * for snapshots. This size might be different than the requested size if the
      * storage volume has been configured with auto grow or auto shrink.
@@ -64,6 +70,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 emergency_size_gib = 14;</code>
      */
     private $emergency_size_gib = 0;
+    /**
+     * Maximum size volume can be expanded to in case of evergency, in GiB.
+     *
+     * Generated from protobuf field <code>int64 max_size_gib = 17;</code>
+     */
+    private $max_size_gib = 0;
     /**
      * The size, in GiB, that this storage volume has expanded as a result of an
      * auto grow policy. In the absence of auto-grow, the value is 0.
@@ -108,6 +120,61 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string pod = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $pod = '';
+    /**
+     * Output only. Storage protocol for the Volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.Protocol protocol = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $protocol = 0;
+    /**
+     * Output only. Whether this volume is a boot volume. A boot volume is one
+     * which contains a boot LUN.
+     *
+     * Generated from protobuf field <code>bool boot_volume = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $boot_volume = false;
+    /**
+     * Immutable. Performance tier of the Volume.
+     * Default is SHARED.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumePerformanceTier performance_tier = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $performance_tier = 0;
+    /**
+     * Input only. User-specified notes for new Volume.
+     * Used to provision Volumes that require manual intervention.
+     *
+     * Generated from protobuf field <code>string notes = 21 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $notes = '';
+    /**
+     * The workload profile for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.WorkloadProfile workload_profile = 22;</code>
+     */
+    private $workload_profile = 0;
+    /**
+     * Output only. Time after which volume will be fully deleted.
+     * It is filled only for volumes in COOLOFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $expire_time = null;
+    /**
+     * Output only. Instances this Volume is attached to.
+     * This field is set only in Get requests.
+     *
+     * Generated from protobuf field <code>repeated string instances = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $instances;
+    /**
+     * Output only. Is the Volume attached at at least one instance.
+     * This field is a lightweight counterpart of `instances` field.
+     * It is filled in List responses as well.
+     *
+     * Generated from protobuf field <code>bool attached = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $attached = false;
 
     /**
      * Constructor.
@@ -129,6 +196,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           The state of this storage volume.
      *     @type int|string $requested_size_gib
      *           The requested size of this storage volume, in GiB.
+     *     @type int|string $originally_requested_size_gib
+     *           Originally requested size, in GiB.
      *     @type int|string $current_size_gib
      *           The current size of this storage volume, in GiB, including space reserved
      *           for snapshots. This size might be different than the requested size if the
@@ -136,6 +205,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type int|string $emergency_size_gib
      *           Additional emergency size that was requested for this Volume, in GiB.
      *           current_size_gib includes this value.
+     *     @type int|string $max_size_gib
+     *           Maximum size volume can be expanded to in case of evergency, in GiB.
      *     @type int|string $auto_grown_size_gib
      *           The size, in GiB, that this storage volume has expanded as a result of an
      *           auto grow policy. In the absence of auto-grow, the value is 0.
@@ -152,6 +223,29 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Whether snapshots are enabled.
      *     @type string $pod
      *           Immutable. Pod name.
+     *     @type int $protocol
+     *           Output only. Storage protocol for the Volume.
+     *     @type bool $boot_volume
+     *           Output only. Whether this volume is a boot volume. A boot volume is one
+     *           which contains a boot LUN.
+     *     @type int $performance_tier
+     *           Immutable. Performance tier of the Volume.
+     *           Default is SHARED.
+     *     @type string $notes
+     *           Input only. User-specified notes for new Volume.
+     *           Used to provision Volumes that require manual intervention.
+     *     @type int $workload_profile
+     *           The workload profile for the volume.
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           Output only. Time after which volume will be fully deleted.
+     *           It is filled only for volumes in COOLOFF state.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *           Output only. Instances this Volume is attached to.
+     *           This field is set only in Get requests.
+     *     @type bool $attached
+     *           Output only. Is the Volume attached at at least one instance.
+     *           This field is a lightweight counterpart of `instances` field.
+     *           It is filled in List responses as well.
      * }
      */
     public function __construct($data = NULL) {
@@ -298,6 +392,32 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Originally requested size, in GiB.
+     *
+     * Generated from protobuf field <code>int64 originally_requested_size_gib = 16;</code>
+     * @return int|string
+     */
+    public function getOriginallyRequestedSizeGib()
+    {
+        return $this->originally_requested_size_gib;
+    }
+
+    /**
+     * Originally requested size, in GiB.
+     *
+     * Generated from protobuf field <code>int64 originally_requested_size_gib = 16;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setOriginallyRequestedSizeGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->originally_requested_size_gib = $var;
+
+        return $this;
+    }
+
+    /**
      * The current size of this storage volume, in GiB, including space reserved
      * for snapshots. This size might be different than the requested size if the
      * storage volume has been configured with auto grow or auto shrink.
@@ -351,6 +471,32 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->emergency_size_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum size volume can be expanded to in case of evergency, in GiB.
+     *
+     * Generated from protobuf field <code>int64 max_size_gib = 17;</code>
+     * @return int|string
+     */
+    public function getMaxSizeGib()
+    {
+        return $this->max_size_gib;
+    }
+
+    /**
+     * Maximum size volume can be expanded to in case of evergency, in GiB.
+     *
+     * Generated from protobuf field <code>int64 max_size_gib = 17;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxSizeGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_size_gib = $var;
 
         return $this;
     }
@@ -547,6 +693,238 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pod = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Storage protocol for the Volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.Protocol protocol = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Output only. Storage protocol for the Volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.Protocol protocol = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtocol($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BareMetalSolution\V2\Volume\Protocol::class);
+        $this->protocol = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether this volume is a boot volume. A boot volume is one
+     * which contains a boot LUN.
+     *
+     * Generated from protobuf field <code>bool boot_volume = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getBootVolume()
+    {
+        return $this->boot_volume;
+    }
+
+    /**
+     * Output only. Whether this volume is a boot volume. A boot volume is one
+     * which contains a boot LUN.
+     *
+     * Generated from protobuf field <code>bool boot_volume = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBootVolume($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->boot_volume = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Performance tier of the Volume.
+     * Default is SHARED.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumePerformanceTier performance_tier = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getPerformanceTier()
+    {
+        return $this->performance_tier;
+    }
+
+    /**
+     * Immutable. Performance tier of the Volume.
+     * Default is SHARED.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumePerformanceTier performance_tier = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPerformanceTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BareMetalSolution\V2\VolumePerformanceTier::class);
+        $this->performance_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. User-specified notes for new Volume.
+     * Used to provision Volumes that require manual intervention.
+     *
+     * Generated from protobuf field <code>string notes = 21 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * Input only. User-specified notes for new Volume.
+     * Used to provision Volumes that require manual intervention.
+     *
+     * Generated from protobuf field <code>string notes = 21 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotes($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notes = $var;
+
+        return $this;
+    }
+
+    /**
+     * The workload profile for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.WorkloadProfile workload_profile = 22;</code>
+     * @return int
+     */
+    public function getWorkloadProfile()
+    {
+        return $this->workload_profile;
+    }
+
+    /**
+     * The workload profile for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume.WorkloadProfile workload_profile = 22;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWorkloadProfile($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BareMetalSolution\V2\Volume\WorkloadProfile::class);
+        $this->workload_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Time after which volume will be fully deleted.
+     * It is filled only for volumes in COOLOFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExpireTime()
+    {
+        return $this->expire_time;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
+    }
+
+    /**
+     * Output only. Time after which volume will be fully deleted.
+     * It is filled only for volumes in COOLOFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Instances this Volume is attached to.
+     * This field is set only in Get requests.
+     *
+     * Generated from protobuf field <code>repeated string instances = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInstances()
+    {
+        return $this->instances;
+    }
+
+    /**
+     * Output only. Instances this Volume is attached to.
+     * This field is set only in Get requests.
+     *
+     * Generated from protobuf field <code>repeated string instances = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInstances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->instances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Is the Volume attached at at least one instance.
+     * This field is a lightweight counterpart of `instances` field.
+     * It is filled in List responses as well.
+     *
+     * Generated from protobuf field <code>bool attached = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getAttached()
+    {
+        return $this->attached;
+    }
+
+    /**
+     * Output only. Is the Volume attached at at least one instance.
+     * This field is a lightweight counterpart of `instances` field.
+     * It is filled in List responses as well.
+     *
+     * Generated from protobuf field <code>bool attached = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAttached($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->attached = $var;
 
         return $this;
     }
