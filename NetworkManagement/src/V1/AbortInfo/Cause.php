@@ -124,6 +124,48 @@ class Cause
      * Generated from protobuf enum <code>UNSUPPORTED = 15;</code>
      */
     const UNSUPPORTED = 15;
+    /**
+     * Aborted because the source and destination resources have no common IP
+     * version.
+     *
+     * Generated from protobuf enum <code>MISMATCHED_IP_VERSION = 16;</code>
+     */
+    const MISMATCHED_IP_VERSION = 16;
+    /**
+     * Aborted because the connection between the control plane and the node of
+     * the source cluster is initiated by the node and managed by the
+     * Konnectivity proxy.
+     *
+     * Generated from protobuf enum <code>GKE_KONNECTIVITY_PROXY_UNSUPPORTED = 17;</code>
+     */
+    const GKE_KONNECTIVITY_PROXY_UNSUPPORTED = 17;
+    /**
+     * Aborted because expected resource configuration was missing.
+     *
+     * Generated from protobuf enum <code>RESOURCE_CONFIG_NOT_FOUND = 18;</code>
+     */
+    const RESOURCE_CONFIG_NOT_FOUND = 18;
+    /**
+     * Aborted because a PSC endpoint selection for the Google-managed service
+     * is ambiguous (several PSC endpoints satisfy test input).
+     *
+     * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT = 19;</code>
+     */
+    const GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT = 19;
+    /**
+     * Aborted because tests with a PSC-based Cloud SQL instance as a source are
+     * not supported.
+     *
+     * Generated from protobuf enum <code>SOURCE_PSC_CLOUD_SQL_UNSUPPORTED = 20;</code>
+     */
+    const SOURCE_PSC_CLOUD_SQL_UNSUPPORTED = 20;
+    /**
+     * Aborted because tests with a forwarding rule as a source are not
+     * supported.
+     *
+     * Generated from protobuf enum <code>SOURCE_FORWARDING_RULE_UNSUPPORTED = 21;</code>
+     */
+    const SOURCE_FORWARDING_RULE_UNSUPPORTED = 21;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -142,6 +184,12 @@ class Cause
         self::DESTINATION_ENDPOINT_NOT_FOUND => 'DESTINATION_ENDPOINT_NOT_FOUND',
         self::MISMATCHED_DESTINATION_NETWORK => 'MISMATCHED_DESTINATION_NETWORK',
         self::UNSUPPORTED => 'UNSUPPORTED',
+        self::MISMATCHED_IP_VERSION => 'MISMATCHED_IP_VERSION',
+        self::GKE_KONNECTIVITY_PROXY_UNSUPPORTED => 'GKE_KONNECTIVITY_PROXY_UNSUPPORTED',
+        self::RESOURCE_CONFIG_NOT_FOUND => 'RESOURCE_CONFIG_NOT_FOUND',
+        self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT',
+        self::SOURCE_PSC_CLOUD_SQL_UNSUPPORTED => 'SOURCE_PSC_CLOUD_SQL_UNSUPPORTED',
+        self::SOURCE_FORWARDING_RULE_UNSUPPORTED => 'SOURCE_FORWARDING_RULE_UNSUPPORTED',
     ];
 
     public static function name($value)

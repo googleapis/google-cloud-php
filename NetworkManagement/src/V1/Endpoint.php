@@ -18,7 +18,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      */
@@ -48,6 +49,25 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $forwarding_rule = '';
     /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $forwarding_rule_target = null;
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $load_balancer_id = null;
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $load_balancer_type = null;
+    /**
      * A cluster URI for [Google Kubernetes Engine
      * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
@@ -60,6 +80,26 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cloud_sql_instance = 8;</code>
      */
     private $cloud_sql_instance = '';
+    /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     */
+    private $cloud_function = null;
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     */
+    private $app_engine_version = null;
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     */
+    private $cloud_run_revision = null;
     /**
      * A Compute Engine network URI.
      *
@@ -98,7 +138,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $ip_address
      *           The IP address of the endpoint, which can be an external or internal IP.
      *           An IPv6 address is only allowed when the test's destination is a
-     *           [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     *           [global load balancer
+     *           VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *     @type int $port
      *           The IP protocol port of the endpoint.
      *           Only applicable when protocol is TCP or UDP.
@@ -111,11 +152,26 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           services to provide forwarding information in the control plane. Format:
      *            projects/{project}/global/forwardingRules/{id} or
      *            projects/{project}/regions/{region}/forwardingRules/{id}
+     *     @type int $forwarding_rule_target
+     *           Output only. Specifies the type of the target of the forwarding rule.
+     *     @type string $load_balancer_id
+     *           Output only. ID of the load balancer the forwarding rule points to. Empty
+     *           for forwarding rules not related to load balancers.
+     *     @type int $load_balancer_type
+     *           Output only. Type of the load balancer the forwarding rule points to.
      *     @type string $gke_master_cluster
      *           A cluster URI for [Google Kubernetes Engine
      *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
+     *           A [Cloud Function](https://cloud.google.com/functions).
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $app_engine_version
+     *           An [App Engine](https://cloud.google.com/appengine) [service
+     *           version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $cloud_run_revision
+     *           A [Cloud Run](https://cloud.google.com/run)
+     *           [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      *     @type string $network
      *           A Compute Engine network URI.
      *     @type int $network_type
@@ -142,7 +198,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @return string
@@ -155,7 +212,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @param string $var
@@ -260,6 +318,116 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getForwardingRuleTarget()
+    {
+        return isset($this->forwarding_rule_target) ? $this->forwarding_rule_target : 0;
+    }
+
+    public function hasForwardingRuleTarget()
+    {
+        return isset($this->forwarding_rule_target);
+    }
+
+    public function clearForwardingRuleTarget()
+    {
+        unset($this->forwarding_rule_target);
+    }
+
+    /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setForwardingRuleTarget($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\Endpoint\ForwardingRuleTarget::class);
+        $this->forwarding_rule_target = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLoadBalancerId()
+    {
+        return isset($this->load_balancer_id) ? $this->load_balancer_id : '';
+    }
+
+    public function hasLoadBalancerId()
+    {
+        return isset($this->load_balancer_id);
+    }
+
+    public function clearLoadBalancerId()
+    {
+        unset($this->load_balancer_id);
+    }
+
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoadBalancerId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->load_balancer_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getLoadBalancerType()
+    {
+        return isset($this->load_balancer_type) ? $this->load_balancer_type : 0;
+    }
+
+    public function hasLoadBalancerType()
+    {
+        return isset($this->load_balancer_type);
+    }
+
+    public function clearLoadBalancerType()
+    {
+        unset($this->load_balancer_type);
+    }
+
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLoadBalancerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\LoadBalancerType::class);
+        $this->load_balancer_type = $var;
+
+        return $this;
+    }
+
+    /**
      * A cluster URI for [Google Kubernetes Engine
      * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
@@ -309,6 +477,118 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cloud_sql_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint|null
+     */
+    public function getCloudFunction()
+    {
+        return $this->cloud_function;
+    }
+
+    public function hasCloudFunction()
+    {
+        return isset($this->cloud_function);
+    }
+
+    public function clearCloudFunction()
+    {
+        unset($this->cloud_function);
+    }
+
+    /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $var
+     * @return $this
+     */
+    public function setCloudFunction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint::class);
+        $this->cloud_function = $var;
+
+        return $this;
+    }
+
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint|null
+     */
+    public function getAppEngineVersion()
+    {
+        return $this->app_engine_version;
+    }
+
+    public function hasAppEngineVersion()
+    {
+        return isset($this->app_engine_version);
+    }
+
+    public function clearAppEngineVersion()
+    {
+        unset($this->app_engine_version);
+    }
+
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $var
+     * @return $this
+     */
+    public function setAppEngineVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint::class);
+        $this->app_engine_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint|null
+     */
+    public function getCloudRunRevision()
+    {
+        return $this->cloud_run_revision;
+    }
+
+    public function hasCloudRunRevision()
+    {
+        return isset($this->cloud_run_revision);
+    }
+
+    public function clearCloudRunRevision()
+    {
+        unset($this->cloud_run_revision);
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $var
+     * @return $this
+     */
+    public function setCloudRunRevision($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint::class);
+        $this->cloud_run_revision = $var;
 
         return $this;
     }
