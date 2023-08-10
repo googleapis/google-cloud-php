@@ -52,6 +52,22 @@ class FirewallRuleType
      * Generated from protobuf enum <code>SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE = 4;</code>
      */
     const SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE = 4;
+    /**
+     * Global network firewall policy rule.
+     * For details, see [Network firewall
+     * policies](https://cloud.google.com/vpc/docs/network-firewall-policies).
+     *
+     * Generated from protobuf enum <code>NETWORK_FIREWALL_POLICY_RULE = 5;</code>
+     */
+    const NETWORK_FIREWALL_POLICY_RULE = 5;
+    /**
+     * Regional network firewall policy rule.
+     * For details, see [Regional network firewall
+     * policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).
+     *
+     * Generated from protobuf enum <code>NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;</code>
+     */
+    const NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;
 
     private static $valueToName = [
         self::FIREWALL_RULE_TYPE_UNSPECIFIED => 'FIREWALL_RULE_TYPE_UNSPECIFIED',
@@ -59,6 +75,8 @@ class FirewallRuleType
         self::VPC_FIREWALL_RULE => 'VPC_FIREWALL_RULE',
         self::IMPLIED_VPC_FIREWALL_RULE => 'IMPLIED_VPC_FIREWALL_RULE',
         self::SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE => 'SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE',
+        self::NETWORK_FIREWALL_POLICY_RULE => 'NETWORK_FIREWALL_POLICY_RULE',
+        self::NETWORK_REGIONAL_FIREWALL_POLICY_RULE => 'NETWORK_REGIONAL_FIREWALL_POLICY_RULE',
     ];
 
     public static function name($value)
