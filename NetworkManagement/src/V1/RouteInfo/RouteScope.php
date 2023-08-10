@@ -59,6 +59,4 @@ class RouteScope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RouteScope::class, \Google\Cloud\NetworkManagement\V1\RouteInfo_RouteScope::class);
 
