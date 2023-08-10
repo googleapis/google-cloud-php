@@ -73,6 +73,4 @@ class GoogleServiceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GoogleServiceType::class, \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo_GoogleServiceType::class);
 

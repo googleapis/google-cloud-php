@@ -35,6 +35,15 @@ class State
      */
     const START_FROM_INTERNET = 2;
     /**
+     * Initial state: packet originating from a Google service. Some Google
+     * services, such as health check probers or Identity Aware Proxy use
+     * special routes, outside VPC routing configuration to reach Compute Engine
+     * Instances.
+     *
+     * Generated from protobuf enum <code>START_FROM_GOOGLE_SERVICE = 27;</code>
+     */
+    const START_FROM_GOOGLE_SERVICE = 27;
+    /**
      * Initial state: packet originating from a VPC or on-premises network
      * with internal source IP.
      * If the source is a VPC network visible to the user, a NetworkInfo
@@ -195,6 +204,7 @@ class State
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::START_FROM_INSTANCE => 'START_FROM_INSTANCE',
         self::START_FROM_INTERNET => 'START_FROM_INTERNET',
+        self::START_FROM_GOOGLE_SERVICE => 'START_FROM_GOOGLE_SERVICE',
         self::START_FROM_PRIVATE_NETWORK => 'START_FROM_PRIVATE_NETWORK',
         self::START_FROM_GKE_MASTER => 'START_FROM_GKE_MASTER',
         self::START_FROM_CLOUD_SQL_INSTANCE => 'START_FROM_CLOUD_SQL_INSTANCE',

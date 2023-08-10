@@ -67,6 +67,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *           The endpoint information in an intermediate state may differ with the
      *           initial input, as it might be modified by state like NAT,
      *           or Connection Proxy.
+     *     @type \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo $google_service
+     *           Display information of a Google service
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardingRuleInfo $forwarding_rule
      *           Display information of a Compute Engine forwarding rule.
      *     @type \Google\Cloud\NetworkManagement\V1\VpnGatewayInfo $vpn_gateway
@@ -334,6 +336,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\EndpointInfo::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Google service
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GoogleServiceInfo google_service = 24;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo|null
+     */
+    public function getGoogleService()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasGoogleService()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Display information of a Google service
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GoogleServiceInfo google_service = 24;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo $var
+     * @return $this
+     */
+    public function setGoogleService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo::class);
+        $this->writeOneof(24, $var);
 
         return $this;
     }
