@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.confidentialcomputing.v1",
+    "libraryPackage": "Google\\Cloud\\ConfidentialComputing\\V1",
+    "services": {
+        "ConfidentialComputing": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConfidentialComputingGapicClient",
+                    "rpcs": {
+                        "CreateChallenge": {
+                            "methods": [
+                                "createChallenge"
+                            ]
+                        },
+                        "VerifyAttestation": {
+                            "methods": [
+                                "verifyAttestation"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
