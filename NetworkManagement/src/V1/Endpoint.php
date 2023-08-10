@@ -61,6 +61,26 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $cloud_sql_instance = '';
     /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     */
+    private $cloud_function = null;
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     */
+    private $app_engine_version = null;
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     */
+    private $cloud_run_revision = null;
+    /**
      * A Compute Engine network URI.
      *
      * Generated from protobuf field <code>string network = 4;</code>
@@ -116,6 +136,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
+     *           A [Cloud Function](https://cloud.google.com/functions).
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $app_engine_version
+     *           An [App Engine](https://cloud.google.com/appengine) [service
+     *           version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $cloud_run_revision
+     *           A [Cloud Run](https://cloud.google.com/run)
+     *           [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      *     @type string $network
      *           A Compute Engine network URI.
      *     @type int $network_type
@@ -309,6 +337,118 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cloud_sql_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint|null
+     */
+    public function getCloudFunction()
+    {
+        return $this->cloud_function;
+    }
+
+    public function hasCloudFunction()
+    {
+        return isset($this->cloud_function);
+    }
+
+    public function clearCloudFunction()
+    {
+        unset($this->cloud_function);
+    }
+
+    /**
+     * A [Cloud Function](https://cloud.google.com/functions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $var
+     * @return $this
+     */
+    public function setCloudFunction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint::class);
+        $this->cloud_function = $var;
+
+        return $this;
+    }
+
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint|null
+     */
+    public function getAppEngineVersion()
+    {
+        return $this->app_engine_version;
+    }
+
+    public function hasAppEngineVersion()
+    {
+        return isset($this->app_engine_version);
+    }
+
+    public function clearAppEngineVersion()
+    {
+        unset($this->app_engine_version);
+    }
+
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service
+     * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $var
+     * @return $this
+     */
+    public function setAppEngineVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint::class);
+        $this->app_engine_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint|null
+     */
+    public function getCloudRunRevision()
+    {
+        return $this->cloud_run_revision;
+    }
+
+    public function hasCloudRunRevision()
+    {
+        return isset($this->cloud_run_revision);
+    }
+
+    public function clearCloudRunRevision()
+    {
+        unset($this->cloud_run_revision);
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $var
+     * @return $this
+     */
+    public function setCloudRunRevision($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint::class);
+        $this->cloud_run_revision = $var;
 
         return $this;
     }

@@ -9,36 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * For display only. Metadata associated with a Cloud Run revision.
+ * For display only. Metadata associated with a VPC connector.
  *
- * Generated from protobuf message <code>google.cloud.networkmanagement.v1.CloudRunRevisionInfo</code>
+ * Generated from protobuf message <code>google.cloud.networkmanagement.v1.VpcConnectorInfo</code>
  */
-class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
+class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of a Cloud Run revision.
+     * Name of a VPC connector.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
-     * URI of a Cloud Run revision.
+     * URI of a VPC connector.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    protected $uri = '';
+    private $uri = '';
     /**
-     * Location in which this revision is deployed.
+     * Location in which the VPC connector is deployed.
      *
-     * Generated from protobuf field <code>string location = 4;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      */
-    protected $location = '';
-    /**
-     * URI of Cloud Run service this revision belongs to.
-     *
-     * Generated from protobuf field <code>string service_uri = 5;</code>
-     */
-    protected $service_uri = '';
+    private $location = '';
 
     /**
      * Constructor.
@@ -47,13 +41,11 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Name of a Cloud Run revision.
+     *           Name of a VPC connector.
      *     @type string $uri
-     *           URI of a Cloud Run revision.
+     *           URI of a VPC connector.
      *     @type string $location
-     *           Location in which this revision is deployed.
-     *     @type string $service_uri
-     *           URI of Cloud Run service this revision belongs to.
+     *           Location in which the VPC connector is deployed.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +54,7 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Cloud Run revision.
+     * Name of a VPC connector.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -73,7 +65,7 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Cloud Run revision.
+     * Name of a VPC connector.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var
@@ -88,7 +80,7 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run revision.
+     * URI of a VPC connector.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +91,7 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run revision.
+     * URI of a VPC connector.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -114,9 +106,9 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location in which this revision is deployed.
+     * Location in which the VPC connector is deployed.
      *
-     * Generated from protobuf field <code>string location = 4;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      * @return string
      */
     public function getLocation()
@@ -125,9 +117,9 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location in which this revision is deployed.
+     * Location in which the VPC connector is deployed.
      *
-     * Generated from protobuf field <code>string location = 4;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -135,32 +127,6 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
-
-        return $this;
-    }
-
-    /**
-     * URI of Cloud Run service this revision belongs to.
-     *
-     * Generated from protobuf field <code>string service_uri = 5;</code>
-     * @return string
-     */
-    public function getServiceUri()
-    {
-        return $this->service_uri;
-    }
-
-    /**
-     * URI of Cloud Run service this revision belongs to.
-     *
-     * Generated from protobuf field <code>string service_uri = 5;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setServiceUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->service_uri = $var;
 
         return $this;
     }

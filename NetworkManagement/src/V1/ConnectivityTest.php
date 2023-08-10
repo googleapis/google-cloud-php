@@ -17,7 +17,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -124,7 +124,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Unique name of the resource using the form:
-     *               `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *               `projects/{project_id}/locations/global/connectivityTests/{test}`
      *     @type string $description
      *           The user-supplied description of the Connectivity Test.
      *           Maximum of 512 characters.
@@ -187,7 +187,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -199,7 +199,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

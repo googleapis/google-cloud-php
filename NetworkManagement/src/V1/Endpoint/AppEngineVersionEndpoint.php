@@ -22,7 +22,7 @@ class AppEngineVersionEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    protected $uri = '';
+    private $uri = '';
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class AppEngineVersionEndpoint extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AppEngineVersionEndpoint::class, \Google\Cloud\NetworkManagement\V1\Endpoint_AppEngineVersionEndpoint::class);
 

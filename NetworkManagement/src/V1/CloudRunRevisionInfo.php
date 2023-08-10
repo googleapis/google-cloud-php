@@ -9,36 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * For display only. Metadata associated with a Cloud Function.
+ * For display only. Metadata associated with a Cloud Run revision.
  *
- * Generated from protobuf message <code>google.cloud.networkmanagement.v1.CloudFunctionInfo</code>
+ * Generated from protobuf message <code>google.cloud.networkmanagement.v1.CloudRunRevisionInfo</code>
  */
-class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
+class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of a Cloud Function.
+     * Name of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
-     * URI of a Cloud Function.
+     * URI of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    protected $uri = '';
+    private $uri = '';
     /**
-     * Location in which the Cloud Function is deployed.
+     * Location in which this revision is deployed.
      *
-     * Generated from protobuf field <code>string location = 3;</code>
+     * Generated from protobuf field <code>string location = 4;</code>
      */
-    protected $location = '';
+    private $location = '';
     /**
-     * Latest successfully deployed version id of the Cloud Function.
+     * URI of Cloud Run service this revision belongs to.
      *
-     * Generated from protobuf field <code>int64 version_id = 4;</code>
+     * Generated from protobuf field <code>string service_uri = 5;</code>
      */
-    protected $version_id = 0;
+    private $service_uri = '';
 
     /**
      * Constructor.
@@ -47,13 +47,13 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Name of a Cloud Function.
+     *           Name of a Cloud Run revision.
      *     @type string $uri
-     *           URI of a Cloud Function.
+     *           URI of a Cloud Run revision.
      *     @type string $location
-     *           Location in which the Cloud Function is deployed.
-     *     @type int|string $version_id
-     *           Latest successfully deployed version id of the Cloud Function.
+     *           Location in which this revision is deployed.
+     *     @type string $service_uri
+     *           URI of Cloud Run service this revision belongs to.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Cloud Function.
+     * Name of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -73,7 +73,7 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Cloud Function.
+     * Name of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var
@@ -88,7 +88,7 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Function.
+     * URI of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Function.
+     * URI of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -114,9 +114,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location in which the Cloud Function is deployed.
+     * Location in which this revision is deployed.
      *
-     * Generated from protobuf field <code>string location = 3;</code>
+     * Generated from protobuf field <code>string location = 4;</code>
      * @return string
      */
     public function getLocation()
@@ -125,9 +125,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location in which the Cloud Function is deployed.
+     * Location in which this revision is deployed.
      *
-     * Generated from protobuf field <code>string location = 3;</code>
+     * Generated from protobuf field <code>string location = 4;</code>
      * @param string $var
      * @return $this
      */
@@ -140,27 +140,27 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Latest successfully deployed version id of the Cloud Function.
+     * URI of Cloud Run service this revision belongs to.
      *
-     * Generated from protobuf field <code>int64 version_id = 4;</code>
-     * @return int|string
+     * Generated from protobuf field <code>string service_uri = 5;</code>
+     * @return string
      */
-    public function getVersionId()
+    public function getServiceUri()
     {
-        return $this->version_id;
+        return $this->service_uri;
     }
 
     /**
-     * Latest successfully deployed version id of the Cloud Function.
+     * URI of Cloud Run service this revision belongs to.
      *
-     * Generated from protobuf field <code>int64 version_id = 4;</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>string service_uri = 5;</code>
+     * @param string $var
      * @return $this
      */
-    public function setVersionId($var)
+    public function setServiceUri($var)
     {
-        GPBUtil::checkInt64($var);
-        $this->version_id = $var;
+        GPBUtil::checkString($var, True);
+        $this->service_uri = $var;
 
         return $this;
     }

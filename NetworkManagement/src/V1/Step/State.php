@@ -58,6 +58,27 @@ class State
      */
     const START_FROM_CLOUD_SQL_INSTANCE = 22;
     /**
+     * Initial state: packet originating from a Cloud Function.
+     * A CloudFunctionInfo is populated with starting function information.
+     *
+     * Generated from protobuf enum <code>START_FROM_CLOUD_FUNCTION = 23;</code>
+     */
+    const START_FROM_CLOUD_FUNCTION = 23;
+    /**
+     * Initial state: packet originating from an App Engine service version.
+     * An AppEngineVersionInfo is populated with starting version information.
+     *
+     * Generated from protobuf enum <code>START_FROM_APP_ENGINE_VERSION = 25;</code>
+     */
+    const START_FROM_APP_ENGINE_VERSION = 25;
+    /**
+     * Initial state: packet originating from a Cloud Run revision.
+     * A CloudRunRevisionInfo is populated with starting revision information.
+     *
+     * Generated from protobuf enum <code>START_FROM_CLOUD_RUN_REVISION = 26;</code>
+     */
+    const START_FROM_CLOUD_RUN_REVISION = 26;
+    /**
      * Config checking state: verify ingress firewall rule.
      *
      * Generated from protobuf enum <code>APPLY_INGRESS_FIREWALL_RULE = 4;</code>
@@ -119,6 +140,12 @@ class State
      */
     const ARRIVE_AT_VPN_TUNNEL = 13;
     /**
+     * Forwarding state: arriving at a VPC connector.
+     *
+     * Generated from protobuf enum <code>ARRIVE_AT_VPC_CONNECTOR = 24;</code>
+     */
+    const ARRIVE_AT_VPC_CONNECTOR = 24;
+    /**
      * Transition state: packet header translated.
      *
      * Generated from protobuf enum <code>NAT = 14;</code>
@@ -171,6 +198,9 @@ class State
         self::START_FROM_PRIVATE_NETWORK => 'START_FROM_PRIVATE_NETWORK',
         self::START_FROM_GKE_MASTER => 'START_FROM_GKE_MASTER',
         self::START_FROM_CLOUD_SQL_INSTANCE => 'START_FROM_CLOUD_SQL_INSTANCE',
+        self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
+        self::START_FROM_APP_ENGINE_VERSION => 'START_FROM_APP_ENGINE_VERSION',
+        self::START_FROM_CLOUD_RUN_REVISION => 'START_FROM_CLOUD_RUN_REVISION',
         self::APPLY_INGRESS_FIREWALL_RULE => 'APPLY_INGRESS_FIREWALL_RULE',
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',
@@ -181,6 +211,7 @@ class State
         self::ARRIVE_AT_EXTERNAL_LOAD_BALANCER => 'ARRIVE_AT_EXTERNAL_LOAD_BALANCER',
         self::ARRIVE_AT_VPN_GATEWAY => 'ARRIVE_AT_VPN_GATEWAY',
         self::ARRIVE_AT_VPN_TUNNEL => 'ARRIVE_AT_VPN_TUNNEL',
+        self::ARRIVE_AT_VPC_CONNECTOR => 'ARRIVE_AT_VPC_CONNECTOR',
         self::NAT => 'NAT',
         self::PROXY_CONNECTION => 'PROXY_CONNECTION',
         self::DELIVER => 'DELIVER',

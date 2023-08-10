@@ -172,6 +172,26 @@ class Cause
      * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE_NO_IP_ADDRESS = 21;</code>
      */
     const CLOUD_SQL_INSTANCE_NO_IP_ADDRESS = 21;
+    /**
+     * Packet could be dropped because the Cloud function is not in an active
+     * status.
+     *
+     * Generated from protobuf enum <code>CLOUD_FUNCTION_NOT_ACTIVE = 22;</code>
+     */
+    const CLOUD_FUNCTION_NOT_ACTIVE = 22;
+    /**
+     * Packet could be dropped because no VPC connector is set.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_SET = 23;</code>
+     */
+    const VPC_CONNECTOR_NOT_SET = 23;
+    /**
+     * Packet could be dropped because the VPC connector is not in a running
+     * state.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_RUNNING = 24;</code>
+     */
+    const VPC_CONNECTOR_NOT_RUNNING = 24;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -196,6 +216,9 @@ class Cause
         self::DROPPED_INSIDE_CLOUD_SQL_SERVICE => 'DROPPED_INSIDE_CLOUD_SQL_SERVICE',
         self::GOOGLE_MANAGED_SERVICE_NO_PEERING => 'GOOGLE_MANAGED_SERVICE_NO_PEERING',
         self::CLOUD_SQL_INSTANCE_NO_IP_ADDRESS => 'CLOUD_SQL_INSTANCE_NO_IP_ADDRESS',
+        self::CLOUD_FUNCTION_NOT_ACTIVE => 'CLOUD_FUNCTION_NOT_ACTIVE',
+        self::VPC_CONNECTOR_NOT_SET => 'VPC_CONNECTOR_NOT_SET',
+        self::VPC_CONNECTOR_NOT_RUNNING => 'VPC_CONNECTOR_NOT_RUNNING',
     ];
 
     public static function name($value)

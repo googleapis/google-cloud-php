@@ -43,12 +43,22 @@ class FirewallRuleType
      * Generated from protobuf enum <code>IMPLIED_VPC_FIREWALL_RULE = 3;</code>
      */
     const IMPLIED_VPC_FIREWALL_RULE = 3;
+    /**
+     * Implicit firewall rules that are managed by serverless VPC access to
+     * allow ingress access. They are not visible in the Google Cloud console.
+     * For details, see [VPC connector's implicit
+     * rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).
+     *
+     * Generated from protobuf enum <code>SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE = 4;</code>
+     */
+    const SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE = 4;
 
     private static $valueToName = [
         self::FIREWALL_RULE_TYPE_UNSPECIFIED => 'FIREWALL_RULE_TYPE_UNSPECIFIED',
         self::HIERARCHICAL_FIREWALL_POLICY_RULE => 'HIERARCHICAL_FIREWALL_POLICY_RULE',
         self::VPC_FIREWALL_RULE => 'VPC_FIREWALL_RULE',
         self::IMPLIED_VPC_FIREWALL_RULE => 'IMPLIED_VPC_FIREWALL_RULE',
+        self::SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE => 'SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE',
     ];
 
     public static function name($value)

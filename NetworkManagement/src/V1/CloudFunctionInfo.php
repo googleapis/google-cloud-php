@@ -9,36 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * For display only. Metadata associated with an App Engine version.
+ * For display only. Metadata associated with a Cloud Function.
  *
- * Generated from protobuf message <code>google.cloud.networkmanagement.v1.AppEngineVersionInfo</code>
+ * Generated from protobuf message <code>google.cloud.networkmanagement.v1.CloudFunctionInfo</code>
  */
-class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
+class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of an App Engine version.
+     * Name of a Cloud Function.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
-     * URI of an App Engine version.
+     * URI of a Cloud Function.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    protected $uri = '';
+    private $uri = '';
     /**
-     * Runtime of the App Engine version.
+     * Location in which the Cloud Function is deployed.
      *
-     * Generated from protobuf field <code>string runtime = 3;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      */
-    protected $runtime = '';
+    private $location = '';
     /**
-     * App Engine execution environment for a version.
+     * Latest successfully deployed version id of the Cloud Function.
      *
-     * Generated from protobuf field <code>string environment = 4;</code>
+     * Generated from protobuf field <code>int64 version_id = 4;</code>
      */
-    protected $environment = '';
+    private $version_id = 0;
 
     /**
      * Constructor.
@@ -47,13 +47,13 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Name of an App Engine version.
+     *           Name of a Cloud Function.
      *     @type string $uri
-     *           URI of an App Engine version.
-     *     @type string $runtime
-     *           Runtime of the App Engine version.
-     *     @type string $environment
-     *           App Engine execution environment for a version.
+     *           URI of a Cloud Function.
+     *     @type string $location
+     *           Location in which the Cloud Function is deployed.
+     *     @type int|string $version_id
+     *           Latest successfully deployed version id of the Cloud Function.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of an App Engine version.
+     * Name of a Cloud Function.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -73,7 +73,7 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of an App Engine version.
+     * Name of a Cloud Function.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var
@@ -88,7 +88,7 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an App Engine version.
+     * URI of a Cloud Function.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an App Engine version.
+     * URI of a Cloud Function.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -114,53 +114,53 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Runtime of the App Engine version.
+     * Location in which the Cloud Function is deployed.
      *
-     * Generated from protobuf field <code>string runtime = 3;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      * @return string
      */
-    public function getRuntime()
+    public function getLocation()
     {
-        return $this->runtime;
+        return $this->location;
     }
 
     /**
-     * Runtime of the App Engine version.
+     * Location in which the Cloud Function is deployed.
      *
-     * Generated from protobuf field <code>string runtime = 3;</code>
+     * Generated from protobuf field <code>string location = 3;</code>
      * @param string $var
      * @return $this
      */
-    public function setRuntime($var)
+    public function setLocation($var)
     {
         GPBUtil::checkString($var, True);
-        $this->runtime = $var;
+        $this->location = $var;
 
         return $this;
     }
 
     /**
-     * App Engine execution environment for a version.
+     * Latest successfully deployed version id of the Cloud Function.
      *
-     * Generated from protobuf field <code>string environment = 4;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 version_id = 4;</code>
+     * @return int|string
      */
-    public function getEnvironment()
+    public function getVersionId()
     {
-        return $this->environment;
+        return $this->version_id;
     }
 
     /**
-     * App Engine execution environment for a version.
+     * Latest successfully deployed version id of the Cloud Function.
      *
-     * Generated from protobuf field <code>string environment = 4;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 version_id = 4;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setEnvironment($var)
+    public function setVersionId($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->environment = $var;
+        GPBUtil::checkInt64($var);
+        $this->version_id = $var;
 
         return $this;
     }
