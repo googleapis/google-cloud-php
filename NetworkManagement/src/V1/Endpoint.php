@@ -18,7 +18,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      */
@@ -47,6 +48,25 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string forwarding_rule = 13;</code>
      */
     private $forwarding_rule = '';
+    /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $forwarding_rule_target = null;
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $load_balancer_id = null;
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $load_balancer_type = null;
     /**
      * A cluster URI for [Google Kubernetes Engine
      * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
@@ -118,7 +138,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $ip_address
      *           The IP address of the endpoint, which can be an external or internal IP.
      *           An IPv6 address is only allowed when the test's destination is a
-     *           [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     *           [global load balancer
+     *           VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *     @type int $port
      *           The IP protocol port of the endpoint.
      *           Only applicable when protocol is TCP or UDP.
@@ -131,6 +152,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           services to provide forwarding information in the control plane. Format:
      *            projects/{project}/global/forwardingRules/{id} or
      *            projects/{project}/regions/{region}/forwardingRules/{id}
+     *     @type int $forwarding_rule_target
+     *           Output only. Specifies the type of the target of the forwarding rule.
+     *     @type string $load_balancer_id
+     *           Output only. ID of the load balancer the forwarding rule points to. Empty
+     *           for forwarding rules not related to load balancers.
+     *     @type int $load_balancer_type
+     *           Output only. Type of the load balancer the forwarding rule points to.
      *     @type string $gke_master_cluster
      *           A cluster URI for [Google Kubernetes Engine
      *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
@@ -170,7 +198,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @return string
@@ -183,7 +212,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
      * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
+     * [global load balancer
+     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @param string $var
@@ -283,6 +313,116 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->forwarding_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getForwardingRuleTarget()
+    {
+        return isset($this->forwarding_rule_target) ? $this->forwarding_rule_target : 0;
+    }
+
+    public function hasForwardingRuleTarget()
+    {
+        return isset($this->forwarding_rule_target);
+    }
+
+    public function clearForwardingRuleTarget()
+    {
+        unset($this->forwarding_rule_target);
+    }
+
+    /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setForwardingRuleTarget($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\Endpoint\ForwardingRuleTarget::class);
+        $this->forwarding_rule_target = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLoadBalancerId()
+    {
+        return isset($this->load_balancer_id) ? $this->load_balancer_id : '';
+    }
+
+    public function hasLoadBalancerId()
+    {
+        return isset($this->load_balancer_id);
+    }
+
+    public function clearLoadBalancerId()
+    {
+        unset($this->load_balancer_id);
+    }
+
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty
+     * for forwarding rules not related to load balancers.
+     *
+     * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoadBalancerId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->load_balancer_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getLoadBalancerType()
+    {
+        return isset($this->load_balancer_type) ? $this->load_balancer_type : 0;
+    }
+
+    public function hasLoadBalancerType()
+    {
+        return isset($this->load_balancer_type);
+    }
+
+    public function clearLoadBalancerType()
+    {
+        unset($this->load_balancer_type);
+    }
+
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLoadBalancerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\LoadBalancerType::class);
+        $this->load_balancer_type = $var;
 
         return $this;
     }

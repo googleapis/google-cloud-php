@@ -192,6 +192,19 @@ class Cause
      * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_RUNNING = 24;</code>
      */
     const VPC_CONNECTOR_NOT_RUNNING = 24;
+    /**
+     * Packet could be dropped because it was sent from a different region
+     * to a regional forwarding without global access.
+     *
+     * Generated from protobuf enum <code>FORWARDING_RULE_REGION_MISMATCH = 25;</code>
+     */
+    const FORWARDING_RULE_REGION_MISMATCH = 25;
+    /**
+     * Privte Service Connect (PSC) connection is not in accepted state.
+     *
+     * Generated from protobuf enum <code>PSC_CONNECTION_NOT_ACCEPTED = 26;</code>
+     */
+    const PSC_CONNECTION_NOT_ACCEPTED = 26;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -219,6 +232,8 @@ class Cause
         self::CLOUD_FUNCTION_NOT_ACTIVE => 'CLOUD_FUNCTION_NOT_ACTIVE',
         self::VPC_CONNECTOR_NOT_SET => 'VPC_CONNECTOR_NOT_SET',
         self::VPC_CONNECTOR_NOT_RUNNING => 'VPC_CONNECTOR_NOT_RUNNING',
+        self::FORWARDING_RULE_REGION_MISMATCH => 'FORWARDING_RULE_REGION_MISMATCH',
+        self::PSC_CONNECTION_NOT_ACCEPTED => 'PSC_CONNECTION_NOT_ACCEPTED',
     ];
 
     public static function name($value)
