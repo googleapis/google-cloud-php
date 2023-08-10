@@ -76,6 +76,19 @@ class Lun extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string wwid = 9;</code>
      */
     private $wwid = '';
+    /**
+     * Output only. Time after which LUN will be fully deleted.
+     * It is filled only for LUNs in COOL_OFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $expire_time = null;
+    /**
+     * Output only. Instances this Lun is attached to.
+     *
+     * Generated from protobuf field <code>repeated string instances = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $instances;
 
     /**
      * Constructor.
@@ -104,6 +117,11 @@ class Lun extends \Google\Protobuf\Internal\Message
      *           The storage type for this LUN.
      *     @type string $wwid
      *           The WWID for this LUN.
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           Output only. Time after which LUN will be fully deleted.
+     *           It is filled only for LUNs in COOL_OFF state.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *           Output only. Instances this Lun is attached to.
      * }
      */
     public function __construct($data = NULL) {
@@ -369,6 +387,70 @@ class Lun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->wwid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Time after which LUN will be fully deleted.
+     * It is filled only for LUNs in COOL_OFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExpireTime()
+    {
+        return $this->expire_time;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
+    }
+
+    /**
+     * Output only. Time after which LUN will be fully deleted.
+     * It is filled only for LUNs in COOL_OFF state.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Instances this Lun is attached to.
+     *
+     * Generated from protobuf field <code>repeated string instances = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInstances()
+    {
+        return $this->instances;
+    }
+
+    /**
+     * Output only. Instances this Lun is attached to.
+     *
+     * Generated from protobuf field <code>repeated string instances = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInstances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->instances = $arr;
 
         return $this;
     }

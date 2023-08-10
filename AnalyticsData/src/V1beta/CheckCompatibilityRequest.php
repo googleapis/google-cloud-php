@@ -24,9 +24,6 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      * `property` should be the same value as in your `runReport` request.
      * Example: properties/1234
-     * Set the Property ID to 0 for compatibility checking on dimensions and
-     * metrics common to all properties. In this special mode, this method will
-     * not return custom dimensions and metrics.
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
@@ -80,9 +77,6 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *           `property` should be the same value as in your `runReport` request.
      *           Example: properties/1234
-     *           Set the Property ID to 0 for compatibility checking on dimensions and
-     *           metrics common to all properties. In this special mode, this method will
-     *           not return custom dimensions and metrics.
      *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions in this report. `dimensions` should be the same value as in
      *           your `runReport` request.
@@ -112,9 +106,6 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      * `property` should be the same value as in your `runReport` request.
      * Example: properties/1234
-     * Set the Property ID to 0 for compatibility checking on dimensions and
-     * metrics common to all properties. In this special mode, this method will
-     * not return custom dimensions and metrics.
      *
      * Generated from protobuf field <code>string property = 1;</code>
      * @return string
@@ -130,9 +121,6 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      * `property` should be the same value as in your `runReport` request.
      * Example: properties/1234
-     * Set the Property ID to 0 for compatibility checking on dimensions and
-     * metrics common to all properties. In this special mode, this method will
-     * not return custom dimensions and metrics.
      *
      * Generated from protobuf field <code>string property = 1;</code>
      * @param string $var

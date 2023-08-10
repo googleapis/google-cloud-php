@@ -37,12 +37,27 @@ class State
      * Generated from protobuf enum <code>DELETING = 3;</code>
      */
     const DELETING = 3;
+    /**
+     * The storage volume is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 4;</code>
+     */
+    const UPDATING = 4;
+    /**
+     * The storage volume is in cool off state. It will be deleted after
+     * `expire_time`.
+     *
+     * Generated from protobuf enum <code>COOL_OFF = 5;</code>
+     */
+    const COOL_OFF = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::CREATING => 'CREATING',
         self::READY => 'READY',
         self::DELETING => 'DELETING',
+        self::UPDATING => 'UPDATING',
+        self::COOL_OFF => 'COOL_OFF',
     ];
 
     public static function name($value)

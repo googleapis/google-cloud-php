@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message requesting to updating a NFS share.
+ * Message requesting to updating an NFS share.
  *
  * Generated from protobuf message <code>google.cloud.baremetalsolution.v2.UpdateNfsShareRequest</code>
  */
@@ -27,6 +27,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -40,6 +41,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Protobuf\FieldMask                  $updateMask The list of fields to update.
      *                                                                The only currently supported fields are:
      *                                                                `labels`
+     *                                                                `allowed_clients`
      *
      * @return \Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest
      *
@@ -66,6 +68,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      *           The list of fields to update.
      *           The only currently supported fields are:
      *             `labels`
+     *             `allowed_clients`
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +120,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -140,6 +144,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

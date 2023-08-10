@@ -72,7 +72,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If not provided, the default Google model (NMT) will be used.
+     * If not provided, the default Google model (NMT) will be used
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -163,7 +163,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *                                     For example,
      *                                     `projects/{project-number-or-id}/locations/global/models/general/nmt`.
      *
-     *                                     If not provided, the default Google model (NMT) will be used.
+     *                                     If not provided, the default Google model (NMT) will be used
      * @param string   $mimeType           Optional. The format of the source text, for example, "text/html",
      *                                     "text/plain". If left blank, the MIME type defaults to "text/html".
      * @param string   $sourceLanguageCode Optional. The ISO-639 language code of the input text if
@@ -235,7 +235,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           For global (non-regionalized) requests, use `location-id` `global`.
      *           For example,
      *           `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     *           If not provided, the default Google model (NMT) will be used.
+     *           If not provided, the default Google model (NMT) will be used
      *     @type \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig $glossary_config
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise
@@ -429,7 +429,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If not provided, the default Google model (NMT) will be used.
+     * If not provided, the default Google model (NMT) will be used
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -449,7 +449,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
-     * If not provided, the default Google model (NMT) will be used.
+     * If not provided, the default Google model (NMT) will be used
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
