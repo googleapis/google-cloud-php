@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Traits\ArrayTrait;
-use Google\ApiCore\Exception\NotFoundException;
+use Google\ApiCore\Veneer\Exception\NotFoundException;
 use Google\Cloud\Core\V2\Iam;
 use Google\ApiCore\Veneer\Iterator\ItemIterator;
 use Google\ApiCore\Veneer\Iterator\PageIterator;
@@ -126,6 +126,7 @@ class Topic
      *        associated with this instance.
      */
     public function __construct(
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $encode,
@@ -134,10 +135,7 @@ class Topic
     ) {
         $this->gapic = new PublisherClient($clientConfig);
         $this->serializer = new PubSubSerializer();
-        $this->requestHandler = new RequestHandler(
-            new PubSubSerializer(),
-            $clientConfig + ['libVersion' => PubSubClient::VERSION]
-        );
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;

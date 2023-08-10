@@ -798,6 +798,7 @@ class PubSubClient
     private function topicFactory($name, array $info = [])
     {
         return new Topic(
+            $this->requestHandler,
             $this->projectId,
             $name,
             $this->encode,
