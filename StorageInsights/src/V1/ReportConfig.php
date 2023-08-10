@@ -11,6 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Message describing ReportConfig object. ReportConfig is the configuration to
  * generate reports.
+ * See
+ * https://cloud.google.com/storage/docs/insights/using-inventory-reports#create-config-rest
+ * for more details on how to set various fields.
  * Next ID: 12
  *
  * Generated from protobuf message <code>google.cloud.storageinsights.v1.ReportConfig</code>
