@@ -641,6 +641,11 @@ class Rest implements ConnectionInterface
             return 'crc32';
         }
 
+        // is crc32c available in `hash()`?
+        if ($this->supportsBuiltinCrc32c()) {
+            return 'crc32';
+        }
+
         return 'md5';
     }
 
@@ -674,6 +679,17 @@ class Rest implements ConnectionInterface
     protected function crc32cExtensionLoaded()
     {
         return extension_loaded('crc32c');
+    }
+
+    /**
+     * Check if hash() supports crc32c.
+     *
+     * @deprecated
+     * @return bool
+     */
+    protected function supportsBuiltinCrc32c()
+    {
+        return extension_loaded('hash') && in_array('crc32c', hash_algos());
     }
 
     /**

@@ -407,10 +407,11 @@ class RestTest extends TestCase
     /**
      * @dataProvider validationMethod
      */
-    public function testChooseValidationMethod($args, $extensionLoaded, $expected)
+    public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
         $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
+        $rest->supportsBuiltin = $supportsBuiltin;
 
         $this->assertEquals($expected, $rest->chooseValidationMethodProxy($args));
     }
@@ -421,37 +422,46 @@ class RestTest extends TestCase
             [
                 ['validate' => true],
                 false,
+                false,
                 'md5'
             ], [
                 ['validate' => true],
                 true,
+                false,
                 'crc32'
             ], [
                 ['validate' => true],
                 false,
-                'md5'
+                true,
+                'crc32'
             ], [
                 ['validate' => 'md5'],
+                true,
                 true,
                 'md5'
             ], [
                 ['validate' => 'crc32'],
                 false,
+                false,
                 'crc32'
             ], [
                 ['validate' => 'crc32c'],
+                false,
                 false,
                 'crc32'
             ], [
                 ['validate' => false],
                 true,
+                true,
                 false
             ], [
                 ['validate' => 'md5', 'metadata' => ['md5Hash' => 'foo']],
                 true,
+                true,
                 false
             ], [
                 ['validate' => 'md5', 'metadata' => ['crc32c' => 'foo']],
+                true,
                 true,
                 false
             ]
@@ -533,10 +543,16 @@ class RestTest extends TestCase
 class RestCrc32cStub extends Rest
 {
     public $extensionLoaded = false;
+    public $supportsBuiltin = false;
 
     protected function crc32cExtensionLoaded()
     {
         return $this->extensionLoaded;
+    }
+
+    protected function supportsBuiltinCrc32c()
+    {
+        return $this->supportsBuiltin;
     }
 
     public function chooseValidationMethodProxy(array $args)
