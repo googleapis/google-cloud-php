@@ -21,7 +21,7 @@ class UpdateConversionEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent conversion_event = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $conversion_event = null;
+    private $conversion_event = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -30,7 +30,7 @@ class UpdateConversionEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
 
     /**
      * Constructor.

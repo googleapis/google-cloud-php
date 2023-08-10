@@ -29,7 +29,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”ä
+˛ç
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
@@ -240,7 +240,10 @@ page_token (	"¢
 update_mask (2.google.protobuf.FieldMaskB‡A"µ
 CreateConversionEventRequestN
 conversion_event (2/.google.analytics.admin.v1alpha.ConversionEventB‡AE
-parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ConversionEvent"`
+parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ConversionEvent"§
+UpdateConversionEventRequestN
+conversion_event (2/.google.analytics.admin.v1alpha.ConversionEventB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"`
 GetConversionEventRequestC
 name (	B5‡A˙A/
 -analyticsadmin.googleapis.com/ConversionEvent"c
@@ -567,7 +570,7 @@ page_token (	"w
 page_token (	"Ñ
 ListEventCreateRulesResponseK
 event_create_rules (2/.google.analytics.admin.v1alpha.EventCreateRule
-next_page_token (	2◊⁄
+next_page_token (	2€‹
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -609,7 +612,8 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 SearchChangeHistoryEvents@.google.analytics.admin.v1alpha.SearchChangeHistoryEventsRequestA.google.analytics.admin.v1alpha.SearchChangeHistoryEventsResponse"BÇ”‰ì<"7/v1alpha/{account=accounts/*}:searchChangeHistoryEvents:*’
 GetGoogleSignalsSettings?.google.analytics.admin.v1alpha.GetGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"AÇ”‰ì42/v1alpha/{name=properties/*/googleSignalsSettings}⁄Aname¨
 UpdateGoogleSignalsSettingsB.google.analytics.admin.v1alpha.UpdateGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"ëÇ”‰ìe2J/v1alpha/{google_signals_settings.name=properties/*/googleSignalsSettings}:google_signals_settings⁄A#google_signals_settings,update_maskÎ
-CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"cÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_event⁄Aparent,conversion_event¿
+CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"cÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_event⁄Aparent,conversion_eventÅ
+UpdateConversionEvent<.google.analytics.admin.v1alpha.UpdateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"yÇ”‰ìT2@/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}:conversion_event⁄Aconversion_event,update_mask¿
 GetConversionEvent9.google.analytics.admin.v1alpha.GetConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent">Ç”‰ì1//v1alpha/{name=properties/*/conversionEvents/*}⁄Aname≠
 DeleteConversionEvent<.google.analytics.admin.v1alpha.DeleteConversionEventRequest.google.protobuf.Empty">Ç”‰ì1*//v1alpha/{name=properties/*/conversionEvents/*}⁄Aname”
 ListConversionEvents;.google.analytics.admin.v1alpha.ListConversionEventsRequest<.google.analytics.admin.v1alpha.ListConversionEventsResponse"@Ç”‰ì1//v1alpha/{parent=properties/*}/conversionEvents⁄Aparent¯

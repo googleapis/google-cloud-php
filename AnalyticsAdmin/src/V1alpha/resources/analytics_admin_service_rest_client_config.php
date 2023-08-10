@@ -1303,6 +1303,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateConversionEvent' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}',
+                'body' => 'conversion_event',
+                'placeholders' => [
+                    'conversion_event.name' => [
+                        'getters' => [
+                            'getConversionEvent',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateCustomDimension' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{custom_dimension.name=properties/*/customDimensions/*}',
