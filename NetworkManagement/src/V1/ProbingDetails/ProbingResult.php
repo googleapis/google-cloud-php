@@ -77,6 +77,4 @@ class ProbingResult
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProbingResult::class, \Google\Cloud\NetworkManagement\V1\ProbingDetails_ProbingResult::class);
 

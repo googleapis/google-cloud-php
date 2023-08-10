@@ -20,7 +20,7 @@ class LatencyPercentile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 percent = 1;</code>
      */
-    protected $percent = 0;
+    private $percent = 0;
     /**
      * percent-th percentile of latency observed, in microseconds.
      * Fraction of percent/100 of samples have latency lower or
@@ -28,7 +28,7 @@ class LatencyPercentile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 latency_micros = 2;</code>
      */
-    protected $latency_micros = 0;
+    private $latency_micros = 0;
 
     /**
      * Constructor.

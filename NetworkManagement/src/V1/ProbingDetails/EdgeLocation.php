@@ -21,7 +21,7 @@ class EdgeLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metropolitan_area = 1;</code>
      */
-    protected $metropolitan_area = '';
+    private $metropolitan_area = '';
 
     /**
      * Constructor.
@@ -66,6 +66,4 @@ class EdgeLocation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EdgeLocation::class, \Google\Cloud\NetworkManagement\V1\ProbingDetails_EdgeLocation::class);
 

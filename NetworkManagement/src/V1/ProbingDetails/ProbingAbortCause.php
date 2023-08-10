@@ -60,6 +60,4 @@ class ProbingAbortCause
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProbingAbortCause::class, \Google\Cloud\NetworkManagement\V1\ProbingDetails_ProbingAbortCause::class);
 
