@@ -18,7 +18,6 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7\Utils;
 
 /**
@@ -133,9 +132,8 @@ class UploadObjectsTest extends StorageTestCase
 
         $path = __DIR__ . '/data/5mb.txt';
 
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32c->update('foobar');
-        $badChecksum = base64_encode($crc32c->hash(true));
+        $crc32c = hash('crc32c', 'foobar', true);
+        $badChecksum = base64_encode($crc32c);
 
         self::$bucket->upload($path, [
             'name' => uniqid(),
