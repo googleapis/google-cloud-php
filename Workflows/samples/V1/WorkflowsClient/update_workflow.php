@@ -33,8 +33,8 @@ use Google\Rpc\Status;
 /**
  * Updates an existing workflow.
  * Running this method has no impact on already running executions of the
- * workflow. A new revision of the workflow may be created as a result of a
- * successful update operation. In that case, such revision will be used
+ * workflow. A new revision of the workflow might be created as a result of a
+ * successful update operation. In that case, the new revision is used
  * in new workflow executions.
  *
  * This sample has been automatically generated and should be regarded as a code

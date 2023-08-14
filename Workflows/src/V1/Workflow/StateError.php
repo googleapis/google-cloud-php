@@ -20,13 +20,13 @@ class StateError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string details = 1;</code>
      */
-    protected $details = '';
+    private $details = '';
     /**
      * The type of this state error.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.v1.Workflow.StateError.Type type = 2;</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class StateError extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StateError::class, \Google\Cloud\Workflows\V1\Workflow_StateError::class);
 
