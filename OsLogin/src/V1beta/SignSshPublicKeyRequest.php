@@ -18,7 +18,7 @@ class SignSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssh_public_key = 1;</code>
      */
-    protected $ssh_public_key = '';
+    private $ssh_public_key = '';
     /**
      * The parent project and zone for the signing request. This is needed to
      * properly ensure per-organization ISS processing and potentially to provide
@@ -27,7 +27,7 @@ class SignSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    protected $parent = '';
+    private $parent = '';
 
     /**
      * Constructor.

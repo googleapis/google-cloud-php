@@ -44,6 +44,8 @@ use Google\Cloud\OsLogin\V1beta\GetSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
+use Google\Cloud\OsLogin\V1beta\SignSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1beta\SignSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\UpdateSshPublicKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -687,6 +689,68 @@ class OsLoginServiceGapicClient
         return $this->startCall(
             'ImportSshPublicKey',
             ImportSshPublicKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Signs an SSH public key for a user to authenticate to an instance.
+     *
+     * Sample code:
+     * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
+     * try {
+     *     $response = $osLoginServiceClient->signSshPublicKey();
+     * } finally {
+     *     $osLoginServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $sshPublicKey
+     *           The SSH public key to sign.
+     *     @type string $parent
+     *           The parent project and zone for the signing request. This is needed to
+     *           properly ensure per-organization ISS processing and potentially to provide
+     *           for the possibility of zone-specific certificates used in the signing
+     *           process.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsLogin\V1beta\SignSshPublicKeyResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function signSshPublicKey(array $optionalArgs = [])
+    {
+        $request = new SignSshPublicKeyRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SignSshPublicKey',
+            SignSshPublicKeyResponse::class,
             $optionalArgs,
             $request
         )->wait();

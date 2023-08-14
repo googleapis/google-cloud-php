@@ -18,7 +18,7 @@ class SignSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string signed_ssh_public_key = 1;</code>
      */
-    protected $signed_ssh_public_key = '';
+    private $signed_ssh_public_key = '';
 
     /**
      * Constructor.
