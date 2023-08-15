@@ -71,6 +71,18 @@ return [
                     ],
                 ],
             ],
+            'SignSshPublicKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=users/*/projects/*/zones/*}:signSshPublicKey',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSshPublicKey' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{name=users/*/sshPublicKeys/*}',
