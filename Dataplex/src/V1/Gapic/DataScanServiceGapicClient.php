@@ -144,8 +144,6 @@ class DataScanServiceGapicClient
 
     private static $locationNameTemplate;
 
-    private static $tableNameTemplate;
-
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -220,17 +218,6 @@ class DataScanServiceGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getTableNameTemplate()
-    {
-        if (self::$tableNameTemplate == null) {
-            self::$tableNameTemplate = new PathTemplate(
-                'projects/{project}/datasets/{dataset}/tables/{table}'
-            );
-        }
-
-        return self::$tableNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -239,7 +226,6 @@ class DataScanServiceGapicClient
                 'dataScanJob' => self::getDataScanJobNameTemplate(),
                 'entity' => self::getEntityNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
-                'table' => self::getTableNameTemplate(),
             ];
         }
 
@@ -332,25 +318,6 @@ class DataScanServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a table
-     * resource.
-     *
-     * @param string $project
-     * @param string $dataset
-     * @param string $table
-     *
-     * @return string The formatted table resource.
-     */
-    public static function tableName($project, $dataset, $table)
-    {
-        return self::getTableNameTemplate()->render([
-            'project' => $project,
-            'dataset' => $dataset,
-            'table' => $table,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -358,7 +325,6 @@ class DataScanServiceGapicClient
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
      * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
-     * - table: projects/{project}/datasets/{dataset}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
