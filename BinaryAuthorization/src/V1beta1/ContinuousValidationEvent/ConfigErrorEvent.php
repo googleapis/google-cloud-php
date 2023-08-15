@@ -21,7 +21,7 @@ class ConfigErrorEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    protected $description = '';
+    private $description = '';
 
     /**
      * Constructor.

@@ -18,49 +18,49 @@ class CheckResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string check_set_index = 1;</code>
      */
-    protected $check_set_index = '';
+    private $check_set_index = '';
     /**
      * The name of the check set.
      *
      * Generated from protobuf field <code>string check_set_name = 2;</code>
      */
-    protected $check_set_name = '';
+    private $check_set_name = '';
     /**
      * The scope of the check set.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.CheckResult.CheckSetScope check_set_scope = 3;</code>
      */
-    protected $check_set_scope = null;
+    private $check_set_scope = null;
     /**
      * The index of the check.
      *
      * Generated from protobuf field <code>string check_index = 4;</code>
      */
-    protected $check_index = '';
+    private $check_index = '';
     /**
      * The name of the check.
      *
      * Generated from protobuf field <code>string check_name = 5;</code>
      */
-    protected $check_name = '';
+    private $check_name = '';
     /**
      * The type of the check.
      *
      * Generated from protobuf field <code>string check_type = 6;</code>
      */
-    protected $check_type = '';
+    private $check_type = '';
     /**
      * The verdict of this check.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.CheckResult.CheckVerdict verdict = 7;</code>
      */
-    protected $verdict = 0;
+    private $verdict = 0;
     /**
      * User-friendly explanation of this check result.
      *
      * Generated from protobuf field <code>string explanation = 8;</code>
      */
-    protected $explanation = '';
+    private $explanation = '';
 
     /**
      * Constructor.
