@@ -80,6 +80,20 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation> missing_value_interpretations = 7;</code>
      */
     private $missing_value_interpretations;
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_missing_value_interpretation = 0;
     protected $rows;
 
     /**
@@ -178,6 +192,16 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           requests on the connection.
      *           Currently, field name can only be top-level column name, can't be a struct
      *           field path like 'foo.bar'.
+     *     @type int $default_missing_value_interpretation
+     *           Optional. Default missing value interpretation for all columns in the
+     *           table. When a value is specified on an `AppendRowsRequest`, it is applied
+     *           to all requests on the connection from that point forward, until a
+     *           subsequent `AppendRowsRequest` sets it to a different value.
+     *           `missing_value_interpretation` can override
+     *           `default_missing_value_interpretation`. For example, if you want to write
+     *           `NULL` instead of using default values for some columns, you can set
+     *           `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     *           time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
      * }
      */
     public function __construct($data = NULL) {
@@ -429,6 +453,48 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\MissingValueInterpretation::class);
         $this->missing_value_interpretations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultMissingValueInterpretation()
+    {
+        return $this->default_missing_value_interpretation;
+    }
+
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultMissingValueInterpretation($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\MissingValueInterpretation::class);
+        $this->default_missing_value_interpretation = $var;
 
         return $this;
     }
