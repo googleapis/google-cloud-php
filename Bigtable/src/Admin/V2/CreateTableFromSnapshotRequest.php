@@ -28,16 +28,16 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table_id = '';
     /**
-     * Required. The unique name of the snapshot from which to restore the table. The
-     * snapshot and the table must be in the same instance.
-     * Values are of the form
+     * Required. The unique name of the snapshot from which to restore the table.
+     * The snapshot and the table must be in the same instance. Values are of the
+     * form
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string source_snapshot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -48,11 +48,11 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent         Required. The unique name of the instance in which to create the table.
      *                               Values are of the form `projects/{project}/instances/{instance}`. Please see
      *                               {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
-     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
-     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
-     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
-     *                               snapshot and the table must be in the same instance.
-     *                               Values are of the form
+     * @param string $tableId        Required. The name by which the new table should be referred to within the
+     *                               parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table.
+     *                               The snapshot and the table must be in the same instance. Values are of the
+     *                               form
      *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`. Please see
      *                               {@see BigtableTableAdminClient::snapshotName()} for help formatting this field.
      *
@@ -78,12 +78,12 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
      *           Required. The unique name of the instance in which to create the table.
      *           Values are of the form `projects/{project}/instances/{instance}`.
      *     @type string $table_id
-     *           Required. The name by which the new table should be referred to within the parent
-     *           instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     *           Required. The name by which the new table should be referred to within the
+     *           parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *     @type string $source_snapshot
-     *           Required. The unique name of the snapshot from which to restore the table. The
-     *           snapshot and the table must be in the same instance.
-     *           Values are of the form
+     *           Required. The unique name of the snapshot from which to restore the table.
+     *           The snapshot and the table must be in the same instance. Values are of the
+     *           form
      *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * }
      */
@@ -121,8 +121,8 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -133,8 +133,8 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -149,9 +149,9 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the snapshot from which to restore the table. The
-     * snapshot and the table must be in the same instance.
-     * Values are of the form
+     * Required. The unique name of the snapshot from which to restore the table.
+     * The snapshot and the table must be in the same instance. Values are of the
+     * form
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string source_snapshot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -163,9 +163,9 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the snapshot from which to restore the table. The
-     * snapshot and the table must be in the same instance.
-     * Values are of the form
+     * Required. The unique name of the snapshot from which to restore the table.
+     * The snapshot and the table must be in the same instance. Values are of the
+     * form
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string source_snapshot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

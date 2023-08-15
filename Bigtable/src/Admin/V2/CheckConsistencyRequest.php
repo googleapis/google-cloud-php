@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the Table for which to check replication consistency.
-     * Values are of the form
+     * Required. The unique name of the Table for which to check replication
+     * consistency. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,8 +32,8 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     private $consistency_token = '';
 
     /**
-     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
-     *                                 Values are of the form
+     * @param string $name             Required. The unique name of the Table for which to check replication
+     *                                 consistency. Values are of the form
      *                                 `projects/{project}/instances/{instance}/tables/{table}`. Please see
      *                                 {@see BigtableTableAdminClient::tableName()} for help formatting this field.
      * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
@@ -56,8 +56,8 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the Table for which to check replication consistency.
-     *           Values are of the form
+     *           Required. The unique name of the Table for which to check replication
+     *           consistency. Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type string $consistency_token
      *           Required. The token created using GenerateConsistencyToken for the Table.
@@ -69,8 +69,8 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to check replication consistency.
-     * Values are of the form
+     * Required. The unique name of the Table for which to check replication
+     * consistency. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -82,8 +82,8 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to check replication consistency.
-     * Values are of the form
+     * Required. The unique name of the Table for which to check replication
+     * consistency. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

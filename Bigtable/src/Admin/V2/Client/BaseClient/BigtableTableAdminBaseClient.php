@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
+use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
@@ -95,6 +96,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @internal
  *
  * @method PromiseInterface checkConsistencyAsync(CheckConsistencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTableAsync(CreateTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTableFromSnapshotAsync(CreateTableFromSnapshotRequest $request, array $optionalArgs = [])
@@ -444,14 +446,39 @@ abstract class BigtableTableAdminBaseClient
     }
 
     /**
+     * Copy a Cloud Bigtable backup to a new backup in the destination cluster
+     * located in the destination instance and project.
+     *
+     * The async variant is {@see self::copyBackupAsync()} .
+     *
+     * @param CopyBackupRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function copyBackup(CopyBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CopyBackup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts creating a new Cloud Bigtable Backup.  The returned backup
      * [long-running operation][google.longrunning.Operation] can be used to
      * track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
      * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the returned operation will stop the
-     * creation and delete the backup.
+     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
+     * returned operation will stop the creation and delete the backup.
      *
      * The async variant is {@see self::createBackupAsync()} .
      *
@@ -865,8 +892,7 @@ abstract class BigtableTableAdminBaseClient
     }
 
     /**
-     * Create a new table by restoring from a completed backup. The new table
-     * must be in the same project as the instance containing the backup.  The
+     * Create a new table by restoring from a completed backup.  The
      * returned table [long-running operation][google.longrunning.Operation] can
      * be used to track the progress of the operation, and to cancel it.  The
      * [metadata][google.longrunning.Operation.metadata] field type is
@@ -952,7 +978,8 @@ abstract class BigtableTableAdminBaseClient
     }
 
     /**
-     * Returns permissions that the caller has on the specified Table or Backup resource.
+     * Returns permissions that the caller has on the specified Table or Backup
+     * resource.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *

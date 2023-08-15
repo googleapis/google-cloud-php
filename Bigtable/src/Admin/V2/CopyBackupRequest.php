@@ -23,7 +23,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The id of the new backup. The `backup_id` along with `parent`
      * are combined as {parent}/backups/{backup_id} to create the full backup
@@ -34,7 +34,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $backup_id = '';
+    private $backup_id = '';
     /**
      * Required. The source backup to be copied from.
      * The source backup needs to be in READY state for it to be copied.
@@ -46,7 +46,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $source_backup = '';
+    private $source_backup = '';
     /**
      * Required. Required. The expiration time of the copied backup with
      * microsecond granularity that must be at least 6 hours and at most 30 days
@@ -56,7 +56,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $expire_time = null;
+    private $expire_time = null;
 
     /**
      * @param string                     $parent       Required. The name of the destination cluster that will contain the backup
