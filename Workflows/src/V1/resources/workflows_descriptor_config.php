@@ -93,7 +93,42 @@ return [
                     ],
                 ],
             ],
+            'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'ListLocations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLocations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}',
                 'location' => 'projects/{project}/locations/{location}',
                 'workflow' => 'projects/{project}/locations/{location}/workflows/{workflow}',
             ],

@@ -17,15 +17,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetWorkflowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the workflow which information should be retrieved.
+     * Required. Name of the workflow for which information should be retrieved.
      * Format: projects/{project}/locations/{location}/workflows/{workflow}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. The revision of the workflow to retrieve. If the revision_id is
+     * empty, the latest revision is retrieved.
+     * The format is "000001-a4d", where the first six characters define
+     * the zero-padded decimal revision number. They are followed by a hyphen and
+     * three hexadecimal characters.
+     *
+     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $revision_id = '';
 
     /**
-     * @param string $name Required. Name of the workflow which information should be retrieved.
+     * @param string $name Required. Name of the workflow for which information should be retrieved.
      *                     Format: projects/{project}/locations/{location}/workflows/{workflow}
      *                     Please see {@see WorkflowsClient::workflowName()} for help formatting this field.
      *
@@ -46,8 +56,14 @@ class GetWorkflowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the workflow which information should be retrieved.
+     *           Required. Name of the workflow for which information should be retrieved.
      *           Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *     @type string $revision_id
+     *           Optional. The revision of the workflow to retrieve. If the revision_id is
+     *           empty, the latest revision is retrieved.
+     *           The format is "000001-a4d", where the first six characters define
+     *           the zero-padded decimal revision number. They are followed by a hyphen and
+     *           three hexadecimal characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +72,7 @@ class GetWorkflowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the workflow which information should be retrieved.
+     * Required. Name of the workflow for which information should be retrieved.
      * Format: projects/{project}/locations/{location}/workflows/{workflow}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,7 +84,7 @@ class GetWorkflowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the workflow which information should be retrieved.
+     * Required. Name of the workflow for which information should be retrieved.
      * Format: projects/{project}/locations/{location}/workflows/{workflow}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -79,6 +95,40 @@ class GetWorkflowRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The revision of the workflow to retrieve. If the revision_id is
+     * empty, the latest revision is retrieved.
+     * The format is "000001-a4d", where the first six characters define
+     * the zero-padded decimal revision number. They are followed by a hyphen and
+     * three hexadecimal characters.
+     *
+     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRevisionId()
+    {
+        return $this->revision_id;
+    }
+
+    /**
+     * Optional. The revision of the workflow to retrieve. If the revision_id is
+     * empty, the latest revision is retrieved.
+     * The format is "000001-a4d", where the first six characters define
+     * the zero-padded decimal revision number. They are followed by a hyphen and
+     * three hexadecimal characters.
+     *
+     * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision_id = $var;
 
         return $this;
     }

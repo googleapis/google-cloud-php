@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The workflows which match the request.
+     * The workflows that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      */
@@ -44,7 +44,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $workflows
-     *           The workflows which match the request.
+     *           The workflows that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -58,7 +58,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The workflows which match the request.
+     * The workflows that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,7 +69,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The workflows which match the request.
+     * The workflows that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      * @param array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $var
