@@ -60,6 +60,8 @@ use Google\Cloud\AIPlatform\V1\ListTensorboardRunsRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardsRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeRequest;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest;
@@ -126,6 +128,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listTensorboardRunsAsync(ListTensorboardRunsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTensorboardTimeSeriesAsync(ListTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTensorboardsAsync(ListTensorboardsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface readTensorboardSizeAsync(ReadTensorboardSizeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface readTensorboardTimeSeriesDataAsync(ReadTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface readTensorboardUsageAsync(ReadTensorboardUsageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateTensorboardAsync(UpdateTensorboardRequest $request, array $optionalArgs = [])
@@ -966,6 +969,32 @@ abstract class TensorboardServiceBaseClient
     public function readTensorboardBlobData(ReadTensorboardBlobDataRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('ReadTensorboardBlobData', $request, $callOptions);
+    }
+
+    /**
+     * Returns the storage size for a given TensorBoard instance.
+     *
+     * The async variant is {@see self::readTensorboardSizeAsync()} .
+     *
+     * @example samples/V1/TensorboardServiceClient/read_tensorboard_size.php
+     *
+     * @param ReadTensorboardSizeRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReadTensorboardSizeResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function readTensorboardSize(ReadTensorboardSizeRequest $request, array $callOptions = []): ReadTensorboardSizeResponse
+    {
+        return $this->startApiCall('ReadTensorboardSize', $request, $callOptions)->wait();
     }
 
     /**

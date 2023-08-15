@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Schedule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Schedule.
+     * Immutable. The resource name of the Schedule.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $name = '';
     /**
@@ -160,7 +160,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           CreatePipelineJobRequest.parent field is required (format:
      *           projects/{project}/locations/{location}).
      *     @type string $name
-     *           Output only. The resource name of the Schedule.
+     *           Immutable. The resource name of the Schedule.
      *     @type string $display_name
      *           Required. User provided name of the Schedule.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -303,9 +303,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Schedule.
+     * Immutable. The resource name of the Schedule.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getName()
@@ -314,9 +314,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Schedule.
+     * Immutable. The resource name of the Schedule.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

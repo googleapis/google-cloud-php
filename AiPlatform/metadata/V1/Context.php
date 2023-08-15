@@ -23,7 +23,7 @@ class Context
 À
 (google/cloud/aiplatform/v1/context.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 Context
-name (	B‡A
+name (	B‡A
 display_name (	
 etag (	?
 labels	 (2/.google.cloud.aiplatform.v1.Context.LabelsEntry4

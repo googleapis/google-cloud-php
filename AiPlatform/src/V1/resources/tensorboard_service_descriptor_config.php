@@ -353,6 +353,18 @@ return [
                     ],
                 ],
             ],
+            'ReadTensorboardSize' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'tensorboard',
+                        'fieldAccessors' => [
+                            'getTensorboard',
+                        ],
+                    ],
+                ],
+            ],
             'ReadTensorboardTimeSeriesData' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse',
