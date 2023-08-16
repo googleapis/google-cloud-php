@@ -20,13 +20,13 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string routine = 1;</code>
      */
-    protected $routine = '';
+    private $routine = '';
     /**
      * Name of a step within the routine.
      *
      * Generated from protobuf field <code>string step = 2;</code>
      */
-    protected $step = '';
+    private $step = '';
 
     /**
      * Constructor.

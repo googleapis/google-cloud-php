@@ -44,6 +44,18 @@ class State
      * Generated from protobuf enum <code>CANCELLED = 4;</code>
      */
     const CANCELLED = 4;
+    /**
+     * Execution data is unavailable. See the `state_error` field.
+     *
+     * Generated from protobuf enum <code>UNAVAILABLE = 5;</code>
+     */
+    const UNAVAILABLE = 5;
+    /**
+     * Request has been placed in the backlog for processing at a later time.
+     *
+     * Generated from protobuf enum <code>QUEUED = 6;</code>
+     */
+    const QUEUED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -51,6 +63,8 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::CANCELLED => 'CANCELLED',
+        self::UNAVAILABLE => 'UNAVAILABLE',
+        self::QUEUED => 'QUEUED',
     ];
 
     public static function name($value)

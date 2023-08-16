@@ -20,13 +20,13 @@ class StateError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string details = 1;</code>
      */
-    protected $details = '';
+    private $details = '';
     /**
      * The type of this state error.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.StateError.Type type = 2;</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.
