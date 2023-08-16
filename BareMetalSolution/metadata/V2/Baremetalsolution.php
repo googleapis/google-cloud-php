@@ -16,7 +16,7 @@ class Baremetalsolution
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        \GPBMetadata\Google\Cloud\Baremetalsolution\V2\Common::initOnce();
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Baremetalsolution\V2\Instance::initOnce();
         \GPBMetadata\Google\Cloud\Baremetalsolution\V2\Lun::initOnce();
         \GPBMetadata\Google\Cloud\Baremetalsolution\V2\Network::initOnce();
@@ -28,10 +28,20 @@ class Baremetalsolution
         \GPBMetadata\Google\Cloud\Baremetalsolution\V2\VolumeSnapshot::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-úR
-9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.proto.google/cloud/baremetalsolution/v2/common.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto2ºK
+¨U
+9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"€
+OperationMetadata4
+create_time (2.google.protobuf.TimestampBàA1
+end_time (2.google.protobuf.TimestampBàA
+target (	BàA
+verb (	BàA
+status_message (	BàA#
+requested_cancellation (BàA
+api_version (	BàA"
+ResetInstanceResponse2ºK
 BareMetalSolutionÂ
 ListInstances7.google.cloud.baremetalsolution.v2.ListInstancesRequest8.google.cloud.baremetalsolution.v2.ListInstancesResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/instancesÚAparent¯
 GetInstance5.google.cloud.baremetalsolution.v2.GetInstanceRequest+.google.cloud.baremetalsolution.v2.Instance"<‚Óä“/-/v2/{name=projects/*/locations/*/instances/*}ÚAnameê
