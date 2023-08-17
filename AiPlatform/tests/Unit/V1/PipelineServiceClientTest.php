@@ -200,12 +200,14 @@ class PipelineServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
+        $scheduleName = 'scheduleName1677633331';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
+        $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -590,12 +592,14 @@ class PipelineServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
+        $scheduleName = 'scheduleName1677633331';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
+        $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');

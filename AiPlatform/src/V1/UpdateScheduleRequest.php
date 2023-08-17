@@ -20,6 +20,7 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
      * Required. The Schedule which replaces the resource on the server.
      * The following restrictions will be applied:
      *   * The scheduled request type cannot be changed.
+     *   * The non-empty fields cannot be unset.
      *   * The output_only fields will be ignored if specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule schedule = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,7 +37,9 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param \Google\Cloud\AIPlatform\V1\Schedule $schedule   Required. The Schedule which replaces the resource on the server.
      *                                                         The following restrictions will be applied:
+     *
      *                                                         * The scheduled request type cannot be changed.
+     *                                                         * The non-empty fields cannot be unset.
      *                                                         * The output_only fields will be ignored if specified.
      * @param \Google\Protobuf\FieldMask           $updateMask Required. The update mask applies to the resource. See
      *                                                         [google.protobuf.FieldMask][google.protobuf.FieldMask].
@@ -62,6 +65,7 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Schedule which replaces the resource on the server.
      *           The following restrictions will be applied:
      *             * The scheduled request type cannot be changed.
+     *             * The non-empty fields cannot be unset.
      *             * The output_only fields will be ignored if specified.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource. See
@@ -77,6 +81,7 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
      * Required. The Schedule which replaces the resource on the server.
      * The following restrictions will be applied:
      *   * The scheduled request type cannot be changed.
+     *   * The non-empty fields cannot be unset.
      *   * The output_only fields will be ignored if specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule schedule = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -101,6 +106,7 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
      * Required. The Schedule which replaces the resource on the server.
      * The following restrictions will be applied:
      *   * The scheduled request type cannot be changed.
+     *   * The non-empty fields cannot be unset.
      *   * The output_only fields will be ignored if specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule schedule = 1 [(.google.api.field_behavior) = REQUIRED];</code>

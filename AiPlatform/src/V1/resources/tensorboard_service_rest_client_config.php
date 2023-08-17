@@ -247,6 +247,17 @@ return [
                     ],
                 ],
             ],
+            'ReadTensorboardSize' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readSize',
+                'placeholders' => [
+                    'tensorboard' => [
+                        'getters' => [
+                            'getTensorboard',
+                        ],
+                    ],
+                ],
+            ],
             'ReadTensorboardTimeSeriesData' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:read',
