@@ -84,7 +84,6 @@ use InvalidArgumentException;
  */
 class PubSubClient
 {
-    use ArrayTrait;
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
@@ -150,20 +149,26 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
-        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
-        $config += [
-            'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true,
-            'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
-        ];
-        // TODO: remove this in favour of something from gax
-        $config = $this->configureAuthentication($config);
+        $config = $this->getDefaultClientConfig($config, [
+            'emulatorHost' => getenv('PUBSUB_EMULATOR_HOST'),
+            'defaultScope' => self::FULL_CONTROL_SCOPE,
+            'libVersion' => self::VERSION
+        ]);
         $this->clientConfig = $config;
+
+
+        // Initialize the request handler with the GAPICs to be utilized later
+        // when a request is sent via the handler.
+        $gapics = $this->getGapicsFromConfig($config, [
+            PublisherClient::class => 'gapicPublisherClient',
+            SubscriberClient::class => 'gapicSubscriberClient',
+            SchemaServiceClient::class => 'gapicSchemaClient'
+        ]);
+        
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
-            [PublisherClient::class, SubscriberClient::class, SchemaServiceClient::class],
-            $config + ['libVersion' => self::VERSION]
+            $gapics,
+            $config
         );
     }
 
