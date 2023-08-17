@@ -102,16 +102,6 @@ class Subscription
     private $requestHandler;
 
     /**
-     * The GAPIC class to call under the hood.
-     */
-    private $gapic;
-
-    /**
-     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
-     */
-    private $serializer;
-
-    /**
      * @var string
      */
     private $projectId;
@@ -175,6 +165,8 @@ class Subscription
      * The idiomatic way to use this class is through the PubSubClient or Topic,
      * but you can instantiate it directly as well.
      *
+     * @param RequestHandler The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to
@@ -182,19 +174,14 @@ class Subscription
      * @param array $info [optional] Subscription info. Used to pre-populate the object.
      */
     public function __construct(
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $topicName,
         $encode,
-        array $info = [],
-        $clientConfig = []
+        array $info = []
     ) {
-        $this->gapic = new SubscriberClient($clientConfig);
-        $this->serializer = new PubSubSerializer();
-        $this->requestHandler = new RequestHandler(
-            $this->serializer,
-            ['libVersion' => PubSubClient::VERSION]
-        );
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -410,7 +397,7 @@ class Subscription
         }
 
         $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'createSubscription',
             [$this->name,$this->topicName],
             $this->formatDeadLetterPolicyForApi($options));
@@ -584,7 +571,7 @@ class Subscription
 
         $maskPaths = [];
         foreach ($updateMaskPaths as $path) {
-            $maskPaths[] = $this->serializer::toSnakeCase($path);
+            $maskPaths[] = PubSubSerializer::toSnakeCase($path);
         }
 
         $fieldMask = new FieldMask([
@@ -598,7 +585,7 @@ class Subscription
         ] + $this->formatDeadLetterPolicyForApi($subscription));
 
         return $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'updateSubscription',
             [$subscriptionProto, $fieldMask],
             $options
@@ -621,7 +608,7 @@ class Subscription
     public function delete(array $options = [])
     {
         $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'deleteSubscription',
             [$this->name],
             $options
@@ -706,7 +693,7 @@ class Subscription
     public function reload(array $options = [])
     {
         return $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'getSubscription',
             [$this->name],
             $options
@@ -744,7 +731,7 @@ class Subscription
         $maxMessages = $this->pluck('maxMessages', $options, false) ?? self::MAX_MESSAGES;
 
         $response = $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'pull',
             [$this->name, $maxMessages],
             $options
@@ -1138,13 +1125,13 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = $this->serializer->decodeMessage(
+        $pushConfig = (new PubSubSerializer())->decodeMessage(
             new PushConfig(),
             $pushConfig
         );
 
         $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'modifyPushConfig',
             [$this->name, $pushConfig],
             $options
@@ -1172,10 +1159,10 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = $this->serializer->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
+        $options['time'] = (new PubSubSerializer())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'seek',
             [$this->name],
             $options,
@@ -1206,7 +1193,7 @@ class Subscription
         $options['snapshot'] = $snapshot->name();
 
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'seek',
             [$this->name],
             $options,
@@ -1232,7 +1219,7 @@ class Subscription
     public function detach(array $options = [])
     {
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'detachSubscription',
             [$this->name],
             $options
@@ -1259,7 +1246,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, $this->gapic , $this->name);
+            $this->iam = new Iam($this->requestHandler, SubscriberClient::class , $this->name);
         }
 
         return $this->iam;
@@ -1459,7 +1446,7 @@ class Subscription
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'acknowledge',
             [$this->name,$ackIds],
             $options
@@ -1477,7 +1464,7 @@ class Subscription
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'modifyAckDeadline',
             [$this->name, $ackIds, $seconds],
             $options

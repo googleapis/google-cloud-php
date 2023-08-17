@@ -94,14 +94,10 @@ class PubSubClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
-     * The request handler that is responsible for sending a req and
+     * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
      */
     private $requestHandler;
-
-    private $publisherGapic;
-    private $subscriberGapic;
-    private $schemaGapic;
 
     /**
      * @var bool
@@ -164,11 +160,9 @@ class PubSubClient
         // TODO: remove this in favour of something from gax
         $config = $this->configureAuthentication($config);
         $this->clientConfig = $config;
-        $this->publisherGapic = new PublisherClient($config);
-        $this->subscriberGapic = new SubscriberClient($config);
-        $this->schemaGapic = new SchemaServiceClient($config);
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
+            [PublisherClient::class, SubscriberClient::class, SchemaServiceClient::class],
             $config + ['libVersion' => self::VERSION]
         );
     }
@@ -263,7 +257,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        $this->publisherGapic,
+                        PublisherClient::class,
                         'listTopics',
                         [$projectId],
                         $options
@@ -374,7 +368,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        $this->subscriberGapic,
+                        SubscriberClient::class,
                         'listSubscriptions',
                         [$projectId],
                         $options
@@ -430,7 +424,7 @@ class PubSubClient
      */
     public function snapshot($name, array $info = [])
     {
-        return new Snapshot($this->projectId, $name, $this->encode, $info);
+        return new Snapshot($this->requestHandler, $this->projectId, $name, $this->encode, $info);
     }
 
     /**
@@ -468,6 +462,7 @@ class PubSubClient
             new PageIterator(
                 function (array $snapshot) {
                     return new Snapshot(
+                        $this->requestHandler,
                         $this->projectId,
                         $this->pluckName('snapshot', $snapshot['name']),
                         $this->encode,
@@ -476,7 +471,7 @@ class PubSubClient
                 },
                 function($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
-                        $this->subscriberGapic,
+                        SubscriberClient::class,
                         'listSnapshots',
                         [$projectId],
                         $options
@@ -506,6 +501,7 @@ class PubSubClient
     public function schema($schemaId, array $info = [])
     {
         return new Schema(
+            $this->requestHandler,
             SchemaServiceClient::schemaName($this->projectId, $schemaId),
             $info,
             $this->clientConfig
@@ -536,7 +532,7 @@ class PubSubClient
     public function createSchema($schemaId, $type, $definition, array $options = [])
     {
         $type = is_string($type) ? Type::value($type) : $type;
-        $parent = $this->schemaGapic::projectName($this->projectId);
+        $parent = SchemaServiceClient::class::projectName($this->projectId);
         $schema = new SchemaProto([
             'type' => $type,
             'definition' => $definition,
@@ -544,7 +540,7 @@ class PubSubClient
         $options['schemaId'] = $schemaId;
 
         $res = $this->requestHandler->sendReq(
-            $this->schemaGapic,
+            SchemaServiceClient::class,
             'createSchema',
             [$parent, $schema],
             $options
@@ -596,12 +592,12 @@ class PubSubClient
         return new ItemIterator(
             new PageIterator(
                 function (array $schema) {
-                    $parts = $this->schemaGapic::parseName($schema['name'], 'schema');
+                    $parts = SchemaServiceClient::class::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
                 function($options) use($projectId){
                     return $this->requestHandler->sendReq(
-                        $this->schemaGapic,
+                        SchemaServiceClient::class,
                         'listSchemas',
                         [$projectId],
                         $options
@@ -650,12 +646,12 @@ class PubSubClient
      */
     public function validateSchema(array $schema, array $options = [])
     {
-        $parent = $this->schemaGapic::projectName($this->projectId);
+        $parent = SchemaServiceClient::class::projectName($this->projectId);
         $schema['type'] = Type::value($schema['type']);
         $schema = new SchemaProto($schema);
 
         return $this->requestHandler->sendReq(
-            $this->schemaGapic,
+            SchemaServiceClient::class,
             'validateSchema',
             [$parent, $schema],
             $options
@@ -702,7 +698,7 @@ class PubSubClient
      */
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
-        $parent = $this->schemaGapic::projectName($this->projectId);
+        $parent = SchemaServiceClient::class::projectName($this->projectId);
 
         if (is_string($schema)) {
             $options['name'] = $schema;
@@ -721,7 +717,7 @@ class PubSubClient
         $options['encoding'] = $encoding;
 
         return $this->requestHandler->sendReq(
-            $this->schemaGapic,
+            SchemaServiceClient::class,
             'validateMessage',
             [$parent],
             $options
@@ -826,6 +822,7 @@ class PubSubClient
             : $topic;
 
         return new Subscription(
+            $this->requestHandler,
             $this->projectId,
             $name,
             $topic,

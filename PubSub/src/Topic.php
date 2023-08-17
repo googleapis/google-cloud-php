@@ -62,16 +62,6 @@ class Topic
     private $requestHandler;
 
     /**
-     * The GAPIC class to call under the hood.
-     */
-    private $gapic;
-
-    /**
-     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
-     */
-    private $serializer;
-
-    /**
      * @var string The project ID
      */
     private $projectId;
@@ -104,6 +94,8 @@ class Topic
     /**
      * Create a PubSub topic.
      *
+     * @param RequestHandler The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
@@ -133,8 +125,6 @@ class Topic
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = new PublisherClient($clientConfig);
-        $this->serializer = new PubSubSerializer();
         $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
@@ -207,7 +197,7 @@ class Topic
     public function create(array $options = [])
     {
         $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            PublisherClient::class,
             'createTopic',
             [$this->name],
             $options
@@ -336,7 +326,7 @@ class Topic
         $proto = new TopicProto($topic + ['name' => $this->name]);
 
         $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            PublisherClient::class,
             'updateTopic',
             [$proto, $fieldMask],
             $options
@@ -361,7 +351,7 @@ class Topic
     public function delete(array $options = [])
     {
         $this->requestHandler->sendReq(
-            $this->gapic,
+            PublisherClient::class,
             'deleteTopic',
             [$this->name],
             $options
@@ -458,7 +448,7 @@ class Topic
     public function reload(array $options = [])
     {
         $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            PublisherClient::class,
             'getTopic',
             [$this->name],
             $options
@@ -541,7 +531,7 @@ class Topic
         }
 
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            PublisherClient::class,
             'publish',
             [$this->name, $messages],
             $options
@@ -689,7 +679,7 @@ class Topic
                 },
                 function($options) {
                     return $this->requestHandler->sendReq(
-                        $this->gapic,
+                        PublisherClient::class,
                         'listTopicSubscriptions',
                         [$this->name],
                         $options
@@ -724,7 +714,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, $this->gapic , $this->name);
+            $this->iam = new Iam($this->requestHandler, PublisherClient::class , $this->name);
         }
 
         return $this->iam;
@@ -789,6 +779,7 @@ class Topic
     private function subscriptionFactory($name, array $info = [])
     {
         return new Subscription(
+            $this->requestHandler,
             $this->projectId,
             $name,
             $this->name,

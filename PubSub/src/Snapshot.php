@@ -43,16 +43,6 @@ class Snapshot
     private $requestHandler;
 
     /**
-     * The GAPIC class to call under the hood.
-     */
-    private $gapic;
-
-    /**
-     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
-     */
-    private $serializer;
-
-    /**
      * @var string
      */
     private $projectId;
@@ -78,6 +68,8 @@ class Snapshot
     private $clientConfig;
 
     /**
+     * @param RequestHandler The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      * @param string $projectId The current Project ID.
      * @param string $name The snapshot name.
      * @param bool $encode Whether certain request arguments should be base64-encoded.
@@ -92,18 +84,14 @@ class Snapshot
      *        associated with this instance.
      */
     public function __construct(
+        RequestHandler $requestHandler,
         $projectId,
         $name,
         $encode,
         array $info = [],
         array $clientConfig = []
     ) {
-        $this->gapic = new SubscriberClient($clientConfig);
-        $this->serializer = new PubSubSerializer();
-        $this->requestHandler = new RequestHandler(
-            $this->serializer,
-            $clientConfig + ['libVersion' => PubSubClient::VERSION]
-        );
+        $this->requestHandler = $requestHandler;
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->clientConfig = $clientConfig;
@@ -179,7 +167,7 @@ class Snapshot
         $options['project'] = $this->formatName('project', $this->projectId);
 
         $this->info = $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'createSnapshot',
             [$this->name, $this->info['subscription']],
             $options,
@@ -205,7 +193,7 @@ class Snapshot
     public function delete(array $options = [])
     {
         $this->requestHandler->sendReq(
-            $this->gapic,
+            SubscriberClient::class,
             'deleteSnapshot',
             [$this->name],
             $options
@@ -226,6 +214,7 @@ class Snapshot
     {
         if ($this->info['topic']) {
             return new Topic(
+                $this->requestHandler,
                 $this->projectId,
                 $this->info['topic'],
                 $this->encode,
@@ -250,7 +239,11 @@ class Snapshot
     public function subscription()
     {
         return $this->info['subscription']
-            ? new Subscription($this->projectId, $this->info['subscription'], null, $this->encode)
+            ? new Subscription($this->requestHandler,
+                $this->projectId,
+                $this->info['subscription'],
+                null,
+                $this->encode)
             : null;
     }
 

@@ -47,16 +47,6 @@ class Schema
     private $requestHandler;
 
     /**
-     * The GAPIC class to call under the hood.
-     */
-    private $gapic;
-
-    /**
-     * @var Google\ApiCore\Serializer The serializer to be used for PubSub
-     */
-    private $serializer;
-
-    /**
      * @var string
      */
     private $name;
@@ -67,21 +57,17 @@ class Schema
     private $info;
 
     /**
+     * @param RequestHandler The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */
     public function __construct(
+        RequestHandler $requestHandler,
         $name,
-        array $info = [],
-        $clientConfig = []
+        array $info = []
     ) {
-        $this->gapic = new SchemaServiceClient($clientConfig);
-        $this->serializer = new PubSubSerializer();
-        $this->requestHandler = new RequestHandler(
-            $this->serializer,
-            ['libVersion' => PubSubClient::VERSION]
-        );
-
+        $this->requestHandler = $requestHandler;
         $this->name = $name;
         $this->info = $info;
     }
@@ -115,7 +101,7 @@ class Schema
     public function delete(array $options = [])
     {
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            SchemaServiceClient::class,
             'deleteSchema',
             [$this->name],
             $options
@@ -193,7 +179,7 @@ class Schema
         }
 
         return $this->requestHandler->sendReq(
-            $this->gapic,
+            SchemaServiceClient::class,
             'getSchema',
             [$this->name],
             $options
