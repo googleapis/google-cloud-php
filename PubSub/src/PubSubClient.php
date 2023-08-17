@@ -92,6 +92,12 @@ class PubSubClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
+    const GAPIC_KEYS = [
+        'gapicPublisherClient' => PublisherClient::class,
+        'gapicSubscriberClient' => SubscriberClient::class, 
+        'gapicSchemaClient' => SchemaServiceClient::class 
+    ];
+
     /**
      * The request handler that is responsible for sending a request and
      * serializing responses into relevant classes.
@@ -159,11 +165,7 @@ class PubSubClient
 
         // Initialize the request handler with the GAPICs to be utilized later
         // when a request is sent via the handler.
-        $gapics = $this->getGapicsFromConfig($config, [
-            PublisherClient::class => 'gapicPublisherClient',
-            SubscriberClient::class => 'gapicSubscriberClient',
-            SchemaServiceClient::class => 'gapicSchemaClient'
-        ]);
+        $gapics = $this->getGapicsFromConfig($config, self::GAPIC_KEYS);
         
         $this->requestHandler = new RequestHandler(
             new PubSubSerializer(),
