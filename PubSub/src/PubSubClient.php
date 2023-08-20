@@ -654,8 +654,6 @@ class PubSubClient
     public function validateSchema(array $schema, array $options = [])
     {
         $parent = SchemaServiceClient::class::projectName($this->projectId);
-        $schema['type'] = Type::value($schema['type']);
-        $schema = new SchemaProto($schema);
 
         return $this->requestHandler->sendReq(
             SchemaServiceClient::class,

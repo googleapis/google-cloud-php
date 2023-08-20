@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Veneer\Iterator\ItemIterator;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Schema;
@@ -38,6 +37,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\PubSub\V1\Schema\Type;
 
 /**
  * @group pubsub
@@ -50,45 +50,40 @@ class PubSubClientTest extends TestCase
     const PROJECT = 'project';
     const SCHEMA = 'schema';
 
-    private $connection;
+    private $requestHandler;
 
     private $client;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->client = TestHelpers::stub(PubSubClient::class, [
             [
                 'projectId' => self::PROJECT,
                 'transport' => 'rest'
             ]
-        ]);
-    }
-
-    public function testUsesGrpcConnectionByDefault()
-    {
-        $this->checkAndSkipGrpcTests();
-        $client = TestHelpers::stub(PubSubClient::class, [
-            ['projectId' => self::PROJECT]
-        ]);
-
-        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
+        ],['requestHandler']);
     }
 
     public function testCreateTopic()
     {
         $topicName = 'test-topic';
 
-        $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
-            ]);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('createTopic'), 2)
+        )->willReturn([
+            'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
+        ]);
 
         // Set this to zero to make sure we're getting the cached result
-        $this->connection->getTopic(Argument::any())->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('getTopic'),
+            Argument::cetera()
+        )->shouldNotBeCalled();
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $topic = $this->client->createTopic($topicName, [
             'foo' => 'bar'
@@ -104,12 +99,13 @@ class PubSubClientTest extends TestCase
     {
         $topicName = 'test-topic';
 
-        $this->connection->getTopic(Argument::any())
-            ->willReturn([
-                'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+        )->willReturn([
+            'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
+        ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $topic = $this->client->topic($topicName);
 
@@ -131,12 +127,13 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listTopics(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('listTopics'), 2)
+        )->willReturn([
                 'topics' => $topicResult
-            ])->shouldBeCalledTimes(1);
+        ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $topics = $this->client->topics([
             'foo' => 'bar'
@@ -163,21 +160,23 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listTopics(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::that(function ($options) {
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('listTopics'),
+            Argument::any(),
+            Argument::that(function($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
 
                 return true;
             })
-        ))->willReturn([
+        )->willReturn([
             'topics' => $topicResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $topics = $this->client->topics([
             'foo' => 'bar'
@@ -199,14 +198,19 @@ class PubSubClientTest extends TestCase
 
     public function testSubscribe()
     {
-        $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'test' => 'value'
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('createSubscription'), 2)
+        )->willReturn([
+            'test' => 'value'
+        ])->shouldBeCalledTimes(1);
 
-        $this->connection->getSubscription()->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('getSubscription'),
+            Argument::cetera()
+        )->shouldNotBeCalled();
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $subscription = $this->client->subscribe('subscription', 'topic', [
             'foo' => 'bar'
@@ -218,11 +222,12 @@ class PubSubClientTest extends TestCase
 
     public function testSubscription()
     {
-        $this->connection->getSubscription(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('getSubscription'), 2)
+        )->shouldBeCalledTimes(1)
+        ->willReturn(['foo' => 'bar']);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $subscription = $this->client->subscription('subscription-name', 'topic-name');
 
@@ -248,12 +253,13 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSubscriptions(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'subscriptions' => $subscriptionResult
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('listSubscriptions'), 2)
+        )->willReturn([
+            'subscriptions' => $subscriptionResult
+        ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $subscriptions = $this->client->subscriptions([
             'foo' => 'bar'
@@ -283,21 +289,23 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSubscriptions(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::that(function ($options) {
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('listSubscriptions'),
+            Argument::any(),
+            Argument::that(function($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
 
                 return true;
             })
-        ))->willReturn([
+        )->willReturn([
             'subscriptions' => $subscriptionResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $subscriptions = $this->client->subscriptions([
             'foo' => 'bar'
@@ -319,11 +327,12 @@ class PubSubClientTest extends TestCase
 
     public function testCreateSnapshot()
     {
-        $this->connection->createSnapshot(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('createSnapshot'), 2)
+        )->shouldBeCalled()
+        ->willReturn([]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $subscription = $this->client->subscription('bar');
 
@@ -351,12 +360,13 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSnapshots(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'snapshots' => $snapshotResult
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('listSnapshots'), 2)
+        )->willReturn([
+            'snapshots' => $snapshotResult
+        ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snapshots = $this->client->snapshots([
             'foo' => 'bar'
@@ -383,21 +393,23 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSnapshots(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::that(function ($options) {
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('listSnapshots'),
+            Argument::any(),
+            Argument::that(function($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
 
                 return true;
             })
-        ))->willReturn([
+        )->willReturn([
             'snapshots' => $snapshotResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snapshots = $this->client->snapshots([
             'foo' => 'bar'
@@ -429,21 +441,15 @@ class PubSubClientTest extends TestCase
 
     public function testCreateSchema()
     {
-        $type = 'foo';
+        $type = Type::AVRO;
         $definition = 'bar';
         $res = ['a' => 'b'];
 
-        $this->connection->createSchema([
-            'parent' => SubscriberClient::projectName(self::PROJECT),
-            'schemaId' => self::SCHEMA,
-            'type' => $type,
-            'definition' => $definition,
-            'schema' => [
-                'other' => 'thing',
-            ]
-        ])->willReturn(['a' => 'b']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('createSchema'), 2)
+        )->willReturn(['a' => 'b']);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $schema = $this->client->createSchema(self::SCHEMA, $type, $definition, [
             'schema' => [
@@ -467,12 +473,13 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSchemas(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'schemas' => $schemaResult
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('listSchemas'), 2)
+        )->willReturn([
+            'schemas' => $schemaResult
+        ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $schemas = $this->client->schemas([
             'foo' => 'bar'
@@ -489,12 +496,11 @@ class PubSubClientTest extends TestCase
 
     public function testValidateSchema()
     {
-        $this->connection->validateSchema([
-            'parent' => SubscriberClient::projectName(self::PROJECT),
-            'schema' => ['a' => 'schema'],
-        ])->shouldBeCalled()->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('validateSchema'), 2)
+        )->shouldBeCalled()->willReturn(['foo' => 'bar']);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->validateSchema(['a' => 'schema']);
 
@@ -507,11 +513,12 @@ class PubSubClientTest extends TestCase
     {
         $this->expectException(BadRequestException::class);
 
-        $this->connection->validateSchema(Argument::any())
-            ->shouldBeCalled()
-            ->willThrow(new BadRequestException('foo'));
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument(Argument::exact('validateSchema'), 2)
+        )->shouldBeCalled()
+        ->willThrow(new BadRequestException('foo'));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->client->validateSchema(['a' => 'schema']);
     }
@@ -523,17 +530,21 @@ class PubSubClientTest extends TestCase
     {
         $message = 'hello';
         $encoding = 'JSON';
-        $this->connection->validateMessage([
-            'parent' => SubscriberClient::projectName(self::PROJECT),
-            'message' => $message,
-            'encoding' => $encoding,
-        ] + $requestArgs)->shouldBeCalled()->willReturn('foo');
+        $this->requestHandler->sendReq(
+            Argument::any(),
+            Argument::exact('validateMessage'),
+            [SubscriberClient::projectName(self::PROJECT)],
+            $requestArgs + [
+                'message' => $message,
+                'encoding' => $encoding
+            ])->shouldBeCalled()->willReturn('foo');
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $res = $this->client->validateMessage($schema, $message, $encoding);
 
         $this->assertEquals(
             'foo',
-            $this->client->validateMessage($schema, $message, $encoding)
+            $res
         );
     }
 
@@ -642,5 +653,17 @@ class PubSubClientTest extends TestCase
             'transport' => 'grpc',
         ]);
         $client->subscription('subscription', 'topic')->reload();
+    }
+
+    private function matchesNthArgument($wildcard, $num)
+    {
+        $args = [];
+        for ($i = 0; $i < $num - 1; $i++) {
+            $args[] = Argument::any();
+        }
+
+        $args[] = $wildcard;
+        $args[] = Argument::cetera();
+        return $args;
     }
 }
