@@ -211,7 +211,18 @@ class LoadJobConfigurationTest extends SnippetTestCase
                     'sourceUriPrefix' => 'gs://bucket/path_to_table',
                     'requirePartitionFilter' => false,
                 ]
-            ]
+            ],
+            [
+                'createSession',
+                true
+            ],
+            [
+                'connectionProperties',
+                [
+                    'key' => 'session_id',
+                    'value' => 'sessionId'
+                ]
+            ],
         ];
     }
 }
