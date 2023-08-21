@@ -17,17 +17,22 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Veneer\Exception\NotFoundException;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Duration;
-use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\Exception\NotFoundException;
+use Google\ApiCore\Veneer\Exception\BadRequestException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\Subscription as V1Subscription;
+use Google\Protobuf\Duration as ProtobufDuration;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -46,20 +51,20 @@ class SubscriptionTest extends TestCase
     const TOPIC = 'projects/project-id/topics/topic-name';
 
     private $subscription;
-    private $connection;
+    private $requestHandler;
     private $ackIds;
     private $messages;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
             'project-id',
             'subscription-name',
             'topic-name',
             true
-        ], ['connection', 'info']);
+        ], ['requestHandler', 'info']);
         // make sure the ExponentialBackOff retries don't delay for our test.
         Subscription::setMaxEodRetryTime(0);
 
@@ -81,29 +86,39 @@ class SubscriptionTest extends TestCase
 
     public function testDetached()
     {
-        $this->connection->getSubscription(Argument::withEntry(
-            'subscription',
-            self::SUBSCRIPTION
-        ))->willReturn([
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2],
+                [[self::SUBSCRIPTION], 3]
+            ])
+        )->willReturn([
             'detached' => true
         ]);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertTrue($this->subscription->detached());
     }
 
     public function testCreate()
     {
-        $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'name' => self::SUBSCRIPTION,
-                'topic' => self::TOPIC
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
 
-        $this->connection->getSubscription()->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2]
+            ])
+        )->shouldNotBeCalled();
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $sub = $this->subscription->create(['foo' => 'bar']);
 
@@ -116,7 +131,7 @@ class SubscriptionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $subscription = new Subscription(
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
             'project-id',
             'subscription-name',
             null,
@@ -128,56 +143,54 @@ class SubscriptionTest extends TestCase
 
     public function testUpdate()
     {
-        $this->connection->updateSubscription(Argument::allOf(
-            Argument::withEntry('subscription', [
-                'name' => $this->subscription->name(),
-                'foo' => 'bar'
-            ]),
-            Argument::withEntry('updateMask', 'foo')
-        ))->shouldBeCalled()->willReturn([
-            'foo' => 'bar'
+        $prop = 'ack_deadline_seconds';
+        $val = 5;
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('updateSubscription'), 2],
+                [
+                    Argument::that(function($args) use($prop, $val) {
+                        $sub = $args[0];
+                        $mask = $args[1];
+
+                        $isValid = $sub instanceof V1Subscription && $mask instanceof FieldMask;
+                        $isValid = $isValid && $sub->getAckDeadlineSeconds() === $val;
+                        $isValid = $isValid && $mask->getPaths()->offsetGet(0) === $prop;
+                        return $isValid;
+                    }), 3
+                ]
+            ])
+        )->shouldBeCalled()->willReturn([
+            $prop => $val
         ]);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $res = $this->subscription->update(['foo' => 'bar']);
+        $res = $this->subscription->update([$prop => $val]);
 
-        $this->assertEquals(['foo' => 'bar'], $res);
-        $this->assertEquals('bar', $this->subscription->info()['foo']);
+        $this->assertEquals([$prop => $val], $res);
+        $this->assertEquals($val, $this->subscription->info()[$prop]);
     }
 
     public function testDurations()
     {
-        $this->connection->updateSubscription(Argument::allOf(
-            Argument::withEntry('subscription', [
-                'name' => $this->subscription->name(),
-                'messageRetentionDuration' => '1.1s',
-                'expirationPolicy' => [
-                    'ttl' => '2.1s'
-                ],
-                'retryPolicy' => [
-                    'minimumBackoff' => '3.1s',
-                    'maximumBackoff' => '4.1s'
-                ]
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('updateSubscription'), 2]
             ])
-        ))->shouldBeCalled()->willReturn([
-            'foo' => 'bar'
+        )->shouldBeCalled()->willReturn([
+            'name' => 'foo'
         ]);
 
-        $this->connection->createSubscription(Argument::allOf(
-            Argument::withEntry('messageRetentionDuration', '1.1s'),
-            Argument::withEntry('expirationPolicy', [
-                'ttl' => '2.1s'
-            ]),
-            Argument::withEntry('retryPolicy', [
-                'minimumBackoff' => '3.1s',
-                'maximumBackoff' => '4.1s'
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSubscription'), 2]
             ])
-        ))->shouldBeCalled()->willReturn([
-            'foo' => 'bar'
+        )->shouldBeCalled()->willReturn([
+            'name' => 'bar'
         ]);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $args = [
             'messageRetentionDuration' => new Duration(1, 1e+9),
@@ -190,8 +203,14 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $this->subscription->update($args);
-        $this->subscription->create($args);
+        $res = $this->subscription->update($args,[
+            'updateMask' => ['messageRetentionDuration','retryPolicy']
+        ]);
+        $this->assertArrayHasKey('name', $res);
+        $this->assertEquals($res['name'], 'foo');
+        $res = $this->subscription->create($args);
+        $this->assertArrayHasKey('name', $res);
+        $this->assertEquals($res['name'], 'bar');
     }
 
     public function testDeadLetterPolicyTopicNames()
@@ -200,21 +219,23 @@ class SubscriptionTest extends TestCase
         $mock->name()->willReturn(self::TOPIC);
         $topic = $mock->reveal();
 
-        $this->connection->updateSubscription(
-            Argument::withEntry('subscription', Argument::withEntry('deadLetterPolicy', [
-                'deadLetterTopic' => $topic->name()
-            ]))
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSubscription'), 2]
+            ])
         )->shouldBeCalledTimes(2)->willReturn([
             'foo' => 'bar'
         ]);
 
-        $this->connection->createSubscription(Argument::withEntry('deadLetterPolicy', [
-            'deadLetterTopic' => $topic->name()
-        ]))->shouldBeCalledTimes(2)->willReturn([
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('updateSubscription'), 2]
+            ])
+        )->shouldBeCalledTimes(2)->willReturn([
             'foo' => 'bar'
         ]);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->subscription->create([
             'deadLetterPolicy' => [
@@ -243,11 +264,15 @@ class SubscriptionTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn(null)
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('deleteSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn(null)
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->delete([ 'foo' => 'bar' ]);
 
@@ -256,24 +281,31 @@ class SubscriptionTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'subscription' => self::SUBSCRIPTION,
-                'topic' => self::TOPIC
-            ])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn([
+            'subscription' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertTrue($this->subscription->exists([ 'foo' => 'bar' ]));
     }
 
     public function testExistsNotFound()
     {
-        $this->connection->getSubscription(Argument::any())
-            ->willThrow(new NotFoundException('bad'))
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2]
+            ])
+        )->willThrow(new NotFoundException('bad'))
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertFalse($this->subscription->exists());
     }
@@ -285,11 +317,15 @@ class SubscriptionTest extends TestCase
             'topic' => self::TOPIC
         ];
 
-        $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn($sub)
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn($sub)
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->info([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
@@ -302,10 +338,14 @@ class SubscriptionTest extends TestCase
             'topic' => self::TOPIC
         ];
 
-        $this->connection->getSubscription()->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2]
+            ])
+        )->shouldNotBeCalled();
 
         $this->subscription->___setProperty('info', $sub);
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->info();
         $this->assertEquals($res, $sub);
@@ -318,11 +358,15 @@ class SubscriptionTest extends TestCase
             'topic' => self::TOPIC
         ];
 
-        $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
-            ->willReturn($sub)
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn($sub)
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->reload([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
@@ -342,11 +386,15 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $this->connection->pull(Argument::withEntry('foo', 'bar'))
-            ->willReturn($messages)
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('pull'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn($messages)
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $result = $this->subscription->pull([
             'foo' => 'bar'
@@ -373,11 +421,15 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $this->connection->pull(Argument::withEntry('foo', 'bar'))
-            ->willReturn($messages)
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('pull'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->willReturn($messages)
+        ->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $result = $this->subscription->pull([
             'foo' => 'bar'
@@ -403,13 +455,18 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $this->connection->pull(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('returnImmediately', true),
-            Argument::withEntry('maxMessages', 2)
-        ))->willReturn($messages)->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('pull'), 2],
+                [Argument::containing(2), 3],   // maxMessages
+                [Argument::allOf(
+                    Argument::withEntry('foo', 'bar'),
+                    Argument::withEntry('returnImmediately', true),
+                ), 4]
+            ])
+        )->willReturn($messages)->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $result = $this->subscription->pull([
             'foo' => 'bar',
@@ -426,12 +483,15 @@ class SubscriptionTest extends TestCase
     {
         $ackId = 'foobar';
 
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', [$ackId])
-        ))->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, [$ackId]), 3],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $message = new Message([], ['ackId' => $ackId]);
         $this->subscription->acknowledge($message, ['foo' => 'bar']);
@@ -439,12 +499,15 @@ class SubscriptionTest extends TestCase
 
     public function testAcknowledgeBatch()
     {
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $this->ackIds)
-        ))->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, $this->ackIds), 3],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->subscription->acknowledgeBatch($this->messages, ['foo' => 'bar']);
     }
@@ -461,11 +524,14 @@ class SubscriptionTest extends TestCase
         ];
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds)
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, $this->ackIds), 3]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         try {
             $this->subscription->acknowledgeBatch($this->messages);
@@ -491,11 +557,14 @@ class SubscriptionTest extends TestCase
         // in it's exception msg, then it should bubble up
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds)
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, $this->ackIds), 3]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         try {
             $this->subscription->acknowledgeBatch($this->messages);
@@ -515,12 +584,14 @@ class SubscriptionTest extends TestCase
 
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withKey('subscription')
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, $this->ackIds), 3]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // Check if the acknowledgeBatch method returned an array of failedMsgs
@@ -539,12 +610,14 @@ class SubscriptionTest extends TestCase
 
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->acknowledge(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(1)->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2],
+                [Argument::withEntry(1, $this->ackIds), 3]
+            ])
+        )->shouldBeCalledTimes(1)->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
     }
 
@@ -567,14 +640,15 @@ class SubscriptionTest extends TestCase
 
         $allEx = [$ex1, $ex1, $ex2];
 
-        $this->connection->acknowledge(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2]
+            ])
+        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             throw array_shift($allEx);
         });
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // eventually both msgs failed, so they should be present in our response
@@ -591,10 +665,11 @@ class SubscriptionTest extends TestCase
         $ex = $this->generateEodException($metadata);
         $allEx = [$ex, $ex];
 
-        $this->connection->acknowledge(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2]
+            ])
+        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             // An exception is thrown until we have in our list,
             // then we simply return implying a success
             if (count($allEx) > 0) {
@@ -604,7 +679,7 @@ class SubscriptionTest extends TestCase
             }
         });
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // eventually both msgs were acked, so our $failedMsgs should be empty
@@ -613,12 +688,13 @@ class SubscriptionTest extends TestCase
 
     public function testAcknowledgeBatchNeverRetriesOnSuccess()
     {
-        $this->connection->acknowledge(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(1)->willReturn();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2]
+            ])
+        )->shouldBeCalledTimes(1)->willReturn();
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
@@ -639,12 +715,13 @@ class SubscriptionTest extends TestCase
         // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
-        $this->connection->acknowledge(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(1)->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('acknowledge'), 2]
+            ])
+        )->shouldBeCalledTimes(1)->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
         $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
@@ -664,13 +741,20 @@ class SubscriptionTest extends TestCase
         $message = new Message([], ['ackId' => $ackId]);
         $seconds = 100;
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', [$ackId]),
-            Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, [$ackId]),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->subscription->modifyAckDeadline($message, $seconds, ['foo' => 'bar']);
     }
@@ -679,13 +763,20 @@ class SubscriptionTest extends TestCase
     {
         $seconds = 100;
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['foo' => 'bar']);
     }
@@ -703,12 +794,19 @@ class SubscriptionTest extends TestCase
         ];
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         try {
             $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
@@ -734,12 +832,19 @@ class SubscriptionTest extends TestCase
         // in it's exception msg, then it should bubble up
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         try {
             $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
@@ -752,6 +857,7 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatchWithReturn()
     {
+        $seconds = 10;
         $metadata = [
             'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
             'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
@@ -759,14 +865,20 @@ class SubscriptionTest extends TestCase
 
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
 
         // Check if the modifyAckDeadlineBatch method returned an array of failedMsgs
         $this->assertIsArray($failedMsgs);
@@ -775,6 +887,7 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatchRetryNever()
     {
+        $seconds = 10;
         // Since all sent msgs are permananently failed,
         // the retry will never take place
         $metadata = [
@@ -784,18 +897,25 @@ class SubscriptionTest extends TestCase
 
         $ex = $this->generateEodException($metadata);
 
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $this->ackIds),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes(1)->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->shouldBeCalledTimes(1)->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
     }
 
     public function testModifyAckDeadlineBatchRetryPartial()
     {
+        $seconds = 10;
         // Exception with first msg as a temporary failure
         $metadata1 = [
             'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
@@ -813,16 +933,21 @@ class SubscriptionTest extends TestCase
 
         $allEx = [$ex1, $ex1, $ex2];
 
-        $this->connection->modifyAckDeadline(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             throw array_shift($allEx);
         });
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
 
         // eventually both msgs failed, so they should be present in our response
         $this->assertEquals(count($failedMsgs), count($this->ackIds));
@@ -830,6 +955,7 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatchRetryWithSuccess()
     {
+        $seconds = 10;
         $metadata = [
             'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
             'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
@@ -838,11 +964,16 @@ class SubscriptionTest extends TestCase
         $ex = $this->generateEodException($metadata);
         $allEx = [$ex, $ex];
 
-        $this->connection->modifyAckDeadline(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             // An exception is thrown until we have in our list,
             // then we simply return implying a success
             if (count($allEx) > 0) {
@@ -852,8 +983,8 @@ class SubscriptionTest extends TestCase
             }
         });
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
 
         // eventually both msgs were acked, so our $failedMsgs should be empty
         $this->assertEquals(count($failedMsgs), 0);
@@ -861,14 +992,21 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatchNeverRetriesOnSuccess()
     {
-        $this->connection->modifyAckDeadline(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes(1)->willReturn();
+        $seconds = 10;
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->shouldBeCalledTimes(1)->willReturn();
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertEquals(count($failedMsgs), 0);
@@ -880,6 +1018,7 @@ class SubscriptionTest extends TestCase
      */
     public function testModifyAckDeadlineBatchReturnsVoidForNonEod()
     {
+        $seconds = 10;
         $metadata = [
             'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
             'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
@@ -888,14 +1027,20 @@ class SubscriptionTest extends TestCase
         // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
         $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
-        $this->connection->modifyAckDeadline(Argument::any(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes(1)->willThrow($ex);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyAckDeadline'), 2],
+                [
+                    Argument::allOf(
+                        Argument::withEntry(1, $this->ackIds),
+                        Argument::withEntry(2, $seconds)
+                    ), 3
+                ]
+            ])
+        )->shouldBeCalledTimes(1)->willThrow($ex);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertIsNotArray($failedMsgs);
@@ -911,15 +1056,20 @@ class SubscriptionTest extends TestCase
     public function testModifyPushConfig()
     {
         $config = [
-            'hello' => 'world'
+            'push_endpoint' => 'test'
         ];
 
-        $this->connection->modifyPushConfig(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('pushConfig', $config)
-        ))->shouldBeCalledTimes(1);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('modifyPushConfig'), 2],
+                [Argument::that(function($args) {
+                    return $args[1] instanceof PushConfig && $args[1]->getPushEndpoint() === "test";
+                }), 3],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
+        )->shouldBeCalledTimes(1);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->subscription->modifyPushConfig($config, ['foo' => 'bar']);
     }
@@ -929,12 +1079,17 @@ class SubscriptionTest extends TestCase
         $dt = new \DateTime;
         $timestamp = new Timestamp($dt);
 
-        $this->connection->seek([
-            'subscription' => $this->subscription->name(),
-            'time' => $timestamp->formatAsString()
-        ])->shouldBeCalled()->willReturn('foo');
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('seek'), 2],
+                [Argument::that(function($args) {
+                    return isset($args['time']) && $args['time'] instanceof ProtobufTimestamp;
+                }), 4],
+                [Argument::exact(true), 5]
+            ],5)
+        )->shouldBeCalled()->willReturn('foo');
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->seekToTime($timestamp);
         $this->assertEquals('foo', $res);
@@ -947,12 +1102,17 @@ class SubscriptionTest extends TestCase
 
         $snapshot = $stub->reveal();
 
-        $this->connection->seek([
-            'subscription' => $this->subscription->name(),
-            'snapshot' => $snapshot->name()
-        ])->shouldBeCalled()->willReturn('foo');
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('seek'), 2],
+                [Argument::that(function($args) {
+                    return isset($args['snapshot']) && $args['snapshot'] === "foo";
+                }), 4],
+                [Argument::exact(true), 5]
+            ],5)
+        )->shouldBeCalled()->willReturn('foo');
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->subscription->seekToSnapshot($snapshot);
         $this->assertEquals('foo', $res);
@@ -965,12 +1125,14 @@ class SubscriptionTest extends TestCase
 
     public function testDetach()
     {
-        $this->connection->detachSubscription(Argument::withEntry(
-            'subscription',
-            self::SUBSCRIPTION
-        ))->shouldBeCalled()->willReturn([]);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('detachSubscription'), 2],
+                [Argument::withEntry(0, self::SUBSCRIPTION), 3]
+            ])
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals([], $this->subscription->detach());
     }
@@ -1000,5 +1162,21 @@ class SubscriptionTest extends TestCase
         ];
 
         return new BadRequestException(json_encode($arr));
+    }
+
+    private function matchesNthArgument($tokensArr, $totalTokens = 4)
+    {
+        $args = [];
+        for ($i = 0; $i < $totalTokens; $i++) {
+            $args[$i] = Argument::any();
+        }
+
+        foreach($tokensArr as $row) {
+            $token = $row[0];
+            $index = $row[1] - 1;
+            $args[$index] = $token;
+        }
+
+        return $args;
     }
 }

@@ -34,6 +34,7 @@ use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
+use Google\Protobuf\Duration as ProtobufDuration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
@@ -100,6 +101,8 @@ class Subscription
      * serializing responses into relevant classes.
      */
     private $requestHandler;
+
+    private $serializer;
 
     /**
      * @var string
@@ -182,6 +185,7 @@ class Subscription
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
+        $this->serializer = PubSubSerializer::getInstance();
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -376,31 +380,41 @@ class Subscription
         }
 
         $options = $this->formatSubscriptionDurations($options);
+        $options = $this->formatDeadLetterPolicyForApi($options);
 
         // convert optional args to protos
         if (isset($options['expirationPolicy'])) {
-            $options['expirationPolicy'] = new ExpirationPolicy($options['expirationPolicy']);
+            $options['expirationPolicy'] = $this->serializer->decodeMessage(
+                new ExpirationPolicy,
+                $options['expirationPolicy']
+            );
         }
 
         if (isset($options['messageRetentionDuration'])) {
-            $options['messageRetentionDuration'] = new Duration(
+            $options['messageRetentionDuration'] = new ProtobufDuration(
                 $this->transformDuration($options['messageRetentionDuration'])
             );
         }
 
         if (isset($options['retryPolicy'])) {
-            $options['retryPolicy'] = new RetryPolicy($options['retryPolicy']);
+            $options['retryPolicy'] = $this->serializer->decodeMessage(
+                new RetryPolicy,
+                $options['retryPolicy']
+            );
         }
 
         if (isset($options['deadLetterPolicy'])) {
-            $options['deadLetterPolicy'] = new DeadLetterPolicy($options['deadLetterPolicy']);
+            $options['deadLetterPolicy'] = $this->serializer->decodeMessage(
+                new DeadLetterPolicy,
+                $options['deadLetterPolicy']
+            );
         }
 
         $this->info = $this->requestHandler->sendReq(
             SubscriberClient::class,
             'createSubscription',
             [$this->name,$this->topicName],
-            $this->formatDeadLetterPolicyForApi($options));
+            $options);
 
         return $this->info;
     }
@@ -571,7 +585,7 @@ class Subscription
 
         $maskPaths = [];
         foreach ($updateMaskPaths as $path) {
-            $maskPaths[] = PubSubSerializer::toSnakeCase($path);
+            $maskPaths[] = $this->serializer::toSnakeCase($path);
         }
 
         $fieldMask = new FieldMask([
@@ -581,7 +595,7 @@ class Subscription
         $subscription = $this->formatSubscriptionDurations($subscription);
         $subscription = $this->formatDeadLetterPolicyForApi($subscription);
 
-        $subscriptionProto = (PubSubSerializer::getInstance())->decodeMessage(
+        $subscriptionProto = $this->serializer->decodeMessage(
             new SubscriptionProto,
             [
                 'name' => $this->name
@@ -1129,7 +1143,7 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = (PubSubSerializer::getInstance())->decodeMessage(
+        $pushConfig = $this->serializer->decodeMessage(
             new PushConfig(),
             $pushConfig
         );
@@ -1163,7 +1177,7 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = (PubSubSerializer::getInstance())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
+        $options['time'] = $this->serializer->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
         return $this->requestHandler->sendReq(
             SubscriberClient::class,
