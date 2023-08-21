@@ -50,7 +50,7 @@ trait ArgumentHelperTrait
      * The number of tokens is decided by the $totalTokens parameter.
      *
      * @param  array $tokensArr The array containing the wildcard tokens
-     * @return int $totalTokens The total number of tokens used in the method call.
+     * @param int $totalTokens The total number of tokens used in the method call.
      * @return array
      */
     private function matchesNthArgument(array $tokensArr, int $totalTokens = 4)

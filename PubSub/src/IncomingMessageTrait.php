@@ -45,6 +45,7 @@ trait IncomingMessageTrait
         $subscription = null;
         if (isset($message['subscription'])) {
             $subscription = new Subscription(
+                $this->requestHandler,
                 $projectId,
                 $message['subscription'],
                 null,

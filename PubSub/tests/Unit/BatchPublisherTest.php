@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
@@ -34,6 +34,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class BatchPublisherTest extends TestCase
 {
     use ProphecyTrait;
+    use ArgumentHelperTrait;
 
     const TOPIC_NAME = 'my-topic';
 
@@ -86,7 +87,7 @@ class BatchPublisherTest extends TestCase
         $client = TestHelpers::stub(PubSubClient::class, [
             ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
         ], [
-            'encode', 'connection'
+            'encode', 'requestHandler'
         ]);
         $client->___setProperty('encode', false);
 
@@ -94,7 +95,7 @@ class BatchPublisherTest extends TestCase
             self::TOPIC_NAME,
         ], ['client', 'topics']);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
 
         $messages = [
             [
@@ -111,42 +112,71 @@ class BatchPublisherTest extends TestCase
             ]
         ];
 
-        $withOrderingKey = function ($key) use ($messages) {
-            $messages = array_filter($messages, function ($message) use ($key) {
-                if ($key === '') {
-                    return !isset($message['orderingKey']);
-                }
+        $tokensWithAKey = $this->getPublishTokensWithOrderingKey('a', $messages);
+        $tokensWithBKey = $this->getPublishTokensWithOrderingKey('b', $messages);
+        $tokensWithEmptyKey = $this->getPublishTokensWithOrderingKey('', $messages);
 
-                return isset($message['orderingKey']) && $message['orderingKey'] === $key;
+        $requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
+        )->willReturn([
+            'name' => self::TOPIC_NAME,
+        ]);
+
+        $requestHandler->sendReq(
+            ...$tokensWithAKey
+        )->will(function ($args) use ($requestHandler, $tokensWithBKey, $tokensWithEmptyKey) {
+            $requestHandler->sendReq(
+                ...$tokensWithBKey
+            )->will(function ($args) use ($requestHandler, $tokensWithEmptyKey) {
+                $requestHandler->sendReq(
+                    ...$tokensWithEmptyKey
+                )->will(function ($args) {
+                    // msgs are at [2][1] in the $args.
+                    // This is according to the publish method in Topic::class.
+                    return array_fill(0, count($args[2][1]), 1);
+                });
+
+                return array_fill(0, count($args[2][1]), 1);
             });
 
-            return Argument::withEntry('messages', array_values($messages));
-        };
+            return array_fill(0, count($args[2][1]), 1);
+        });
 
-        $connection->getTopic(Argument::any())
-            ->willReturn([
-                'name' => self::TOPIC_NAME,
-            ]);
-
-        $connection->publishMessage($withOrderingKey('a'))
-            ->will(function ($args) use ($withOrderingKey) {
-                $this->publishMessage($withOrderingKey('b'))
-                    ->will(function ($args) use ($withOrderingKey) {
-                        $this->publishMessage($withOrderingKey(''))
-                            ->will(function ($args) {
-                                return array_fill(0, count($args[0]['messages']), 1);
-                            });
-
-                        return array_fill(0, count($args[0]['messages']), 1);
-                    });
-
-                return array_fill(0, count($args[0]['messages']), 1);
-            });
-
-        $client->___setProperty('connection', $connection->reveal());
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $publisher->___setProperty('client', $client);
         $res = $publisher->publishDeferred($messages);
         $this->assertEquals(array_fill(0, count($messages), 1), $res);
+    }
+
+    /**
+     * Helper function to return Argument tokens to match the ordering key.
+     * @return array
+     */
+    private function getPublishTokensWithOrderingKey ($key, $msgs) {
+        return $this->matchesNthArgument([
+            [Argument::exact('publish'), 2],
+            [Argument::that(function($args) use($key, $msgs) {
+                return $this->withOrderingKey($key, $msgs);
+            }), 3]
+        ]);
+    }
+
+    /**
+     * Helper function to filter out msgs with a specific ordering
+     * key.
+     */
+    private function withOrderingKey ($key, $messages) {
+        $messages = array_filter($messages, function ($message) use ($key) {
+            if ($key === '') {
+                return !isset($message['orderingKey']);
+            }
+
+            return isset($message['orderingKey']) && $message['orderingKey'] === $key;
+        });
+
+        return Argument::withEntry('messages', array_values($messages));
     }
 }
 
