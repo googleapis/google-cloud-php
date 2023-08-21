@@ -579,10 +579,14 @@ class Subscription
         ]);
 
         $subscription = $this->formatSubscriptionDurations($subscription);
+        $subscription = $this->formatDeadLetterPolicyForApi($subscription);
 
-        $subscriptionProto = new SubscriptionProto([
-            'name' => $this->name
-        ] + $this->formatDeadLetterPolicyForApi($subscription));
+        $subscriptionProto = (PubSubSerializer::getInstance())->decodeMessage(
+            new SubscriptionProto,
+            [
+                'name' => $this->name
+            ] + $subscription
+        );
 
         return $this->info = $this->requestHandler->sendReq(
             SubscriberClient::class,
@@ -1125,7 +1129,7 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = (new PubSubSerializer())->decodeMessage(
+        $pushConfig = (PubSubSerializer::getInstance())->decodeMessage(
             new PushConfig(),
             $pushConfig
         );
@@ -1159,7 +1163,7 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = (new PubSubSerializer())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
+        $options['time'] = (PubSubSerializer::getInstance())->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
 
         return $this->requestHandler->sendReq(
             SubscriberClient::class,

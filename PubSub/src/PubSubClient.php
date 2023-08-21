@@ -168,7 +168,7 @@ class PubSubClient
         $gapics = $this->getGapicsFromConfig($config, self::GAPIC_KEYS);
         
         $this->requestHandler = new RequestHandler(
-            new PubSubSerializer(),
+            PubSubSerializer::getInstance(),
             $gapics,
             $config
         );

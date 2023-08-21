@@ -29,18 +29,20 @@ class PubSubSerializer extends Serializer
 
     public function __construct()
     {
-        if(!is_null(self::$obj)){
-            return self::$obj;
-        }
-
         parent::__construct(
             $this->initFieldtransformers(),
             $this->initMessageTypeTransformers(),
             $this->initDecodeFieldTransformers(),
             $this->initDecodeMessageTypeTransformers()
         );
+    }
 
-        self::$obj = $this;
+    public static function getInstance() {
+        if(is_null(self::$obj)){
+            self::$obj = new self();
+        }
+
+        return self::$obj;
     }
 
     private function initFieldtransformers() {
