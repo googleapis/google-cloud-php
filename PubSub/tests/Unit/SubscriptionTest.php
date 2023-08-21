@@ -21,7 +21,7 @@ use Google\ApiCore\Veneer\Exception\NotFoundException;
 use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Duration;
 use Google\ApiCore\Veneer\Exception\BadRequestException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Message;
