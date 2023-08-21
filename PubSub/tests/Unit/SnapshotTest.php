@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Snapshot;
@@ -36,24 +37,24 @@ class SnapshotTest extends TestCase
     const PROJECT = 'my-project';
     const SNAPSHOT_ID = 'snapshot';
 
-    private $connection;
+    private $requestHandler;
     private $snapshot;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->snapshot = TestHelpers::stub(Snapshot::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
             self::PROJECT,
             self::SNAPSHOT_ID,
             false
-        ], ['connection', 'info']);
+        ], ['requestHandler', 'info']);
     }
 
     public function testConstructWithFullyQualifiedName()
     {
         $snapshot = TestHelpers::stub(Snapshot::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
             self::PROJECT,
             'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID,
             false
@@ -83,8 +84,12 @@ class SnapshotTest extends TestCase
 
     public function testCreate()
     {
-        $this->connection->createSnapshot(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSnapshot'), 2],
+                [Argument::exact(true), 5]
+            ], 5)
+        )->shouldBeCalled();
 
         $info = [
             'subscription' => 'foo',
@@ -92,7 +97,7 @@ class SnapshotTest extends TestCase
 
         $this->snapshot->___setProperty('info', $info);
 
-        $this->snapshot->___setProperty('connection', $this->connection->reveal());
+        $this->snapshot->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->snapshot->create();
     }
@@ -106,11 +111,15 @@ class SnapshotTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteSnapshot([
-            'snapshot' => 'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID
-        ])->shouldBeCalled();
+        $snapshotName = 'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID;
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('deleteSnapshot'), 2],
+                [Argument::withEntry(0, $snapshotName), 3]
+            ])
+        )->shouldBeCalled();
 
-        $this->snapshot->___setProperty('connection', $this->connection->reveal());
+        $this->snapshot->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->snapshot->delete();
     }
@@ -141,5 +150,21 @@ class SnapshotTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Subscription::class, $this->snapshot->subscription());
+    }
+
+    private function matchesNthArgument($tokensArr, $totalTokens = 4)
+    {
+        $args = [];
+        for ($i = 0; $i < $totalTokens; $i++) {
+            $args[$i] = Argument::any();
+        }
+
+        foreach($tokensArr as $row) {
+            $token = $row[0];
+            $index = $row[1] - 1;
+            $args[$index] = $token;
+        }
+
+        return $args;
     }
 }
